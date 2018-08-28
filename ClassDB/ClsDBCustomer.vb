@@ -43,7 +43,7 @@ Public Class ClsDBCustomer
                 .Append("UPDATE samc_customer ")
                 .Append("SET SaluteCode = '" & CUST.SaluteCode & "', SaluteName = '" & CUST.SaluteName & "', CustomerName = '" & CUST.CustomerName & "', NRICPassportNo = '" & CUST.NRICPassportNo & "', ")
                 .Append("AddressLine1 = '" & CUST.AddressLine1 & "', AddressLine2 = '" & CUST.AddressLine2 & "', AddressLine3 = '" & CUST.AddressLine3 & "', AddressLine4 = '" & CUST.AddressLine4 & "', ")
-                .Append("TelNo = '" & CUST.TelNo & "', MobileNo = '" & CUST.MobileNo & "', DateModified = '" & CSQLDateTime(CUST.Ref.DateModified) & "', ModifiedBy = '" & CUST.Ref.ModifiedBy & "' ")
+                .Append("TelNo = '" & CUST.TelNo & "', MobileNo = '" & CUST.MobileNo & "', DateModified = " & CSQLDateTime(CUST.Ref.DateModified) & ", ModifiedBy = '" & CUST.Ref.ModifiedBy & "' ")
                 .Append("WHERE NRICPassportNo = '" & CUST.NRICPassportNo & "' ")
             End With
 

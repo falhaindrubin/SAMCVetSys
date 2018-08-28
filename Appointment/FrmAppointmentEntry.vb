@@ -457,15 +457,11 @@ Public Class FrmAppointmentEntry
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
 
         Try
-            'Dim Frm As New FrmSearch With {
-            '            .Source = "APPOINTMENT"
-            '        }
-
             With FrmSearch
                 .Source = "APPOINTMENT"
-                .ShowDialog()
-                TxtCustomerID.Text = .CustomerID
+                CustomerID = .CustomerID
                 UserCommand = .UserCommand
+                .ShowDialog()
             End With
 
             PopulateForm(UserCommand)
@@ -1033,9 +1029,6 @@ Public Class FrmAppointmentEntry
                     TxtPetID.Text = UCase(TxtPetID.Tag)
                     TxtPetName.Text = UCase(TxtPetName.Text)
 
-                    'Appointment information
-
-
                 Case "CLEAR_PET_FIELDS"
                     TxtPetID.Text = ""
                     TxtPetName.Text = ""
@@ -1044,10 +1037,9 @@ Public Class FrmAppointmentEntry
                     CmbSex.SelectedIndex = 0
                     CmbStatus.SelectedIndex = 0
 
-                Case "SHOW_CUSTOMER_INFO", "CANCELEDIT_CUSTOMER_INFO", "POPULATE_CUSTOMER_INFO"
+                Case "SHOW_CUSTOMER_INFO", "CANCELEDIT_CUSTOMER_INFO", "POPULATE_CUSTOMER_INFO", "SHOW_CUSTOMER_APPOINTMENT"
 
                     'BtnSave.Enabled = False
-
                     CmbSalutation.Enabled = False
                     TxtCustomerName.ReadOnly = True
                     TxtNRICPassportNo.ReadOnly = True

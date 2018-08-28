@@ -163,10 +163,13 @@ Partial Class FrmAppointmentRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox2)
+        Me.MaximizeBox = False
         Me.Name = "FrmAppointmentRecords"
         Me.Text = "Appointment Records"
         Me.GroupBox2.ResumeLayout(False)

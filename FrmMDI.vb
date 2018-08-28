@@ -23,7 +23,7 @@
         frm.Show()
     End Sub
 
-    Private Sub PetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PetToolStripMenuItem.Click
+    Private Sub PetToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 
         'Dim frm As New frmAnimalRecords()
         ''Static intCount As Integer

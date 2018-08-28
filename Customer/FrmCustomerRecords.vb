@@ -16,15 +16,26 @@ Public Class FrmCustomerRecords
 
         Try
             DtCustomer = ClsCustomer.GetCustomerListing(ClsCustomer)
-            If DtCustomer.Rows.Count > 0 Then
 
+            If DtCustomer.Rows.Count > 0 Then
                 DgvCustomerListing.DataSource = DtCustomer
                 DgvCustomerListing.Show()
             Else
                 DgvCustomerListing.DataSource = DtCustomer
                 DgvCustomerListing.Show()
-
             End If
+
+            For i As Integer = 0 To DgvCustomerListing.Rows.Count - 1
+
+                '.Append("SELECT CustomerID, SaluteCode, SaluteName, CustomerName, NRICPassportNo, AddressLine1, AddressLine2, AddressLine3, AddressLine4, TelNo, MobileNo, Email, ")
+                '.Append("Postcode, City, State, Country, ")
+                '.Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                '.Append("FROM samc_customer ")
+
+                DgvCustomerListing.Columns("SaluteCode").Visible = False
+                DgvCustomerListing.Columns("SaluteName").Visible = False
+
+            Next
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ShowCustomerRecords()")

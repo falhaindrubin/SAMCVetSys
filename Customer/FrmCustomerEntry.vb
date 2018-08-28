@@ -993,18 +993,21 @@ AddPetOnly:
 
     Private Function UpdatePetInDgv(UserCommand As String) As Boolean
 
+        Dim RowIndex As Integer
+
         Try
+            RowIndex = CInt(TxtPetID.Tag)
             With DgvPetListing
-                .Rows(0).Cells("PetName").Value = UCase(Trim(TxtPetName.Text))
-                .Rows(0).Cells("PetDOB").Value = DtpPetDOB.Value
-                .Rows(0).Cells("AnimalTypeCode").Value = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-                .Rows(0).Cells("AnimalTypeName").Value = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-                .Rows(0).Cells("BreedCode").Value = DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-                .Rows(0).Cells("BreedName").Value = DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-                .Rows(0).Cells("SexCode").Value = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-                .Rows(0).Cells("SexName").Value = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-                .Rows(0).Cells("StatusCode").Value = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-                .Rows(0).Cells("StatusName").Value = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                .Rows(RowIndex).Cells("PetName").Value = UCase(Trim(TxtPetName.Text))
+                .Rows(RowIndex).Cells("PetDOB").Value = DtpPetDOB.Value
+                .Rows(RowIndex).Cells("AnimalTypeCode").Value = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .Rows(RowIndex).Cells("AnimalTypeName").Value = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                .Rows(RowIndex).Cells("BreedCode").Value = DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .Rows(RowIndex).Cells("BreedName").Value = DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                .Rows(RowIndex).Cells("SexCode").Value = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .Rows(RowIndex).Cells("SexName").Value = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                .Rows(RowIndex).Cells("StatusCode").Value = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .Rows(RowIndex).Cells("StatusName").Value = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             End With
 
             SetFields("EDITED_PET")
@@ -1208,6 +1211,7 @@ AddPetOnly:
                 'Data grid view Pet Listing 'Edit' button
                 If e.ColumnIndex = 0 Then
 
+                    TxtPetID.Tag = e.RowIndex
                     TxtPetID.Text = DgvPetListing.Rows(e.RowIndex).Cells("PetID").Value
                     TxtPetName.Text = DgvPetListing.Rows(e.RowIndex).Cells("PetName").Value
                     DtpPetDOB.Value = DgvPetListing.Rows(e.RowIndex).Cells("PetDOB").Value
@@ -1272,11 +1276,6 @@ AddPetOnly:
         SetFields(UserCommand)
     End Sub
 
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Me.Dispose()
-        Me.Close()
-    End Sub
-
     Private Sub BtnCancelEdit_Click(sender As Object, e As EventArgs) Handles BtnCancelEdit.Click
 
         Try
@@ -1294,6 +1293,11 @@ AddPetOnly:
             .CustomerID = Trim(TxtCustomerID.Text)
             .ShowDialog()
         End With
+    End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Me.Dispose()
+        Me.Close()
     End Sub
 
 End Class

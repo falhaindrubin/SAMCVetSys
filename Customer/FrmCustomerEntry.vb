@@ -320,9 +320,9 @@
         Try
             If Not CheckUserInput(UserCommand) Then Exit Sub
 
-            'If AddPetOnly = True Then
-            '    GoTo AddPetOnly
-            'End If
+            If AddPetOnly = True Then
+                GoTo AddPetOnly
+            End If
 
             If UserCommand = "EDIT_CUSTOMER_INFO" Then
 
@@ -332,6 +332,7 @@
 
                 If Not AddNewCustomer() Then Exit Sub
 AddPetOnly:
+                If Not AddPetOnly Then Exit Sub
                 If Not AddNewPet() Then Exit Sub
 
             End If
@@ -865,22 +866,32 @@ AddPetOnly:
             'Take value from data grid view, loop data grid view
             If DgvPetListing.Rows.Count > 0 Then
 
+                Dim PetIDLastNo As Integer = 0
+                Dim Param As String = ""
+
                 For i As Integer = 0 To DgvPetListing.Rows.Count - 1
 
                     If DgvPetListing.Rows(i).Cells("PetID").Value = "" Then
 
-                        PetID = GenerateRunningNo("PT", DBConn, DBTrans)
+                        If PetIDLastNo = 0 Then
+                            Param = ""
+                        Else
+                            Param = CStr(PetIDLastNo)
+                        End If
+
+                        PetID = GenerateRunningNo("PT", DBConn, DBTrans, Param)
                         TxtPetID.Tag = PetID
 
                         If PetID = "" Then
                             DBTrans.Rollback()
                             DBTrans.Dispose()
+                            DBTrans = Nothing
                             Return False
                         End If
 
                         ClsPet = New ClsPet
                         With ClsPet
-                            .CustomerID = UCase(Trim(TxtCustomerID.Tag))
+                            .CustomerID = IIf(TxtCustomerID.Text <> "", UCase(TxtCustomerID.Text), UCase(TxtCustomerID.Tag))
                             .PetID = PetID
                             .PetName = DgvPetListing.Rows(i).Cells("PetName").Value
                             .PetDOB = DgvPetListing.Rows(i).Cells("PetDOB").Value
@@ -903,6 +914,10 @@ AddPetOnly:
                             DBTrans.Rollback()
                             Return False
                         End If
+
+                    Else
+                        'Count pet that has PetID, then use number of count as PetID last used number.
+                        PetIDLastNo += 1
 
                     End If
 
@@ -1140,6 +1155,8 @@ AddPetOnly:
                 .Show()
 
             End With
+
+            MsgBox("Your pet has been successfully added!", MsgBoxStyle.Information, "New Pet Added")
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddPetToDGV()")

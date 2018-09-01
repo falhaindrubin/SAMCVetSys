@@ -4,11 +4,13 @@ Imports SAMCVetSys.ModUtility
 
 Public Class ClsDBPet
 
-    Dim sb As StringBuilder
-    Dim cmd As OdbcCommand
-    Dim da As OdbcDataAdapter
+    Dim Sb As StringBuilder
+    Dim Cmd As OdbcCommand
+    Dim Da As OdbcDataAdapter
 
     Public Function AddNewPet(ByVal PET As ClsPet, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As Boolean
+
+        Dim Ret As Integer
 
         Try
             sb = New StringBuilder
@@ -17,19 +19,19 @@ Public Class ClsDBPet
                 .Append("(CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, StatusCode, StatusName, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & PET.CustomerID & "', '" & PET.PetID & "', '" & PET.PetName & "', '" & CSQLDate(PET.PetDOB) & "', '" & PET.AnimalTypeCode & "', '" & PET.AnimalTypeName & "', ")
+                .Append("('" & PET.CustomerID & "', '" & PET.PetID & "', '" & PET.PetName & "', " & CSQLDate(PET.PetDOB) & ", '" & PET.AnimalTypeCode & "', '" & PET.AnimalTypeName & "', ")
                 .Append("'" & PET.BreedCode & "', '" & PET.BreedName & "', '" & PET.SexCode & "', '" & PET.SexName & "', '" & PET.StatusCode & "', '" & PET.StatusName & "', ")
-                .Append("'" & PET.Ref.CreatedBy & "', '" & CSQLDateTime(PET.Ref.DateCreated) & "', '" & PET.Ref.ModifiedBy & "', '" & CSQLDateTime(PET.Ref.DateModified) & "') ")
+                .Append("'" & PET.Ref.CreatedBy & "', " & CSQLDateTime(PET.Ref.DateCreated) & ", '" & PET.Ref.ModifiedBy & "', " & CSQLDateTime(PET.Ref.DateModified) & ") ")
             End With
 
             cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)
-            cmd.ExecuteNonQuery()
+            Ret = cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBPet.AddNewPet()")
         End Try
 
-        Return True
+        Return IIf(Ret = 0, False, True)
 
     End Function
 

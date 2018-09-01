@@ -4,11 +4,13 @@ Imports SAMCVetSys.ModUtility
 
 Public Class ClsDBCustomer
 
-    Dim sb As StringBuilder
-    Dim cmd As OdbcCommand
-    Dim da As OdbcDataAdapter
+    Dim Sb As StringBuilder
+    Dim Cmd As OdbcCommand
+    Dim Da As OdbcDataAdapter
 
     Public Function AddNewCustomer(ByVal CUST As ClsCustomer, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As Boolean
+
+        Dim Ret As Integer
 
         Try
             sb = New StringBuilder
@@ -21,17 +23,17 @@ Public Class ClsDBCustomer
                 .Append("('" & CUST.CustomerID & "',  '" & CUST.SaluteCode & "', '" & CUST.SaluteName & "', '" & CUST.CustomerName & "', '" & CUST.NRICPassportNo & "', ")
                 .Append("'" & CUST.AddressLine1 & "', '" & CUST.AddressLine2 & "', '" & CUST.AddressLine3 & "', '" & CUST.AddressLine4 & "', '" & CUST.TelNo & "', '" & CUST.MobileNo & "', '" & CUST.Email & "', ")
                 .Append("'" & CUST.Postcode & "', '" & CUST.City & "', '" & CUST.State & "', '" & CUST.Country & "', ")
-                .Append("'" & CUST.Ref.CreatedBy & "', '" & CSQLDateTime(CUST.Ref.DateCreated) & "', '" & CUST.Ref.ModifiedBy & "', '" & CSQLDateTime(CUST.Ref.DateModified) & "') ")
+                .Append("'" & CUST.Ref.CreatedBy & "', " & CSQLDateTime(CUST.Ref.DateCreated) & ", '" & CUST.Ref.ModifiedBy & "', " & CSQLDateTime(CUST.Ref.DateModified) & ") ")
             End With
 
             cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)
-            cmd.ExecuteNonQuery()
+            Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ClsDBCustomer.AddNewCustomer()")
         End Try
 
-        Return True
+        Return IIf(Ret = 0, False, True)
 
     End Function
 

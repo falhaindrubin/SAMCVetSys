@@ -32,6 +32,7 @@
 
     Private Sub FrmAddNewCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
+        'jflskdjfl
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
         PopulateSalutation()
         PopulateAnimalType()

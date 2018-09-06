@@ -193,6 +193,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsAppointment.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Examination\FrmExaminationEntry.Designer.vb">
+      <DependentUpon>FrmExaminationEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Examination\FrmExaminationEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Report\RptAppointment.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,12 +236,6 @@
     </Compile>
     <Compile Include="Dataset\DsCustomerInformation.vb">
       <DependentUpon>DsCustomerInformation.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Examination\FrmExamination.Designer.vb">
-      <DependentUpon>FrmExamination.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Examination\FrmExamination.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Module\ModUtility.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
@@ -308,11 +308,11 @@
     <EmbeddedResource Include="Customer\FrmCustomerReport.resx">
       <DependentUpon>FrmCustomerReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Examination\FrmExamination.resx">
-      <DependentUpon>FrmExamination.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Customer\FrmCustomerEntry.resx">
       <DependentUpon>FrmCustomerEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Examination\FrmExaminationEntry.resx">
+      <DependentUpon>FrmExaminationEntry.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>

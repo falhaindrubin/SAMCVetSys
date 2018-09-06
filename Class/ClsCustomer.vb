@@ -183,46 +183,6 @@
         End Set
     End Property
 
-    Private _SearchByNRICPassport As String
-    Public Property SearchByNRICPassport As String
-        Get
-            Return _SearchByNRICPassport
-        End Get
-        Set(value As String)
-            _SearchByNRICPassport = value
-        End Set
-    End Property
-
-    Private _SearchByCustomerName As String
-    Public Property SearchByCustomerName As String
-        Get
-            Return _SearchByCustomerName
-        End Get
-        Set(value As String)
-            _SearchByCustomerName = value
-        End Set
-    End Property
-
-    Private _SearchByCustomerID As String
-    Public Property SearchByCustomerID As String
-        Get
-            Return _SearchByCustomerID
-        End Get
-        Set(value As String)
-            _SearchByCustomerID = value
-        End Set
-    End Property
-
-    Private _SearchByPetName As String
-    Public Property SearchByPetName As String
-        Get
-            Return _SearchByPetName
-        End Get
-        Set(value As String)
-            _SearchByPetName = value
-        End Set
-    End Property
-
     'Add New Client
     Public Function AddNewCustomer(ByVal ClsCustomer As ClsCustomer, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As Boolean
         Return DBCustomer.AddNewCustomer(ClsCustomer, DBConn, DBTrans)

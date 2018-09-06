@@ -103,4 +103,25 @@
         ''.Text = "SAMC Animals Centre Vet Sys - " & "Current User: " & CURR_USER,
     End Sub
 
+    Private Sub EmployeeUserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmployeeUserToolStripMenuItem.Click
+        Try
+            Dim Frm As New FrmUserRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmUserRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmUserRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class

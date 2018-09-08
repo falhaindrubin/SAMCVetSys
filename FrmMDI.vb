@@ -105,17 +105,17 @@
 
     Private Sub EmployeeUserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmployeeUserToolStripMenuItem.Click
         Try
-            Dim Frm As New FrmUserRecords()
+            Dim Frm As New FrmEmployeeRecords()
             'Static intCount As Integer
 
             For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmUserRecords Then
+                If TypeOf f Is FrmEmployeeRecords Then
                     f.Activate()
                     Exit Sub
                 End If
             Next
 
-            Frm = New FrmUserRecords With {
+            Frm = New FrmEmployeeRecords With {
                 .MdiParent = Me
             }
             Frm.Show()

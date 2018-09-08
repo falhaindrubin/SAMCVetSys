@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmUserEntry
+Partial Class FrmEmployeeEntry
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class FrmUserEntry
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmUserEntry))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEmployeeEntry))
         Me.TxtUserPassword = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.TxtCountry = New System.Windows.Forms.TextBox()
@@ -51,13 +51,13 @@ Partial Class FrmUserEntry
         Me.TxtReligion = New System.Windows.Forms.TextBox()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.TxtRace = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.CmbSex = New System.Windows.Forms.ComboBox()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.TxtNationality = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
-        Me.DtpEmpDOB = New System.Windows.Forms.DateTimePicker()
-        Me.TxtPOB = New System.Windows.Forms.TextBox()
+        Me.DtpEmployeeDOB = New System.Windows.Forms.DateTimePicker()
+        Me.TxtEmployeePOB = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -108,18 +108,18 @@ Partial Class FrmUserEntry
         '
         'TxtUserPassword
         '
-        Me.TxtUserPassword.BackColor = System.Drawing.Color.Beige
+        Me.TxtUserPassword.BackColor = System.Drawing.Color.White
         Me.TxtUserPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUserPassword.Location = New System.Drawing.Point(88, 61)
+        Me.TxtUserPassword.Location = New System.Drawing.Point(88, 60)
         Me.TxtUserPassword.Name = "TxtUserPassword"
         Me.TxtUserPassword.ReadOnly = True
-        Me.TxtUserPassword.Size = New System.Drawing.Size(100, 20)
+        Me.TxtUserPassword.Size = New System.Drawing.Size(133, 20)
         Me.TxtUserPassword.TabIndex = 72
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(3, 448)
+        Me.Label22.Location = New System.Drawing.Point(3, 449)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(43, 13)
         Me.Label22.TabIndex = 110
@@ -127,18 +127,17 @@ Partial Class FrmUserEntry
         '
         'TxtCountry
         '
-        Me.TxtCountry.BackColor = System.Drawing.Color.Beige
+        Me.TxtCountry.BackColor = System.Drawing.Color.White
         Me.TxtCountry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCountry.Location = New System.Drawing.Point(88, 445)
+        Me.TxtCountry.Location = New System.Drawing.Point(88, 446)
         Me.TxtCountry.Name = "TxtCountry"
-        Me.TxtCountry.ReadOnly = True
         Me.TxtCountry.Size = New System.Drawing.Size(152, 20)
         Me.TxtCountry.TabIndex = 14
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(156, 397)
+        Me.Label21.Location = New System.Drawing.Point(156, 398)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(24, 13)
         Me.Label21.TabIndex = 108
@@ -146,18 +145,17 @@ Partial Class FrmUserEntry
         '
         'TxtCity
         '
-        Me.TxtCity.BackColor = System.Drawing.Color.Beige
+        Me.TxtCity.BackColor = System.Drawing.Color.White
         Me.TxtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCity.Location = New System.Drawing.Point(183, 393)
+        Me.TxtCity.Location = New System.Drawing.Point(183, 394)
         Me.TxtCity.Name = "TxtCity"
-        Me.TxtCity.ReadOnly = True
         Me.TxtCity.Size = New System.Drawing.Size(149, 20)
         Me.TxtCity.TabIndex = 12
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(3, 423)
+        Me.Label20.Location = New System.Drawing.Point(3, 424)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(32, 13)
         Me.Label20.TabIndex = 106
@@ -165,18 +163,17 @@ Partial Class FrmUserEntry
         '
         'TxtState
         '
-        Me.TxtState.BackColor = System.Drawing.Color.Beige
+        Me.TxtState.BackColor = System.Drawing.Color.White
         Me.TxtState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtState.Location = New System.Drawing.Point(88, 419)
+        Me.TxtState.Location = New System.Drawing.Point(88, 420)
         Me.TxtState.Name = "TxtState"
-        Me.TxtState.ReadOnly = True
         Me.TxtState.Size = New System.Drawing.Size(152, 20)
         Me.TxtState.TabIndex = 13
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(3, 397)
+        Me.Label19.Location = New System.Drawing.Point(3, 398)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(52, 13)
         Me.Label19.TabIndex = 104
@@ -213,13 +210,13 @@ Partial Class FrmUserEntry
         Me.Panel2.Controls.Add(Me.TxtReligion)
         Me.Panel2.Controls.Add(Me.Label33)
         Me.Panel2.Controls.Add(Me.TxtRace)
-        Me.Panel2.Controls.Add(Me.ComboBox1)
+        Me.Panel2.Controls.Add(Me.CmbSex)
         Me.Panel2.Controls.Add(Me.Label32)
         Me.Panel2.Controls.Add(Me.TxtNationality)
         Me.Panel2.Controls.Add(Me.Label16)
         Me.Panel2.Controls.Add(Me.Label31)
-        Me.Panel2.Controls.Add(Me.DtpEmpDOB)
-        Me.Panel2.Controls.Add(Me.TxtPOB)
+        Me.Panel2.Controls.Add(Me.DtpEmployeeDOB)
+        Me.Panel2.Controls.Add(Me.TxtEmployeePOB)
         Me.Panel2.Controls.Add(Me.Label15)
         Me.Panel2.Controls.Add(Me.Label13)
         Me.Panel2.Controls.Add(Me.Label1)
@@ -244,7 +241,7 @@ Partial Class FrmUserEntry
         '
         Me.CmbMaritalStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbMaritalStatus.FormattingEnabled = True
-        Me.CmbMaritalStatus.Location = New System.Drawing.Point(436, 133)
+        Me.CmbMaritalStatus.Location = New System.Drawing.Point(436, 136)
         Me.CmbMaritalStatus.Name = "CmbMaritalStatus"
         Me.CmbMaritalStatus.Size = New System.Drawing.Size(149, 21)
         Me.CmbMaritalStatus.TabIndex = 133
@@ -269,18 +266,17 @@ Partial Class FrmUserEntry
         '
         'TxtInstitution
         '
-        Me.TxtInstitution.BackColor = System.Drawing.Color.Beige
+        Me.TxtInstitution.BackColor = System.Drawing.Color.White
         Me.TxtInstitution.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtInstitution.Location = New System.Drawing.Point(436, 60)
         Me.TxtInstitution.Name = "TxtInstitution"
-        Me.TxtInstitution.ReadOnly = True
         Me.TxtInstitution.Size = New System.Drawing.Size(255, 20)
         Me.TxtInstitution.TabIndex = 130
         '
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(359, 40)
+        Me.Label37.Location = New System.Drawing.Point(359, 38)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(65, 13)
         Me.Label37.TabIndex = 129
@@ -288,28 +284,26 @@ Partial Class FrmUserEntry
         '
         'TxtTelNo
         '
-        Me.TxtTelNo.BackColor = System.Drawing.Color.Beige
+        Me.TxtTelNo.BackColor = System.Drawing.Color.White
         Me.TxtTelNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTelNo.Location = New System.Drawing.Point(88, 209)
+        Me.TxtTelNo.Location = New System.Drawing.Point(88, 212)
         Me.TxtTelNo.Name = "TxtTelNo"
-        Me.TxtTelNo.ReadOnly = True
         Me.TxtTelNo.Size = New System.Drawing.Size(152, 20)
         Me.TxtTelNo.TabIndex = 4
         '
         'TxtQualification
         '
-        Me.TxtQualification.BackColor = System.Drawing.Color.Beige
+        Me.TxtQualification.BackColor = System.Drawing.Color.White
         Me.TxtQualification.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtQualification.Location = New System.Drawing.Point(436, 36)
+        Me.TxtQualification.Location = New System.Drawing.Point(436, 34)
         Me.TxtQualification.Name = "TxtQualification"
-        Me.TxtQualification.ReadOnly = True
         Me.TxtQualification.Size = New System.Drawing.Size(255, 20)
         Me.TxtQualification.TabIndex = 128
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(3, 213)
+        Me.Label6.Location = New System.Drawing.Point(3, 216)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(75, 13)
         Me.Label6.TabIndex = 10
@@ -317,11 +311,10 @@ Partial Class FrmUserEntry
         '
         'TxtMobileNo
         '
-        Me.TxtMobileNo.BackColor = System.Drawing.Color.Beige
+        Me.TxtMobileNo.BackColor = System.Drawing.Color.White
         Me.TxtMobileNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtMobileNo.Location = New System.Drawing.Point(88, 236)
+        Me.TxtMobileNo.Location = New System.Drawing.Point(88, 238)
         Me.TxtMobileNo.Name = "TxtMobileNo"
-        Me.TxtMobileNo.ReadOnly = True
         Me.TxtMobileNo.Size = New System.Drawing.Size(152, 20)
         Me.TxtMobileNo.TabIndex = 5
         '
@@ -336,18 +329,17 @@ Partial Class FrmUserEntry
         '
         'TxtPostcode
         '
-        Me.TxtPostcode.BackColor = System.Drawing.Color.Beige
+        Me.TxtPostcode.BackColor = System.Drawing.Color.White
         Me.TxtPostcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPostcode.Location = New System.Drawing.Point(88, 393)
+        Me.TxtPostcode.Location = New System.Drawing.Point(88, 394)
         Me.TxtPostcode.Name = "TxtPostcode"
-        Me.TxtPostcode.ReadOnly = True
         Me.TxtPostcode.Size = New System.Drawing.Size(58, 20)
         Me.TxtPostcode.TabIndex = 11
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(3, 240)
+        Me.Label8.Location = New System.Drawing.Point(3, 242)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(78, 13)
         Me.Label8.TabIndex = 17
@@ -356,7 +348,7 @@ Partial Class FrmUserEntry
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(359, 137)
+        Me.Label35.Location = New System.Drawing.Point(359, 140)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(71, 13)
         Me.Label35.TabIndex = 125
@@ -364,18 +356,17 @@ Partial Class FrmUserEntry
         '
         'TxtEmail
         '
-        Me.TxtEmail.BackColor = System.Drawing.Color.Beige
+        Me.TxtEmail.BackColor = System.Drawing.Color.White
         Me.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmail.Location = New System.Drawing.Point(88, 262)
+        Me.TxtEmail.Location = New System.Drawing.Point(88, 264)
         Me.TxtEmail.Name = "TxtEmail"
-        Me.TxtEmail.ReadOnly = True
         Me.TxtEmail.Size = New System.Drawing.Size(244, 20)
         Me.TxtEmail.TabIndex = 6
         '
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(359, 111)
+        Me.Label34.Location = New System.Drawing.Point(359, 115)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(45, 13)
         Me.Label34.TabIndex = 123
@@ -383,18 +374,17 @@ Partial Class FrmUserEntry
         '
         'TxtReligion
         '
-        Me.TxtReligion.BackColor = System.Drawing.Color.Beige
+        Me.TxtReligion.BackColor = System.Drawing.Color.White
         Me.TxtReligion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtReligion.Location = New System.Drawing.Point(436, 107)
+        Me.TxtReligion.Location = New System.Drawing.Point(436, 111)
         Me.TxtReligion.Name = "TxtReligion"
-        Me.TxtReligion.ReadOnly = True
         Me.TxtReligion.Size = New System.Drawing.Size(149, 20)
         Me.TxtReligion.TabIndex = 122
         '
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(359, 88)
+        Me.Label33.Location = New System.Drawing.Point(359, 90)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(33, 13)
         Me.Label33.TabIndex = 121
@@ -402,27 +392,26 @@ Partial Class FrmUserEntry
         '
         'TxtRace
         '
-        Me.TxtRace.BackColor = System.Drawing.Color.Beige
+        Me.TxtRace.BackColor = System.Drawing.Color.White
         Me.TxtRace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtRace.Location = New System.Drawing.Point(436, 84)
+        Me.TxtRace.Location = New System.Drawing.Point(436, 86)
         Me.TxtRace.Name = "TxtRace"
-        Me.TxtRace.ReadOnly = True
         Me.TxtRace.Size = New System.Drawing.Size(149, 20)
         Me.TxtRace.TabIndex = 120
         '
-        'ComboBox1
+        'CmbSex
         '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(88, 84)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(58, 21)
-        Me.ComboBox1.TabIndex = 119
+        Me.CmbSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbSex.FormattingEnabled = True
+        Me.CmbSex.Location = New System.Drawing.Point(88, 86)
+        Me.CmbSex.Name = "CmbSex"
+        Me.CmbSex.Size = New System.Drawing.Size(100, 21)
+        Me.CmbSex.TabIndex = 119
         '
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(3, 88)
+        Me.Label32.Location = New System.Drawing.Point(3, 90)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(25, 13)
         Me.Label32.TabIndex = 118
@@ -430,18 +419,17 @@ Partial Class FrmUserEntry
         '
         'TxtNationality
         '
-        Me.TxtNationality.BackColor = System.Drawing.Color.Beige
+        Me.TxtNationality.BackColor = System.Drawing.Color.White
         Me.TxtNationality.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNationality.Location = New System.Drawing.Point(88, 183)
+        Me.TxtNationality.Location = New System.Drawing.Point(88, 186)
         Me.TxtNationality.Name = "TxtNationality"
-        Me.TxtNationality.ReadOnly = True
         Me.TxtNationality.Size = New System.Drawing.Size(152, 20)
         Me.TxtNationality.TabIndex = 116
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(3, 265)
+        Me.Label16.Location = New System.Drawing.Point(3, 267)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(32, 13)
         Me.Label16.TabIndex = 102
@@ -450,34 +438,33 @@ Partial Class FrmUserEntry
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(3, 187)
+        Me.Label31.Location = New System.Drawing.Point(3, 190)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(56, 13)
         Me.Label31.TabIndex = 117
         Me.Label31.Text = "Nationality"
         '
-        'DtpEmpDOB
+        'DtpEmployeeDOB
         '
-        Me.DtpEmpDOB.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpEmpDOB.Location = New System.Drawing.Point(88, 133)
-        Me.DtpEmpDOB.Name = "DtpEmpDOB"
-        Me.DtpEmpDOB.Size = New System.Drawing.Size(100, 20)
-        Me.DtpEmpDOB.TabIndex = 115
+        Me.DtpEmployeeDOB.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpEmployeeDOB.Location = New System.Drawing.Point(88, 136)
+        Me.DtpEmployeeDOB.Name = "DtpEmployeeDOB"
+        Me.DtpEmployeeDOB.Size = New System.Drawing.Size(100, 20)
+        Me.DtpEmployeeDOB.TabIndex = 115
         '
-        'TxtPOB
+        'TxtEmployeePOB
         '
-        Me.TxtPOB.BackColor = System.Drawing.Color.Beige
-        Me.TxtPOB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPOB.Location = New System.Drawing.Point(88, 158)
-        Me.TxtPOB.Name = "TxtPOB"
-        Me.TxtPOB.ReadOnly = True
-        Me.TxtPOB.Size = New System.Drawing.Size(244, 20)
-        Me.TxtPOB.TabIndex = 113
+        Me.TxtEmployeePOB.BackColor = System.Drawing.Color.White
+        Me.TxtEmployeePOB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtEmployeePOB.Location = New System.Drawing.Point(88, 161)
+        Me.TxtEmployeePOB.Name = "TxtEmployeePOB"
+        Me.TxtEmployeePOB.Size = New System.Drawing.Size(244, 20)
+        Me.TxtEmployeePOB.TabIndex = 113
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(3, 162)
+        Me.Label15.Location = New System.Drawing.Point(3, 165)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(72, 13)
         Me.Label15.TabIndex = 114
@@ -486,7 +473,7 @@ Partial Class FrmUserEntry
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(3, 137)
+        Me.Label13.Location = New System.Drawing.Point(3, 140)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(68, 13)
         Me.Label13.TabIndex = 112
@@ -508,26 +495,24 @@ Partial Class FrmUserEntry
         Me.TxtEmployeeID.Location = New System.Drawing.Point(88, 8)
         Me.TxtEmployeeID.Name = "TxtEmployeeID"
         Me.TxtEmployeeID.ReadOnly = True
-        Me.TxtEmployeeID.Size = New System.Drawing.Size(100, 20)
+        Me.TxtEmployeeID.Size = New System.Drawing.Size(152, 20)
         Me.TxtEmployeeID.TabIndex = 100
         '
         'TxtEmployeeName
         '
-        Me.TxtEmployeeName.BackColor = System.Drawing.Color.Beige
+        Me.TxtEmployeeName.BackColor = System.Drawing.Color.White
         Me.TxtEmployeeName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtEmployeeName.Location = New System.Drawing.Point(88, 60)
         Me.TxtEmployeeName.Name = "TxtEmployeeName"
-        Me.TxtEmployeeName.ReadOnly = True
         Me.TxtEmployeeName.Size = New System.Drawing.Size(244, 20)
         Me.TxtEmployeeName.TabIndex = 2
         '
         'TxtAddressLine3
         '
-        Me.TxtAddressLine3.BackColor = System.Drawing.Color.Beige
+        Me.TxtAddressLine3.BackColor = System.Drawing.Color.White
         Me.TxtAddressLine3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddressLine3.Location = New System.Drawing.Point(88, 341)
+        Me.TxtAddressLine3.Location = New System.Drawing.Point(88, 342)
         Me.TxtAddressLine3.Name = "TxtAddressLine3"
-        Me.TxtAddressLine3.ReadOnly = True
         Me.TxtAddressLine3.Size = New System.Drawing.Size(244, 20)
         Me.TxtAddressLine3.TabIndex = 9
         '
@@ -535,35 +520,33 @@ Partial Class FrmUserEntry
         '
         Me.CmbSalutation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbSalutation.FormattingEnabled = True
-        Me.CmbSalutation.Location = New System.Drawing.Point(88, 36)
+        Me.CmbSalutation.Location = New System.Drawing.Point(88, 34)
         Me.CmbSalutation.Name = "CmbSalutation"
-        Me.CmbSalutation.Size = New System.Drawing.Size(58, 21)
+        Me.CmbSalutation.Size = New System.Drawing.Size(100, 21)
         Me.CmbSalutation.TabIndex = 1
         '
         'TxtNRICPassportNo
         '
-        Me.TxtNRICPassportNo.BackColor = System.Drawing.Color.Beige
+        Me.TxtNRICPassportNo.BackColor = System.Drawing.Color.White
         Me.TxtNRICPassportNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNRICPassportNo.Location = New System.Drawing.Point(88, 107)
+        Me.TxtNRICPassportNo.Location = New System.Drawing.Point(88, 111)
         Me.TxtNRICPassportNo.Name = "TxtNRICPassportNo"
-        Me.TxtNRICPassportNo.ReadOnly = True
         Me.TxtNRICPassportNo.Size = New System.Drawing.Size(152, 20)
         Me.TxtNRICPassportNo.TabIndex = 3
         '
         'TxtAddressLine2
         '
-        Me.TxtAddressLine2.BackColor = System.Drawing.Color.Beige
+        Me.TxtAddressLine2.BackColor = System.Drawing.Color.White
         Me.TxtAddressLine2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddressLine2.Location = New System.Drawing.Point(88, 315)
+        Me.TxtAddressLine2.Location = New System.Drawing.Point(88, 316)
         Me.TxtAddressLine2.Name = "TxtAddressLine2"
-        Me.TxtAddressLine2.ReadOnly = True
         Me.TxtAddressLine2.Size = New System.Drawing.Size(244, 20)
         Me.TxtAddressLine2.TabIndex = 8
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 40)
+        Me.Label2.Location = New System.Drawing.Point(3, 38)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 13)
         Me.Label2.TabIndex = 2
@@ -572,7 +555,7 @@ Partial Class FrmUserEntry
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 111)
+        Me.Label3.Location = New System.Drawing.Point(3, 115)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(79, 13)
         Me.Label3.TabIndex = 3
@@ -580,11 +563,10 @@ Partial Class FrmUserEntry
         '
         'TxtAddressLine4
         '
-        Me.TxtAddressLine4.BackColor = System.Drawing.Color.Beige
+        Me.TxtAddressLine4.BackColor = System.Drawing.Color.White
         Me.TxtAddressLine4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddressLine4.Location = New System.Drawing.Point(88, 367)
+        Me.TxtAddressLine4.Location = New System.Drawing.Point(88, 368)
         Me.TxtAddressLine4.Name = "TxtAddressLine4"
-        Me.TxtAddressLine4.ReadOnly = True
         Me.TxtAddressLine4.Size = New System.Drawing.Size(244, 20)
         Me.TxtAddressLine4.TabIndex = 10
         '
@@ -600,7 +582,7 @@ Partial Class FrmUserEntry
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(3, 291)
+        Me.Label7.Location = New System.Drawing.Point(3, 293)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(45, 13)
         Me.Label7.TabIndex = 12
@@ -608,11 +590,10 @@ Partial Class FrmUserEntry
         '
         'TxtAddressLine1
         '
-        Me.TxtAddressLine1.BackColor = System.Drawing.Color.Beige
+        Me.TxtAddressLine1.BackColor = System.Drawing.Color.White
         Me.TxtAddressLine1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddressLine1.Location = New System.Drawing.Point(88, 288)
+        Me.TxtAddressLine1.Location = New System.Drawing.Point(88, 290)
         Me.TxtAddressLine1.Name = "TxtAddressLine1"
-        Me.TxtAddressLine1.ReadOnly = True
         Me.TxtAddressLine1.Size = New System.Drawing.Size(244, 20)
         Me.TxtAddressLine1.TabIndex = 7
         '
@@ -631,16 +612,16 @@ Partial Class FrmUserEntry
         '
         Me.TxtUserID.BackColor = System.Drawing.Color.White
         Me.TxtUserID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUserID.Location = New System.Drawing.Point(88, 35)
+        Me.TxtUserID.Location = New System.Drawing.Point(88, 34)
         Me.TxtUserID.Name = "TxtUserID"
         Me.TxtUserID.ReadOnly = True
-        Me.TxtUserID.Size = New System.Drawing.Size(100, 20)
+        Me.TxtUserID.Size = New System.Drawing.Size(133, 20)
         Me.TxtUserID.TabIndex = 69
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(3, 38)
+        Me.Label24.Location = New System.Drawing.Point(3, 37)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(43, 13)
         Me.Label24.TabIndex = 68
@@ -678,13 +659,13 @@ Partial Class FrmUserEntry
         Me.Panel4.Controls.Add(Me.Label28)
         Me.Panel4.Location = New System.Drawing.Point(6, 6)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(668, 474)
+        Me.Panel4.Size = New System.Drawing.Size(711, 474)
         Me.Panel4.TabIndex = 1
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(3, 13)
+        Me.Label26.Location = New System.Drawing.Point(3, 12)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(67, 13)
         Me.Label26.TabIndex = 70
@@ -694,16 +675,16 @@ Partial Class FrmUserEntry
         '
         Me.TxtEmployeeIDUAI.BackColor = System.Drawing.Color.Beige
         Me.TxtEmployeeIDUAI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmployeeIDUAI.Location = New System.Drawing.Point(88, 9)
+        Me.TxtEmployeeIDUAI.Location = New System.Drawing.Point(88, 8)
         Me.TxtEmployeeIDUAI.Name = "TxtEmployeeIDUAI"
         Me.TxtEmployeeIDUAI.ReadOnly = True
-        Me.TxtEmployeeIDUAI.Size = New System.Drawing.Size(100, 20)
+        Me.TxtEmployeeIDUAI.Size = New System.Drawing.Size(133, 20)
         Me.TxtEmployeeIDUAI.TabIndex = 71
         '
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(3, 64)
+        Me.Label28.Location = New System.Drawing.Point(3, 63)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(78, 13)
         Me.Label28.TabIndex = 52
@@ -865,7 +846,7 @@ Partial Class FrmUserEntry
         Me.PnlActionBar.Size = New System.Drawing.Size(727, 61)
         Me.PnlActionBar.TabIndex = 84
         '
-        'FrmUserEntry
+        'FrmEmployeeEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -873,8 +854,9 @@ Partial Class FrmUserEntry
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
-        Me.Name = "FrmUserEntry"
-        Me.Text = "User Information"
+        Me.Name = "FrmEmployeeEntry"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Employee Entry"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
@@ -942,13 +924,13 @@ Partial Class FrmUserEntry
     Friend WithEvents TxtModifiedBy As TextBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents PnlActionBar As Panel
-    Friend WithEvents TxtPOB As TextBox
+    Friend WithEvents TxtEmployeePOB As TextBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents DtpEmpDOB As DateTimePicker
+    Friend WithEvents DtpEmployeeDOB As DateTimePicker
     Friend WithEvents TxtNationality As TextBox
     Friend WithEvents Label31 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents CmbSex As ComboBox
     Friend WithEvents Label32 As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents TxtReligion As TextBox

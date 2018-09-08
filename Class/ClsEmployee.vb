@@ -2,23 +2,23 @@
 
     Dim DBEmployee As New ClsDBEmployee
 
-    Private _EmpID As String
-    Public Property EmpID As String
+    Private _EmployeeID As String
+    Public Property EmployeeID As String
         Get
-            Return _EmpID
+            Return _EmployeeID
         End Get
         Set(value As String)
-            _EmpID = value
+            _EmployeeID = value
         End Set
     End Property
 
-    Private _EmpName As String
-    Public Property EmpName As String
+    Private _EmployeeName As String
+    Public Property EmployeeName As String
         Get
-            Return _EmpName
+            Return _EmployeeName
         End Get
         Set(value As String)
-            _EmpName = value
+            _EmployeeName = value
         End Set
     End Property
 
@@ -32,6 +32,16 @@
         End Set
     End Property
 
+    Private _SaluteName As String
+    Public Property SaluteName As String
+        Get
+            Return _SaluteName
+        End Get
+        Set(value As String)
+            _SaluteName = value
+        End Set
+    End Property
+
     Private _NRICPassportNo As String
     Public Property NRICPassportNo As String
         Get
@@ -42,23 +52,23 @@
         End Set
     End Property
 
-    Private _EmpDOB As Date
-    Public Property EmpDOB As Date
+    Private _EmployeeDOB As Date
+    Public Property EmployeeDOB As Date
         Get
-            Return _EmpDOB
+            Return _EmployeeDOB
         End Get
         Set(value As Date)
-            _EmpDOB = value
+            _EmployeeDOB = value
         End Set
     End Property
 
-    Private _EmpPOB As String
-    Public Property EmpPOB As String
+    Private _EmployeePOB As String
+    Public Property EmployeePOB As String
         Get
-            Return _EmpPOB
+            Return _EmployeePOB
         End Get
         Set(value As String)
-            _EmpPOB = value
+            _EmployeePOB = value
         End Set
     End Property
 
@@ -152,13 +162,43 @@
         End Set
     End Property
 
-    Private _MaritalStatus As String
-    Public Property MaritalStatus As String
+    Private _Qualification As String
+    Public Property Qualification As String
         Get
-            Return _MaritalStatus
+            Return _Qualification
         End Get
         Set(value As String)
-            _MaritalStatus = value
+            _Qualification = value
+        End Set
+    End Property
+
+    Private _Institution As String
+    Public Property Institution As String
+        Get
+            Return _Institution
+        End Get
+        Set(value As String)
+            _Institution = value
+        End Set
+    End Property
+
+    Private _MaritalStatusCode As String
+    Public Property MaritalStatusCode As String
+        Get
+            Return _MaritalStatusCode
+        End Get
+        Set(value As String)
+            _MaritalStatusCode = value
+        End Set
+    End Property
+
+    Private _MaritalStatusName As String
+    Public Property MaritalStatusName As String
+        Get
+            Return _MaritalStatusName
+        End Get
+        Set(value As String)
+            _MaritalStatusName = value
         End Set
     End Property
 
@@ -192,9 +232,27 @@
         End Set
     End Property
 
+    Public Function AddNewEmployee(ClsEmployee As ClsEmployee, DBConn As OdbcConnection, DBTrans As OdbcTransaction) As Boolean
+        Return DBEmployee.AddNewEmployee(ClsEmployee, DBConn, DBTrans)
+    End Function
+
     'Get Vet
     Public Function GetVet(ByVal ClsEmployee As ClsEmployee) As DataTable
         Return DBEmployee.GetVet(ClsEmployee)
+    End Function
+
+    Public Function GetPosition(ClsEmployee As ClsEmployee) As DataTable
+        Return DBEmployee.GetPosition(ClsEmployee)
+    End Function
+
+    'Get Marital Status
+    Public Function GetMaritalStatus(ClsEmployee As ClsEmployee) As DataTable
+        Return DBEmployee.GetMaritalStatus(ClsEmployee)
+    End Function
+
+    'Get Sex
+    Public Function GetSex(ClsEmployee As ClsEmployee) As DataTable
+        Return DBEmployee.GetSex(ClsEmployee)
     End Function
 
 End Class

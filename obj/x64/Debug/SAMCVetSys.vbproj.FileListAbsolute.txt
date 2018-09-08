@@ -179,5 +179,5 @@ E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.pdb
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.vbprojAssemblyReference.cache
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmExaminationEntry.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmAppointmentEntry.resources
-E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmUserEntry.resources
-E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmUserRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmEmployeeRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmEmployeeEntry.resources

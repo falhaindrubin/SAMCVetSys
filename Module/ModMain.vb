@@ -4,8 +4,8 @@ Imports System.Text
 
 Module ModMain
 
-    Public DBConn As New OdbcConnection
-    Public DBTrans As OdbcTransaction
+    Public DbConn As New OdbcConnection
+    Public DbTrans As OdbcTransaction
 
     'Database credentials
     Public SERVER As String

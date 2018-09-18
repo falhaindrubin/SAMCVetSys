@@ -29,6 +29,7 @@
 
         Dim EmployeeID As String
         Dim ClsEmployee As New ClsEmployee
+        Dim ClsUser As New ClsUser
 
         Try
             If DBTrans IsNot Nothing Then
@@ -85,21 +86,12 @@
                 Return False
             End If
 
+            DbTrans.Commit()
+            DBTrans.Dispose()
+            DBTrans = Nothing
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewEmployee()")
-            Return False
-        End Try
-
-        Return True
-
-    End Function
-
-    Private Function AddNewUser() As Boolean
-
-        Try
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewUser()")
             Return False
         End Try
 
@@ -112,7 +104,7 @@
         Try
             If Not CheckUserInput(UserCommand) Then Exit Sub
             If Not AddNewEmployee() Then Exit Sub
-            If Not AddNewUser() Then Exit Sub
+            'If Not AddNewUser() Then Exit Sub
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveEmployeeToDb()")
@@ -124,8 +116,8 @@
 
         Try
 
-
         Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CheckUserInput()")
             Return False
         End Try
 
@@ -265,5 +257,8 @@
         SaveEmployeeToDb()
     End Sub
 
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
 
 End Class

@@ -186,10 +186,25 @@
     <Compile Include="Appointment\FrmAppointmentReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassDB\ClsDbConsultation.vb" />
     <Compile Include="ClassDB\ClsDBCompany.vb" />
     <Compile Include="ClassDB\ClsDBUser.vb" />
+    <Compile Include="Class\ClsConsultationDetail.vb" />
+    <Compile Include="Class\ClsConsultation.vb" />
     <Compile Include="Class\ClsCompany.vb" />
     <Compile Include="Class\ClsUser.vb" />
+    <Compile Include="Consultation\FrmConsultationEntry.Designer.vb">
+      <DependentUpon>FrmConsultationEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Consultation\FrmConsultationEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultation\FrmConsultationRecords.Designer.vb">
+      <DependentUpon>FrmConsultationRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Consultation\FrmConsultationRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dataset\DsAppointment.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,6 +226,12 @@
       <DependentUpon>FrmEmployeeEntry.vb</DependentUpon>
     </Compile>
     <Compile Include="Management\FrmEmployeeEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\FrmEmployeeReport.Designer.vb">
+      <DependentUpon>FrmEmployeeReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Management\FrmEmployeeReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Report\RptAppointment.vb">
@@ -318,6 +339,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Appointment\FrmAppointmentReport.resx">
       <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultation\FrmConsultationEntry.resx">
+      <DependentUpon>FrmConsultationEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultation\FrmConsultationRecords.resx">
+      <DependentUpon>FrmConsultationRecords.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\FrmCustomerReport.resx">
       <DependentUpon>FrmCustomerReport.vb</DependentUpon>

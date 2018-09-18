@@ -23,7 +23,7 @@
         frm.Show()
     End Sub
 
-    Private Sub PetToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+    Private Sub PetToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
         'Dim frm As New frmAnimalRecords()
         ''Static intCount As Integer
@@ -124,4 +124,24 @@
         End Try
     End Sub
 
+    Private Sub ConsultationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsultationToolStripMenuItem.Click
+        Try
+            Dim Frm As New FrmConsultationRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmConsultationRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmConsultationRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

@@ -44,7 +44,7 @@ Public Class FrmCustomerRecords
     End Sub
 
     Private Sub BtnNewClient_Click(sender As Object, e As EventArgs)
-        FrmCustomerEntry.ShowDialog()
+        Me.ShowDialog()
     End Sub
 
     Private Sub DgvCustomerListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvCustomerListing.CellDoubleClick

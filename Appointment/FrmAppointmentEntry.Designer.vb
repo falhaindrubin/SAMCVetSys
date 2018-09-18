@@ -1062,15 +1062,6 @@ Partial Class FrmAppointmentEntry
     Friend WithEvents PnlActionBar As Panel
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Label5 As Label
-    Friend WithEvents CmbVet As ComboBox
-    Friend WithEvents DtpAppointmentTime As DateTimePicker
-    Friend WithEvents Label9 As Label
-    Friend WithEvents DgvSelectedPet As DataGridView
-    Friend WithEvents TxtAppointmentID As TextBox
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents DtpAppointmentDate As DateTimePicker
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents Panel4 As Panel
     Friend WithEvents CmbStatus As ComboBox
@@ -1124,11 +1115,20 @@ Partial Class FrmAppointmentEntry
     Friend WithEvents Label4 As Label
     Friend WithEvents TxtTelNo As TextBox
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TxtAppointmentDesc As TextBox
     Friend WithEvents BtnSearch As Button
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents BtnAddPetIssues As Button
-    Friend WithEvents LblPetName As Label
     Friend WithEvents BtnPrint As Button
+    Friend WithEvents LblPetName As Label
+    Friend WithEvents BtnAddPetIssues As Button
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TxtAppointmentDesc As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents CmbVet As ComboBox
+    Friend WithEvents DtpAppointmentTime As DateTimePicker
+    Friend WithEvents Label9 As Label
+    Friend WithEvents DgvSelectedPet As DataGridView
+    Friend WithEvents TxtAppointmentID As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents DtpAppointmentDate As DateTimePicker
 End Class

@@ -24,7 +24,6 @@ Partial Class FrmEmployeeEntry
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEmployeeEntry))
-        Me.TxtUserPassword = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.TxtCountry = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -74,14 +73,7 @@ Partial Class FrmEmployeeEntry
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TxtAddressLine1 = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TxtUserID = New System.Windows.Forms.TextBox()
-        Me.Label24 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.TxtEmployeeIDUAI = New System.Windows.Forms.TextBox()
-        Me.Label28 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnEdit = New System.Windows.Forms.Button()
@@ -100,21 +92,9 @@ Partial Class FrmEmployeeEntry
         Me.Panel2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'TxtUserPassword
-        '
-        Me.TxtUserPassword.BackColor = System.Drawing.Color.White
-        Me.TxtUserPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUserPassword.Location = New System.Drawing.Point(88, 60)
-        Me.TxtUserPassword.Name = "TxtUserPassword"
-        Me.TxtUserPassword.ReadOnly = True
-        Me.TxtUserPassword.Size = New System.Drawing.Size(133, 20)
-        Me.TxtUserPassword.TabIndex = 72
         '
         'Label22
         '
@@ -608,87 +588,14 @@ Partial Class FrmEmployeeEntry
         Me.TabPage1.Text = "Employee Information"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'TxtUserID
-        '
-        Me.TxtUserID.BackColor = System.Drawing.Color.White
-        Me.TxtUserID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUserID.Location = New System.Drawing.Point(88, 34)
-        Me.TxtUserID.Name = "TxtUserID"
-        Me.TxtUserID.ReadOnly = True
-        Me.TxtUserID.Size = New System.Drawing.Size(133, 20)
-        Me.TxtUserID.TabIndex = 69
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(3, 37)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(43, 13)
-        Me.Label24.TabIndex = 68
-        Me.Label24.Text = "User ID"
-        '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(12, 78)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(731, 512)
         Me.TabControl1.TabIndex = 83
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.Panel4)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(723, 486)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "User Account Information"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Panel4
-        '
-        Me.Panel4.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel4.Controls.Add(Me.TxtUserPassword)
-        Me.Panel4.Controls.Add(Me.Label24)
-        Me.Panel4.Controls.Add(Me.TxtUserID)
-        Me.Panel4.Controls.Add(Me.Label26)
-        Me.Panel4.Controls.Add(Me.TxtEmployeeIDUAI)
-        Me.Panel4.Controls.Add(Me.Label28)
-        Me.Panel4.Location = New System.Drawing.Point(6, 6)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(711, 474)
-        Me.Panel4.TabIndex = 1
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(3, 12)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(67, 13)
-        Me.Label26.TabIndex = 70
-        Me.Label26.Text = "Employee ID"
-        '
-        'TxtEmployeeIDUAI
-        '
-        Me.TxtEmployeeIDUAI.BackColor = System.Drawing.Color.Beige
-        Me.TxtEmployeeIDUAI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmployeeIDUAI.Location = New System.Drawing.Point(88, 8)
-        Me.TxtEmployeeIDUAI.Name = "TxtEmployeeIDUAI"
-        Me.TxtEmployeeIDUAI.ReadOnly = True
-        Me.TxtEmployeeIDUAI.Size = New System.Drawing.Size(133, 20)
-        Me.TxtEmployeeIDUAI.TabIndex = 71
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(3, 63)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(78, 13)
-        Me.Label28.TabIndex = 52
-        Me.Label28.Text = "User Password"
         '
         'BtnClose
         '
@@ -850,28 +757,27 @@ Partial Class FrmEmployeeEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(755, 663)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
+        Me.MaximizeBox = False
         Me.Name = "FrmEmployeeEntry"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Employee Entry"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
-        Me.TabPage3.ResumeLayout(False)
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.PnlActionBar.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents TxtUserPassword As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents TxtCountry As TextBox
     Friend WithEvents Label21 As Label
@@ -901,14 +807,7 @@ Partial Class FrmEmployeeEntry
     Friend WithEvents Label4 As Label
     Friend WithEvents TxtTelNo As TextBox
     Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TxtUserID As TextBox
-    Friend WithEvents Label24 As Label
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents Panel4 As Panel
-    Friend WithEvents Label26 As Label
-    Friend WithEvents TxtEmployeeIDUAI As TextBox
-    Friend WithEvents Label28 As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents BtnClose As Button
     Friend WithEvents BtnEdit As Button

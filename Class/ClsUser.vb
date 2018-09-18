@@ -1,6 +1,6 @@
 ﻿Public Class ClsUser
 
-    Dim DBUser As New ClsDBUser
+    Dim DbUser As New ClsDBUser
 
     Private _EmployeeID As String
     Public Property EmployeeID As String
@@ -31,5 +31,10 @@
             _UserPassword = value
         End Set
     End Property
+
+    'Add New User
+    Public Function AddNewUser(ClsUser As ClsUser, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbUser.AddNewUser(ClsUser, DbConn, DbTrans)
+    End Function
 
 End Class

@@ -174,15 +174,12 @@ Public Class FrmSearch
                 Case "APPOINTMENT"
                     CustomerID = DgvSearchResult.Rows(e.RowIndex).Cells("CustomerID").Value
                     UserCommand = "POPULATE_CUSTOMER_INFO"
-            End Select
 
-            'If Source = "APPOINTMENT" Then
-            '    Dim Frm As New FrmAppointmentEntry With {
-            '        .CustomerID = DgvSearchResult.Rows(e.RowIndex).Cells("CustomerID").Value,
-            '        .UserCommand = "POPULATE_CUSTOMER_INFO"
-            '    }
-            '    Frm.Show()
-            'End If
+                Case "CONSULTATION"
+                    CustomerID = DgvSearchResult.Rows(e.RowIndex).Cells("CustomerID").Value
+                    UserCommand = "POPULATE_CUSTOMER_INFO"
+
+            End Select
 
             Me.Hide()
 
@@ -191,22 +188,5 @@ Public Class FrmSearch
         End Try
 
     End Sub
-
-    'Private Sub PopulateAppointment(RowIndex As Integer)
-
-    '    'Dim Frm As FrmAppointmentEntry
-
-    '    Try
-    '        'Customer Information
-    '        With FrmAppointmentEntry
-    '            .TxtCustomerID.Text = DgvSearchResult.Rows(RowIndex).Cells("CustomerID").Value
-    '            .TxtCustomerName.Text = DgvSearchResult.Rows(RowIndex).Cells("CustomerID").Value
-    '        End With
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateAppointment()")
-    '    End Try
-
-    'End Sub
 
 End Class

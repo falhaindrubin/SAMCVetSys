@@ -3,7 +3,7 @@ Imports System.Data.Odbc
 Imports System.Text
 Imports SAMCVetSys.ModUtility
 
-Public Class ClsDBAppointment
+Public Class ClsDbConsultation
 
     Dim Sb As StringBuilder
     Dim Cmd As OdbcCommand
@@ -115,7 +115,7 @@ Public Class ClsDBAppointment
 
     End Function
 
-    Public Function GetAppointmentDetail(APP As ClsAppointment) As DataTable
+    Public Function GetConsultationDetail(CONS As ClsConsultation) As DataTable
 
         Dim DtAppointment As New DataTable
 
@@ -128,18 +128,18 @@ Public Class ClsDBAppointment
                 .Append("FROM samc_appointment a ")
                 .Append("INNER JOIN samc_appointmentdetail b ON a.AppointmentID = b.AppointmentID ")
 
-                If APP.AppointmentID <> "" Then
-                    .Append("WHERE a.AppointmentID = '" & APP.AppointmentID & "' ")
+                If CONS.ConsultationID <> "" Then
+                    .Append("WHERE a.AppointmentID = '" & CONS.ConsultationID & "' ")
                 End If
 
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtAppointment)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBAppointment.GetAppointmentDetail()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.GetConsultationDetail()")
         End Try
 
         Return DtAppointment
@@ -161,7 +161,7 @@ Public Class ClsDBAppointment
                 .Append("WHERE a.AppointmentID = '" & APP.AppointmentID & "' ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtAppointment)
 
@@ -278,7 +278,7 @@ Public Class ClsDBAppointment
                 End If
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtAppointment)
 

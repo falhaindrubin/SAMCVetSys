@@ -48,7 +48,7 @@ Public Class ClsDBEmployee
                 .Append("SELECT * ")
                 .Append("FROM samc_employee ")
                 .Append("WHERE PositionCode = '01' ")
-                .Append("ORDER BY EmpName ")
+                .Append("ORDER BY EmployeeName ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DBConn)

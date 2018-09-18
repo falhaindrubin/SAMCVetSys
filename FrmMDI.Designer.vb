@@ -49,8 +49,10 @@ Partial Class FrmMDI
         Me.PendingRequestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BillingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaintenanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmployeeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConsultationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -67,16 +69,16 @@ Partial Class FrmMDI
         '
         'mnuRecord
         '
-        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem})
+        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem, Me.ConsultationToolStripMenuItem})
         Me.mnuRecord.Name = "mnuRecord"
-        Me.mnuRecord.Size = New System.Drawing.Size(54, 20)
-        Me.mnuRecord.Text = "Record"
+        Me.mnuRecord.Size = New System.Drawing.Size(65, 20)
+        Me.mnuRecord.Text = "Customer"
         '
         'ClientRegistrationToolStripMenuItem
         '
         Me.ClientRegistrationToolStripMenuItem.Name = "ClientRegistrationToolStripMenuItem"
-        Me.ClientRegistrationToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
-        Me.ClientRegistrationToolStripMenuItem.Text = "Customer"
+        Me.ClientRegistrationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ClientRegistrationToolStripMenuItem.Text = "Register"
         '
         'mnuAppointment
         '
@@ -224,10 +226,22 @@ Partial Class FrmMDI
         '
         'MaintenanceToolStripMenuItem
         '
-        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem})
+        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem, Me.UserToolStripMenuItem})
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
         Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(80, 20)
         Me.MaintenanceToolStripMenuItem.Text = "Management"
+        '
+        'EmployeeUserToolStripMenuItem
+        '
+        Me.EmployeeUserToolStripMenuItem.Name = "EmployeeUserToolStripMenuItem"
+        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.EmployeeUserToolStripMenuItem.Text = "Employee"
+        '
+        'UserToolStripMenuItem
+        '
+        Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
+        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.UserToolStripMenuItem.Text = "User"
         '
         'WindowToolStripMenuItem
         '
@@ -235,11 +249,11 @@ Partial Class FrmMDI
         Me.WindowToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.WindowToolStripMenuItem.Text = "Window"
         '
-        'EmployeeUserToolStripMenuItem
+        'ConsultationToolStripMenuItem
         '
-        Me.EmployeeUserToolStripMenuItem.Name = "EmployeeUserToolStripMenuItem"
-        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EmployeeUserToolStripMenuItem.Text = "Employee && User"
+        Me.ConsultationToolStripMenuItem.Name = "ConsultationToolStripMenuItem"
+        Me.ConsultationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ConsultationToolStripMenuItem.Text = "Consultation"
         '
         'FrmMDI
         '
@@ -290,4 +304,6 @@ Partial Class FrmMDI
     Friend WithEvents MaintenanceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WindowToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EmployeeUserToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConsultationToolStripMenuItem As ToolStripMenuItem
 End Class

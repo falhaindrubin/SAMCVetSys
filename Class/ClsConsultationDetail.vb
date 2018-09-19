@@ -145,4 +145,8 @@ Public Class ClsConsultationDetail
         End Set
     End Property
 
+    Public Function AddNewConsultationDetail(ClsConsultationDetail As ClsConsultationDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbConsultation.AddNewConsultationDetail(ClsConsultationDetail, DbConn, DbTrans)
+    End Function
+
 End Class

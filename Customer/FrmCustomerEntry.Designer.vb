@@ -82,7 +82,7 @@ Partial Class FrmCustomerEntry
         Me.CmbStatus = New System.Windows.Forms.ComboBox()
         Me.CmbBreed = New System.Windows.Forms.ComboBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.DgvConsultationHistory = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.BtnPrint = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
@@ -102,7 +102,7 @@ Partial Class FrmCustomerEntry
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvConsultationHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
@@ -677,7 +677,7 @@ Partial Class FrmCustomerEntry
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.DataGridView1)
+        Me.TabPage3.Controls.Add(Me.DgvConsultationHistory)
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -686,14 +686,20 @@ Partial Class FrmCustomerEntry
         Me.TabPage3.Text = "Consultation History"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'DgvConsultationHistory
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.GridColor = System.Drawing.SystemColors.Control
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 6)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(592, 150)
-        Me.DataGridView1.TabIndex = 0
+        Me.DgvConsultationHistory.AllowUserToAddRows = False
+        Me.DgvConsultationHistory.AllowUserToDeleteRows = False
+        Me.DgvConsultationHistory.AllowUserToOrderColumns = True
+        Me.DgvConsultationHistory.BackgroundColor = System.Drawing.Color.White
+        Me.DgvConsultationHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvConsultationHistory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvConsultationHistory.GridColor = System.Drawing.SystemColors.Control
+        Me.DgvConsultationHistory.Location = New System.Drawing.Point(3, 3)
+        Me.DgvConsultationHistory.Name = "DgvConsultationHistory"
+        Me.DgvConsultationHistory.ReadOnly = True
+        Me.DgvConsultationHistory.Size = New System.Drawing.Size(598, 478)
+        Me.DgvConsultationHistory.TabIndex = 0
         '
         'PnlActionBar
         '
@@ -860,7 +866,7 @@ Partial Class FrmCustomerEntry
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvConsultationHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
@@ -933,7 +939,7 @@ Partial Class FrmCustomerEntry
     Friend WithEvents TxtCountry As TextBox
     Friend WithEvents BtnPrint As Button
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DgvConsultationHistory As DataGridView
     Friend WithEvents Label23 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents Label24 As Label

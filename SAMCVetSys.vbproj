@@ -186,6 +186,12 @@
     <Compile Include="Appointment\FrmAppointmentReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Consultation\FrmConsultationReport.Designer.vb">
+      <DependentUpon>FrmConsultationReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Consultation\FrmConsultationReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ClassDB\ClsDbConsultation.vb" />
     <Compile Include="ClassDB\ClsDBCompany.vb" />
     <Compile Include="ClassDB\ClsDBUser.vb" />
@@ -340,6 +346,9 @@
     <EmbeddedResource Include="Appointment\FrmAppointmentReport.resx">
       <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Consultation\FrmConsultationReport.resx">
+      <DependentUpon>FrmConsultationReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Consultation\FrmConsultationEntry.resx">
       <DependentUpon>FrmConsultationEntry.vb</DependentUpon>
     </EmbeddedResource>
@@ -430,6 +439,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Diagnostic\" />
+    <Folder Include="Treatment\" />
     <Folder Include="Ward\" />
   </ItemGroup>
   <ItemGroup>

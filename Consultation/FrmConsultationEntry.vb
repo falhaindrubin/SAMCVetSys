@@ -344,9 +344,9 @@ Public Class FrmConsultationEntry
 
                 Dim DtSelectedPet As New DataTable
 
-                TxtAppointmentID.Text = DtConsultation.Rows(0).Item("ConsultationID")
-                DtpAppointmentDate.Value = CDate(DtConsultation.Rows(0).Item("ConsultationTime"))
-                DtpAppointmentTime.Value = CDate(DtConsultation.Rows(0).Item("ConsultationTime"))
+                TxtConsultationID.Text = DtConsultation.Rows(0).Item("ConsultationID")
+                DtpConsultationDate.Value = CDate(DtConsultation.Rows(0).Item("ConsultationTime"))
+                DtpConsultationTime.Value = CDate(DtConsultation.Rows(0).Item("ConsultationTime"))
                 CmbVet.SelectedValue = CStr(DtConsultation.Rows(0).Item("EmployeeID"))
 
                 DtSelectedPet = InitPetDatatable()
@@ -366,7 +366,7 @@ Public Class FrmConsultationEntry
                     DgvRow("SexName") = DtConsultation.Rows(i).Item("SexName")
                     DgvRow("StatusCode") = DtConsultation.Rows(i).Item("StatusCode")
                     DgvRow("StatusName") = DtConsultation.Rows(i).Item("StatusName")
-                    DgvRow("AppointmentDesc") = DtConsultation.Rows(i).Item("AppointmentDesc")
+                    DgvRow("ConsultationDesc") = DtConsultation.Rows(i).Item("ConsultationDesc")
                     DgvRow("IsDB") = "1"
 
                     DtSelectedPet.Rows.Add(DgvRow)
@@ -393,6 +393,11 @@ Public Class FrmConsultationEntry
                 TxtDateCreated.Text = DtConsultation.Rows(0).Item("DateCreated")
                 TxtModifiedBy.Text = DtConsultation.Rows(0).Item("ModifiedBy")
                 TxtDateModified.Text = DtConsultation.Rows(0).Item("DateModified")
+
+                If Not IsDBNull(DtConsultation.Rows(0).Item("IsCompleted")) = "1" Then
+                    CbIsCompleted.Checked = True
+                    CbIsCompleted.Enabled = False
+                End If
 
             End If
 
@@ -424,7 +429,7 @@ Public Class FrmConsultationEntry
                 .Columns.Add("SexName", GetType(String))
                 .Columns.Add("StatusCode", GetType(String))
                 .Columns.Add("StatusName", GetType(String))
-                .Columns.Add("AppointmentDesc", GetType(String))
+                .Columns.Add("ConsultationDesc", GetType(String))
                 .Columns.Add("IsDB", GetType(String))
             End With
 
@@ -519,7 +524,7 @@ Public Class FrmConsultationEntry
                     CmbSex.SelectedIndex = 0
                     CmbStatus.SelectedIndex = 0
 
-                Case "SHOW_CUSTOMER_INFO", "CANCELEDIT_CUSTOMER_INFO", "POPULATE_CUSTOMER_INFO", "SHOW_CUSTOMER_APPOINTMENT"
+                Case "SHOW_CUSTOMER_INFO", "CANCELEDIT_CUSTOMER_INFO", "POPULATE_CUSTOMER_INFO", "SHOW_CUSTOMER_CONSULTATION"
 
                     'BtnSave.Enabled = False
                     CmbSalutation.Enabled = False
@@ -631,6 +636,7 @@ Public Class FrmConsultationEntry
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Me.Dispose()
         Me.Close()
     End Sub
 
@@ -732,7 +738,7 @@ Public Class FrmConsultationEntry
                                     End If
 
                                     For Each Row As DataGridViewRow In .SelectedRows
-                                        If Not DeletePetFromAppointment(TxtAppointmentID.Text, DgvSelectedPet.Rows(e.RowIndex).Cells("PetID").Value) Then
+                                        If Not DeletePetFromAppointment(TxtConsultationID.Text, DgvSelectedPet.Rows(e.RowIndex).Cells("PetID").Value) Then
                                             MsgBox("Failed to remove pet from appointment.", MsgBoxStyle.Critical, "Failed to Remove Pet")
                                             Exit For
                                         End If
@@ -783,7 +789,7 @@ Public Class FrmConsultationEntry
 
                 LblPetName.Tag = DgvSelectedPet.Rows(e.RowIndex).Cells("PetID").Value
                 LblPetName.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("PetName").Value
-                TxtAppointmentDesc.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("AppointmentDesc").Value
+                TxtConsultationDesc.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("ConsultationDesc").Value
 
             End If
 
@@ -856,7 +862,7 @@ Public Class FrmConsultationEntry
                     DgvRow("SexName") = DgvSelectedPet.Rows(i).Cells("SexName").Value
                     DgvRow("StatusCode") = DgvSelectedPet.Rows(i).Cells("StatusCode").Value
                     DgvRow("StatusName") = DgvSelectedPet.Rows(i).Cells("StatusName").Value
-                    DgvRow("AppointmentDesc") = DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
+                    DgvRow("ConsultationDesc") = DgvSelectedPet.Rows(i).Cells("ConsultationDesc").Value
 
                     DtPet.Rows.Add(DgvRow)
 
@@ -868,7 +874,7 @@ Public Class FrmConsultationEntry
             If DtPet.Rows.Count > 0 Then
                 For i As Integer = 0 To DtPet.Rows.Count - 1
                     If DtPet.Rows(i).Item("PetID") = DgvPetListing.Rows(RowIndex).Cells("PetID").Value Then
-                        MsgBox("You are trying to add same pet into the appointment.", MsgBoxStyle.Exclamation, "Duplicate Pet")
+                        MsgBox("You are trying to add same pet into the consultation.", MsgBoxStyle.Exclamation, "Duplicate Pet")
                         Return True
                     End If
                 Next
@@ -890,7 +896,7 @@ Public Class FrmConsultationEntry
             Row("SexName") = DgvPetListing.Rows(RowIndex).Cells("SexName").Value 'DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             Row("StatusCode") = DgvPetListing.Rows(RowIndex).Cells("StatusCode").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
             Row("StatusName") = DgvPetListing.Rows(RowIndex).Cells("StatusName").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-            Row("AppointmentDesc") = "" 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+            Row("ConsultationDesc") = "" 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
 
             DtPet.Rows.Add(Row)
 
@@ -929,12 +935,275 @@ Public Class FrmConsultationEntry
 
     End Function
 
-    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+    Private Sub AddUpdatePetIssues()
+
+        Try
+            For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+                If LblPetName.Tag = DgvSelectedPet.Rows(i).Cells("PetID").Value Then
+                    DgvSelectedPet.Rows(i).Cells("ConsultationDesc").Value = Trim(TxtConsultationDesc.Text)
+                    MsgBox("Pet issues has been successfully saved!", MsgBoxStyle.Information, "Pet Issues Saved")
+                    Exit For
+                End If
+            Next
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddUpdatePetIssues()")
+        End Try
 
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+    Private Sub SaveConsultationToDb()
 
+        Try
+            If Not CheckUserInput(UserCommand) Then Exit Sub
+            If Not AddNewConsultation() Then Exit Sub
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveConsultationToDb()")
+        End Try
+
+    End Sub
+
+    Private Function CheckUserInput(UserCommand As String) As Boolean
+
+        'Dim AppointmentTime As DateTime
+        Dim DtConsultation As New DataTable
+        Dim ClsConsultation As New ClsConsultation
+
+        Try
+            If DgvSelectedPet.Rows.Count = 0 Then
+                MsgBox("Please select your pet for the consultation.", MsgBoxStyle.Exclamation, "No Pet Selected")
+                Return False
+            End If
+
+            'Check appointment issues/description/complaints for each pets selected for the appontment
+            For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+                If DgvSelectedPet.Rows(i).Cells("ConsultationDesc").Value = "" Then
+                    MsgBox("Please specify pet's issue/problem/complaint for " & DgvSelectedPet.Rows(i).Cells("PetName").Value & ".", MsgBoxStyle.Exclamation, "No Pet Problems Specified")
+                    Return False
+                End If
+            Next
+
+            'Check existing and vet availability on that day for new appointment
+            If TxtConsultationID.Text = "" Then
+
+                ClsConsultation.CustomerID = Trim(TxtCustomerID.Text)
+                DtConsultation = ClsConsultation.GetConsultationListing(ClsConsultation)
+                If DtConsultation.Rows.Count > 0 Then
+
+                    Dim EmpID As String = DirectCast(CmbVet.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                    Dim ApDate As String = DtpConsultationDate.Value.Date.ToShortDateString
+                    Dim ApTime As String = String.Format("{0:HH:mm:ss}", DtpConsultationTime.Value)
+                    Dim ConsultationTime As DateTime = DateTime.ParseExact(ApDate & " " & ApTime, "dd/MM/yyyy HH:mm:ss", Globalization.CultureInfo.InvariantCulture)
+
+                    If TxtCustomerID.Text = DtConsultation.Rows(0).Item("CustomerID") And DtpConsultationDate.Value.Date = CDate(DtConsultation.Rows(0).Item("ConsultationTime")).Date Then
+
+                        MsgBox("You already have an appointment for the selected date.", MsgBoxStyle.Exclamation, "Appointment Already Created")
+                        Return False
+
+                    ElseIf EmpID = DtConsultation.Rows(0).Item("EmployeeID") And ConsultationTime = DtConsultation.Rows(0).Item("ConsultationTime") Then
+
+                        MsgBox("The selected vet is not available for appointment. Please select other date and time.", MsgBoxStyle.Exclamation, "Vet Not Available")
+                        Return False
+
+                    End If
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CheckUserInput()")
+        End Try
+
+        Return True
+
+    End Function
+
+    Protected Function AddNewConsultation() As Boolean
+
+        Dim ClsConsultation As New ClsConsultation
+        Dim ClsConsultationDetail As New ClsConsultationDetail
+        Dim DtConsultation As New DataTable
+        Dim ConsultationTime As Date
+        Dim GenConsultationID As String
+
+        Try
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
+            End If
+
+            DbTrans = DbConn.BeginTransaction
+
+            If ConsultationID <> "" Then
+                GenConsultationID = ConsultationID
+            Else
+                GenConsultationID = GenerateRunningNo("CS", DbConn, DbTrans)
+            End If
+
+            TxtConsultationID.Tag = GenConsultationID
+            If GenConsultationID = "" Then
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                Return False
+            End If
+
+            Dim ApDate As String = DtpConsultationDate.Value.Date.ToShortDateString
+            Dim ApTime As String = String.Format("{0:HH:mm:ss}", DtpConsultationTime.Value)
+
+            ConsultationTime = DateTime.ParseExact(ApDate & " " & ApTime, "dd/MM/yyyy HH:mm:ss", Globalization.CultureInfo.InvariantCulture)
+
+            If DgvSelectedPet.Rows.Count > 0 Then
+
+                ClsConsultation = New ClsConsultation
+                With ClsConsultation
+                    .ConsultationID = GenConsultationID
+                    .EmployeeID = DirectCast(CmbVet.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                    .EmployeeName = DirectCast(CmbVet.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                    .CustomerID = UCase(Trim(TxtCustomerID.Text))
+                    .CustomerName = UCase(Trim(TxtCustomerName.Text))
+                    .ConsultationTime = ConsultationTime
+                    .Ref.CreatedBy = CURR_USER
+                    .Ref.DateCreated = Now
+                    .Ref.ModifiedBy = CURR_USER
+                    .Ref.DateModified = Now
+                End With
+
+                'Consultation header
+                If Not ClsConsultation.AddNewConsultation(ClsConsultation, DbConn, DbTrans) Then
+                    MsgBox("Failed to create consultation header.", MsgBoxStyle.Critical, "Create Consultation Failed")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+                'Consultation detail
+                For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+
+                    ClsConsultationDetail = New ClsConsultationDetail
+                    With ClsConsultationDetail
+                        .ConsultationID = GenConsultationID
+                        .PetID = DgvSelectedPet.Rows(i).Cells("PetID").Value
+                        .PetName = DgvSelectedPet.Rows(i).Cells("PetName").Value
+                        .PetDOB = DgvSelectedPet.Rows(i).Cells("PetDOB").Value
+                        .AnimalTypeCode = DgvSelectedPet.Rows(i).Cells("AnimalTypeCode").Value
+                        .AnimalTypeName = DgvSelectedPet.Rows(i).Cells("AnimalTypeName").Value
+                        .BreedCode = DgvSelectedPet.Rows(i).Cells("BreedCode").Value
+                        .BreedName = DgvSelectedPet.Rows(i).Cells("BreedName").Value
+                        .SexCode = DgvSelectedPet.Rows(i).Cells("SexCode").Value
+                        .SexName = DgvSelectedPet.Rows(i).Cells("SexName").Value
+                        .StatusCode = DgvSelectedPet.Rows(i).Cells("StatusCode").Value
+                        .StatusName = DgvSelectedPet.Rows(i).Cells("StatusName").Value
+                        .ConsultationDesc = DgvSelectedPet.Rows(i).Cells("ConsultationDesc").Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+                    End With
+
+                    If Not ClsConsultationDetail.AddNewConsultationDetail(ClsConsultationDetail, DbConn, DbTrans) Then
+                        MsgBox("Failed to create consultation details.", MsgBoxStyle.Critical, "Create Consultation Failed")
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
+                Next
+
+            End If
+
+            DbTrans.Commit()
+            DbTrans = Nothing
+
+            'PopulateCustomerAppointment()
+
+            TxtConsultationID.Text = ConsultationID
+            TxtCreatedBy.Text = "" 'ClsAppointment.Ref.CreatedBy
+            TxtDateCreated.Text = "" 'ClsAppointment.Ref.DateCreated
+            TxtModifiedBy.Text = "" 'ClsAppointment.Ref.ModifiedBy
+            TxtDateModified.Text = "" 'ClsAppointment.Ref.DateModified
+
+            SetFields(UserCommand)
+
+            MsgBox("Consultation has been successfully created!", MsgBoxStyle.Information, "Consultation Successfully Added")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewConsultation()")
+            If DbTrans IsNot Nothing Then
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+            End If
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function IsConsultationCompleted() As Boolean
+
+        Dim UserResponse As Boolean
+        Dim ClsConsultation As New ClsConsultation
+
+        Try
+            UserResponse = MsgBox("Are sure you want to complete this consultation?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Complete Consultation?")
+            If UserResponse = MsgBoxResult.Yes Then
+
+                'Update IsCompleted from 0 to 1 if consultation is already completed
+                If DbTrans IsNot Nothing Then
+                    DbTrans = Nothing
+                End If
+
+                DbTrans = DbConn.BeginTransaction
+
+                With ClsConsultation
+                    .ConsultationID = Trim(TxtConsultationID.Text)
+                    .IsCompleted = IIf(CbIsCompleted.Checked = True, "1", "0")
+                End With
+
+                If Not ClsConsultation.UpdateIsCompleted(ClsConsultation, DbConn, DbTrans) Then
+                    MsgBox("Failed to update consultation completion.", MsgBoxStyle.Critical, "Failed to Update Completion")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".IsConsultationCompleted()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+            Return False
+        End Try
+
+        DbTrans.Commit()
+        DbTrans.Dispose()
+        DbTrans = Nothing
+
+        MsgBox("Your consultation has been successfully completed.", MsgBoxStyle.Information, "Consultation Completed")
+
+        CbIsCompleted.Checked = True
+        CbIsCompleted.Enabled = False
+
+        Return True
+
+    End Function
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim Frm As New FrmConsultationReport
+        With Frm
+            .ConsultationID = TxtConsultationID.Text
+            .ShowDialog()
+        End With
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        SaveConsultationToDb()
     End Sub
 
     Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
@@ -943,6 +1212,14 @@ Public Class FrmConsultationEntry
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
 
+    End Sub
+
+    Private Sub BtnAddPetIssues_Click(sender As Object, e As EventArgs) Handles BtnAddPetIssues.Click
+        AddUpdatePetIssues()
+    End Sub
+
+    Private Sub CbIsCompleted_CheckStateChanged(sender As Object, e As EventArgs) Handles CbIsCompleted.CheckStateChanged
+        If Not IsConsultationCompleted() Then Exit Sub
     End Sub
 
 End Class

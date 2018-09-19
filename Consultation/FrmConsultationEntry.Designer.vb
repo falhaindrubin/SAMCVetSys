@@ -100,17 +100,18 @@ Partial Class FrmConsultationEntry
         Me.BtnAddPetIssues = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.TxtAppointmentDesc = New System.Windows.Forms.TextBox()
+        Me.TxtConsultationDesc = New System.Windows.Forms.TextBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.CmbVet = New System.Windows.Forms.ComboBox()
-        Me.DtpAppointmentTime = New System.Windows.Forms.DateTimePicker()
+        Me.DtpConsultationTime = New System.Windows.Forms.DateTimePicker()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.DgvSelectedPet = New System.Windows.Forms.DataGridView()
-        Me.TxtAppointmentID = New System.Windows.Forms.TextBox()
+        Me.TxtConsultationID = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
-        Me.DtpAppointmentDate = New System.Windows.Forms.DateTimePicker()
+        Me.DtpConsultationDate = New System.Windows.Forms.DateTimePicker()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.CbIsCompleted = New System.Windows.Forms.CheckBox()
         Me.TabPage2.SuspendLayout()
         CType(Me.DgvPetListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -835,20 +836,21 @@ Partial Class FrmConsultationEntry
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.CbIsCompleted)
         Me.TabPage3.Controls.Add(Me.LblPetName)
         Me.TabPage3.Controls.Add(Me.BtnAddPetIssues)
         Me.TabPage3.Controls.Add(Me.Label26)
         Me.TabPage3.Controls.Add(Me.Label27)
-        Me.TabPage3.Controls.Add(Me.TxtAppointmentDesc)
+        Me.TabPage3.Controls.Add(Me.TxtConsultationDesc)
         Me.TabPage3.Controls.Add(Me.Label28)
         Me.TabPage3.Controls.Add(Me.CmbVet)
-        Me.TabPage3.Controls.Add(Me.DtpAppointmentTime)
+        Me.TabPage3.Controls.Add(Me.DtpConsultationTime)
         Me.TabPage3.Controls.Add(Me.Label29)
         Me.TabPage3.Controls.Add(Me.DgvSelectedPet)
-        Me.TabPage3.Controls.Add(Me.TxtAppointmentID)
+        Me.TabPage3.Controls.Add(Me.TxtConsultationID)
         Me.TabPage3.Controls.Add(Me.Label30)
         Me.TabPage3.Controls.Add(Me.Label31)
-        Me.TabPage3.Controls.Add(Me.DtpAppointmentDate)
+        Me.TabPage3.Controls.Add(Me.DtpConsultationDate)
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -895,15 +897,15 @@ Partial Class FrmConsultationEntry
         Me.Label27.TabIndex = 92
         Me.Label27.Text = "Pet Issues:"
         '
-        'TxtAppointmentDesc
+        'TxtConsultationDesc
         '
-        Me.TxtAppointmentDesc.BackColor = System.Drawing.Color.White
-        Me.TxtAppointmentDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAppointmentDesc.Location = New System.Drawing.Point(102, 241)
-        Me.TxtAppointmentDesc.Multiline = True
-        Me.TxtAppointmentDesc.Name = "TxtAppointmentDesc"
-        Me.TxtAppointmentDesc.Size = New System.Drawing.Size(479, 115)
-        Me.TxtAppointmentDesc.TabIndex = 91
+        Me.TxtConsultationDesc.BackColor = System.Drawing.Color.White
+        Me.TxtConsultationDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtConsultationDesc.Location = New System.Drawing.Point(102, 241)
+        Me.TxtConsultationDesc.Multiline = True
+        Me.TxtConsultationDesc.Name = "TxtConsultationDesc"
+        Me.TxtConsultationDesc.Size = New System.Drawing.Size(479, 115)
+        Me.TxtConsultationDesc.TabIndex = 91
         '
         'Label28
         '
@@ -924,16 +926,16 @@ Partial Class FrmConsultationEntry
         Me.CmbVet.Size = New System.Drawing.Size(188, 22)
         Me.CmbVet.TabIndex = 89
         '
-        'DtpAppointmentTime
+        'DtpConsultationTime
         '
-        Me.DtpAppointmentTime.CustomFormat = "HH:mm:ss"
-        Me.DtpAppointmentTime.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DtpAppointmentTime.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DtpAppointmentTime.Location = New System.Drawing.Point(206, 40)
-        Me.DtpAppointmentTime.Name = "DtpAppointmentTime"
-        Me.DtpAppointmentTime.ShowUpDown = True
-        Me.DtpAppointmentTime.Size = New System.Drawing.Size(84, 20)
-        Me.DtpAppointmentTime.TabIndex = 88
+        Me.DtpConsultationTime.CustomFormat = "HH:mm:ss"
+        Me.DtpConsultationTime.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DtpConsultationTime.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DtpConsultationTime.Location = New System.Drawing.Point(206, 40)
+        Me.DtpConsultationTime.Name = "DtpConsultationTime"
+        Me.DtpConsultationTime.ShowUpDown = True
+        Me.DtpConsultationTime.Size = New System.Drawing.Size(84, 20)
+        Me.DtpConsultationTime.TabIndex = 88
         '
         'Label29
         '
@@ -962,15 +964,15 @@ Partial Class FrmConsultationEntry
         Me.DgvSelectedPet.Size = New System.Drawing.Size(479, 119)
         Me.DgvSelectedPet.TabIndex = 84
         '
-        'TxtAppointmentID
+        'TxtConsultationID
         '
-        Me.TxtAppointmentID.BackColor = System.Drawing.Color.Beige
-        Me.TxtAppointmentID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAppointmentID.Location = New System.Drawing.Point(102, 12)
-        Me.TxtAppointmentID.Name = "TxtAppointmentID"
-        Me.TxtAppointmentID.ReadOnly = True
-        Me.TxtAppointmentID.Size = New System.Drawing.Size(100, 20)
-        Me.TxtAppointmentID.TabIndex = 86
+        Me.TxtConsultationID.BackColor = System.Drawing.Color.Beige
+        Me.TxtConsultationID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtConsultationID.Location = New System.Drawing.Point(102, 12)
+        Me.TxtConsultationID.Name = "TxtConsultationID"
+        Me.TxtConsultationID.ReadOnly = True
+        Me.TxtConsultationID.Size = New System.Drawing.Size(100, 20)
+        Me.TxtConsultationID.TabIndex = 86
         '
         'Label30
         '
@@ -990,14 +992,14 @@ Partial Class FrmConsultationEntry
         Me.Label31.TabIndex = 83
         Me.Label31.Text = "Consultation Time"
         '
-        'DtpAppointmentDate
+        'DtpConsultationDate
         '
-        Me.DtpAppointmentDate.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DtpAppointmentDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpAppointmentDate.Location = New System.Drawing.Point(102, 40)
-        Me.DtpAppointmentDate.Name = "DtpAppointmentDate"
-        Me.DtpAppointmentDate.Size = New System.Drawing.Size(100, 20)
-        Me.DtpAppointmentDate.TabIndex = 82
+        Me.DtpConsultationDate.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DtpConsultationDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpConsultationDate.Location = New System.Drawing.Point(102, 40)
+        Me.DtpConsultationDate.Name = "DtpConsultationDate"
+        Me.DtpConsultationDate.Size = New System.Drawing.Size(100, 20)
+        Me.DtpConsultationDate.TabIndex = 82
         '
         'TabControl1
         '
@@ -1010,6 +1012,16 @@ Partial Class FrmConsultationEntry
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(612, 487)
         Me.TabControl1.TabIndex = 80
+        '
+        'CbIsCompleted
+        '
+        Me.CbIsCompleted.AutoSize = True
+        Me.CbIsCompleted.Location = New System.Drawing.Point(206, 13)
+        Me.CbIsCompleted.Name = "CbIsCompleted"
+        Me.CbIsCompleted.Size = New System.Drawing.Size(76, 18)
+        Me.CbIsCompleted.TabIndex = 96
+        Me.CbIsCompleted.Text = "Completed"
+        Me.CbIsCompleted.UseVisualStyleBackColor = True
         '
         'FrmConsultationEntry
         '
@@ -1115,14 +1127,15 @@ Partial Class FrmConsultationEntry
     Friend WithEvents BtnAddPetIssues As Button
     Friend WithEvents Label26 As Label
     Friend WithEvents Label27 As Label
-    Friend WithEvents TxtAppointmentDesc As TextBox
+    Friend WithEvents TxtConsultationDesc As TextBox
     Friend WithEvents Label28 As Label
     Friend WithEvents CmbVet As ComboBox
-    Friend WithEvents DtpAppointmentTime As DateTimePicker
+    Friend WithEvents DtpConsultationTime As DateTimePicker
     Friend WithEvents Label29 As Label
     Friend WithEvents DgvSelectedPet As DataGridView
-    Friend WithEvents TxtAppointmentID As TextBox
+    Friend WithEvents TxtConsultationID As TextBox
     Friend WithEvents Label30 As Label
     Friend WithEvents Label31 As Label
-    Friend WithEvents DtpAppointmentDate As DateTimePicker
+    Friend WithEvents DtpConsultationDate As DateTimePicker
+    Friend WithEvents CbIsCompleted As CheckBox
 End Class

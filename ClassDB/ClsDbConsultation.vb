@@ -9,62 +9,111 @@ Public Class ClsDbConsultation
     Dim Cmd As OdbcCommand
     Dim Da As OdbcDataAdapter
 
-    Public Function AddNewAppointment(ByVal APP As ClsAppointment, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As Boolean
+    Public Function AddNewConsultation(CONS As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("INSERT INTO samc_appointment ")
-                .Append("(AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, AppointmentTime, ")
+                .Append("INSERT INTO samc_consultation ")
+                .Append("(ConsultationID, EmployeeID, EmployeeName, CustomerID, CustomerName, ConsultationTime, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & APP.AppointmentID & "', '" & APP.EmpID & "', '" & APP.EmpName & "', '" & APP.CustomerID & "', '" & APP.CustomerName & "', " & CSQLDateTime(APP.AppointmentTime) & ", ")
-                .Append("'" & APP.Ref.CreatedBy & "', " & CSQLDateTime(APP.Ref.DateCreated) & ", '" & APP.Ref.ModifiedBy & "', " & CSQLDateTime(APP.Ref.DateModified) & ") ")
+                .Append("('" & CONS.ConsultationID & "', '" & CONS.EmployeeID & "', '" & CONS.EmployeeName & "', '" & CONS.CustomerID & "', '" & CONS.CustomerName & "', " & CSQLDateTime(CONS.ConsultationTime) & ", ")
+                .Append("'" & CONS.Ref.CreatedBy & "', " & CSQLDateTime(CONS.Ref.DateCreated) & ", '" & CONS.Ref.ModifiedBy & "', " & CSQLDateTime(CONS.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("EmpID = '" & APP.EmpID & "', EmpName = '" & APP.EmpName & "', AppointmentTime = " & CSQLDateTime(APP.AppointmentTime) & ", ModifiedBy = '" & APP.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(APP.Ref.DateModified) & " ")
+                .Append("EmployeeID = '" & CONS.EmployeeID & "', EmployeeName = '" & CONS.EmployeeName & "', ConsultationTime = " & CSQLDateTime(CONS.ConsultationTime) & ", ModifiedBy = '" & CONS.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(CONS.Ref.DateModified) & " ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBAppointment.AddNewAppointment()")
-            Return False
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.AddNewConsultation()")
         End Try
 
         Return IIf(Ret = 0, False, True)
 
     End Function
 
-    Public Function AddNewAppointmentDetail(APPD As ClsAppointmentDetail, DBConn As OdbcConnection, DBTrans As OdbcTransaction) As Boolean
+    Public Function AddNewConsultationDetail(CONSD As ClsConsultationDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("INSERT INTO samc_appointmentdetail ")
-                .Append("(AppointmentID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, AppointmentDesc, ")
+                .Append("INSERT INTO samc_consultationdetail ")
+                .Append("(ConsultationID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, ConsultationDesc, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & APPD.AppointmentID & "', '" & APPD.PetID & "', '" & APPD.PetName & "', " & CSQLDate(APPD.PetDOB) & ", '" & APPD.SexCode & "', '" & APPD.SexName & "', ")
-                .Append("'" & APPD.AnimalTypeCode & "', '" & APPD.AnimalTypeName & "', '" & APPD.BreedCode & "', ")
-                .Append("'" & APPD.BreedName & "', '" & APPD.StatusCode & "', '" & APPD.StatusName & "', '" & APPD.AppointmentDesc & "', ")
-                .Append("'" & APPD.Ref.CreatedBy & "', " & CSQLDateTime(APPD.Ref.DateCreated) & ", '" & APPD.Ref.ModifiedBy & "', " & CSQLDateTime(APPD.Ref.DateModified) & ") ")
+                .Append("('" & CONSD.ConsultationID & "', '" & CONSD.PetID & "', '" & CONSD.PetName & "', " & CSQLDate(CONSD.PetDOB) & ", '" & CONSD.SexCode & "', '" & CONSD.SexName & "', ")
+                .Append("'" & CONSD.AnimalTypeCode & "', '" & CONSD.AnimalTypeName & "', '" & CONSD.BreedCode & "', ")
+                .Append("'" & CONSD.BreedName & "', '" & CONSD.StatusCode & "', '" & CONSD.StatusName & "', '" & CONSD.ConsultationDesc & "', ")
+                .Append("'" & CONSD.Ref.CreatedBy & "', " & CSQLDateTime(CONSD.Ref.DateCreated) & ", '" & CONSD.Ref.ModifiedBy & "', " & CSQLDateTime(CONSD.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("AppointmentDesc = '" & APPD.AppointmentDesc & "', ModifiedBy = '" & APPD.Ref.ModifiedBy & "',  DateModified = " & CSQLDateTime(APPD.Ref.DateModified) & " ")
+                .Append("ConsultationDesc = '" & CONSD.ConsultationDesc & "', ModifiedBy = '" & CONSD.Ref.ModifiedBy & "',  DateModified = " & CSQLDateTime(CONSD.Ref.DateModified) & " ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBAppointment.AddNewAppointmentDetail()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.AddNewConsultationDetail()")
         End Try
 
         Return IIf(Ret = 0, False, True)
+
+    End Function
+
+    Public Function GetConsultationListing(CONS As ClsConsultation) As DataTable
+
+        Dim DtConsultation As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT ConsultationID, EmployeeID, EmployeeName, CustomerID, CustomerName, ConsultationTime, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_consultation ")
+
+                If CONS.CustomerID <> "" Then
+                    .Append("WHERE CustomerID = '" & CONS.CustomerID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtConsultation)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.GetConsultationListing()")
+        End Try
+
+        Return DtConsultation
+
+    End Function
+
+    Public Function UpdateIsCompleted(CS As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Dim Ret As Integer
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("UPDATE samc_consultation ")
+                .Append("SET IsCompleted = '" & CS.IsCompleted & "' ")
+                .Append("WHERE ConsultationID = '" & CS.ConsultationID & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Ret = Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.UpdateIsCompleted()")
+        End Try
+
+        Return True
 
     End Function
 
@@ -117,32 +166,32 @@ Public Class ClsDbConsultation
 
     Public Function GetConsultationDetail(CONS As ClsConsultation) As DataTable
 
-        Dim DtAppointment As New DataTable
+        Dim DtConsultation As New DataTable
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, AppointmentTime, ")
-                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, AppointmentDesc, ")
+                .Append("SELECT a.ConsultationID, EmployeeID, EmployeeName, CustomerID, CustomerName, ConsultationTime, IsCompleted, ")
+                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, ConsultationDesc, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
-                .Append("FROM samc_appointment a ")
-                .Append("INNER JOIN samc_appointmentdetail b ON a.AppointmentID = b.AppointmentID ")
+                .Append("FROM samc_consultation a ")
+                .Append("INNER JOIN samc_consultationdetail b ON a.ConsultationID = b.ConsultationID ")
 
                 If CONS.ConsultationID <> "" Then
-                    .Append("WHERE a.AppointmentID = '" & CONS.ConsultationID & "' ")
+                    .Append("WHERE a.ConsultationID = '" & CONS.ConsultationID & "' ")
                 End If
 
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
-            Da.Fill(DtAppointment)
+            Da.Fill(DtConsultation)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.GetConsultationDetail()")
         End Try
 
-        Return DtAppointment
+        Return DtConsultation
 
     End Function
 
@@ -263,32 +312,32 @@ Public Class ClsDbConsultation
 
     End Function
 
-    Public Function GetAppointmentListing(APP As ClsAppointment) As DataTable
+    'Public Function GetAppointmentListing(APP As ClsAppointment) As DataTable
 
-        Dim DtAppointment As New DataTable
+    '    Dim DtAppointment As New DataTable
 
-        Try
-            Sb = New StringBuilder
-            With Sb
-                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName,AppointmentTime, CreatedBy, DateCreated, ModifiedBy, DateModified ")
-                .Append("FROM samc_appointment ")
+    '    Try
+    '        Sb = New StringBuilder
+    '        With Sb
+    '            .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName,AppointmentTime, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+    '            .Append("FROM samc_appointment ")
 
-                If APP.CustomerID <> "" Then
-                    .Append("WHERE CustomerID = '" & APP.CustomerID & "' ")
-                End If
-            End With
+    '            If APP.CustomerID <> "" Then
+    '                .Append("WHERE CustomerID = '" & APP.CustomerID & "' ")
+    '            End If
+    '        End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DbConn)
-            Da = New OdbcDataAdapter(Cmd)
-            Da.Fill(DtAppointment)
+    '        Cmd = New OdbcCommand(Sb.ToString, DbConn)
+    '        Da = New OdbcDataAdapter(Cmd)
+    '        Da.Fill(DtAppointment)
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBAppointment.GetAppointmentListing()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBAppointment.GetAppointmentListing()")
+    '    End Try
 
-        Return DtAppointment
+    '    Return DtAppointment
 
-    End Function
+    'End Function
 
 
 

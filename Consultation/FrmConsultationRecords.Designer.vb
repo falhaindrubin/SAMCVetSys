@@ -26,14 +26,14 @@ Partial Class FrmConsultationRecords
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
-        Me.DgvCustomerListing = New System.Windows.Forms.DataGridView()
+        Me.DgvConsultationListing = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewConsultation = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvConsultationListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -69,26 +69,26 @@ Partial Class FrmConsultationRecords
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
         '
-        'DgvCustomerListing
+        'DgvConsultationListing
         '
-        Me.DgvCustomerListing.AllowUserToAddRows = False
-        Me.DgvCustomerListing.AllowUserToDeleteRows = False
-        Me.DgvCustomerListing.AllowUserToOrderColumns = True
-        Me.DgvCustomerListing.AllowUserToResizeRows = False
-        Me.DgvCustomerListing.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.DgvConsultationListing.AllowUserToAddRows = False
+        Me.DgvConsultationListing.AllowUserToDeleteRows = False
+        Me.DgvConsultationListing.AllowUserToOrderColumns = True
+        Me.DgvConsultationListing.AllowUserToResizeRows = False
+        Me.DgvConsultationListing.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DgvCustomerListing.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.DgvCustomerListing.BackgroundColor = System.Drawing.Color.White
-        Me.DgvCustomerListing.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DgvCustomerListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvCustomerListing.Location = New System.Drawing.Point(9, 20)
-        Me.DgvCustomerListing.Name = "DgvCustomerListing"
-        Me.DgvCustomerListing.ReadOnly = True
-        Me.DgvCustomerListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DgvCustomerListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvCustomerListing.Size = New System.Drawing.Size(1115, 584)
-        Me.DgvCustomerListing.TabIndex = 2
+        Me.DgvConsultationListing.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.DgvConsultationListing.BackgroundColor = System.Drawing.Color.White
+        Me.DgvConsultationListing.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DgvConsultationListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvConsultationListing.Location = New System.Drawing.Point(9, 20)
+        Me.DgvConsultationListing.Name = "DgvConsultationListing"
+        Me.DgvConsultationListing.ReadOnly = True
+        Me.DgvConsultationListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DgvConsultationListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvConsultationListing.Size = New System.Drawing.Size(1115, 584)
+        Me.DgvConsultationListing.TabIndex = 2
         '
         'PnlActionBar
         '
@@ -137,7 +137,7 @@ Partial Class FrmConsultationRecords
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.DgvCustomerListing)
+        Me.GroupBox1.Controls.Add(Me.DgvConsultationListing)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 162)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(1130, 611)
@@ -169,7 +169,7 @@ Partial Class FrmConsultationRecords
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "FrmConsultationRecords"
         Me.Text = "Consultation Records"
-        CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvConsultationListing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -181,7 +181,7 @@ Partial Class FrmConsultationRecords
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtSearchText As TextBox
     Friend WithEvents BtnSearchCustomer As Button
-    Friend WithEvents DgvCustomerListing As DataGridView
+    Friend WithEvents DgvConsultationListing As DataGridView
     Friend WithEvents PnlActionBar As Panel
     Friend WithEvents BtnClose As Button
     Friend WithEvents BtnAddNewConsultation As Button

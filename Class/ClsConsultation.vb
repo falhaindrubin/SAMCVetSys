@@ -128,8 +128,20 @@ Public Class ClsConsultation
     '    Return DBAppointment.GetAppointmentHistory(ClsAppointment, DBConn)
     'End Function
 
+    Public Function GetConsultationListing(ClsConsultation As ClsConsultation) As DataTable
+        Return DbConsultation.GetConsultationListing(ClsConsultation)
+    End Function
+
+    Public Function AddNewConsultation(ClsConsultation As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbConsultation.AddNewConsultation(ClsConsultation, DbConn, DbTrans)
+    End Function
+
     Public Function GetConsultationDetail(ClsConsultation As ClsConsultation) As DataTable
         Return DbConsultation.GetConsultationDetail(ClsConsultation)
+    End Function
+
+    Public Function UpdateIsCompleted(ClsConsultation As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbConsultation.UpdateIsCompleted(ClsConsultation, DbConn, DbTrans)
     End Function
 
 End Class

@@ -23,7 +23,7 @@ Public Class ClsDBAppointment
                 .Append("('" & APP.AppointmentID & "', '" & APP.EmpID & "', '" & APP.EmpName & "', '" & APP.CustomerID & "', '" & APP.CustomerName & "', " & CSQLDateTime(APP.AppointmentTime) & ", ")
                 .Append("'" & APP.Ref.CreatedBy & "', " & CSQLDateTime(APP.Ref.DateCreated) & ", '" & APP.Ref.ModifiedBy & "', " & CSQLDateTime(APP.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("EmpID = '" & APP.EmpID & "', EmpName = '" & APP.EmpName & "', AppointmentTime = " & CSQLDateTime(APP.AppointmentTime) & ", ModifiedBy = '" & APP.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(APP.Ref.DateModified) & " ")
+                .Append("EmployeeID = '" & APP.EmpID & "', EmployeeName = '" & APP.EmpName & "', AppointmentTime = " & CSQLDateTime(APP.AppointmentTime) & ", ModifiedBy = '" & APP.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(APP.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)

@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 
-Public Class FrmSearch
+Public Class FrmSearchCustomer
 
     Private _Source As String
     Public Property Source As String

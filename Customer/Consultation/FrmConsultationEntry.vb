@@ -621,7 +621,7 @@ Public Class FrmConsultationEntry
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
         Try
-            With FrmSearch
+            With FrmSearchCustomer
                 .Source = "CONSULTATION"
                 .ShowDialog()
                 CustomerID = .CustomerID
@@ -1037,7 +1037,7 @@ Public Class FrmConsultationEntry
             If ConsultationID <> "" Then
                 GenConsultationID = ConsultationID
             Else
-                GenConsultationID = GenerateRunningNo("CS", DbConn, DbTrans)
+                GenConsultationID = GenerateRunningNo("VS", DbConn, DbTrans)
             End If
 
             TxtConsultationID.Tag = GenConsultationID
@@ -1144,7 +1144,7 @@ Public Class FrmConsultationEntry
 
     Private Function IsConsultationCompleted() As Boolean
 
-        Dim UserResponse As Boolean
+        Dim UserResponse As MsgBoxResult
         Dim ClsConsultation As New ClsConsultation
 
         Try
@@ -1218,7 +1218,7 @@ Public Class FrmConsultationEntry
         AddUpdatePetIssues()
     End Sub
 
-    Private Sub CbIsCompleted_CheckStateChanged(sender As Object, e As EventArgs) Handles CbIsCompleted.CheckStateChanged
+    Private Sub CbIsCompleted_Click(sender As Object, e As EventArgs) Handles CbIsCompleted.Click
         If Not IsConsultationCompleted() Then Exit Sub
     End Sub
 

@@ -186,10 +186,10 @@
     <Compile Include="Appointment\FrmAppointmentReport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consultation\FrmConsultationReport.Designer.vb">
+    <Compile Include="Customer\Consultation\FrmConsultationReport.Designer.vb">
       <DependentUpon>FrmConsultationReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Consultation\FrmConsultationReport.vb">
+    <Compile Include="Customer\Consultation\FrmConsultationReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassDB\ClsDbConsultation.vb" />
@@ -199,16 +199,16 @@
     <Compile Include="Class\ClsConsultation.vb" />
     <Compile Include="Class\ClsCompany.vb" />
     <Compile Include="Class\ClsUser.vb" />
-    <Compile Include="Consultation\FrmConsultationEntry.Designer.vb">
+    <Compile Include="Customer\Consultation\FrmConsultationEntry.Designer.vb">
       <DependentUpon>FrmConsultationEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="Consultation\FrmConsultationEntry.vb">
+    <Compile Include="Customer\Consultation\FrmConsultationEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consultation\FrmConsultationRecords.Designer.vb">
+    <Compile Include="Customer\Consultation\FrmConsultationRecords.Designer.vb">
       <DependentUpon>FrmConsultationRecords.vb</DependentUpon>
     </Compile>
-    <Compile Include="Consultation\FrmConsultationRecords.vb">
+    <Compile Include="Customer\Consultation\FrmConsultationRecords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dataset\DsAppointment.Designer.vb">
@@ -222,22 +222,46 @@
     <Compile Include="Examination\FrmExaminationEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\FrmEmployeeRecords.Designer.vb">
+    <Compile Include="Management\Employees\FrmEmployeeRecords.Designer.vb">
       <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
     </Compile>
-    <Compile Include="Management\FrmEmployeeRecords.vb">
+    <Compile Include="Management\Employees\FrmEmployeeRecords.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\FrmEmployeeEntry.Designer.vb">
+    <Compile Include="Management\Employees\FrmEmployeeEntry.Designer.vb">
       <DependentUpon>FrmEmployeeEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="Management\FrmEmployeeEntry.vb">
+    <Compile Include="Management\Employees\FrmEmployeeEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\FrmEmployeeReport.Designer.vb">
+    <Compile Include="Management\Employees\FrmEmployeeReport.Designer.vb">
       <DependentUpon>FrmEmployeeReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Management\FrmEmployeeReport.vb">
+    <Compile Include="Management\Employees\FrmEmployeeReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\Payment\FrmPaymentEntry.Designer.vb">
+      <DependentUpon>FrmPaymentEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Payment\FrmPaymentEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\Payment\FrmPaymentRecords.Designer.vb">
+      <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Payment\FrmPaymentRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\Products\FrmItemEntry.Designer.vb">
+      <DependentUpon>FrmItemEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Products\FrmItemEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\Products\FrmItemManagement.Designer.vb">
+      <DependentUpon>FrmItemManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Products\FrmItemManagement.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Report\RptAppointment.vb">
@@ -264,10 +288,10 @@
     <Compile Include="Class\ClsLogin.vb" />
     <Compile Include="Class\ClsPet.vb" />
     <Compile Include="Class\ClsReference.vb" />
-    <Compile Include="Customer\FrmCustomerReport.Designer.vb">
+    <Compile Include="Customer\Register\FrmCustomerReport.Designer.vb">
       <DependentUpon>FrmCustomerReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Customer\FrmCustomerReport.vb">
+    <Compile Include="Customer\Register\FrmCustomerReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dataset\DsCustomerInformation.Designer.vb">
@@ -284,10 +308,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\FrmCustomerEntry.Designer.vb">
+    <Compile Include="Customer\Register\FrmCustomerEntry.Designer.vb">
       <DependentUpon>FrmCustomerEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="Customer\FrmCustomerEntry.vb">
+    <Compile Include="Customer\Register\FrmCustomerEntry.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLogin.Designer.vb">
@@ -303,10 +327,10 @@
     <Compile Include="Appointment\FrmAppointmentRecords.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer\FrmCustomerRecords.Designer.vb">
+    <Compile Include="Customer\Register\FrmCustomerRecords.Designer.vb">
       <DependentUpon>FrmCustomerRecords.vb</DependentUpon>
     </Compile>
-    <Compile Include="Customer\FrmCustomerRecords.vb">
+    <Compile Include="Customer\Register\FrmCustomerRecords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMDI.vb">
@@ -332,10 +356,16 @@
     <Compile Include="SplashSAMCVetSys.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utility\FrmSearch.Designer.vb">
-      <DependentUpon>FrmSearch.vb</DependentUpon>
+    <Compile Include="Utility\FrmSearchCustomer.Designer.vb">
+      <DependentUpon>FrmSearchCustomer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utility\FrmSearch.vb">
+    <Compile Include="Utility\FrmSearchCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\FrmSearchItem.Designer.vb">
+      <DependentUpon>FrmSearchItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\FrmSearchItem.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -346,19 +376,19 @@
     <EmbeddedResource Include="Appointment\FrmAppointmentReport.resx">
       <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultation\FrmConsultationReport.resx">
+    <EmbeddedResource Include="Customer\Consultation\FrmConsultationReport.resx">
       <DependentUpon>FrmConsultationReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultation\FrmConsultationEntry.resx">
+    <EmbeddedResource Include="Customer\Consultation\FrmConsultationEntry.resx">
       <DependentUpon>FrmConsultationEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultation\FrmConsultationRecords.resx">
+    <EmbeddedResource Include="Customer\Consultation\FrmConsultationRecords.resx">
       <DependentUpon>FrmConsultationRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\FrmCustomerReport.resx">
+    <EmbeddedResource Include="Customer\Register\FrmCustomerReport.resx">
       <DependentUpon>FrmCustomerReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\FrmCustomerEntry.resx">
+    <EmbeddedResource Include="Customer\Register\FrmCustomerEntry.resx">
       <DependentUpon>FrmCustomerEntry.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Examination\FrmExaminationEntry.resx">
@@ -370,23 +400,35 @@
     <EmbeddedResource Include="Appointment\FrmAppointmentRecords.resx">
       <DependentUpon>FrmAppointmentRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\FrmCustomerRecords.resx">
+    <EmbeddedResource Include="Customer\Register\FrmCustomerRecords.resx">
       <DependentUpon>FrmCustomerRecords.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMDI.resx">
       <DependentUpon>FrmMDI.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\FrmEmployeeRecords.resx">
+    <EmbeddedResource Include="Management\Employees\FrmEmployeeRecords.resx">
       <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\FrmEmployeeEntry.resx">
+    <EmbeddedResource Include="Management\Employees\FrmEmployeeEntry.resx">
       <DependentUpon>FrmEmployeeEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\Products\FrmItemEntry.resx">
+      <DependentUpon>FrmItemEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\Products\FrmItemManagement.resx">
+      <DependentUpon>FrmItemManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\Payment\FrmPaymentEntry.resx">
+      <DependentUpon>FrmPaymentEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\Payment\FrmPaymentRecords.resx">
+      <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\RptAppointment.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -395,8 +437,11 @@
     <EmbeddedResource Include="SplashSAMCVetSys.resx">
       <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utility\FrmSearch.resx">
-      <DependentUpon>FrmSearch.vb</DependentUpon>
+    <EmbeddedResource Include="Utility\FrmSearchCustomer.resx">
+      <DependentUpon>FrmSearchCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\FrmSearchItem.resx">
+      <DependentUpon>FrmSearchItem.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

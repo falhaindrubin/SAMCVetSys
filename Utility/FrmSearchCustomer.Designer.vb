@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmSearch
+Partial Class FrmSearchCustomer
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class FrmSearch
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSearch))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSearchCustomer))
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnCancel = New System.Windows.Forms.Button()
@@ -147,7 +147,7 @@ Partial Class FrmSearch
         Me.TxtSearchText.Size = New System.Drawing.Size(529, 24)
         Me.TxtSearchText.TabIndex = 1
         '
-        'FrmSearch
+        'FrmSearchCustomer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -156,9 +156,9 @@ Partial Class FrmSearch
         Me.Controls.Add(Me.DgvSearchResult)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "FrmSearch"
+        Me.Name = "FrmSearchCustomer"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Search"
+        Me.Text = "Search Customer"
         Me.PnlActionBar.ResumeLayout(False)
         CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)

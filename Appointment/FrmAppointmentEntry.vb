@@ -456,7 +456,7 @@ Public Class FrmAppointmentEntry
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
 
         Try
-            With FrmSearch
+            With FrmSearchCustomer
                 .Source = "APPOINTMENT"
                 .ShowDialog()
                 CustomerID = .CustomerID

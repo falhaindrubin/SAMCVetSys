@@ -87,7 +87,7 @@ Partial Class FrmConsultationRecords
         Me.DgvConsultationListing.ReadOnly = True
         Me.DgvConsultationListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DgvConsultationListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvConsultationListing.Size = New System.Drawing.Size(1115, 584)
+        Me.DgvConsultationListing.Size = New System.Drawing.Size(969, 528)
         Me.DgvConsultationListing.TabIndex = 2
         '
         'PnlActionBar
@@ -99,7 +99,7 @@ Partial Class FrmConsultationRecords
         Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(1130, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(984, 61)
         Me.PnlActionBar.TabIndex = 73
         '
         'BtnClose
@@ -107,7 +107,7 @@ Partial Class FrmConsultationRecords
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1064, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(919, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -118,7 +118,7 @@ Partial Class FrmConsultationRecords
         Me.BtnAddNewConsultation.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewConsultation.BackgroundImage = CType(resources.GetObject("BtnAddNewConsultation.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewConsultation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewConsultation.Location = New System.Drawing.Point(942, 2)
+        Me.BtnAddNewConsultation.Location = New System.Drawing.Point(797, 2)
         Me.BtnAddNewConsultation.Name = "BtnAddNewConsultation"
         Me.BtnAddNewConsultation.Size = New System.Drawing.Size(60, 56)
         Me.BtnAddNewConsultation.TabIndex = 2
@@ -129,7 +129,7 @@ Partial Class FrmConsultationRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(1003, 2)
+        Me.BtnReload.Location = New System.Drawing.Point(858, 2)
         Me.BtnReload.Name = "BtnReload"
         Me.BtnReload.Size = New System.Drawing.Size(60, 56)
         Me.BtnReload.TabIndex = 1
@@ -140,7 +140,7 @@ Partial Class FrmConsultationRecords
         Me.GroupBox1.Controls.Add(Me.DgvConsultationListing)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 162)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1130, 611)
+        Me.GroupBox1.Size = New System.Drawing.Size(984, 555)
         Me.GroupBox1.TabIndex = 75
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Consultation List"
@@ -154,7 +154,7 @@ Partial Class FrmConsultationRecords
         Me.GroupBox2.Controls.Add(Me.BtnSearchCustomer)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 81)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1130, 74)
+        Me.GroupBox2.Size = New System.Drawing.Size(984, 74)
         Me.GroupBox2.TabIndex = 74
         Me.GroupBox2.TabStop = False
         '
@@ -162,7 +162,7 @@ Partial Class FrmConsultationRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1154, 780)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)

@@ -166,4 +166,22 @@
         End Try
     End Sub
 
+    Private Sub ProductsServicesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductsServicesToolStripMenuItem.Click
+        Try
+            Dim Frm As New FrmItemManagement()
+            'Static intCount As Integer
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmItemManagement Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+            Frm = New FrmItemManagement With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+        End Try
+    End Sub
+
 End Class

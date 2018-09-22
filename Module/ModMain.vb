@@ -17,9 +17,9 @@ Module ModMain
     Public FORM_NAME As String
     Public SOFTWARE_VERSION As String
 
-    Dim sb As StringBuilder
-    Dim cmd As OdbcCommand
-    Dim da As OdbcDataAdapter
+    Dim Sb As StringBuilder
+    Dim Cmd As OdbcCommand
+    Dim Da As OdbcDataAdapter
 
     'Database connection
     Public Function ConnectToDB() As Boolean
@@ -164,36 +164,63 @@ Module ModMain
 
     End Function
 
-    'Public Function CSQLDateTime(ByVal DateValue As DateTime) As String
+    Public Function GenerateItemRunningNo(ByVal ItemTypeCode As String, ByVal ItemType As String, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As String
 
-    '    Dim MySQLDate As String = ""
+        Dim NewRunningNo As String = ""
+        Dim LastNo As Integer
+        Dim RunningNo As Integer
+        Dim DtRunningNo As New DataTable
 
-    '    Try
-    '        'MySQLDate = DateTime.ParseExact(DateValue, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture)
-    '        MySQLDate = DateValue.ToString("yyyy-MM-dd HH:mm:ss")
+        Try
+            'Get item last number by item type number
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT ItemTypeCode, LastNo ")
+                If ItemType = "SVC" Then
+                    .Append("FROM samc_runningno_svc ")
+                ElseIf ItemType = "PRD" Then
+                    .Append("FROM samc_runningno_prd ")
+                End If
+                .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
+            End With
 
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ModMain.CSQLDateTime()")
-    '    End Try
+            Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtRunningNo)
 
-    '    Return MySQLDate
+            If DtRunningNo.Rows.Count > 0 Then
 
-    'End Function
+                LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
+                RunningNo = LastNo + 1
 
-    'Public Function CSQLDate(ByVal DateValue As DateTime) As String
+                If RunningNo.ToString.Length < 2 Then
+                    NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(2, "0"c)
+                End If
 
-    '    Dim MySQLDate As String = ""
+                'Update LastNo
+                Sb = New StringBuilder
+                With Sb
+                    .Append("UPDATE ")
+                    If ItemType = "SVC" Then
+                        .Append("samc_runningno_svc ")
+                    ElseIf ItemType = "PRD" Then
+                        .Append("samc_runningno_prd ")
+                    End If
+                    .Append("SET LastNo = '" & RunningNo & "' ")
+                    .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
+                End With
 
-    '    Try
-    '        'MySQLDate = DateTime.ParseExact(DateValue, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture)
-    '        MySQLDate = DateValue.ToString("yyyy-MM-dd")
+                Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                Cmd.ExecuteNonQuery()
 
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ModMain.CSQLDate()")
-    '    End Try
+            End If
 
-    '    Return MySQLDate
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ModMain.GenerateItemRunningNo()")
+        End Try
 
-    'End Function
+        Return NewRunningNo
+
+    End Function
 
 End Module

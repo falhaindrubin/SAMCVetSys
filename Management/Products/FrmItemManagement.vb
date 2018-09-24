@@ -36,9 +36,20 @@
                 If DtServices.Rows.Count > 0 Then
                     DgvItemListing.DataSource = DtServices
                     DgvItemListing.Show()
+                Else
+                    DgvItemListing.DataSource = Nothing
+                    DgvItemListing.Show()
                 End If
 
             ElseIf RbProducts.Checked = True Then
+                DtProducts = ClsProducts.GetProductList(ClsProducts)
+                If DtProducts.Rows.Count > 0 Then
+                    DgvItemListing.DataSource = DtProducts
+                    DgvItemListing.Show()
+                Else
+                    DgvItemListing.DataSource = Nothing
+                    DgvItemListing.Show()
+                End If
 
             End If
 
@@ -50,16 +61,16 @@
 
     Private Sub DgvItemListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvItemListing.CellDoubleClick
 
-        Dim ItemCode As String
-
         Try
             If e.RowIndex = -1 Or e.ColumnIndex = -1 Then
                 Exit Sub
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
-                    ItemCode = DgvItemListing.Rows(e.RowIndex).Cells("ItemCode").Value
+                    'ItemCode = DgvItemListing.Rows(e.RowIndex).Cells("ItemCode").Value
                     Dim Frm As New FrmItemEntry With {
-                        .UserCommand = "SHOW_ITEM_INFO"
+                        .UserCommand = "SHOW_ITEM_INFO",
+                        .ItemCode = DgvItemListing.Rows(e.RowIndex).Cells("ItemCode").Value,
+                        .ItemType = DgvItemListing.Rows(e.RowIndex).Cells("ItemType").Value
                     }
                     Frm.ShowDialog()
                 End If
@@ -69,6 +80,14 @@
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvCustomerListing_CellDoubleClick()")
         End Try
 
+    End Sub
+
+    Private Sub RbServices_Click(sender As Object, e As EventArgs) Handles RbServices.Click
+        PopulateServiceProductListing()
+    End Sub
+
+    Private Sub RbProducts_Click(sender As Object, e As EventArgs) Handles RbProducts.Click
+        PopulateServiceProductListing()
     End Sub
 
 End Class

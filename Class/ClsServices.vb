@@ -70,6 +70,10 @@
         Return DbServices.GetServiceList(ClsServices)
     End Function
 
+    Public Function GetServiceInformation(ClsServices) As DataTable
+        Return DbServices.GetServiceInformation(ClsServices)
+    End Function
+
     Public Function GetServiceTypeList(ClsServices As ClsServices) As DataTable
         Return DbServices.GetServiceTypeList(ClsServices)
     End Function

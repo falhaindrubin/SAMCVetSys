@@ -29,8 +29,8 @@ Partial Class FrmSearchItem
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.DgvSearchResult = New System.Windows.Forms.DataGridView()
-        Me.CbIsCompleted = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.RbServices = New System.Windows.Forms.RadioButton()
+        Me.RbProducts = New System.Windows.Forms.RadioButton()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,16 +61,16 @@ Partial Class FrmSearchItem
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(555, 42)
+        Me.BtnSearch.Location = New System.Drawing.Point(550, 42)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(58, 52)
+        Me.BtnSearch.Size = New System.Drawing.Size(63, 52)
         Me.BtnSearch.TabIndex = 2
         Me.BtnSearch.UseVisualStyleBackColor = False
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
-        Me.GroupBox1.Controls.Add(Me.CbIsCompleted)
+        Me.GroupBox1.Controls.Add(Me.RbProducts)
+        Me.GroupBox1.Controls.Add(Me.RbServices)
         Me.GroupBox1.Controls.Add(Me.TxtSearchText)
         Me.GroupBox1.Controls.Add(Me.BtnSearch)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 80)
@@ -106,25 +106,27 @@ Partial Class FrmSearchItem
         Me.DgvSearchResult.Size = New System.Drawing.Size(638, 353)
         Me.DgvSearchResult.TabIndex = 74
         '
-        'CbIsCompleted
+        'RbServices
         '
-        Me.CbIsCompleted.AutoSize = True
-        Me.CbIsCompleted.Location = New System.Drawing.Point(15, 28)
-        Me.CbIsCompleted.Name = "CbIsCompleted"
-        Me.CbIsCompleted.Size = New System.Drawing.Size(69, 18)
-        Me.CbIsCompleted.TabIndex = 97
-        Me.CbIsCompleted.Text = "Services"
-        Me.CbIsCompleted.UseVisualStyleBackColor = True
+        Me.RbServices.AutoSize = True
+        Me.RbServices.Checked = True
+        Me.RbServices.Location = New System.Drawing.Point(15, 31)
+        Me.RbServices.Name = "RbServices"
+        Me.RbServices.Size = New System.Drawing.Size(68, 18)
+        Me.RbServices.TabIndex = 3
+        Me.RbServices.TabStop = True
+        Me.RbServices.Text = "Services"
+        Me.RbServices.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'RbProducts
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(104, 28)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(69, 18)
-        Me.CheckBox1.TabIndex = 98
-        Me.CheckBox1.Text = "Products"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.RbProducts.AutoSize = True
+        Me.RbProducts.Location = New System.Drawing.Point(95, 31)
+        Me.RbProducts.Name = "RbProducts"
+        Me.RbProducts.Size = New System.Drawing.Size(68, 18)
+        Me.RbProducts.TabIndex = 4
+        Me.RbProducts.Text = "Products"
+        Me.RbProducts.UseVisualStyleBackColor = True
         '
         'FrmSearchItem
         '
@@ -151,6 +153,6 @@ Partial Class FrmSearchItem
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TxtSearchText As TextBox
     Friend WithEvents DgvSearchResult As DataGridView
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CbIsCompleted As CheckBox
+    Friend WithEvents RbProducts As RadioButton
+    Friend WithEvents RbServices As RadioButton
 End Class

@@ -29,10 +29,10 @@ Partial Class FrmItemManagement
         Me.BtnAddNewItem = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.RbServices = New System.Windows.Forms.RadioButton()
         Me.RbProducts = New System.Windows.Forms.RadioButton()
+        Me.RbServices = New System.Windows.Forms.RadioButton()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.DgvItemListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -118,24 +118,15 @@ Partial Class FrmItemManagement
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Products && Services Listing"
         '
-        'TextBox1
+        'RbProducts
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(13, 63)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(280, 26)
-        Me.TextBox1.TabIndex = 5
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.Control
-        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button1.Location = New System.Drawing.Point(301, 50)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(60, 52)
-        Me.Button1.TabIndex = 6
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.RbProducts.AutoSize = True
+        Me.RbProducts.Location = New System.Drawing.Point(95, 39)
+        Me.RbProducts.Name = "RbProducts"
+        Me.RbProducts.Size = New System.Drawing.Size(68, 18)
+        Me.RbProducts.TabIndex = 8
+        Me.RbProducts.Text = "Products"
+        Me.RbProducts.UseVisualStyleBackColor = True
         '
         'RbServices
         '
@@ -149,15 +140,24 @@ Partial Class FrmItemManagement
         Me.RbServices.Text = "Services"
         Me.RbServices.UseVisualStyleBackColor = True
         '
-        'RbProducts
+        'Button1
         '
-        Me.RbProducts.AutoSize = True
-        Me.RbProducts.Location = New System.Drawing.Point(95, 39)
-        Me.RbProducts.Name = "RbProducts"
-        Me.RbProducts.Size = New System.Drawing.Size(68, 18)
-        Me.RbProducts.TabIndex = 8
-        Me.RbProducts.Text = "Products"
-        Me.RbProducts.UseVisualStyleBackColor = True
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button1.Location = New System.Drawing.Point(301, 50)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(60, 52)
+        Me.Button1.TabIndex = 6
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(13, 63)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(280, 26)
+        Me.TextBox1.TabIndex = 5
         '
         'FrmItemManagement
         '

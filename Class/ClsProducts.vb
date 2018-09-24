@@ -12,6 +12,16 @@
         End Set
     End Property
 
+    Private _ItemTypeCode As String
+    Public Property ItemTypeCode As String
+        Get
+            Return _ItemTypeCode
+        End Get
+        Set(value As String)
+            _ItemTypeCode = value
+        End Set
+    End Property
+
     Private _ItemCode As String
     Public Property ItemCode As String
         Get
@@ -52,8 +62,20 @@
         End Set
     End Property
 
+    Public Function AddNewProduct(ClsProducts As ClsProducts, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbProducts.AddNewProduct(ClsProducts, DbConn, DbTrans)
+    End Function
+
+    Public Function GetProductInformation(ClsProducts As ClsProducts) As DataTable
+        Return DbProducts.GetProductInformation(ClsProducts)
+    End Function
+
     Public Function GetProductTypeList(ClsProducts As ClsProducts) As DataTable
         Return DbProducts.GetProductTypeList(ClsProducts)
+    End Function
+
+    Public Function GetProductList(ClsProducts As ClsProducts) As DataTable
+        Return DbProducts.GetProductList(ClsProducts)
     End Function
 
 End Class

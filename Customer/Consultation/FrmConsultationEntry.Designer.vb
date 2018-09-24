@@ -113,15 +113,25 @@ Partial Class FrmConsultationEntry
         Me.DtpConsultationDate = New System.Windows.Forms.DateTimePicker()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label33 = New System.Windows.Forms.Label()
         Me.TxtDiscount = New System.Windows.Forms.TextBox()
+        Me.TxtItem = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.BtnClearPrescription = New System.Windows.Forms.Button()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.BtnClearItem = New System.Windows.Forms.Button()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.Label36 = New System.Windows.Forms.Label()
         Me.Label41 = New System.Windows.Forms.Label()
+        Me.TxtQuantity = New System.Windows.Forms.TextBox()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.TxtPrice = New System.Windows.Forms.TextBox()
         Me.BtnSearchItem = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.DgvBillListing = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -132,18 +142,8 @@ Partial Class FrmConsultationEntry
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TxtPrice = New System.Windows.Forms.TextBox()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.TxtQuantity = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.TxtItem = New System.Windows.Forms.TextBox()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.Label38 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.TabPage2.SuspendLayout()
         CType(Me.DgvPetListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -854,7 +854,7 @@ Partial Class FrmConsultationEntry
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(612, 57)
+        Me.PnlActionBar.Size = New System.Drawing.Size(610, 57)
         Me.PnlActionBar.TabIndex = 81
         '
         'BtnSearch
@@ -1090,87 +1090,182 @@ Partial Class FrmConsultationEntry
         Me.TabPage4.Text = "Billing"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(6, 21)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(78, 14)
+        Me.Label38.TabIndex = 154
+        Me.Label38.Text = "Consultation ID"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.BackColor = System.Drawing.Color.Beige
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox4.Location = New System.Drawing.Point(84, 18)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.ReadOnly = True
+        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox4.TabIndex = 155
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(6, 45)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(26, 14)
+        Me.Label33.TabIndex = 130
+        Me.Label33.Text = "Item"
+        '
         'TxtDiscount
         '
         Me.TxtDiscount.BackColor = System.Drawing.Color.White
         Me.TxtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDiscount.Location = New System.Drawing.Point(102, 288)
+        Me.TxtDiscount.Location = New System.Drawing.Point(84, 272)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.Size = New System.Drawing.Size(52, 20)
         Me.TxtDiscount.TabIndex = 153
         '
+        'TxtItem
+        '
+        Me.TxtItem.BackColor = System.Drawing.Color.Beige
+        Me.TxtItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtItem.Location = New System.Drawing.Point(84, 42)
+        Me.TxtItem.Name = "TxtItem"
+        Me.TxtItem.ReadOnly = True
+        Me.TxtItem.Size = New System.Drawing.Size(318, 20)
+        Me.TxtItem.TabIndex = 131
+        '
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(13, 291)
+        Me.Label43.Location = New System.Drawing.Point(6, 275)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(49, 14)
         Me.Label43.TabIndex = 152
         Me.Label43.Text = "Discount"
         '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(6, 71)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(64, 14)
+        Me.Label34.TabIndex = 132
+        Me.Label34.Text = "Prescription"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.Color.White
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox2.Location = New System.Drawing.Point(84, 68)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(318, 20)
+        Me.TextBox2.TabIndex = 133
+        '
         'BtnClearPrescription
         '
-        Me.BtnClearPrescription.Location = New System.Drawing.Point(462, 70)
+        Me.BtnClearPrescription.Location = New System.Drawing.Point(438, 66)
         Me.BtnClearPrescription.Name = "BtnClearPrescription"
         Me.BtnClearPrescription.Size = New System.Drawing.Size(51, 25)
         Me.BtnClearPrescription.TabIndex = 150
         Me.BtnClearPrescription.Text = "Clear"
         Me.BtnClearPrescription.UseVisualStyleBackColor = True
         '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(6, 92)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(35, 14)
+        Me.Label35.TabIndex = 134
+        Me.Label35.Text = "Notes"
+        '
         'BtnClearItem
         '
-        Me.BtnClearItem.Location = New System.Drawing.Point(462, 43)
+        Me.BtnClearItem.Location = New System.Drawing.Point(438, 40)
         Me.BtnClearItem.Name = "BtnClearItem"
         Me.BtnClearItem.Size = New System.Drawing.Size(51, 25)
         Me.BtnClearItem.TabIndex = 149
         Me.BtnClearItem.Text = "Clear"
         Me.BtnClearItem.UseVisualStyleBackColor = True
         '
+        'TextBox3
+        '
+        Me.TextBox3.BackColor = System.Drawing.Color.White
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox3.Location = New System.Drawing.Point(84, 92)
+        Me.TextBox3.Multiline = True
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(318, 83)
+        Me.TextBox3.TabIndex = 135
+        '
         'TextBox6
         '
         Me.TextBox6.BackColor = System.Drawing.Color.White
         Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox6.Location = New System.Drawing.Point(102, 190)
+        Me.TextBox6.Location = New System.Drawing.Point(84, 179)
         Me.TextBox6.Multiline = True
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(318, 47)
         Me.TextBox6.TabIndex = 148
         '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(6, 231)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(47, 14)
+        Me.Label36.TabIndex = 136
+        Me.Label36.Text = "Quantity"
+        '
         'Label41
         '
         Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(13, 190)
+        Me.Label41.Location = New System.Drawing.Point(6, 179)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(43, 14)
         Me.Label41.TabIndex = 147
         Me.Label41.Text = "Remark"
         '
+        'TxtQuantity
+        '
+        Me.TxtQuantity.BackColor = System.Drawing.Color.White
+        Me.TxtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtQuantity.Location = New System.Drawing.Point(84, 228)
+        Me.TxtQuantity.Name = "TxtQuantity"
+        Me.TxtQuantity.Size = New System.Drawing.Size(52, 20)
+        Me.TxtQuantity.TabIndex = 137
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(6, 253)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(31, 14)
+        Me.Label37.TabIndex = 138
+        Me.Label37.Text = "Price"
+        '
+        'TxtPrice
+        '
+        Me.TxtPrice.BackColor = System.Drawing.Color.Beige
+        Me.TxtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtPrice.Location = New System.Drawing.Point(84, 250)
+        Me.TxtPrice.Name = "TxtPrice"
+        Me.TxtPrice.ReadOnly = True
+        Me.TxtPrice.Size = New System.Drawing.Size(52, 20)
+        Me.TxtPrice.TabIndex = 139
+        '
         'BtnSearchItem
         '
-        Me.BtnSearchItem.Location = New System.Drawing.Point(426, 43)
+        Me.BtnSearchItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSearchItem.Location = New System.Drawing.Point(404, 40)
         Me.BtnSearchItem.Name = "BtnSearchItem"
         Me.BtnSearchItem.Size = New System.Drawing.Size(33, 25)
         Me.BtnSearchItem.TabIndex = 144
         Me.BtnSearchItem.Text = "..."
         Me.BtnSearchItem.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(180, 317)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 25)
-        Me.Button1.TabIndex = 143
-        Me.Button1.Text = "Clear Items"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'BtnAddBillItem
-        '
-        Me.BtnAddBillItem.Location = New System.Drawing.Point(102, 317)
-        Me.BtnAddBillItem.Name = "BtnAddBillItem"
-        Me.BtnAddBillItem.Size = New System.Drawing.Size(75, 25)
-        Me.BtnAddBillItem.TabIndex = 142
-        Me.BtnAddBillItem.Text = "Add Item.."
-        Me.BtnAddBillItem.UseVisualStyleBackColor = True
         '
         'DgvBillListing
         '
@@ -1232,115 +1327,23 @@ Partial Class FrmConsultationEntry
         Me.Column8.HeaderText = "Price"
         Me.Column8.Name = "Column8"
         '
-        'TxtPrice
+        'Button1
         '
-        Me.TxtPrice.BackColor = System.Drawing.Color.White
-        Me.TxtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPrice.Location = New System.Drawing.Point(102, 266)
-        Me.TxtPrice.Name = "TxtPrice"
-        Me.TxtPrice.Size = New System.Drawing.Size(52, 20)
-        Me.TxtPrice.TabIndex = 139
+        Me.Button1.Location = New System.Drawing.Point(162, 309)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 25)
+        Me.Button1.TabIndex = 143
+        Me.Button1.Text = "Clear Items"
+        Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label37
+        'BtnAddBillItem
         '
-        Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(13, 269)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(31, 14)
-        Me.Label37.TabIndex = 138
-        Me.Label37.Text = "Price"
-        '
-        'TxtQuantity
-        '
-        Me.TxtQuantity.BackColor = System.Drawing.Color.White
-        Me.TxtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtQuantity.Location = New System.Drawing.Point(102, 244)
-        Me.TxtQuantity.Name = "TxtQuantity"
-        Me.TxtQuantity.Size = New System.Drawing.Size(52, 20)
-        Me.TxtQuantity.TabIndex = 137
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(13, 247)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(47, 14)
-        Me.Label36.TabIndex = 136
-        Me.Label36.Text = "Quantity"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.BackColor = System.Drawing.Color.White
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox3.Location = New System.Drawing.Point(102, 101)
-        Me.TextBox3.Multiline = True
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(318, 83)
-        Me.TextBox3.TabIndex = 135
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(13, 101)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(35, 14)
-        Me.Label35.TabIndex = 134
-        Me.Label35.Text = "Notes"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.White
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox2.Location = New System.Drawing.Point(102, 72)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(318, 20)
-        Me.TextBox2.TabIndex = 133
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(13, 75)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(64, 14)
-        Me.Label34.TabIndex = 132
-        Me.Label34.Text = "Prescription"
-        '
-        'TxtItem
-        '
-        Me.TxtItem.BackColor = System.Drawing.Color.White
-        Me.TxtItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtItem.Location = New System.Drawing.Point(102, 45)
-        Me.TxtItem.Name = "TxtItem"
-        Me.TxtItem.Size = New System.Drawing.Size(318, 20)
-        Me.TxtItem.TabIndex = 131
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(13, 45)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(26, 14)
-        Me.Label33.TabIndex = 130
-        Me.Label33.Text = "Item"
-        '
-        'Label38
-        '
-        Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(6, 21)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(78, 14)
-        Me.Label38.TabIndex = 154
-        Me.Label38.Text = "Consultation ID"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.Color.Beige
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox4.Location = New System.Drawing.Point(102, 18)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox4.TabIndex = 155
+        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 309)
+        Me.BtnAddBillItem.Name = "BtnAddBillItem"
+        Me.BtnAddBillItem.Size = New System.Drawing.Size(75, 25)
+        Me.BtnAddBillItem.TabIndex = 142
+        Me.BtnAddBillItem.Text = "Add Item.."
+        Me.BtnAddBillItem.UseVisualStyleBackColor = True
         '
         'FrmConsultationEntry
         '

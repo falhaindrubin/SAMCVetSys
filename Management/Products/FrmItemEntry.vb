@@ -10,6 +10,26 @@
         End Set
     End Property
 
+    Private _ItemType As String
+    Public Property ItemType As String
+        Get
+            Return _ItemType
+        End Get
+        Set(value As String)
+            _ItemType = value
+        End Set
+    End Property
+
+    Private _ItemCode As String
+    Public Property ItemCode As String
+        Get
+            Return _ItemCode
+        End Get
+        Set(value As String)
+            _ItemCode = value
+        End Set
+    End Property
+
     Private Sub FrmItemEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Application.DoEvents()
         FORM_NAME = Me.Name
@@ -20,6 +40,11 @@
 
     Private Sub PopulateForm(UserCommand As String)
 
+        Dim DtServices As New DataTable
+        Dim DtProducts As New DataTable
+        Dim ClsServices As New ClsServices
+        Dim ClsProducts As New ClsProducts
+
         Try
             If UserCommand <> "" Then
 
@@ -29,111 +54,34 @@
                         Case "SVC"
 
                             DtServices = ClsServices.GetServiceInformation(ClsServices)
-                            RbServices.Checked = True
-                            CmbItemType.SelectedValue = ItemTypeCode
-                            TxtItemCode.Text = ItemCode
-                            TxtItemDescription.Text = ItemDescription
-                            TxtPrice.Text = Price
-                            TxtCreatedBy.Text = ""
-                            TxtDateCreated.Text = ""
-                            TxtModifiedBy.Text = ""
-                            TxtDateModified.Text = ""
+                            If DtServices.Rows.Count > 0 Then
+                                RbServices.Checked = True
+                                CmbItemTypeCode.SelectedValue = DtServices.Rows(0).Item("ItemTypeCode")
+                                TxtItemCode.Text = DtServices.Rows(0).Item("ItemCode")
+                                TxtItemDescription.Text = DtServices.Rows(0).Item("ItemDescription")
+                                TxtPrice.Text = DtServices.Rows(0).Item("Price")
+                                TxtCreatedBy.Text = DtServices.Rows(0).Item("CreatedBy")
+                                TxtDateCreated.Text = DtServices.Rows(0).Item("DateCreated")
+                                TxtModifiedBy.Text = DtServices.Rows(0).Item("ModifiedBy")
+                                TxtDateModified.Text = DtServices.Rows(0).Item("DateModified")
+                            End If
 
                         Case "PRD"
 
+                            DtProducts = ClsProducts.GetProductInformation(ClsProducts)
+                            If DtProducts.Rows.Count > 0 Then
+                                RbProducts.Checked = True
+                                CmbItemTypeCode.SelectedValue = DtProducts.Rows(0).Item("ItemTypeCode")
+                                TxtItemCode.Text = DtProducts.Rows(0).Item("ItemCode")
+                                TxtItemDescription.Text = DtProducts.Rows(0).Item("ItemDescription")
+                                TxtPrice.Text = DtProducts.Rows(0).Item("Price")
+                                TxtCreatedBy.Text = DtProducts.Rows(0).Item("CreatedBy")
+                                TxtDateCreated.Text = DtProducts.Rows(0).Item("DateCreated")
+                                TxtModifiedBy.Text = DtProducts.Rows(0).Item("ModifiedBy")
+                                TxtDateModified.Text = DtProducts.Rows(0).Item("DateModified")
+                            End If
 
                     End Select
-
-                    'Get customer and pet information from database
-                    ClsCustomer = New ClsCustomer
-                    With ClsCustomer
-                        .CustomerID = CustomerID
-                    End With
-
-                    ClsPet = New ClsPet
-                    With ClsPet
-                        .CustomerID = CustomerID
-                    End With
-
-                    DtCustomer = ClsCustomer.GetCustomerListing(ClsCustomer)
-                    DtPet = ClsPet.GetPetListing(ClsPet)
-
-                    If DtCustomer.Rows.Count > 0 Then
-
-                        'Set fields using Customer information retrieved from database
-                        TxtCustomerID.Text = DtCustomer.Rows(0).Item("CustomerID")
-                        CmbSalutation.Text = DtCustomer.Rows(0).Item("SaluteName")
-                        TxtCustomerName.Text = DtCustomer.Rows(0).Item("CustomerName")
-                        TxtNRICPassportNo.Text = DtCustomer.Rows(0).Item("NRICPassportNo")
-                        TxtAddress1.Text = DtCustomer.Rows(0).Item("AddressLine1")
-                        TxtAddress2.Text = DtCustomer.Rows(0).Item("AddressLine2")
-                        TxtAddress3.Text = DtCustomer.Rows(0).Item("AddressLine3")
-                        TxtAddress4.Text = DtCustomer.Rows(0).Item("AddressLine4")
-                        TxtTelNo.Text = DtCustomer.Rows(0).Item("TelNo")
-                        TxtMobileNo.Text = DtCustomer.Rows(0).Item("MobileNo")
-                        TxtEmail.Text = DtCustomer.Rows(0).Item("Email")
-                        TxtPostcode.Text = DtCustomer.Rows(0).Item("Postcode")
-                        TxtCity.Text = DtCustomer.Rows(0).Item("City")
-                        TxtState.Text = DtCustomer.Rows(0).Item("State")
-                        TxtCountry.Text = DtCustomer.Rows(0).Item("Country")
-                        TxtCreatedBy.Text = DtCustomer.Rows(0).Item("CreatedBy")
-                        TxtDateCreated.Text = DtCustomer.Rows(0).Item("DateCreated")
-                        TxtModifiedBy.Text = DtCustomer.Rows(0).Item("ModifiedBy")
-                        TxtDateModified.Text = DtCustomer.Rows(0).Item("DateModified")
-
-                        If DtPet.Rows.Count > 0 Then
-
-                            TxtCustomerIDPI.Text = DtCustomer.Rows(0).Item("CustomerID")
-                            TxtCustomerNamePI.Text = DtCustomer.Rows(0).Item("CustomerName")
-                            TxtPetID.Text = DtPet.Rows(0).Item("PetID")
-                            TxtPetName.Text = DtPet.Rows(0).Item("PetName")
-                            DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
-                            CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
-
-                            CmbBreed.SelectedValue = CStr(DtPet.Rows(0).Item("BreedCode"))
-                            CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
-                            CmbStatus.SelectedValue = CStr(DtPet.Rows(0).Item("StatusCode"))
-
-                            With BtnEdit
-                                .HeaderText = "Edit"
-                                .Text = "Edit"
-                                .Name = "BtnEdit"
-                                .UseColumnTextForButtonValue = True
-                                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                                .DisplayIndex = 0
-                            End With
-
-                            With BtnDelete
-                                .HeaderText = "Delete"
-                                .Text = "Delete"
-                                .Name = "BtnDelete"
-                                .UseColumnTextForButtonValue = True
-                                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                                .DisplayIndex = 1
-                            End With
-
-                            'Add IsDB indicator here
-                            With DtPet
-                                .Columns.Add("IsDB", GetType(String))
-                                .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
-                            End With
-
-                            For i As Integer = 0 To DtPet.Rows.Count - 1
-                                DtPet.Rows(i).Item("IsDb") = "1"
-                                DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
-                            Next
-
-                            With DgvPetListing
-                                .Columns.Add(BtnEdit)
-                                .Columns.Add(BtnDelete)
-                                .DataSource = DtPet
-                                .Columns("IsDB").Visible = False
-                                .Show()
-                            End With
-
-                        End If
-
-                    End If
 
                     SetFields(UserCommand)
 
@@ -143,6 +91,33 @@
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")
+        End Try
+
+    End Sub
+
+    Private Sub SetFields(UserCommand As String)
+
+        Try
+            Select Case UserCommand
+                Case "SHOW_ITEM_INFO"
+                    RbServices.Enabled = False
+                    RbProducts.Enabled = False
+                    CmbItemTypeCode.Enabled = False
+                    TxtItemDescription.ReadOnly = True
+                    TxtPrice.ReadOnly = True
+
+                Case "EDIT_ITEM"
+                    TxtItemDescription.ReadOnly = False
+                    TxtPrice.ReadOnly = False
+
+                Case "CANCEL_EDIT_ITEM", "ITEM_SAVED"
+                    TxtItemDescription.ReadOnly = True
+                    TxtPrice.ReadOnly = True
+
+            End Select
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SetFields()")
         End Try
 
     End Sub
@@ -182,11 +157,10 @@
 
     Private Function AddNewItem() As Boolean
 
-        Dim ItemCode As String = ""
-        Dim ItemType As String = ""
-        Dim ItemTypeCode As String = ""
+        Dim ItemTypeCode As String
         Dim ClsServices As New ClsServices
         Dim ClsProducts As New ClsProducts
+        Dim GenItemCode As String
 
         Try
             If DbTrans IsNot Nothing Then
@@ -201,10 +175,15 @@
                 ItemType = "PRD"
             End If
 
-            ItemTypeCode = DirectCast(CmbItemType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-            ItemCode = GenerateItemRunningNo(ItemTypeCode, ItemType, DbConn, DbTrans)
+            ItemTypeCode = DirectCast(CmbItemTypeCode.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
 
-            If ItemCode = "" Then
+            If ItemCode <> "" Then
+                GenItemCode = ItemCode
+            Else
+                GenItemCode = GenerateItemRunningNo(ItemTypeCode, ItemType, DbConn, DbTrans)
+            End If
+
+            If GenItemCode = "" Then
                 MsgBox("Failed to generated item code.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewItem()")
                 DbTrans.Rollback()
                 DbTrans.Dispose()
@@ -214,7 +193,7 @@
 
             Select Case ItemType
                 Case "SVC"
-                    If Not AddNewService(ItemType, ItemTypeCode, ItemCode, DbConn, DbTrans) Then
+                    If Not AddNewService(ItemType, ItemTypeCode, GenItemCode, DbConn, DbTrans) Then
                         MsgBox("Failed to add new service.", MsgBoxStyle.Critical, "Add New Service Failed")
                         DbTrans.Rollback()
                         DbTrans.Dispose()
@@ -222,7 +201,18 @@
                         Return False
                     End If
 
+                    MsgBox("New service has been successfully added!", MsgBoxStyle.Information, "New Service Added")
+
                 Case "PRD"
+                    If Not AddNewProduct(ItemType, ItemTypeCode, GenItemCode, DbConn, DbTrans) Then
+                        MsgBox("Failed to add new product.", MsgBoxStyle.Critical, "Add New Product Failed")
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
+                    MsgBox("New product has been successfully added!", MsgBoxStyle.Information, "New Product Added")
 
             End Select
 
@@ -242,17 +232,17 @@
 
     End Function
 
-    Private Function AddNewService(ItemType As String, ItemTypeCode As String, ItemCode As String, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Private Function AddNewService(ItemType As String, ItemTypeCode As String, GenItemCode As String, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim ClsServices As New ClsServices
 
         Try
             ClsServices = New ClsServices
             With ClsServices
+                .ItemCode = GenItemCode
+                .ItemDescription = UCase(Trim(TxtItemDescription.Text))
                 .ItemType = ItemType
                 .ItemTypeCode = ItemTypeCode
-                .ItemCode = ItemCode
-                .ItemDescription = UCase(Trim(TxtItemDescription.Text))
                 .Price = CDec(Trim(TxtPrice.Text))
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
@@ -261,6 +251,27 @@
             End With
 
             If Not ClsServices.AddNewService(ClsServices, DbConn, DbTrans) Then Return False
+
+            With ClsServices
+                CmbItemTypeCode.SelectedValue = .ItemTypeCode
+                TxtItemCode.Text = .ItemCode
+                TxtItemDescription.Text = .ItemDescription
+                TxtPrice.Text = .Price
+
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
+
+            UserCommand = "ITEM_SAVED"
+            SetFields(UserCommand)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewService()")
@@ -271,13 +282,53 @@
 
     End Function
 
-    Private Function AddNewProduct() As Boolean
+    Private Function AddNewProduct(ItemType As String, ItemTypeCode As String, GenItemCode As String, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Dim ClsProducts As New ClsProducts
 
         Try
+            ClsProducts = New ClsProducts
+            With ClsProducts
+                .ItemCode = GenItemCode
+                .ItemDescription = UCase(Trim(TxtItemDescription.Text))
+                .ItemType = ItemType
+                .ItemTypeCode = ItemTypeCode
+                .Price = CDec(Trim(TxtPrice.Text))
+                .Ref.CreatedBy = CURR_USER
+                .Ref.DateCreated = Now
+                .Ref.ModifiedBy = CURR_USER
+                .Ref.DateModified = Now
+            End With
+
+            If Not ClsProducts.AddNewProduct(ClsProducts, DbConn, DbTrans) Then Return False
+
+            With ClsProducts
+                CmbItemTypeCode.SelectedValue = .ItemTypeCode
+                TxtItemCode.Text = .ItemCode
+                TxtItemDescription.Text = .ItemDescription
+                TxtPrice.Text = .Price
+
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
+
+            UserCommand = "ITEM_SAVED"
+            SetFields(UserCommand)
 
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ClsProducts()")
+            Return False
         End Try
+
+        Return True
 
     End Function
 
@@ -303,14 +354,14 @@
                 Next
             End If
 
-            If CmbItemType.Items.Count > 0 Then
-                CmbItemType.DataSource = Nothing
-                CmbItemType.Items.Clear()
+            If CmbItemTypeCode.Items.Count > 0 Then
+                CmbItemTypeCode.DataSource = Nothing
+                CmbItemTypeCode.Items.Clear()
             End If
 
-            CmbItemType.DataSource = New BindingSource(CmbSource, Nothing)
-            CmbItemType.DisplayMember = "Value"
-            CmbItemType.ValueMember = "Key"
+            CmbItemTypeCode.DataSource = New BindingSource(CmbSource, Nothing)
+            CmbItemTypeCode.DisplayMember = "Value"
+            CmbItemTypeCode.ValueMember = "Key"
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateItemType()")
@@ -334,14 +385,14 @@
                     Next
                 End If
 
-                If CmbItemType.Items.Count > 0 Then
-                    CmbItemType.DataSource = Nothing
-                    CmbItemType.Items.Clear()
+                If CmbItemTypeCode.Items.Count > 0 Then
+                    CmbItemTypeCode.DataSource = Nothing
+                    CmbItemTypeCode.Items.Clear()
                 End If
 
-                CmbItemType.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbItemType.DisplayMember = "Value"
-                CmbItemType.ValueMember = "Key"
+                CmbItemTypeCode.DataSource = New BindingSource(CmbSource, Nothing)
+                CmbItemTypeCode.DisplayMember = "Value"
+                CmbItemTypeCode.ValueMember = "Key"
 
             End If
 
@@ -367,14 +418,14 @@
                     Next
                 End If
 
-                If CmbItemType.Items.Count > 0 Then
-                    CmbItemType.DataSource = Nothing
-                    CmbItemType.Items.Clear()
+                If CmbItemTypeCode.Items.Count > 0 Then
+                    CmbItemTypeCode.DataSource = Nothing
+                    CmbItemTypeCode.Items.Clear()
                 End If
 
-                CmbItemType.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbItemType.DisplayMember = "Value"
-                CmbItemType.ValueMember = "Key"
+                CmbItemTypeCode.DataSource = New BindingSource(CmbSource, Nothing)
+                CmbItemTypeCode.DisplayMember = "Value"
+                CmbItemTypeCode.ValueMember = "Key"
 
             End If
 
@@ -382,6 +433,24 @@
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".RbProducts_Click()")
         End Try
 
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        UserCommand = "EDIT_ITEM"
+        SetFields(UserCommand)
+    End Sub
+
+    Private Sub BtnCancelEdit_Click(sender As Object, e As EventArgs) Handles BtnCancelEdit.Click
+        UserCommand = "CANCEL_EDIT_ITEM"
+        SetFields(UserCommand)
+    End Sub
+
+    Private Sub RbProducts_CheckedChanged(sender As Object, e As EventArgs) Handles RbProducts.CheckedChanged
+        PopulateItemType()
+    End Sub
+
+    Private Sub RbServices_CheckedChanged(sender As Object, e As EventArgs) Handles RbServices.CheckedChanged
+        PopulateItemType()
     End Sub
 
 End Class

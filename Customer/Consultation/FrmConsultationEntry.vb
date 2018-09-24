@@ -22,6 +22,16 @@ Public Class FrmConsultationEntry
         End Set
     End Property
 
+    Private _ItemCode As String
+    Public Property ItemCode As String
+        Get
+            Return _ItemCode
+        End Get
+        Set(value As String)
+            _ItemCode = value
+        End Set
+    End Property
+
     Private _ConsultationID As String
     Public Property ConsultationID As String
         Get
@@ -1194,6 +1204,22 @@ Public Class FrmConsultationEntry
 
     End Function
 
+    Private Sub SearchItem()
+
+        Try
+            With FrmSearchItem
+                .ShowDialog()
+                TxtItem.Text = .ItemDescription
+                TxtItem.Tag = .ItemCode
+                TxtPrice.Text = .Price
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".BtnSearchItem_Click")
+        End Try
+
+    End Sub
+
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Dim Frm As New FrmConsultationReport
         With Frm
@@ -1220,6 +1246,10 @@ Public Class FrmConsultationEntry
 
     Private Sub CbIsCompleted_Click(sender As Object, e As EventArgs) Handles CbIsCompleted.Click
         If Not IsConsultationCompleted() Then Exit Sub
+    End Sub
+
+    Private Sub BtnSearchItem_Click(sender As Object, e As EventArgs) Handles BtnSearchItem.Click
+        SearchItem()
     End Sub
 
 End Class

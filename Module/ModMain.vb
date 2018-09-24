@@ -172,48 +172,74 @@ Module ModMain
         Dim DtRunningNo As New DataTable
 
         Try
-            'Get item last number by item type number
-            Sb = New StringBuilder
-            With Sb
-                .Append("SELECT ItemTypeCode, LastNo ")
-                If ItemType = "SVC" Then
-                    .Append("FROM samc_runningno_svc ")
-                ElseIf ItemType = "PRD" Then
-                    .Append("FROM samc_runningno_prd ")
-                End If
-                .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
-            End With
+            Select Case ItemType
+                Case "SVC"
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
-            Da = New OdbcDataAdapter(Cmd)
-            Da.Fill(DtRunningNo)
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT ItemTypeCode, LastNo ")
+                        .Append("FROM samc_runningno_svc ")
+                        .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
+                    End With
 
-            If DtRunningNo.Rows.Count > 0 Then
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
 
-                LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
-                RunningNo = LastNo + 1
+                    If DtRunningNo.Rows.Count > 0 Then
+                        LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
+                        RunningNo = LastNo + 1
 
-                If RunningNo.ToString.Length < 2 Then
-                    NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(2, "0"c)
-                End If
+                        If RunningNo.ToString.Length < 2 Then
+                            NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(2, "0"c)
+                        End If
 
-                'Update LastNo
-                Sb = New StringBuilder
-                With Sb
-                    .Append("UPDATE ")
-                    If ItemType = "SVC" Then
-                        .Append("samc_runningno_svc ")
-                    ElseIf ItemType = "PRD" Then
-                        .Append("samc_runningno_prd ")
+                        'Update LastNo
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno_svc ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
                     End If
-                    .Append("SET LastNo = '" & RunningNo & "' ")
-                    .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
-                End With
 
-                Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
-                Cmd.ExecuteNonQuery()
+                Case "PRD"
 
-            End If
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT ItemTypeCode, LastNo ")
+                        .Append("FROM samc_runningno_prd ")
+                        .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+                        LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
+                        RunningNo = LastNo + 1
+
+                        If RunningNo.ToString.Length < 4 Then
+                            NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(4, "0"c)
+                        End If
+
+                        'Update LastNo
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno_prd ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE ItemTypeCode = '" & ItemTypeCode & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+                    End If
+
+            End Select
 
         Catch ex As Exception
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ModMain.GenerateItemRunningNo()")

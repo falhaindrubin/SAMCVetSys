@@ -24,7 +24,7 @@ Partial Class FrmItemEntry
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmItemEntry))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CmbItemType = New System.Windows.Forms.ComboBox()
+        Me.CmbItemTypeCode = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.RbProducts = New System.Windows.Forms.RadioButton()
@@ -56,7 +56,7 @@ Partial Class FrmItemEntry
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.CmbItemType)
+        Me.GroupBox2.Controls.Add(Me.CmbItemTypeCode)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.CheckBox1)
         Me.GroupBox2.Controls.Add(Me.RbProducts)
@@ -74,15 +74,15 @@ Partial Class FrmItemEntry
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Services/Products Information"
         '
-        'CmbItemType
+        'CmbItemTypeCode
         '
-        Me.CmbItemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CmbItemType.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CmbItemType.FormattingEnabled = True
-        Me.CmbItemType.Location = New System.Drawing.Point(92, 62)
-        Me.CmbItemType.Name = "CmbItemType"
-        Me.CmbItemType.Size = New System.Drawing.Size(277, 22)
-        Me.CmbItemType.TabIndex = 16
+        Me.CmbItemTypeCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbItemTypeCode.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CmbItemTypeCode.FormattingEnabled = True
+        Me.CmbItemTypeCode.Location = New System.Drawing.Point(92, 62)
+        Me.CmbItemTypeCode.Name = "CmbItemTypeCode"
+        Me.CmbItemTypeCode.Size = New System.Drawing.Size(277, 22)
+        Me.CmbItemTypeCode.TabIndex = 16
         '
         'Label4
         '
@@ -161,7 +161,7 @@ Partial Class FrmItemEntry
         'TxtItemDescription
         '
         Me.TxtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtItemDescription.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtItemDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtItemDescription.Location = New System.Drawing.Point(92, 110)
         Me.TxtItemDescription.Multiline = True
         Me.TxtItemDescription.Name = "TxtItemDescription"
@@ -354,7 +354,7 @@ Partial Class FrmItemEntry
     Friend WithEvents BtnSave As Button
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents CmbItemType As ComboBox
+    Friend WithEvents CmbItemTypeCode As ComboBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents TxtCreatedBy As TextBox
     Friend WithEvents TxtDateModified As TextBox

@@ -17,10 +17,10 @@ Public Class ClsDbServices
                 .Append("INSERT INTO samc_services ")
                 .Append("(ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & SVC.ItemCode & "', '" & CSQLQuote(SVC.ItemDescription) & "', '" & SVC.ItemType & "', '" & SVC.ItemCode & "', '" & SVC.Price & "', ")
+                .Append("('" & SVC.ItemCode & "', '" & CSQLQuote(SVC.ItemDescription) & "', '" & SVC.ItemType & "', '" & SVC.ItemTypeCode & "', '" & SVC.Price & "', ")
                 .Append("'" & SVC.Ref.CreatedBy & "', " & CSQLDateTime(SVC.Ref.DateCreated) & ", '" & SVC.Ref.ModifiedBy & "', " & CSQLDateTime(SVC.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemDescription = '" & CSQLQuote(SVC.ItemDescription) & "', Price = '" & SVC.Price & "', ")
+                .Append("ItemCode = '" & SVC.ItemCode & "', ItemDescription = '" & CSQLQuote(SVC.ItemDescription) & "', Price = '" & SVC.Price & "', ")
                 .Append("ModifiedBy = '" & SVC.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SVC.Ref.DateModified) & " ")
             End With
 
@@ -76,6 +76,32 @@ Public Class ClsDbServices
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetServiceTypeList()")
+        End Try
+
+        Return DtServices
+
+    End Function
+
+    Public Function GetServiceInformation(SVC As ClsServices) As DataTable
+
+        Dim DtServices As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_services ")
+                If SVC.ItemCode <> "" Then
+                    .Append("WHERE ItemCode = '" & SVC.ItemCode & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtServices)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetServiceInformation()")
         End Try
 
         Return DtServices

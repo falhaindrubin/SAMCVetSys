@@ -3,13 +3,13 @@ Imports System.Data.Odbc
 Imports System.Text
 Imports SAMCVetSys.ModUtility
 
-Public Class ClsDbConsultation
+Public Class ClsDbVisit
 
     Dim Sb As StringBuilder
     Dim Cmd As OdbcCommand
     Dim Da As OdbcDataAdapter
 
-    Public Function AddNewConsultation(CONS As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewConsultation(CONS As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
@@ -37,7 +37,7 @@ Public Class ClsDbConsultation
 
     End Function
 
-    Public Function AddNewConsultationDetail(CONSD As ClsConsultationDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewConsultationDetail(CONSD As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
@@ -67,7 +67,7 @@ Public Class ClsDbConsultation
 
     End Function
 
-    Public Function GetConsultationListing(CONS As ClsConsultation) As DataTable
+    Public Function GetConsultationListing(CONS As ClsVisit) As DataTable
 
         Dim DtConsultation As New DataTable
 
@@ -94,7 +94,7 @@ Public Class ClsDbConsultation
 
     End Function
 
-    Public Function UpdateIsCompleted(CS As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function UpdateIsCompleted(CS As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
@@ -164,7 +164,7 @@ Public Class ClsDbConsultation
 
     End Function
 
-    Public Function GetConsultationDetail(CONS As ClsConsultation) As DataTable
+    Public Function GetConsultationDetail(CONS As ClsVisit) As DataTable
 
         Dim DtConsultation As New DataTable
 

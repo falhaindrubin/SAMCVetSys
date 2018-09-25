@@ -126,17 +126,17 @@
 
     Private Sub ConsultationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsultationToolStripMenuItem.Click
         Try
-            Dim Frm As New FrmConsultationRecords()
+            Dim Frm As New FrmVisitRecords()
             'Static intCount As Integer
 
             For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmConsultationRecords Then
+                If TypeOf f Is FrmVisitRecords Then
                     f.Activate()
                     Exit Sub
                 End If
             Next
 
-            Frm = New FrmConsultationRecords With {
+            Frm = New FrmVisitRecords With {
                 .MdiParent = Me
             }
             Frm.Show()

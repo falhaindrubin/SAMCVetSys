@@ -1,4 +1,4 @@
-﻿Public Class FrmConsultationReport
+﻿Public Class FrmVisitReport
 
     Private _ConsultationID As String
     Public Property ConsultationID As String

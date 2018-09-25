@@ -1,11 +1,11 @@
-﻿Public Class FrmConsultationRecords
+﻿Public Class FrmVisitRecords
 
     Private Sub BtnAddNewConsultation_Click(sender As Object, e As EventArgs) Handles BtnAddNewConsultation.Click
-        With FrmConsultationEntry
+        With FrmVisitEntry
             .UserCommand = "ADD_NEW_CONSULTATION"
         End With
 
-        FrmConsultationEntry.ShowDialog()
+        FrmVisitEntry.ShowDialog()
     End Sub
 
     Private Sub FrmConsultationList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -18,7 +18,7 @@
     Protected Sub PopulateConsultationListing()
 
         Dim DtConsultation As New DataTable
-        Dim ClsConsultation As New ClsConsultation
+        Dim ClsConsultation As New ClsVisit
 
         Try
             DtConsultation = ClsConsultation.GetConsultationListing(ClsConsultation)
@@ -49,7 +49,7 @@
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     CustomerID = DgvConsultationListing.Rows(e.RowIndex).Cells("CustomerID").Value
                     ConsultationID = DgvConsultationListing.Rows(e.RowIndex).Cells("ConsultationID").Value
-                    Dim Frm As New FrmConsultationEntry With {
+                    Dim Frm As New FrmVisitEntry With {
                         .UserCommand = "SHOW_CUSTOMER_CONSULTATION",
                         .ConsultationID = ConsultationID,
                         .CustomerID = CustomerID

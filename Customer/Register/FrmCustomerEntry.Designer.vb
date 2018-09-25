@@ -683,7 +683,7 @@ Partial Class FrmCustomerEntry
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage3.Size = New System.Drawing.Size(604, 484)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Consultation History"
+        Me.TabPage3.Text = "Visit History"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
         'DgvConsultationHistory
@@ -693,7 +693,6 @@ Partial Class FrmCustomerEntry
         Me.DgvConsultationHistory.AllowUserToOrderColumns = True
         Me.DgvConsultationHistory.BackgroundColor = System.Drawing.Color.White
         Me.DgvConsultationHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvConsultationHistory.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvConsultationHistory.GridColor = System.Drawing.SystemColors.Control
         Me.DgvConsultationHistory.Location = New System.Drawing.Point(3, 3)
         Me.DgvConsultationHistory.Name = "DgvConsultationHistory"

@@ -27,10 +27,10 @@ Partial Class FrmSearchItem
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.RbProducts = New System.Windows.Forms.RadioButton()
+        Me.RbServices = New System.Windows.Forms.RadioButton()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.DgvSearchResult = New System.Windows.Forms.DataGridView()
-        Me.RbServices = New System.Windows.Forms.RadioButton()
-        Me.RbProducts = New System.Windows.Forms.RadioButton()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +80,28 @@ Partial Class FrmSearchItem
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Search"
         '
+        'RbProducts
+        '
+        Me.RbProducts.AutoSize = True
+        Me.RbProducts.Location = New System.Drawing.Point(95, 31)
+        Me.RbProducts.Name = "RbProducts"
+        Me.RbProducts.Size = New System.Drawing.Size(68, 18)
+        Me.RbProducts.TabIndex = 4
+        Me.RbProducts.Text = "Products"
+        Me.RbProducts.UseVisualStyleBackColor = True
+        '
+        'RbServices
+        '
+        Me.RbServices.AutoSize = True
+        Me.RbServices.Checked = True
+        Me.RbServices.Location = New System.Drawing.Point(15, 31)
+        Me.RbServices.Name = "RbServices"
+        Me.RbServices.Size = New System.Drawing.Size(68, 18)
+        Me.RbServices.TabIndex = 3
+        Me.RbServices.TabStop = True
+        Me.RbServices.Text = "Services"
+        Me.RbServices.UseVisualStyleBackColor = True
+        '
         'TxtSearchText
         '
         Me.TxtSearchText.BackColor = System.Drawing.Color.White
@@ -106,28 +128,6 @@ Partial Class FrmSearchItem
         Me.DgvSearchResult.Size = New System.Drawing.Size(638, 353)
         Me.DgvSearchResult.TabIndex = 74
         '
-        'RbServices
-        '
-        Me.RbServices.AutoSize = True
-        Me.RbServices.Checked = True
-        Me.RbServices.Location = New System.Drawing.Point(15, 31)
-        Me.RbServices.Name = "RbServices"
-        Me.RbServices.Size = New System.Drawing.Size(68, 18)
-        Me.RbServices.TabIndex = 3
-        Me.RbServices.TabStop = True
-        Me.RbServices.Text = "Services"
-        Me.RbServices.UseVisualStyleBackColor = True
-        '
-        'RbProducts
-        '
-        Me.RbProducts.AutoSize = True
-        Me.RbProducts.Location = New System.Drawing.Point(95, 31)
-        Me.RbProducts.Name = "RbProducts"
-        Me.RbProducts.Size = New System.Drawing.Size(68, 18)
-        Me.RbProducts.TabIndex = 4
-        Me.RbProducts.Text = "Products"
-        Me.RbProducts.UseVisualStyleBackColor = True
-        '
         'FrmSearchItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -138,6 +138,7 @@ Partial Class FrmSearchItem
         Me.Controls.Add(Me.DgvSearchResult)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "FrmSearchItem"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Search Item"
         Me.PnlActionBar.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)

@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 
-Public Class FrmConsultationEntry
+Public Class FrmVisitEntry
 
     Private _UserCommand As String
     Public Property UserCommand As String
@@ -268,7 +268,7 @@ Public Class FrmConsultationEntry
         Dim DtConsultation As New DataTable
         Dim ClsCustomer As New ClsCustomer
         Dim ClsPet As New ClsPet
-        Dim ClsConsultation As New ClsConsultation
+        Dim ClsConsultation As New ClsVisit
         Dim StrOp As String = "WHERE"
 
         Try
@@ -978,7 +978,7 @@ Public Class FrmConsultationEntry
 
         'Dim AppointmentTime As DateTime
         Dim DtConsultation As New DataTable
-        Dim ClsConsultation As New ClsConsultation
+        Dim ClsConsultation As New ClsVisit
 
         Try
             If DgvSelectedPet.Rows.Count = 0 Then
@@ -1031,8 +1031,8 @@ Public Class FrmConsultationEntry
 
     Protected Function AddNewConsultation() As Boolean
 
-        Dim ClsConsultation As New ClsConsultation
-        Dim ClsConsultationDetail As New ClsConsultationDetail
+        Dim ClsConsultation As New ClsVisit
+        Dim ClsConsultationDetail As New ClsVisitDetail
         Dim DtConsultation As New DataTable
         Dim ConsultationTime As Date
         Dim GenConsultationID As String
@@ -1064,7 +1064,7 @@ Public Class FrmConsultationEntry
 
             If DgvSelectedPet.Rows.Count > 0 Then
 
-                ClsConsultation = New ClsConsultation
+                ClsConsultation = New ClsVisit
                 With ClsConsultation
                     .ConsultationID = GenConsultationID
                     .EmployeeID = DirectCast(CmbVet.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
@@ -1090,7 +1090,7 @@ Public Class FrmConsultationEntry
                 'Consultation detail
                 For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
 
-                    ClsConsultationDetail = New ClsConsultationDetail
+                    ClsConsultationDetail = New ClsVisitDetail
                     With ClsConsultationDetail
                         .ConsultationID = GenConsultationID
                         .PetID = DgvSelectedPet.Rows(i).Cells("PetID").Value
@@ -1155,9 +1155,13 @@ Public Class FrmConsultationEntry
     Private Function IsConsultationCompleted() As Boolean
 
         Dim UserResponse As MsgBoxResult
-        Dim ClsConsultation As New ClsConsultation
+        Dim ClsConsultation As New ClsVisit
 
         Try
+            If TxtConsultationID.Text = "" Then
+                Return False
+            End If
+
             UserResponse = MsgBox("Are sure you want to complete this consultation?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Complete Consultation?")
             If UserResponse = MsgBoxResult.Yes Then
 
@@ -1181,6 +1185,15 @@ Public Class FrmConsultationEntry
                     Return False
                 End If
 
+                DbTrans.Commit()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+
+                MsgBox("Your consultation has been successfully completed.", MsgBoxStyle.Information, "Consultation Completed")
+
+                CbIsCompleted.Checked = True
+                CbIsCompleted.Enabled = False
+
             End If
 
         Catch ex As Exception
@@ -1190,15 +1203,6 @@ Public Class FrmConsultationEntry
             DbTrans = Nothing
             Return False
         End Try
-
-        DbTrans.Commit()
-        DbTrans.Dispose()
-        DbTrans = Nothing
-
-        MsgBox("Your consultation has been successfully completed.", MsgBoxStyle.Information, "Consultation Completed")
-
-        CbIsCompleted.Checked = True
-        CbIsCompleted.Enabled = False
 
         Return True
 
@@ -1220,8 +1224,100 @@ Public Class FrmConsultationEntry
 
     End Sub
 
+    Private Sub AddBillItem()
+
+        Dim DtBill As New DataTable
+        Dim BtnDeleteItem As New DataGridViewButtonColumn
+
+        Try
+            DtBill = InitBillItemDt()
+            If DgvBillListing.Rows.Count > 0 Then
+
+                'Loop data grid view
+                For i As Integer = 0 To DgvBillListing.Rows.Count - 1
+
+                    Dim DgvRow As DataRow = DtBill.NewRow
+
+                    DgvRow("ItemCode") = DgvBillListing.Rows(i).Cells("ItemCode").Value
+                    DgvRow("ItemDescription") = DgvBillListing.Rows(i).Cells("ItemDescription").Value
+                    DgvRow("Prescription") = DgvBillListing.Rows(i).Cells("Prescription").Value
+                    DgvRow("Notes") = DgvBillListing.Rows(i).Cells("Notes").Value
+                    DgvRow("Remark") = DgvBillListing.Rows(i).Cells("Remark").Value
+                    DgvRow("Quantity") = DgvBillListing.Rows(i).Cells("Quantity").Value
+                    DgvRow("Price") = DgvBillListing.Rows(i).Cells("Price").Value
+                    DgvRow("Discount") = DgvBillListing.Rows(i).Cells("Discount").Value
+
+                    DtBill.Rows.Add(DgvRow)
+
+                Next
+
+            End If
+
+            'Take pet information from fields, e.g. textboxes
+            Dim Row As DataRow = DtBill.NewRow
+
+            Row("ItemCode") = UCase(Trim(TxtItem.Tag))
+            Row("ItemDescription") = UCase(Trim(TxtItem.Text))
+            Row("Prescription") = UCase(Trim(TxtPrescription.Text))
+            Row("Notes") = UCase(Trim(TxtNotes.Text))
+            Row("Remark") = UCase(Trim(TxtRemark.Text))
+            Row("Quantity") = UCase(Trim(TxtQuantity.Text))
+            Row("Price") = UCase(Trim(TxtPrice.Text))
+            Row("Discount") = UCase(Trim(TxtDiscount.Text))
+
+            DtBill.Rows.Add(Row)
+
+            If DtBill.Rows.Count > 0 Then
+                For i As Integer = 0 To DtBill.Rows.Count - 1
+                    With DgvBillListing
+                        .Rows.Add()
+                        .Rows(i).Cells("VisitID").Value = DtBill.Rows(i).Item("VisitID")
+                        .Rows(i).Cells("ItemCodeDgv").Value = DtBill.Rows(i).Item("ItemCode")
+                        .Rows(i).Cells("ItemDescription").Value = DtBill.Rows(i).Item("ItemDescription")
+                        .Rows(i).Cells("Prescription").Value = DtBill.Rows(i).Item("Prescription")
+                        .Rows(i).Cells("Notes").Value = DtBill.Rows(i).Item("Notes")
+                        .Rows(i).Cells("Remark").Value = DtBill.Rows(i).Item("Remark")
+                        .Rows(i).Cells("Quantity").Value = DtBill.Rows(i).Item("Quantity")
+                        .Rows(i).Cells("Price").Value = DtBill.Rows(i).Item("Price")
+                        .Rows(i).Cells("Discount").Value = DtBill.Rows(i).Item("Discount")
+                    End With
+                Next
+            End If
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddBillItem()")
+        End Try
+
+    End Sub
+
+    Private Function InitBillItemDt() As DataTable
+
+        Dim DtBill As New DataTable
+
+        Try
+            'Initialize datatable
+            With DtBill
+                .Columns.Add("ItemCode", GetType(String))
+                .Columns.Add("ItemDescription", GetType(String))
+                .Columns.Add("Prescription", GetType(String))
+                .Columns.Add("Notes", GetType(String))
+                .Columns.Add("Remark", GetType(String))
+                .Columns.Add("Quantity", GetType(Decimal))
+                .Columns.Add("Price", GetType(Decimal))
+                .Columns.Add("Discount", GetType(Decimal))
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".InitBillItemDt()")
+        End Try
+
+        Return DtBill
+
+    End Function
+
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Dim Frm As New FrmConsultationReport
+        Dim Frm As New FrmVisitReport
         With Frm
             .ConsultationID = TxtConsultationID.Text
             .ShowDialog()
@@ -1250,6 +1346,36 @@ Public Class FrmConsultationEntry
 
     Private Sub BtnSearchItem_Click(sender As Object, e As EventArgs) Handles BtnSearchItem.Click
         SearchItem()
+    End Sub
+
+    Private Sub BtnAddBillItem_Click(sender As Object, e As EventArgs) Handles BtnAddBillItem.Click
+        AddBillItem()
+    End Sub
+
+    Private Sub TxtQuantity_TextChanged(sender As Object, e As EventArgs) Handles TxtQuantity.TextChanged
+
+        Try
+            If Trim(TxtQuantity.Text) <> "" Then
+                If Not IsNumeric(Trim(TxtQuantity.Text)) Then
+                    MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
+
+                    Dim LastIndex As Integer
+                    For i As Integer = 0 To TxtQuantity.Text.Length - 1
+                        LastIndex += 1
+                    Next
+
+                    Dim StrQuantity As String = ""
+
+                    'TxtQuantity.Text = StrQuantity.Chars(LastIndex).
+                    'TxtQuantity.Text = TxtQuantity.Text.Replace(StrQuantity.Chars(LastIndex), "")
+
+                End If
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtQuantity_TextChanged()")
+        End Try
+
     End Sub
 
 End Class

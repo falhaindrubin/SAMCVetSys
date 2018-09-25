@@ -2,9 +2,9 @@
 Imports System.Data.Odbc
 Imports System
 
-Public Class ClsConsultation
+Public Class ClsVisit
 
-    Dim DbConsultation As New ClsDbConsultation
+    Dim DbConsultation As New ClsDbVisit
 
     Private _ConsultationID As String
     Public Property ConsultationID As String
@@ -128,19 +128,19 @@ Public Class ClsConsultation
     '    Return DBAppointment.GetAppointmentHistory(ClsAppointment, DBConn)
     'End Function
 
-    Public Function GetConsultationListing(ClsConsultation As ClsConsultation) As DataTable
+    Public Function GetConsultationListing(ClsConsultation As ClsVisit) As DataTable
         Return DbConsultation.GetConsultationListing(ClsConsultation)
     End Function
 
-    Public Function AddNewConsultation(ClsConsultation As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewConsultation(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbConsultation.AddNewConsultation(ClsConsultation, DbConn, DbTrans)
     End Function
 
-    Public Function GetConsultationDetail(ClsConsultation As ClsConsultation) As DataTable
+    Public Function GetConsultationDetail(ClsConsultation As ClsVisit) As DataTable
         Return DbConsultation.GetConsultationDetail(ClsConsultation)
     End Function
 
-    Public Function UpdateIsCompleted(ClsConsultation As ClsConsultation, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function UpdateIsCompleted(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbConsultation.UpdateIsCompleted(ClsConsultation, DbConn, DbTrans)
     End Function
 

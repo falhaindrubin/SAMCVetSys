@@ -2,8 +2,8 @@
 Imports System.Data.Odbc
 Imports System
 
-Public Class ClsConsultationDetail
-    ReadOnly DbConsultation As New ClsDbConsultation
+Public Class ClsVisitDetail
+    ReadOnly DbConsultation As New ClsDbVisit
 
     Private _ConsultationID As String
     Public Property ConsultationID As String
@@ -145,7 +145,7 @@ Public Class ClsConsultationDetail
         End Set
     End Property
 
-    Public Function AddNewConsultationDetail(ClsConsultationDetail As ClsConsultationDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewConsultationDetail(ClsConsultationDetail As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbConsultation.AddNewConsultationDetail(ClsConsultationDetail, DbConn, DbTrans)
     End Function
 

@@ -158,7 +158,7 @@ Partial Class FrmVisitRecords
         Me.GroupBox2.TabIndex = 74
         Me.GroupBox2.TabStop = False
         '
-        'FrmConsultationRecords
+        'FrmVisitRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -167,8 +167,8 @@ Partial Class FrmVisitRecords
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "FrmConsultationRecords"
-        Me.Text = "Consultation Records"
+        Me.Name = "FrmVisitRecords"
+        Me.Text = "Visit Records"
         CType(Me.DgvConsultationListing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)

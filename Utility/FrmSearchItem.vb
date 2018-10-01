@@ -110,4 +110,12 @@
         Me.Close()
     End Sub
 
+    Private Sub RbProducts_Click(sender As Object, e As EventArgs) Handles RbProducts.Click
+        PopulateItemListing()
+    End Sub
+
+    Private Sub RbServices_Click(sender As Object, e As EventArgs) Handles RbServices.Click
+        PopulateItemListing()
+    End Sub
+
 End Class

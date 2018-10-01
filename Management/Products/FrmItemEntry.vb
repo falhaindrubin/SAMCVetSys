@@ -53,6 +53,7 @@
                     Select Case ItemType
                         Case "SVC"
 
+                            ClsServices.ItemCode = ItemCode
                             DtServices = ClsServices.GetServiceInformation(ClsServices)
                             If DtServices.Rows.Count > 0 Then
                                 RbServices.Checked = True
@@ -68,6 +69,7 @@
 
                         Case "PRD"
 
+                            ClsProducts.ItemCode = ItemCode
                             DtProducts = ClsProducts.GetProductInformation(ClsProducts)
                             If DtProducts.Rows.Count > 0 Then
                                 RbProducts.Checked = True

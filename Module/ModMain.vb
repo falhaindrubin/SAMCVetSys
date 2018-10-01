@@ -61,72 +61,112 @@ Module ModMain
             'Check prefix = 'CT'
             'If CT, select alphabet prefix in database {A-Z}
 
-            'Get last customer number
-            sb = New StringBuilder
-            With sb
-                .Append("SELECT LastNo, Prefix2 ")
-                .Append("FROM samc_runningno ")
-                .Append("WHERE Prefix = '" & Prefix & "' ")
+            Select Case Prefix
+                'Generate invoice
+                Case "INV" '--INVOICE
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
+                    End With
 
-                If Prefix = "CT" Then
-                    .Append("AND Prefix2 = '" & Prefix2 & "' ")
-                End If
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
 
-            End With
+                    If DtRunningNo.Rows.Count > 0 Then
+                        Dim LastNo As Integer
+                        RunningNo = LastNo + 1
+                        If RunningNo.ToString.Length < 8 Then
+                            NewRunningNo = DtRunningNo.Rows(0).Item("Prefix2") & "-" & RunningNo.ToString.PadLeft(8, "0"c)
+                        Else
+                            NewRunningNo = DtRunningNo.Rows(0).Item("Prefix2") & "-" & RunningNo.ToString
+                        End If
 
-            cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)
-            da = New OdbcDataAdapter(cmd)
-            da.Fill(DtRunningNo)
+                        'Update CustomerNo
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+                        End With
 
-            If DtRunningNo.Rows.Count > 0 Then
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
 
-                Dim LastNo As Integer
-                'Dim ZeroPadLength As Integer
+                    End If
 
-                If Prefix = "PT" And Prefix2 <> "" Then 'Check if running number is to be generated is PetID, use Prefix2 (PetCount) to give PetID running no
-                    LastNo = CInt(Prefix2)
-                Else
-                    LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
-                End If
+                Case "CT" '--CUSTOMER
+                    'Generate CustomerID
 
-                RunningNo = LastNo + 1
-                'ZeroPadLength = 6 - RunningNo.ToString.Length
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
 
-                If RunningNo.ToString.Length < 8 Then
-                    If Prefix = "CT" Then
-                        NewRunningNo = Prefix2 & RunningNo.ToString.PadLeft(8, "0"c)
+                        If Prefix = "CT" Then
+                            .Append("AND Prefix2 = '" & Prefix2 & "' ")
+                        End If
+
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+
+                        Dim LastNo As Integer
+                        'Dim ZeroPadLength As Integer
+
+                        If Prefix = "PT" And Prefix2 <> "" Then 'Check if running number is to be generated is PetID, use Prefix2 (PetCount) to give PetID running no
+                            LastNo = CInt(Prefix2)
+                        Else
+                            LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
+                        End If
+
+                        RunningNo = LastNo + 1
+                        'ZeroPadLength = 6 - RunningNo.ToString.Length
+
+                        If RunningNo.ToString.Length < 8 Then
+                            If Prefix = "CT" Then
+                                NewRunningNo = Prefix2 & RunningNo.ToString.PadLeft(8, "0"c)
+                            Else
+                                NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                            End If
+                        Else
+                            If Prefix = "CT" Then
+                                NewRunningNo = Prefix2 & RunningNo.ToString
+                            Else
+                                NewRunningNo = Prefix & RunningNo.ToString
+                            End If
+                            NewRunningNo = Prefix & RunningNo.ToString
+                        End If
+
+                        'Update CustomerNo
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+
+                            If Prefix = "CT" Then
+                                .Append("AND Prefix2 = '" & Prefix2 & "' ")
+                            End If
+
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+
                     Else
-                        NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
-                    End If
-                Else
-                    If Prefix = "CT" Then
-                        NewRunningNo = Prefix2 & RunningNo.ToString
-                    Else
-                        NewRunningNo = Prefix & RunningNo.ToString
-                    End If
-                    NewRunningNo = Prefix & RunningNo.ToString
-                End If
+                        MsgBox("Failed to generate running number [" & Prefix & "].", MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")
 
-                'Update CustomerNo
-                sb = New StringBuilder
-                With sb
-                    .Append("UPDATE samc_runningno ")
-                    .Append("SET LastNo = '" & RunningNo & "' ")
-                    .Append("WHERE Prefix = '" & Prefix & "' ")
-
-                    If Prefix = "CT" Then
-                        .Append("AND Prefix2 = '" & Prefix2 & "' ")
                     End If
 
-                End With
-
-                cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)
-                cmd.ExecuteNonQuery()
-
-            Else
-                MsgBox("Failed to generate running number [" & Prefix & "].", MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")
-
-            End If
+            End Select
 
         Catch ex As Exception
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")

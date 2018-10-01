@@ -96,6 +96,7 @@ Partial Class FrmVisitEntry
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.BtnGenerateBill = New System.Windows.Forms.Button()
         Me.CbIsCompleted = New System.Windows.Forms.CheckBox()
         Me.LblPetName = New System.Windows.Forms.Label()
         Me.BtnAddPetIssues = New System.Windows.Forms.Button()
@@ -107,14 +108,26 @@ Partial Class FrmVisitEntry
         Me.DtpConsultationTime = New System.Windows.Forms.DateTimePicker()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.DgvSelectedPet = New System.Windows.Forms.DataGridView()
-        Me.TxtConsultationID = New System.Windows.Forms.TextBox()
+        Me.TxtVisitID = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.DtpConsultationDate = New System.Windows.Forms.DateTimePicker()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.TxtTotalPrice = New System.Windows.Forms.TextBox()
+        Me.TxtTotalDue = New System.Windows.Forms.TextBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.TxtLumpSumDiscount = New System.Windows.Forms.TextBox()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.TxtGrandTotal = New System.Windows.Forms.TextBox()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.TxtDeposit = New System.Windows.Forms.TextBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.TxtGrossTotal = New System.Windows.Forms.TextBox()
+        Me.Label39 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
-        Me.TxtVisitID = New System.Windows.Forms.TextBox()
+        Me.TxtInvoiceNo = New System.Windows.Forms.TextBox()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.TxtDiscount = New System.Windows.Forms.TextBox()
         Me.TxtItem = New System.Windows.Forms.TextBox()
@@ -125,34 +138,25 @@ Partial Class FrmVisitEntry
         Me.Label35 = New System.Windows.Forms.Label()
         Me.BtnClearItem = New System.Windows.Forms.Button()
         Me.TxtNotes = New System.Windows.Forms.TextBox()
-        Me.TxtRemark = New System.Windows.Forms.TextBox()
         Me.Label36 = New System.Windows.Forms.Label()
-        Me.Label41 = New System.Windows.Forms.Label()
         Me.TxtQuantity = New System.Windows.Forms.TextBox()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.TxtPrice = New System.Windows.Forms.TextBox()
+        Me.TxtUnitPrice = New System.Windows.Forms.TextBox()
         Me.BtnSearchItem = New System.Windows.Forms.Button()
         Me.DgvBillListing = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.BtnAddBillItem = New System.Windows.Forms.Button()
-        Me.TxtLumpSumDiscount = New System.Windows.Forms.TextBox()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.TxtGrandTotal = New System.Windows.Forms.TextBox()
-        Me.Label45 = New System.Windows.Forms.Label()
-        Me.TxtDeposit = New System.Windows.Forms.TextBox()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.TxtGrossTotal = New System.Windows.Forms.TextBox()
-        Me.Label39 = New System.Windows.Forms.Label()
         Me.BtnDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.VisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Prescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Remark = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Discount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnClearBill = New System.Windows.Forms.Button()
+        Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.TabPage2.SuspendLayout()
         CType(Me.DgvPetListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -324,7 +328,7 @@ Partial Class FrmVisitEntry
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(949, 618)
+        Me.TabPage2.Size = New System.Drawing.Size(949, 603)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Pet Information"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -481,7 +485,7 @@ Partial Class FrmVisitEntry
         Me.DgvPetListing.Name = "DgvPetListing"
         Me.DgvPetListing.ReadOnly = True
         Me.DgvPetListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvPetListing.Size = New System.Drawing.Size(933, 295)
+        Me.DgvPetListing.Size = New System.Drawing.Size(933, 315)
         Me.DgvPetListing.TabIndex = 67
         '
         'TxtPetName
@@ -543,6 +547,7 @@ Partial Class FrmVisitEntry
         '
         Me.TxtDateModified.BackColor = System.Drawing.Color.Beige
         Me.TxtDateModified.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDateModified.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDateModified.Location = New System.Drawing.Point(145, 30)
         Me.TxtDateModified.Name = "TxtDateModified"
         Me.TxtDateModified.ReadOnly = True
@@ -558,7 +563,7 @@ Partial Class FrmVisitEntry
         Me.Panel3.Controls.Add(Me.TxtDateCreated)
         Me.Panel3.Controls.Add(Me.Label18)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
-        Me.Panel3.Location = New System.Drawing.Point(12, 691)
+        Me.Panel3.Location = New System.Drawing.Point(12, 708)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(957, 57)
         Me.Panel3.TabIndex = 82
@@ -567,6 +572,7 @@ Partial Class FrmVisitEntry
         '
         Me.TxtCreatedBy.BackColor = System.Drawing.Color.Beige
         Me.TxtCreatedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtCreatedBy.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCreatedBy.Location = New System.Drawing.Point(76, 8)
         Me.TxtCreatedBy.Name = "TxtCreatedBy"
         Me.TxtCreatedBy.ReadOnly = True
@@ -576,9 +582,10 @@ Partial Class FrmVisitEntry
         'Label17
         '
         Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.Location = New System.Drawing.Point(13, 11)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(59, 13)
+        Me.Label17.Size = New System.Drawing.Size(61, 14)
         Me.Label17.TabIndex = 73
         Me.Label17.Text = "Created By"
         '
@@ -586,6 +593,7 @@ Partial Class FrmVisitEntry
         '
         Me.TxtDateCreated.BackColor = System.Drawing.Color.Beige
         Me.TxtDateCreated.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDateCreated.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDateCreated.Location = New System.Drawing.Point(145, 8)
         Me.TxtDateCreated.Name = "TxtDateCreated"
         Me.TxtDateCreated.ReadOnly = True
@@ -595,9 +603,10 @@ Partial Class FrmVisitEntry
         'Label18
         '
         Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.Location = New System.Drawing.Point(13, 33)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(62, 13)
+        Me.Label18.Size = New System.Drawing.Size(63, 14)
         Me.Label18.TabIndex = 75
         Me.Label18.Text = "Modified By"
         '
@@ -605,6 +614,7 @@ Partial Class FrmVisitEntry
         '
         Me.TxtModifiedBy.BackColor = System.Drawing.Color.Beige
         Me.TxtModifiedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtModifiedBy.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtModifiedBy.Location = New System.Drawing.Point(76, 30)
         Me.TxtModifiedBy.Name = "TxtModifiedBy"
         Me.TxtModifiedBy.ReadOnly = True
@@ -701,7 +711,7 @@ Partial Class FrmVisitEntry
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(949, 618)
+        Me.TabPage1.Size = New System.Drawing.Size(949, 603)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Customer Information"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -879,6 +889,7 @@ Partial Class FrmVisitEntry
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.BtnGenerateBill)
         Me.TabPage3.Controls.Add(Me.CbIsCompleted)
         Me.TabPage3.Controls.Add(Me.LblPetName)
         Me.TabPage3.Controls.Add(Me.BtnAddPetIssues)
@@ -890,17 +901,26 @@ Partial Class FrmVisitEntry
         Me.TabPage3.Controls.Add(Me.DtpConsultationTime)
         Me.TabPage3.Controls.Add(Me.Label29)
         Me.TabPage3.Controls.Add(Me.DgvSelectedPet)
-        Me.TabPage3.Controls.Add(Me.TxtConsultationID)
+        Me.TabPage3.Controls.Add(Me.TxtVisitID)
         Me.TabPage3.Controls.Add(Me.Label30)
         Me.TabPage3.Controls.Add(Me.Label31)
         Me.TabPage3.Controls.Add(Me.DtpConsultationDate)
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(949, 583)
+        Me.TabPage3.Size = New System.Drawing.Size(949, 603)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Visit Information"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'BtnGenerateBill
+        '
+        Me.BtnGenerateBill.Location = New System.Drawing.Point(297, 10)
+        Me.BtnGenerateBill.Name = "BtnGenerateBill"
+        Me.BtnGenerateBill.Size = New System.Drawing.Size(187, 23)
+        Me.BtnGenerateBill.TabIndex = 98
+        Me.BtnGenerateBill.Text = "Bill && Payment..."
+        Me.BtnGenerateBill.UseVisualStyleBackColor = True
         '
         'CbIsCompleted
         '
@@ -1017,15 +1037,15 @@ Partial Class FrmVisitEntry
         Me.DgvSelectedPet.Size = New System.Drawing.Size(824, 119)
         Me.DgvSelectedPet.TabIndex = 84
         '
-        'TxtConsultationID
+        'TxtVisitID
         '
-        Me.TxtConsultationID.BackColor = System.Drawing.Color.Beige
-        Me.TxtConsultationID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtConsultationID.Location = New System.Drawing.Point(102, 12)
-        Me.TxtConsultationID.Name = "TxtConsultationID"
-        Me.TxtConsultationID.ReadOnly = True
-        Me.TxtConsultationID.Size = New System.Drawing.Size(100, 20)
-        Me.TxtConsultationID.TabIndex = 86
+        Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
+        Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtVisitID.Location = New System.Drawing.Point(102, 12)
+        Me.TxtVisitID.Name = "TxtVisitID"
+        Me.TxtVisitID.ReadOnly = True
+        Me.TxtVisitID.Size = New System.Drawing.Size(100, 20)
+        Me.TxtVisitID.TabIndex = 86
         '
         'Label30
         '
@@ -1064,11 +1084,15 @@ Partial Class FrmVisitEntry
         Me.TabControl1.Location = New System.Drawing.Point(12, 75)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(957, 610)
+        Me.TabControl1.Size = New System.Drawing.Size(957, 630)
         Me.TabControl1.TabIndex = 80
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Label44)
+        Me.TabPage4.Controls.Add(Me.TxtTotalPrice)
+        Me.TabPage4.Controls.Add(Me.TxtTotalDue)
+        Me.TabPage4.Controls.Add(Me.Label32)
         Me.TabPage4.Controls.Add(Me.TxtLumpSumDiscount)
         Me.TabPage4.Controls.Add(Me.Label40)
         Me.TabPage4.Controls.Add(Me.TxtGrandTotal)
@@ -1078,7 +1102,7 @@ Partial Class FrmVisitEntry
         Me.TabPage4.Controls.Add(Me.TxtGrossTotal)
         Me.TabPage4.Controls.Add(Me.Label39)
         Me.TabPage4.Controls.Add(Me.Label38)
-        Me.TabPage4.Controls.Add(Me.TxtVisitID)
+        Me.TabPage4.Controls.Add(Me.TxtInvoiceNo)
         Me.TabPage4.Controls.Add(Me.Label33)
         Me.TabPage4.Controls.Add(Me.TxtDiscount)
         Me.TabPage4.Controls.Add(Me.TxtItem)
@@ -1089,230 +1113,65 @@ Partial Class FrmVisitEntry
         Me.TabPage4.Controls.Add(Me.Label35)
         Me.TabPage4.Controls.Add(Me.BtnClearItem)
         Me.TabPage4.Controls.Add(Me.TxtNotes)
-        Me.TabPage4.Controls.Add(Me.TxtRemark)
         Me.TabPage4.Controls.Add(Me.Label36)
-        Me.TabPage4.Controls.Add(Me.Label41)
         Me.TabPage4.Controls.Add(Me.TxtQuantity)
         Me.TabPage4.Controls.Add(Me.Label37)
-        Me.TabPage4.Controls.Add(Me.TxtPrice)
+        Me.TabPage4.Controls.Add(Me.TxtUnitPrice)
         Me.TabPage4.Controls.Add(Me.BtnSearchItem)
         Me.TabPage4.Controls.Add(Me.DgvBillListing)
-        Me.TabPage4.Controls.Add(Me.Button1)
+        Me.TabPage4.Controls.Add(Me.BtnClearBill)
         Me.TabPage4.Controls.Add(Me.BtnAddBillItem)
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(949, 583)
+        Me.TabPage4.Size = New System.Drawing.Size(949, 603)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Billing & Payment"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
-        'Label38
+        'Label44
         '
-        Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(6, 21)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(40, 14)
-        Me.Label38.TabIndex = 154
-        Me.Label38.Text = "Visit ID"
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(6, 288)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(56, 14)
+        Me.Label44.TabIndex = 166
+        Me.Label44.Text = "Total Price"
         '
-        'TxtVisitID
+        'TxtTotalPrice
         '
-        Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
-        Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtVisitID.Location = New System.Drawing.Point(84, 18)
-        Me.TxtVisitID.Name = "TxtVisitID"
-        Me.TxtVisitID.ReadOnly = True
-        Me.TxtVisitID.Size = New System.Drawing.Size(100, 20)
-        Me.TxtVisitID.TabIndex = 155
+        Me.TxtTotalPrice.BackColor = System.Drawing.Color.Beige
+        Me.TxtTotalPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTotalPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotalPrice.Location = New System.Drawing.Point(84, 285)
+        Me.TxtTotalPrice.Name = "TxtTotalPrice"
+        Me.TxtTotalPrice.ReadOnly = True
+        Me.TxtTotalPrice.Size = New System.Drawing.Size(52, 21)
+        Me.TxtTotalPrice.TabIndex = 167
+        Me.TxtTotalPrice.Text = "0.00"
+        Me.TxtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Label33
+        'TxtTotalDue
         '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(6, 45)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(26, 14)
-        Me.Label33.TabIndex = 130
-        Me.Label33.Text = "Item"
+        Me.TxtTotalDue.BackColor = System.Drawing.Color.Beige
+        Me.TxtTotalDue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTotalDue.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotalDue.Location = New System.Drawing.Point(787, 577)
+        Me.TxtTotalDue.Name = "TxtTotalDue"
+        Me.TxtTotalDue.ReadOnly = True
+        Me.TxtTotalDue.Size = New System.Drawing.Size(156, 21)
+        Me.TxtTotalDue.TabIndex = 165
+        Me.TxtTotalDue.Text = "0.00"
+        Me.TxtTotalDue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TxtDiscount
+        'Label32
         '
-        Me.TxtDiscount.BackColor = System.Drawing.Color.White
-        Me.TxtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDiscount.Location = New System.Drawing.Point(84, 270)
-        Me.TxtDiscount.Name = "TxtDiscount"
-        Me.TxtDiscount.Size = New System.Drawing.Size(52, 20)
-        Me.TxtDiscount.TabIndex = 153
-        '
-        'TxtItem
-        '
-        Me.TxtItem.BackColor = System.Drawing.Color.Beige
-        Me.TxtItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtItem.Location = New System.Drawing.Point(84, 42)
-        Me.TxtItem.Name = "TxtItem"
-        Me.TxtItem.ReadOnly = True
-        Me.TxtItem.Size = New System.Drawing.Size(318, 20)
-        Me.TxtItem.TabIndex = 131
-        '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(6, 273)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(49, 14)
-        Me.Label43.TabIndex = 152
-        Me.Label43.Text = "Discount"
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(6, 71)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(64, 14)
-        Me.Label34.TabIndex = 132
-        Me.Label34.Text = "Prescription"
-        '
-        'TxtPrescription
-        '
-        Me.TxtPrescription.BackColor = System.Drawing.Color.White
-        Me.TxtPrescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPrescription.Location = New System.Drawing.Point(84, 68)
-        Me.TxtPrescription.Name = "TxtPrescription"
-        Me.TxtPrescription.Size = New System.Drawing.Size(318, 20)
-        Me.TxtPrescription.TabIndex = 133
-        '
-        'BtnClearPrescription
-        '
-        Me.BtnClearPrescription.Location = New System.Drawing.Point(438, 66)
-        Me.BtnClearPrescription.Name = "BtnClearPrescription"
-        Me.BtnClearPrescription.Size = New System.Drawing.Size(51, 25)
-        Me.BtnClearPrescription.TabIndex = 150
-        Me.BtnClearPrescription.Text = "Clear"
-        Me.BtnClearPrescription.UseVisualStyleBackColor = True
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(6, 92)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(35, 14)
-        Me.Label35.TabIndex = 134
-        Me.Label35.Text = "Notes"
-        '
-        'BtnClearItem
-        '
-        Me.BtnClearItem.Location = New System.Drawing.Point(438, 40)
-        Me.BtnClearItem.Name = "BtnClearItem"
-        Me.BtnClearItem.Size = New System.Drawing.Size(51, 25)
-        Me.BtnClearItem.TabIndex = 149
-        Me.BtnClearItem.Text = "Clear"
-        Me.BtnClearItem.UseVisualStyleBackColor = True
-        '
-        'TxtNotes
-        '
-        Me.TxtNotes.BackColor = System.Drawing.Color.White
-        Me.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNotes.Location = New System.Drawing.Point(84, 92)
-        Me.TxtNotes.Multiline = True
-        Me.TxtNotes.Name = "TxtNotes"
-        Me.TxtNotes.Size = New System.Drawing.Size(318, 83)
-        Me.TxtNotes.TabIndex = 135
-        '
-        'TxtRemark
-        '
-        Me.TxtRemark.BackColor = System.Drawing.Color.White
-        Me.TxtRemark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtRemark.Location = New System.Drawing.Point(84, 177)
-        Me.TxtRemark.Multiline = True
-        Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(318, 47)
-        Me.TxtRemark.TabIndex = 148
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(6, 229)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(47, 14)
-        Me.Label36.TabIndex = 136
-        Me.Label36.Text = "Quantity"
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(6, 177)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(43, 14)
-        Me.Label41.TabIndex = 147
-        Me.Label41.Text = "Remark"
-        '
-        'TxtQuantity
-        '
-        Me.TxtQuantity.BackColor = System.Drawing.Color.White
-        Me.TxtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtQuantity.Location = New System.Drawing.Point(84, 226)
-        Me.TxtQuantity.Name = "TxtQuantity"
-        Me.TxtQuantity.Size = New System.Drawing.Size(52, 20)
-        Me.TxtQuantity.TabIndex = 137
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(6, 251)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(31, 14)
-        Me.Label37.TabIndex = 138
-        Me.Label37.Text = "Price"
-        '
-        'TxtPrice
-        '
-        Me.TxtPrice.BackColor = System.Drawing.Color.Beige
-        Me.TxtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPrice.Location = New System.Drawing.Point(84, 248)
-        Me.TxtPrice.Name = "TxtPrice"
-        Me.TxtPrice.ReadOnly = True
-        Me.TxtPrice.Size = New System.Drawing.Size(52, 20)
-        Me.TxtPrice.TabIndex = 139
-        '
-        'BtnSearchItem
-        '
-        Me.BtnSearchItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnSearchItem.Location = New System.Drawing.Point(404, 40)
-        Me.BtnSearchItem.Name = "BtnSearchItem"
-        Me.BtnSearchItem.Size = New System.Drawing.Size(33, 25)
-        Me.BtnSearchItem.TabIndex = 144
-        Me.BtnSearchItem.Text = "..."
-        Me.BtnSearchItem.UseVisualStyleBackColor = True
-        '
-        'DgvBillListing
-        '
-        Me.DgvBillListing.AllowUserToAddRows = False
-        Me.DgvBillListing.AllowUserToDeleteRows = False
-        Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.VisitID, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.Price, Me.Discount})
-        Me.DgvBillListing.Location = New System.Drawing.Point(7, 327)
-        Me.DgvBillListing.Name = "DgvBillListing"
-        Me.DgvBillListing.ReadOnly = True
-        Me.DgvBillListing.Size = New System.Drawing.Size(936, 156)
-        Me.DgvBillListing.TabIndex = 140
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(162, 296)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 25)
-        Me.Button1.TabIndex = 143
-        Me.Button1.Text = "Clear Items"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'BtnAddBillItem
-        '
-        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 296)
-        Me.BtnAddBillItem.Name = "BtnAddBillItem"
-        Me.BtnAddBillItem.Size = New System.Drawing.Size(75, 25)
-        Me.BtnAddBillItem.TabIndex = 142
-        Me.BtnAddBillItem.Text = "Add Item.."
-        Me.BtnAddBillItem.UseVisualStyleBackColor = True
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(704, 580)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(77, 14)
+        Me.Label32.TabIndex = 164
+        Me.Label32.Text = "Total Due (RM)"
         '
         'TxtLumpSumDiscount
         '
@@ -1324,6 +1183,8 @@ Partial Class FrmVisitEntry
         Me.TxtLumpSumDiscount.ReadOnly = True
         Me.TxtLumpSumDiscount.Size = New System.Drawing.Size(156, 21)
         Me.TxtLumpSumDiscount.TabIndex = 163
+        Me.TxtLumpSumDiscount.Text = "0.00"
+        Me.TxtLumpSumDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label40
         '
@@ -1339,16 +1200,18 @@ Partial Class FrmVisitEntry
         Me.TxtGrandTotal.BackColor = System.Drawing.Color.Beige
         Me.TxtGrandTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtGrandTotal.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtGrandTotal.Location = New System.Drawing.Point(787, 555)
+        Me.TxtGrandTotal.Location = New System.Drawing.Point(787, 533)
         Me.TxtGrandTotal.Name = "TxtGrandTotal"
         Me.TxtGrandTotal.ReadOnly = True
         Me.TxtGrandTotal.Size = New System.Drawing.Size(156, 21)
         Me.TxtGrandTotal.TabIndex = 161
+        Me.TxtGrandTotal.Text = "0.00"
+        Me.TxtGrandTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(693, 558)
+        Me.Label45.Location = New System.Drawing.Point(693, 536)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(88, 14)
         Me.Label45.TabIndex = 160
@@ -1356,19 +1219,20 @@ Partial Class FrmVisitEntry
         '
         'TxtDeposit
         '
-        Me.TxtDeposit.BackColor = System.Drawing.Color.Beige
+        Me.TxtDeposit.BackColor = System.Drawing.Color.White
         Me.TxtDeposit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDeposit.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDeposit.Location = New System.Drawing.Point(787, 533)
+        Me.TxtDeposit.Location = New System.Drawing.Point(787, 555)
         Me.TxtDeposit.Name = "TxtDeposit"
-        Me.TxtDeposit.ReadOnly = True
         Me.TxtDeposit.Size = New System.Drawing.Size(156, 21)
         Me.TxtDeposit.TabIndex = 159
+        Me.TxtDeposit.Text = "0.00"
+        Me.TxtDeposit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(712, 536)
+        Me.Label42.Location = New System.Drawing.Point(712, 558)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(69, 14)
         Me.Label42.TabIndex = 158
@@ -1384,6 +1248,8 @@ Partial Class FrmVisitEntry
         Me.TxtGrossTotal.ReadOnly = True
         Me.TxtGrossTotal.Size = New System.Drawing.Size(156, 21)
         Me.TxtGrossTotal.TabIndex = 157
+        Me.TxtGrossTotal.Text = "0.00"
+        Me.TxtGrossTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label39
         '
@@ -1394,8 +1260,194 @@ Partial Class FrmVisitEntry
         Me.Label39.TabIndex = 156
         Me.Label39.Text = "Gross Total (RM)"
         '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(6, 21)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(60, 14)
+        Me.Label38.TabIndex = 154
+        Me.Label38.Text = "Invoice No."
+        '
+        'TxtInvoiceNo
+        '
+        Me.TxtInvoiceNo.BackColor = System.Drawing.Color.Beige
+        Me.TxtInvoiceNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtInvoiceNo.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtInvoiceNo.Location = New System.Drawing.Point(84, 18)
+        Me.TxtInvoiceNo.Name = "TxtInvoiceNo"
+        Me.TxtInvoiceNo.ReadOnly = True
+        Me.TxtInvoiceNo.Size = New System.Drawing.Size(100, 21)
+        Me.TxtInvoiceNo.TabIndex = 155
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(6, 45)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(26, 14)
+        Me.Label33.TabIndex = 130
+        Me.Label33.Text = "Item"
+        '
+        'TxtDiscount
+        '
+        Me.TxtDiscount.BackColor = System.Drawing.Color.White
+        Me.TxtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDiscount.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDiscount.Location = New System.Drawing.Point(84, 263)
+        Me.TxtDiscount.Name = "TxtDiscount"
+        Me.TxtDiscount.Size = New System.Drawing.Size(52, 21)
+        Me.TxtDiscount.TabIndex = 153
+        Me.TxtDiscount.Text = "0.00"
+        Me.TxtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TxtItem
+        '
+        Me.TxtItem.BackColor = System.Drawing.Color.Beige
+        Me.TxtItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtItem.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtItem.Location = New System.Drawing.Point(84, 42)
+        Me.TxtItem.Name = "TxtItem"
+        Me.TxtItem.ReadOnly = True
+        Me.TxtItem.Size = New System.Drawing.Size(416, 21)
+        Me.TxtItem.TabIndex = 131
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(6, 266)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(49, 14)
+        Me.Label43.TabIndex = 152
+        Me.Label43.Text = "Discount"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(6, 69)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(64, 14)
+        Me.Label34.TabIndex = 132
+        Me.Label34.Text = "Prescription"
+        '
+        'TxtPrescription
+        '
+        Me.TxtPrescription.BackColor = System.Drawing.Color.White
+        Me.TxtPrescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtPrescription.Location = New System.Drawing.Point(84, 66)
+        Me.TxtPrescription.Multiline = True
+        Me.TxtPrescription.Name = "TxtPrescription"
+        Me.TxtPrescription.Size = New System.Drawing.Size(416, 64)
+        Me.TxtPrescription.TabIndex = 133
+        '
+        'BtnClearPrescription
+        '
+        Me.BtnClearPrescription.Location = New System.Drawing.Point(538, 66)
+        Me.BtnClearPrescription.Name = "BtnClearPrescription"
+        Me.BtnClearPrescription.Size = New System.Drawing.Size(51, 25)
+        Me.BtnClearPrescription.TabIndex = 150
+        Me.BtnClearPrescription.Text = "Clear"
+        Me.BtnClearPrescription.UseVisualStyleBackColor = True
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(6, 133)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(35, 14)
+        Me.Label35.TabIndex = 134
+        Me.Label35.Text = "Notes"
+        '
+        'BtnClearItem
+        '
+        Me.BtnClearItem.Location = New System.Drawing.Point(538, 40)
+        Me.BtnClearItem.Name = "BtnClearItem"
+        Me.BtnClearItem.Size = New System.Drawing.Size(51, 25)
+        Me.BtnClearItem.TabIndex = 149
+        Me.BtnClearItem.Text = "Clear"
+        Me.BtnClearItem.UseVisualStyleBackColor = True
+        '
+        'TxtNotes
+        '
+        Me.TxtNotes.BackColor = System.Drawing.Color.White
+        Me.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtNotes.Location = New System.Drawing.Point(84, 133)
+        Me.TxtNotes.Multiline = True
+        Me.TxtNotes.Name = "TxtNotes"
+        Me.TxtNotes.Size = New System.Drawing.Size(416, 83)
+        Me.TxtNotes.TabIndex = 135
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(6, 222)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(47, 14)
+        Me.Label36.TabIndex = 136
+        Me.Label36.Text = "Quantity"
+        '
+        'TxtQuantity
+        '
+        Me.TxtQuantity.BackColor = System.Drawing.Color.White
+        Me.TxtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtQuantity.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtQuantity.Location = New System.Drawing.Point(84, 219)
+        Me.TxtQuantity.Name = "TxtQuantity"
+        Me.TxtQuantity.Size = New System.Drawing.Size(52, 21)
+        Me.TxtQuantity.TabIndex = 137
+        Me.TxtQuantity.Text = "1.00"
+        Me.TxtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(6, 244)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(52, 14)
+        Me.Label37.TabIndex = 138
+        Me.Label37.Text = "Unit Price"
+        '
+        'TxtUnitPrice
+        '
+        Me.TxtUnitPrice.BackColor = System.Drawing.Color.Beige
+        Me.TxtUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(84, 241)
+        Me.TxtUnitPrice.Name = "TxtUnitPrice"
+        Me.TxtUnitPrice.ReadOnly = True
+        Me.TxtUnitPrice.Size = New System.Drawing.Size(52, 21)
+        Me.TxtUnitPrice.TabIndex = 139
+        Me.TxtUnitPrice.Text = "0.00"
+        Me.TxtUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'BtnSearchItem
+        '
+        Me.BtnSearchItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnSearchItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSearchItem.Location = New System.Drawing.Point(502, 40)
+        Me.BtnSearchItem.Name = "BtnSearchItem"
+        Me.BtnSearchItem.Size = New System.Drawing.Size(35, 25)
+        Me.BtnSearchItem.TabIndex = 144
+        Me.BtnSearchItem.Text = "..."
+        Me.BtnSearchItem.UseVisualStyleBackColor = True
+        '
+        'DgvBillListing
+        '
+        Me.DgvBillListing.AllowUserToAddRows = False
+        Me.DgvBillListing.AllowUserToDeleteRows = False
+        Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.Discount, Me.TotalPrice})
+        Me.DgvBillListing.Location = New System.Drawing.Point(6, 346)
+        Me.DgvBillListing.MultiSelect = False
+        Me.DgvBillListing.Name = "DgvBillListing"
+        Me.DgvBillListing.ReadOnly = True
+        Me.DgvBillListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvBillListing.Size = New System.Drawing.Size(936, 137)
+        Me.DgvBillListing.TabIndex = 140
+        '
         'BtnDeleteItem
         '
+        Me.BtnDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.BtnDeleteItem.HeaderText = "Delete?"
         Me.BtnDeleteItem.Name = "BtnDeleteItem"
         Me.BtnDeleteItem.ReadOnly = True
@@ -1404,12 +1456,15 @@ Partial Class FrmVisitEntry
         Me.BtnDeleteItem.Text = "Delete"
         Me.BtnDeleteItem.ToolTipText = "Delete Item?"
         Me.BtnDeleteItem.UseColumnTextForButtonValue = True
+        Me.BtnDeleteItem.Width = 68
         '
-        'VisitID
+        'RowNo
         '
-        Me.VisitID.HeaderText = "VisitID"
-        Me.VisitID.Name = "VisitID"
-        Me.VisitID.ReadOnly = True
+        Me.RowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RowNo.HeaderText = "No."
+        Me.RowNo.Name = "RowNo"
+        Me.RowNo.ReadOnly = True
+        Me.RowNo.Width = 48
         '
         'ItemCodeDgv
         '
@@ -1419,15 +1474,19 @@ Partial Class FrmVisitEntry
         '
         'ItemDescription
         '
+        Me.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.ItemDescription.HeaderText = "ItemDescription"
         Me.ItemDescription.Name = "ItemDescription"
         Me.ItemDescription.ReadOnly = True
+        Me.ItemDescription.Width = 105
         '
         'Prescription
         '
+        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Prescription.HeaderText = "Prescription"
         Me.Prescription.Name = "Prescription"
         Me.Prescription.ReadOnly = True
+        Me.Prescription.Width = 89
         '
         'Notes
         '
@@ -1443,27 +1502,59 @@ Partial Class FrmVisitEntry
         '
         'Quantity
         '
+        Me.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Quantity.HeaderText = "Quantity"
         Me.Quantity.Name = "Quantity"
         Me.Quantity.ReadOnly = True
+        Me.Quantity.Width = 72
         '
-        'Price
+        'UnitPrice
         '
-        Me.Price.HeaderText = "Price"
-        Me.Price.Name = "Price"
-        Me.Price.ReadOnly = True
+        Me.UnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.UnitPrice.HeaderText = "Unit Price"
+        Me.UnitPrice.Name = "UnitPrice"
+        Me.UnitPrice.ReadOnly = True
+        Me.UnitPrice.Width = 77
         '
         'Discount
         '
+        Me.Discount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Discount.HeaderText = "Discount"
         Me.Discount.Name = "Discount"
         Me.Discount.ReadOnly = True
+        Me.Discount.Width = 74
+        '
+        'TotalPrice
+        '
+        Me.TotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TotalPrice.HeaderText = "Total Price"
+        Me.TotalPrice.Name = "TotalPrice"
+        Me.TotalPrice.ReadOnly = True
+        Me.TotalPrice.Width = 81
+        '
+        'BtnClearBill
+        '
+        Me.BtnClearBill.Location = New System.Drawing.Point(182, 313)
+        Me.BtnClearBill.Name = "BtnClearBill"
+        Me.BtnClearBill.Size = New System.Drawing.Size(95, 25)
+        Me.BtnClearBill.TabIndex = 143
+        Me.BtnClearBill.Text = "Clear Bill"
+        Me.BtnClearBill.UseVisualStyleBackColor = True
+        '
+        'BtnAddBillItem
+        '
+        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 313)
+        Me.BtnAddBillItem.Name = "BtnAddBillItem"
+        Me.BtnAddBillItem.Size = New System.Drawing.Size(95, 25)
+        Me.BtnAddBillItem.TabIndex = 142
+        Me.BtnAddBillItem.Text = "Add Item.."
+        Me.BtnAddBillItem.UseVisualStyleBackColor = True
         '
         'FrmVisitEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(981, 756)
+        Me.ClientSize = New System.Drawing.Size(981, 772)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.TabControl1)
@@ -1572,7 +1663,7 @@ Partial Class FrmVisitEntry
     Friend WithEvents DtpConsultationTime As DateTimePicker
     Friend WithEvents Label29 As Label
     Friend WithEvents DgvSelectedPet As DataGridView
-    Friend WithEvents TxtConsultationID As TextBox
+    Friend WithEvents TxtVisitID As TextBox
     Friend WithEvents Label30 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents DtpConsultationDate As DateTimePicker
@@ -1588,18 +1679,16 @@ Partial Class FrmVisitEntry
     Friend WithEvents Label35 As Label
     Friend WithEvents BtnClearItem As Button
     Friend WithEvents TxtNotes As TextBox
-    Friend WithEvents TxtRemark As TextBox
     Friend WithEvents Label36 As Label
-    Friend WithEvents Label41 As Label
     Friend WithEvents TxtQuantity As TextBox
     Friend WithEvents Label37 As Label
-    Friend WithEvents TxtPrice As TextBox
+    Friend WithEvents TxtUnitPrice As TextBox
     Friend WithEvents BtnSearchItem As Button
     Friend WithEvents DgvBillListing As DataGridView
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnClearBill As Button
     Friend WithEvents BtnAddBillItem As Button
     Friend WithEvents Label38 As Label
-    Friend WithEvents TxtVisitID As TextBox
+    Friend WithEvents TxtInvoiceNo As TextBox
     Friend WithEvents TxtLumpSumDiscount As TextBox
     Friend WithEvents Label40 As Label
     Friend WithEvents TxtGrandTotal As TextBox
@@ -1608,14 +1697,20 @@ Partial Class FrmVisitEntry
     Friend WithEvents Label42 As Label
     Friend WithEvents TxtGrossTotal As TextBox
     Friend WithEvents Label39 As Label
+    Friend WithEvents TxtTotalDue As TextBox
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label44 As Label
+    Friend WithEvents TxtTotalPrice As TextBox
     Friend WithEvents BtnDeleteItem As DataGridViewButtonColumn
-    Friend WithEvents VisitID As DataGridViewTextBoxColumn
+    Friend WithEvents RowNo As DataGridViewTextBoxColumn
     Friend WithEvents ItemCodeDgv As DataGridViewTextBoxColumn
     Friend WithEvents ItemDescription As DataGridViewTextBoxColumn
     Friend WithEvents Prescription As DataGridViewTextBoxColumn
     Friend WithEvents Notes As DataGridViewTextBoxColumn
     Friend WithEvents Remark As DataGridViewTextBoxColumn
     Friend WithEvents Quantity As DataGridViewTextBoxColumn
-    Friend WithEvents Price As DataGridViewTextBoxColumn
+    Friend WithEvents UnitPrice As DataGridViewTextBoxColumn
     Friend WithEvents Discount As DataGridViewTextBoxColumn
+    Friend WithEvents TotalPrice As DataGridViewTextBoxColumn
+    Friend WithEvents BtnGenerateBill As Button
 End Class

@@ -3,15 +3,15 @@ Imports System.Data.Odbc
 Imports System
 
 Public Class ClsVisitDetail
-    ReadOnly DbConsultation As New ClsDbVisit
+    ReadOnly DbVisit As New ClsDbVisit
 
-    Private _ConsultationID As String
-    Public Property ConsultationID As String
+    Private _VisitID As String
+    Public Property VisitID As String
         Get
-            Return _ConsultationID
+            Return _VisitID
         End Get
         Set(value As String)
-            _ConsultationID = value
+            _VisitID = value
         End Set
     End Property
 
@@ -125,13 +125,13 @@ Public Class ClsVisitDetail
         End Set
     End Property
 
-    Private _ConsultationDesc As String
-    Public Property ConsultationDesc As String
+    Private _VisitDescription As String
+    Public Property VisitDescription As String
         Get
-            Return _ConsultationDesc
+            Return _VisitDescription
         End Get
         Set(value As String)
-            _ConsultationDesc = value
+            _VisitDescription = value
         End Set
     End Property
 
@@ -145,8 +145,8 @@ Public Class ClsVisitDetail
         End Set
     End Property
 
-    Public Function AddNewConsultationDetail(ClsConsultationDetail As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbConsultation.AddNewConsultationDetail(ClsConsultationDetail, DbConn, DbTrans)
+    Public Function AddNewConsultationDetail(ClsVisitDetail As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbVisit.AddNewVisitDetail(ClsVisitDetail, DbConn, DbTrans)
     End Function
 
 End Class

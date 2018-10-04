@@ -166,6 +166,45 @@ Module ModMain
 
                     End If
 
+                Case "VS"
+                    'Create VisitID
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+
+                        RunningNo = CInt(DtRunningNo.Rows(0).Item("LastNo")) + 1
+
+                        If RunningNo.ToString.Length < 8 Then
+                            NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                        Else
+                            NewRunningNo = Prefix & RunningNo.ToString
+                        End If
+
+                        'Update VisitID
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+
+                    Else
+                        MsgBox("Failed to generate running number [" & Prefix & "].", MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")
+
+                    End If
+
             End Select
 
         Catch ex As Exception
@@ -230,7 +269,7 @@ Module ModMain
                         LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
                         RunningNo = LastNo + 1
 
-                        If RunningNo.ToString.Length < 2 Then
+                        If RunningNo.ToString.Length <= 2 Then
                             NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(2, "0"c)
                         End If
 

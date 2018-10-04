@@ -189,3 +189,7 @@ E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchIt
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmVisitReport.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmVisitEntry.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmVisitRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmPaymentInvoice.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmTreatmentEntry.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmTreatmentRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchVisit.resources

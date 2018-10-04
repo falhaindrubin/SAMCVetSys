@@ -25,6 +25,16 @@ Public Class ClsBillDetail
         End Set
     End Property
 
+    Private _NewRowNo As Integer
+    Public Property NewRowNo As Integer
+        Get
+            Return _NewRowNo
+        End Get
+        Set(value As Integer)
+            _NewRowNo = value
+        End Set
+    End Property
+
     Private _ItemCode As String
     Public Property ItemCode As String
         Get
@@ -117,6 +127,14 @@ Public Class ClsBillDetail
 
     Public Function AddNewBillDetail(ClsBillDetail As ClsBillDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbBill.AddNewBillDetail(ClsBillDetail, DbConn, DbTrans)
+    End Function
+
+    Public Function DeleteBillItems(ClsBillDetail As ClsBillDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbBill.DeleteBillItems(ClsBillDetail, DbConn, DbTrans)
+    End Function
+
+    Public Function UpdateBillRowNo(ClsBillDetail As ClsBillDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbBill.UpdateBillRowNo(ClsBillDetail, DbConn, DbTrans)
     End Function
 
 End Class

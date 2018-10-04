@@ -24,6 +24,7 @@ Partial Class FrmPaymentEntry
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPaymentEntry))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
         Me.BtnEdit = New System.Windows.Forms.Button()
@@ -62,7 +63,6 @@ Partial Class FrmPaymentEntry
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.TxtPrescription = New System.Windows.Forms.TextBox()
-        Me.BtnClearPrescription = New System.Windows.Forms.Button()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.BtnClearItem = New System.Windows.Forms.Button()
         Me.TxtNotes = New System.Windows.Forms.TextBox()
@@ -72,8 +72,6 @@ Partial Class FrmPaymentEntry
         Me.TxtUnitPrice = New System.Windows.Forms.TextBox()
         Me.BtnSearchItem = New System.Windows.Forms.Button()
         Me.DgvBillListing = New System.Windows.Forms.DataGridView()
-        Me.BtnClearBill = New System.Windows.Forms.Button()
-        Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.BtnDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.RowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -85,6 +83,8 @@ Partial Class FrmPaymentEntry
         Me.UnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemDiscount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnClearBill = New System.Windows.Forms.Button()
+        Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -202,6 +202,7 @@ Partial Class FrmPaymentEntry
         Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearch.TabIndex = 5
         Me.BtnSearch.UseVisualStyleBackColor = False
+        Me.BtnSearch.Visible = False
         '
         'PnlActionBar
         '
@@ -287,7 +288,6 @@ Partial Class FrmPaymentEntry
         Me.TabPage4.Controls.Add(Me.Label43)
         Me.TabPage4.Controls.Add(Me.Label34)
         Me.TabPage4.Controls.Add(Me.TxtPrescription)
-        Me.TabPage4.Controls.Add(Me.BtnClearPrescription)
         Me.TabPage4.Controls.Add(Me.Label35)
         Me.TabPage4.Controls.Add(Me.BtnClearItem)
         Me.TabPage4.Controls.Add(Me.TxtNotes)
@@ -310,7 +310,7 @@ Partial Class FrmPaymentEntry
         'CbPaymentCompleted
         '
         Me.CbPaymentCompleted.AutoSize = True
-        Me.CbPaymentCompleted.Location = New System.Drawing.Point(246, 19)
+        Me.CbPaymentCompleted.Location = New System.Drawing.Point(192, 19)
         Me.CbPaymentCompleted.Name = "CbPaymentCompleted"
         Me.CbPaymentCompleted.Size = New System.Drawing.Size(120, 18)
         Me.CbPaymentCompleted.TabIndex = 168
@@ -465,9 +465,8 @@ Partial Class FrmPaymentEntry
         Me.TxtInvoiceNo.Location = New System.Drawing.Point(84, 18)
         Me.TxtInvoiceNo.Name = "TxtInvoiceNo"
         Me.TxtInvoiceNo.ReadOnly = True
-        Me.TxtInvoiceNo.Size = New System.Drawing.Size(156, 21)
+        Me.TxtInvoiceNo.Size = New System.Drawing.Size(104, 21)
         Me.TxtInvoiceNo.TabIndex = 155
-        Me.TxtInvoiceNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label33
         '
@@ -528,15 +527,6 @@ Partial Class FrmPaymentEntry
         Me.TxtPrescription.Name = "TxtPrescription"
         Me.TxtPrescription.Size = New System.Drawing.Size(416, 64)
         Me.TxtPrescription.TabIndex = 133
-        '
-        'BtnClearPrescription
-        '
-        Me.BtnClearPrescription.Location = New System.Drawing.Point(538, 66)
-        Me.BtnClearPrescription.Name = "BtnClearPrescription"
-        Me.BtnClearPrescription.Size = New System.Drawing.Size(51, 25)
-        Me.BtnClearPrescription.TabIndex = 150
-        Me.BtnClearPrescription.Text = "Clear"
-        Me.BtnClearPrescription.UseVisualStyleBackColor = True
         '
         'Label35
         '
@@ -624,6 +614,8 @@ Partial Class FrmPaymentEntry
         '
         Me.DgvBillListing.AllowUserToAddRows = False
         Me.DgvBillListing.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice})
         Me.DgvBillListing.Location = New System.Drawing.Point(6, 346)
@@ -633,24 +625,6 @@ Partial Class FrmPaymentEntry
         Me.DgvBillListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvBillListing.Size = New System.Drawing.Size(936, 137)
         Me.DgvBillListing.TabIndex = 140
-        '
-        'BtnClearBill
-        '
-        Me.BtnClearBill.Location = New System.Drawing.Point(182, 313)
-        Me.BtnClearBill.Name = "BtnClearBill"
-        Me.BtnClearBill.Size = New System.Drawing.Size(95, 25)
-        Me.BtnClearBill.TabIndex = 143
-        Me.BtnClearBill.Text = "Clear Bill"
-        Me.BtnClearBill.UseVisualStyleBackColor = True
-        '
-        'BtnAddBillItem
-        '
-        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 313)
-        Me.BtnAddBillItem.Name = "BtnAddBillItem"
-        Me.BtnAddBillItem.Size = New System.Drawing.Size(95, 25)
-        Me.BtnAddBillItem.TabIndex = 142
-        Me.BtnAddBillItem.Text = "Add Item.."
-        Me.BtnAddBillItem.UseVisualStyleBackColor = True
         '
         'BtnDeleteItem
         '
@@ -739,6 +713,24 @@ Partial Class FrmPaymentEntry
         Me.TotalPrice.ReadOnly = True
         Me.TotalPrice.Width = 81
         '
+        'BtnClearBill
+        '
+        Me.BtnClearBill.Location = New System.Drawing.Point(182, 313)
+        Me.BtnClearBill.Name = "BtnClearBill"
+        Me.BtnClearBill.Size = New System.Drawing.Size(95, 25)
+        Me.BtnClearBill.TabIndex = 143
+        Me.BtnClearBill.Text = "Clear Bill"
+        Me.BtnClearBill.UseVisualStyleBackColor = True
+        '
+        'BtnAddBillItem
+        '
+        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 313)
+        Me.BtnAddBillItem.Name = "BtnAddBillItem"
+        Me.BtnAddBillItem.Size = New System.Drawing.Size(95, 25)
+        Me.BtnAddBillItem.TabIndex = 142
+        Me.BtnAddBillItem.Text = "Add Item.."
+        Me.BtnAddBillItem.UseVisualStyleBackColor = True
+        '
         'FrmPaymentEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -798,7 +790,6 @@ Partial Class FrmPaymentEntry
     Friend WithEvents Label43 As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents TxtPrescription As TextBox
-    Friend WithEvents BtnClearPrescription As Button
     Friend WithEvents Label35 As Label
     Friend WithEvents BtnClearItem As Button
     Friend WithEvents TxtNotes As TextBox

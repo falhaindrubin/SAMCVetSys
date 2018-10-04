@@ -108,4 +108,54 @@ Public Class ClsDbServices
 
     End Function
 
+    Public Function GetTestType(SV As ClsServices) As DataTable
+
+        Dim DtTest As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT ItemTypeCode, ItemTypeDescription ")
+                .Append("FROM samc_servicetype")
+                .Append("WHERE ItemTypeCode IN ('02','03','18','19','22') ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtTest)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetTestTypeServices()")
+        End Try
+
+        Return DtTest
+
+    End Function
+
+    Public Function GetTestTypeName(SV As ClsServices) As DataTable
+
+        Dim DtTest As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT ItemCode, ItemDescription ")
+                .Append("FROM samc_services ")
+                If SV.ItemTypeCode <> "" Then
+                    .Append("WHERE ItemTypeCode = '" & SV.ItemTypeCode & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtTest)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetTestTypeDescription()")
+        End Try
+
+        Return DtTest
+
+    End Function
+
 End Class

@@ -133,4 +133,12 @@ Public Class ClsBill
         Return DbBill.CheckExistingBill(ClsBill)
     End Function
 
+    Public Function GetBillingInfo(ClsBill As ClsBill) As DataTable
+        Return DbBill.GetBillingInfo(ClsBill)
+    End Function
+
+    Public Function GetPendingInvoiceList(ClsBill As ClsBill) As DataTable
+        Return DbBill.GetPendingInvoiceList(ClsBill)
+    End Function
+
 End Class

@@ -65,18 +65,25 @@ Public Class ClsDbBill
             Return False
         End Try
 
-        Return IIf(Ret = 0, False, True)
+        Return True
+        'Return IIf(Ret = 0, False, True)
 
     End Function
 
-    Public Function CheckExistingBill(ClsBill) As DataTable
+    Public Function CheckExistingBill(BL As ClsBill) As DataTable
 
         Dim DtBill As New DataTable
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append(" ")
+                .Append("SELECT a.InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName ")
+                .Append("FROM samc_billing a ")
+                .Append("INNER JOIN samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
+                If BL.VisitID <> "" Then
+                    .Append(" WHERE a.VisitID = '" & BL.VisitID & "' ")
+                End If
+                .Append("GROUP BY a.VisitID ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
@@ -84,7 +91,106 @@ Public Class ClsDbBill
             Da.Fill(DtBill)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.AddNewBillDetail()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.CheckExistingBill()")
+        End Try
+
+        Return DtBill
+
+    End Function
+
+    Public Function GetBillingInfo(BL As ClsBill) As DataTable
+
+        Dim DtBill As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
+                .Append("RowNo, ItemCode, ItemDescription, ItemTypeCode, Prescription, Notes, Quantity, UnitPrice, ItemDiscount, TotalPrice ")
+                .Append("FROM samc_billing a ")
+                .Append("INNER JOIN samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
+                If BL.VisitID <> "" Then
+                    .Append("WHERE a.VisitID = '" & BL.VisitID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtBill)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.GetBillingInfo()")
+        End Try
+
+        Return DtBill
+
+    End Function
+
+    Public Function DeleteBillItems(BL As ClsBillDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("DELETE FROM samc_billingdetail ")
+                .Append("WHERE InvoiceNo = '" & BL.InvoiceNo & "' AND RowNo = '" & BL.RowNo & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.DeleteBillItems()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Public Function UpdateBillRowNo(BL As ClsBillDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Try
+            If BL.RowNo <> BL.NewRowNo Then
+                Sb = New StringBuilder
+                With Sb
+                    .Append("UPDATE samc_billingdetail ")
+                    .Append("SET RowNo = '" & BL.NewRowNo & "' ")
+                    .Append("WHERE InvoiceNo = '" & BL.InvoiceNo & "' AND RowNo = '" & BL.RowNo & "' ")
+                End With
+                Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+                Cmd.ExecuteNonQuery()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.UpdateBillRowNo()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Public Function GetPendingInvoiceList(BL As ClsBill) As DataTable
+
+        Dim DtBill As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_billing a ")
+                .Append("INNER Join samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
+                .Append("WHERE IsPaymentComplete = '0' ")
+                .Append("GROUP BY a.InvoiceNo ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtBill)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.GetinvoiceList()")
         End Try
 
         Return DtBill

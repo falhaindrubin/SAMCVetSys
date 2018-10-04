@@ -53,7 +53,69 @@
     Private Sub FrmPaymentEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
+        PopulateForm(UserCommand)
         'Me.Text = IIf(FormTitle <> "", FormTitle, Me.Text)
+    End Sub
+
+    Private Sub PopulateForm(UserCommand As String)
+
+        Dim DtBill As New DataTable
+        Dim ClsBill As New ClsBill
+
+        Try
+            If UserCommand <> "" Then
+                Select Case UserCommand
+                    Case "SHOW_BILLING_INFO"
+                        With ClsBill
+                            .InvoiceNo = InvoiceNo
+                        End With
+
+                        DtBill = ClsBill.GetBillingInfo(ClsBill)
+                        If DtBill.Rows.Count > 0 Then
+
+                            'Clear previous information that has been populated into the data grid view; to reload new information
+                            If DgvBillListing.Rows.Count > 0 Then
+                                DgvBillListing.Rows.Clear()
+                            End If
+
+                            For i As Integer = 0 To DtBill.Rows.Count - 1
+                                With DgvBillListing
+                                    .Rows.Add()
+                                    DgvBillListing.Rows(i).Cells("RowNo").Value = DtBill.Rows(i).Item("RowNo")
+                                    DgvBillListing.Rows(i).Cells("ItemCodeDgv").Value = DtBill.Rows(i).Item("ItemCode")
+                                    DgvBillListing.Rows(i).Cells("ItemDescription").Value = DtBill.Rows(i).Item("ItemDescription")
+                                    DgvBillListing.Rows(i).Cells("Prescription").Value = DtBill.Rows(i).Item("Prescription")
+                                    DgvBillListing.Rows(i).Cells("Notes").Value = DtBill.Rows(i).Item("Notes")
+                                    DgvBillListing.Rows(i).Cells("Quantity").Value = DtBill.Rows(i).Item("Quantity")
+                                    DgvBillListing.Rows(i).Cells("UnitPrice").Value = DtBill.Rows(i).Item("UnitPrice")
+                                    DgvBillListing.Rows(i).Cells("ItemDiscount").Value = DtBill.Rows(i).Item("ItemDiscount")
+                                    DgvBillListing.Rows(i).Cells("TotalPrice").Value = DtBill.Rows(i).Item("TotalPrice")
+                                End With
+                            Next
+
+                            TxtInvoiceNo.Text = DtBill.Rows(0).Item("InvoiceNo")
+                            TxtGrossTotal.Text = DtBill.Rows(0).Item("GrossTotal")
+                            TxtDiscount.Text = DtBill.Rows(0).Item("Discount")
+                            TxtGrandTotal.Text = DtBill.Rows(0).Item("GrandTotal")
+                            TxtDeposit.Text = DtBill.Rows(0).Item("Deposit")
+                            TxtTotalDue.Text = DtBill.Rows(0).Item("TotalDue")
+
+                            TxtCreatedBy.Text = DtBill.Rows(0).Item("CreatedBy")
+                            TxtDateCreated.Text = DtBill.Rows(0).Item("DateCreated")
+                            TxtModifiedBy.Text = DtBill.Rows(0).Item("ModifiedBy")
+                            TxtDateModified.Text = DtBill.Rows(0).Item("DateModified")
+
+                        End If
+
+                        SetFields(UserCommand)
+
+                End Select
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")
+        End Try
+
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
@@ -190,23 +252,33 @@
                 UserResponse = MsgBox("Are sure you want to delete this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Delete Item?")
                 If UserResponse = MsgBoxResult.Yes Then
 
-                    With DgvBillListing
+                    If CbPaymentCompleted.Checked = True And CbPaymentCompleted.Enabled = False Then
 
-                        For Each Row As DataGridViewRow In .SelectedRows
+                        'Do nothing if payment is already completed; disable user from deleting items from bill that has been completed e.g. payment completed.
+                        Exit Sub
+                    Else
 
-                            If .Rows(e.RowIndex).Cells("RowNo").Value = e.RowIndex + 1 Then
+                        With DgvBillListing
+                            For Each Row As DataGridViewRow In .SelectedRows
                                 .Rows.Remove(Row)
+                                'Delete items from database if invoice is already generated
+                                If TxtInvoiceNo.Text <> "" Then
+                                    If Not DeleteBillItems(.Rows(e.RowIndex).Cells("RowNo").Value, TxtInvoiceNo.Text) Then
+                                        MsgBox("Failed to delete bill's items(s). Please try again.", MsgBoxStyle.Critical, "Delete Bill Item(s)")
+                                    End If
+                                End If
+                            Next
+
+                            'Re-populate bill items
+                            PopulateForm("SHOW_BILLING_INFO")
+
+                            If .Rows.Count = 0 Then
+                                .DataSource = Nothing
+                                .Show()
                             End If
 
-                        Next
-
-                        If .Rows.Count = 0 Then
-                            .DataSource = Nothing
-                            '.Columns.Clear()
-                            .Show()
-                        End If
-
-                    End With
+                        End With
+                    End If
 
                 End If
 
@@ -218,11 +290,72 @@
 
     End Sub
 
+    Private Function DeleteBillItems(RowNo As Integer, InvoiceNo As String) As Boolean
+
+        Dim ClsBill As New ClsBill
+        Dim ClsBillDetail As New ClsBillDetail
+
+        Try
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
+            End If
+
+            DbTrans = DbConn.BeginTransaction
+
+            With ClsBillDetail
+                .InvoiceNo = InvoiceNo
+                .RowNo = RowNo
+            End With
+
+            If Not ClsBillDetail.DeleteBillItems(ClsBillDetail, DbConn, DbTrans) Then
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+                Return False
+            End If
+
+            'Update RowNo in billing items
+            For i As Integer = 0 To DgvBillListing.Rows.Count - 1
+                With ClsBillDetail
+                    .InvoiceNo = InvoiceNo
+                    .RowNo = DgvBillListing.Rows(i).Cells("RowNo").Value
+                    .NewRowNo = i + 1
+                End With
+                If Not ClsBillDetail.UpdateBillRowNo(ClsBillDetail, DbConn, DbTrans) Then
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+            Next
+
+            DbTrans.Commit()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+
+            MsgBox("Item(s) has been successfully removed.", MsgBoxStyle.Information, "Item(s) Deleted")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DeleteBillItems()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
     Private Sub BtnClearBill_Click(sender As Object, e As EventArgs) Handles BtnClearBill.Click
 
         Dim UserResponse As MsgBoxResult
 
         Try
+            If TxtInvoiceNo.Text <> "" Then
+                Exit Sub
+            End If
+
             UserResponse = MsgBox("Are sure you want to DELETE ALL of this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Delete All Items?")
             If UserResponse = MsgBoxResult.Yes Then
                 With DgvBillListing
@@ -257,6 +390,10 @@
         Dim BtnDeleteItem As New DataGridViewButtonColumn
 
         Try
+            If TxtItem.Tag = "" Then
+                Exit Sub
+            End If
+
             DtBill = InitBillItemDt()
             If DgvBillListing.Rows.Count > 0 Then
 
@@ -473,7 +610,7 @@
                     End With
 
                     If Not ClsBillDetail.AddNewBillDetail(ClsBillDetail, DbConn, DbTrans) Then
-                        MsgBox("Failed to create consultation details.", MsgBoxStyle.Critical, "Create Consultation Failed")
+                        MsgBox("Failed to create consultation details.", MsgBoxStyle.Critical, "Create Billing Failed")
                         DbTrans.Rollback()
                         DbTrans.Dispose()
                         DbTrans = Nothing
@@ -488,10 +625,19 @@
             DbTrans = Nothing
 
             TxtInvoiceNo.Text = GenInvoiceNo
-            TxtCreatedBy.Text = "" 'ClsAppointment.Ref.CreatedBy
-            TxtDateCreated.Text = "" 'ClsAppointment.Ref.DateCreated
-            TxtModifiedBy.Text = "" 'ClsAppointment.Ref.ModifiedBy
-            TxtDateModified.Text = "" 'ClsAppointment.Ref.DateModified
+
+            With ClsBill
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
 
             'SetFields(UserCommand)
 
@@ -510,5 +656,9 @@
         Return True
 
     End Function
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        FrmPaymentInvoice.ShowDialog()
+    End Sub
 
 End Class

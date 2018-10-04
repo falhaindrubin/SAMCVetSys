@@ -26,13 +26,10 @@ Partial Class FrmMDI
         Me.mnuRecord = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClientRegistrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsultationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AppointmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAppointment = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExaminationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreatmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MedicalHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MedicationHistoryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AnimalInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExaminationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WardExaminationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FindingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,14 +53,13 @@ Partial Class FrmMDI
         Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductsServicesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AppointmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.mnuAppointment, Me.ExaminationToolStripMenuItem, Me.TreatmentToolStripMenuItem, Me.WardToolStripMenuItem, Me.BillingToolStripMenuItem, Me.SurgeryToolStripMenuItem, Me.LaboratoryToolStripMenuItem1, Me.RadiologyToolStripMenuItem, Me.PharmacyToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.TreatmentToolStripMenuItem, Me.SurgeryToolStripMenuItem, Me.WardToolStripMenuItem, Me.ExaminationToolStripMenuItem, Me.BillingToolStripMenuItem, Me.LaboratoryToolStripMenuItem1, Me.RadiologyToolStripMenuItem, Me.PharmacyToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowToolStripMenuItem
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -73,7 +69,7 @@ Partial Class FrmMDI
         '
         'mnuRecord
         '
-        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem, Me.AppointmentToolStripMenuItem, Me.ConsultationToolStripMenuItem, Me.PaymentToolStripMenuItem})
+        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem, Me.ConsultationToolStripMenuItem, Me.AppointmentToolStripMenuItem, Me.PaymentToolStripMenuItem})
         Me.mnuRecord.Name = "mnuRecord"
         Me.mnuRecord.Size = New System.Drawing.Size(65, 20)
         Me.mnuRecord.Text = "Customer"
@@ -90,48 +86,29 @@ Partial Class FrmMDI
         Me.ConsultationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ConsultationToolStripMenuItem.Text = "Visit"
         '
+        'AppointmentToolStripMenuItem
+        '
+        Me.AppointmentToolStripMenuItem.Name = "AppointmentToolStripMenuItem"
+        Me.AppointmentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AppointmentToolStripMenuItem.Text = "Appointment"
+        '
         'PaymentToolStripMenuItem
         '
         Me.PaymentToolStripMenuItem.Name = "PaymentToolStripMenuItem"
         Me.PaymentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PaymentToolStripMenuItem.Text = "Payment"
+        Me.PaymentToolStripMenuItem.Text = "Billing"
         '
-        'mnuAppointment
+        'TreatmentToolStripMenuItem
         '
-        Me.mnuAppointment.Name = "mnuAppointment"
-        Me.mnuAppointment.Size = New System.Drawing.Size(79, 20)
-        Me.mnuAppointment.Text = "Appointment"
+        Me.TreatmentToolStripMenuItem.Name = "TreatmentToolStripMenuItem"
+        Me.TreatmentToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
+        Me.TreatmentToolStripMenuItem.Text = "Treatment"
         '
         'ExaminationToolStripMenuItem
         '
         Me.ExaminationToolStripMenuItem.Name = "ExaminationToolStripMenuItem"
         Me.ExaminationToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
         Me.ExaminationToolStripMenuItem.Text = "Examination"
-        '
-        'TreatmentToolStripMenuItem
-        '
-        Me.TreatmentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MedicalHistoryToolStripMenuItem, Me.MedicationHistoryToolStripMenuItem, Me.AnimalInfoToolStripMenuItem})
-        Me.TreatmentToolStripMenuItem.Name = "TreatmentToolStripMenuItem"
-        Me.TreatmentToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
-        Me.TreatmentToolStripMenuItem.Text = "Treatment"
-        '
-        'MedicalHistoryToolStripMenuItem
-        '
-        Me.MedicalHistoryToolStripMenuItem.Name = "MedicalHistoryToolStripMenuItem"
-        Me.MedicalHistoryToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.MedicalHistoryToolStripMenuItem.Text = "Treatment Record"
-        '
-        'MedicationHistoryToolStripMenuItem
-        '
-        Me.MedicationHistoryToolStripMenuItem.Name = "MedicationHistoryToolStripMenuItem"
-        Me.MedicationHistoryToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.MedicationHistoryToolStripMenuItem.Text = "Medication History"
-        '
-        'AnimalInfoToolStripMenuItem
-        '
-        Me.AnimalInfoToolStripMenuItem.Name = "AnimalInfoToolStripMenuItem"
-        Me.AnimalInfoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.AnimalInfoToolStripMenuItem.Text = "Animal Info"
         '
         'WardToolStripMenuItem
         '
@@ -143,31 +120,31 @@ Partial Class FrmMDI
         'WardExaminationToolStripMenuItem
         '
         Me.WardExaminationToolStripMenuItem.Name = "WardExaminationToolStripMenuItem"
-        Me.WardExaminationToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.WardExaminationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.WardExaminationToolStripMenuItem.Text = "Ward Examination"
         '
         'FindingsToolStripMenuItem
         '
         Me.FindingsToolStripMenuItem.Name = "FindingsToolStripMenuItem"
-        Me.FindingsToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.FindingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.FindingsToolStripMenuItem.Text = "Findings"
         '
         'LaboratoryToolStripMenuItem
         '
         Me.LaboratoryToolStripMenuItem.Name = "LaboratoryToolStripMenuItem"
-        Me.LaboratoryToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.LaboratoryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.LaboratoryToolStripMenuItem.Text = "Laboratory"
         '
         'TreatmentToolStripMenuItem1
         '
         Me.TreatmentToolStripMenuItem1.Name = "TreatmentToolStripMenuItem1"
-        Me.TreatmentToolStripMenuItem1.Size = New System.Drawing.Size(160, 22)
+        Me.TreatmentToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.TreatmentToolStripMenuItem1.Text = "Treatment"
         '
         'DischargeToolStripMenuItem
         '
         Me.DischargeToolStripMenuItem.Name = "DischargeToolStripMenuItem"
-        Me.DischargeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.DischargeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DischargeToolStripMenuItem.Text = "Discharge"
         '
         'BillingToolStripMenuItem
@@ -256,19 +233,19 @@ Partial Class FrmMDI
         'EmployeeUserToolStripMenuItem
         '
         Me.EmployeeUserToolStripMenuItem.Name = "EmployeeUserToolStripMenuItem"
-        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.EmployeeUserToolStripMenuItem.Text = "Employee"
         '
         'UserToolStripMenuItem
         '
         Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UserToolStripMenuItem.Text = "User"
         '
         'ProductsServicesToolStripMenuItem
         '
         Me.ProductsServicesToolStripMenuItem.Name = "ProductsServicesToolStripMenuItem"
-        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ProductsServicesToolStripMenuItem.Text = "Products && Services"
         '
         'WindowToolStripMenuItem
@@ -276,12 +253,6 @@ Partial Class FrmMDI
         Me.WindowToolStripMenuItem.Name = "WindowToolStripMenuItem"
         Me.WindowToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.WindowToolStripMenuItem.Text = "Window"
-        '
-        'AppointmentToolStripMenuItem
-        '
-        Me.AppointmentToolStripMenuItem.Name = "AppointmentToolStripMenuItem"
-        Me.AppointmentToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AppointmentToolStripMenuItem.Text = "Appointment"
         '
         'FrmMDI
         '
@@ -306,11 +277,7 @@ Partial Class FrmMDI
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents mnuRecord As ToolStripMenuItem
     Friend WithEvents ClientRegistrationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents mnuAppointment As ToolStripMenuItem
     Friend WithEvents TreatmentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MedicalHistoryToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MedicationHistoryToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AnimalInfoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WardToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WardExaminationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FindingsToolStripMenuItem As ToolStripMenuItem

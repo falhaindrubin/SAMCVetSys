@@ -4,15 +4,15 @@ Imports System
 
 Public Class ClsVisit
 
-    Dim DbConsultation As New ClsDbVisit
+    Dim DbVisit As New ClsDbVisit
 
-    Private _ConsultationID As String
-    Public Property ConsultationID As String
+    Private _VisitID As String
+    Public Property VisitID As String
         Get
-            Return _ConsultationID
+            Return _VisitID
         End Get
         Set(value As String)
-            _ConsultationID = value
+            _VisitID = value
         End Set
     End Property
 
@@ -56,13 +56,13 @@ Public Class ClsVisit
         End Set
     End Property
 
-    Private _ConsultationTime As DateTime
-    Public Property ConsultationTime As DateTime
+    Private _VisitTime As DateTime
+    Public Property VisitTime As DateTime
         Get
-            Return _ConsultationTime
+            Return _VisitTime
         End Get
         Set(value As DateTime)
-            _ConsultationTime = value
+            _VisitTime = value
         End Set
     End Property
 
@@ -96,52 +96,20 @@ Public Class ClsVisit
         End Set
     End Property
 
-    'Public Function AddNewAppointment(ByVal ClsAppointment As ClsAppointment, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As Boolean
-    '    Return DBAppointment.AddNewAppointment(ClsAppointment, DBConn, DBTrans)
-    'End Function
-
-    'Public Function GetAppointmentListing(ClsAppointment As ClsAppointment) As DataTable
-    '    Return DBAppointment.GetAppointmentListing(ClsAppointment)
-    'End Function
-
-    'Public Function GetAppointmentDetail(ClsAppointment As ClsAppointment) As DataTable
-    '    Return DBAppointment.GetAppointmentDetail(ClsAppointment)
-    'End Function
-
-    'Public Function RemovePetAppointment(ClsAppointment As ClsAppointment, ClsAppointmentDetail As ClsAppointmentDetail, DBConn As OdbcConnection, DBTrans As OdbcTransaction) As Boolean
-    '    Return DBAppointment.RemovePetAppointment(ClsAppointment, ClsAppointmentDetail, DBConn, DBTrans)
-    'End Function
-
-    'Public Function GetAppointmentReport(ClsAppointment As ClsAppointment) As DataTable
-    '    Return DBAppointment.GetAppointmentReport(ClsAppointment)
-    'End Function
-
-    'Public Function GetAppointmentSummary(ByVal ClsAppointment As ClsAppointment, ByRef DBConn As OdbcConnection) As DataTable
-    '    Return DBAppointment.GetAppointmentSummary(ClsAppointment, DBConn)
-    'End Function
-
-    'Public Function CheckExistingAppointment(ByVal ClsAppointment As ClsAppointment, ByRef DBConn As OdbcConnection) As DataTable
-    '    Return DBAppointment.CheckExistingAppointment(ClsAppointment, DBConn)
-    'End Function
-
-    'Public Function GetAppointmentHistory(ClsAppointment As ClsAppointment, DBConn As OdbcConnection) As DataTable
-    '    Return DBAppointment.GetAppointmentHistory(ClsAppointment, DBConn)
-    'End Function
-
-    Public Function GetConsultationListing(ClsConsultation As ClsVisit) As DataTable
-        Return DbConsultation.GetConsultationListing(ClsConsultation)
+    Public Function GetVisitListing(ClsVisit As ClsVisit) As DataTable
+        Return DbVisit.GetVisitListing(ClsVisit)
     End Function
 
     Public Function AddNewConsultation(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbConsultation.AddNewConsultation(ClsConsultation, DbConn, DbTrans)
+        Return DbVisit.AddNewVisit(ClsConsultation, DbConn, DbTrans)
     End Function
 
     Public Function GetConsultationDetail(ClsConsultation As ClsVisit) As DataTable
-        Return DbConsultation.GetConsultationDetail(ClsConsultation)
+        Return DbVisit.GetVisitDetail(ClsConsultation)
     End Function
 
     Public Function UpdateIsCompleted(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbConsultation.UpdateIsCompleted(ClsConsultation, DbConn, DbTrans)
+        Return DbVisit.UpdateIsCompleted(ClsConsultation, DbConn, DbTrans)
     End Function
 
 End Class

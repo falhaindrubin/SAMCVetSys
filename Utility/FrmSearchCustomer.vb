@@ -45,11 +45,11 @@ Public Class FrmSearchCustomer
     Private Sub FrmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
-        PopulateCustomerListing()
+        PopulateCustomerListing(Source)
         TxtSearchText.Select()
     End Sub
 
-    Private Sub PopulateCustomerListing()
+    Private Sub PopulateCustomerListing(Source As String)
 
         Dim DtCustomer As New DataTable
         Dim ClsCustomer As New ClsCustomer

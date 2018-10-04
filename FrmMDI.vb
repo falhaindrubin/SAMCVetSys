@@ -43,7 +43,7 @@
 
     End Sub
 
-    Private Sub MnuAppointment_Click(sender As Object, e As EventArgs) Handles mnuAppointment.Click
+    Private Sub MnuAppointment_Click(sender As Object, e As EventArgs)
 
         Dim frm As New FrmAppointmentRecords()
         'Static intCount As Integer
@@ -177,6 +177,51 @@
                 End If
             Next
             Frm = New FrmItemManagement With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub AppointmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AppointmentToolStripMenuItem.Click
+
+        Dim Frm As New FrmAppointmentRecords
+        'Static intCount As Integer
+
+        For Each F As Form In Application.OpenForms
+            If TypeOf F Is FrmAppointmentRecords Then
+                F.Activate()
+                Exit Sub
+            End If
+        Next
+
+        '' Increment the caption counter.
+        'intCount += 1
+
+        '' Set the caption to be unique.
+        'frm.Text = frm.Text & " " & intCount.ToString()
+
+        Frm = New FrmAppointmentRecords With {
+            .MdiParent = Me
+        }
+        Frm.Show()
+
+    End Sub
+
+    Private Sub TreatmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TreatmentToolStripMenuItem.Click
+        Try
+            Dim Frm As New FrmTreatmentRecords
+            'Static intCount As Integer
+
+            For Each F As Form In Application.OpenForms
+                If TypeOf F Is FrmTreatmentRecords Then
+                    F.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmTreatmentRecords With {
                 .MdiParent = Me
             }
             Frm.Show()

@@ -193,6 +193,12 @@
     <Compile Include="ClassDb\ClsDbServices.vb" />
     <Compile Include="Class\ClsProducts.vb" />
     <Compile Include="Class\ClsServices.vb" />
+    <Compile Include="Customer\Payment\FrmPaymentInvoice.Designer.vb">
+      <DependentUpon>FrmPaymentInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Payment\FrmPaymentInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Customer\Visit\FrmVisitReport.Designer.vb">
       <DependentUpon>FrmVisitReport.vb</DependentUpon>
     </Compile>
@@ -363,6 +369,18 @@
     <Compile Include="SplashSAMCVetSys.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Treatment\FrmTreatmentEntry.Designer.vb">
+      <DependentUpon>FrmTreatmentEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Treatment\FrmTreatmentEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Treatment\FrmTreatmentRecords.Designer.vb">
+      <DependentUpon>FrmTreatmentRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Treatment\FrmTreatmentRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utility\FrmSearchCustomer.Designer.vb">
       <DependentUpon>FrmSearchCustomer.vb</DependentUpon>
     </Compile>
@@ -375,6 +393,12 @@
     <Compile Include="Utility\FrmSearchItem.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utility\FrmSearchVisit.Designer.vb">
+      <DependentUpon>FrmSearchVisit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\FrmSearchVisit.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Customer\Appointment\FrmAppointmentEntry.resx">
@@ -382,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\Appointment\FrmAppointmentReport.resx">
       <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\Payment\FrmPaymentInvoice.resx">
+      <DependentUpon>FrmPaymentInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\Visit\FrmVisitReport.resx">
       <DependentUpon>FrmVisitReport.vb</DependentUpon>
@@ -444,11 +471,20 @@
     <EmbeddedResource Include="SplashSAMCVetSys.resx">
       <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Treatment\FrmTreatmentEntry.resx">
+      <DependentUpon>FrmTreatmentEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Treatment\FrmTreatmentRecords.resx">
+      <DependentUpon>FrmTreatmentRecords.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utility\FrmSearchCustomer.resx">
       <DependentUpon>FrmSearchCustomer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utility\FrmSearchItem.resx">
       <DependentUpon>FrmSearchItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\FrmSearchVisit.resx">
+      <DependentUpon>FrmSearchVisit.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -491,7 +527,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Diagnostic\" />
-    <Folder Include="Treatment\" />
     <Folder Include="Ward\" />
   </ItemGroup>
   <ItemGroup>

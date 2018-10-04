@@ -9,88 +9,92 @@ Public Class ClsDbVisit
     Dim Cmd As OdbcCommand
     Dim Da As OdbcDataAdapter
 
-    Public Function AddNewConsultation(CONS As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewVisit(VS As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("INSERT INTO samc_consultation ")
-                .Append("(ConsultationID, EmployeeID, EmployeeName, CustomerID, CustomerName, ConsultationTime, ")
+                .Append("INSERT INTO samc_visit ")
+                .Append("(VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & CONS.ConsultationID & "', '" & CONS.EmployeeID & "', '" & CONS.EmployeeName & "', '" & CONS.CustomerID & "', '" & CONS.CustomerName & "', " & CSQLDateTime(CONS.ConsultationTime) & ", ")
-                .Append("'" & CONS.Ref.CreatedBy & "', " & CSQLDateTime(CONS.Ref.DateCreated) & ", '" & CONS.Ref.ModifiedBy & "', " & CSQLDateTime(CONS.Ref.DateModified) & ") ")
+                .Append("('" & VS.VisitID & "', '" & VS.EmployeeID & "', '" & VS.EmployeeName & "', '" & VS.CustomerID & "', '" & VS.CustomerName & "', " & CSQLDateTime(VS.VisitTime) & ", ")
+                .Append("'" & VS.Ref.CreatedBy & "', " & CSQLDateTime(VS.Ref.DateCreated) & ", '" & VS.Ref.ModifiedBy & "', " & CSQLDateTime(VS.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("EmployeeID = '" & CONS.EmployeeID & "', EmployeeName = '" & CONS.EmployeeName & "', ConsultationTime = " & CSQLDateTime(CONS.ConsultationTime) & ", ModifiedBy = '" & CONS.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(CONS.Ref.DateModified) & " ")
+                .Append("EmployeeID = '" & VS.EmployeeID & "', EmployeeName = '" & VS.EmployeeName & "', VisitTime = " & CSQLDateTime(VS.VisitTime) & ", ")
+                .Append("ModifiedBy = '" & VS.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(VS.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.AddNewConsultation()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.AddNewVisit()")
         End Try
 
         Return IIf(Ret = 0, False, True)
 
     End Function
 
-    Public Function AddNewConsultationDetail(CONSD As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewVisitDetail(VS As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("INSERT INTO samc_consultationdetail ")
-                .Append("(ConsultationID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, ConsultationDesc, ")
-                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("INSERT INTO samc_visitdetail ")
+                .Append("(VisitID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDescription) ")
                 .Append("VALUES ")
-                .Append("('" & CONSD.ConsultationID & "', '" & CONSD.PetID & "', '" & CONSD.PetName & "', " & CSQLDate(CONSD.PetDOB) & ", '" & CONSD.SexCode & "', '" & CONSD.SexName & "', ")
-                .Append("'" & CONSD.AnimalTypeCode & "', '" & CONSD.AnimalTypeName & "', '" & CONSD.BreedCode & "', ")
-                .Append("'" & CONSD.BreedName & "', '" & CONSD.StatusCode & "', '" & CONSD.StatusName & "', '" & CONSD.ConsultationDesc & "', ")
-                .Append("'" & CONSD.Ref.CreatedBy & "', " & CSQLDateTime(CONSD.Ref.DateCreated) & ", '" & CONSD.Ref.ModifiedBy & "', " & CSQLDateTime(CONSD.Ref.DateModified) & ") ")
+                .Append("('" & VS.VisitID & "', '" & VS.PetID & "', '" & VS.PetName & "', " & CSQLDate(VS.PetDOB) & ", '" & VS.SexCode & "', '" & VS.SexName & "', ")
+                .Append("'" & VS.AnimalTypeCode & "', '" & VS.AnimalTypeName & "', '" & VS.BreedCode & "', ")
+                .Append("'" & VS.BreedName & "', '" & VS.StatusCode & "', '" & VS.StatusName & "', '" & VS.VisitDescription & "') ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ConsultationDesc = '" & CONSD.ConsultationDesc & "', ModifiedBy = '" & CONSD.Ref.ModifiedBy & "',  DateModified = " & CSQLDateTime(CONSD.Ref.DateModified) & " ")
+                .Append("VisitDescription = '" & VS.VisitDescription & "' ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.AddNewConsultationDetail()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.AddNewVisitDetail()")
         End Try
 
         Return IIf(Ret = 0, False, True)
 
     End Function
 
-    Public Function GetConsultationListing(CONS As ClsVisit) As DataTable
+    Public Function GetVisitListing(VS As ClsVisit) As DataTable
 
-        Dim DtConsultation As New DataTable
+        Dim DtVisit As New DataTable
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ConsultationID, EmployeeID, EmployeeName, CustomerID, CustomerName, ConsultationTime, CreatedBy, DateCreated, ModifiedBy, DateModified ")
-                .Append("FROM samc_consultation ")
+                .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, ")
+                .Append("PetID, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_visit a ")
+                .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
+                .Append(" ")
+                .Append("WHERE IsCompleted = '0' ")
 
-                If CONS.CustomerID <> "" Then
-                    .Append("WHERE CustomerID = '" & CONS.CustomerID & "' ")
+                If VS.CustomerID <> "" Then
+                    .Append("AND CustomerID = '" & VS.CustomerID & "' ")
                 End If
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
-            Da.Fill(DtConsultation)
+            Da.Fill(DtVisit)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.GetConsultationListing()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetVisitListing()")
         End Try
 
-        Return DtConsultation
+        Return DtVisit
 
     End Function
 
@@ -101,16 +105,16 @@ Public Class ClsDbVisit
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("UPDATE samc_consultation ")
+                .Append("UPDATE samc_Visit ")
                 .Append("SET IsCompleted = '" & CS.IsCompleted & "' ")
-                .Append("WHERE ConsultationID = '" & CS.ConsultationID & "' ")
+                .Append("WHERE VisitID = '" & CS.VisitID & "' ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.UpdateIsCompleted()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.UpdateIsCompleted()")
         End Try
 
         Return True
@@ -164,34 +168,34 @@ Public Class ClsDbVisit
 
     End Function
 
-    Public Function GetConsultationDetail(CONS As ClsVisit) As DataTable
+    Public Function GetVisitDetail(CONS As ClsVisit) As DataTable
 
-        Dim DtConsultation As New DataTable
+        Dim DtVisit As New DataTable
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.ConsultationID, EmployeeID, EmployeeName, CustomerID, CustomerName, ConsultationTime, IsCompleted, ")
-                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, ConsultationDesc, ")
+                .Append("SELECT a.VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, IsCompleted, ")
+                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDesc, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
-                .Append("FROM samc_consultation a ")
-                .Append("INNER JOIN samc_consultationdetail b ON a.ConsultationID = b.ConsultationID ")
+                .Append("FROM samc_Visit a ")
+                .Append("INNER JOIN samc_Visitdetail b ON a.VisitID = b.VisitID ")
 
-                If CONS.ConsultationID <> "" Then
-                    .Append("WHERE a.ConsultationID = '" & CONS.ConsultationID & "' ")
+                If CONS.VisitID <> "" Then
+                    .Append("WHERE a.VisitID = '" & CONS.VisitID & "' ")
                 End If
 
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
-            Da.Fill(DtConsultation)
+            Da.Fill(DtVisit)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbConsultation.GetConsultationDetail()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetVisitDetail()")
         End Try
 
-        Return DtConsultation
+        Return DtVisit
 
     End Function
 

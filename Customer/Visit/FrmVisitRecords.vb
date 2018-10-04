@@ -21,7 +21,7 @@
         Dim ClsConsultation As New ClsVisit
 
         Try
-            DtConsultation = ClsConsultation.GetConsultationListing(ClsConsultation)
+            DtConsultation = ClsConsultation.GetVisitListing(ClsConsultation)
             If DtConsultation.Rows.Count > 0 Then
                 DgvConsultationListing.DataSource = DtConsultation
                 DgvConsultationListing.Show()
@@ -40,7 +40,7 @@
     Private Sub DgvConsultationListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvConsultationListing.CellDoubleClick
 
         Dim CustomerID As String
-        Dim ConsultationID As String
+        Dim VisitID As String
 
         Try
             If e.RowIndex = -1 Or e.ColumnIndex = -1 Then
@@ -48,10 +48,10 @@
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     CustomerID = DgvConsultationListing.Rows(e.RowIndex).Cells("CustomerID").Value
-                    ConsultationID = DgvConsultationListing.Rows(e.RowIndex).Cells("ConsultationID").Value
+                    VisitID = DgvConsultationListing.Rows(e.RowIndex).Cells("ConsultationID").Value
                     Dim Frm As New FrmVisitEntry With {
                         .UserCommand = "SHOW_CUSTOMER_CONSULTATION",
-                        .ConsultationID = ConsultationID,
+                        .VisitID = VisitID,
                         .CustomerID = CustomerID
                     }
                     Frm.ShowDialog()
@@ -64,5 +64,8 @@
 
     End Sub
 
+    Private Sub BtnReload_Click(sender As Object, e As EventArgs) Handles BtnReload.Click
+        PopulateConsultationListing()
+    End Sub
 
 End Class

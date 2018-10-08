@@ -116,8 +116,8 @@ Public Class ClsDbServices
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT ItemTypeCode, ItemTypeDescription ")
-                .Append("FROM samc_servicetype")
-                .Append("WHERE ItemTypeCode IN ('02','03','18','19','22') ")
+                .Append("FROM samc_servicetype ")
+                .Append("WHERE ItemTypeCode IN ('02','03','17','18','22') ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
@@ -125,7 +125,7 @@ Public Class ClsDbServices
             Da.Fill(DtTest)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetTestTypeServices()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetTestType()")
         End Try
 
         Return DtTest
@@ -139,7 +139,7 @@ Public Class ClsDbServices
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemCode, ItemDescription ")
+                .Append("SELECT ItemCode, ItemDescription, ItemTypeCode ")
                 .Append("FROM samc_services ")
                 If SV.ItemTypeCode <> "" Then
                     .Append("WHERE ItemTypeCode = '" & SV.ItemTypeCode & "' ")
@@ -151,7 +151,7 @@ Public Class ClsDbServices
             Da.Fill(DtTest)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetTestTypeDescription()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetTestTypeName()")
         End Try
 
         Return DtTest

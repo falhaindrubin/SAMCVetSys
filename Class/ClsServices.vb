@@ -78,8 +78,12 @@
         Return DbServices.GetServiceTypeList(ClsServices)
     End Function
 
-    Public Function GetTestTypeServices(ClsServices As ClsServices) As DataTable
+    Public Function GetTestType(ClsServices As ClsServices) As DataTable
         Return DbServices.GetTestType(ClsServices)
+    End Function
+
+    Public Function GetTestTypeName(ClsServices As ClsServices) As DataTable
+        Return DbServices.GetTestTypeName(ClsServices)
     End Function
 
 End Class

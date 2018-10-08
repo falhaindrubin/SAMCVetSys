@@ -20,13 +20,13 @@
         End Set
     End Property
 
-    Private _Price As Decimal
-    Public Property Price As Decimal
+    Private _UnitPrice As Decimal
+    Public Property UnitPrice As Decimal
         Get
-            Return _Price
+            Return _UnitPrice
         End Get
         Set(value As Decimal)
-            _Price = value
+            _UnitPrice = value
         End Set
     End Property
 
@@ -41,7 +41,6 @@
     End Property
 
     Private Sub FrmSearchItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
         PopulateItemListing()
         TxtSearchText.Select()
@@ -93,7 +92,7 @@
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     ItemCode = DgvSearchResult.Rows(e.RowIndex).Cells("ItemCode").Value
                     ItemDescription = DgvSearchResult.Rows(e.RowIndex).Cells("ItemDescription").Value
-                    Price = DgvSearchResult.Rows(e.RowIndex).Cells("Price").Value
+                    UnitPrice = DgvSearchResult.Rows(e.RowIndex).Cells("Price").Value
                 End If
             End If
 

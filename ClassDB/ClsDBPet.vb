@@ -190,4 +190,50 @@ Public Class ClsDBPet
 
     End Function
 
+    Public Function GetPetTemperament(PET As ClsPet) As DataTable
+
+        Dim DtPetTemperament As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT TemperamentCode, TemperamentName ")
+                .Append("FROM samc_temperament ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtPetTemperament)
+
+        Catch ex As Exception
+            MsgBox(ex.ToString, MsgBoxStyle.Critical, "ClsDBPet.GetPetTemperament()")
+        End Try
+
+        Return DtPetTemperament
+
+    End Function
+
+    Public Function GetPetBodyScore(PET As ClsPet) As DataTable
+
+        Dim DtPetBodyScore As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT BodyScoreCode, BodyScoreName ")
+                .Append("FROM samc_bodyscore ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtPetBodyScore)
+
+        Catch ex As Exception
+            MsgBox(ex.ToString, MsgBoxStyle.Critical, "ClsDBPet.GetPetBodyScore()")
+        End Try
+
+        Return DtPetBodyScore
+
+    End Function
+
 End Class

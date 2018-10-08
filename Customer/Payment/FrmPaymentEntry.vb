@@ -130,7 +130,7 @@
                 .ShowDialog()
                 TxtItem.Text = .ItemDescription
                 TxtItem.Tag = .ItemCode
-                TxtUnitPrice.Text = .Price
+                TxtUnitPrice.Text = .UnitPrice
             End With
 
         Catch ex As Exception

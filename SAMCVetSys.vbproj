@@ -175,8 +175,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassDb\ClsDbBill.vb" />
+    <Compile Include="ClassDb\ClsDbPEFindings.vb" />
+    <Compile Include="ClassDb\ClsDbTreatment.vb" />
     <Compile Include="Class\ClsBillDetail.vb" />
     <Compile Include="Class\ClsBill.vb" />
+    <Compile Include="ClassDb\ClsDbDiagnosis.vb" />
+    <Compile Include="Class\ClsDiagnosisDetail.vb" />
+    <Compile Include="Class\ClsDiagnosis.vb" />
+    <Compile Include="Class\ClsPEFindings.vb" />
+    <Compile Include="Class\ClsTreatment.vb" />
     <Compile Include="Customer\Appointment\FrmAppointmentEntry.Designer.vb">
       <DependentUpon>FrmAppointmentEntry.vb</DependentUpon>
     </Compile>

@@ -1,6 +1,6 @@
 ﻿Public Class ClsPet
 
-    Dim DBPet As New ClsDBPet
+    Dim DbPet As New ClsDBPet
 
     Private _PetID As String
     Public Property PetID As String
@@ -122,6 +122,46 @@
         End Set
     End Property
 
+    Private _TemperamentCode As String
+    Public Property TemperamentCode As String
+        Get
+            Return _TemperamentCode
+        End Get
+        Set(value As String)
+            _TemperamentCode = value
+        End Set
+    End Property
+
+    Private _TemperamentName As String
+    Public Property TemperamentName As String
+        Get
+            Return _TemperamentName
+        End Get
+        Set(value As String)
+            _TemperamentName = value
+        End Set
+    End Property
+
+    Private _BodyScoreCode As String
+    Public Property BodyScoreCode As String
+        Get
+            Return _BodyScoreCode
+        End Get
+        Set(value As String)
+            _BodyScoreCode = value
+        End Set
+    End Property
+
+    Private _BodyScoreName As String
+    Public Property BodyScoreName As String
+        Get
+            Return _BodyScoreName
+        End Get
+        Set(value As String)
+            _BodyScoreName = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get
@@ -158,6 +198,14 @@
 
     Public Function GetPetSex(ClsPet As ClsPet) As DataTable
         Return DBPet.GetPetSex(ClsPet)
+    End Function
+
+    Public Function GetPetTemperament(ClsPet As ClsPet) As DataTable
+        Return DbPet.GetPetTemperament(ClsPet)
+    End Function
+
+    Public Function GetPetBodyScore(ClsPet As ClsPet) As DataTable
+        Return DbPet.GetPetBodyScore(ClsPet)
     End Function
 
 End Class

@@ -47,11 +47,13 @@ Public Class ClsDbDiagnosis
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_diagnosisdetail ")
-                .Append("(VisitID, RowNo, ItemCode, ItemDescription, UnitPrice, Quantity, TotalPrice) ")
+                .Append("(VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice) ")
                 .Append("VALUES ")
-                .Append("('" & DG.VisitID & "', '" & DG.RowNo & "', '" & DG.ItemCode & "', '" & DG.ItemDescription & "', '" & DG.UnitPrice & "', '" & DG.Quantity & "', '" & DG.TotalPrice & "') ")
+                .Append("('" & DG.VisitID & "', '" & DG.RowNo & "', '" & DG.ItemCode & "', '" & DG.ItemDescription & "', '" & DG.ItemGroup & "', '" & DG.ItemTypeCode & "', '" & DG.ItemTypeDescription & "', ")
+                .Append("'" & DG.UnitPrice & "', '" & DG.Quantity & "', '" & DG.TotalPrice & "') ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("VisitID = '" & DG.VisitID & "', RowNo = '" & DG.RowNo & "', ItemCode = '" & DG.ItemCode & "', ItemDescription = '" & DG.ItemDescription & "', UnitPrice = '" & DG.UnitPrice & "', ")
+                .Append("ItemGroup = '" & DG.ItemGroup & "', ItemTypeCode = '" & DG.ItemTypeCode & "', ItemTypeDescription = '" & DG.ItemTypeDescription & "', ")
                 .Append("Quantity = '" & DG.Quantity & "', TotalPrice = '" & DG.TotalPrice & "' ")
             End With
 
@@ -63,21 +65,23 @@ Public Class ClsDbDiagnosis
             Return False
         End Try
 
-        Return IIf(Ret = 0, False, True)
+        Return True
 
     End Function
 
-    Public Function GetVisitDiagnosisDetail(D As ClsDiagnosis) As DataTable
+    Public Function GetDiagnosisDetail(D As ClsDiagnosis) As DataTable
 
         Dim DtDiagnosis As New DataTable
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT VisitID, RowNo, ItemCode, ItemDescription, UnitPrice, Quantity, TotalPrice ")
-                .Append("FROM samc_diagnosisdetail ")
+                .Append("SELECT a.VisitID, PetID, PetName, Diagnosis,  ")
+                .Append("RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_diagnosis a ")
+                .Append("INNER JOIN samc_diagnosisdetail b ON a.VisitID = b.VisitID ")
                 If D.VisitID <> "" Then
-                    .Append("WHERE VisitID = '" & D.VisitID & "' ")
+                    .Append("WHERE a.VisitID = '" & D.VisitID & "' ")
                 End If
             End With
 

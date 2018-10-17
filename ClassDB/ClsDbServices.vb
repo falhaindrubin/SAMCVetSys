@@ -15,13 +15,13 @@ Public Class ClsDbServices
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_services ")
-                .Append("(ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("(ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & SVC.ItemCode & "', '" & CSQLQuote(SVC.ItemDescription) & "', '" & SVC.ItemType & "', '" & SVC.ItemTypeCode & "', '" & SVC.Price & "', ")
+                .Append("('" & SVC.ItemCode & "', '" & CSQLQuote(SVC.ItemDescription) & "', '" & SVC.ItemGroup & "', '" & SVC.ItemTypeCode & "', '" & SVC.ItemTypeDescription & "', '" & SVC.UnitPrice & "', ")
                 .Append("'" & SVC.Ref.CreatedBy & "', " & CSQLDateTime(SVC.Ref.DateCreated) & ", '" & SVC.Ref.ModifiedBy & "', " & CSQLDateTime(SVC.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemCode = '" & SVC.ItemCode & "', ItemDescription = '" & CSQLQuote(SVC.ItemDescription) & "', Price = '" & SVC.Price & "', ")
-                .Append("ModifiedBy = '" & SVC.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SVC.Ref.DateModified) & " ")
+                .Append("ItemDescription = '" & CSQLQuote(SVC.ItemDescription) & "', ItemGroup = '" & SVC.ItemGroup & "', ItemTypeCode = '" & SVC.ItemTypeCode & "', ItemTypeDescription = '" & SVC.ItemTypeDescription & "', ")
+                .Append("UnitPrice = '" & SVC.UnitPrice & "', ModifiedBy = '" & SVC.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SVC.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -42,7 +42,7 @@ Public Class ClsDbServices
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("SELECT ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_services ")
             End With
 
@@ -65,7 +65,7 @@ Public Class ClsDbServices
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemTypeCode, ItemTypeDescription ")
+                .Append("SELECT ItemGroup, ItemTypeCode, ItemTypeDescription ")
                 .Append("FROM samc_servicetype ")
                 .Append("ORDER BY ItemTypeDescription ")
             End With
@@ -89,7 +89,7 @@ Public Class ClsDbServices
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("SELECT ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_services ")
                 If SVC.ItemCode <> "" Then
                     .Append("WHERE ItemCode = '" & SVC.ItemCode & "' ")
@@ -157,5 +157,28 @@ Public Class ClsDbServices
         Return DtTest
 
     End Function
+
+    'Public Function GetServicesType(ClsServices) As DataTable
+
+    '    Dim DtServicesType As New DataTable
+
+    '    Try
+    '        Sb = New StringBuilder
+    '        With Sb
+    '            .Append("SELECT ItemTypeCode, ItemTypeDescription, ItemGroup, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+    '            .Append("FROM samc_servicetype ")
+    '        End With
+
+    '        Cmd = New OdbcCommand(Sb.ToString, DbConn)
+    '        Da = New OdbcDataAdapter(Cmd)
+    '        Da.Fill(DtServicesType)
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbServices.GetServicesType()")
+    '    End Try
+
+    '    Return DtServicesType
+
+    'End Function
 
 End Class

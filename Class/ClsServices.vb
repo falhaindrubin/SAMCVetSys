@@ -2,13 +2,13 @@
 
     Dim DbServices As New ClsDbServices
 
-    Private _ItemType As String
-    Public Property ItemType As String
+    Private _ItemGroup As String
+    Public Property ItemGroup As String
         Get
-            Return _ItemType
+            Return _ItemGroup
         End Get
         Set(value As String)
-            _ItemType = value
+            _ItemGroup = value
         End Set
     End Property
 
@@ -19,6 +19,16 @@
         End Get
         Set(value As String)
             _ItemTypeCode = value
+        End Set
+    End Property
+
+    Private _ItemTypeDescription As String
+    Public Property ItemTypeDescription As String
+        Get
+            Return _ItemTypeDescription
+        End Get
+        Set(value As String)
+            _ItemTypeDescription = value
         End Set
     End Property
 
@@ -42,13 +52,13 @@
         End Set
     End Property
 
-    Private _Price As Decimal
-    Public Property Price As Decimal
+    Private _UnitPrice As Decimal
+    Public Property UnitPrice As Decimal
         Get
-            Return _Price
+            Return _UnitPrice
         End Get
         Set(value As Decimal)
-            _Price = value
+            _UnitPrice = value
         End Set
     End Property
 
@@ -85,5 +95,9 @@
     Public Function GetTestTypeName(ClsServices As ClsServices) As DataTable
         Return DbServices.GetTestTypeName(ClsServices)
     End Function
+
+    'Public Function GetServicesType(ClsServices As ClsServices) As DataTable
+    '    Return DbServices.GetServiceTypeList(ClsServices)
+    'End Function
 
 End Class

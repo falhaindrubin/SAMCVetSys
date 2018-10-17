@@ -66,23 +66,43 @@ Public Class ClsVisit
         End Set
     End Property
 
-    Private _ConsultationDesc As String
-    Public Property ConsultationDesc As String
+    Private _VisitDescription As String
+    Public Property VisitDescription As String
         Get
-            Return _ConsultationDesc
+            Return _VisitDescription
         End Get
         Set(value As String)
-            _ConsultationDesc = value
+            _VisitDescription = value
         End Set
     End Property
 
-    Private _IsCompleted As String
-    Public Property IsCompleted As String
+    Private _IsVisitCompleted As String
+    Public Property IsVisitCompleted As String
         Get
-            Return _IsCompleted
+            Return _IsVisitCompleted
         End Get
         Set(value As String)
-            _IsCompleted = value
+            _IsVisitCompleted = value
+        End Set
+    End Property
+
+    Private _IsOngoingTreatment As String
+    Public Property IsOngoingTreatment As String
+        Get
+            Return _IsOngoingTreatment
+        End Get
+        Set(value As String)
+            _IsOngoingTreatment = value
+        End Set
+    End Property
+
+    Private _IsAdmittedToWard As String
+    Public Property IsAdmittedToWard As String
+        Get
+            Return _IsAdmittedToWard
+        End Get
+        Set(value As String)
+            _IsAdmittedToWard = value
         End Set
     End Property
 
@@ -100,16 +120,36 @@ Public Class ClsVisit
         Return DbVisit.GetVisitListing(ClsVisit)
     End Function
 
+    Public Function GetUnassignedVisitListing(ClsVisit As ClsVisit) As DataTable
+        Return DbVisit.GetUnassignedVisitListing(ClsVisit)
+    End Function
+
+    Public Function GetWardedVisitListing(ClsVisit As ClsVisit) As DataTable
+        Return DbVisit.GetWardedVisitListing(ClsVisit)
+    End Function
+
     Public Function AddNewConsultation(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisit(ClsConsultation, DbConn, DbTrans)
     End Function
 
-    Public Function GetConsultationDetail(ClsConsultation As ClsVisit) As DataTable
-        Return DbVisit.GetVisitDetail(ClsConsultation)
+    Public Function GetVisitDetail(ClsVisit As ClsVisit) As DataTable
+        Return DbVisit.GetVisitDetail(ClsVisit)
     End Function
 
-    Public Function UpdateIsCompleted(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbVisit.UpdateIsCompleted(ClsConsultation, DbConn, DbTrans)
+    Public Function UpdateIsVisitCompleted(ClsVisit As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbVisit.UpdateIsVisitCompleted(ClsVisit, DbConn, DbTrans)
+    End Function
+
+    Public Function UpdateTreatmentStatus(ClsVisit As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbVisit.UpdateTreatmentStatus(ClsVisit, DbConn, DbTrans)
+    End Function
+
+    Public Function GetIncompleteVisitListing(ClsVisit As ClsVisit) As DataTable
+        Return DbVisit.GetIncompleteVisitListing(ClsVisit)
+    End Function
+
+    Public Function UpdateWardAdmission(ClsVisit As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbVisit.UpdateWardAdmission(ClsVisit, DbConn, DbTrans)
     End Function
 
 End Class

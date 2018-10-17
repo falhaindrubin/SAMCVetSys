@@ -126,16 +126,4 @@ Public Class ClsAppointment
         Return DBAppointment.GetAppointmentReport(ClsAppointment)
     End Function
 
-    'Public Function GetAppointmentSummary(ByVal ClsAppointment As ClsAppointment, ByRef DBConn As OdbcConnection) As DataTable
-    '    Return DBAppointment.GetAppointmentSummary(ClsAppointment, DBConn)
-    'End Function
-
-    'Public Function CheckExistingAppointment(ByVal ClsAppointment As ClsAppointment, ByRef DBConn As OdbcConnection) As DataTable
-    '    Return DBAppointment.CheckExistingAppointment(ClsAppointment, DBConn)
-    'End Function
-
-    'Public Function GetAppointmentHistory(ClsAppointment As ClsAppointment, DBConn As OdbcConnection) As DataTable
-    '    Return DBAppointment.GetAppointmentHistory(ClsAppointment, DBConn)
-    'End Function
-
 End Class

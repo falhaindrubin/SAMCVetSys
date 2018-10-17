@@ -15,12 +15,12 @@ Public Class ClsDbProducts
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_products ")
-                .Append("(ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("(ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & PD.ItemCode & "', '" & CSQLQuote(PD.ItemDescription) & "', '" & PD.ItemType & "', '" & PD.ItemTypeCode & "', '" & PD.Price & "', ")
+                .Append("('" & PD.ItemCode & "', '" & CSQLQuote(PD.ItemDescription) & "', '" & PD.ItemGroup & "', '" & PD.ItemTypeCode & "', '" & PD.ItemTypeDescription & "', '" & PD.UnitPrice & "', ")
                 .Append("'" & PD.Ref.CreatedBy & "', " & CSQLDateTime(PD.Ref.DateCreated) & ", '" & PD.Ref.ModifiedBy & "', " & CSQLDateTime(PD.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemCode = '" & PD.ItemCode & "', ItemDescription = '" & CSQLQuote(PD.ItemDescription) & "', Price = '" & PD.Price & "', ")
+                .Append("ItemDescription = '" & CSQLQuote(PD.ItemDescription) & "', ItemGroup = '" & PD.ItemGroup & "', ItemTypeCode = '" & PD.ItemTypeCode & "', ItemTypeDescription = '" & PD.ItemTypeDescription & "', UnitPrice = '" & PD.UnitPrice & "', ")
                 .Append("ModifiedBy = '" & PD.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(PD.Ref.DateModified) & " ")
             End With
 
@@ -43,7 +43,7 @@ Public Class ClsDbProducts
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("SELECT ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_products ")
             End With
 
@@ -66,7 +66,7 @@ Public Class ClsDbProducts
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemCode, ItemDescription, ItemType, ItemTypeCode, Price, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("SELECT ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_products ")
                 If PD.ItemCode <> "" Then
                     .Append("WHERE ItemCode = '" & PD.ItemCode & "' ")

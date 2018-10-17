@@ -55,6 +55,26 @@ Public Class ClsBillDetail
         End Set
     End Property
 
+    Private _ItemGroup As String
+    Public Property ItemGroup As String
+        Get
+            Return _ItemGroup
+        End Get
+        Set(value As String)
+            _ItemGroup = value
+        End Set
+    End Property
+
+    Private _ItemTypeDescription As String
+    Public Property ItemTypeDescription As String
+        Get
+            Return _ItemTypeDescription
+        End Get
+        Set(value As String)
+            _ItemTypeDescription = value
+        End Set
+    End Property
+
     Private _ItemTypeCode As String
     Public Property ItemTypeCode As String
         Get

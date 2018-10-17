@@ -135,6 +135,76 @@ Public Class ClsVisitDetail
         End Set
     End Property
 
+    Private _Temperature As Decimal
+    Public Property Temperature As Decimal
+        Get
+            Return _Temperature
+        End Get
+        Set(value As Decimal)
+            _Temperature = value
+        End Set
+    End Property
+
+    Private _TemperamentCode As String
+    Public Property TemperamentCode As String
+        Get
+            Return _TemperamentCode
+        End Get
+        Set(value As String)
+            _TemperamentCode = value
+        End Set
+    End Property
+
+    Private _TemperamentName As String
+    Public Property TemperamentName As String
+        Get
+            Return _TemperamentName
+        End Get
+        Set(value As String)
+            _TemperamentName = value
+        End Set
+    End Property
+
+    Private _BodyScoreCode As String
+    Public Property BodyScoreCode As String
+        Get
+            Return _BodyScoreCode
+        End Get
+        Set(value As String)
+            _BodyScoreCode = value
+        End Set
+    End Property
+
+    Private _BodyScoreName As String
+    Public Property BodyScoreName As String
+        Get
+            Return _BodyScoreName
+        End Get
+        Set(value As String)
+            _BodyScoreName = value
+        End Set
+    End Property
+
+    Private _BodyWeight As Decimal
+    Public Property BodyWeight As Decimal
+        Get
+            Return _BodyWeight
+        End Get
+        Set(value As Decimal)
+            _BodyWeight = value
+        End Set
+    End Property
+
+    Private _PEFindings As String
+    Public Property PEFindings As String
+        Get
+            Return _PEFindings
+        End Get
+        Set(value As String)
+            _PEFindings = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get
@@ -145,7 +215,7 @@ Public Class ClsVisitDetail
         End Set
     End Property
 
-    Public Function AddNewConsultationDetail(ClsVisitDetail As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewVisitDetail(ClsVisitDetail As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisitDetail(ClsVisitDetail, DbConn, DbTrans)
     End Function
 

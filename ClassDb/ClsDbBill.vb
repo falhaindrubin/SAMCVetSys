@@ -47,14 +47,14 @@ Public Class ClsDbBill
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_billingdetail ")
-                .Append("(InvoiceNo, RowNo, ItemCode, ItemDescription, ItemTypeCode, Prescription, Notes, Quantity, UnitPrice, ItemDiscount, TotalPrice) ")
+                .Append("(InvoiceNo, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice) ")
                 .Append("VALUES ")
-                .Append("('" & BL.InvoiceNo & "', '" & BL.RowNo & "', '" & BL.ItemCode & "', '" & CSQLQuote(BL.ItemDescription) & "', '" & BL.ItemTypeCode & "', '" & CSQLQuote(BL.Prescription) & "', ")
-                .Append("'" & BL.Notes & "', '" & BL.Quantity & "', '" & BL.UnitPrice & "', '" & BL.ItemDiscount & "', '" & BL.TotalPrice & "') ")
+                .Append("('" & BL.InvoiceNo & "', '" & BL.RowNo & "', '" & BL.ItemCode & "', '" & CSQLQuote(BL.ItemDescription) & "', '" & BL.ItemGroup & "', '" & BL.ItemTypeCode & "', '" & BL.ItemTypeDescription & "', '" & CSQLQuote(BL.Prescription) & "', ")
+                .Append("'" & BL.Notes & "', '" & BL.Quantity & "', '" & BL.UnitPrice & "', '" & BL.TotalPrice & "') ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("RowNo = '" & BL.RowNo & "', ItemCode = '" & BL.ItemCode & "', ItemDescription = '" & CSQLQuote(BL.ItemDescription) & "', ItemTypeCode = '" & BL.ItemTypeCode & "', ")
+                .Append("ItemCode = '" & BL.ItemCode & "', ItemDescription = '" & CSQLQuote(BL.ItemDescription) & "', ItemGroup = '" & BL.ItemGroup & "', ItemTypeCode = '" & BL.ItemTypeCode & "', ItemTypeDescription = '" & BL.ItemTypeDescription & "', ")
                 .Append("Prescription = '" & CSQLQuote(BL.Prescription) & "', Notes = '" & CSQLQuote(BL.Notes) & "', Quantity = '" & BL.Quantity & "', UnitPrice = '" & BL.UnitPrice & "', ")
-                .Append("ItemDiscount = '" & BL.ItemDiscount & "', TotalPrice = '" & BL.TotalPrice & "' ")
+                .Append("TotalPrice = '" & BL.TotalPrice & "' ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -106,11 +106,11 @@ Public Class ClsDbBill
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
-                .Append("RowNo, ItemCode, ItemDescription, ItemTypeCode, Prescription, Notes, Quantity, UnitPrice, ItemDiscount, TotalPrice ")
+                .Append("RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice ")
                 .Append("FROM samc_billing a ")
                 .Append("INNER JOIN samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
-                If BL.VisitID <> "" Then
-                    .Append("WHERE a.VisitID = '" & BL.VisitID & "' ")
+                If BL.InvoiceNo <> "" Then
+                    .Append("WHERE a.InvoiceNo = '" & BL.InvoiceNo & "' ")
                 End If
             End With
 
@@ -194,6 +194,91 @@ Public Class ClsDbBill
         End Try
 
         Return DtBill
+
+    End Function
+
+    Public Function GetBillHeader(B As ClsBill) As DataTable
+
+        Dim DtBillHeader As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_billing ")
+                If B.VisitID <> "" Then
+                    .Append("WHERE VisitID = '" & B.VisitID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtBillHeader)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.GetBillHeader()")
+        End Try
+
+        Return DtBillHeader
+
+    End Function
+
+    Public Function GetBillDetail(B As ClsBill) As DataTable
+
+        Dim DtBillDetail As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT InvoiceNo, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeDescription, ItemTypeCode, Prescription, Notes, Quantity, UnitPrice, TotalPrice ")
+                .Append("FROM samc_billingdetail ")
+                If B.InvoiceNo <> "" Then
+                    .Append("WHERE InvoiceNo = '" & B.InvoiceNo & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtBillDetail)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.GetBillDetail()")
+        End Try
+
+        Return DtBillDetail
+
+    End Function
+
+    Public Function DeleteBill(B As ClsBill, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Dim Ret As Integer
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("DELETE FROM samc_billing ")
+                .Append("WHERE InvoiceNo = '" & B.InvoiceNo & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Ret = Cmd.ExecuteNonQuery()
+
+            Sb = New StringBuilder
+            With Sb
+                .Append("DELETE FROM samc_billingdetail ")
+                .Append("WHERE InvoiceNo = '" & B.InvoiceNo & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Ret = Cmd.ExecuteNonQuery() + Ret
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.DeleteBill()")
+            Return False
+        End Try
+
+        Return IIf(Ret = 0, False, True)
 
     End Function
 

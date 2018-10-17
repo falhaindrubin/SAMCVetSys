@@ -82,6 +82,16 @@
         End Set
     End Property
 
+    Private _BodyWeight As String
+    Public Property BodyWeight As String
+        Get
+            Return _BodyWeight
+        End Get
+        Set(value As String)
+            _BodyWeight = value
+        End Set
+    End Property
+
     Private _PEFindings As String
     Public Property PEFindings As String
         Get
@@ -102,8 +112,12 @@
         End Set
     End Property
 
-    Public Function AddNewPEFindings(ClsPEFindings, DbConn, DbTrans) As Boolean
+    Public Function AddNewPEFindings(ClsPEFindings As ClsPEFindings, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbPEFindings.AddNewFindings(ClsPEFindings, DbConn, DbTrans)
+    End Function
+
+    Public Function GetPEFindings(ClsPEFindings As ClsPEFindings) As DataTable
+        Return DbPEFindings.GetPEFindings(ClsPEFindings)
     End Function
 
 End Class

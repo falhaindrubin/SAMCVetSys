@@ -56,8 +56,8 @@
         Return DbDiagnosis.AddNewDiagnosis(ClsDiagnosis, DbConn, DbTrans)
     End Function
 
-    Public Function GetVisitDiagnosisDetail(ClsDiagnosis As ClsDiagnosis) As DataTable
-        Return DbDiagnosis.GetVisitDiagnosisDetail(ClsDiagnosis)
+    Public Function GetDiagnosisDetail(ClsDiagnosis As ClsDiagnosis) As DataTable
+        Return DbDiagnosis.GetDiagnosisDetail(ClsDiagnosis)
     End Function
 
 End Class

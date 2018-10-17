@@ -46,13 +46,16 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_visitdetail ")
-                .Append("(VisitID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDescription) ")
+                .Append("(VisitID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDescription, ")
+                .Append("Temperature, TemperamentCode, TemperamentName, BodyScoreCode, BodyScoreName, BodyWeight, PEFindings) ")
                 .Append("VALUES ")
                 .Append("('" & VS.VisitID & "', '" & VS.PetID & "', '" & VS.PetName & "', " & CSQLDate(VS.PetDOB) & ", '" & VS.SexCode & "', '" & VS.SexName & "', ")
                 .Append("'" & VS.AnimalTypeCode & "', '" & VS.AnimalTypeName & "', '" & VS.BreedCode & "', ")
-                .Append("'" & VS.BreedName & "', '" & VS.StatusCode & "', '" & VS.StatusName & "', '" & VS.VisitDescription & "') ")
+                .Append("'" & VS.BreedName & "', '" & VS.StatusCode & "', '" & VS.StatusName & "', '" & VS.VisitDescription & "', ")
+                .Append("'" & VS.Temperature & "', '" & VS.TemperamentCode & "', '" & VS.TemperamentName & "', '" & VS.BodyScoreCode & "', '" & VS.BodyScoreName & "', '" & VS.BodyWeight & "', '" & CSQLQuote(VS.PEFindings) & "') ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("VisitDescription = '" & VS.VisitDescription & "' ")
+                .Append("VisitDescription = '" & CSQLQuote(VS.VisitDescription) & "', Temperature = '" & VS.Temperature & "', TemperamentCode = '" & VS.TemperamentCode & "', TemperamentName = '" & VS.TemperamentName & "', BodyScoreCode = '" & VS.BodyScoreCode & "', BodyScoreName = '" & VS.BodyScoreName & "', BodyWeight = '" & VS.BodyWeight & "', ")
+                .append("PEFindings = '" & CSQLQuote(VS.PEFindings) & "' ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -62,7 +65,7 @@ Public Class ClsDbVisit
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.AddNewVisitDetail()")
         End Try
 
-        Return IIf(Ret = 0, False, True)
+        Return True
 
     End Function
 
@@ -78,8 +81,97 @@ Public Class ClsDbVisit
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
-                .Append(" ")
-                .Append("WHERE IsCompleted = '0' ")
+
+                If VS.CustomerID <> "" Then
+                    .Append("WHERE CustomerID = '" & VS.CustomerID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtVisit)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetVisitListing()")
+        End Try
+
+        Return DtVisit
+
+    End Function
+
+    Public Function GetWardedVisitListing(VS As ClsVisit) As DataTable
+
+        Dim DtVisit As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
+                .Append("IsVisitCompleted, IsOngoingTreatment, IsAdmittedToWard, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_visit a ")
+                .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
+                .Append("WHERE IsVisitCompleted = '" & VS.IsVisitCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' AND IsAdmittedToWard = '" & VS.IsAdmittedToWard & "' ")
+                If VS.CustomerID <> "" Then
+                    .Append("AND CustomerID = '" & VS.CustomerID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtVisit)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetWardedVisitListing()")
+        End Try
+
+        Return DtVisit
+
+    End Function
+
+    Public Function GetUnassignedVisitListing(VS As ClsVisit) As DataTable
+
+        Dim DtVisit As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
+                .Append("IsVisitCompleted, IsOngoingTreatment, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_visit a ")
+                .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
+                .Append("WHERE IsVisitCompleted = '" & VS.IsVisitCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' ")
+                If VS.CustomerID <> "" Then
+                    .Append("AND CustomerID = '" & VS.CustomerID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtVisit)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetUnassignedVisitListing()")
+        End Try
+
+        Return DtVisit
+
+    End Function
+
+    Public Function GetIncompleteVisitListing(VS As ClsVisit) As DataTable
+
+        Dim DtVisit As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
+                .Append("IsVisitCompleted, IsOngoingTreatment, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_visit a ")
+                .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
+                .Append("WHERE IsVisitCompleted = '0' ")
 
                 If VS.CustomerID <> "" Then
                     .Append("AND CustomerID = '" & VS.CustomerID & "' ")
@@ -98,15 +190,15 @@ Public Class ClsDbVisit
 
     End Function
 
-    Public Function UpdateIsCompleted(CS As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function UpdateIsVisitCompleted(CS As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim Ret As Integer
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("UPDATE samc_Visit ")
-                .Append("SET IsCompleted = '" & CS.IsCompleted & "' ")
+                .Append("UPDATE samc_visit ")
+                .Append("SET IsVisitCompleted = '" & CS.IsVisitCompleted & "' ")
                 .Append("WHERE VisitID = '" & CS.VisitID & "' ")
             End With
 
@@ -114,7 +206,7 @@ Public Class ClsDbVisit
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.UpdateIsCompleted()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.UpdateIsVisitCompleted()")
         End Try
 
         Return True
@@ -168,21 +260,22 @@ Public Class ClsDbVisit
 
     End Function
 
-    Public Function GetVisitDetail(CONS As ClsVisit) As DataTable
+    Public Function GetVisitDetail(V As ClsVisit) As DataTable
 
         Dim DtVisit As New DataTable
 
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, IsCompleted, ")
-                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDesc, ")
+                .Append("SELECT a.VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, IsVisitCompleted, IsOngoingTreatment, ")
+                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDescription, ")
+                .Append("Temperature, TemperamentCode, TemperamentName, BodyScoreCode, BodyScoreName, BodyWeight, PEFindings, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
-                .Append("FROM samc_Visit a ")
-                .Append("INNER JOIN samc_Visitdetail b ON a.VisitID = b.VisitID ")
+                .Append("FROM samc_visit a ")
+                .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
 
-                If CONS.VisitID <> "" Then
-                    .Append("WHERE a.VisitID = '" & CONS.VisitID & "' ")
+                If V.VisitID <> "" Then
+                    .Append("WHERE a.VisitID = '" & V.VisitID & "' ")
                 End If
 
             End With
@@ -316,33 +409,53 @@ Public Class ClsDbVisit
 
     End Function
 
-    'Public Function GetAppointmentListing(APP As ClsAppointment) As DataTable
+    Public Function UpdateTreatmentStatus(V As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
-    '    Dim DtAppointment As New DataTable
+        Dim Ret As Integer
 
-    '    Try
-    '        Sb = New StringBuilder
-    '        With Sb
-    '            .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName,AppointmentTime, CreatedBy, DateCreated, ModifiedBy, DateModified ")
-    '            .Append("FROM samc_appointment ")
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("UPDATE samc_visit ")
+                .Append("SET IsOngoingTreatment = '" & V.IsOngoingTreatment & "', ")
+                .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
+                .Append("WHERE VisitID = '" & V.VisitID & "' ")
+            End With
 
-    '            If APP.CustomerID <> "" Then
-    '                .Append("WHERE CustomerID = '" & APP.CustomerID & "' ")
-    '            End If
-    '        End With
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Ret = Cmd.ExecuteNonQuery()
 
-    '        Cmd = New OdbcCommand(Sb.ToString, DbConn)
-    '        Da = New OdbcDataAdapter(Cmd)
-    '        Da.Fill(DtAppointment)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.UpdateTreatmentStatus()")
+            Return False
+        End Try
 
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBAppointment.GetAppointmentListing()")
-    '    End Try
+        Return True
 
-    '    Return DtAppointment
+    End Function
 
-    'End Function
+    Public Function UpdateWardAdmission(V As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("UPDATE samc_visit ")
+                .Append("SET IsAdmittedToWard = '" & V.IsAdmittedToWard & "', IsOngoingTreatment = '" & V.IsOngoingTreatment & "', ")
+                .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
+                .Append("WHERE VisitID = '" & V.VisitID & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.UpdateWardAdmission()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
 
 
 End Class

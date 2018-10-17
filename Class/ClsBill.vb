@@ -141,4 +141,16 @@ Public Class ClsBill
         Return DbBill.GetPendingInvoiceList(ClsBill)
     End Function
 
+    Public Function GetBillHeader(ClsBill As ClsBill) As DataTable
+        Return DbBill.GetBillHeader(ClsBill)
+    End Function
+
+    Public Function GetBillDetail(ClsBill As ClsBill) As DataTable
+        Return DbBill.GetBillDetail(ClsBill)
+    End Function
+
+    Public Function DeleteBill(ClsBill As ClsBill, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbBill.DeleteBill(ClsBill, DbConn, DbTrans)
+    End Function
+
 End Class

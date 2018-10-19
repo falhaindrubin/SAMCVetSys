@@ -1078,12 +1078,12 @@ Public Class FrmVisitEntry
             End If
 
             'Check appointment issues/description/complaints for each pets selected for the appontment
-            For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
-                If DgvSelectedPet.Rows(i).Cells("VisitDescription").Value = "" Then
-                    MsgBox("Please specify pet's issue/problem/complaint for " & DgvSelectedPet.Rows(i).Cells("PetName").Value & ".", MsgBoxStyle.Exclamation, "No Pet Problems Specified")
-                    Return False
-                End If
-            Next
+            'For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+            '    If DgvSelectedPet.Rows(i).Cells("VisitDescription").Value = "" Then
+            '        MsgBox("Please specify pet's issue/problem/complaint for " & DgvSelectedPet.Rows(i).Cells("PetName").Value & ".", MsgBoxStyle.Exclamation, "No Pet Problems Specified")
+            '        Return False
+            '    End If
+            'Next
 
             'Check existing and vet availability on that day for new appointment
             If TxtVisitID.Text = "" Then

@@ -31,7 +31,7 @@
                 Exit Sub
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
-                    Dim Frm As New FrmWardEntry With {
+                    Dim Frm As New FrmWardInformation With {
                         .UserCommand = "SHOW_WARD_INFO",
                         .WardID = DgvWardListing.Rows(e.RowIndex).Cells("WardID").Value,
                         .CustomerID = DgvWardListing.Rows(e.RowIndex).Cells("CustomerID").Value,
@@ -57,7 +57,7 @@
     End Sub
 
     Private Sub BtnAddNewWard_Click(sender As Object, e As EventArgs) Handles BtnAddNewWard.Click
-        With FrmWardEntry
+        With FrmWardInformation
             .ShowDialog()
         End With
     End Sub

@@ -156,4 +156,8 @@
         Return DbWard.AddNewWardTreatment(ClsWardTreatment, DbConn, DbTrans)
     End Function
 
+    Public Function GetWardTreatmentDetail(ClsWardTreatment As ClsWardTreatment) As DataTable
+        Return DbWard.GetWardTreatmentDetail(ClsWardTreatment)
+    End Function
+
 End Class

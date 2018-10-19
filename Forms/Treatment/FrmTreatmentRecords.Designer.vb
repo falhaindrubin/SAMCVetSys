@@ -27,6 +27,7 @@ Partial Class FrmTreatmentRecords
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.DgvTreatmentListing = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewCustomer = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
@@ -83,20 +84,32 @@ Partial Class FrmTreatmentRecords
         '
         Me.PnlActionBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Controls.Add(Me.BtnAddNewCustomer)
         Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(985, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(985, 68)
         Me.PnlActionBar.TabIndex = 79
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(247, 32)
+        Me.Label25.TabIndex = 15
+        Me.Label25.Text = "Treatment Records"
         '
         'BtnClose
         '
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(919, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(919, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -107,7 +120,7 @@ Partial Class FrmTreatmentRecords
         Me.BtnAddNewCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewCustomer.BackgroundImage = CType(resources.GetObject("BtnAddNewCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 3)
+        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 6)
         Me.BtnAddNewCustomer.Name = "BtnAddNewCustomer"
         Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 56)
         Me.BtnAddNewCustomer.TabIndex = 2
@@ -118,7 +131,7 @@ Partial Class FrmTreatmentRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(858, 3)
+        Me.BtnReload.Location = New System.Drawing.Point(858, 6)
         Me.BtnReload.Name = "BtnReload"
         Me.BtnReload.Size = New System.Drawing.Size(60, 56)
         Me.BtnReload.TabIndex = 1
@@ -171,6 +184,7 @@ Partial Class FrmTreatmentRecords
         Me.Text = "Treatment Records"
         CType(Me.DgvTreatmentListing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
@@ -188,4 +202,5 @@ Partial Class FrmTreatmentRecords
     Friend WithEvents BtnReload As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label25 As Label
 End Class

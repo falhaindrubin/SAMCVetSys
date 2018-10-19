@@ -206,10 +206,10 @@
     <Compile Include="ClassDb\ClsDbServices.vb" />
     <Compile Include="Class\ClsProducts.vb" />
     <Compile Include="Class\ClsServices.vb" />
-    <Compile Include="Forms\Customer\Payment\FrmPaymentInvoice.Designer.vb">
+    <Compile Include="Forms\Payment\FrmPaymentInvoice.Designer.vb">
       <DependentUpon>FrmPaymentInvoice.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\Payment\FrmPaymentInvoice.vb">
+    <Compile Include="Forms\Payment\FrmPaymentInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Customer\Visit\FrmVisitReport.Designer.vb">
@@ -260,16 +260,16 @@
     <Compile Include="Forms\Management\Employees\FrmEmployeeReport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\Payment\FrmPaymentEntry.Designer.vb">
+    <Compile Include="Forms\Payment\FrmPaymentEntry.Designer.vb">
       <DependentUpon>FrmPaymentEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\Payment\FrmPaymentEntry.vb">
+    <Compile Include="Forms\Payment\FrmPaymentEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\Payment\FrmPaymentRecords.Designer.vb">
+    <Compile Include="Forms\Payment\FrmPaymentRecords.Designer.vb">
       <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\Payment\FrmPaymentRecords.vb">
+    <Compile Include="Forms\Payment\FrmPaymentRecords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Management\Products\FrmItemEntry.Designer.vb">
@@ -284,16 +284,22 @@
     <Compile Include="Forms\Management\Products\FrmItemManagement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ward\FrmWardEntry.Designer.vb">
-      <DependentUpon>FrmWardEntry.vb</DependentUpon>
+    <Compile Include="Forms\Ward\FrmWardInformation.Designer.vb">
+      <DependentUpon>FrmWardInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Ward\FrmWardEntry.vb">
+    <Compile Include="Forms\Ward\FrmWardInformation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Ward\FrmWardRecords.Designer.vb">
       <DependentUpon>FrmWardRecords.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Ward\FrmWardRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardSummary.Designer.vb">
+      <DependentUpon>FrmWardSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardSummary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Report\RptAppointment.vb">
@@ -432,7 +438,7 @@
     <EmbeddedResource Include="Forms\Customer\Appointment\FrmAppointmentReport.resx">
       <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Payment\FrmPaymentInvoice.resx">
+    <EmbeddedResource Include="Forms\Payment\FrmPaymentInvoice.resx">
       <DependentUpon>FrmPaymentInvoice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitReport.resx">
@@ -474,11 +480,14 @@
     <EmbeddedResource Include="Forms\Management\Products\FrmItemManagement.resx">
       <DependentUpon>FrmItemManagement.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ward\FrmWardEntry.resx">
-      <DependentUpon>FrmWardEntry.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Ward\FrmWardInformation.resx">
+      <DependentUpon>FrmWardInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ward\FrmWardRecords.resx">
       <DependentUpon>FrmWardRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ward\FrmWardSummary.resx">
+      <DependentUpon>FrmWardSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -486,10 +495,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Payment\FrmPaymentEntry.resx">
+    <EmbeddedResource Include="Forms\Payment\FrmPaymentEntry.resx">
       <DependentUpon>FrmPaymentEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Payment\FrmPaymentRecords.resx">
+    <EmbeddedResource Include="Forms\Payment\FrmPaymentRecords.resx">
       <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\RptAppointment.rpt">

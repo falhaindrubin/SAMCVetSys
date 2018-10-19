@@ -103,6 +103,8 @@ Partial Class FrmTreatmentEntry
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
         Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PnlActionBar.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -110,11 +112,13 @@ Partial Class FrmTreatmentEntry
         Me.TabPage3.SuspendLayout()
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnSearch)
         Me.PnlActionBar.Controls.Add(Me.BtnPrint)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
@@ -123,7 +127,7 @@ Partial Class FrmTreatmentEntry
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(750, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(750, 68)
         Me.PnlActionBar.TabIndex = 85
         '
         'BtnSearch
@@ -131,7 +135,7 @@ Partial Class FrmTreatmentEntry
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(381, 3)
+        Me.BtnSearch.Location = New System.Drawing.Point(379, 6)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearch.TabIndex = 5
@@ -142,7 +146,7 @@ Partial Class FrmTreatmentEntry
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(442, 3)
+        Me.BtnPrint.Location = New System.Drawing.Point(440, 6)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
         Me.BtnPrint.TabIndex = 4
@@ -153,7 +157,7 @@ Partial Class FrmTreatmentEntry
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(686, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(684, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -164,7 +168,7 @@ Partial Class FrmTreatmentEntry
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(564, 3)
+        Me.BtnCancel.Location = New System.Drawing.Point(562, 6)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
         Me.BtnCancel.TabIndex = 2
@@ -175,7 +179,7 @@ Partial Class FrmTreatmentEntry
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(625, 3)
+        Me.BtnEdit.Location = New System.Drawing.Point(623, 6)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
         Me.BtnEdit.TabIndex = 1
@@ -186,7 +190,7 @@ Partial Class FrmTreatmentEntry
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(503, 3)
+        Me.BtnSave.Location = New System.Drawing.Point(501, 6)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 56)
         Me.BtnSave.TabIndex = 0
@@ -196,10 +200,10 @@ Partial Class FrmTreatmentEntry
         '
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 162)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 189)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(750, 468)
+        Me.TabControl1.Size = New System.Drawing.Size(750, 470)
         Me.TabControl1.TabIndex = 86
         '
         'TabPage2
@@ -222,7 +226,7 @@ Partial Class FrmTreatmentEntry
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(742, 441)
+        Me.TabPage2.Size = New System.Drawing.Size(742, 443)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Diagnostic & Tests"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -360,7 +364,7 @@ Partial Class FrmTreatmentEntry
         Me.DgvSelectedTest.Location = New System.Drawing.Point(15, 153)
         Me.DgvSelectedTest.Name = "DgvSelectedTest"
         Me.DgvSelectedTest.ReadOnly = True
-        Me.DgvSelectedTest.Size = New System.Drawing.Size(712, 131)
+        Me.DgvSelectedTest.Size = New System.Drawing.Size(712, 160)
         Me.DgvSelectedTest.TabIndex = 18
         '
         'BtnTestDeleteItem
@@ -446,16 +450,16 @@ Partial Class FrmTreatmentEntry
         'TxtDiagnosis
         '
         Me.TxtDiagnosis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDiagnosis.Location = New System.Drawing.Point(15, 304)
+        Me.TxtDiagnosis.Location = New System.Drawing.Point(15, 333)
         Me.TxtDiagnosis.Multiline = True
         Me.TxtDiagnosis.Name = "TxtDiagnosis"
-        Me.TxtDiagnosis.Size = New System.Drawing.Size(712, 124)
+        Me.TxtDiagnosis.Size = New System.Drawing.Size(712, 104)
         Me.TxtDiagnosis.TabIndex = 12
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(15, 287)
+        Me.Label8.Location = New System.Drawing.Point(15, 316)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(113, 14)
         Me.Label8.TabIndex = 11
@@ -482,7 +486,7 @@ Partial Class FrmTreatmentEntry
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(742, 441)
+        Me.TabPage3.Size = New System.Drawing.Size(742, 443)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Treatment & Medication"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -609,7 +613,7 @@ Partial Class FrmTreatmentEntry
         Me.DgvSelectedTreatment.Location = New System.Drawing.Point(9, 225)
         Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
         Me.DgvSelectedTreatment.ReadOnly = True
-        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 210)
+        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 212)
         Me.DgvSelectedTreatment.TabIndex = 153
         '
         'BtnTreatmentDeleteItem
@@ -751,7 +755,7 @@ Partial Class FrmTreatmentEntry
         Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
         Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVisitID.Location = New System.Drawing.Point(113, 84)
+        Me.TxtVisitID.Location = New System.Drawing.Point(106, 17)
         Me.TxtVisitID.Name = "TxtVisitID"
         Me.TxtVisitID.ReadOnly = True
         Me.TxtVisitID.Size = New System.Drawing.Size(87, 21)
@@ -761,7 +765,7 @@ Partial Class FrmTreatmentEntry
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(13, 88)
+        Me.Label7.Location = New System.Drawing.Point(6, 21)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(46, 15)
         Me.Label7.TabIndex = 87
@@ -769,7 +773,7 @@ Partial Class FrmTreatmentEntry
         '
         'BtnBillPayment
         '
-        Me.BtnBillPayment.Location = New System.Drawing.Point(456, 128)
+        Me.BtnBillPayment.Location = New System.Drawing.Point(558, 13)
         Me.BtnBillPayment.Name = "BtnBillPayment"
         Me.BtnBillPayment.Size = New System.Drawing.Size(186, 23)
         Me.BtnBillPayment.TabIndex = 89
@@ -781,7 +785,7 @@ Partial Class FrmTreatmentEntry
         Me.TxtCustomerID.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCustomerID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerID.Location = New System.Drawing.Point(113, 107)
+        Me.TxtCustomerID.Location = New System.Drawing.Point(106, 39)
         Me.TxtCustomerID.Name = "TxtCustomerID"
         Me.TxtCustomerID.ReadOnly = True
         Me.TxtCustomerID.Size = New System.Drawing.Size(87, 21)
@@ -792,7 +796,7 @@ Partial Class FrmTreatmentEntry
         Me.TxtCustomerName.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerName.Location = New System.Drawing.Point(201, 107)
+        Me.TxtCustomerName.Location = New System.Drawing.Point(194, 39)
         Me.TxtCustomerName.Name = "TxtCustomerName"
         Me.TxtCustomerName.ReadOnly = True
         Me.TxtCustomerName.Size = New System.Drawing.Size(224, 21)
@@ -802,7 +806,7 @@ Partial Class FrmTreatmentEntry
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(12, 110)
+        Me.Label15.Location = New System.Drawing.Point(5, 42)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(99, 15)
         Me.Label15.TabIndex = 92
@@ -813,7 +817,7 @@ Partial Class FrmTreatmentEntry
         Me.TxtPetID.BackColor = System.Drawing.Color.Beige
         Me.TxtPetID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtPetID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetID.Location = New System.Drawing.Point(113, 130)
+        Me.TxtPetID.Location = New System.Drawing.Point(106, 61)
         Me.TxtPetID.Name = "TxtPetID"
         Me.TxtPetID.ReadOnly = True
         Me.TxtPetID.Size = New System.Drawing.Size(87, 21)
@@ -823,7 +827,7 @@ Partial Class FrmTreatmentEntry
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(13, 133)
+        Me.Label16.Location = New System.Drawing.Point(6, 64)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(62, 15)
         Me.Label16.TabIndex = 94
@@ -834,7 +838,7 @@ Partial Class FrmTreatmentEntry
         Me.TxtPetName.BackColor = System.Drawing.Color.Beige
         Me.TxtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtPetName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetName.Location = New System.Drawing.Point(201, 130)
+        Me.TxtPetName.Location = New System.Drawing.Point(194, 61)
         Me.TxtPetName.Name = "TxtPetName"
         Me.TxtPetName.ReadOnly = True
         Me.TxtPetName.Size = New System.Drawing.Size(224, 21)
@@ -849,7 +853,7 @@ Partial Class FrmTreatmentEntry
         Me.Panel3.Controls.Add(Me.TxtDateCreated)
         Me.Panel3.Controls.Add(Me.Label21)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
-        Me.Panel3.Location = New System.Drawing.Point(12, 636)
+        Me.Panel3.Location = New System.Drawing.Point(12, 665)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(746, 57)
         Me.Panel3.TabIndex = 97
@@ -921,36 +925,59 @@ Partial Class FrmTreatmentEntry
         'CbIsAdmittedToWard
         '
         Me.CbIsAdmittedToWard.AutoSize = True
-        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(206, 86)
+        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(199, 19)
         Me.CbIsAdmittedToWard.Name = "CbIsAdmittedToWard"
         Me.CbIsAdmittedToWard.Size = New System.Drawing.Size(104, 18)
         Me.CbIsAdmittedToWard.TabIndex = 98
         Me.CbIsAdmittedToWard.Text = "Ward Admission"
         Me.CbIsAdmittedToWard.UseVisualStyleBackColor = True
+        Me.CbIsAdmittedToWard.Visible = False
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(280, 32)
+        Me.Label25.TabIndex = 14
+        Me.Label25.Text = "Treatment Information"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.CbIsAdmittedToWard)
+        Me.GroupBox1.Controls.Add(Me.TxtVisitID)
+        Me.GroupBox1.Controls.Add(Me.BtnBillPayment)
+        Me.GroupBox1.Controls.Add(Me.TxtPetName)
+        Me.GroupBox1.Controls.Add(Me.TxtCustomerID)
+        Me.GroupBox1.Controls.Add(Me.TxtPetID)
+        Me.GroupBox1.Controls.Add(Me.Label15)
+        Me.GroupBox1.Controls.Add(Me.Label16)
+        Me.GroupBox1.Controls.Add(Me.TxtCustomerName)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 86)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(750, 97)
+        Me.GroupBox1.TabIndex = 99
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Customer && Pet Information"
         '
         'FrmTreatmentEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(774, 705)
-        Me.Controls.Add(Me.CbIsAdmittedToWard)
+        Me.ClientSize = New System.Drawing.Size(772, 729)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel3)
-        Me.Controls.Add(Me.TxtPetName)
-        Me.Controls.Add(Me.TxtPetID)
-        Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.TxtCustomerName)
-        Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.TxtCustomerID)
-        Me.Controls.Add(Me.BtnBillPayment)
-        Me.Controls.Add(Me.TxtVisitID)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "FrmTreatmentEntry"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Treatment Entry"
+        Me.Text = "Treatment Information"
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
@@ -960,8 +987,9 @@ Partial Class FrmTreatmentEntry
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -1045,4 +1073,6 @@ Partial Class FrmTreatmentEntry
     Friend WithEvents Label21 As Label
     Friend WithEvents TxtModifiedBy As TextBox
     Friend WithEvents CbIsAdmittedToWard As CheckBox
+    Friend WithEvents Label25 As Label
+    Friend WithEvents GroupBox1 As GroupBox
 End Class

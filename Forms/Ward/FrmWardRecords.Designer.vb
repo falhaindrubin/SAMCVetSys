@@ -33,6 +33,7 @@ Partial Class FrmWardRecords
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         CType(Me.DgvWardListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -43,12 +44,13 @@ Partial Class FrmWardRecords
         '
         Me.PnlActionBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PnlActionBar.Controls.Add(Me.Label2)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Controls.Add(Me.BtnAddNewWard)
         Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(1161, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(1161, 68)
         Me.PnlActionBar.TabIndex = 82
         '
         'BtnClose
@@ -56,7 +58,7 @@ Partial Class FrmWardRecords
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1097, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(1096, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -67,7 +69,7 @@ Partial Class FrmWardRecords
         Me.BtnAddNewWard.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewWard.BackgroundImage = CType(resources.GetObject("BtnAddNewWard.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewWard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewWard.Location = New System.Drawing.Point(975, 3)
+        Me.BtnAddNewWard.Location = New System.Drawing.Point(974, 6)
         Me.BtnAddNewWard.Name = "BtnAddNewWard"
         Me.BtnAddNewWard.Size = New System.Drawing.Size(60, 56)
         Me.BtnAddNewWard.TabIndex = 2
@@ -78,7 +80,7 @@ Partial Class FrmWardRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(1036, 3)
+        Me.BtnReload.Location = New System.Drawing.Point(1035, 6)
         Me.BtnReload.Name = "BtnReload"
         Me.BtnReload.Size = New System.Drawing.Size(60, 56)
         Me.BtnReload.TabIndex = 1
@@ -158,6 +160,17 @@ Partial Class FrmWardRecords
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(3, 18)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(191, 32)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "Ward Records"
+        '
         'FrmWardRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -170,6 +183,7 @@ Partial Class FrmWardRecords
         Me.Name = "FrmWardRecords"
         Me.Text = "Ward Records"
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         CType(Me.DgvWardListing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -188,4 +202,5 @@ Partial Class FrmWardRecords
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents BtnSearchCustomer As Button
+    Friend WithEvents Label2 As Label
 End Class

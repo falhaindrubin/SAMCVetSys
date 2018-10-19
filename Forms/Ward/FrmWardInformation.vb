@@ -1,4 +1,6 @@
-﻿Public Class FrmWardEntry
+﻿Imports SAMCVetSys.ModUtility
+
+Public Class FrmWardInformation
 
 #Region "FormProperty"
     Private _WardID As String
@@ -118,22 +120,43 @@
         Dim DtWardDiagnosisDetail As New DataTable
         Dim DtWardTreatment As New DataTable
         Dim DtWardSummary As New DataTable
+        Dim DtInvoice As New DataTable
 
         Dim ClsWard As New ClsWard
+        Dim ClsBill As New ClsBill
 
         Try
             Select Case UserCommand
-                Case "POPULATE_CUSTOMER_INFO" 'Add new customer
+                Case "ADD_NEW_WARD" 'Add new ward
+                    'Check if visit is already warded
+                    ClsWard.VisitID = VisitID
+                    DtWardDetail = ClsWard.GetWardDetail(ClsWard)
+
+                    If DtWardDetail.Rows.Count > 0 Then
+                        MsgBox("Selected visit has been registered into ward. Please select another customer visit.", MsgBoxStyle.Exclamation, "Ward Record Found")
+                        GoTo ShowWardInfo
+                    End If
+
                     TxtAdmissionDate.Text = Now
                     TxtVisitID.Text = VisitID
                     TxtCustomerID.Text = CustomerID
                     TxtCustomerName.Text = CustomerName
                     TxtPetID.Text = PetID
                     TxtPetName.Text = PetName
+                    TxtWardDate.Text = Now.Date
 
                 Case "SHOW_WARD_INFO"
+ShowWardInfo:
                     'DtWardSummary = InitWardSummaryDt()
+                    ClsBill.VisitID = VisitID
+                    DtInvoice = ClsBill.GetBillHeader(ClsBill)
+                    If DtInvoice.Rows.Count > 0 Then
+                        BtnBillPayment.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                        BtnBillPayment.Tag = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                    End If
+
                     ClsWard.WardID = WardID
+                    ClsWard.VisitID = VisitID
                     DtWardDetail = ClsWard.GetWardDetail(ClsWard)
                     If DtWardDetail.Rows.Count > 0 Then
                         TxtVisitID.Text = DtWardDetail.Rows(0).Item("VisitID")
@@ -145,8 +168,13 @@
                         TxtPetName.Text = DtWardDetail.Rows(0).Item("PetName")
                         TxtCase.Text = DtWardDetail.Rows(0).Item("PetCase")
                         CbIsDischarged.Checked = IIf(DtWardDetail.Rows(0).Item("IsDischarged") = "1", True, False)
+                        TxtWardDate.Text = Now.Date
 
                         'Show items summary; user doubleclick will show previous day entry
+                        If DgvWardSummary.Rows.Count > 0 Then
+                            DgvWardSummary.Rows.Clear()
+                        End If
+
                         For i As Integer = 0 To DtWardDetail.Rows.Count - 1
                             With DgvWardSummary
                                 .Rows.Add()
@@ -159,8 +187,19 @@
                             End With
                         Next
 
+
+                        TxtCreatedBy.Text = DtWardDetail.Rows(0).Item("CreatedBy")
+                        TxtDateCreated.Text = DtWardDetail.Rows(0).Item("DateCreated")
+                        TxtModifiedBy.Text = DtWardDetail.Rows(0).Item("ModifiedBy")
+                        TxtDateModified.Text = DtWardDetail.Rows(0).Item("DateModified")
+
                     End If
 
+                    If BtnSearch.Visible = True Then
+                        BtnSearch.Visible = False
+                    Else
+                        BtnSearch.Visible = True
+                    End If
 
             End Select
 
@@ -209,7 +248,7 @@
             With ClsWard
                 .WardID = GenWardID
                 .VisitID = VisitID
-                .AdmissionDate = CDate(TxtAdmissionDate.Text)
+                .AdmissionDate = TxtAdmissionDate.Text
                 .CustomerID = CustomerID
                 .CustomerName = CustomerName
                 .PetID = PetID
@@ -234,7 +273,7 @@
             'Add ward detail
             With ClsWardDetail
                 .WardID = GenWardID
-                .WardDate = DtpWardDate.Value.Date
+                .WardDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
                 '.RowNo = ""
                 .Appetite = Trim(DirectCast(CmbAppetite.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
                 .Bowel = Trim(DirectCast(CmbBowel.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
@@ -279,7 +318,7 @@
             For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
                 With ClsWardDiagnosisDetail
                     .WardID = GenWardID
-                    .DiagnoseDate = DtpWardDate.Value.Date
+                    .DiagnoseDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
                     .RowNo = i + 1
                     .ItemCode = DgvSelectedTest.Rows(i).Cells("TestItemCode").Value
                     .ItemDescription = DgvSelectedTest.Rows(i).Cells("TestItemDescription").Value
@@ -306,18 +345,18 @@
                     With ClsWardTreatment
                         .WardID = GenWardID
                         .VisitID = VisitID
-                        .TreatmentDate = DtpWardDate.Value.Date
+                        .TreatmentDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
                         .RowNo = i + 1
                         .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .Prescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .Notes = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                        .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
+                        .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
+                        .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
+                        .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
+                        .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
+                        .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
+                        .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                        .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
+                        .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
+                        .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
                         .Ref.CreatedBy = CURR_USER
                         .Ref.DateCreated = Now
                         .Ref.ModifiedBy = CURR_USER
@@ -334,21 +373,6 @@
 
                 Next
             End If
-
-            'Update IsAdmittedToWard status in samc_visit
-            'With ClsVisit
-            '    .VisitID = Trim(TxtVisitID.Text)
-            '    .IsAdmittedToWard = "1"
-            '    .Ref.ModifiedBy = CURR_USER
-            '    .Ref.DateModified = Now
-            '    If Not .UpdateWardAdmission(ClsVisit, DbConn, DbTrans) Then
-            '        MsgBox("Failed to update ward admission.", MsgBoxStyle.Critical, "Update Ward Admission Error")
-            '        DbTrans.Rollback()
-            '        DbTrans.Dispose()
-            '        DbTrans = Nothing
-            '        Return False
-            '    End If
-            'End With
 
             DbTrans.Commit()
             DbTrans.Dispose()
@@ -384,7 +408,274 @@
     End Function
 
     Private Function UpdateBill() As Boolean
+
+        Dim DtBillHeader As New DataTable
+        Dim DtBillDetail As New DataTable
+        Dim DtWardDiagnosis As New DataTable
+        Dim DtWardTreatment As New DataTable
+        Dim DtPayment As New DataTable
+        Dim DtUpdateBill As New DataTable
+        Dim ClsWardDiagnosis As New ClsWardDiagnosis
+        Dim ClsWardTreatment As New ClsWardTreatment
+        Dim ClsBill As New ClsBill
+        Dim ClsBillDetail As New ClsBillDetail
+
+        Try
+            DtPayment = InitBillItemDt()
+
+            'Retrieve existing item from bill detail;
+            ClsBill.VisitID = Trim(TxtVisitID.Text)
+            DtBillHeader = ClsBill.GetBillHeader(ClsBill)
+            If DtBillHeader.Rows.Count > 0 Then
+                ClsBill.InvoiceNo = DtBillHeader.Rows(0).Item("InvoiceNo")
+                DtBillDetail = ClsBill.GetBillDetail(ClsBill)
+                If DtBillDetail.Rows.Count > 0 Then
+                    For i As Integer = 0 To DtBillDetail.Rows.Count - 1
+                        Dim Row As DataRow = DtPayment.NewRow
+                        Row("RowNo") = DtBillDetail.Rows(i).Item("RowNo")
+                        Row("ItemCode") = DtBillDetail.Rows(i).Item("ItemCode")
+                        Row("ItemDescription") = DtBillDetail.Rows(i).Item("ItemDescription")
+                        Row("ItemGroup") = DtBillDetail.Rows(i).Item("ItemGroup")
+                        Row("ItemTypeCode") = DtBillDetail.Rows(i).Item("ItemTypeCode")
+                        Row("ItemTypeDescription") = DtBillDetail.Rows(i).Item("ItemTypeDescription")
+                        Row("Prescription") = DtBillDetail.Rows(i).Item("Prescription")
+                        Row("Notes") = DtBillDetail.Rows(i).Item("Notes")
+                        Row("UnitPrice") = DtBillDetail.Rows(i).Item("UnitPrice")
+                        Row("Quantity") = DtBillDetail.Rows(i).Item("Quantity")
+                        Row("TotalPrice") = DtBillDetail.Rows(i).Item("TotalPrice")
+                        DtPayment.Rows.Add(Row)
+                    Next
+                    'Else
+                    '    Return False
+                End If
+            Else
+                'Create new invoice
+                MsgBox("Please create invoice for the selected ward admission in Customer > Visit > Billing & Payment.", MsgBoxStyle.Exclamation, "Invoice Not Created")
+                Return False
+            End If
+
+            'Retrieve items from diagnosis
+            ClsWardDiagnosis.VisitID = Trim(TxtVisitID.Text)
+            DtWardDiagnosis = ClsWardDiagnosis.GetWardDiagnosisDetail(ClsWardDiagnosis)
+            If DtWardDiagnosis.Rows.Count > 0 Then
+                For i As Integer = 0 To DtWardDiagnosis.Rows.Count - 1
+
+                    If AddItemToBill(DtWardDiagnosis.Rows(i).Item("ItemCode"), DtPayment) = True Then
+
+                        Dim Row As DataRow = DtPayment.NewRow
+                        Row("RowNo") = DtWardDiagnosis.Rows(i).Item("RowNo")
+                        Row("ItemCode") = DtWardDiagnosis.Rows(i).Item("ItemCode")
+                        Row("ItemDescription") = DtWardDiagnosis.Rows(i).Item("ItemDescription")
+                        Row("ItemGroup") = DtWardDiagnosis.Rows(i).Item("ItemGroup")
+                        Row("ItemTypeCode") = DtWardDiagnosis.Rows(i).Item("ItemTypeCode")
+                        Row("ItemTypeDescription") = DtWardDiagnosis.Rows(i).Item("ItemTypeDescription")
+                        Row("Prescription") = ""
+                        Row("Notes") = ""
+                        Row("UnitPrice") = DtWardDiagnosis.Rows(i).Item("UnitPrice")
+                        Row("Quantity") = DtWardDiagnosis.Rows(i).Item("Quantity")
+                        Row("TotalPrice") = DtWardDiagnosis.Rows(i).Item("TotalPrice")
+
+                        DtPayment.Rows.Add(Row)
+
+                    End If
+
+                Next
+                'Else
+                '    Return False
+            End If
+
+            'Retrieve items from treatment
+            ClsWardTreatment.VisitID = Trim(TxtVisitID.Text)
+            DtWardTreatment = ClsWardTreatment.GetWardTreatmentDetail(ClsWardTreatment)
+            If DtWardTreatment.Rows.Count > 0 Then
+                For i As Integer = 0 To DtWardTreatment.Rows.Count - 1
+
+                    If AddItemToBill(DtWardTreatment.Rows(i).Item("ItemCode"), DtPayment) = True Then
+
+                        Dim Row As DataRow = DtPayment.NewRow
+                        Row("RowNo") = DtWardTreatment.Rows(i).Item("RowNo")
+                        Row("ItemCode") = DtWardTreatment.Rows(i).Item("ItemCode")
+                        Row("ItemDescription") = DtWardTreatment.Rows(i).Item("ItemDescription")
+                        Row("ItemGroup") = DtWardTreatment.Rows(i).Item("ItemGroup")
+                        Row("ItemTypeCode") = DtWardTreatment.Rows(i).Item("ItemTypeCode")
+                        Row("ItemTypeDescription") = DtWardTreatment.Rows(i).Item("ItemTypeDescription")
+                        Row("Prescription") = DtWardTreatment.Rows(i).Item("Prescription")
+                        Row("Notes") = DtWardTreatment.Rows(i).Item("Notes")
+                        Row("UnitPrice") = DtWardTreatment.Rows(i).Item("UnitPrice")
+                        Row("Quantity") = DtWardTreatment.Rows(i).Item("Quantity")
+                        Row("TotalPrice") = DtWardTreatment.Rows(i).Item("TotalPrice")
+                        DtPayment.Rows.Add(Row)
+
+                    End If
+
+                Next
+                'Else
+                '    Return False
+            End If
+
+            If DtPayment.Rows.Count > 0 Then
+
+                Dim GrossTotal As Decimal
+
+                If DbTrans IsNot Nothing Then
+                    DbTrans = Nothing
+                End If
+
+                DbTrans = DbConn.BeginTransaction
+
+                'Update RowNo for each item and total price
+                For i As Integer = 0 To DtPayment.Rows.Count - 1
+                    DtPayment.Rows(i).Item("RowNo") = i + 1
+                    GrossTotal = GrossTotal + DtPayment.Rows(i).Item("TotalPrice")
+                Next
+
+                'Check if bill is already created during register consultation/visit
+                If DtBillHeader.Rows.Count = 0 Then
+                    MsgBox("Billing has not been created. Please create customer biling in Customer > Visit.", MsgBoxStyle.Critical, "Billing & Payment Update Failed")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+                'Delete previous items in the bill; insert new billing
+                ClsBill.InvoiceNo = DtBillHeader.Rows(0).Item("InvoiceNo")
+                If Not ClsBill.DeleteBill(ClsBill, DbConn, DbTrans) Then
+                    MsgBox("Failed to update billing details.", MsgBoxStyle.Critical, "Bill Update Reset Details Failed")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+                ClsBill = New ClsBill
+                With ClsBill
+                    .InvoiceNo = DtBillHeader.Rows(0).Item("InvoiceNo")
+                    .VisitID = VisitID
+                    .InvoiceDate = Now
+                    .CustomerID = CustomerID
+                    .CustomerName = CustomerName
+                    .GrossTotal = GrossTotal
+                    .Discount = DtBillHeader.Rows(0).Item("Discount")
+                    .GrandTotal = GrossTotal - DtBillHeader.Rows(0).Item("Discount")
+                    .Deposit = DtBillHeader.Rows(0).Item("Deposit")
+                    .TotalDue = .GrandTotal - .Deposit
+                    .IsPaymentComplete = DtBillHeader.Rows(0).Item("IsPaymentComplete")
+                    .Ref.CreatedBy = DtBillHeader.Rows(0).Item("CreatedBy")
+                    .Ref.DateCreated = DtBillHeader.Rows(0).Item("DateCreated")
+                    .Ref.ModifiedBy = CURR_USER
+                    .Ref.DateModified = Now
+                End With
+
+                If Not ClsBill.AddNewBill(ClsBill, DbConn, DbTrans) Then
+                    MsgBox("Failed to create bill header.", MsgBoxStyle.Critical, "Create Bill Failed")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+                'Create bill details
+                For i As Integer = 0 To DtPayment.Rows.Count - 1
+
+                    ClsBillDetail = New ClsBillDetail
+                    With ClsBillDetail
+                        .InvoiceNo = DtBillHeader.Rows(0).Item("InvoiceNo")
+                        .RowNo = DtPayment.Rows(i).Item("RowNo")
+                        .ItemCode = DtPayment.Rows(i).Item("ItemCode")
+                        .ItemDescription = DtPayment.Rows(i).Item("ItemDescription")
+                        .ItemGroup = CStrNull(DtPayment.Rows(i).Item("ItemGroup"))
+                        .ItemTypeCode = CStrNull(DtPayment.Rows(i).Item("ItemTypeCode"))
+                        .ItemTypeDescription = CStrNull(DtPayment.Rows(i).Item("ItemTypeDescription"))
+                        .Prescription = DtPayment.Rows(i).Item("Prescription")
+                        .Notes = DtPayment.Rows(i).Item("Notes")
+                        .UnitPrice = DtPayment.Rows(i).Item("UnitPrice")
+                        .Quantity = DtPayment.Rows(i).Item("Quantity")
+                        .TotalPrice = DtPayment.Rows(i).Item("TotalPrice")
+                    End With
+
+                    If Not ClsBillDetail.AddNewBillDetail(ClsBillDetail, DbConn, DbTrans) Then
+                        MsgBox("Failed to create billing details.", MsgBoxStyle.Critical, "Create Bill Details Failed")
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
+                Next
+
+                DbTrans.Commit()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+
+                MsgBox("Customer billing and payment has been successfully updated!", MsgBoxStyle.Information, "Billing & Payment Updated")
+            Else
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+                Return False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".UpdateBill()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+            Return False
+        End Try
+
         Return True
+
+    End Function
+
+    Private Function AddItemToBill(ItemCode As String, DtPayment As DataTable) As Boolean
+
+        Try
+            If DtPayment.Rows.Count > 0 Then
+                For i As Integer = 0 To DtPayment.Rows.Count - 1
+                    If ItemCode = DtPayment.Rows(i).Item("ItemCode") Then
+                        Return False
+                    End If
+                Next
+            Else
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddItemToBill()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function InitBillItemDt() As DataTable
+
+        Dim DtBill As New DataTable
+
+        Try
+            With DtBill
+                .Columns.Add("InvoiceNo", GetType(String))
+                .Columns.Add("RowNo", GetType(Integer))
+                .Columns.Add("ItemCode", GetType(String))
+                .Columns.Add("ItemDescription", GetType(String))
+                .Columns.Add("ItemGroup", GetType(String))
+                .Columns.Add("ItemTypeCode", GetType(String))
+                .Columns.Add("ItemTypeDescription", GetType(String))
+                .Columns.Add("Prescription", GetType(String))
+                .Columns.Add("Notes", GetType(String))
+                .Columns.Add("UnitPrice", GetType(Decimal))
+                .Columns.Add("Quantity", GetType(Decimal))
+                .Columns.Add("TotalPrice", GetType(Decimal))
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".InitBillItemDt()")
+        End Try
+
+        Return DtBill
+
     End Function
 
     Private Function CheckFields() As Boolean
@@ -668,10 +959,14 @@
                 CustomerName = .CustomerName
                 PetID = .PetID
                 PetName = .PetName
-                UserCommand = .UserCommand
+                UserCommand = IIf(.VisitID <> "", "ADD_NEW_WARD", "")
             End With
 
-            PopulateForm(UserCommand)
+            If UserCommand = "" Then
+                Exit Sub
+            Else
+                PopulateForm(UserCommand)
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".BtnSearch_Click")
@@ -756,4 +1051,46 @@
 
     End Function
 
+    Private Sub DgvWardSummary_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvWardSummary.CellDoubleClick
+
+        Try
+            If e.RowIndex = -1 Or e.ColumnIndex = -1 Then
+                Exit Sub
+            Else
+                If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
+                    Dim Frm As New FrmWardSummary With {
+                        .WardID = TxtWardID.Text,
+                        .VisitID = TxtVisitID.Text,
+                        .CustomerID = TxtCustomerID.Text,
+                        .WardDate = DgvWardSummary.Rows(e.RowIndex).Cells("WardDate").Value
+                    }
+                    Frm.ShowDialog()
+                End If
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvWardSummary_CellDoubleClick()")
+        End Try
+
+    End Sub
+
+    Private Sub BtnReload_Click(sender As Object, e As EventArgs) Handles BtnReload.Click
+        PopulateForm("SHOW_WARD_INFO")
+    End Sub
+
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            TxtAD.Text = "19/10/2018 13:00:00"
+            TxtDD.Text = "20/10/2018 10:00:00" 'Now.AddDays(1) 14:29:57
+
+            Dim D1 As Date = CDate(TxtAD.Text)
+            Dim D2 As Date = CDate(TxtDD.Text)
+
+            Dim Charge As Integer = DateDiff(DateInterval.Day, D1, D2)
+            MsgBox(Charge)
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 End Class

@@ -70,8 +70,6 @@ Partial Class FrmPaymentEntry
         Me.TxtUnitPrice = New System.Windows.Forms.TextBox()
         Me.BtnSearchItem = New System.Windows.Forms.Button()
         Me.DgvBillListing = New System.Windows.Forms.DataGridView()
-        Me.BtnClearBill = New System.Windows.Forms.Button()
-        Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.BtnDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.RowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -86,6 +84,9 @@ Partial Class FrmPaymentEntry
         Me.ItemGroupDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemTypeCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemTypeDescriptionDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnClearBill = New System.Windows.Forms.Button()
+        Me.BtnAddBillItem = New System.Windows.Forms.Button()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -98,7 +99,7 @@ Partial Class FrmPaymentEntry
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(710, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(735, 6)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 56)
         Me.BtnSave.TabIndex = 0
@@ -110,7 +111,7 @@ Partial Class FrmPaymentEntry
         Me.TxtDateModified.BackColor = System.Drawing.Color.Beige
         Me.TxtDateModified.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDateModified.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDateModified.Location = New System.Drawing.Point(145, 33)
+        Me.TxtDateModified.Location = New System.Drawing.Point(142, 31)
         Me.TxtDateModified.Name = "TxtDateModified"
         Me.TxtDateModified.ReadOnly = True
         Me.TxtDateModified.Size = New System.Drawing.Size(132, 20)
@@ -121,7 +122,7 @@ Partial Class FrmPaymentEntry
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(832, 2)
+        Me.BtnEdit.Location = New System.Drawing.Point(857, 6)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
         Me.BtnEdit.TabIndex = 1
@@ -133,7 +134,7 @@ Partial Class FrmPaymentEntry
         Me.TxtCreatedBy.BackColor = System.Drawing.Color.Beige
         Me.TxtCreatedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCreatedBy.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(76, 9)
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(76, 10)
         Me.TxtCreatedBy.Name = "TxtCreatedBy"
         Me.TxtCreatedBy.ReadOnly = True
         Me.TxtCreatedBy.Size = New System.Drawing.Size(65, 20)
@@ -143,7 +144,7 @@ Partial Class FrmPaymentEntry
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(13, 13)
+        Me.Label17.Location = New System.Drawing.Point(13, 14)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(61, 14)
         Me.Label17.TabIndex = 73
@@ -154,7 +155,7 @@ Partial Class FrmPaymentEntry
         Me.TxtDateCreated.BackColor = System.Drawing.Color.Beige
         Me.TxtDateCreated.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDateCreated.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDateCreated.Location = New System.Drawing.Point(145, 9)
+        Me.TxtDateCreated.Location = New System.Drawing.Point(142, 10)
         Me.TxtDateCreated.Name = "TxtDateCreated"
         Me.TxtDateCreated.ReadOnly = True
         Me.TxtDateCreated.Size = New System.Drawing.Size(132, 20)
@@ -164,7 +165,7 @@ Partial Class FrmPaymentEntry
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(13, 36)
+        Me.Label18.Location = New System.Drawing.Point(13, 34)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(63, 14)
         Me.Label18.TabIndex = 75
@@ -175,7 +176,7 @@ Partial Class FrmPaymentEntry
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(771, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(796, 6)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
         Me.BtnCancel.TabIndex = 2
@@ -186,7 +187,7 @@ Partial Class FrmPaymentEntry
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(893, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(918, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -198,7 +199,7 @@ Partial Class FrmPaymentEntry
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(588, 2)
+        Me.BtnSearch.Location = New System.Drawing.Point(613, 6)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearch.TabIndex = 5
@@ -208,15 +209,16 @@ Partial Class FrmPaymentEntry
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnSearch)
         Me.PnlActionBar.Controls.Add(Me.BtnPrint)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Controls.Add(Me.BtnCancel)
         Me.PnlActionBar.Controls.Add(Me.BtnEdit)
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
-        Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
+        Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(957, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
         Me.PnlActionBar.TabIndex = 84
         '
         'BtnPrint
@@ -224,7 +226,7 @@ Partial Class FrmPaymentEntry
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(649, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(674, 6)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
         Me.BtnPrint.TabIndex = 4
@@ -235,7 +237,7 @@ Partial Class FrmPaymentEntry
         Me.TxtModifiedBy.BackColor = System.Drawing.Color.Beige
         Me.TxtModifiedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtModifiedBy.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtModifiedBy.Location = New System.Drawing.Point(76, 33)
+        Me.TxtModifiedBy.Location = New System.Drawing.Point(76, 31)
         Me.TxtModifiedBy.Name = "TxtModifiedBy"
         Me.TxtModifiedBy.ReadOnly = True
         Me.TxtModifiedBy.Size = New System.Drawing.Size(65, 20)
@@ -251,19 +253,19 @@ Partial Class FrmPaymentEntry
         Me.Panel3.Controls.Add(Me.Label18)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel3.Location = New System.Drawing.Point(16, 722)
+        Me.Panel3.Location = New System.Drawing.Point(12, 656)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(953, 61)
+        Me.Panel3.Size = New System.Drawing.Size(984, 61)
         Me.Panel3.TabIndex = 85
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(12, 81)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 84)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(961, 635)
+        Me.TabControl1.Size = New System.Drawing.Size(984, 569)
         Me.TabControl1.TabIndex = 83
         '
         'TabPage4
@@ -301,7 +303,7 @@ Partial Class FrmPaymentEntry
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(953, 608)
+        Me.TabPage4.Size = New System.Drawing.Size(976, 542)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Billing & Payment"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -319,7 +321,7 @@ Partial Class FrmPaymentEntry
         'Label44
         '
         Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(6, 258)
+        Me.Label44.Location = New System.Drawing.Point(6, 191)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(56, 14)
         Me.Label44.TabIndex = 166
@@ -330,7 +332,7 @@ Partial Class FrmPaymentEntry
         Me.TxtTotalPrice.BackColor = System.Drawing.Color.Beige
         Me.TxtTotalPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTotalPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTotalPrice.Location = New System.Drawing.Point(84, 255)
+        Me.TxtTotalPrice.Location = New System.Drawing.Point(84, 188)
         Me.TxtTotalPrice.Name = "TxtTotalPrice"
         Me.TxtTotalPrice.ReadOnly = True
         Me.TxtTotalPrice.Size = New System.Drawing.Size(52, 21)
@@ -343,7 +345,7 @@ Partial Class FrmPaymentEntry
         Me.TxtTotalDue.BackColor = System.Drawing.Color.Beige
         Me.TxtTotalDue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTotalDue.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTotalDue.Location = New System.Drawing.Point(787, 577)
+        Me.TxtTotalDue.Location = New System.Drawing.Point(813, 513)
         Me.TxtTotalDue.Name = "TxtTotalDue"
         Me.TxtTotalDue.ReadOnly = True
         Me.TxtTotalDue.Size = New System.Drawing.Size(156, 21)
@@ -354,7 +356,7 @@ Partial Class FrmPaymentEntry
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(704, 580)
+        Me.Label32.Location = New System.Drawing.Point(730, 516)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(77, 14)
         Me.Label32.TabIndex = 164
@@ -365,7 +367,7 @@ Partial Class FrmPaymentEntry
         Me.TxtDiscount.BackColor = System.Drawing.Color.White
         Me.TxtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDiscount.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDiscount.Location = New System.Drawing.Point(787, 511)
+        Me.TxtDiscount.Location = New System.Drawing.Point(558, 491)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.ReadOnly = True
         Me.TxtDiscount.Size = New System.Drawing.Size(156, 21)
@@ -376,7 +378,7 @@ Partial Class FrmPaymentEntry
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(706, 514)
+        Me.Label40.Location = New System.Drawing.Point(477, 494)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(75, 14)
         Me.Label40.TabIndex = 162
@@ -387,7 +389,7 @@ Partial Class FrmPaymentEntry
         Me.TxtGrandTotal.BackColor = System.Drawing.Color.Beige
         Me.TxtGrandTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtGrandTotal.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtGrandTotal.Location = New System.Drawing.Point(787, 533)
+        Me.TxtGrandTotal.Location = New System.Drawing.Point(558, 513)
         Me.TxtGrandTotal.Name = "TxtGrandTotal"
         Me.TxtGrandTotal.ReadOnly = True
         Me.TxtGrandTotal.Size = New System.Drawing.Size(156, 21)
@@ -398,7 +400,7 @@ Partial Class FrmPaymentEntry
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(693, 536)
+        Me.Label45.Location = New System.Drawing.Point(464, 516)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(88, 14)
         Me.Label45.TabIndex = 160
@@ -409,7 +411,7 @@ Partial Class FrmPaymentEntry
         Me.TxtDeposit.BackColor = System.Drawing.Color.White
         Me.TxtDeposit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDeposit.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDeposit.Location = New System.Drawing.Point(787, 555)
+        Me.TxtDeposit.Location = New System.Drawing.Point(813, 491)
         Me.TxtDeposit.Name = "TxtDeposit"
         Me.TxtDeposit.Size = New System.Drawing.Size(156, 21)
         Me.TxtDeposit.TabIndex = 159
@@ -419,7 +421,7 @@ Partial Class FrmPaymentEntry
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(712, 558)
+        Me.Label42.Location = New System.Drawing.Point(738, 494)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(69, 14)
         Me.Label42.TabIndex = 158
@@ -430,7 +432,7 @@ Partial Class FrmPaymentEntry
         Me.TxtGrossTotal.BackColor = System.Drawing.Color.Beige
         Me.TxtGrossTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtGrossTotal.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtGrossTotal.Location = New System.Drawing.Point(787, 489)
+        Me.TxtGrossTotal.Location = New System.Drawing.Point(558, 469)
         Me.TxtGrossTotal.Name = "TxtGrossTotal"
         Me.TxtGrossTotal.ReadOnly = True
         Me.TxtGrossTotal.Size = New System.Drawing.Size(156, 21)
@@ -441,7 +443,7 @@ Partial Class FrmPaymentEntry
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(693, 492)
+        Me.Label39.Location = New System.Drawing.Point(464, 472)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(88, 14)
         Me.Label39.TabIndex = 156
@@ -503,13 +505,13 @@ Partial Class FrmPaymentEntry
         Me.TxtPrescription.Location = New System.Drawing.Point(84, 62)
         Me.TxtPrescription.Multiline = True
         Me.TxtPrescription.Name = "TxtPrescription"
-        Me.TxtPrescription.Size = New System.Drawing.Size(416, 64)
+        Me.TxtPrescription.Size = New System.Drawing.Size(416, 40)
         Me.TxtPrescription.TabIndex = 133
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(6, 127)
+        Me.Label35.Location = New System.Drawing.Point(6, 103)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(35, 14)
         Me.Label35.TabIndex = 134
@@ -528,16 +530,16 @@ Partial Class FrmPaymentEntry
         '
         Me.TxtNotes.BackColor = System.Drawing.Color.White
         Me.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNotes.Location = New System.Drawing.Point(84, 127)
+        Me.TxtNotes.Location = New System.Drawing.Point(84, 103)
         Me.TxtNotes.Multiline = True
         Me.TxtNotes.Name = "TxtNotes"
-        Me.TxtNotes.Size = New System.Drawing.Size(416, 83)
+        Me.TxtNotes.Size = New System.Drawing.Size(416, 40)
         Me.TxtNotes.TabIndex = 135
         '
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(6, 214)
+        Me.Label36.Location = New System.Drawing.Point(6, 147)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(47, 14)
         Me.Label36.TabIndex = 136
@@ -548,7 +550,7 @@ Partial Class FrmPaymentEntry
         Me.TxtQuantity.BackColor = System.Drawing.Color.White
         Me.TxtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtQuantity.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtQuantity.Location = New System.Drawing.Point(84, 211)
+        Me.TxtQuantity.Location = New System.Drawing.Point(84, 144)
         Me.TxtQuantity.Name = "TxtQuantity"
         Me.TxtQuantity.Size = New System.Drawing.Size(52, 21)
         Me.TxtQuantity.TabIndex = 137
@@ -558,7 +560,7 @@ Partial Class FrmPaymentEntry
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(6, 236)
+        Me.Label37.Location = New System.Drawing.Point(6, 169)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(52, 14)
         Me.Label37.TabIndex = 138
@@ -569,7 +571,7 @@ Partial Class FrmPaymentEntry
         Me.TxtUnitPrice.BackColor = System.Drawing.Color.Beige
         Me.TxtUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtUnitPrice.Location = New System.Drawing.Point(84, 233)
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(84, 166)
         Me.TxtUnitPrice.Name = "TxtUnitPrice"
         Me.TxtUnitPrice.ReadOnly = True
         Me.TxtUnitPrice.Size = New System.Drawing.Size(52, 21)
@@ -596,31 +598,13 @@ Partial Class FrmPaymentEntry
         Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice, Me.ItemGroupDgv, Me.ItemTypeCodeDgv, Me.ItemTypeDescriptionDgv})
-        Me.DgvBillListing.Location = New System.Drawing.Point(6, 313)
+        Me.DgvBillListing.Location = New System.Drawing.Point(6, 246)
         Me.DgvBillListing.MultiSelect = False
         Me.DgvBillListing.Name = "DgvBillListing"
         Me.DgvBillListing.ReadOnly = True
         Me.DgvBillListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvBillListing.Size = New System.Drawing.Size(936, 170)
+        Me.DgvBillListing.Size = New System.Drawing.Size(964, 217)
         Me.DgvBillListing.TabIndex = 140
-        '
-        'BtnClearBill
-        '
-        Me.BtnClearBill.Location = New System.Drawing.Point(182, 282)
-        Me.BtnClearBill.Name = "BtnClearBill"
-        Me.BtnClearBill.Size = New System.Drawing.Size(95, 25)
-        Me.BtnClearBill.TabIndex = 143
-        Me.BtnClearBill.Text = "Clear Bill"
-        Me.BtnClearBill.UseVisualStyleBackColor = True
-        '
-        'BtnAddBillItem
-        '
-        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 282)
-        Me.BtnAddBillItem.Name = "BtnAddBillItem"
-        Me.BtnAddBillItem.Size = New System.Drawing.Size(95, 25)
-        Me.BtnAddBillItem.TabIndex = 142
-        Me.BtnAddBillItem.Text = "Add Item.."
-        Me.BtnAddBillItem.UseVisualStyleBackColor = True
         '
         'BtnDeleteItem
         '
@@ -699,7 +683,6 @@ Partial Class FrmPaymentEntry
         Me.ItemDiscount.Name = "ItemDiscount"
         Me.ItemDiscount.ReadOnly = True
         Me.ItemDiscount.Visible = False
-        Me.ItemDiscount.Width = 74
         '
         'TotalPrice
         '
@@ -730,11 +713,40 @@ Partial Class FrmPaymentEntry
         Me.ItemTypeDescriptionDgv.ReadOnly = True
         Me.ItemTypeDescriptionDgv.Visible = False
         '
+        'BtnClearBill
+        '
+        Me.BtnClearBill.Location = New System.Drawing.Point(182, 215)
+        Me.BtnClearBill.Name = "BtnClearBill"
+        Me.BtnClearBill.Size = New System.Drawing.Size(95, 25)
+        Me.BtnClearBill.TabIndex = 143
+        Me.BtnClearBill.Text = "Clear Bill"
+        Me.BtnClearBill.UseVisualStyleBackColor = True
+        '
+        'BtnAddBillItem
+        '
+        Me.BtnAddBillItem.Location = New System.Drawing.Point(84, 215)
+        Me.BtnAddBillItem.Name = "BtnAddBillItem"
+        Me.BtnAddBillItem.Size = New System.Drawing.Size(95, 25)
+        Me.BtnAddBillItem.TabIndex = 142
+        Me.BtnAddBillItem.Text = "Add Item.."
+        Me.BtnAddBillItem.UseVisualStyleBackColor = True
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(7, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(227, 32)
+        Me.Label25.TabIndex = 13
+        Me.Label25.Text = "Billing && Payment"
+        '
         'FrmPaymentEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(985, 796)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.TabControl1)
@@ -743,6 +755,7 @@ Partial Class FrmPaymentEntry
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Billing & Payment"
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
@@ -813,4 +826,5 @@ Partial Class FrmPaymentEntry
     Friend WithEvents ItemGroupDgv As DataGridViewTextBoxColumn
     Friend WithEvents ItemTypeCodeDgv As DataGridViewTextBoxColumn
     Friend WithEvents ItemTypeDescriptionDgv As DataGridViewTextBoxColumn
+    Friend WithEvents Label25 As Label
 End Class

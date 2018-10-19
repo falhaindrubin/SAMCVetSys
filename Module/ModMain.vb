@@ -14,6 +14,7 @@ Module ModMain
     Public UID As String
     Public PWD As String
     Public CURR_USER As String
+    'Public CURR_USER_EMPID As String
     Public FORM_NAME As String
     Public SOFTWARE_VERSION As String
 

@@ -52,6 +52,16 @@
         End Set
     End Property
 
+    Private _DiagnoseDate As Date
+    Public Property DiagnoseDate As Date
+        Get
+            Return _DiagnoseDate
+        End Get
+        Set(value As Date)
+            _DiagnoseDate = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get
@@ -64,6 +74,10 @@
 
     Public Function AddNewWardDiagnosis(ClsWardDiagnosis As ClsWardDiagnosis, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbWard.AddNewWardDiagnosis(ClsWardDiagnosis, DbConn, DbTrans)
+    End Function
+
+    Public Function GetWardDiagnosisDetail(ClsWardDiagnosis As ClsWardDiagnosis) As DataTable
+        Return DbWard.GetWardDiagnosisDetail(ClsWardDiagnosis)
     End Function
 
 End Class

@@ -1,5 +1,6 @@
 ﻿Public Class FrmPaymentEntry
 
+#Region "FormProperty"
     Private _UserCommand As String
     Public Property UserCommand As String
         Get
@@ -79,6 +80,7 @@
             _ItemTypeDescription = value
         End Set
     End Property
+#End Region
 
     Private Sub FrmPaymentEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmWardEntry
+Partial Class FrmWardInformation
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class FrmWardEntry
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmWardEntry))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmWardInformation))
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TxtCreatedBy = New System.Windows.Forms.TextBox()
@@ -40,6 +40,8 @@ Partial Class FrmWardEntry
         Me.TxtVisitID = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.BtnReload = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnPrint = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
@@ -105,6 +107,7 @@ Partial Class FrmWardEntry
         Me.TestItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TxtWardDate = New System.Windows.Forms.TextBox()
         Me.TxtFastingDescription = New System.Windows.Forms.TextBox()
         Me.CmbFasting = New System.Windows.Forms.ComboBox()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -112,7 +115,6 @@ Partial Class FrmWardEntry
         Me.Label22 = New System.Windows.Forms.Label()
         Me.TxtDailyNotes = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.DtpWardDate = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.CmbVomit = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -125,15 +127,19 @@ Partial Class FrmWardEntry
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.DgvWardSummary = New System.Windows.Forms.DataGridView()
-        Me.CbIsDischarged = New System.Windows.Forms.CheckBox()
-        Me.TxtCase = New System.Windows.Forms.TextBox()
-        Me.Label23 = New System.Windows.Forms.Label()
         Me.WardDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DailyNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Appetite = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Bowel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Urine = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Vomit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CbIsDischarged = New System.Windows.Forms.CheckBox()
+        Me.TxtCase = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TxtAD = New System.Windows.Forms.TextBox()
+        Me.TxtDD = New System.Windows.Forms.TextBox()
         Me.Panel3.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -144,6 +150,7 @@ Partial Class FrmWardEntry
         Me.TabControl1.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         CType(Me.DgvWardSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label21
@@ -165,9 +172,9 @@ Partial Class FrmWardEntry
         Me.Panel3.Controls.Add(Me.TxtDateCreated)
         Me.Panel3.Controls.Add(Me.Label21)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
-        Me.Panel3.Location = New System.Drawing.Point(12, 697)
+        Me.Panel3.Location = New System.Drawing.Point(12, 660)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(746, 57)
+        Me.Panel3.Size = New System.Drawing.Size(750, 57)
         Me.Panel3.TabIndex = 109
         '
         'TxtCreatedBy
@@ -229,7 +236,7 @@ Partial Class FrmWardEntry
         Me.TxtPetName.BackColor = System.Drawing.Color.Beige
         Me.TxtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtPetName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetName.Location = New System.Drawing.Point(218, 151)
+        Me.TxtPetName.Location = New System.Drawing.Point(205, 87)
         Me.TxtPetName.Name = "TxtPetName"
         Me.TxtPetName.ReadOnly = True
         Me.TxtPetName.Size = New System.Drawing.Size(224, 21)
@@ -240,7 +247,7 @@ Partial Class FrmWardEntry
         Me.TxtPetID.BackColor = System.Drawing.Color.Beige
         Me.TxtPetID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtPetID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetID.Location = New System.Drawing.Point(130, 151)
+        Me.TxtPetID.Location = New System.Drawing.Point(117, 87)
         Me.TxtPetID.Name = "TxtPetID"
         Me.TxtPetID.ReadOnly = True
         Me.TxtPetID.Size = New System.Drawing.Size(87, 21)
@@ -250,7 +257,7 @@ Partial Class FrmWardEntry
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(13, 154)
+        Me.Label16.Location = New System.Drawing.Point(6, 90)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(62, 15)
         Me.Label16.TabIndex = 106
@@ -261,7 +268,7 @@ Partial Class FrmWardEntry
         Me.TxtCustomerName.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerName.Location = New System.Drawing.Point(218, 129)
+        Me.TxtCustomerName.Location = New System.Drawing.Point(205, 65)
         Me.TxtCustomerName.Name = "TxtCustomerName"
         Me.TxtCustomerName.ReadOnly = True
         Me.TxtCustomerName.Size = New System.Drawing.Size(224, 21)
@@ -271,7 +278,7 @@ Partial Class FrmWardEntry
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(12, 132)
+        Me.Label15.Location = New System.Drawing.Point(5, 68)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(99, 15)
         Me.Label15.TabIndex = 104
@@ -282,7 +289,7 @@ Partial Class FrmWardEntry
         Me.TxtCustomerID.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCustomerID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerID.Location = New System.Drawing.Point(130, 129)
+        Me.TxtCustomerID.Location = New System.Drawing.Point(117, 65)
         Me.TxtCustomerID.Name = "TxtCustomerID"
         Me.TxtCustomerID.ReadOnly = True
         Me.TxtCustomerID.Size = New System.Drawing.Size(87, 21)
@@ -290,7 +297,7 @@ Partial Class FrmWardEntry
         '
         'BtnBillPayment
         '
-        Me.BtnBillPayment.Location = New System.Drawing.Point(528, 128)
+        Me.BtnBillPayment.Location = New System.Drawing.Point(558, 20)
         Me.BtnBillPayment.Name = "BtnBillPayment"
         Me.BtnBillPayment.Size = New System.Drawing.Size(186, 23)
         Me.BtnBillPayment.TabIndex = 102
@@ -302,7 +309,7 @@ Partial Class FrmWardEntry
         Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
         Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVisitID.Location = New System.Drawing.Point(130, 85)
+        Me.TxtVisitID.Location = New System.Drawing.Point(117, 21)
         Me.TxtVisitID.Name = "TxtVisitID"
         Me.TxtVisitID.ReadOnly = True
         Me.TxtVisitID.Size = New System.Drawing.Size(87, 21)
@@ -312,7 +319,7 @@ Partial Class FrmWardEntry
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(13, 88)
+        Me.Label7.Location = New System.Drawing.Point(6, 24)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(100, 15)
         Me.Label7.TabIndex = 100
@@ -321,6 +328,8 @@ Partial Class FrmWardEntry
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.Label25)
+        Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Controls.Add(Me.BtnSearch)
         Me.PnlActionBar.Controls.Add(Me.BtnPrint)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
@@ -329,15 +338,37 @@ Partial Class FrmWardEntry
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(750, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(750, 68)
         Me.PnlActionBar.TabIndex = 110
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(5, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(224, 32)
+        Me.Label25.TabIndex = 12
+        Me.Label25.Text = "Ward Information"
+        '
+        'BtnReload
+        '
+        Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
+        Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnReload.Location = New System.Drawing.Point(562, 6)
+        Me.BtnReload.Name = "BtnReload"
+        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
+        Me.BtnReload.TabIndex = 6
+        Me.BtnReload.UseVisualStyleBackColor = False
         '
         'BtnSearch
         '
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(381, 3)
+        Me.BtnSearch.Location = New System.Drawing.Point(318, 6)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearch.TabIndex = 5
@@ -348,7 +379,7 @@ Partial Class FrmWardEntry
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(442, 3)
+        Me.BtnPrint.Location = New System.Drawing.Point(379, 6)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
         Me.BtnPrint.TabIndex = 4
@@ -359,7 +390,7 @@ Partial Class FrmWardEntry
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(686, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(684, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -370,7 +401,7 @@ Partial Class FrmWardEntry
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(564, 3)
+        Me.BtnCancel.Location = New System.Drawing.Point(501, 6)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
         Me.BtnCancel.TabIndex = 2
@@ -381,7 +412,7 @@ Partial Class FrmWardEntry
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(625, 3)
+        Me.BtnEdit.Location = New System.Drawing.Point(623, 6)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
         Me.BtnEdit.TabIndex = 1
@@ -392,7 +423,7 @@ Partial Class FrmWardEntry
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(503, 3)
+        Me.BtnSave.Location = New System.Drawing.Point(440, 6)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 56)
         Me.BtnSave.TabIndex = 0
@@ -403,7 +434,7 @@ Partial Class FrmWardEntry
         Me.TxtWardID.BackColor = System.Drawing.Color.Beige
         Me.TxtWardID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtWardID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtWardID.Location = New System.Drawing.Point(218, 85)
+        Me.TxtWardID.Location = New System.Drawing.Point(205, 21)
         Me.TxtWardID.Name = "TxtWardID"
         Me.TxtWardID.ReadOnly = True
         Me.TxtWardID.Size = New System.Drawing.Size(87, 21)
@@ -414,7 +445,7 @@ Partial Class FrmWardEntry
         Me.TxtAdmissionDate.BackColor = System.Drawing.Color.Beige
         Me.TxtAdmissionDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtAdmissionDate.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtAdmissionDate.Location = New System.Drawing.Point(130, 107)
+        Me.TxtAdmissionDate.Location = New System.Drawing.Point(117, 43)
         Me.TxtAdmissionDate.Name = "TxtAdmissionDate"
         Me.TxtAdmissionDate.ReadOnly = True
         Me.TxtAdmissionDate.Size = New System.Drawing.Size(175, 21)
@@ -424,7 +455,7 @@ Partial Class FrmWardEntry
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(13, 110)
+        Me.Label14.Location = New System.Drawing.Point(6, 46)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(110, 15)
         Me.Label14.TabIndex = 112
@@ -451,7 +482,7 @@ Partial Class FrmWardEntry
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(742, 443)
+        Me.TabPage3.Size = New System.Drawing.Size(742, 375)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Treatment & Medication"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -589,7 +620,7 @@ Partial Class FrmWardEntry
         Me.DgvSelectedTreatment.Location = New System.Drawing.Point(9, 225)
         Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
         Me.DgvSelectedTreatment.ReadOnly = True
-        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 212)
+        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 144)
         Me.DgvSelectedTreatment.TabIndex = 153
         '
         'BtnTreatmentDeleteItem
@@ -735,7 +766,7 @@ Partial Class FrmWardEntry
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(742, 443)
+        Me.TabPage2.Size = New System.Drawing.Size(742, 375)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Diagnostic & Tests"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -801,10 +832,10 @@ Partial Class FrmWardEntry
         'TxtDiagnosis
         '
         Me.TxtDiagnosis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDiagnosis.Location = New System.Drawing.Point(15, 331)
+        Me.TxtDiagnosis.Location = New System.Drawing.Point(15, 295)
         Me.TxtDiagnosis.Multiline = True
         Me.TxtDiagnosis.Name = "TxtDiagnosis"
-        Me.TxtDiagnosis.Size = New System.Drawing.Size(712, 106)
+        Me.TxtDiagnosis.Size = New System.Drawing.Size(712, 74)
         Me.TxtDiagnosis.TabIndex = 12
         '
         'Label10
@@ -882,7 +913,7 @@ Partial Class FrmWardEntry
         Me.DgvSelectedTest.Location = New System.Drawing.Point(15, 153)
         Me.DgvSelectedTest.Name = "DgvSelectedTest"
         Me.DgvSelectedTest.ReadOnly = True
-        Me.DgvSelectedTest.Size = New System.Drawing.Size(712, 158)
+        Me.DgvSelectedTest.Size = New System.Drawing.Size(712, 121)
         Me.DgvSelectedTest.TabIndex = 18
         '
         'BtnTestDeleteItem
@@ -968,7 +999,7 @@ Partial Class FrmWardEntry
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(15, 314)
+        Me.Label8.Location = New System.Drawing.Point(15, 278)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(113, 14)
         Me.Label8.TabIndex = 11
@@ -976,6 +1007,7 @@ Partial Class FrmWardEntry
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.TxtWardDate)
         Me.TabPage1.Controls.Add(Me.TxtFastingDescription)
         Me.TabPage1.Controls.Add(Me.CmbFasting)
         Me.TabPage1.Controls.Add(Me.Label24)
@@ -983,7 +1015,6 @@ Partial Class FrmWardEntry
         Me.TabPage1.Controls.Add(Me.Label22)
         Me.TabPage1.Controls.Add(Me.TxtDailyNotes)
         Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.DtpWardDate)
         Me.TabPage1.Controls.Add(Me.Label5)
         Me.TabPage1.Controls.Add(Me.CmbVomit)
         Me.TabPage1.Controls.Add(Me.Label4)
@@ -996,10 +1027,21 @@ Partial Class FrmWardEntry
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(742, 443)
+        Me.TabPage1.Size = New System.Drawing.Size(742, 375)
         Me.TabPage1.TabIndex = 3
         Me.TabPage1.Text = "Daily Ward Update"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TxtWardDate
+        '
+        Me.TxtWardDate.BackColor = System.Drawing.Color.Beige
+        Me.TxtWardDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtWardDate.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtWardDate.Location = New System.Drawing.Point(76, 14)
+        Me.TxtWardDate.Name = "TxtWardDate"
+        Me.TxtWardDate.Size = New System.Drawing.Size(121, 21)
+        Me.TxtWardDate.TabIndex = 108
+        Me.TxtWardDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxtFastingDescription
         '
@@ -1053,7 +1095,7 @@ Partial Class FrmWardEntry
         Me.TxtDailyNotes.Location = New System.Drawing.Point(22, 167)
         Me.TxtDailyNotes.Multiline = True
         Me.TxtDailyNotes.Name = "TxtDailyNotes"
-        Me.TxtDailyNotes.Size = New System.Drawing.Size(692, 256)
+        Me.TxtDailyNotes.Size = New System.Drawing.Size(692, 193)
         Me.TxtDailyNotes.TabIndex = 14
         '
         'Label6
@@ -1065,18 +1107,10 @@ Partial Class FrmWardEntry
         Me.Label6.TabIndex = 13
         Me.Label6.Text = "Daily Notes/Observation && Update:"
         '
-        'DtpWardDate
-        '
-        Me.DtpWardDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpWardDate.Location = New System.Drawing.Point(76, 15)
-        Me.DtpWardDate.Name = "DtpWardDate"
-        Me.DtpWardDate.Size = New System.Drawing.Size(104, 20)
-        Me.DtpWardDate.TabIndex = 9
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(19, 18)
+        Me.Label5.Location = New System.Drawing.Point(19, 17)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(29, 14)
         Me.Label5.TabIndex = 8
@@ -1160,10 +1194,10 @@ Partial Class FrmWardEntry
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 221)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 252)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(750, 470)
+        Me.TabControl1.Size = New System.Drawing.Size(750, 402)
         Me.TabControl1.TabIndex = 99
         '
         'TabPage4
@@ -1172,7 +1206,7 @@ Partial Class FrmWardEntry
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(742, 443)
+        Me.TabPage4.Size = New System.Drawing.Size(742, 375)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Ward Progress/Report/Summary"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1187,38 +1221,9 @@ Partial Class FrmWardEntry
         Me.DgvWardSummary.Location = New System.Drawing.Point(3, 3)
         Me.DgvWardSummary.Name = "DgvWardSummary"
         Me.DgvWardSummary.ReadOnly = True
-        Me.DgvWardSummary.Size = New System.Drawing.Size(736, 437)
+        Me.DgvWardSummary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvWardSummary.Size = New System.Drawing.Size(736, 369)
         Me.DgvWardSummary.TabIndex = 0
-        '
-        'CbIsDischarged
-        '
-        Me.CbIsDischarged.AutoSize = True
-        Me.CbIsDischarged.Location = New System.Drawing.Point(311, 86)
-        Me.CbIsDischarged.Name = "CbIsDischarged"
-        Me.CbIsDischarged.Size = New System.Drawing.Size(75, 18)
-        Me.CbIsDischarged.TabIndex = 114
-        Me.CbIsDischarged.Text = "Discharge"
-        Me.CbIsDischarged.UseVisualStyleBackColor = True
-        '
-        'TxtCase
-        '
-        Me.TxtCase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCase.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCase.Location = New System.Drawing.Point(130, 173)
-        Me.TxtCase.Multiline = True
-        Me.TxtCase.Name = "TxtCase"
-        Me.TxtCase.Size = New System.Drawing.Size(312, 42)
-        Me.TxtCase.TabIndex = 16
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(13, 175)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(36, 15)
-        Me.Label23.TabIndex = 115
-        Me.Label23.Text = "Case"
         '
         'WardDate
         '
@@ -1267,36 +1272,111 @@ Partial Class FrmWardEntry
         Me.Vomit.ReadOnly = True
         Me.Vomit.Width = 58
         '
-        'FrmWardEntry
+        'CbIsDischarged
+        '
+        Me.CbIsDischarged.AutoSize = True
+        Me.CbIsDischarged.Location = New System.Drawing.Point(298, 22)
+        Me.CbIsDischarged.Name = "CbIsDischarged"
+        Me.CbIsDischarged.Size = New System.Drawing.Size(75, 18)
+        Me.CbIsDischarged.TabIndex = 114
+        Me.CbIsDischarged.Text = "Discharge"
+        Me.CbIsDischarged.UseVisualStyleBackColor = True
+        '
+        'TxtCase
+        '
+        Me.TxtCase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtCase.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCase.Location = New System.Drawing.Point(117, 109)
+        Me.TxtCase.Multiline = True
+        Me.TxtCase.Name = "TxtCase"
+        Me.TxtCase.Size = New System.Drawing.Size(312, 42)
+        Me.TxtCase.TabIndex = 16
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(6, 111)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(36, 15)
+        Me.Label23.TabIndex = 115
+        Me.Label23.Text = "Case"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.TxtDD)
+        Me.GroupBox1.Controls.Add(Me.TxtAD)
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.TxtCase)
+        Me.GroupBox1.Controls.Add(Me.TxtVisitID)
+        Me.GroupBox1.Controls.Add(Me.BtnBillPayment)
+        Me.GroupBox1.Controls.Add(Me.Label23)
+        Me.GroupBox1.Controls.Add(Me.TxtCustomerID)
+        Me.GroupBox1.Controls.Add(Me.CbIsDischarged)
+        Me.GroupBox1.Controls.Add(Me.Label15)
+        Me.GroupBox1.Controls.Add(Me.TxtAdmissionDate)
+        Me.GroupBox1.Controls.Add(Me.TxtCustomerName)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.Label16)
+        Me.GroupBox1.Controls.Add(Me.TxtWardID)
+        Me.GroupBox1.Controls.Add(Me.TxtPetID)
+        Me.GroupBox1.Controls.Add(Me.TxtPetName)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 86)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(750, 160)
+        Me.GroupBox1.TabIndex = 116
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Customer Visit Details"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(558, 103)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(186, 23)
+        Me.Button1.TabIndex = 116
+        Me.Button1.Text = "Calculate Ward Charge"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'TxtAD
+        '
+        Me.TxtAD.BackColor = System.Drawing.Color.Beige
+        Me.TxtAD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtAD.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtAD.Location = New System.Drawing.Point(558, 49)
+        Me.TxtAD.Name = "TxtAD"
+        Me.TxtAD.ReadOnly = True
+        Me.TxtAD.Size = New System.Drawing.Size(175, 21)
+        Me.TxtAD.TabIndex = 117
+        '
+        'TxtDD
+        '
+        Me.TxtDD.BackColor = System.Drawing.Color.Beige
+        Me.TxtDD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDD.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDD.Location = New System.Drawing.Point(558, 76)
+        Me.TxtDD.Name = "TxtDD"
+        Me.TxtDD.ReadOnly = True
+        Me.TxtDD.Size = New System.Drawing.Size(175, 21)
+        Me.TxtDD.TabIndex = 118
+        '
+        'FrmWardInformation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(770, 763)
-        Me.Controls.Add(Me.TxtCase)
-        Me.Controls.Add(Me.Label23)
-        Me.Controls.Add(Me.CbIsDischarged)
-        Me.Controls.Add(Me.TxtAdmissionDate)
-        Me.Controls.Add(Me.Label14)
-        Me.Controls.Add(Me.TxtWardID)
+        Me.ClientSize = New System.Drawing.Size(774, 729)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.Panel3)
-        Me.Controls.Add(Me.TxtPetName)
-        Me.Controls.Add(Me.TxtPetID)
-        Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.TxtCustomerName)
-        Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.TxtCustomerID)
-        Me.Controls.Add(Me.BtnBillPayment)
-        Me.Controls.Add(Me.TxtVisitID)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.TabControl1)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "FrmWardEntry"
+        Me.Name = "FrmWardInformation"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Ward"
+        Me.Text = "Ward Information"
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1308,8 +1388,9 @@ Partial Class FrmWardEntry
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         CType(Me.DgvWardSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Label21 As Label
@@ -1396,7 +1477,6 @@ Partial Class FrmWardEntry
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TxtDailyNotes As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents DtpWardDate As DateTimePicker
     Friend WithEvents Label5 As Label
     Friend WithEvents CmbVomit As ComboBox
     Friend WithEvents Label4 As Label
@@ -1423,4 +1503,11 @@ Partial Class FrmWardEntry
     Friend WithEvents Bowel As DataGridViewTextBoxColumn
     Friend WithEvents Urine As DataGridViewTextBoxColumn
     Friend WithEvents Vomit As DataGridViewTextBoxColumn
+    Friend WithEvents BtnReload As Button
+    Friend WithEvents Label25 As Label
+    Friend WithEvents TxtWardDate As TextBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TxtDD As TextBox
+    Friend WithEvents TxtAD As TextBox
 End Class

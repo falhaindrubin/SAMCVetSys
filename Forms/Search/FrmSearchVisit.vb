@@ -1,5 +1,5 @@
 ﻿Public Class FrmSearchVisit
-
+#Region "FormProperty"
     Private _VisitID As String
     Public Property VisitID As String
         Get
@@ -69,6 +69,7 @@
             _Source = value
         End Set
     End Property
+#End Region
 
     Private Sub FrmSearchVisit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
@@ -110,7 +111,7 @@
                         If UserCommand = "ADD_NEW_WARD" Then
                             CbIsWarded.Checked = True
                             With ClsVisit
-                                .IsAdmittedToWard = "1"
+                                .IsAdmittedToWard = "0"
                                 .IsOngoingTreatment = "1"
                                 .IsVisitCompleted = "0"
                             End With

@@ -90,6 +90,7 @@ Partial Class FrmVisitEntry
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.CbAdmitToWard = New System.Windows.Forms.CheckBox()
         Me.BtnGenerateBill = New System.Windows.Forms.Button()
         Me.CbIsVisitCompleted = New System.Windows.Forms.CheckBox()
         Me.LblPetName = New System.Windows.Forms.Label()
@@ -120,7 +121,7 @@ Partial Class FrmVisitEntry
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
-        Me.CbAdmitToWard = New System.Windows.Forms.CheckBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.TabPage2.SuspendLayout()
         CType(Me.DgvPetListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -243,7 +244,7 @@ Partial Class FrmVisitEntry
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(592, 504)
+        Me.TabPage2.Size = New System.Drawing.Size(592, 498)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Pet Information"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -391,7 +392,7 @@ Partial Class FrmVisitEntry
         Me.DgvPetListing.Name = "DgvPetListing"
         Me.DgvPetListing.ReadOnly = True
         Me.DgvPetListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvPetListing.Size = New System.Drawing.Size(580, 269)
+        Me.DgvPetListing.Size = New System.Drawing.Size(580, 263)
         Me.DgvPetListing.TabIndex = 67
         '
         'TxtPetName
@@ -454,7 +455,7 @@ Partial Class FrmVisitEntry
         Me.TxtDateModified.BackColor = System.Drawing.Color.Beige
         Me.TxtDateModified.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDateModified.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDateModified.Location = New System.Drawing.Point(145, 32)
+        Me.TxtDateModified.Location = New System.Drawing.Point(142, 31)
         Me.TxtDateModified.Name = "TxtDateModified"
         Me.TxtDateModified.ReadOnly = True
         Me.TxtDateModified.Size = New System.Drawing.Size(132, 20)
@@ -471,7 +472,7 @@ Partial Class FrmVisitEntry
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Location = New System.Drawing.Point(12, 618)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(596, 61)
+        Me.Panel3.Size = New System.Drawing.Size(600, 61)
         Me.Panel3.TabIndex = 82
         '
         'TxtCreatedBy
@@ -479,7 +480,7 @@ Partial Class FrmVisitEntry
         Me.TxtCreatedBy.BackColor = System.Drawing.Color.Beige
         Me.TxtCreatedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCreatedBy.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(76, 9)
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(76, 10)
         Me.TxtCreatedBy.Name = "TxtCreatedBy"
         Me.TxtCreatedBy.ReadOnly = True
         Me.TxtCreatedBy.Size = New System.Drawing.Size(65, 20)
@@ -489,7 +490,7 @@ Partial Class FrmVisitEntry
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(13, 12)
+        Me.Label17.Location = New System.Drawing.Point(13, 13)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(61, 14)
         Me.Label17.TabIndex = 73
@@ -500,7 +501,7 @@ Partial Class FrmVisitEntry
         Me.TxtDateCreated.BackColor = System.Drawing.Color.Beige
         Me.TxtDateCreated.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDateCreated.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDateCreated.Location = New System.Drawing.Point(145, 9)
+        Me.TxtDateCreated.Location = New System.Drawing.Point(142, 10)
         Me.TxtDateCreated.Name = "TxtDateCreated"
         Me.TxtDateCreated.ReadOnly = True
         Me.TxtDateCreated.Size = New System.Drawing.Size(132, 20)
@@ -510,7 +511,7 @@ Partial Class FrmVisitEntry
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(13, 36)
+        Me.Label18.Location = New System.Drawing.Point(13, 34)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(63, 14)
         Me.Label18.TabIndex = 75
@@ -521,7 +522,7 @@ Partial Class FrmVisitEntry
         Me.TxtModifiedBy.BackColor = System.Drawing.Color.Beige
         Me.TxtModifiedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtModifiedBy.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtModifiedBy.Location = New System.Drawing.Point(76, 32)
+        Me.TxtModifiedBy.Location = New System.Drawing.Point(76, 31)
         Me.TxtModifiedBy.Name = "TxtModifiedBy"
         Me.TxtModifiedBy.ReadOnly = True
         Me.TxtModifiedBy.Size = New System.Drawing.Size(65, 20)
@@ -532,7 +533,7 @@ Partial Class FrmVisitEntry
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(288, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(290, 6)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
         Me.BtnPrint.TabIndex = 4
@@ -543,7 +544,7 @@ Partial Class FrmVisitEntry
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(532, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(534, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -555,7 +556,7 @@ Partial Class FrmVisitEntry
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(410, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(412, 6)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
         Me.BtnCancel.TabIndex = 2
@@ -566,7 +567,7 @@ Partial Class FrmVisitEntry
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(471, 2)
+        Me.BtnEdit.Location = New System.Drawing.Point(473, 6)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
         Me.BtnEdit.TabIndex = 1
@@ -578,7 +579,7 @@ Partial Class FrmVisitEntry
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(349, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(351, 6)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 56)
         Me.BtnSave.TabIndex = 0
@@ -617,7 +618,7 @@ Partial Class FrmVisitEntry
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(592, 504)
+        Me.TabPage1.Size = New System.Drawing.Size(592, 498)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Customer Information"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -771,6 +772,7 @@ Partial Class FrmVisitEntry
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnSearch)
         Me.PnlActionBar.Controls.Add(Me.BtnPrint)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
@@ -779,7 +781,7 @@ Partial Class FrmVisitEntry
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(596, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(600, 68)
         Me.PnlActionBar.TabIndex = 81
         '
         'BtnSearch
@@ -787,7 +789,7 @@ Partial Class FrmVisitEntry
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(227, 2)
+        Me.BtnSearch.Location = New System.Drawing.Point(229, 6)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearch.TabIndex = 5
@@ -815,10 +817,21 @@ Partial Class FrmVisitEntry
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(592, 504)
+        Me.TabPage3.Size = New System.Drawing.Size(592, 498)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Visit Information"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'CbAdmitToWard
+        '
+        Me.CbAdmitToWard.AutoSize = True
+        Me.CbAdmitToWard.Location = New System.Drawing.Point(208, 39)
+        Me.CbAdmitToWard.Name = "CbAdmitToWard"
+        Me.CbAdmitToWard.Size = New System.Drawing.Size(96, 18)
+        Me.CbAdmitToWard.TabIndex = 99
+        Me.CbAdmitToWard.Text = "Admit To Ward"
+        Me.CbAdmitToWard.UseVisualStyleBackColor = True
+        Me.CbAdmitToWard.Visible = False
         '
         'BtnGenerateBill
         '
@@ -988,10 +1001,10 @@ Partial Class FrmVisitEntry
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(12, 81)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 87)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(600, 531)
+        Me.TabControl1.Size = New System.Drawing.Size(600, 525)
         Me.TabControl1.TabIndex = 80
         '
         'TabPage4
@@ -1011,7 +1024,7 @@ Partial Class FrmVisitEntry
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(592, 504)
+        Me.TabPage4.Size = New System.Drawing.Size(592, 498)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Physical Examination Findings"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1122,21 +1135,22 @@ Partial Class FrmVisitEntry
         Me.Label38.TabIndex = 15
         Me.Label38.Text = "Temperature"
         '
-        'CbAdmitToWard
+        'Label25
         '
-        Me.CbAdmitToWard.AutoSize = True
-        Me.CbAdmitToWard.Location = New System.Drawing.Point(208, 39)
-        Me.CbAdmitToWard.Name = "CbAdmitToWard"
-        Me.CbAdmitToWard.Size = New System.Drawing.Size(96, 18)
-        Me.CbAdmitToWard.TabIndex = 99
-        Me.CbAdmitToWard.Text = "Admit To Ward"
-        Me.CbAdmitToWard.UseVisualStyleBackColor = True
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(209, 32)
+        Me.Label25.TabIndex = 13
+        Me.Label25.Text = "Visit Information"
         '
         'FrmVisitEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(622, 689)
+        Me.ClientSize = New System.Drawing.Size(624, 689)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.TabControl1)
@@ -1152,6 +1166,7 @@ Partial Class FrmVisitEntry
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         CType(Me.DgvSelectedPet, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1258,4 +1273,5 @@ Partial Class FrmVisitEntry
     Friend WithEvents Label37 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents CbAdmitToWard As CheckBox
+    Friend WithEvents Label25 As Label
 End Class

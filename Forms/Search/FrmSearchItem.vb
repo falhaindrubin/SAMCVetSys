@@ -1,5 +1,6 @@
 ﻿Public Class FrmSearchItem
 
+#Region "FormProperty"
     Private _ItemCode As String
     Public Property ItemCode As String
         Get
@@ -69,6 +70,7 @@
             _UserCommand = value
         End Set
     End Property
+#End Region
 
     Private Sub FrmSearchItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")

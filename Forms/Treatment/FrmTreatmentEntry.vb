@@ -109,10 +109,12 @@ Public Class FrmTreatmentEntry
         Dim DtPEF As New DataTable
         Dim DtDiagnosis As New DataTable
         Dim DtTreatment As New DataTable
+        Dim DtInvoice As New DataTable
         Dim ClsVisit As New ClsVisit
         Dim ClsPEFindings As New ClsPEFindings
         Dim ClsDiagnosis As New ClsDiagnosis
         Dim ClsTreatment As New ClsTreatment
+        Dim ClsBill As New ClsBill
 
         Try
             'Get pet info from VisitID
@@ -125,6 +127,14 @@ Public Class FrmTreatmentEntry
                     TxtPetName.Text = PetName
 
                 Case "SHOW_TREATMENT_INFO"
+                    'Get invoice info
+                    ClsBill.VisitID = VisitID
+                    DtInvoice = ClsBill.GetBillHeader(ClsBill)
+                    If DtInvoice.Rows.Count > 0 Then
+                        BtnBillPayment.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                        BtnBillPayment.Tag = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                    End If
+
                     'Get Visit
                     ClsVisit.VisitID = VisitID
                     DtVisit = ClsVisit.GetVisitDetail(ClsVisit)
@@ -293,7 +303,11 @@ Public Class FrmTreatmentEntry
     End Sub
 
     Private Sub BtnBillPayment_Click(sender As Object, e As EventArgs) Handles BtnBillPayment.Click
-        FrmPaymentEntry.ShowDialog()
+        With FrmPaymentEntry
+            .InvoiceNo = BtnBillPayment.Tag
+            .UserCommand = "SHOW_BILLING_INFO"
+            .ShowDialog()
+        End With
     End Sub
 
     Private Sub BtnSearchTestItem_Click(sender As Object, e As EventArgs) Handles BtnSearchTestItem.Click

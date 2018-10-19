@@ -18,10 +18,10 @@ Public Class ClsDbWard
                 .Append("(WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & W.WardID & "', '" & W.VisitID & "', " & CSQLDate(W.AdmissionDate) & ", '" & W.CustomerID & "', '" & W.CustomerName & "', '" & W.PetID & "', '" & W.PetName & "', '" & W.PetCase & "', '" & W.IsDischarged & "', " & CSQLDateTime(W.DischargeDate) & ", ")
+                .Append("('" & W.WardID & "', '" & W.VisitID & "', " & CSQLDateTime(W.AdmissionDate) & ", '" & W.CustomerID & "', '" & W.CustomerName & "', '" & W.PetID & "', '" & W.PetName & "', '" & W.PetCase & "', '" & W.IsDischarged & "', " & CSQLDateTime(W.DischargeDate) & ", ")
                 .Append("'" & W.Ref.CreatedBy & "', " & CSQLDateTime(W.Ref.DateCreated) & ", '" & W.Ref.ModifiedBy & "', " & CSQLDateTime(W.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("IsDischarged = '" & W.IsDischarged & "', DischargeDate = " & CSQLDateTime(W.DischargeDate) & ", ModifiedBy = '" & W.Ref.DateModified & "', DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
+                .Append("IsDischarged = '" & W.IsDischarged & "', DischargeDate = " & CSQLDateTime(W.DischargeDate) & ", ModifiedBy = '" & W.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -186,6 +186,8 @@ Public Class ClsDbWard
                 .Append("INNER JOIN samc_warddetail b ON a.WardID = b.WardID ")
                 If W.WardID <> "" Then
                     .Append("WHERE a.WardID = '" & W.WardID & "' ")
+                ElseIf W.VisitID <> "" Then
+                    .Append("WHERE a.VisitID = '" & W.VisitID & "' ")
                 End If
             End With
 
@@ -198,6 +200,65 @@ Public Class ClsDbWard
         End Try
 
         Return DtWard
+
+    End Function
+
+    Public Function GetWardDiagnosisDetail(D As ClsWardDiagnosis) As DataTable
+
+        Dim DtWardDiagnosisDetail As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.WardID, VisitID, PetID, PetName, Diagnosis, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
+                .Append("DiagnoseDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice ")
+                .Append("FROM samc_ward_diagnosis a ")
+                .Append("LEFT JOIN samc_ward_diagnosisdetail b ON a.WardID = b.WardID ")
+
+                If D.WardID <> "" Then
+                    .Append("WHERE a.WardID = '" & D.WardID & "' ")
+                    If D.DiagnoseDate <> Nothing Then
+                        .Append("AND DiagnoseDate = " & CSQLDate(D.DiagnoseDate) & " ")
+                    End If
+                End If
+
+                .Append("GROUP BY RowNo ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtWardDiagnosisDetail)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbWard.GetWardDiagnosisDetail()")
+        End Try
+
+        Return DtWardDiagnosisDetail
+
+    End Function
+
+    Public Function GetWardTreatmentDetail(T As ClsWardTreatment) As DataTable
+
+        Dim DtWardTreatment As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT WardID, VisitID, TreatmentDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_ward_treatment ")
+                .Append("WHERE WardID = '" & T.WardID & "' AND TreatmentDate = " & CSQLDate(T.TreatmentDate) & " ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtWardTreatment)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbWard.GetWardTreatmentDetail()")
+        End Try
+
+        Return DtWardTreatment
 
     End Function
 

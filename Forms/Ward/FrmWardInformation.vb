@@ -1078,19 +1078,47 @@ ShowWardInfo:
         PopulateForm("SHOW_WARD_INFO")
     End Sub
 
-Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
         Try
-            TxtAD.Text = "19/10/2018 13:00:00"
-            TxtDD.Text = "20/10/2018 10:00:00" 'Now.AddDays(1) 14:29:57
+            'Set fixed AdmissionDate & DischargeDate
+            Dim StrFixedAD As String = "19/10/2018 " & "12:00:00"
+            Dim StrFixedDD As String = "21/10/2018 " & "12:00:00"
+            Dim FixedAD As Date = CDate(StrFixedAD)
+            Dim FixedDD As Date = CDate(StrFixedDD)
+            Dim FixDuration As TimeSpan
 
-            Dim D1 As Date = CDate(TxtAD.Text)
-            Dim D2 As Date = CDate(TxtDD.Text)
+            'Get actual admission date & actual discharge date
+            Dim ActualAD As Date = "19/10/2018 13:00:00"
+            Dim ActualDD As Date = "21/10/2018 12:01:00"
 
-            Dim Charge As Integer = DateDiff(DateInterval.Day, D1, D2)
-            MsgBox(Charge)
+            FixDuration = FixedDD - FixedAD
+            Dim WardDuration As Integer = FixDuration.Days
+
+            If ActualDD > FixedDD Then
+                WardDuration = WardDuration + 1
+            Else
+                If WardDuration = 1 Then
+                    WardDuration = WardDuration - 1
+                End If
+            End If
+
+            TxtAD.Text = ActualAD
+            TxtDD.Text = ActualDD
+
+            MsgBox("Admission Date : " & ActualAD & Environment.NewLine &
+                   "Discharge Date : " & ActualDD & Environment.NewLine &
+                   "Ward Duration : " & WardDuration)
+
+            'Dim D1 As Date = CDate(TxtAD.Text)
+            'Dim D2 As Date = CDate(TxtDD.Text)
+            'Dim Charge As Integer = DateDiff(DateInterval.Day, D1, D2)
+            'MsgBox(Charge)
 
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
     End Sub
+
 End Class

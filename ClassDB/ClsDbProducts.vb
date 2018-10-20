@@ -92,7 +92,7 @@ Public Class ClsDbProducts
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT ItemTypeCode, ItemTypeDescription ")
+                .Append("SELECT ItemGroup, ItemTypeCode, ItemTypeDescription ")
                 .Append("FROM samc_producttype ")
                 .Append("ORDER BY ItemTypeDescription ")
             End With

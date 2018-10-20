@@ -74,80 +74,221 @@
 
     Private Sub FrmSearchItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
+        If RbServices.Checked = True Then
+            PopulateServiceTypeListing()
+        ElseIf RbProducts.Checked = True Then
+            PopulateProductTypeListing()
+        End If
+
         PopulateItemListing()
         TxtSearchText.Select()
     End Sub
 
     Private Sub PopulateItemListing()
 
-        Dim DtItemListing As New DataTable
-        Dim DtServices As New DataTable
-        Dim DtProducts As New DataTable
-        Dim ClsServices As New ClsServices
-        Dim ClsProducts As New ClsProducts
-        Dim CmbSource As New Dictionary(Of String, String)
-        Dim DtServicesType As New DataTable
-        Dim DtProductsType As New DataTable
-
         Try
             If RbServices.Checked = True Then
-                DtServicesType = ClsServices.GetServiceTypeList(ClsServices)
-                DtServices = ClsServices.GetServiceList(ClsServices)
-
-                If DtServicesType.Rows.Count > 0 Then
-                    CmbSource.Clear()
-                    For i As Integer = 0 To DtServicesType.Rows.Count - 1
-                        CmbSource.Add(DtServicesType.Rows(i).Item("ItemTypeCode"), DtServicesType.Rows(i).Item("ItemTypeDescription"))
-                    Next
-                    RbServices.Tag = DtServicesType.Rows(0).Item("ItemGroup").ToString
-                End If
-
-                If CmbItemTypeDescription.Items.Count > 0 Then
-                    CmbItemTypeDescription.DataSource = Nothing
-                    CmbItemTypeDescription.Items.Clear()
-                End If
-
-                CmbItemTypeDescription.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbItemTypeDescription.DisplayMember = "Value"
-                CmbItemTypeDescription.ValueMember = "Key"
-
-                If DtServices.Rows.Count > 0 Then
-                    DgvSearchResult.DataSource = DtServices
-                    DgvSearchResult.Show()
-                Else
-                    DgvSearchResult.DataSource = Nothing
-                    DgvSearchResult.Show()
-                End If
+                PopulateServiceListing()
 
             ElseIf RbProducts.Checked = True Then
-                DtProductsType = ClsProducts.GetProductTypeList(ClsProducts)
-                DtProducts = ClsProducts.GetProductList(ClsProducts)
+                PopulateProductListing()
 
-                If DtProductsType.Rows.Count > 0 Then
-                    CmbSource.Clear()
-                    For i As Integer = 0 To DtProductsType.Rows.Count - 1
-                        CmbSource.Add(DtProductsType.Rows(i).Item("ItemTypeCode"), DtProductsType.Rows(i).Item("ItemTypeDescription"))
-                    Next
-                    RbProducts.Tag = DtProducts.Rows(0).Item("ItemGroup").ToString
-                End If
+            End If
 
-                If CmbItemTypeDescription.Items.Count > 0 Then
-                    CmbItemTypeDescription.DataSource = Nothing
-                    CmbItemTypeDescription.Items.Clear()
-                End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateItemListing()")
+        End Try
 
-                CmbItemTypeDescription.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbItemTypeDescription.DisplayMember = "Value"
-                CmbItemTypeDescription.ValueMember = "Key"
+    End Sub
 
-                If DtProducts.Rows.Count > 0 Then
-                    DgvSearchResult.DataSource = DtProducts
-                    DgvSearchResult.Show()
-                Else
-                    DgvSearchResult.DataSource = Nothing
-                    DgvSearchResult.Show()
-                End If
+    Private Sub PopulateServiceTypeListing()
 
+        Dim DtServicesType As New DataTable
+        Dim DtServices As New DataTable
+        Dim ClsServices As New ClsServices
+        Dim CmbSource As New Dictionary(Of String, String)
+
+        Try
+            DtServicesType = ClsServices.GetServiceTypeList(ClsServices)
+            If DtServicesType.Rows.Count > 0 Then
+                CmbSource.Clear()
+                For i As Integer = 0 To DtServicesType.Rows.Count - 1
+                    CmbSource.Add(DtServicesType.Rows(i).Item("ItemTypeCode"), DtServicesType.Rows(i).Item("ItemTypeDescription"))
+                Next
+                RbServices.Tag = DtServicesType.Rows(0).Item("ItemGroup").ToString
+            End If
+
+            If CmbItemTypeDescription.Items.Count > 0 Then
+                CmbItemTypeDescription.DataSource = Nothing
+                CmbItemTypeDescription.Items.Clear()
+            End If
+
+            CmbItemTypeDescription.DataSource = New BindingSource(CmbSource, Nothing)
+            CmbItemTypeDescription.DisplayMember = "Value"
+            CmbItemTypeDescription.ValueMember = "Key"
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateServiceTypeListing()")
+        End Try
+
+    End Sub
+
+    Private Sub PopulateProductTypeListing()
+
+        Dim DtProductsType As New DataTable
+        Dim DtProducts As New DataTable
+        Dim ClsProducts As New ClsProducts
+        Dim CmbSource As New Dictionary(Of String, String)
+
+        Try
+            DtProductsType = ClsProducts.GetProductTypeList(ClsProducts)
+            If DtProductsType.Rows.Count > 0 Then
+                CmbSource.Clear()
+                For i As Integer = 0 To DtProductsType.Rows.Count - 1
+                    CmbSource.Add(DtProductsType.Rows(i).Item("ItemTypeCode"), DtProductsType.Rows(i).Item("ItemTypeDescription"))
+                Next
+                RbProducts.Tag = DtProductsType.Rows(0).Item("ItemGroup").ToString
+            End If
+
+            If CmbItemTypeDescription.Items.Count > 0 Then
+                CmbItemTypeDescription.DataSource = Nothing
+                CmbItemTypeDescription.Items.Clear()
+            End If
+
+            CmbItemTypeDescription.DataSource = New BindingSource(CmbSource, Nothing)
+            CmbItemTypeDescription.DisplayMember = "Value"
+            CmbItemTypeDescription.ValueMember = "Key"
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateProductTypeListing()")
+        End Try
+
+    End Sub
+
+    Private Sub PopulateServiceListing()
+
+        Dim DtServicesType As New DataTable
+        Dim DtServices As New DataTable
+        Dim ClsServices As New ClsServices
+        Dim CmbSource As New Dictionary(Of String, String)
+
+        Try
+            DtServices = ClsServices.GetServiceList(ClsServices)
+            If DtServices.Rows.Count > 0 Then
+
+                Dim DvServices As New DataView
+                Dim DtSelectedServices As New DataTable
+                DvServices = DtServices.DefaultView
+                DvServices.RowFilter = "ItemTypeCode = '" & DirectCast(CmbItemTypeDescription.SelectedItem, KeyValuePair(Of String, String)).Key.ToString & "'"
+                With DtSelectedServices
+                    .Columns.Add("ItemCode", GetType(String))
+                    .Columns.Add("ItemDescription", GetType(String))
+                    .Columns.Add("ItemGroup", GetType(String))
+                    .Columns.Add("ItemTypeCode", GetType(String))
+                    .Columns.Add("ItemTypeDescription", GetType(String))
+                    .Columns.Add("UnitPrice", GetType(String))
+                    .Columns.Add("CreatedBy", GetType(String))
+                    .Columns.Add("DateCreated", GetType(String))
+                    .Columns.Add("ModifiedBy", GetType(String))
+                    .Columns.Add("DateModified", GetType(String))
+                End With
+
+                For i As Integer = 0 To DvServices.Count - 1
+                    DtSelectedServices.Rows.Add(
+                        DvServices(i)("ItemCode").ToString,
+                        DvServices(i)("ItemDescription").ToString,
+                        DvServices(i)("ItemGroup").ToString,
+                        DvServices(i)("ItemTypeCode").ToString,
+                        DvServices(i)("ItemTypeDescription").ToString,
+                        DvServices(i)("UnitPrice").ToString,
+                        DvServices(i)("CreatedBy").ToString,
+                        DvServices(i)("DateCreated").ToString,
+                        DvServices(i)("ModifiedBy").ToString,
+                        DvServices(i)("DateModified").ToString)
+                Next
+
+                With DgvSearchResult
+                    .DataSource = DtSelectedServices
+                    .Columns("ItemDescription").AutoSizeMode = DataGridViewAutoSizeColumnsMode.Fill
+                    .Columns("ItemTypeDescription").AutoSizeMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+                    .Columns("ItemGroup").Visible = False
+                    .Columns("ItemTypeCode").Visible = False
+                    .Columns("CreatedBy").Visible = False
+                    .Columns("DateCreated").Visible = False
+                    .Columns("ModifiedBy").Visible = False
+                    .Columns("DateModified").Visible = False
+                    .Show()
+                End With
+
+            Else
+                DgvSearchResult.DataSource = Nothing
+                DgvSearchResult.Show()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateServiceListing()")
+        End Try
+
+    End Sub
+
+    Private Sub PopulateProductListing()
+
+        Dim DtProductsType As New DataTable
+        Dim DtProducts As New DataTable
+        Dim ClsProducts As New ClsProducts
+        Dim CmbSource As New Dictionary(Of String, String)
+
+        Try
+            DtProducts = ClsProducts.GetProductList(ClsProducts)
+
+            If DtProducts.Rows.Count > 0 Then
+
+                Dim DvProducts As New DataView
+                Dim DtSelectedProducts As New DataTable
+                DvProducts = DtProducts.DefaultView
+                DvProducts.RowFilter = "ItemTypeCode = '" & DirectCast(CmbItemTypeDescription.SelectedItem, KeyValuePair(Of String, String)).Key.ToString & "'"
+                With DtSelectedProducts
+                    .Columns.Add("ItemCode", GetType(String))
+                    .Columns.Add("ItemDescription", GetType(String))
+                    .Columns.Add("ItemGroup", GetType(String))
+                    .Columns.Add("ItemTypeCode", GetType(String))
+                    .Columns.Add("ItemTypeDescription", GetType(String))
+                    .Columns.Add("UnitPrice", GetType(String))
+                    .Columns.Add("CreatedBy", GetType(String))
+                    .Columns.Add("DateCreated", GetType(String))
+                    .Columns.Add("ModifiedBy", GetType(String))
+                    .Columns.Add("DateModified", GetType(String))
+                End With
+
+                For i As Integer = 0 To DvProducts.Count - 1
+                    DtSelectedProducts.Rows.Add(
+                        DvProducts(i)("ItemCode").ToString,
+                        DvProducts(i)("ItemDescription").ToString,
+                        DvProducts(i)("ItemGroup").ToString,
+                        DvProducts(i)("ItemTypeCode").ToString,
+                        DvProducts(i)("ItemTypeDescription").ToString,
+                        DvProducts(i)("UnitPrice").ToString,
+                        DvProducts(i)("CreatedBy").ToString,
+                        DvProducts(i)("DateCreated").ToString,
+                        DvProducts(i)("ModifiedBy").ToString,
+                        DvProducts(i)("DateModified").ToString)
+                Next
+
+                With DgvSearchResult
+                    .DataSource = DtSelectedProducts
+                    .Columns("ItemDescription").AutoSizeMode = DataGridViewAutoSizeColumnsMode.Fill
+                    .Columns("ItemTypeDescription").AutoSizeMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+                    .Columns("ItemGroup").Visible = False
+                    .Columns("ItemTypeCode").Visible = False
+                    .Columns("CreatedBy").Visible = False
+                    .Columns("DateCreated").Visible = False
+                    .Columns("ModifiedBy").Visible = False
+                    .Columns("DateModified").Visible = False
+                    .Show()
+                End With
+            Else
+                DgvSearchResult.DataSource = Nothing
+                DgvSearchResult.Show()
             End If
 
         Catch ex As Exception
@@ -186,10 +327,16 @@
     End Sub
 
     Private Sub RbProducts_Click(sender As Object, e As EventArgs) Handles RbProducts.Click
+        PopulateProductTypeListing()
         PopulateItemListing()
     End Sub
 
     Private Sub RbServices_Click(sender As Object, e As EventArgs) Handles RbServices.Click
+        PopulateServiceTypeListing()
+        PopulateItemListing()
+    End Sub
+
+    Private Sub CmbItemTypeDescription_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CmbItemTypeDescription.SelectionChangeCommitted
         PopulateItemListing()
     End Sub
 

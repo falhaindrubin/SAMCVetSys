@@ -27,11 +27,12 @@ Partial Class FrmSearchItem
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CmbItemTypeDescription = New System.Windows.Forms.ComboBox()
         Me.RbProducts = New System.Windows.Forms.RadioButton()
         Me.RbServices = New System.Windows.Forms.RadioButton()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.DgvSearchResult = New System.Windows.Forms.DataGridView()
-        Me.CmbItemTypeDescription = New System.Windows.Forms.ComboBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,10 +41,11 @@ Partial Class FrmSearchItem
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(632, 61)
+        Me.PnlActionBar.Size = New System.Drawing.Size(743, 68)
         Me.PnlActionBar.TabIndex = 73
         '
         'BtnClose
@@ -51,9 +53,9 @@ Partial Class FrmSearchItem
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(568, 4)
+        Me.BtnClose.Location = New System.Drawing.Point(677, 6)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(57, 52)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 9
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -62,7 +64,7 @@ Partial Class FrmSearchItem
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(550, 68)
+        Me.BtnSearch.Location = New System.Drawing.Point(550, 67)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 52)
         Me.BtnSearch.TabIndex = 2
@@ -75,12 +77,21 @@ Partial Class FrmSearchItem
         Me.GroupBox1.Controls.Add(Me.RbServices)
         Me.GroupBox1.Controls.Add(Me.TxtSearchText)
         Me.GroupBox1.Controls.Add(Me.BtnSearch)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 80)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 84)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(635, 131)
+        Me.GroupBox1.Size = New System.Drawing.Size(743, 131)
         Me.GroupBox1.TabIndex = 75
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Search"
+        '
+        'CmbItemTypeDescription
+        '
+        Me.CmbItemTypeDescription.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbItemTypeDescription.FormattingEnabled = True
+        Me.CmbItemTypeDescription.Location = New System.Drawing.Point(15, 53)
+        Me.CmbItemTypeDescription.Name = "CmbItemTypeDescription"
+        Me.CmbItemTypeDescription.Size = New System.Drawing.Size(268, 22)
+        Me.CmbItemTypeDescription.TabIndex = 5
         '
         'RbProducts
         '
@@ -122,27 +133,30 @@ Partial Class FrmSearchItem
         Me.DgvSearchResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.DgvSearchResult.BackgroundColor = System.Drawing.Color.White
         Me.DgvSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvSearchResult.Location = New System.Drawing.Point(9, 217)
+        Me.DgvSearchResult.Location = New System.Drawing.Point(12, 221)
         Me.DgvSearchResult.MultiSelect = False
         Me.DgvSearchResult.Name = "DgvSearchResult"
         Me.DgvSearchResult.ReadOnly = True
         Me.DgvSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSearchResult.Size = New System.Drawing.Size(638, 325)
+        Me.DgvSearchResult.Size = New System.Drawing.Size(743, 386)
         Me.DgvSearchResult.TabIndex = 74
         '
-        'CmbItemTypeDescription
+        'Label25
         '
-        Me.CmbItemTypeDescription.FormattingEnabled = True
-        Me.CmbItemTypeDescription.Location = New System.Drawing.Point(15, 53)
-        Me.CmbItemTypeDescription.Name = "CmbItemTypeDescription"
-        Me.CmbItemTypeDescription.Size = New System.Drawing.Size(268, 22)
-        Me.CmbItemTypeDescription.TabIndex = 5
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(162, 32)
+        Me.Label25.TabIndex = 13
+        Me.Label25.Text = "Search Item"
         '
         'FrmSearchItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(656, 554)
+        Me.ClientSize = New System.Drawing.Size(770, 619)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.DgvSearchResult)
@@ -151,6 +165,7 @@ Partial Class FrmSearchItem
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Search Item"
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).EndInit()
@@ -167,4 +182,5 @@ Partial Class FrmSearchItem
     Friend WithEvents RbProducts As RadioButton
     Friend WithEvents RbServices As RadioButton
     Friend WithEvents CmbItemTypeDescription As ComboBox
+    Friend WithEvents Label25 As Label
 End Class

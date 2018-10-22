@@ -30,7 +30,7 @@
     End Sub
 
     Private Sub BtnAddNewCustomer_Click(sender As Object, e As EventArgs) Handles BtnAddNewCustomer.Click
-        FrmPaymentEntry.ShowDialog()
+        FrmPaymentInformation.ShowDialog()
     End Sub
 
     Private Sub DgvPaymentListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPaymentListing.CellDoubleClick
@@ -45,7 +45,7 @@
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     CustomerID = DgvPaymentListing.Rows(e.RowIndex).Cells("CustomerID").Value
                     VisitID = DgvPaymentListing.Rows(e.RowIndex).Cells("VisitID").Value
-                    Dim Frm As New FrmPaymentEntry With {
+                    Dim Frm As New FrmPaymentInformation With {
                         .UserCommand = "SHOW_BILLING_INFO",
                         .VisitID = VisitID,
                         .InvoiceNo = DgvPaymentListing.Rows(e.RowIndex).Cells("InvoiceNo").Value,

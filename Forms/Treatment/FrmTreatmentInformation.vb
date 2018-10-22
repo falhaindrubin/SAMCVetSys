@@ -1,6 +1,6 @@
 ﻿Imports SAMCVetSys.ModUtility
 
-Public Class FrmTreatmentEntry
+Public Class FrmTreatmentInformation
 
 #Region "FormProperty"
     Private _VisitID As String
@@ -303,7 +303,7 @@ Public Class FrmTreatmentEntry
     End Sub
 
     Private Sub BtnBillPayment_Click(sender As Object, e As EventArgs) Handles BtnBillPayment.Click
-        With FrmPaymentEntry
+        With FrmPaymentInformation
             .InvoiceNo = BtnBillPayment.Tag
             .UserCommand = "SHOW_BILLING_INFO"
             .ShowDialog()

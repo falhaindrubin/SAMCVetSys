@@ -137,9 +137,9 @@ Partial Class FrmWardInformation
         Me.TxtCase = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TxtAD = New System.Windows.Forms.TextBox()
         Me.TxtDD = New System.Windows.Forms.TextBox()
+        Me.TxtAD = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel3.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -768,7 +768,7 @@ Partial Class FrmWardInformation
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(742, 375)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Diagnostic & Tests"
+        Me.TabPage2.Text = "Diagnosis & Tests"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'Label17
@@ -1329,14 +1329,16 @@ Partial Class FrmWardInformation
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Visit Details"
         '
-        'Button1
+        'TxtDD
         '
-        Me.Button1.Location = New System.Drawing.Point(558, 103)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(186, 23)
-        Me.Button1.TabIndex = 116
-        Me.Button1.Text = "Calculate Ward Charge"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.TxtDD.BackColor = System.Drawing.Color.Beige
+        Me.TxtDD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDD.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDD.Location = New System.Drawing.Point(558, 76)
+        Me.TxtDD.Name = "TxtDD"
+        Me.TxtDD.ReadOnly = True
+        Me.TxtDD.Size = New System.Drawing.Size(175, 21)
+        Me.TxtDD.TabIndex = 118
         '
         'TxtAD
         '
@@ -1349,16 +1351,14 @@ Partial Class FrmWardInformation
         Me.TxtAD.Size = New System.Drawing.Size(175, 21)
         Me.TxtAD.TabIndex = 117
         '
-        'TxtDD
+        'Button1
         '
-        Me.TxtDD.BackColor = System.Drawing.Color.Beige
-        Me.TxtDD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDD.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDD.Location = New System.Drawing.Point(558, 76)
-        Me.TxtDD.Name = "TxtDD"
-        Me.TxtDD.ReadOnly = True
-        Me.TxtDD.Size = New System.Drawing.Size(175, 21)
-        Me.TxtDD.TabIndex = 118
+        Me.Button1.Location = New System.Drawing.Point(558, 103)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(186, 23)
+        Me.Button1.TabIndex = 116
+        Me.Button1.Text = "Calculate Ward Charge"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'FrmWardInformation
         '

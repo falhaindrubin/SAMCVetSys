@@ -154,7 +154,7 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, ")
-                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
                 .Append("FROM samc_ward a ")
                 .Append("INNER JOIN samc_warddetail b ON a.WardID = b.WardID ")
                 .Append("GROUP BY a.WardID ")
@@ -181,13 +181,27 @@ Public Class ClsDbWard
             With Sb
                 .Append("SELECT a.WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, ")
                 .Append("WardDate, Appetite, Bowel, Urine, Vomit, Food, IsFasting, FastingDescription, DailyNotes, ")
-                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+
+                If W.GetTodayVet = "1" Then
+                    .Append("b.CreatedBy, b.DateCreated, b.ModifiedBy, b.DateModified ")
+                Else
+                    .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
+                End If
+
                 .Append("FROM samc_ward a ")
                 .Append("INNER JOIN samc_warddetail b ON a.WardID = b.WardID ")
                 If W.WardID <> "" Then
                     .Append("WHERE a.WardID = '" & W.WardID & "' ")
+                    If W.WardDate <> Nothing Then
+                        .Append("AND WardDate = " & CSQLDate(W.WardDate) & " ")
+                    End If
+
                 ElseIf W.VisitID <> "" Then
                     .Append("WHERE a.VisitID = '" & W.VisitID & "' ")
+                    If W.WardDate <> Nothing Then
+                        .Append("AND WardDate = " & CSQLDate(W.WardDate) & " ")
+                    End If
+
                 End If
             End With
 
@@ -210,7 +224,7 @@ Public Class ClsDbWard
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.WardID, VisitID, PetID, PetName, Diagnosis, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
+                .Append("SELECT a.WardID, VisitID, PetID, PetName, Diagnosis, a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified, ")
                 .Append("DiagnoseDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice ")
                 .Append("FROM samc_ward_diagnosis a ")
                 .Append("LEFT JOIN samc_ward_diagnosisdetail b ON a.WardID = b.WardID ")
@@ -259,6 +273,31 @@ Public Class ClsDbWard
         End Try
 
         Return DtWardTreatment
+
+    End Function
+
+    Public Function DischargePet(W As ClsWard, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("UPDATE samc_ward ")
+                .Append("SET IsDischarged = '" & W.IsDischarged & "', ")
+                .Append("DischargeDate = " & CSQLDate(W.DischargeDate) & ", ")
+                .Append("ModifiedBy = '" & W.Ref.ModifiedBy & "', ")
+                .Append("DateModified = '" & W.Ref.DateModified & "' ")
+                .Append("WHERE WardID = '" & W.WardID & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbWard.DischargePet()")
+            Return False
+        End Try
+
+        Return True
 
     End Function
 

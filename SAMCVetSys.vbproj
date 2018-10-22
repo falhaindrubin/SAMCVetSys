@@ -260,10 +260,10 @@
     <Compile Include="Forms\Management\Employees\FrmEmployeeReport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Payment\FrmPaymentEntry.Designer.vb">
-      <DependentUpon>FrmPaymentEntry.vb</DependentUpon>
+    <Compile Include="Forms\Payment\FrmPaymentInformation.Designer.vb">
+      <DependentUpon>FrmPaymentInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Payment\FrmPaymentEntry.vb">
+    <Compile Include="Forms\Payment\FrmPaymentInformation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Payment\FrmPaymentRecords.Designer.vb">
@@ -400,10 +400,10 @@
     <Compile Include="Forms\SplashSAMCVetSys.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Treatment\FrmTreatmentEntry.Designer.vb">
-      <DependentUpon>FrmTreatmentEntry.vb</DependentUpon>
+    <Compile Include="Forms\Treatment\FrmTreatmentInformation.Designer.vb">
+      <DependentUpon>FrmTreatmentInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Treatment\FrmTreatmentEntry.vb">
+    <Compile Include="Forms\Treatment\FrmTreatmentInformation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Treatment\FrmTreatmentRecords.Designer.vb">
@@ -495,8 +495,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Payment\FrmPaymentEntry.resx">
-      <DependentUpon>FrmPaymentEntry.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Payment\FrmPaymentInformation.resx">
+      <DependentUpon>FrmPaymentInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Payment\FrmPaymentRecords.resx">
       <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
@@ -512,8 +512,8 @@
     <EmbeddedResource Include="Forms\SplashSAMCVetSys.resx">
       <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Treatment\FrmTreatmentEntry.resx">
-      <DependentUpon>FrmTreatmentEntry.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Treatment\FrmTreatmentInformation.resx">
+      <DependentUpon>FrmTreatmentInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Treatment\FrmTreatmentRecords.resx">
       <DependentUpon>FrmTreatmentRecords.vb</DependentUpon>

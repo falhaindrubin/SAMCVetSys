@@ -32,6 +32,16 @@
         End Set
     End Property
 
+    Private _WardDate As Date
+    Public Property WardDate As Date
+        Get
+            Return _WardDate
+        End Get
+        Set(value As Date)
+            _WardDate = value
+        End Set
+    End Property
+
     Private _PetID As String
     Public Property PetID As String
         Get
@@ -92,6 +102,16 @@
         End Set
     End Property
 
+    Private _GetTodayVet As String
+    Public Property GetTodayVet As String
+        Get
+            Return _GetTodayVet
+        End Get
+        Set(value As String)
+            _GetTodayVet = value
+        End Set
+    End Property
+
     Private _DischargeDate As DateTime
     Public Property DischargeDate As DateTime
         Get
@@ -122,6 +142,10 @@
 
     Public Function GetWardListing(ClsWard) As DataTable
         Return DbWard.GetWardListing(ClsWard)
+    End Function
+
+    Public Function DischargePet(ClsWard As ClsWard, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbWard.DischargePet(ClsWard, DbConn, DbTrans)
     End Function
 
 End Class

@@ -1,4 +1,4 @@
-﻿Public Class FrmPaymentEntry
+﻿Public Class FrmPaymentInformation
 
 #Region "FormProperty"
     Private _UserCommand As String

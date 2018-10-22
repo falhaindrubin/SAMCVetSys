@@ -7,7 +7,7 @@
     End Sub
 
     Private Sub BtnAddNewCustomer_Click(sender As Object, e As EventArgs) Handles BtnAddNewCustomer.Click
-        With FrmTreatmentEntry
+        With FrmTreatmentInformation
             .UserCommand = "ADD_NEW_TREATMENT"
             .ShowDialog()
         End With
@@ -47,7 +47,7 @@
                 Exit Sub
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
-                    Dim Frm As New FrmTreatmentEntry With {
+                    Dim Frm As New FrmTreatmentInformation With {
                         .UserCommand = "SHOW_TREATMENT_INFO",
                         .CustomerID = DgvTreatmentListing.Rows(e.RowIndex).Cells("CustomerID").Value,
                         .VisitID = DgvTreatmentListing.Rows(e.RowIndex).Cells("VisitID").Value

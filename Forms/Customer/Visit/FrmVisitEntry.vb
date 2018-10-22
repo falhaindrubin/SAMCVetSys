@@ -1393,7 +1393,7 @@ Public Class FrmVisitEntry
 
             'Check if bill is already generated for the selected visit
             If DtBill.Rows.Count > 0 Then
-                With FrmPaymentEntry
+                With FrmPaymentInformation
                     .UserCommand = "SHOW_BILLING_INFO"
                     .VisitID = DtBill.Rows(0).Item("VisitID")
                     .CustomerID = DtBill.Rows(0).Item("CustomerID")
@@ -1402,7 +1402,7 @@ Public Class FrmVisitEntry
                     .ShowDialog()
                 End With
             Else
-                With FrmPaymentEntry
+                With FrmPaymentInformation
                     .UserCommand = "ADD_NEW_BILLING"
                     .VisitID = TxtVisitID.Text
                     .CustomerID = TxtCustomerID.Text

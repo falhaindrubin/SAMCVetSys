@@ -80,6 +80,8 @@ Public Class FrmWardSummary
 
             With ClsWard
                 .WardID = WardID
+                .WardDate = WardDate
+                .GetTodayVet = "1"
                 DtWardDetail = ClsWard.GetWardDetail(ClsWard)
             End With
 

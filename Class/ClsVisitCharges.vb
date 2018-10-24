@@ -1,24 +1,18 @@
-﻿Public Class ClsWardDiagnosisDetail
+﻿Imports Microsoft.VisualBasic
+Imports System.Data.Odbc
+Imports System
 
-    Dim DbWard As New ClsDbWard
+Public Class ClsVisitCharges
 
-    Private _WardID As String
-    Public Property WardID As String
+    ReadOnly DbVisit As New ClsDbVisit
+
+    Private _VisitID As String
+    Public Property VisitID As String
         Get
-            Return _WardID
+            Return _VisitID
         End Get
         Set(value As String)
-            _WardID = value
-        End Set
-    End Property
-
-    Private _DiagnoseDate As Date
-    Public Property DiagnoseDate As Date
-        Get
-            Return _DiagnoseDate
-        End Get
-        Set(value As Date)
-            _DiagnoseDate = value
+            _VisitID = value
         End Set
     End Property
 
@@ -122,8 +116,8 @@
         End Set
     End Property
 
-    Public Function AddNewWardDiagnosisDetail(ClsWardDiagnosisDetail As ClsWardDiagnosisDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbWard.AddNewWardDiagnosisDetail(ClsWardDiagnosisDetail, DbConn, DbTrans)
+    Public Function AddNewVisitCharges(ClsVisitCharges As ClsVisitCharges, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbVisit.AddNewVisitCharges(ClsVisitCharges, DbConn, DbTrans)
     End Function
 
 End Class

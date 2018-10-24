@@ -1127,11 +1127,11 @@ Public Class FrmAppointmentEntry
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Dim Frm As New FrmAppointmentReport
-        With Frm
-            .AppointmentID = TxtAppointmentID.Text
-            .ShowDialog()
-        End With
+        'Dim Frm As New FrmAppointmentReport
+        'With Frm
+        '    .AppointmentID = TxtAppointmentID.Text
+        '    .ShowDialog()
+        'End With
     End Sub
 
 End Class

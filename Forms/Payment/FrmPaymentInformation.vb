@@ -714,4 +714,15 @@
         FrmPaymentInvoice.ShowDialog()
     End Sub
 
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+
+        Try
+
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
 End Class

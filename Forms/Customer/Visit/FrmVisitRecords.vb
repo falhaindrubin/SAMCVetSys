@@ -1,11 +1,11 @@
 ﻿Public Class FrmVisitRecords
 
     Private Sub BtnAddNewConsultation_Click(sender As Object, e As EventArgs) Handles BtnAddNewConsultation.Click
-        With FrmVisitEntry
+        With FrmVisitInformation
             .UserCommand = "ADD_NEW_CONSULTATION"
         End With
 
-        FrmVisitEntry.ShowDialog()
+        FrmVisitInformation.ShowDialog()
     End Sub
 
     Private Sub FrmConsultationList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -49,7 +49,7 @@
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     CustomerID = DgvConsultationListing.Rows(e.RowIndex).Cells("CustomerID").Value
                     VisitID = DgvConsultationListing.Rows(e.RowIndex).Cells("VisitID").Value
-                    Dim Frm As New FrmVisitEntry With {
+                    Dim Frm As New FrmVisitInformation With {
                         .UserCommand = "SHOW_CUSTOMER_CONSULTATION",
                         .VisitID = VisitID,
                         .CustomerID = CustomerID

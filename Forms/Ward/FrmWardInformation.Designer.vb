@@ -40,6 +40,7 @@ Partial Class FrmWardInformation
         Me.TxtVisitID = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.BtnGenerateBill = New System.Windows.Forms.Button()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
@@ -256,10 +257,10 @@ Partial Class FrmWardInformation
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(6, 90)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(62, 15)
+        Me.Label16.Size = New System.Drawing.Size(52, 14)
         Me.Label16.TabIndex = 106
         Me.Label16.Text = "Pet Name"
         '
@@ -277,10 +278,10 @@ Partial Class FrmWardInformation
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.Location = New System.Drawing.Point(5, 68)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(99, 15)
+        Me.Label15.Size = New System.Drawing.Size(83, 14)
         Me.Label15.TabIndex = 104
         Me.Label15.Text = "Customer Name"
         '
@@ -318,16 +319,17 @@ Partial Class FrmWardInformation
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(6, 24)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(100, 15)
+        Me.Label7.Size = New System.Drawing.Size(87, 14)
         Me.Label7.TabIndex = 100
         Me.Label7.Text = "Visit ID / Ward ID"
         '
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.BtnGenerateBill)
         Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Controls.Add(Me.BtnSearch)
@@ -340,6 +342,18 @@ Partial Class FrmWardInformation
         Me.PnlActionBar.Name = "PnlActionBar"
         Me.PnlActionBar.Size = New System.Drawing.Size(750, 68)
         Me.PnlActionBar.TabIndex = 110
+        '
+        'BtnGenerateBill
+        '
+        Me.BtnGenerateBill.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnGenerateBill.BackgroundImage = CType(resources.GetObject("BtnGenerateBill.BackgroundImage"), System.Drawing.Image)
+        Me.BtnGenerateBill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnGenerateBill.Location = New System.Drawing.Point(501, 6)
+        Me.BtnGenerateBill.Name = "BtnGenerateBill"
+        Me.BtnGenerateBill.Size = New System.Drawing.Size(60, 56)
+        Me.BtnGenerateBill.TabIndex = 13
+        Me.BtnGenerateBill.UseVisualStyleBackColor = False
+        Me.BtnGenerateBill.Visible = False
         '
         'Label25
         '
@@ -401,7 +415,7 @@ Partial Class FrmWardInformation
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(501, 6)
+        Me.BtnCancel.Location = New System.Drawing.Point(257, 6)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
         Me.BtnCancel.TabIndex = 2
@@ -454,10 +468,10 @@ Partial Class FrmWardInformation
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(6, 46)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(110, 15)
+        Me.Label14.Size = New System.Drawing.Size(94, 14)
         Me.Label14.TabIndex = 112
         Me.Label14.Text = "Date of Admission"
         '
@@ -1295,10 +1309,10 @@ Partial Class FrmWardInformation
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.Location = New System.Drawing.Point(6, 111)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(36, 15)
+        Me.Label23.Size = New System.Drawing.Size(32, 14)
         Me.Label23.TabIndex = 115
         Me.Label23.Text = "Case"
         '
@@ -1339,6 +1353,7 @@ Partial Class FrmWardInformation
         Me.TxtDD.ReadOnly = True
         Me.TxtDD.Size = New System.Drawing.Size(175, 21)
         Me.TxtDD.TabIndex = 118
+        Me.TxtDD.Visible = False
         '
         'TxtAD
         '
@@ -1350,15 +1365,17 @@ Partial Class FrmWardInformation
         Me.TxtAD.ReadOnly = True
         Me.TxtAD.Size = New System.Drawing.Size(175, 21)
         Me.TxtAD.TabIndex = 117
+        Me.TxtAD.Visible = False
         '
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(558, 103)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(186, 23)
+        Me.Button1.Size = New System.Drawing.Size(175, 23)
         Me.Button1.TabIndex = 116
         Me.Button1.Text = "Calculate Ward Charge"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'FrmWardInformation
         '
@@ -1507,7 +1524,8 @@ Partial Class FrmWardInformation
     Friend WithEvents Label25 As Label
     Friend WithEvents TxtWardDate As TextBox
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents TxtDD As TextBox
     Friend WithEvents TxtAD As TextBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnGenerateBill As Button
 End Class

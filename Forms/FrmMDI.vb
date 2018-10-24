@@ -228,5 +228,24 @@
 
     End Sub
 
+    Private Sub BillingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BillingToolStripMenuItem.Click
+        Try
+            Dim Frm As New FrmPaymentRecords()
+            'Static intCount As Integer
 
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmPaymentRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmPaymentRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

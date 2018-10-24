@@ -457,5 +457,34 @@ Public Class ClsDbVisit
 
     End Function
 
+    Public Function AddNewVisitCharges(V As ClsVisitCharges, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Dim Ret As Integer
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("INSERT INTO samc_visitcharges ")
+                .Append("(VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("VALUES ")
+                .Append("('" & V.VisitID & "', '" & V.RowNo & "', '" & V.ItemCode & "', '" & CSQLQuote(V.ItemDescription) & "', '" & V.ItemGroup & "', '" & V.ItemTypeCode & "', '" & CSQLQuote(V.ItemTypeDescription) & "', '" & V.UnitPrice & "', '" & V.Quantity & "', '" & V.TotalPrice & "', ")
+                .Append("'" & V.Ref.CreatedBy & "', " & CSQLDateTime(V.Ref.DateCreated) & ", '" & V.Ref.ModifiedBy & "', " & CSQLDateTime(V.Ref.DateModified) & ") ")
+                .Append("ON DUPLICATE KEY UPDATE ")
+                .Append("ItemCode = '" & V.ItemCode & "', ItemDescription = '" & CSQLQuote(V.ItemDescription) & "', ItemGroup = '" & V.ItemGroup & "', ItemTypeCode = '" & V.ItemTypeCode & "', ItemTypeDescription = '" & CSQLQuote(V.ItemTypeDescription) & "', UnitPrice = '" & V.UnitPrice & "', Quantity = '" & V.Quantity & "', TotalPrice = '" & V.TotalPrice & "', ")
+                .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Ret = Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.AddNewVisitCharges()")
+        End Try
+
+        Return IIf(Ret = 0, False, True)
+
+    End Function
+
 
 End Class

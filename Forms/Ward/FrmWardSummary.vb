@@ -62,11 +62,13 @@ Public Class FrmWardSummary
 
     Private Sub PopulateForm()
 
+        Dim DtUser As New DataTable
         Dim DtVisitDetail As New DataTable
         Dim DtWardDetail As New DataTable
         Dim DtWardDiagnosisDetail As New DataTable
         Dim DtWardTreatmentDetail As New DataTable
 
+        Dim ClsUser As New ClsUser
         Dim ClsVisit As New ClsVisit
         Dim ClsWard As New ClsWard
         Dim ClsWardDiagnosis As New ClsWardDiagnosis
@@ -97,10 +99,18 @@ Public Class FrmWardSummary
                 DtWardTreatmentDetail = ClsWardTreatment.GetWardTreatmentDetail(ClsWardTreatment)
             End With
 
+            'Get today's vet information using UserID and EmployeeID
+            'Get vet information that created daily entry
+            With ClsUser
+                .UserID = CStrNull(DtWardDetail.Rows(0).Item("CreatedBy"))
+                DtUser = ClsUser.GetUserInformation(ClsUser)
+            End With
+
             LblCurrentWardDate.Text = WardDate 'DtWardDetail.Rows(0).Item("WardDate")
             LblVisitID.Text = VisitID
             LblVisitTime.Text = DtVisitDetail.Rows(0).Item("VisitTime")
             LblAssignedVet.Text = "DR. " & DtVisitDetail.Rows(0).Item("EmployeeName")
+            LblTodaysVet.Text = "DR. " & DtUser.Rows(0).Item("EmployeeName") 'DtWardDetail.Rows(0).Item("CreatedBy")
             LblWardID.Text = WardID
             LblAdmissionDate.Text = DtWardDetail.Rows(0).Item("AdmissionDate")
             LblCustomerID.Text = CustomerID

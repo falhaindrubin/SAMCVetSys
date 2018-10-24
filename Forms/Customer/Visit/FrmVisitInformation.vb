@@ -1,7 +1,7 @@
 ﻿Imports System.Text
 Imports SAMCVetSys.ModUtility
 
-Public Class FrmVisitEntry
+Public Class FrmVisitInformation
 
 #Region "FormProperty"
     Private _UserCommand As String
@@ -54,6 +54,36 @@ Public Class FrmVisitEntry
         End Set
     End Property
 
+    Private _ItemGroup As String
+    Public Property ItemGroup As String
+        Get
+            Return _ItemGroup
+        End Get
+        Set(value As String)
+            _ItemGroup = value
+        End Set
+    End Property
+
+    Private _ItemTypeCode As String
+    Public Property ItemTypeCode As String
+        Get
+            Return _ItemTypeCode
+        End Get
+        Set(value As String)
+            _ItemTypeCode = value
+        End Set
+    End Property
+
+    Private _ItemTypeDescription As String
+    Public Property ItemTypeDescription As String
+        Get
+            Return _ItemTypeDescription
+        End Get
+        Set(value As String)
+            _ItemTypeDescription = value
+        End Set
+    End Property
+
     Private _FormTitle As String
     Public Property FormTitle As String
         Get
@@ -63,6 +93,7 @@ Public Class FrmVisitEntry
             _FormTitle = value
         End Set
     End Property
+
 #End Region
 
     Private Sub FrmConsultationEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -500,7 +531,7 @@ Public Class FrmVisitEntry
             End If
 
             If DtBill.Rows.Count > 0 Then
-                BtnGenerateBill.Text = DtBill.Rows(0).Item("InvoiceNo").ToString
+                BtnBillPayment.Text = DtBill.Rows(0).Item("InvoiceNo").ToString
             End If
 
             SetFields(UserCommand)
@@ -1124,6 +1155,7 @@ Public Class FrmVisitEntry
 
         Dim ClsVisit As New ClsVisit
         Dim ClsVisitDetail As New ClsVisitDetail
+        Dim ClsVisitCharges As New ClsVisitCharges
         Dim DtVisit As New DataTable
         Dim VisitTime As Date
         Dim GenVisitID As String
@@ -1228,12 +1260,43 @@ Public Class FrmVisitEntry
 
             End If
 
+            'Add consultation/medical charges
+            If DgvSelectedItem.Rows.Count > 0 Then
+                For i As Integer = 0 To DgvSelectedItem.Rows.Count - 1
+                    With ClsVisitCharges
+                        .VisitID = GenVisitID
+                        .RowNo = DgvSelectedItem.Rows(i).Cells("ChargesRowNo").Value
+                        .ItemCode = DgvSelectedItem.Rows(i).Cells("ChargesItemCode").Value
+                        .ItemDescription = DgvSelectedItem.Rows(i).Cells("ChargesItemDescription").Value
+                        .ItemGroup = DgvSelectedItem.Rows(i).Cells("ChargesItemGroup").Value
+                        .ItemTypeCode = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeCode").Value
+                        .ItemTypeDescription = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeDescription").Value
+                        .UnitPrice = DgvSelectedItem.Rows(i).Cells("ChargesUnitPrice").Value
+                        .Quantity = DgvSelectedItem.Rows(i).Cells("ChargesQuantity").Value
+                        .TotalPrice = DgvSelectedItem.Rows(i).Cells("ChargesTotalPrice").Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .AddNewVisitCharges(ClsVisitCharges, DbConn, DbTrans) Then
+                            MsgBox("Failed to update consultation/medication charges.", MsgBoxStyle.Critical, "Visit Charges Update Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+                Next
+            End If
+
             DbTrans.Commit()
             DbTrans.Dispose()
             DbTrans = Nothing
 
+            'Set VisitID, Ref to be displayed right after data entry has been saved
             TxtVisitID.Text = GenVisitID
-
             With ClsVisit
                 If TxtCreatedBy.Text = "" Then
                     TxtCreatedBy.Text = .Ref.CreatedBy
@@ -1371,11 +1434,11 @@ Public Class FrmVisitEntry
         AddUpdatePetIssues()
     End Sub
 
-    Private Sub CbIsCompleted_Click(sender As Object, e As EventArgs) Handles CbIsVisitCompleted.Click
+    Private Sub CbIsCompleted_Click(sender As Object, e As EventArgs)
         If Not IsVisitCompleted() Then Exit Sub
     End Sub
 
-    Private Sub BtnGenerateBill_Click(sender As Object, e As EventArgs) Handles BtnGenerateBill.Click
+    Private Sub BtnGenerateBill_Click(sender As Object, e As EventArgs)
         GenerateBill()
     End Sub
 
@@ -1430,7 +1493,7 @@ Public Class FrmVisitEntry
             DbTrans = DbConn.BeginTransaction
 
             With ClsVisit
-                If CbAdmitToWard.Checked = True Then
+                If CbSendToWard.Checked = True Then
                     .IsAdmittedToWard = "1"
                     Message = "Pet has been added to ward admission."
                 Else
@@ -1470,8 +1533,168 @@ Public Class FrmVisitEntry
 
     End Function
 
-    Private Sub CbAdmitToWard_Click(sender As Object, e As EventArgs) Handles CbAdmitToWard.Click
+    Private Sub AddItem()
+
+        Dim DtItem As New DataTable
+
+        Try
+            If TxtTestItem.Tag = "" Then
+                Exit Sub
+            End If
+
+            DtItem = InitSelectedItemDt()
+            If DgvSelectedItem.Rows.Count > 0 Then
+
+                'Loop data grid view
+                For i As Integer = 0 To DgvSelectedItem.Rows.Count - 1
+
+                    Dim DgvRow As DataRow = DtItem.NewRow
+
+                    DgvRow("RowNo") = DgvSelectedItem.Rows(i).Cells("ChargesRowNo").Value
+                    DgvRow("ItemCode") = DgvSelectedItem.Rows(i).Cells("ChargesItemCode").Value
+                    DgvRow("ItemDescription") = DgvSelectedItem.Rows(i).Cells("ChargesItemDescription").Value
+                    DgvRow("Quantity") = DgvSelectedItem.Rows(i).Cells("ChargesQuantity").Value
+                    DgvRow("UnitPrice") = DgvSelectedItem.Rows(i).Cells("ChargesUnitPrice").Value
+                    DgvRow("TotalPrice") = DgvSelectedItem.Rows(i).Cells("ChargesTotalPrice").Value
+                    DgvRow("ItemGroup") = DgvSelectedItem.Rows(i).Cells("ChargesItemGroup").Value
+                    DgvRow("ItemTypeCode") = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeCode").Value
+                    DgvRow("ItemTypeDescription") = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeDescription").Value
+
+                    DtItem.Rows.Add(DgvRow)
+
+                Next
+
+            End If
+
+            'Check if user trying to add duplicate items; instead tell user to update quantity
+            If AddItemToBill(DtItem, TxtTestItem.Tag) Then
+
+                Dim Row As DataRow = DtItem.NewRow
+
+                Row("RowNo") = IIf(DtItem.Rows.Count = 0, 1, DtItem.Rows.Count + 1)
+                Row("ItemCode") = UCase(Trim(TxtTestItem.Tag))
+                Row("ItemDescription") = UCase(Trim(TxtTestItem.Text))
+                Row("UnitPrice") = UCase(Trim(TxtTestUnitPrice.Text))
+                Row("Quantity") = UCase(Trim(TxtTestQuantity.Text))
+                Row("TotalPrice") = FormatNumber(CDec(TxtTestTotalPrice.Text) * CDec(TxtTestQuantity.Text), 2)
+                Row("ItemGroup") = ItemGroup
+                Row("ItemTypeCode") = ItemTypeCode
+                Row("ItemTypeDescription") = ItemTypeDescription
+
+                DtItem.Rows.Add(Row)
+
+            End If
+
+            If DtItem.Rows.Count > 0 Then
+
+                DgvSelectedItem.Rows.Clear()
+
+                For i As Integer = 0 To DtItem.Rows.Count - 1
+                    With DgvSelectedItem
+                        .Rows.Add()
+                        .Rows(i).Cells("ChargesRowNo").Value = DtItem.Rows(i).Item("RowNo")
+                        .Rows(i).Cells("ChargesItemCode").Value = DtItem.Rows(i).Item("ItemCode")
+                        .Rows(i).Cells("ChargesItemDescription").Value = DtItem.Rows(i).Item("ItemDescription")
+                        .Rows(i).Cells("ChargesUnitPrice").Value = DtItem.Rows(i).Item("UnitPrice")
+                        .Rows(i).Cells("ChargesQuantity").Value = DtItem.Rows(i).Item("Quantity")
+                        .Rows(i).Cells("ChargesTotalPrice").Value = DtItem.Rows(i).Item("TotalPrice")
+                        .Rows(i).Cells("ChargesItemGroup").Value = DtItem.Rows(i).Item("ItemGroup")
+                        .Rows(i).Cells("ChargesItemTypeCode").Value = DtItem.Rows(i).Item("ItemTypeCode")
+                        .Rows(i).Cells("ChargesItemTypeDescription").Value = DtItem.Rows(i).Item("ItemTypeDescription")
+                    End With
+                Next
+
+            End If
+
+            TxtTestItem.Tag = ""
+            TxtTestItem.Text = ""
+            TxtTestUnitPrice.Text = ""
+            'TxtTestQuantity.Text = ""
+            TxtTestTotalPrice.Text = ""
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddTest()")
+        End Try
+
+    End Sub
+
+    Private Function AddItemToBill(DtPayment As DataTable, ItemCode As String, Optional ItemDate As Date = Nothing) As Boolean
+
+        Try
+            If DtPayment.Rows.Count > 0 Then
+                For i As Integer = 0 To DtPayment.Rows.Count - 1
+                    If ItemCode = DtPayment.Rows(i).Item("ItemCode") Then
+                        MsgBox("You are trying to add duplicate item. Please update your item quantity.", MsgBoxStyle.Exclamation, "Duplicate Item Detected")
+                        Return False
+                    End If
+                Next
+            Else
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddItemToBill()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function InitSelectedItemDt() As DataTable
+
+        Dim DtTreatment As New DataTable
+
+        Try
+            With DtTreatment
+                .Columns.Add("RowNo", GetType(Integer))
+                .Columns.Add("ItemCode", GetType(String))
+                .Columns.Add("ItemDescription", GetType(String))
+                .Columns.Add("ItemGroup", GetType(String))
+                .Columns.Add("ItemTypeCode", GetType(String))
+                .Columns.Add("ItemTypeDescription", GetType(String))
+                .Columns.Add("Prescription", GetType(String))
+                .Columns.Add("Notes", GetType(String))
+                .Columns.Add("UnitPrice", GetType(Decimal))
+                .Columns.Add("Quantity", GetType(Decimal))
+                .Columns.Add("TotalPrice", GetType(Decimal))
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".InitTreatmentDt()")
+        End Try
+
+        Return DtTreatment
+
+    End Function
+
+    Private Sub CbAdmitToWard_Click(sender As Object, e As EventArgs)
         If Not AdmitToWard() Then Exit Sub
+    End Sub
+
+    Private Sub BtnAddItem_Click(sender As Object, e As EventArgs) Handles BtnAddItem.Click
+        AddItem()
+    End Sub
+
+    Private Sub BtnSearchItem_Click(sender As Object, e As EventArgs) Handles BtnSearchItem.Click
+        With FrmSearchItem
+            .ShowDialog()
+            TxtTestItem.Tag = .ItemCode
+            TxtTestItem.Text = .ItemDescription
+            TxtTestUnitPrice.Text = .UnitPrice
+            TxtTestTotalPrice.Text = FormatNumber(.UnitPrice * TxtTestQuantity.Text, 2)
+            ItemGroup = .ItemGroup
+            ItemTypeDescription = .ItemTypeDescription
+            ItemTypeCode = .ItemTypeCode
+        End With
+    End Sub
+
+    Private Sub BtnBillPayment_Click(sender As Object, e As EventArgs) Handles BtnBillPayment.Click
+        With FrmPaymentInformation
+            .InvoiceNo = BtnBillPayment.Tag
+            .UserCommand = "SHOW_BILLING_INFO"
+            .ShowDialog()
+        End With
     End Sub
 
 End Class

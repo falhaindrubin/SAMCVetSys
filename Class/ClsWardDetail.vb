@@ -112,6 +112,16 @@
         End Set
     End Property
 
+    Private _Ref As New ClsReference
+    Property Ref() As ClsReference
+        Get
+            Return _Ref
+        End Get
+        Set(ByVal value As ClsReference)
+            _Ref = value
+        End Set
+    End Property
+
     Public Function AddNewWardDetail(ClsWardDetail As ClsWardDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbWard.AddNewWardDetail(ClsWardDetail, DbConn, DbTrans)
     End Function

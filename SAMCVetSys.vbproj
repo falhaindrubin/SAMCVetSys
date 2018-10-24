@@ -181,10 +181,12 @@
     <Compile Include="Class\ClsBillDetail.vb" />
     <Compile Include="Class\ClsBill.vb" />
     <Compile Include="ClassDb\ClsDbDiagnosis.vb" />
+    <Compile Include="Class\ClsCalcBill.vb" />
     <Compile Include="Class\ClsDiagnosisDetail.vb" />
     <Compile Include="Class\ClsDiagnosis.vb" />
     <Compile Include="Class\ClsPEFindings.vb" />
     <Compile Include="Class\ClsTreatment.vb" />
+    <Compile Include="Class\ClsVisitCharges.vb" />
     <Compile Include="Class\ClsWard.vb" />
     <Compile Include="Class\ClsWardDetail.vb" />
     <Compile Include="Class\ClsWardDiagnosis.vb" />
@@ -196,16 +198,16 @@
     <Compile Include="Forms\Customer\Appointment\FrmAppointmentEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\Appointment\FrmAppointmentReport.Designer.vb">
-      <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Customer\Appointment\FrmAppointmentReport.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ClassDb\ClsDbProducts.vb" />
     <Compile Include="ClassDb\ClsDbServices.vb" />
     <Compile Include="Class\ClsProducts.vb" />
     <Compile Include="Class\ClsServices.vb" />
+    <Compile Include="Forms\Customer\Visit\FrmVisitInformation.Designer.vb">
+      <DependentUpon>FrmVisitInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\Visit\FrmVisitInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Payment\FrmPaymentInvoice.Designer.vb">
       <DependentUpon>FrmPaymentInvoice.vb</DependentUpon>
     </Compile>
@@ -225,12 +227,6 @@
     <Compile Include="Class\ClsVisit.vb" />
     <Compile Include="Class\ClsCompany.vb" />
     <Compile Include="Class\ClsUser.vb" />
-    <Compile Include="Forms\Customer\Visit\FrmVisitEntry.Designer.vb">
-      <DependentUpon>FrmVisitEntry.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Customer\Visit\FrmVisitEntry.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Customer\Visit\FrmVisitRecords.Designer.vb">
       <DependentUpon>FrmVisitRecords.vb</DependentUpon>
     </Compile>
@@ -302,18 +298,6 @@
     <Compile Include="Forms\Ward\FrmWardSummary.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report\RptAppointment.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptAppointment.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Report\RptCustomerInformation.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptCustomerInformation.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ClassDb\ClsDbAppointment.vb" />
     <Compile Include="ClassDb\ClsDbCustomer.vb" />
     <Compile Include="ClassDb\ClsDbEmployee.vb" />
@@ -326,12 +310,6 @@
     <Compile Include="Class\ClsLogin.vb" />
     <Compile Include="Class\ClsPet.vb" />
     <Compile Include="Class\ClsReference.vb" />
-    <Compile Include="Forms\Customer\Register\FrmCustomerReport.Designer.vb">
-      <DependentUpon>FrmCustomerReport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Customer\Register\FrmCustomerReport.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Dataset\DsCustomerInformation.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -388,12 +366,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Report\RptCustomerInvoice.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptCustomerInvoice.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Forms\SplashSAMCVetSys.Designer.vb">
       <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
     </Compile>
@@ -435,8 +407,8 @@
     <EmbeddedResource Include="Forms\Customer\Appointment\FrmAppointmentEntry.resx">
       <DependentUpon>FrmAppointmentEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Appointment\FrmAppointmentReport.resx">
-      <DependentUpon>FrmAppointmentReport.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitInformation.resx">
+      <DependentUpon>FrmVisitInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Payment\FrmPaymentInvoice.resx">
       <DependentUpon>FrmPaymentInvoice.vb</DependentUpon>
@@ -444,14 +416,8 @@
     <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitReport.resx">
       <DependentUpon>FrmVisitReport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitEntry.resx">
-      <DependentUpon>FrmVisitEntry.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitRecords.resx">
       <DependentUpon>FrmVisitRecords.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Register\FrmCustomerReport.resx">
-      <DependentUpon>FrmCustomerReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Register\FrmCustomerEntry.resx">
       <DependentUpon>FrmCustomerEntry.vb</DependentUpon>
@@ -500,14 +466,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Payment\FrmPaymentRecords.resx">
       <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\RptAppointment.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptAppointment.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\RptCustomerInvoice.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptCustomerInvoice.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashSAMCVetSys.resx">
       <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
@@ -587,12 +545,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img\edit1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Report\RptCustomerInformation.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptCustomerInformation.vb</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

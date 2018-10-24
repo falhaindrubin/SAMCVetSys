@@ -44,11 +44,13 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_warddetail ")
-                .Append("(WardID, WardDate, Appetite, Bowel, Urine, Vomit, Food, IsFasting, FastingDescription, DailyNotes) ")
+                .Append("(WardID, WardDate, Appetite, Bowel, Urine, Vomit, Food, IsFasting, FastingDescription, DailyNotes, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & W.WardID & "', " & CSQLDate(W.WardDate) & ", '" & W.Appetite & "', '" & W.Bowel & "', '" & W.Urine & "', '" & W.Vomit & "', '" & W.Food & "', '" & W.IsFasting & "', '" & W.FastingDescription & "', '" & CSQLQuote(W.DailyNotes) & "') ")
+                .Append("('" & W.WardID & "', " & CSQLDate(W.WardDate) & ", '" & W.Appetite & "', '" & W.Bowel & "', '" & W.Urine & "', '" & W.Vomit & "', '" & W.Food & "', '" & W.IsFasting & "', '" & W.FastingDescription & "', '" & CSQLQuote(W.DailyNotes) & "', ")
+                .Append("'" & W.Ref.CreatedBy & "', " & CSQLDateTime(W.Ref.DateCreated) & ", '" & W.Ref.ModifiedBy & "', " & CSQLDateTime(W.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("Appetite = '" & W.Appetite & "', Bowel = '" & W.Bowel & "', Urine = '" & W.Urine & "', Vomit = '" & W.Vomit & "', Food = '" & W.Food & "', IsFasting = '" & W.IsFasting & "', FastingDescription = '" & W.FastingDescription & "', DailyNotes = '" & CSQLQuote(W.DailyNotes) & "' ")
+                .Append("Appetite = '" & W.Appetite & "', Bowel = '" & W.Bowel & "', Urine = '" & W.Urine & "', Vomit = '" & W.Vomit & "', Food = '" & W.Food & "', IsFasting = '" & W.IsFasting & "', FastingDescription = '" & W.FastingDescription & "', DailyNotes = '" & CSQLQuote(W.DailyNotes) & "', ")
+                .Append("ModifiedBy = '" & W.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -97,11 +99,14 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_ward_diagnosisdetail ")
-                .Append("(WardID, DiagnoseDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice) ")
+                .Append("(WardID, DiagnoseDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & W.WardID & "', " & CSQLDate(W.DiagnoseDate) & ", '" & W.RowNo & "', '" & W.ItemCode & "', '" & W.ItemDescription & "', '" & W.ItemGroup & "', '" & W.ItemTypeCode & "', '" & W.ItemTypeDescription & "', '" & W.UnitPrice & "', '" & W.Quantity & "', '" & W.TotalPrice & "') ")
+                .Append("('" & W.WardID & "', " & CSQLDate(W.DiagnoseDate) & ", '" & W.RowNo & "', '" & W.ItemCode & "', '" & W.ItemDescription & "', '" & W.ItemGroup & "', '" & W.ItemTypeCode & "', '" & W.ItemTypeDescription & "', '" & W.UnitPrice & "', '" & W.Quantity & "', '" & W.TotalPrice & "', ")
+                .Append("'" & W.Ref.CreatedBy & "', " & CSQLDateTime(W.Ref.DateCreated) & ", '" & W.Ref.ModifiedBy & "', " & CSQLDateTime(W.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemCode = '" & W.ItemCode & "', ItemDescription = '" & W.ItemDescription & "', ItemGroup = '" & W.ItemGroup & "', ItemTypeCode = '" & W.ItemTypeCode & "', ItemTypeDescription = '" & W.ItemTypeDescription & "', UnitPrice = '" & W.UnitPrice & "', Quantity = '" & W.Quantity & "', TotalPrice = '" & W.TotalPrice & "' ")
+                .Append("ItemCode = '" & W.ItemCode & "', ItemDescription = '" & W.ItemDescription & "', ItemGroup = '" & W.ItemGroup & "', ItemTypeCode = '" & W.ItemTypeCode & "', ItemTypeDescription = '" & W.ItemTypeDescription & "', UnitPrice = '" & W.UnitPrice & "', Quantity = '" & W.Quantity & "', TotalPrice = '" & W.TotalPrice & "', ")
+                .Append("ModifiedBy = '" & W.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -283,9 +288,9 @@ Public Class ClsDbWard
             With Sb
                 .Append("UPDATE samc_ward ")
                 .Append("SET IsDischarged = '" & W.IsDischarged & "', ")
-                .Append("DischargeDate = " & CSQLDate(W.DischargeDate) & ", ")
+                .Append("DischargeDate = " & CSQLDateTime(W.DischargeDate) & ", ")
                 .Append("ModifiedBy = '" & W.Ref.ModifiedBy & "', ")
-                .Append("DateModified = '" & W.Ref.DateModified & "' ")
+                .Append("DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
                 .Append("WHERE WardID = '" & W.WardID & "' ")
             End With
 

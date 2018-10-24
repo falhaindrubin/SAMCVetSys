@@ -37,4 +37,9 @@
         Return DbUser.AddNewUser(ClsUser, DbConn, DbTrans)
     End Function
 
+    'Get User information
+    Public Function GetUserInformation(ClsUser As ClsUser) As DataTable
+        Return DbUser.GetUserInformation(ClsUser)
+    End Function
+
 End Class

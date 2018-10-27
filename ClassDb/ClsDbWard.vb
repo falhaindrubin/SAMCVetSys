@@ -266,7 +266,14 @@ Public Class ClsDbWard
                 .Append("SELECT WardID, VisitID, TreatmentDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_ward_treatment ")
-                .Append("WHERE WardID = '" & T.WardID & "' AND TreatmentDate = " & CSQLDate(T.TreatmentDate) & " ")
+                If T.VisitID <> "" Then
+                    .Append("WHERE VisitID = '" & T.VisitID & "' ")
+                ElseIf T.WardID <> "" Then
+                    .Append("WHERE WardID = '" & T.WardID & "' ")
+                End If
+                If T.TreatmentDate <> Nothing Then
+                    .Append("And TreatmentDate = " & CSQLDate(T.TreatmentDate) & " ")
+                End If
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
@@ -303,6 +310,33 @@ Public Class ClsDbWard
         End Try
 
         Return True
+
+    End Function
+
+    Public Function GetVisitCharges(C As ClsVisitCharges) As DataTable
+
+        Dim DtVisit As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_visitcharges ")
+                If C.VisitID <> "" Then
+                    .Append("WHERE VisitID = '" & C.VisitID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtVisit)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbWard.GetVisitCharges()")
+        End Try
+
+        Return DtVisit
 
     End Function
 

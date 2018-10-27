@@ -76,6 +76,26 @@ Public Class ClsVisitCharges
         End Set
     End Property
 
+    Private _Prescription As String
+    Public Property Prescription As String
+        Get
+            Return _Prescription
+        End Get
+        Set(value As String)
+            _Prescription = value
+        End Set
+    End Property
+
+    Private _Notes As String
+    Public Property Notes As String
+        Get
+            Return _Notes
+        End Get
+        Set(value As String)
+            _Notes = value
+        End Set
+    End Property
+
     Private _UnitPrice As Decimal
     Public Property UnitPrice As Decimal
         Get
@@ -118,6 +138,10 @@ Public Class ClsVisitCharges
 
     Public Function AddNewVisitCharges(ClsVisitCharges As ClsVisitCharges, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisitCharges(ClsVisitCharges, DbConn, DbTrans)
+    End Function
+
+    Public Function GetVisitCharges(ClsVisitCharges As ClsVisitCharges) As DataTable
+        Return DbVisit.GetVisitCharges(ClsVisitCharges)
     End Function
 
 End Class

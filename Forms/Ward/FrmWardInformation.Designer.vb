@@ -304,6 +304,7 @@ Partial Class FrmWardInformation
         Me.BtnBillPayment.TabIndex = 102
         Me.BtnBillPayment.Text = "Bill && Payment..."
         Me.BtnBillPayment.UseVisualStyleBackColor = True
+        Me.BtnBillPayment.Visible = False
         '
         'TxtVisitID
         '

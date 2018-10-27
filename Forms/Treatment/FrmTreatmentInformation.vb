@@ -515,7 +515,7 @@ Public Class FrmTreatmentInformation
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If Not CheckFields() Then Exit Sub
         If Not SaveTreatmentToDb() Then Exit Sub
-        If Not UpdateBill() Then Exit Sub
+        'If Not UpdateBill() Then Exit Sub
     End Sub
 
     Private Function SaveTreatmentToDb()
@@ -532,37 +532,6 @@ Public Class FrmTreatmentInformation
             End If
 
             DbTrans = DbConn.BeginTransaction
-
-            'Add new PE findings
-            'Dim StrTemperamentName As String = DirectCast(CmbTemperament.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-            'Dim StrBodyScoreName As String = DirectCast(CmbBodyScore.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-            'Dim TemperamentName As String = StrTemperamentName.Replace(StrTemperamentName.Substring(0, 4), "")
-            'Dim BodyScoreName As String = StrBodyScoreName.Replace(StrBodyScoreName.Substring(0, 4), "")
-
-            'With ClsPEFindings
-            '    .VisitID = Trim(TxtVisitID.Text)
-            '    .PetID = Trim(TxtPetID.Text)
-            '    .PetName = Trim(TxtPetName.Text)
-            '    .Temperature = CDec(TxtTemperature.Text)
-            '    .TemperamentCode = Trim(DirectCast(CmbTemperament.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
-            '    .TemperamentName = Trim(TemperamentName)
-            '    .BodyScoreCode = Trim(DirectCast(CmbBodyScore.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
-            '    .BodyScoreName = Trim(BodyScoreName)
-            '    .BodyWeight = Trim(TxtBodyWeight.Text)
-            '    .PEFindings = Trim(TxtFindings.Text)
-            '    .Ref.CreatedBy = CURR_USER
-            '    .Ref.DateCreated = Now
-            '    .Ref.ModifiedBy = CURR_USER
-            '    .Ref.DateModified = Now
-            'End With
-
-            'If Not ClsPEFindings.AddNewPEFindings(ClsPEFindings, DbConn, DbTrans) Then
-            '    MsgBox("Failed to add new physical examination findings.", MsgBoxStyle.Critical, "Add New PE Findings Error")
-            '    DbTrans.Rollback()
-            '    DbTrans.Dispose()
-            '    DbTrans = Nothing
-            '    Return False
-            'End If
 
             'Add new diagnosis
             'Diagnosis header
@@ -662,6 +631,19 @@ Public Class FrmTreatmentInformation
             DbTrans.Commit()
             DbTrans.Dispose()
             DbTrans = Nothing
+
+            With ClsDiagnosis
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
 
             MsgBox("Your treatment has been successfully added!", MsgBoxStyle.Information, "New Treatment Added")
 

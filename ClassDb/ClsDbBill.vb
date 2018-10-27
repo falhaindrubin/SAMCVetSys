@@ -52,7 +52,7 @@ Public Class ClsDbBill
                 .Append("('" & BL.InvoiceNo & "', '" & BL.RowNo & "', '" & BL.ItemCode & "', '" & CSQLQuote(BL.ItemDescription) & "', '" & BL.ItemGroup & "', '" & BL.ItemTypeCode & "', '" & BL.ItemTypeDescription & "', '" & CSQLQuote(BL.Prescription) & "', ")
                 .Append("'" & BL.Notes & "', '" & BL.Quantity & "', '" & BL.UnitPrice & "', '" & BL.TotalPrice & "') ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemCode = '" & BL.ItemCode & "', ItemDescription = '" & CSQLQuote(BL.ItemDescription) & "', ItemGroup = '" & BL.ItemGroup & "', ItemTypeCode = '" & BL.ItemTypeCode & "', ItemTypeDescription = '" & BL.ItemTypeDescription & "', ")
+                '.Append("ItemCode = '" & BL.ItemCode & "', ItemDescription = '" & CSQLQuote(BL.ItemDescription) & "', ItemGroup = '" & BL.ItemGroup & "', ItemTypeCode = '" & BL.ItemTypeCode & "', ItemTypeDescription = '" & BL.ItemTypeDescription & "', ")
                 .Append("Prescription = '" & CSQLQuote(BL.Prescription) & "', Notes = '" & CSQLQuote(BL.Notes) & "', Quantity = '" & BL.Quantity & "', UnitPrice = '" & BL.UnitPrice & "', ")
                 .Append("TotalPrice = '" & BL.TotalPrice & "' ")
             End With
@@ -278,7 +278,8 @@ Public Class ClsDbBill
             Return False
         End Try
 
-        Return IIf(Ret = 0, False, True)
+        Return True
+        'Return IIf(Ret = 0, False, True)
 
     End Function
 

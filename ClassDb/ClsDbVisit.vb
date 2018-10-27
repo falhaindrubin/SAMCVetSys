@@ -111,9 +111,10 @@ Public Class ClsDbVisit
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
-                .Append("WHERE IsVisitCompleted = '" & VS.IsVisitCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' AND IsAdmittedToWard = '" & VS.IsAdmittedToWard & "' ")
+                '.Append("WHERE IsVisitCompleted = '" & VS.IsVisitCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' AND IsAdmittedToWard = '" & VS.IsAdmittedToWard & "' ")
                 If VS.CustomerID <> "" Then
-                    .Append("AND CustomerID = '" & VS.CustomerID & "' ")
+                    .Append("WHERE CustomerID = '" & VS.CustomerID & "' ")
+                    '.Append("AND CustomerID = '" & VS.CustomerID & "' ")
                 End If
             End With
 
@@ -465,13 +466,14 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_visitcharges ")
-                .Append("(VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & V.VisitID & "', '" & V.RowNo & "', '" & V.ItemCode & "', '" & CSQLQuote(V.ItemDescription) & "', '" & V.ItemGroup & "', '" & V.ItemTypeCode & "', '" & CSQLQuote(V.ItemTypeDescription) & "', '" & V.UnitPrice & "', '" & V.Quantity & "', '" & V.TotalPrice & "', ")
+                .Append("('" & V.VisitID & "', '" & V.RowNo & "', '" & V.ItemCode & "', '" & CSQLQuote(V.ItemDescription) & "', '" & V.ItemGroup & "', '" & V.ItemTypeCode & "', '" & CSQLQuote(V.ItemTypeDescription) & "', '" & CSQLQuote(V.Prescription) & "', '" & CSQLQuote(V.Notes) & "', '" & V.UnitPrice & "', '" & V.Quantity & "', '" & V.TotalPrice & "', ")
                 .Append("'" & V.Ref.CreatedBy & "', " & CSQLDateTime(V.Ref.DateCreated) & ", '" & V.Ref.ModifiedBy & "', " & CSQLDateTime(V.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemCode = '" & V.ItemCode & "', ItemDescription = '" & CSQLQuote(V.ItemDescription) & "', ItemGroup = '" & V.ItemGroup & "', ItemTypeCode = '" & V.ItemTypeCode & "', ItemTypeDescription = '" & CSQLQuote(V.ItemTypeDescription) & "', UnitPrice = '" & V.UnitPrice & "', Quantity = '" & V.Quantity & "', TotalPrice = '" & V.TotalPrice & "', ")
+                .Append("ItemCode = '" & V.ItemCode & "', ItemDescription = '" & CSQLQuote(V.ItemDescription) & "', ItemGroup = '" & V.ItemGroup & "', ItemTypeCode = '" & V.ItemTypeCode & "', ItemTypeDescription = '" & CSQLQuote(V.ItemTypeDescription) & "', Prescription = '" & CSQLQuote(V.Prescription) & "', Notes = '" & CSQLQuote(V.Notes) & "', ")
+                .Append("UnitPrice = '" & V.UnitPrice & "', Quantity = '" & V.Quantity & "', TotalPrice = '" & V.TotalPrice & "', ")
                 .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
             End With
 
@@ -483,6 +485,32 @@ Public Class ClsDbVisit
         End Try
 
         Return IIf(Ret = 0, False, True)
+
+    End Function
+
+    Public Function GetVisitCharges(C As ClsVisitCharges) As DataTable
+
+        Dim DtVisit As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT a.VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
+                .Append("FROM samc_visitcharges a ")
+                .Append("INNER JOIN samc_visit b ON a.VisitID = b.VisitID ")
+                .Append("WHERE a.VisitID = '" & C.VisitID & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtVisit)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetVisitCharges()")
+        End Try
+
+        Return DtVisit
 
     End Function
 

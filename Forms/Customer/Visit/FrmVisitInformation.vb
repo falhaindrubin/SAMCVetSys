@@ -518,6 +518,39 @@ Public Class FrmVisitInformation
                     .Show()
                 End With
 
+                'Populate Consultation/Medication charges
+                Dim ClsVisitCharges As New ClsVisitCharges
+                Dim DtVisitCharges As New DataTable
+                With ClsVisitCharges
+                    .VisitID = VisitID
+
+                    DtVisitCharges = .GetVisitCharges(ClsVisitCharges)
+                    If DtVisitCharges.Rows.Count > 0 Then
+                        For i As Integer = 0 To DtVisitCharges.Rows.Count - 1S
+                            With DgvSelectedItem
+                                .Rows.Add()
+                                .Rows(i).Cells("ChargesRowNo").Value = DtVisitCharges.Rows(i).Item("RowNo")
+                                .Rows(i).Cells("ChargesItemCode").Value = DtVisitCharges.Rows(i).Item("ItemCode")
+                                .Rows(i).Cells("ChargesItemDescription").Value = DtVisitCharges.Rows(i).Item("ItemDescription")
+                                .Rows(i).Cells("ChargesPrescription").Value = DtVisitCharges.Rows(i).Item("Prescription")
+                                .Rows(i).Cells("ChargesNotes").Value = DtVisitCharges.Rows(i).Item("Notes")
+                                .Rows(i).Cells("ChargesUnitPrice").Value = DtVisitCharges.Rows(i).Item("UnitPrice")
+                                .Rows(i).Cells("ChargesQuantity").Value = DtVisitCharges.Rows(i).Item("Quantity")
+                                .Rows(i).Cells("ChargesTotalPrice").Value = DtVisitCharges.Rows(i).Item("TotalPrice")
+                                .Rows(i).Cells("ChargesItemGroup").Value = DtVisitCharges.Rows(i).Item("ItemGroup")
+                                .Rows(i).Cells("ChargesItemTypeCode").Value = DtVisitCharges.Rows(i).Item("ItemTypeCode")
+                                .Rows(i).Cells("ChargesItemTypeDescription").Value = DtVisitCharges.Rows(i).Item("ItemTypeDescription")
+                            End With
+                        Next
+
+
+
+                    End If
+
+                End With
+
+
+
                 TxtCreatedBy.Text = DtVisit.Rows(0).Item("CreatedBy")
                 TxtDateCreated.Text = DtVisit.Rows(0).Item("DateCreated")
                 TxtModifiedBy.Text = DtVisit.Rows(0).Item("ModifiedBy")
@@ -1271,6 +1304,8 @@ Public Class FrmVisitInformation
                         .ItemGroup = DgvSelectedItem.Rows(i).Cells("ChargesItemGroup").Value
                         .ItemTypeCode = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeCode").Value
                         .ItemTypeDescription = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeDescription").Value
+                        .Prescription = DgvSelectedItem.Rows(i).Cells("ChargesPrescription").Value
+                        .Notes = DgvSelectedItem.Rows(i).Cells("ChargesNotes").Value
                         .UnitPrice = DgvSelectedItem.Rows(i).Cells("ChargesUnitPrice").Value
                         .Quantity = DgvSelectedItem.Rows(i).Cells("ChargesQuantity").Value
                         .TotalPrice = DgvSelectedItem.Rows(i).Cells("ChargesTotalPrice").Value
@@ -1553,6 +1588,10 @@ Public Class FrmVisitInformation
                     DgvRow("RowNo") = DgvSelectedItem.Rows(i).Cells("ChargesRowNo").Value
                     DgvRow("ItemCode") = DgvSelectedItem.Rows(i).Cells("ChargesItemCode").Value
                     DgvRow("ItemDescription") = DgvSelectedItem.Rows(i).Cells("ChargesItemDescription").Value
+
+                    DgvRow("Prescription") = DgvSelectedItem.Rows(i).Cells("ChargesPrescription").Value
+                    DgvRow("Notes") = DgvSelectedItem.Rows(i).Cells("ChargesNotes").Value
+
                     DgvRow("Quantity") = DgvSelectedItem.Rows(i).Cells("ChargesQuantity").Value
                     DgvRow("UnitPrice") = DgvSelectedItem.Rows(i).Cells("ChargesUnitPrice").Value
                     DgvRow("TotalPrice") = DgvSelectedItem.Rows(i).Cells("ChargesTotalPrice").Value
@@ -1574,6 +1613,8 @@ Public Class FrmVisitInformation
                 Row("RowNo") = IIf(DtItem.Rows.Count = 0, 1, DtItem.Rows.Count + 1)
                 Row("ItemCode") = UCase(Trim(TxtTestItem.Tag))
                 Row("ItemDescription") = UCase(Trim(TxtTestItem.Text))
+                Row("Prescription") = UCase(Trim(TxtPrescription.Text))
+                Row("Notes") = UCase(Trim(TxtNotes.Text))
                 Row("UnitPrice") = UCase(Trim(TxtTestUnitPrice.Text))
                 Row("Quantity") = UCase(Trim(TxtTestQuantity.Text))
                 Row("TotalPrice") = FormatNumber(CDec(TxtTestTotalPrice.Text) * CDec(TxtTestQuantity.Text), 2)
@@ -1595,6 +1636,10 @@ Public Class FrmVisitInformation
                         .Rows(i).Cells("ChargesRowNo").Value = DtItem.Rows(i).Item("RowNo")
                         .Rows(i).Cells("ChargesItemCode").Value = DtItem.Rows(i).Item("ItemCode")
                         .Rows(i).Cells("ChargesItemDescription").Value = DtItem.Rows(i).Item("ItemDescription")
+
+                        .Rows(i).Cells("ChargesPrescription").Value = DtItem.Rows(i).Item("Prescription")
+                        .Rows(i).Cells("ChargesNotes").Value = DtItem.Rows(i).Item("Notes")
+
                         .Rows(i).Cells("ChargesUnitPrice").Value = DtItem.Rows(i).Item("UnitPrice")
                         .Rows(i).Cells("ChargesQuantity").Value = DtItem.Rows(i).Item("Quantity")
                         .Rows(i).Cells("ChargesTotalPrice").Value = DtItem.Rows(i).Item("TotalPrice")

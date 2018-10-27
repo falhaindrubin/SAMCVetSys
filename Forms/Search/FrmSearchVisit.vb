@@ -129,6 +129,31 @@
                         DgvVisit.Show()
                     End If
 
+                Case ""
+                    DtVisit = ClsVisit.GetVisitListing(ClsVisit)
+
+                    'If Source = "WARD" Then
+                    '    If UserCommand = "ADD_NEW_WARD" Then
+                    '        CbIsWarded.Checked = True
+                    '        With ClsVisit
+                    '            .IsAdmittedToWard = "0"
+                    '            .IsOngoingTreatment = "1"
+                    '            .IsVisitCompleted = "0"
+                    '        End With
+                    '        DtVisit = ClsVisit.GetWardedVisitListing(ClsVisit)
+                    '    End If
+                    'Else
+                    '    DtVisit = ClsVisit.GetVisitListing(ClsVisit)
+                    'End If
+
+                    If DtVisit.Rows.Count > 0 Then
+                        DgvVisit.DataSource = DtVisit
+                        DgvVisit.Show()
+                    Else
+                        DgvVisit.Rows.Clear()
+                        DgvVisit.Show()
+                    End If
+
             End Select
 
         Catch ex As Exception

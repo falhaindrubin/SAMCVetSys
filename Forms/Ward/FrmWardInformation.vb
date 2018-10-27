@@ -1123,6 +1123,8 @@ ShowWardInfo:
                     DbTrans = Nothing
 
                     MsgBox("Your selected pet has been successfully discharged!", MsgBoxStyle.Information, "Pet Discharge Completed")
+                Else
+                    CbIsDischarged.Checked = False
 
                 End If
 

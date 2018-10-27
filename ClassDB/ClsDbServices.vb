@@ -67,7 +67,7 @@ Public Class ClsDbServices
             With Sb
                 .Append("SELECT ItemGroup, ItemTypeCode, ItemTypeDescription ")
                 .Append("FROM samc_servicetype ")
-                .Append("ORDER BY ItemTypeDescription ")
+                .Append("ORDER BY ItemTypeCode ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)

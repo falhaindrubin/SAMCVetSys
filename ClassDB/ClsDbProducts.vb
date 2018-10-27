@@ -94,7 +94,7 @@ Public Class ClsDbProducts
             With Sb
                 .Append("SELECT ItemGroup, ItemTypeCode, ItemTypeDescription ")
                 .Append("FROM samc_producttype ")
-                .Append("ORDER BY ItemTypeDescription ")
+                .Append("ORDER BY ItemTypeCode ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)

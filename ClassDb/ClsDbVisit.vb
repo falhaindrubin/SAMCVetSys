@@ -77,7 +77,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, ")
-                .Append("PetID, ")
+                .Append("PetID, IsVisitCompleted, VisitDescription, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
@@ -85,6 +85,9 @@ Public Class ClsDbVisit
                 If VS.CustomerID <> "" Then
                     .Append("WHERE CustomerID = '" & VS.CustomerID & "' ")
                 End If
+
+                .Append("GROUP BY a.VisitID ")
+                .Append("ORDER BY a.VisitID ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)

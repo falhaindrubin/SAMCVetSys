@@ -23,6 +23,16 @@ Public Class FrmPaymentInformation
         End Set
     End Property
 
+    Private _InvoiceDate As Date
+    Public Property InvoiceDate As Date
+        Get
+            Return _InvoiceDate
+        End Get
+        Set(value As Date)
+            _InvoiceDate = value
+        End Set
+    End Property
+
     Private _VisitID As String
     Public Property VisitID As String
         Get
@@ -129,6 +139,10 @@ Public Class FrmPaymentInformation
                                 End With
                             Next
 
+                            TxtCustomerName.Text = CStrNull(DtBill.Rows(0).Item("CustomerName"))
+                            TxtCustomerName.Tag = CStrNull(DtBill.Rows(0).Item("CustomerID"))
+                            TxtPetName.Text = CStrNull(DtBill.Rows(0).Item("PetName"))
+                            TxtPetName.Tag = CStrNull(DtBill.Rows(0).Item("PetID"))
                             TxtInvoiceNo.Text = DtBill.Rows(0).Item("InvoiceNo")
                             TxtVisitID.Text = DtBill.Rows(0).Item("VisitID")
                             TxtGrossTotal.Text = DtBill.Rows(0).Item("GrossTotal")
@@ -231,51 +245,51 @@ Public Class FrmPaymentInformation
 
     End Sub
 
-    Private Sub TxtDiscount_TextChanged(sender As Object, e As EventArgs)
+    'Private Sub TxtDiscount_TextChanged(sender As Object, e As EventArgs)
 
-        Try
-            'If Trim(TxtDiscount.Text) <> "" Then
-            '    If Not IsNumeric(Trim(TxtDiscount.Text)) Then
-            '        MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
+    '    Try
+    '        'If Trim(TxtDiscount.Text) <> "" Then
+    '        '    If Not IsNumeric(Trim(TxtDiscount.Text)) Then
+    '        '        MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
 
-            '        Dim LastIndex As Integer
-            '        For i As Integer = 0 To TxtDiscount.Text.Length - 1
-            '            LastIndex += 1
-            '        Next
+    '        '        Dim LastIndex As Integer
+    '        '        For i As Integer = 0 To TxtDiscount.Text.Length - 1
+    '        '            LastIndex += 1
+    '        '        Next
 
-            '        Dim StrDiscount As String = TxtDiscount.Text
-            '        TxtDiscount.Text = FormatNumber(StrDiscount.Replace(StrDiscount.Chars(LastIndex - 1), ""), 2)
+    '        '        Dim StrDiscount As String = TxtDiscount.Text
+    '        '        TxtDiscount.Text = FormatNumber(StrDiscount.Replace(StrDiscount.Chars(LastIndex - 1), ""), 2)
 
-            '    End If
+    '        '    End If
 
-            '    TxtDiscount.Text = FormatNumber(CDec(TxtDiscount.Text), 2)
+    '        '    TxtDiscount.Text = FormatNumber(CDec(TxtDiscount.Text), 2)
 
-            'End If
+    '        'End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_TextChanged()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_TextChanged()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub TxtDiscount_Leave(sender As Object, e As EventArgs)
+    'Private Sub TxtDiscount_Leave(sender As Object, e As EventArgs)
 
-        Try
-            'If Trim(TxtDiscount.Text) = "" Then
-            '    TxtDiscount.Text = FormatNumber(0, 2)
-            'Else
-            '    If Not IsNumeric(Trim(TxtDiscount.Text)) Then
-            '        MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
-            '        TxtDiscount.Text = FormatNumber(0, 2)
-            '    End If
-            '    TxtDiscount.Text = FormatNumber(CDec(TxtDiscount.Text), 2)
-            'End If
+    '    Try
+    '        'If Trim(TxtDiscount.Text) = "" Then
+    '        '    TxtDiscount.Text = FormatNumber(0, 2)
+    '        'Else
+    '        '    If Not IsNumeric(Trim(TxtDiscount.Text)) Then
+    '        '        MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
+    '        '        TxtDiscount.Text = FormatNumber(0, 2)
+    '        '    End If
+    '        '    TxtDiscount.Text = FormatNumber(CDec(TxtDiscount.Text), 2)
+    '        'End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_Leave()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_Leave()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub DgvBillListing_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvBillListing.CellContentClick
 
@@ -409,16 +423,9 @@ Public Class FrmPaymentInformation
 
     End Sub
 
-    Private Sub TxtDeposit_TextChanged(sender As Object, e As EventArgs) Handles TxtDeposit.TextChanged
 
-        Try
-            TxtTotalDue.Text = FormatNumber(CDec(TxtGrandTotal.Text) - CDec(TxtDeposit.Text), 2)
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDeposit_TextChanged()")
-        End Try
 
-    End Sub
 
     Private Sub BtnAddBillItem_Click(sender As Object, e As EventArgs) Handles BtnAddBillItem.Click
         AddBillItem()
@@ -579,10 +586,6 @@ Public Class FrmPaymentInformation
     End Function
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        CreateBill()
-    End Sub
-
-    Private Sub CreateBill()
         If Not CreateBillPayment() Then Exit Sub
     End Sub
 
@@ -643,9 +646,11 @@ Public Class FrmPaymentInformation
                 With ClsBill
                     .InvoiceNo = GenInvoiceNo
                     .VisitID = VisitID
-                    .InvoiceDate = Now
+                    .InvoiceDate = IIf(InvoiceDate <> Nothing, InvoiceDate, Now) 'Now
                     .CustomerID = TxtCustomerName.Tag 'CustomerID
                     .CustomerName = TxtCustomerName.Text 'CustomerName
+                    .PetID = TxtPetName.Tag
+                    .PetName = TxtPetName.Text
                     .GrossTotal = CDec(TxtGrossTotal.Text)
                     .Discount = CDec(TxtDiscount.Text)
                     .GrandTotal = CDec(TxtGrandTotal.Text)
@@ -653,7 +658,7 @@ Public Class FrmPaymentInformation
                     .TotalDue = CDec(TxtTotalDue.Text)
                     .IsPaymentComplete = IIf(CbPaymentCompleted.Checked = True, "1", "0")
                     .Ref.CreatedBy = CURR_USER
-                    .Ref.DateCreated = Now
+                    .Ref.DateCreated = IIf(TxtDateCreated.Text <> "", CDate(TxtDateCreated.Text), Now) 'Now
                     .Ref.ModifiedBy = CURR_USER
                     .Ref.DateModified = Now
                 End With
@@ -799,7 +804,7 @@ Public Class FrmPaymentInformation
 
                             DiagnosisRow("RowNo") = DtDiagnosis.Rows(i).Item("RowNo")
                             DiagnosisRow("ItemCode") = DtDiagnosis.Rows(i).Item("ItemCode")
-                            DiagnosisRow("ItemDescription") = DtDiagnosis.Rows(i).Item("ItemDescription")
+                            DiagnosisRow("ItemDescription") = DtDiagnosis.Rows(i).Item("ItemDescription") & "***DIAGNOSIS"
                             DiagnosisRow("ItemGroup") = DtDiagnosis.Rows(i).Item("ItemGroup")
                             DiagnosisRow("ItemTypeCode") = DtDiagnosis.Rows(i).Item("ItemTypeCode")
                             DiagnosisRow("ItemTypeDescription") = DtDiagnosis.Rows(i).Item("ItemTypeDescription")
@@ -828,7 +833,7 @@ Public Class FrmPaymentInformation
 
                             TreatmentRow("RowNo") = DtTreatment.Rows(i).Item("RowNo")
                             TreatmentRow("ItemCode") = DtTreatment.Rows(i).Item("ItemCode")
-                            TreatmentRow("ItemDescription") = DtTreatment.Rows(i).Item("ItemDescription")
+                            TreatmentRow("ItemDescription") = DtTreatment.Rows(i).Item("ItemDescription") & "***TREATMENT"
                             TreatmentRow("ItemGroup") = DtTreatment.Rows(i).Item("ItemGroup")
                             TreatmentRow("ItemTypeCode") = DtTreatment.Rows(i).Item("ItemTypeCode")
                             TreatmentRow("ItemTypeDescription") = DtTreatment.Rows(i).Item("ItemTypeDescription")
@@ -844,6 +849,9 @@ Public Class FrmPaymentInformation
                 End If
             End With
 
+            'Update ward duration
+
+
             'Ward diagnosis
             Dim DtWardDiagnosis As New DataTable
             Dim ClsWardDiagnosis As New ClsWardDiagnosis
@@ -857,7 +865,7 @@ Public Class FrmPaymentInformation
 
                             WardDiagnosisRow("RowNo") = DtWardDiagnosis.Rows(i).Item("RowNo")
                             WardDiagnosisRow("ItemCode") = DtWardDiagnosis.Rows(i).Item("ItemCode")
-                            WardDiagnosisRow("ItemDescription") = DtWardDiagnosis.Rows(i).Item("ItemDescription")
+                            WardDiagnosisRow("ItemDescription") = DtWardDiagnosis.Rows(i).Item("ItemDescription") & "***WARD-DIAGNOSIS"
                             WardDiagnosisRow("ItemGroup") = DtWardDiagnosis.Rows(i).Item("ItemGroup")
                             WardDiagnosisRow("ItemTypeCode") = DtWardDiagnosis.Rows(i).Item("ItemTypeCode")
                             WardDiagnosisRow("ItemTypeDescription") = DtWardDiagnosis.Rows(i).Item("ItemTypeDescription")
@@ -890,7 +898,7 @@ Public Class FrmPaymentInformation
 
                             WardTreatmentRow("RowNo") = DtWardTreatment.Rows(i).Item("RowNo")
                             WardTreatmentRow("ItemCode") = DtWardTreatment.Rows(i).Item("ItemCode")
-                            WardTreatmentRow("ItemDescription") = DtWardTreatment.Rows(i).Item("ItemDescription")
+                            WardTreatmentRow("ItemDescription") = DtWardTreatment.Rows(i).Item("ItemDescription") & "***WARD-TREATMENT"
                             WardTreatmentRow("ItemGroup") = DtWardTreatment.Rows(i).Item("ItemGroup")
                             WardTreatmentRow("ItemTypeCode") = DtWardTreatment.Rows(i).Item("ItemTypeCode")
                             WardTreatmentRow("ItemTypeDescription") = DtWardTreatment.Rows(i).Item("ItemTypeDescription")
@@ -966,25 +974,6 @@ Public Class FrmPaymentInformation
 
     End Function
 
-    Private Function SumUpBill(DtBill As DataTable, ItemCode As String, Quantity As Decimal) As DataTable
-
-        Dim Dt As New DataTable
-
-        Try
-            For i As Integer = 0 To DtBill.Rows.Count - 1
-
-
-
-            Next
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SumUpBill()")
-        End Try
-
-        Return Dt
-
-    End Function
-
     Private Sub PopulateVisit()
 
         Try
@@ -1047,4 +1036,33 @@ Public Class FrmPaymentInformation
     Private Sub BtnGenerateInvoice_Click(sender As Object, e As EventArgs) Handles BtnGenerateInvoice.Click
         If Not CalculateBillPayment() Then Exit Sub
     End Sub
+
+    Private Sub TxtDeposit_TextChanged(sender As Object, e As EventArgs) Handles TxtDeposit.TextChanged
+
+        Try
+            Dim GrandTotal As Decimal = CDec(IIf(TxtGrandTotal.Text <> "", TxtGrandTotal.Text, 0.0))
+            Dim Deposit As Decimal = CDec(IIf(TxtDeposit.Text <> "", TxtDeposit.Text, 0.0))
+
+            TxtTotalDue.Text = FormatNumber(GrandTotal - Deposit, 2)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDeposit_TextChanged()")
+        End Try
+
+    End Sub
+
+    Private Sub TxtDiscount_TextChanged(sender As Object, e As EventArgs) Handles TxtDiscount.TextChanged
+
+        Try
+            Dim GrossTotal As Decimal = CDec(IIf(TxtGrossTotal.Text <> "", TxtGrossTotal.Text, 0.0))
+            Dim Discount As Decimal = CDec(IIf(TxtDiscount.Text <> "", TxtDiscount.Text, 0.0))
+
+            TxtGrandTotal.Text = FormatNumber(GrossTotal - Discount, 2)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_TextChanged()")
+        End Try
+
+    End Sub
+
 End Class

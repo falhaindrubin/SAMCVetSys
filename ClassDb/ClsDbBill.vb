@@ -16,10 +16,11 @@ Public Class ClsDbBill
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_billing ")
-                .Append("(InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
+                .Append("(InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, PetID, PetName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & BL.InvoiceNo & "', '" & BL.VisitID & "', " & CSQLDate(BL.InvoiceDate) & ", '" & BL.CustomerID & "', '" & BL.CustomerName & "', '" & BL.GrossTotal & "', '" & BL.Discount & "', ")
+                .Append("('" & BL.InvoiceNo & "', '" & BL.VisitID & "', " & CSQLDate(BL.InvoiceDate) & ", '" & BL.CustomerID & "', '" & BL.CustomerName & "', '" & BL.PetID & "', '" & BL.PetName & "', ")
+                .Append("'" & BL.GrossTotal & "', '" & BL.Discount & "', ")
                 .Append("'" & BL.GrandTotal & "', '" & BL.Deposit & "', '" & BL.TotalDue & "', '" & BL.IsPaymentComplete & "', ")
                 .Append("'" & BL.Ref.CreatedBy & "', " & CSQLDateTime(BL.Ref.DateCreated) & ", '" & BL.Ref.ModifiedBy & "', " & CSQLDateTime(BL.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
@@ -105,7 +106,7 @@ Public Class ClsDbBill
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
+                .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, PetID, PetName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
                 .Append("RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice ")
                 .Append("FROM samc_billing a ")
                 .Append("INNER JOIN samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")

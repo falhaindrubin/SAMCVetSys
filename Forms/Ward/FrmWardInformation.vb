@@ -170,12 +170,12 @@ ShowWardInfo:
                     'ClsWard.WardDate = Now.Date
                     DtWardDetail = ClsWard.GetWardDetail(ClsWard)
 
-                    ClsWardDiagnosis.DiagnoseDate = Now.Date 'CDate(TxtWardDate.Text)
+                    ClsWardDiagnosis.WardDate = Now.Date 'CDate(TxtWardDate.Text)
                     ClsWardDiagnosis.WardID = WardID
                     DtWardDiagnosisDetail = ClsWardDiagnosis.GetWardDiagnosisDetail(ClsWardDiagnosis)
 
                     ClsWardTreatment.WardID = WardID
-                    ClsWardTreatment.TreatmentDate = Now.Date 'CDate(TxtWardDate.Text)
+                    ClsWardTreatment.WardDate = Now.Date 'CDate(TxtWardDate.Text)
                     DtWardTreatmentDetail = ClsWardTreatment.GetWardTreatmentDetail(ClsWardTreatment)
                     'Get current day entry for ward; populate if any-END
 
@@ -205,28 +205,33 @@ ShowWardInfo:
                         Next
 
                         If TodayWardDate <> Nothing Then
+
                             'Filter datatable using dataview to get intended ward date
                             'Filter current day treatment if any
                             Dim DvWardDetail As New DataView
                             DvWardDetail = DtWardDetail.DefaultView
-                            DvWardDetail.RowFilter = "WardDate = '" & TodayWardDate & "'" 'DvServices(i)("ItemCode").ToString
+                            DvWardDetail.RowFilter = "WardDate = '" & TodayWardDate & "'"
 
                             'Daily Physical Examination
-                            CmbAppetite.SelectedValue = DvWardDetail(0)("Appetite") 'DtWardDetail.Rows(0).Item("Appetite")
-                            CmbBowel.SelectedValue = DvWardDetail(0)("Bowel") 'DtWardDetail.Rows(0).Item("Bowel")
-                            CmbUrine.SelectedValue = DvWardDetail(0)("Urine") 'DtWardDetail.Rows(0).Item("Urine")
-                            CmbVomit.SelectedValue = DvWardDetail(0)("Vomit") 'DtWardDetail.Rows(0).Item("Vomit")
-                            CmbFood.SelectedValue = DvWardDetail(0)("Food") 'DtWardDetail.Rows(0).Item("Food")
-                            CmbFasting.SelectedValue = DvWardDetail(0)("IsFasting") 'DtWardDetail.Rows(0).Item("IsFasting")
-                            TxtFastingDescription.Text = DvWardDetail(0)("FastingDescription") 'DtWardDetail.Rows(0).Item("FastingDescription")
-                            TxtDailyNotes.Text = DvWardDetail(0)("DailyNotes") 'DtWardDetail.Rows(0).Item("DailyNotes")
+                            CmbAppetite.SelectedValue = DvWardDetail(0)("Appetite")
+                            TxtAppetiteDescription.Text = DvWardDetail(0)("AppetiteDescription")
+                            CmbBowel.SelectedValue = DvWardDetail(0)("Bowel")
+                            TxtBowelDescription.Text = DvWardDetail(0)("BowelDescription")
+                            CmbUrine.SelectedValue = DvWardDetail(0)("Urine")
+                            TxtUrineDescription.Text = DvWardDetail(0)("UrineDescription")
+                            CmbVomit.SelectedValue = DvWardDetail(0)("Vomit")
+                            TxtVomitDescription.Text = DvWardDetail(0)("VomitDescription")
+                            CmbFood.SelectedValue = DvWardDetail(0)("Food")
+                            CmbFasting.SelectedValue = DvWardDetail(0)("IsFasting")
+                            TxtFastingDescription.Text = DvWardDetail(0)("FastingDescription")
+                            TxtDailyNotes.Text = DvWardDetail(0)("DailyNotes")
 
                             'Diagnosis/test
                             If DgvSelectedTest.Rows.Count > 0 Then
                                 DgvSelectedTest.Rows.Clear()
                             End If
-                            TxtDiagnosis.Text = DtWardDiagnosisDetail.Rows(0).Item("Diagnosis") 'DvWardDetail(0)("DailyNotes") '
-                            For i As Integer = 0 To DvWardDetail.Count - 1 'DtWardDiagnosisDetail.Rows.Count - 1
+                            TxtDiagnosis.Text = DtWardDiagnosisDetail.Rows(0).Item("Diagnosis")
+                            For i As Integer = 0 To DvWardDetail.Count - 1
                                 With DgvSelectedTest
                                     .Rows.Add()
                                     .Rows(i).Cells("TestRowNo").Value = DtWardDiagnosisDetail.Rows(i).Item("RowNo") ' DvWardDetail(i)("DailyNotes")
@@ -367,9 +372,13 @@ ShowWardInfo:
                 .WardDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
                 '.RowNo = ""
                 .Appetite = Trim(DirectCast(CmbAppetite.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
+                .AppetiteDescription = Trim(TxtAppetiteDescription.Text)
                 .Bowel = Trim(DirectCast(CmbBowel.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
+                .BowelDescription = Trim(TxtBowelDescription.Text)
                 .Urine = Trim(DirectCast(CmbUrine.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
+                .UrineDescription = Trim(TxtUrineDescription.Text)
                 .Vomit = Trim(DirectCast(CmbVomit.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
+                .VomitDescription = Trim(TxtVomitDescription.Text)
                 .Food = Trim(DirectCast(CmbFood.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
                 .IsFasting = Trim(DirectCast(CmbFasting.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
                 .FastingDescription = Trim(TxtFastingDescription.Text)
@@ -413,7 +422,7 @@ ShowWardInfo:
             For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
                 With ClsWardDiagnosisDetail
                     .WardID = GenWardID
-                    .DiagnoseDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
+                    .WardDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
                     .RowNo = i + 1
                     .ItemCode = DgvSelectedTest.Rows(i).Cells("TestItemCode").Value
                     .ItemDescription = DgvSelectedTest.Rows(i).Cells("TestItemDescription").Value
@@ -444,7 +453,7 @@ ShowWardInfo:
                     With ClsWardTreatment
                         .WardID = GenWardID
                         .VisitID = VisitID
-                        .TreatmentDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
+                        .WardDate = CDate(TxtWardDate.Text) 'DtpWardDate.Value.Date
                         .RowNo = i + 1
                         .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
                         .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
@@ -478,6 +487,8 @@ ShowWardInfo:
             DbTrans = Nothing
 
             TxtWardID.Text = GenWardID
+            TxtWardID.Tag = GenWardID
+            WardID = GenWardID
 
             With ClsWard
                 If TxtCreatedBy.Text = "" Then
@@ -559,7 +570,7 @@ ShowWardInfo:
             If DtWardDiagnosis.Rows.Count > 0 Then
                 For i As Integer = 0 To DtWardDiagnosis.Rows.Count - 1
 
-                    If AddItemToBill(DtPayment, DtWardDiagnosis.Rows(i).Item("ItemCode"), DtWardDiagnosis.Rows(i).Item("DiagnoseDate")) = True Then
+                    If AddItemToBill(DtPayment, DtWardDiagnosis.Rows(i).Item("ItemCode"), DtWardDiagnosis.Rows(i).Item("WardDate")) = True Then
 
                         Dim Row As DataRow = DtPayment.NewRow
                         Row("RowNo") = DtWardDiagnosis.Rows(i).Item("RowNo")
@@ -589,7 +600,7 @@ ShowWardInfo:
             If DtWardTreatment.Rows.Count > 0 Then
                 For i As Integer = 0 To DtWardTreatment.Rows.Count - 1
 
-                    If AddItemToBill(DtPayment, DtWardTreatment.Rows(i).Item("ItemCode"), DtWardTreatment.Rows(i).Item("TreatmentDate")) = True Then
+                    If AddItemToBill(DtPayment, DtWardTreatment.Rows(i).Item("ItemCode"), DtWardTreatment.Rows(i).Item("WardDate")) = True Then
 
                         Dim Row As DataRow = DtPayment.NewRow
                         Row("RowNo") = DtWardTreatment.Rows(i).Item("RowNo")
@@ -1087,10 +1098,6 @@ ShowWardInfo:
 
                     If ActualDD > FixedDD Then
                         WardDuration = WardDuration + 1
-                        'Else
-                        '    If WardDuration = 1 Then
-                        '        WardDuration = WardDuration - 1
-                        '    End If
                     End If
 
                     'Update IsDischarge, DischargeDate
@@ -1256,38 +1263,28 @@ ShowWardInfo:
 
         Try
             'Set fixed AdmissionDate & DischargeDate
-            Dim StrFixedAD As String = "19/10/2018 " & "12:00:00"
-            Dim StrFixedDD As String = "20/10/2018 " & "12:00:00"
+            Dim StrFixedAD As String = CDate(TxtAD.Text).Date.ToShortDateString & " 12:00:00"
+            Dim StrFixedDD As String = CDate(TxtDD.Text).Date.ToShortDateString & " 12:00:00"
+
             Dim FixedAD As Date = CDate(StrFixedAD)
             Dim FixedDD As Date = CDate(StrFixedDD)
+
             Dim FixDuration As TimeSpan
 
             'Get actual admission date & actual discharge date
-            Dim ActualAD As Date = "19/10/2018 13:00:00"
-            Dim ActualDD As Date = "20/10/2018 12:01:00"
+            Dim ActualAD As Date = CDate(TxtAD.Text) '"19/10/2018 13:00:00"
+            Dim ActualDD As Date = CDate(TxtDD.Text) '"20/10/2018 12:01:00"
 
             FixDuration = FixedDD - FixedAD
             Dim WardDuration As Integer = FixDuration.Days
 
             If ActualDD > FixedDD Then
                 WardDuration = WardDuration + 1
-                'Else
-                '    If WardDuration = 1 Then
-                '        WardDuration = WardDuration - 1
-                '    End If
             End If
-
-            TxtAD.Text = ActualAD
-            TxtDD.Text = ActualDD
 
             MsgBox("Admission Date : " & ActualAD & Environment.NewLine &
                    "Discharge Date : " & ActualDD & Environment.NewLine &
                    "Ward Duration : " & WardDuration)
-
-            'Dim D1 As Date = CDate(TxtAD.Text)
-            'Dim D2 As Date = CDate(TxtDD.Text)
-            'Dim Charge As Integer = DateDiff(DateInterval.Day, D1, D2)
-            'MsgBox(Charge)
 
         Catch ex As Exception
             MsgBox(ex.Message)

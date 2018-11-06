@@ -27,11 +27,6 @@ Public Class FrmCustomerRecords
 
             For i As Integer = 0 To DgvCustomerListing.Rows.Count - 1
 
-                '.Append("SELECT CustomerID, SaluteCode, SaluteName, CustomerName, NRICPassportNo, AddressLine1, AddressLine2, AddressLine3, AddressLine4, TelNo, MobileNo, Email, ")
-                '.Append("Postcode, City, State, Country, ")
-                '.Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
-                '.Append("FROM samc_customer ")
-
                 DgvCustomerListing.Columns("SaluteCode").Visible = False
                 DgvCustomerListing.Columns("SaluteName").Visible = False
 
@@ -57,7 +52,7 @@ Public Class FrmCustomerRecords
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     CustomerID = DgvCustomerListing.Rows(e.RowIndex).Cells("CustomerID").Value
-                    Dim frm As New FrmCustomerEntry With {
+                    Dim frm As New FrmCustomerInformation With {
                         .UserCommand = "SHOW_CUSTOMER_INFO",
                         .CustomerID = CustomerID,
                         .AddPetOnly = True
@@ -163,10 +158,10 @@ Public Class FrmCustomerRecords
     End Sub
 
     Private Sub BtnAddNewCustomer_Click(sender As Object, e As EventArgs) Handles BtnAddNewCustomer.Click
-        With FrmAppointmentEntry
+        With FrmAppointmentInformation
             .UserCommand = "ADD_NEW_CUSTOMER"
         End With
-        FrmCustomerEntry.ShowDialog()
+        FrmCustomerInformation.ShowDialog()
     End Sub
 
     Private Sub BtnReload_Click(sender As Object, e As EventArgs) Handles BtnReload.Click

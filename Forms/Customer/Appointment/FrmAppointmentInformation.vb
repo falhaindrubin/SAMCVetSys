@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 
-Public Class FrmAppointmentEntry
+Public Class FrmAppointmentInformation
 
     Private _UserCommand As String
     Public Property UserCommand As String
@@ -310,9 +310,9 @@ Public Class FrmAppointmentEntry
 
             If DtPet.Rows.Count > 0 Then
 
-                TxtCustomerIDPI.Text = DtCustomer.Rows(0).Item("CustomerID")
-                TxtCustomerNamePI.Text = DtCustomer.Rows(0).Item("CustomerName")
-                TxtPetID.Text = DtPet.Rows(0).Item("PetID")
+                'TxtCustomerIDPI.Text = DtCustomer.Rows(0).Item("CustomerID")
+                'TxtCustomerNamePI.Text = DtCustomer.Rows(0).Item("CustomerName")
+                'TxtPetID.Text = DtPet.Rows(0).Item("PetID")
                 TxtPetName.Text = DtPet.Rows(0).Item("PetName")
                 DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
                 CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
@@ -472,7 +472,9 @@ Public Class FrmAppointmentEntry
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        SaveAppointmentToDb()
+        If Not CheckUserInput(UserCommand) Then Exit Sub
+        If Not AddNewAppointment() Then Exit Sub
+        'SaveAppointmentToDb()
     End Sub
 
     Private Sub SaveAppointmentToDb()
@@ -784,8 +786,8 @@ Public Class FrmAppointmentEntry
 
             Else
 
-                LblPetName.Tag = DgvSelectedPet.Rows(e.RowIndex).Cells("PetID").Value
-                LblPetName.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("PetName").Value
+                'LblPetName.Tag = DgvSelectedPet.Rows(e.RowIndex).Cells("PetID").Value
+                'LblPetName.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("PetName").Value
                 TxtAppointmentDesc.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("AppointmentDesc").Value
 
             End If
@@ -967,13 +969,13 @@ Public Class FrmAppointmentEntry
     Private Sub AddUpdatePetIssues()
 
         Try
-            For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
-                If LblPetName.Tag = DgvSelectedPet.Rows(i).Cells("PetID").Value Then
-                    DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value = Trim(TxtAppointmentDesc.Text)
-                    MsgBox("Pet issues has been successfully saved!", MsgBoxStyle.Information, "Pet Issues Saved")
-                    Exit For
-                End If
-            Next
+            'For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+            '    If LblPetName.Tag = DgvSelectedPet.Rows(i).Cells("PetID").Value Then
+            '        DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value = Trim(TxtAppointmentDesc.Text)
+            '        MsgBox("Pet issues has been successfully saved!", MsgBoxStyle.Information, "Pet Issues Saved")
+            '        Exit For
+            '    End If
+            'Next
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddUpdatePetIssues()")
@@ -986,7 +988,7 @@ Public Class FrmAppointmentEntry
         SetFields(UserCommand)
     End Sub
 
-    Private Sub BtnAddPetIssues_Click(sender As Object, e As EventArgs) Handles BtnAddPetIssues.Click
+    Private Sub BtnAddPetIssues_Click(sender As Object, e As EventArgs)
         AddUpdatePetIssues()
     End Sub
 
@@ -996,7 +998,7 @@ Public Class FrmAppointmentEntry
             Select Case ClearCommand
                 Case "SET_PET_FIELDS"
 
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
@@ -1029,13 +1031,13 @@ Public Class FrmAppointmentEntry
                     TxtCountry.Text = UCase(TxtCountry.Text)
 
                     'Pet information from customer information
-                    TxtCustomerIDPI.Text = UCase(TxtCustomerID.Tag)
-                    TxtCustomerNamePI.Text = UCase(TxtCustomerName.Text)
-                    TxtPetID.Text = UCase(TxtPetID.Tag)
+                    'TxtCustomerIDPI.Text = UCase(TxtCustomerID.Tag)
+                    'TxtCustomerNamePI.Text = UCase(TxtCustomerName.Text)
+                    'TxtPetID.Text = UCase(TxtPetID.Tag)
                     TxtPetName.Text = UCase(TxtPetName.Text)
 
                 Case "CLEAR_PET_FIELDS"
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
@@ -1066,8 +1068,8 @@ Public Class FrmAppointmentEntry
                     CmbBreed.Enabled = False
                     CmbSex.Enabled = False
                     CmbStatus.Enabled = False
-                    BtnAddPet.Enabled = False
-                    BtnClearPet.Enabled = False
+                    'BtnAddPet.Enabled = False
+                    'BtnClearPet.Enabled = False
                     'DgvPetListing.Enabled = False
 
                 Case "EDIT_CUSTOMER_INFO"
@@ -1089,7 +1091,7 @@ Public Class FrmAppointmentEntry
                     TxtState.ReadOnly = False
                     TxtCountry.ReadOnly = False
 
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     TxtPetName.ReadOnly = False
                     DtpPetDOB.Enabled = True
@@ -1097,20 +1099,20 @@ Public Class FrmAppointmentEntry
                     CmbBreed.Enabled = True
                     CmbSex.Enabled = True
                     CmbStatus.Enabled = True
-                    BtnAddPet.Enabled = True
-                    BtnClearPet.Enabled = True
+                    'BtnAddPet.Enabled = True
+                    'BtnClearPet.Enabled = True
                     DgvPetListing.Enabled = True
 
                 Case "EDIT_PET"
-                    BtnAddPet.Text = "Update Pet"
-                    BtnAddPet.Tag = "UPDATE_PET"
-                    BtnCancelEdit.Visible = True
+                    'BtnAddPet.Text = "Update Pet"
+                    'BtnAddPet.Tag = "UPDATE_PET"
+                    'BtnCancelEdit.Visible = True
 
                 Case "CANCEL_EDIT_PET", "EDITED_PET"
-                    BtnAddPet.Text = "Add Pet"
-                    BtnAddPet.Tag = ""
-                    BtnCancelEdit.Visible = False
-                    TxtPetID.Text = ""
+                    'BtnAddPet.Text = "Add Pet"
+                    'BtnAddPet.Tag = ""
+                    'BtnCancelEdit.Visible = False
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     DtpPetDOB.Value = Now
                     CmbAnimalType.SelectedIndex = 0

@@ -55,6 +55,26 @@ Public Class ClsBill
         End Set
     End Property
 
+    Private _PetID As String
+    Public Property PetID As String
+        Get
+            Return _PetID
+        End Get
+        Set(value As String)
+            _PetID = value
+        End Set
+    End Property
+
+    Private _PetName As String
+    Public Property PetName As String
+        Get
+            Return _PetName
+        End Get
+        Set(value As String)
+            _PetName = value
+        End Set
+    End Property
+
     Private _GrossTotal As Decimal
     Public Property GrossTotal As Decimal
         Get

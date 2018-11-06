@@ -89,13 +89,13 @@ Public Class FrmWardSummary
 
             With ClsWardDiagnosis
                 .WardID = WardID
-                .DiagnoseDate = WardDate
+                .WardDate = WardDate
                 DtWardDiagnosisDetail = ClsWardDiagnosis.GetWardDiagnosisDetail(ClsWardDiagnosis)
             End With
 
             With ClsWardTreatment
                 .WardID = WardID
-                .TreatmentDate = WardDate
+                .WardDate = WardDate
                 DtWardTreatmentDetail = ClsWardTreatment.GetWardTreatmentDetail(ClsWardTreatment)
             End With
 

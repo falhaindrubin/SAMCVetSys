@@ -12,10 +12,10 @@
         Application.DoEvents()
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
-        PopulateConsultationListing()
+        PopulateVisitListing()
     End Sub
 
-    Protected Sub PopulateConsultationListing()
+    Protected Sub PopulateVisitListing()
 
         Dim DtConsultation As New DataTable
         Dim ClsConsultation As New ClsVisit
@@ -65,7 +65,7 @@
     End Sub
 
     Private Sub BtnReload_Click(sender As Object, e As EventArgs) Handles BtnReload.Click
-        PopulateConsultationListing()
+        PopulateVisitListing()
     End Sub
 
 End Class

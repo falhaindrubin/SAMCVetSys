@@ -28,7 +28,6 @@ Partial Class FrmWardSummary
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TxtDailyNotes = New System.Windows.Forms.TextBox()
-        Me.Label42 = New System.Windows.Forms.Label()
         Me.LblDailyNotes = New System.Windows.Forms.Label()
         Me.LblFastingDescription = New System.Windows.Forms.Label()
         Me.LblIsFasting = New System.Windows.Forms.Label()
@@ -84,6 +83,9 @@ Partial Class FrmWardSummary
         Me.TreatmentItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TreatmentItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.LblTodaysVet = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.LblCurrentWardDate = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -117,9 +119,10 @@ Partial Class FrmWardSummary
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label41 = New System.Windows.Forms.Label()
-        Me.LblTodaysVet = New System.Windows.Forms.Label()
-        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.Label47 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -135,7 +138,7 @@ Partial Class FrmWardSummary
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(1240, 68)
+        Me.PnlActionBar.Size = New System.Drawing.Size(1328, 68)
         Me.PnlActionBar.TabIndex = 83
         '
         'Label35
@@ -155,7 +158,7 @@ Partial Class FrmWardSummary
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1177, 4)
+        Me.BtnClose.Location = New System.Drawing.Point(1263, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
@@ -163,8 +166,11 @@ Partial Class FrmWardSummary
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label47)
+        Me.GroupBox1.Controls.Add(Me.Label46)
+        Me.GroupBox1.Controls.Add(Me.Label45)
+        Me.GroupBox1.Controls.Add(Me.Label43)
         Me.GroupBox1.Controls.Add(Me.TxtDailyNotes)
-        Me.GroupBox1.Controls.Add(Me.Label42)
         Me.GroupBox1.Controls.Add(Me.LblDailyNotes)
         Me.GroupBox1.Controls.Add(Me.LblFastingDescription)
         Me.GroupBox1.Controls.Add(Me.LblIsFasting)
@@ -187,7 +193,7 @@ Partial Class FrmWardSummary
         Me.GroupBox1.Controls.Add(Me.Label31)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 314)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(436, 403)
+        Me.GroupBox1.Size = New System.Drawing.Size(525, 403)
         Me.GroupBox1.TabIndex = 84
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Daily Physical Examination"
@@ -197,29 +203,18 @@ Partial Class FrmWardSummary
         Me.TxtDailyNotes.BackColor = System.Drawing.Color.White
         Me.TxtDailyNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDailyNotes.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.TxtDailyNotes.Location = New System.Drawing.Point(12, 161)
+        Me.TxtDailyNotes.Location = New System.Drawing.Point(6, 212)
         Me.TxtDailyNotes.Multiline = True
         Me.TxtDailyNotes.Name = "TxtDailyNotes"
         Me.TxtDailyNotes.ReadOnly = True
-        Me.TxtDailyNotes.Size = New System.Drawing.Size(412, 229)
+        Me.TxtDailyNotes.Size = New System.Drawing.Size(513, 185)
         Me.TxtDailyNotes.TabIndex = 48
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(97, 141)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(10, 14)
-        Me.Label42.TabIndex = 47
-        Me.Label42.Text = ":"
-        Me.Label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LblDailyNotes
         '
         Me.LblDailyNotes.AutoSize = True
         Me.LblDailyNotes.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblDailyNotes.Location = New System.Drawing.Point(9, 144)
+        Me.LblDailyNotes.Location = New System.Drawing.Point(6, 195)
         Me.LblDailyNotes.Name = "LblDailyNotes"
         Me.LblDailyNotes.Size = New System.Drawing.Size(92, 14)
         Me.LblDailyNotes.TabIndex = 46
@@ -229,7 +224,7 @@ Partial Class FrmWardSummary
         '
         Me.LblFastingDescription.AutoSize = True
         Me.LblFastingDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblFastingDescription.Location = New System.Drawing.Point(75, 119)
+        Me.LblFastingDescription.Location = New System.Drawing.Point(359, 134)
         Me.LblFastingDescription.Name = "LblFastingDescription"
         Me.LblFastingDescription.Size = New System.Drawing.Size(99, 14)
         Me.LblFastingDescription.TabIndex = 45
@@ -239,7 +234,7 @@ Partial Class FrmWardSummary
         '
         Me.LblIsFasting.AutoSize = True
         Me.LblIsFasting.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblIsFasting.Location = New System.Drawing.Point(75, 105)
+        Me.LblIsFasting.Location = New System.Drawing.Point(414, 116)
         Me.LblIsFasting.Name = "LblIsFasting"
         Me.LblIsFasting.Size = New System.Drawing.Size(42, 14)
         Me.LblIsFasting.TabIndex = 44
@@ -249,7 +244,7 @@ Partial Class FrmWardSummary
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(63, 105)
+        Me.Label39.Location = New System.Drawing.Point(402, 116)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(10, 14)
         Me.Label39.TabIndex = 43
@@ -260,7 +255,7 @@ Partial Class FrmWardSummary
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label40.Location = New System.Drawing.Point(9, 105)
+        Me.Label40.Location = New System.Drawing.Point(359, 116)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(42, 14)
         Me.Label40.TabIndex = 42
@@ -270,7 +265,7 @@ Partial Class FrmWardSummary
         '
         Me.LblFood.AutoSize = True
         Me.LblFood.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblFood.Location = New System.Drawing.Point(75, 85)
+        Me.LblFood.Location = New System.Drawing.Point(427, 28)
         Me.LblFood.Name = "LblFood"
         Me.LblFood.Size = New System.Drawing.Size(31, 14)
         Me.LblFood.TabIndex = 41
@@ -280,7 +275,7 @@ Partial Class FrmWardSummary
         '
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.Location = New System.Drawing.Point(63, 85)
+        Me.Label36.Location = New System.Drawing.Point(415, 28)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(10, 14)
         Me.Label36.TabIndex = 40
@@ -291,7 +286,7 @@ Partial Class FrmWardSummary
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(9, 85)
+        Me.Label37.Location = New System.Drawing.Point(365, 28)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(31, 14)
         Me.Label37.TabIndex = 39
@@ -301,7 +296,7 @@ Partial Class FrmWardSummary
         '
         Me.LblVomit.AutoSize = True
         Me.LblVomit.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblVomit.Location = New System.Drawing.Point(75, 71)
+        Me.LblVomit.Location = New System.Drawing.Point(237, 116)
         Me.LblVomit.Name = "LblVomit"
         Me.LblVomit.Size = New System.Drawing.Size(33, 14)
         Me.LblVomit.TabIndex = 38
@@ -311,7 +306,7 @@ Partial Class FrmWardSummary
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(63, 71)
+        Me.Label33.Location = New System.Drawing.Point(225, 116)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(10, 14)
         Me.Label33.TabIndex = 37
@@ -322,7 +317,7 @@ Partial Class FrmWardSummary
         '
         Me.Label34.AutoSize = True
         Me.Label34.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.Location = New System.Drawing.Point(9, 71)
+        Me.Label34.Location = New System.Drawing.Point(182, 116)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(33, 14)
         Me.Label34.TabIndex = 36
@@ -332,7 +327,7 @@ Partial Class FrmWardSummary
         '
         Me.LblUrine.AutoSize = True
         Me.LblUrine.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblUrine.Location = New System.Drawing.Point(75, 57)
+        Me.LblUrine.Location = New System.Drawing.Point(64, 116)
         Me.LblUrine.Name = "LblUrine"
         Me.LblUrine.Size = New System.Drawing.Size(32, 14)
         Me.LblUrine.TabIndex = 35
@@ -342,7 +337,7 @@ Partial Class FrmWardSummary
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(63, 57)
+        Me.Label23.Location = New System.Drawing.Point(52, 116)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(10, 14)
         Me.Label23.TabIndex = 34
@@ -353,7 +348,7 @@ Partial Class FrmWardSummary
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(9, 57)
+        Me.Label25.Location = New System.Drawing.Point(9, 116)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(32, 14)
         Me.Label25.TabIndex = 33
@@ -363,7 +358,7 @@ Partial Class FrmWardSummary
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(63, 42)
+        Me.Label26.Location = New System.Drawing.Point(227, 28)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(10, 14)
         Me.Label26.TabIndex = 32
@@ -374,7 +369,7 @@ Partial Class FrmWardSummary
         '
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(63, 28)
+        Me.Label27.Location = New System.Drawing.Point(52, 28)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(10, 14)
         Me.Label27.TabIndex = 31
@@ -385,7 +380,7 @@ Partial Class FrmWardSummary
         '
         Me.LblBowel.AutoSize = True
         Me.LblBowel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblBowel.Location = New System.Drawing.Point(75, 42)
+        Me.LblBowel.Location = New System.Drawing.Point(239, 28)
         Me.LblBowel.Name = "LblBowel"
         Me.LblBowel.Size = New System.Drawing.Size(38, 14)
         Me.LblBowel.TabIndex = 30
@@ -395,7 +390,7 @@ Partial Class FrmWardSummary
         '
         Me.LblAppetite.AutoSize = True
         Me.LblAppetite.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblAppetite.Location = New System.Drawing.Point(75, 28)
+        Me.LblAppetite.Location = New System.Drawing.Point(64, 28)
         Me.LblAppetite.Name = "LblAppetite"
         Me.LblAppetite.Size = New System.Drawing.Size(47, 14)
         Me.LblAppetite.TabIndex = 29
@@ -405,7 +400,7 @@ Partial Class FrmWardSummary
         '
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(9, 42)
+        Me.Label30.Location = New System.Drawing.Point(184, 28)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(38, 14)
         Me.Label30.TabIndex = 28
@@ -426,9 +421,9 @@ Partial Class FrmWardSummary
         Me.GroupBox2.Controls.Add(Me.Label28)
         Me.GroupBox2.Controls.Add(Me.DgvSelectedTest)
         Me.GroupBox2.Controls.Add(Me.TxtDiagnosis)
-        Me.GroupBox2.Location = New System.Drawing.Point(454, 85)
+        Me.GroupBox2.Location = New System.Drawing.Point(543, 87)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(798, 320)
+        Me.GroupBox2.Size = New System.Drawing.Size(797, 320)
         Me.GroupBox2.TabIndex = 85
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Diagnosis / Test"
@@ -559,9 +554,9 @@ Partial Class FrmWardSummary
         Me.GroupBox3.Controls.Add(Me.LblPrescription)
         Me.GroupBox3.Controls.Add(Me.Label29)
         Me.GroupBox3.Controls.Add(Me.DgvSelectedTreatment)
-        Me.GroupBox3.Location = New System.Drawing.Point(454, 411)
+        Me.GroupBox3.Location = New System.Drawing.Point(543, 411)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(798, 306)
+        Me.GroupBox3.Size = New System.Drawing.Size(797, 306)
         Me.GroupBox3.TabIndex = 86
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Treatment / Medication"
@@ -776,10 +771,41 @@ Partial Class FrmWardSummary
         Me.GroupBox4.Controls.Add(Me.Label1)
         Me.GroupBox4.Location = New System.Drawing.Point(12, 85)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(436, 223)
+        Me.GroupBox4.Size = New System.Drawing.Size(525, 223)
         Me.GroupBox4.TabIndex = 85
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Customer / Pet Information"
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Location = New System.Drawing.Point(106, 82)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(10, 14)
+        Me.Label41.TabIndex = 37
+        Me.Label41.Text = ":"
+        Me.Label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LblTodaysVet
+        '
+        Me.LblTodaysVet.AutoSize = True
+        Me.LblTodaysVet.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTodaysVet.Location = New System.Drawing.Point(116, 82)
+        Me.LblTodaysVet.Name = "LblTodaysVet"
+        Me.LblTodaysVet.Size = New System.Drawing.Size(63, 14)
+        Me.LblTodaysVet.TabIndex = 36
+        Me.LblTodaysVet.Text = "Today's Vet"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label44.Location = New System.Drawing.Point(9, 82)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(63, 14)
+        Me.Label44.TabIndex = 35
+        Me.Label44.Text = "Today's Vet"
         '
         'Label24
         '
@@ -867,11 +893,10 @@ Partial Class FrmWardSummary
         '
         'LblPetCase
         '
-        Me.LblPetCase.AutoSize = True
         Me.LblPetCase.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblPetCase.Location = New System.Drawing.Point(116, 183)
         Me.LblPetCase.Name = "LblPetCase"
-        Me.LblPetCase.Size = New System.Drawing.Size(50, 14)
+        Me.LblPetCase.Size = New System.Drawing.Size(314, 37)
         Me.LblPetCase.TabIndex = 26
         Me.LblPetCase.Text = "Pet Case"
         '
@@ -1122,42 +1147,51 @@ Partial Class FrmWardSummary
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Customer ID"
         '
-        'Label41
+        'Label43
         '
-        Me.Label41.AutoSize = True
-        Me.Label41.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.Location = New System.Drawing.Point(106, 82)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(10, 14)
-        Me.Label41.TabIndex = 37
-        Me.Label41.Text = ":"
-        Me.Label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label43.AutoSize = True
+        Me.Label43.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label43.Location = New System.Drawing.Point(12, 42)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(104, 14)
+        Me.Label43.TabIndex = 49
+        Me.Label43.Text = "Appetite Description"
         '
-        'LblTodaysVet
+        'Label45
         '
-        Me.LblTodaysVet.AutoSize = True
-        Me.LblTodaysVet.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblTodaysVet.Location = New System.Drawing.Point(116, 82)
-        Me.LblTodaysVet.Name = "LblTodaysVet"
-        Me.LblTodaysVet.Size = New System.Drawing.Size(63, 14)
-        Me.LblTodaysVet.TabIndex = 36
-        Me.LblTodaysVet.Text = "Today's Vet"
+        Me.Label45.AutoSize = True
+        Me.Label45.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label45.Location = New System.Drawing.Point(184, 42)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(95, 14)
+        Me.Label45.TabIndex = 50
+        Me.Label45.Text = "Bowel Description"
         '
-        'Label44
+        'Label46
         '
-        Me.Label44.AutoSize = True
-        Me.Label44.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(9, 82)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(63, 14)
-        Me.Label44.TabIndex = 35
-        Me.Label44.Text = "Today's Vet"
+        Me.Label46.AutoSize = True
+        Me.Label46.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label46.Location = New System.Drawing.Point(11, 130)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(89, 14)
+        Me.Label46.TabIndex = 51
+        Me.Label46.Text = "Urine Description"
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Location = New System.Drawing.Point(184, 130)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(90, 14)
+        Me.Label47.TabIndex = 52
+        Me.Label47.Text = "Vomit Description"
         '
         'FrmWardSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1264, 729)
+        Me.ClientSize = New System.Drawing.Size(1352, 729)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
@@ -1241,7 +1275,6 @@ Partial Class FrmWardSummary
     Friend WithEvents Label39 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents LblFastingDescription As Label
-    Friend WithEvents Label42 As Label
     Friend WithEvents LblDailyNotes As Label
     Friend WithEvents TxtDailyNotes As TextBox
     Friend WithEvents TxtDiagnosis As TextBox
@@ -1280,4 +1313,8 @@ Partial Class FrmWardSummary
     Friend WithEvents Label41 As Label
     Friend WithEvents LblTodaysVet As Label
     Friend WithEvents Label44 As Label
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Label45 As Label
+    Friend WithEvents Label46 As Label
+    Friend WithEvents Label47 As Label
 End Class

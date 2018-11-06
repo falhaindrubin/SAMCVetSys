@@ -33,6 +33,7 @@ Partial Class FrmCustomerRecords
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -44,9 +45,9 @@ Partial Class FrmCustomerRecords
         Me.BtnSearchCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearchCustomer.BackgroundImage = CType(resources.GetObject("BtnSearchCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearchCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearchCustomer.Location = New System.Drawing.Point(270, 11)
+        Me.BtnSearchCustomer.Location = New System.Drawing.Point(382, 11)
         Me.BtnSearchCustomer.Name = "BtnSearchCustomer"
-        Me.BtnSearchCustomer.Size = New System.Drawing.Size(60, 52)
+        Me.BtnSearchCustomer.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
         '
@@ -54,7 +55,7 @@ Partial Class FrmCustomerRecords
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(6, 29)
+        Me.Label1.Location = New System.Drawing.Point(6, 32)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(42, 14)
         Me.Label1.TabIndex = 7
@@ -63,10 +64,10 @@ Partial Class FrmCustomerRecords
         'TxtSearchText
         '
         Me.TxtSearchText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSearchText.Location = New System.Drawing.Point(50, 25)
+        Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSearchText.Location = New System.Drawing.Point(50, 28)
         Me.TxtSearchText.Name = "TxtSearchText"
-        Me.TxtSearchText.Size = New System.Drawing.Size(216, 22)
+        Me.TxtSearchText.Size = New System.Drawing.Size(326, 26)
         Me.TxtSearchText.TabIndex = 6
         '
         'DgvCustomerListing
@@ -87,19 +88,20 @@ Partial Class FrmCustomerRecords
         Me.DgvCustomerListing.ReadOnly = True
         Me.DgvCustomerListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DgvCustomerListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvCustomerListing.Size = New System.Drawing.Size(969, 542)
+        Me.DgvCustomerListing.Size = New System.Drawing.Size(969, 526)
         Me.DgvCustomerListing.TabIndex = 2
         '
         'PnlActionBar
         '
         Me.PnlActionBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Controls.Add(Me.BtnAddNewCustomer)
         Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(984, 57)
+        Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
         Me.PnlActionBar.TabIndex = 70
         '
         'BtnClose
@@ -107,9 +109,9 @@ Partial Class FrmCustomerRecords
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(919, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(919, 6)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 52)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -118,9 +120,9 @@ Partial Class FrmCustomerRecords
         Me.BtnAddNewCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewCustomer.BackgroundImage = CType(resources.GetObject("BtnAddNewCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 3)
+        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 6)
         Me.BtnAddNewCustomer.Name = "BtnAddNewCustomer"
-        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 52)
+        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 56)
         Me.BtnAddNewCustomer.TabIndex = 2
         Me.BtnAddNewCustomer.UseVisualStyleBackColor = False
         '
@@ -129,9 +131,9 @@ Partial Class FrmCustomerRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(858, 3)
+        Me.BtnReload.Location = New System.Drawing.Point(858, 6)
         Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 52)
+        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
         '
@@ -142,21 +144,33 @@ Partial Class FrmCustomerRecords
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.TxtSearchText)
         Me.GroupBox2.Controls.Add(Me.BtnSearchCustomer)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 75)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 86)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(984, 69)
+        Me.GroupBox2.Size = New System.Drawing.Size(984, 74)
         Me.GroupBox2.TabIndex = 71
         Me.GroupBox2.TabStop = False
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.DgvCustomerListing)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 150)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 166)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(984, 567)
+        Me.GroupBox1.Size = New System.Drawing.Size(984, 551)
         Me.GroupBox1.TabIndex = 72
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer List"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(243, 32)
+        Me.Label25.TabIndex = 73
+        Me.Label25.Text = "Customer Records"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'FrmCustomerRecords
         '
@@ -173,6 +187,7 @@ Partial Class FrmCustomerRecords
         Me.Text = "Customer Records"
         CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
@@ -189,4 +204,5 @@ Partial Class FrmCustomerRecords
     Friend WithEvents BtnReload As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label25 As Label
 End Class

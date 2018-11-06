@@ -52,7 +52,7 @@
     Private Sub BtnAddNewAppointment_Click(sender As Object, e As EventArgs) Handles BtnAddNewAppointment.Click
 
         Try
-            Dim Frm As New FrmAppointmentEntry With {
+            Dim Frm As New FrmAppointmentInformation With {
                         .FormTitle = "Create New Appointment",
                         .UserCommand = "ADD_NEW_APPOINTMENT"
             }
@@ -86,7 +86,7 @@
                 Exit Sub
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
-                    Dim Frm As New FrmAppointmentEntry With {
+                    Dim Frm As New FrmAppointmentInformation With {
                         .UserCommand = "SHOW_CUSTOMER_APPOINTMENT",
                         .CustomerID = DgvAppoinmentListing.Rows(e.RowIndex).Cells("CustomerID").Value,
                         .AppointmentID = DgvAppoinmentListing.Rows(e.RowIndex).Cells("AppointmentID").Value

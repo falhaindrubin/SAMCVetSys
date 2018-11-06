@@ -52,13 +52,13 @@
         End Set
     End Property
 
-    Private _DiagnoseDate As Date
-    Public Property DiagnoseDate As Date
+    Private _WardDate As Date
+    Public Property WardDate As Date
         Get
-            Return _DiagnoseDate
+            Return _WardDate
         End Get
         Set(value As Date)
-            _DiagnoseDate = value
+            _WardDate = value
         End Set
     End Property
 

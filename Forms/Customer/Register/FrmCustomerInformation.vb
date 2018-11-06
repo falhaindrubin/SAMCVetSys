@@ -1,4 +1,6 @@
-﻿Public Class FrmCustomerEntry
+﻿Public Class FrmCustomerInformation
+
+#Region "FormProperty"
 
     Private _UserCommand As String
     Public Property UserCommand As String
@@ -29,6 +31,8 @@
             _AddPetOnly = value
         End Set
     End Property
+
+#End Region
 
     Private Sub FrmAddNewCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
@@ -216,15 +220,14 @@
                     ClsCustomer = New ClsCustomer
                     With ClsCustomer
                         .CustomerID = CustomerID
+                        DtCustomer = .GetCustomerInformation(ClsCustomer)
                     End With
 
                     ClsPet = New ClsPet
                     With ClsPet
                         .CustomerID = CustomerID
+                        DtPet = .GetPetListing(ClsPet)
                     End With
-
-                    DtCustomer = ClsCustomer.GetCustomerListing(ClsCustomer)
-                    DtPet = ClsPet.GetPetListing(ClsPet)
 
                     If DtCustomer.Rows.Count > 0 Then
 
@@ -251,55 +254,97 @@
 
                         If DtPet.Rows.Count > 0 Then
 
-                            TxtCustomerIDPI.Text = DtCustomer.Rows(0).Item("CustomerID")
-                            TxtCustomerNamePI.Text = DtCustomer.Rows(0).Item("CustomerName")
-                            TxtPetID.Text = DtPet.Rows(0).Item("PetID")
                             TxtPetName.Text = DtPet.Rows(0).Item("PetName")
                             DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
                             CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
-
                             CmbBreed.SelectedValue = CStr(DtPet.Rows(0).Item("BreedCode"))
                             CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
                             CmbStatus.SelectedValue = CStr(DtPet.Rows(0).Item("StatusCode"))
 
-                            With BtnEdit
-                                .HeaderText = "Edit"
-                                .Text = "Edit"
-                                .Name = "BtnEdit"
-                                .UseColumnTextForButtonValue = True
-                                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                                .DisplayIndex = 0
-                            End With
-
-                            With BtnDelete
-                                .HeaderText = "Delete"
-                                .Text = "Delete"
-                                .Name = "BtnDelete"
-                                .UseColumnTextForButtonValue = True
-                                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                                .DisplayIndex = 1
-                            End With
-
-                            'Add IsDB indicator here
-                            With DtPet
-                                .Columns.Add("IsDB", GetType(String))
-                                .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
-                            End With
-
-                            For i As Integer = 0 To DtPet.Rows.Count - 1
-                                DtPet.Rows(i).Item("IsDb") = "1"
-                                DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
-                            Next
-
                             With DgvPetListing
-                                .Columns.Add(BtnEdit)
-                                .Columns.Add(BtnDelete)
-                                .DataSource = DtPet
-                                .Columns("IsDB").Visible = False
-                                .Show()
+
+                                If DgvPetListing.Rows.Count > 0 Then
+                                    DgvPetListing.Rows.Clear()
+                                End If
+
+                                For i As Integer = 0 To DtPet.Rows.Count - 1
+                                    .Rows.Add()
+                                    .Rows(i).Cells("PetID").Value = DtPet.Rows(i).Item("PetID")
+                                    .Rows(i).Cells("PetName").Value = DtPet.Rows(i).Item("PetName")
+                                    .Rows(i).Cells("PetDOB").Value = CDate(DtPet.Rows(i).Item("PetDOB")).ToShortDateString
+                                    .Rows(i).Cells("AnimalTypeCode").Value = DtPet.Rows(i).Item("AnimalTypeCode")
+                                    .Rows(i).Cells("AnimalTypeName").Value = DtPet.Rows(i).Item("AnimalTypeName")
+                                    .Rows(i).Cells("BreedCode").Value = DtPet.Rows(i).Item("BreedCode")
+                                    .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
+                                    .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
+                                    .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
+                                    .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
+                                    .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+                                    .Rows(i).Cells("IsDb").Value = "1"
+                                Next
+
                             End With
+
+                            'With BtnEdit
+                            '    .HeaderText = "Edit"
+                            '    .Text = "Edit"
+                            '    .Name = "BtnEdit"
+                            '    .UseColumnTextForButtonValue = True
+                            '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                            '    .DisplayIndex = 0
+                            'End With
+
+                            'With BtnDelete
+                            '    .HeaderText = "Delete"
+                            '    .Text = "Delete"
+                            '    .Name = "BtnDelete"
+                            '    .UseColumnTextForButtonValue = True
+                            '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                            '    .DisplayIndex = 1
+                            'End With
+
+                            ''Add IsDB indicator here
+                            'With DtPet
+                            '    .Columns.Add("IsDB", GetType(String))
+                            '    .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
+                            'End With
+
+                            'For i As Integer = 0 To DtPet.Rows.Count - 1
+                            '    DtPet.Rows(i).Item("IsDb") = "1"
+                            '    DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
+                            'Next
+
+                            'With DgvPetListing
+                            '    .Columns.Add(BtnEdit)
+                            '    .Columns.Add(BtnDelete)
+                            '    .DataSource = DtPet
+                            '    .Columns("IsDB").Visible = False
+                            '    .Show()
+                            'End With
 
                         End If
+
+                        'Show previous visits
+                        Dim ClsVisit As New ClsVisit
+                        Dim DtVisit As New DataTable
+                        With ClsVisit
+                            .CustomerID = CustomerID
+                            DtVisit = .GetVisitListing(ClsVisit)
+                            If DtVisit.Rows.Count > 0 Then
+
+                                For i As Integer = 0 To DtVisit.Rows.Count - 1
+                                    With DgvVisitHistory
+                                        .Rows.Add()
+                                        .Rows(i).Cells("VisitID").Value = DtVisit.Rows(i).Item("VisitID")
+                                        .Rows(i).Cells("VisitTime").Value = DtVisit.Rows(i).Item("VisitTime")
+                                        .Rows(i).Cells("VisitDescription").Value = DtVisit.Rows(i).Item("VisitDescription")
+                                        .Rows(i).Cells("EmployeeName").Value = "DR. " & DtVisit.Rows(i).Item("EmployeeName")
+                                        .Rows(i).Cells("IsVisitCompleted").Value = IIf(DtVisit.Rows(i).Item("IsVisitCompleted") = "1", "COMPLETED", "ON-GOING")
+                                    End With
+                                Next
+
+                            End If
+                        End With
 
                     End If
 
@@ -310,35 +355,7 @@
             End If
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SetFormMode()")
-        End Try
-
-    End Sub
-
-    Private Sub SaveCustomerToDb(UserCommand As String)
-
-        Try
-            If Not CheckUserInput(UserCommand) Then Exit Sub
-
-            If AddPetOnly = True Then
-                GoTo AddPetOnly
-            End If
-
-            If UserCommand = "EDIT_CUSTOMER_INFO" Then
-
-                If Not UpdateCustomer() Then Exit Sub
-
-            Else
-
-                If Not AddNewCustomer() Then Exit Sub
-AddPetOnly:
-                If Not AddPetOnly Then Exit Sub
-                If Not AddNewPet() Then Exit Sub
-
-            End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveCustomerToDB()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")
         End Try
 
     End Sub
@@ -349,7 +366,7 @@ AddPetOnly:
             Select Case ClearCommand
                 Case "SET_PET_FIELDS"
 
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
@@ -377,18 +394,22 @@ AddPetOnly:
                     TxtAddress3.Text = UCase(TxtAddress3.Text)
                     TxtAddress4.Text = UCase(TxtAddress4.Text)
                     TxtPostcode.Text = UCase(TxtPostcode.Text)
+                    TxtPostcode.ReadOnly = True
                     TxtCity.Text = UCase(TxtCity.Text)
+                    TxtCity.ReadOnly = True
                     TxtState.Text = UCase(TxtState.Text)
+                    TxtState.ReadOnly = True
                     TxtCountry.Text = UCase(TxtCountry.Text)
+                    TxtCountry.ReadOnly = True
 
                     'Pet information from customer information
-                    TxtCustomerIDPI.Text = UCase(TxtCustomerID.Tag)
-                    TxtCustomerNamePI.Text = UCase(TxtCustomerName.Text)
-                    TxtPetID.Text = UCase(TxtPetID.Tag)
+                    'TxtCustomerIDPI.Text = UCase(TxtCustomerID.Tag)
+                    'TxtCustomerNamePI.Text = UCase(TxtCustomerName.Text)
+                    'TxtPetID.Text = UCase(TxtPetID.Tag)
                     TxtPetName.Text = UCase(TxtPetName.Text)
 
                 Case "CLEAR_PET_FIELDS"
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
@@ -443,7 +464,7 @@ AddPetOnly:
                     TxtState.ReadOnly = False
                     TxtCountry.ReadOnly = False
 
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     TxtPetName.ReadOnly = False
                     DtpPetDOB.Enabled = True
@@ -464,7 +485,7 @@ AddPetOnly:
                     BtnAddPet.Text = "Add Pet"
                     BtnAddPet.Tag = ""
                     BtnCancelEdit.Visible = False
-                    TxtPetID.Text = ""
+                    'TxtPetID.Text = ""
                     TxtPetName.Text = ""
                     DtpPetDOB.Value = Now
                     CmbAnimalType.SelectedIndex = 0
@@ -550,7 +571,7 @@ AddPetOnly:
 
                     ClsPet = New ClsPet
                     With ClsPet
-                        .CustomerID = UCase(Trim(TxtCustomerIDPI.Text))
+                        .CustomerID = UCase(Trim(TxtCustomerID.Text))
                         .PetID = IIf(PetID = "", DgvPetListing.Rows(i).Cells("PetID").Value, PetID)
                         .PetName = DgvPetListing.Rows(i).Cells("PetName").Value
                         .PetDOB = DgvPetListing.Rows(i).Cells("PetDOB").Value
@@ -684,14 +705,14 @@ AddPetOnly:
             End If
 
             If UserCommand = "ADD_PET" Then
-                If TxtPetID.Text <> "" Then
-                    For i As Integer = 0 To DgvPetListing.Rows.Count - 1
-                        If TxtPetID.Text = DgvPetListing.Rows(i).Cells("PetID").Value Then
-                            MsgBox("Unable to add pet. The pet has been registered.", MsgBoxStyle.Critical, "Duplicate Pet.")
-                            Return False
-                        End If
-                    Next
-                End If
+                'If TxtPetID.Text <> "" Then
+                '    For i As Integer = 0 To DgvPetListing.Rows.Count - 1
+                '        If TxtPetID.Text = DgvPetListing.Rows(i).Cells("PetID").Value Then
+                '            MsgBox("Unable to add pet. The pet has been registered.", MsgBoxStyle.Critical, "Duplicate Pet.")
+                '            Return False
+                '        End If
+                '    Next
+                'End If
                 If TxtPetName.Text = "" Then
                     MsgBox("Please enter your pet's name.", MsgBoxStyle.Exclamation, "Enter Pet's Name.")
                     Return False
@@ -800,8 +821,8 @@ AddPetOnly:
             With ClsCustomer
                 .CustomerID = CustomerID
                 .CustomerName = UCase(Trim(TxtCustomerName.Text))
-                .SaluteCode = DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Key.ToString '(DirectCast(CmbSalutation.Items(0), DataRowView).Row(CmbSalutation.ValueMember)).ToString()
-                .SaluteName = DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Value.ToString '(DirectCast(CmbSalutation.Items(0), DataRowView).Row(CmbSalutation.DisplayMember)).ToString()
+                .SaluteCode = DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .SaluteName = DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
                 .NRICPassportNo = UCase(Trim(TxtNRICPassportNo.Text))
                 .TelNo = UCase(Trim(TxtTelNo.Text))
                 .MobileNo = UCase(Trim(TxtMobileNo.Text))
@@ -880,7 +901,7 @@ AddPetOnly:
                         End If
 
                         PetID = GenerateRunningNo("PT", DBConn, DBTrans, Param)
-                        TxtPetID.Tag = PetID
+                        TxtPetName.Tag = PetID
 
                         If PetID = "" Then
                             DBTrans.Rollback()
@@ -951,8 +972,8 @@ AddPetOnly:
         Dim ClsPet As New ClsPet
 
         Try
-            ClsPet.CustomerID = IIf(TxtCustomerID.Tag = "", TxtCustomerID.Text, TxtCustomerID.Tag)
-            DtPetListing = ClsPet.GetPetListing(ClsPet)
+            'ClsPet.CustomerID = IIf(TxtCustomerID.Tag = "", TxtCustomerID.Text, TxtCustomerID.Tag)
+            'DtPetListing = ClsPet.GetPetListing(ClsPet)
 
             With DtPetListing
 
@@ -1008,10 +1029,8 @@ AddPetOnly:
 
     Private Function UpdatePetInDgv(UserCommand As String) As Boolean
 
-        Dim RowIndex As Integer
-
         Try
-            RowIndex = CInt(TxtPetID.Tag)
+            Dim RowIndex As Integer = CInt(LblPetRowIndex.Text)
             With DgvPetListing
                 .Rows(RowIndex).Cells("PetName").Value = UCase(Trim(TxtPetName.Text))
                 .Rows(RowIndex).Cells("PetDOB").Value = DtpPetDOB.Value
@@ -1083,8 +1102,9 @@ AddPetOnly:
 
                     Dim DgvRow As DataRow = DtPet.NewRow
 
-                    DgvRow("CustomerID") = DgvPetListing.Rows(i).Cells("CustomerID").Value
-                    DgvRow("CustomerName") = DgvPetListing.Rows(i).Cells("CustomerName").Value
+                    'DgvRow("CustomerID") = DgvPetListing.Rows(i).Cells("CustomerID").Value
+                    'DgvRow("CustomerName") = DgvPetListing.Rows(i).Cells("CustomerName").Value
+
                     DgvRow("PetID") = DgvPetListing.Rows(i).Cells("PetID").Value
                     DgvRow("PetName") = DgvPetListing.Rows(i).Cells("PetName").Value
                     DgvRow("PetDOB") = DgvPetListing.Rows(i).Cells("PetDOB").Value
@@ -1107,9 +1127,9 @@ AddPetOnly:
             'Take pet information from fields, e.g. textboxes
             Dim Row As DataRow = DtPet.NewRow
 
-            Row("CustomerID") = UCase(Trim(TxtCustomerID.Text))
-            Row("CustomerName") = UCase(Trim(TxtCustomerName.Text))
-            Row("PetID") = UCase(Trim(TxtPetID.Text))
+            'Row("CustomerID") = UCase(Trim(TxtCustomerID.Text))
+            'Row("CustomerName") = UCase(Trim(TxtCustomerName.Text))
+            Row("PetID") = UCase(Trim(TxtPetName.Tag))
             Row("PetName") = UCase(Trim(TxtPetName.Text))
             Row("PetDOB") = DtpPetDOB.Value
             Row("AnimalTypeCode") = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
@@ -1124,37 +1144,32 @@ AddPetOnly:
 
             DtPet.Rows.Add(Row)
 
-            With BtnEditPet
-                .HeaderText = "Edit"
-                .Text = "Edit"
-                .Name = "BtnEditPet"
-                .UseColumnTextForButtonValue = True
-                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                .DisplayIndex = 0
-            End With
+            If DtPet.Rows.Count > 0 Then
 
-            With BtnDeletePet
-                .HeaderText = "Delete"
-                .Text = "Delete"
-                .Name = "BtnDeletePet"
-                .UseColumnTextForButtonValue = True
-                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                .DisplayIndex = 1
-            End With
-
-            With DgvPetListing
-
-                If .Rows.Count = 0 Then
-                    .DataSource = Nothing
-                    .Columns.Add(BtnEditPet)
-                    .Columns.Add(BtnDeletePet)
+                If DgvPetListing.Rows.Count > 0 Then
+                    DgvPetListing.Rows.Clear()
                 End If
 
-                .DataSource = DtPet
-                .Columns("IsDB").Visible = False
-                .Show()
+                For i As Integer = 0 To DtPet.Rows.Count - 1
 
-            End With
+                    With DgvPetListing
+                        .Rows.Add()
+                        .Rows(i).Cells("PetID").Value = DtPet.Rows(i).Item("PetID")
+                        .Rows(i).Cells("PetName").Value = DtPet.Rows(i).Item("PetName")
+                        .Rows(i).Cells("PetDOB").Value = CDate(DtPet.Rows(i).Item("PetDOB")).ToShortDateString
+                        .Rows(i).Cells("AnimalTypeCode").Value = DtPet.Rows(i).Item("AnimalTypeCode")
+                        .Rows(i).Cells("AnimalTypeName").Value = DtPet.Rows(i).Item("AnimalTypeName")
+                        .Rows(i).Cells("BreedCode").Value = DtPet.Rows(i).Item("BreedCode")
+                        .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
+                        .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
+                        .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
+                        .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
+                        .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+                    End With
+
+                Next
+
+            End If
 
             MsgBox("Your pet has been successfully added!", MsgBoxStyle.Information, "New Pet Added")
 
@@ -1178,8 +1193,223 @@ AddPetOnly:
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        SaveCustomerToDB(UserCommand)
+        If Not CheckUserInput(UserCommand) Then Exit Sub
+        If Not SaveCustomerToDb(UserCommand) Then Exit Sub
+        'If Not SaveCustomerToDb(UserCommand) Then Exit Sub
     End Sub
+
+    Private Function SaveCustomerToDb(UserCommand As String) As Boolean
+
+        Try
+            Dim ClsCustomer As ClsCustomer
+            Dim ClsPet As ClsPet
+            Dim CustomerID As String
+            Dim PetID As String
+            Dim CustomerInitial As String
+            Dim DtCustomer As New DataTable
+
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
+            End If
+
+            DbTrans = DbConn.BeginTransaction
+
+            If TxtCustomerID.Text <> "" Then
+                CustomerID = TxtCustomerID.Text
+            Else
+                CustomerInitial = UCase(Trim(TxtCustomerName.Text)).Substring(0, 1)
+                CustomerID = GenerateRunningNo("CT", DbConn, DbTrans, CustomerInitial)
+            End If
+
+            If CustomerID = "" Then
+                MsgBox("Failed to generate customer ID.", MsgBoxStyle.Critical, "Customer ID Generation Error")
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                Return False
+            End If
+
+            ClsCustomer = New ClsCustomer
+            With ClsCustomer
+                .CustomerID = CustomerID
+                .CustomerName = UCase(Trim(TxtCustomerName.Text))
+                .SaluteCode = DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .SaluteName = DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                .NRICPassportNo = UCase(Trim(TxtNRICPassportNo.Text))
+                .TelNo = UCase(Trim(TxtTelNo.Text))
+                .MobileNo = UCase(Trim(TxtMobileNo.Text))
+                .Email = Trim(TxtEmail.Text)
+                .AddressLine1 = UCase(Trim(TxtAddress1.Text))
+                .AddressLine2 = UCase(Trim(TxtAddress2.Text))
+                .AddressLine3 = UCase(Trim(TxtAddress3.Text))
+                .AddressLine4 = UCase(Trim(TxtAddress4.Text))
+                .Postcode = UCase(Trim(TxtPostcode.Text))
+                .City = UCase(Trim(TxtCity.Text))
+                .State = UCase(Trim(TxtState.Text))
+                .Country = UCase(Trim(TxtCountry.Text))
+                .Ref.DateCreated = Now
+                .Ref.CreatedBy = CURR_USER
+                .Ref.DateModified = Now
+                .Ref.ModifiedBy = CURR_USER
+
+                If Not .AddNewCustomer(ClsCustomer, DbConn, DbTrans) Then
+                    MsgBox("Failed to add new customer. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
+                    DbTrans.Rollback()
+                    Return False
+                End If
+
+            End With
+
+            'Add pet
+            Dim PetIDLastNo As Integer = 0
+            Dim Param As String = ""
+
+            If DgvPetListing.Rows.Count > 0 Then
+
+                For i As Integer = 0 To DgvPetListing.Rows.Count - 1
+
+                    If DgvPetListing.Rows(i).Cells("PetID").Value <> "" Then
+                        PetID = DgvPetListing.Rows(i).Cells("PetID").Value
+                        PetIDLastNo += 1
+                    Else
+                        If PetIDLastNo = 0 Then
+                            Param = ""
+                        Else
+                            Param = CStr(PetIDLastNo)
+                        End If
+
+                        PetID = GenerateRunningNo("PT", DbConn, DbTrans, Param)
+                        If PetID = "" Then
+                            MsgBox("Failed to generate Pet ID.", MsgBoxStyle.Critical, "Pet ID Generation Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End If
+
+                    ClsPet = New ClsPet
+                    With ClsPet
+                        .CustomerID = IIf(TxtCustomerID.Text <> "", UCase(TxtCustomerID.Text), CustomerID)
+                        .PetID = PetID
+                        .PetName = DgvPetListing.Rows(i).Cells("PetName").Value
+                        .PetDOB = DgvPetListing.Rows(i).Cells("PetDOB").Value
+                        .AnimalTypeCode = DgvPetListing.Rows(i).Cells("AnimalTypeCode").Value
+                        .AnimalTypeName = DgvPetListing.Rows(i).Cells("AnimalTypeName").Value
+                        .BreedCode = DgvPetListing.Rows(i).Cells("BreedCode").Value
+                        .BreedName = DgvPetListing.Rows(i).Cells("BreedName").Value
+                        .SexCode = DgvPetListing.Rows(i).Cells("SexCode").Value
+                        .SexName = DgvPetListing.Rows(i).Cells("SexName").Value
+                        .StatusCode = DgvPetListing.Rows(i).Cells("StatusCode").Value
+                        .StatusName = DgvPetListing.Rows(i).Cells("StatusName").Value
+                        .Ref.DateCreated = Now
+                        .Ref.CreatedBy = UCase(CURR_USER)
+                        .Ref.DateModified = Now
+                        .Ref.ModifiedBy = UCase(CURR_USER)
+
+                        If Not .AddNewPet(ClsPet, DbConn, DbTrans) Then
+                            MsgBox("Failed to add new pet. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
+                            DbTrans.Rollback()
+                            Return False
+                        End If
+
+                    End With
+
+                    'If DgvPetListing.Rows(i).Cells("PetID").Value = "" Then
+
+                    '    If PetIDLastNo = 0 Then
+                    '        Param = ""
+                    '    Else
+                    '        Param = CStr(PetIDLastNo)
+                    '    End If
+
+                    '    PetID = GenerateRunningNo("PT", DbConn, DbTrans, Param)
+
+                    '    If PetID = "" Then
+                    '        MsgBox("Failed to generate Pet ID.", MsgBoxStyle.Critical, "Pet ID Generation Error")
+                    '        DbTrans.Rollback()
+                    '        DbTrans.Dispose()
+                    '        DbTrans = Nothing
+                    '        Return False
+                    '    End If
+
+                    '    ClsPet = New ClsPet
+                    '    With ClsPet
+                    '        .CustomerID = IIf(TxtCustomerID.Text <> "", UCase(TxtCustomerID.Text), CustomerID)
+                    '        .PetID = PetID
+                    '        .PetName = DgvPetListing.Rows(i).Cells("PetName").Value
+                    '        .PetDOB = DgvPetListing.Rows(i).Cells("PetDOB").Value
+                    '        .AnimalTypeCode = DgvPetListing.Rows(i).Cells("AnimalTypeCode").Value
+                    '        .AnimalTypeName = DgvPetListing.Rows(i).Cells("AnimalTypeName").Value
+                    '        .BreedCode = DgvPetListing.Rows(i).Cells("BreedCode").Value
+                    '        .BreedName = DgvPetListing.Rows(i).Cells("BreedName").Value
+                    '        .SexCode = DgvPetListing.Rows(i).Cells("SexCode").Value
+                    '        .SexName = DgvPetListing.Rows(i).Cells("SexName").Value
+                    '        .StatusCode = DgvPetListing.Rows(i).Cells("StatusCode").Value
+                    '        .StatusName = DgvPetListing.Rows(i).Cells("StatusName").Value
+                    '        .Ref.DateCreated = Now
+                    '        .Ref.CreatedBy = UCase(CURR_USER)
+                    '        .Ref.DateModified = Now
+                    '        .Ref.ModifiedBy = UCase(CURR_USER)
+
+                    '        If Not .AddNewPet(ClsPet, DbConn, DbTrans) Then
+                    '            MsgBox("Failed to add new pet. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
+                    '            DbTrans.Rollback()
+                    '            Return False
+                    '        End If
+
+                    '    End With
+
+                    'Else
+                    '    PetIDLastNo += 1
+
+                    'End If
+
+                Next
+
+                If Not ResetPetIDRunningNo("PT", DbConn, DbTrans) Then Throw New Exception("Failed to update Pet ID sequence.")
+
+            End If
+
+            DbTrans.Commit()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+
+            SetFields("ADD_NEW_CUSTOMER", CustomerID)
+
+            'Update indicator in the data grid to identify pets that already registered in he database
+            For i As Integer = 0 To DgvPetListing.Rows.Count - 1
+                DgvPetListing.Rows(i).Cells("IsDb").Value = "1"
+            Next
+
+            'ShowPetListing()
+
+            TxtCustomerID.Text = CustomerID
+            TxtCustomerID.Tag = CustomerID
+
+            With ClsCustomer
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
+
+            MsgBox("Customer information has been successfully saved!", MsgBoxStyle.Information, "Customer Information Saved")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveCustomerToDB()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
 
     Private Sub CmbAnimalType_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CmbAnimalType.SelectionChangeCommitted
 
@@ -1228,8 +1458,9 @@ AddPetOnly:
                 'Data grid view Pet Listing 'Edit' button
                 If e.ColumnIndex = 0 Then
 
-                    TxtPetID.Tag = e.RowIndex
-                    TxtPetID.Text = DgvPetListing.Rows(e.RowIndex).Cells("PetID").Value
+                    'TxtPetID.Tag = e.RowIndex
+                    'TxtPetID.Text = DgvPetListing.Rows(e.RowIndex).Cells("PetID").Value
+                    LblPetRowIndex.Text = e.RowIndex
                     TxtPetName.Text = DgvPetListing.Rows(e.RowIndex).Cells("PetName").Value
                     DtpPetDOB.Value = DgvPetListing.Rows(e.RowIndex).Cells("PetDOB").Value
                     CmbAnimalType.SelectedValue = DgvPetListing.Rows(e.RowIndex).Cells("AnimalTypeCode").Value
@@ -1315,6 +1546,10 @@ AddPetOnly:
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Me.Dispose()
         Me.Close()
+    End Sub
+
+    Private Sub BtnReload_Click(sender As Object, e As EventArgs) Handles BtnReload.Click
+        PopulateForm("SHOW_CUSTOMER_INFO")
     End Sub
 
 End Class

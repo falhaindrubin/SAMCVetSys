@@ -167,6 +167,66 @@ Module ModMain
 
                     End If
 
+                Case "PT"
+
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+
+                        Dim LastNo As Integer
+                        'Dim ZeroPadLength As Integer
+
+                        If Prefix = "PT" And Prefix2 <> "" Then 'Check if running number is to be generated is PetID, use Prefix2 (PetCount) to give PetID running no
+                            LastNo = CInt(Prefix2)
+                        Else
+                            LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
+                        End If
+
+                        RunningNo = LastNo + 1
+                        'ZeroPadLength = 6 - RunningNo.ToString.Length
+
+                        If RunningNo.ToString.Length < 8 Then
+                            NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                            'If Prefix = "PT" Then
+                            '    NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                            'Else
+                            '    NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                            'End If
+                        Else
+                            If Prefix = "PT" Then
+                                NewRunningNo = Prefix2 & RunningNo.ToString
+                            Else
+                                NewRunningNo = Prefix & RunningNo.ToString
+                            End If
+                            NewRunningNo = Prefix & RunningNo.ToString
+                        End If
+
+                        'Update PetID
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+
+                    Else
+                        MsgBox("Failed to generate running number [" & Prefix & "].", MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")
+
+                    End If
+
+
                 Case "VS"
                     'Create VisitID
                     Sb = New StringBuilder

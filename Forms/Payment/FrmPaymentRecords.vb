@@ -49,6 +49,7 @@
                         .UserCommand = "SHOW_BILLING_INFO",
                         .VisitID = VisitID,
                         .InvoiceNo = DgvPaymentListing.Rows(e.RowIndex).Cells("InvoiceNo").Value,
+                        .InvoiceDate = DgvPaymentListing.Rows(e.RowIndex).Cells("InvoiceDate").Value,
                         .CustomerID = CustomerID
                     }
                     Frm.ShowDialog()
@@ -59,6 +60,10 @@
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvPaymentListing_CellDoubleClick()")
         End Try
 
+    End Sub
+
+    Private Sub BtnReload_Click(sender As Object, e As EventArgs) Handles BtnReload.Click
+        PopulatePaymentListing()
     End Sub
 
 End Class

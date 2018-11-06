@@ -22,6 +22,10 @@ Public Class ClsDBPet
                 .Append("('" & PET.CustomerID & "', '" & PET.PetID & "', '" & PET.PetName & "', " & CSQLDate(PET.PetDOB) & ", '" & PET.AnimalTypeCode & "', '" & PET.AnimalTypeName & "', ")
                 .Append("'" & PET.BreedCode & "', '" & PET.BreedName & "', '" & PET.SexCode & "', '" & PET.SexName & "', '" & PET.StatusCode & "', '" & PET.StatusName & "', ")
                 .Append("'" & PET.Ref.CreatedBy & "', " & CSQLDateTime(PET.Ref.DateCreated) & ", '" & PET.Ref.ModifiedBy & "', " & CSQLDateTime(PET.Ref.DateModified) & ") ")
+                .Append("ON DUPLICATE KEY UPDATE ")
+                .Append("PetName = '" & PET.PetName & "', PetDOB = " & CSQLDate(PET.PetDOB) & ", AnimalTypeCode = '" & PET.AnimalTypeCode & "', AnimalTypeName = '" & PET.AnimalTypeName & "', ")
+                .Append("BreedCode = '" & PET.BreedCode & "', BreedName = '" & PET.BreedName & "', SexCode = '" & PET.SexCode & "', SexName = '" & PET.SexName & "', StatusCode ='" & PET.StatusCode & "', StatusName = '" & PET.StatusName & "', ")
+                .Append("ModifiedBy = '" & PET.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(PET.Ref.DateModified) & " ")
             End With
 
             cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)
@@ -29,6 +33,7 @@ Public Class ClsDBPet
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBPet.AddNewPet()")
+            Return False
         End Try
 
         Return IIf(Ret = 0, False, True)

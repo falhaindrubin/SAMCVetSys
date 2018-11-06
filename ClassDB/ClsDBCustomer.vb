@@ -20,10 +20,15 @@ Public Class ClsDBCustomer
                 .Append("TelNo, MobileNo, Email, Postcode, City, State, Country, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & CUST.CustomerID & "',  '" & CUST.SaluteCode & "', '" & CUST.SaluteName & "', '" & CUST.CustomerName & "', '" & CUST.NRICPassportNo & "', ")
+                .Append("('" & CUST.CustomerID & "', '" & CUST.SaluteCode & "', '" & CUST.SaluteName & "', '" & CUST.CustomerName & "', '" & CUST.NRICPassportNo & "', ")
                 .Append("'" & CUST.AddressLine1 & "', '" & CUST.AddressLine2 & "', '" & CUST.AddressLine3 & "', '" & CUST.AddressLine4 & "', '" & CUST.TelNo & "', '" & CUST.MobileNo & "', '" & CUST.Email & "', ")
                 .Append("'" & CUST.Postcode & "', '" & CUST.City & "', '" & CUST.State & "', '" & CUST.Country & "', ")
                 .Append("'" & CUST.Ref.CreatedBy & "', " & CSQLDateTime(CUST.Ref.DateCreated) & ", '" & CUST.Ref.ModifiedBy & "', " & CSQLDateTime(CUST.Ref.DateModified) & ") ")
+                .Append("ON DUPLICATE KEY UPDATE ")
+                .Append("SaluteCode = '" & CUST.SaluteCode & "', SaluteName = '" & CUST.SaluteName & "', CustomerName = '" & CUST.CustomerName & "', ")
+                .Append("AddressLine1 = '" & CUST.AddressLine1 & "', AddressLine2 = '" & CUST.AddressLine2 & "', AddressLine3 = '" & CUST.AddressLine3 & "', AddressLine4 = '" & CUST.AddressLine4 & "', ")
+                .Append("TelNo = '" & CUST.TelNo & "', MobileNo = '" & CUST.MobileNo & "', Email = '" & CUST.Email & "', Postcode = '" & CUST.Postcode & "', City = '" & CUST.City & "', State = '" & CUST.State & "', Country = '" & CUST.Country & "', ")
+                .Append("ModifiedBy = '" & CUST.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(CUST.Ref.DateModified) & " ")
             End With
 
             cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)

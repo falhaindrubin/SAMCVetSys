@@ -192,10 +192,10 @@
     <Compile Include="Class\ClsWardDiagnosis.vb" />
     <Compile Include="Class\ClsWardDiagnosisDetail.vb" />
     <Compile Include="Class\ClsWardTreatment.vb" />
-    <Compile Include="Forms\Customer\Appointment\FrmAppointmentEntry.Designer.vb">
-      <DependentUpon>FrmAppointmentEntry.vb</DependentUpon>
+    <Compile Include="Forms\Customer\Appointment\FrmAppointmentInformation.Designer.vb">
+      <DependentUpon>FrmAppointmentInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\Appointment\FrmAppointmentEntry.vb">
+    <Compile Include="Forms\Customer\Appointment\FrmAppointmentInformation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassDb\ClsDbProducts.vb" />
@@ -324,10 +324,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\Register\FrmCustomerEntry.Designer.vb">
-      <DependentUpon>FrmCustomerEntry.vb</DependentUpon>
+    <Compile Include="Forms\Customer\Register\FrmCustomerInformation.Designer.vb">
+      <DependentUpon>FrmCustomerInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\Register\FrmCustomerEntry.vb">
+    <Compile Include="Forms\Customer\Register\FrmCustomerInformation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmLogin.Designer.vb">
@@ -404,8 +404,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Customer\Appointment\FrmAppointmentEntry.resx">
-      <DependentUpon>FrmAppointmentEntry.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\Appointment\FrmAppointmentInformation.resx">
+      <DependentUpon>FrmAppointmentInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitInformation.resx">
       <DependentUpon>FrmVisitInformation.vb</DependentUpon>
@@ -419,8 +419,8 @@
     <EmbeddedResource Include="Forms\Customer\Visit\FrmVisitRecords.resx">
       <DependentUpon>FrmVisitRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\Register\FrmCustomerEntry.resx">
-      <DependentUpon>FrmCustomerEntry.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\Register\FrmCustomerInformation.resx">
+      <DependentUpon>FrmCustomerInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>

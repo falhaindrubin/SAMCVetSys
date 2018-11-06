@@ -108,6 +108,15 @@ Partial Class FrmWardInformation
         Me.TestItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.TxtVomitDescription = New System.Windows.Forms.TextBox()
+        Me.TxtUrineDescription = New System.Windows.Forms.TextBox()
+        Me.TxtBowelDescription = New System.Windows.Forms.TextBox()
+        Me.TxtAppetiteDescription = New System.Windows.Forms.TextBox()
         Me.TxtWardDate = New System.Windows.Forms.TextBox()
         Me.TxtFastingDescription = New System.Windows.Forms.TextBox()
         Me.CmbFasting = New System.Windows.Forms.ComboBox()
@@ -175,7 +184,7 @@ Partial Class FrmWardInformation
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Location = New System.Drawing.Point(12, 660)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(750, 57)
+        Me.Panel3.Size = New System.Drawing.Size(1056, 57)
         Me.Panel3.TabIndex = 109
         '
         'TxtCreatedBy
@@ -237,7 +246,7 @@ Partial Class FrmWardInformation
         Me.TxtPetName.BackColor = System.Drawing.Color.Beige
         Me.TxtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtPetName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetName.Location = New System.Drawing.Point(205, 87)
+        Me.TxtPetName.Location = New System.Drawing.Point(189, 87)
         Me.TxtPetName.Name = "TxtPetName"
         Me.TxtPetName.ReadOnly = True
         Me.TxtPetName.Size = New System.Drawing.Size(224, 21)
@@ -248,7 +257,7 @@ Partial Class FrmWardInformation
         Me.TxtPetID.BackColor = System.Drawing.Color.Beige
         Me.TxtPetID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtPetID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetID.Location = New System.Drawing.Point(117, 87)
+        Me.TxtPetID.Location = New System.Drawing.Point(101, 87)
         Me.TxtPetID.Name = "TxtPetID"
         Me.TxtPetID.ReadOnly = True
         Me.TxtPetID.Size = New System.Drawing.Size(87, 21)
@@ -269,7 +278,7 @@ Partial Class FrmWardInformation
         Me.TxtCustomerName.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerName.Location = New System.Drawing.Point(205, 65)
+        Me.TxtCustomerName.Location = New System.Drawing.Point(189, 65)
         Me.TxtCustomerName.Name = "TxtCustomerName"
         Me.TxtCustomerName.ReadOnly = True
         Me.TxtCustomerName.Size = New System.Drawing.Size(224, 21)
@@ -290,7 +299,7 @@ Partial Class FrmWardInformation
         Me.TxtCustomerID.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCustomerID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerID.Location = New System.Drawing.Point(117, 65)
+        Me.TxtCustomerID.Location = New System.Drawing.Point(101, 65)
         Me.TxtCustomerID.Name = "TxtCustomerID"
         Me.TxtCustomerID.ReadOnly = True
         Me.TxtCustomerID.Size = New System.Drawing.Size(87, 21)
@@ -298,9 +307,9 @@ Partial Class FrmWardInformation
         '
         'BtnBillPayment
         '
-        Me.BtnBillPayment.Location = New System.Drawing.Point(558, 20)
+        Me.BtnBillPayment.Location = New System.Drawing.Point(855, 20)
         Me.BtnBillPayment.Name = "BtnBillPayment"
-        Me.BtnBillPayment.Size = New System.Drawing.Size(186, 23)
+        Me.BtnBillPayment.Size = New System.Drawing.Size(175, 23)
         Me.BtnBillPayment.TabIndex = 102
         Me.BtnBillPayment.Text = "Bill && Payment..."
         Me.BtnBillPayment.UseVisualStyleBackColor = True
@@ -311,7 +320,7 @@ Partial Class FrmWardInformation
         Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
         Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVisitID.Location = New System.Drawing.Point(117, 21)
+        Me.TxtVisitID.Location = New System.Drawing.Point(101, 21)
         Me.TxtVisitID.Name = "TxtVisitID"
         Me.TxtVisitID.ReadOnly = True
         Me.TxtVisitID.Size = New System.Drawing.Size(87, 21)
@@ -341,7 +350,7 @@ Partial Class FrmWardInformation
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(750, 68)
+        Me.PnlActionBar.Size = New System.Drawing.Size(1056, 68)
         Me.PnlActionBar.TabIndex = 110
         '
         'BtnGenerateBill
@@ -349,12 +358,11 @@ Partial Class FrmWardInformation
         Me.BtnGenerateBill.BackColor = System.Drawing.SystemColors.Control
         Me.BtnGenerateBill.BackgroundImage = CType(resources.GetObject("BtnGenerateBill.BackgroundImage"), System.Drawing.Image)
         Me.BtnGenerateBill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnGenerateBill.Location = New System.Drawing.Point(501, 6)
+        Me.BtnGenerateBill.Location = New System.Drawing.Point(807, 6)
         Me.BtnGenerateBill.Name = "BtnGenerateBill"
         Me.BtnGenerateBill.Size = New System.Drawing.Size(60, 56)
         Me.BtnGenerateBill.TabIndex = 13
         Me.BtnGenerateBill.UseVisualStyleBackColor = False
-        Me.BtnGenerateBill.Visible = False
         '
         'Label25
         '
@@ -372,7 +380,7 @@ Partial Class FrmWardInformation
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(562, 6)
+        Me.BtnReload.Location = New System.Drawing.Point(868, 6)
         Me.BtnReload.Name = "BtnReload"
         Me.BtnReload.Size = New System.Drawing.Size(60, 56)
         Me.BtnReload.TabIndex = 6
@@ -383,7 +391,7 @@ Partial Class FrmWardInformation
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(318, 6)
+        Me.BtnSearch.Location = New System.Drawing.Point(624, 6)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearch.TabIndex = 5
@@ -394,7 +402,7 @@ Partial Class FrmWardInformation
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(379, 6)
+        Me.BtnPrint.Location = New System.Drawing.Point(685, 6)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
         Me.BtnPrint.TabIndex = 4
@@ -405,7 +413,7 @@ Partial Class FrmWardInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(684, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(990, 6)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 56)
         Me.BtnClose.TabIndex = 3
@@ -416,7 +424,7 @@ Partial Class FrmWardInformation
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(257, 6)
+        Me.BtnCancel.Location = New System.Drawing.Point(563, 6)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
         Me.BtnCancel.TabIndex = 2
@@ -427,7 +435,7 @@ Partial Class FrmWardInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(623, 6)
+        Me.BtnEdit.Location = New System.Drawing.Point(929, 6)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
         Me.BtnEdit.TabIndex = 1
@@ -438,7 +446,7 @@ Partial Class FrmWardInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(440, 6)
+        Me.BtnSave.Location = New System.Drawing.Point(746, 6)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 56)
         Me.BtnSave.TabIndex = 0
@@ -449,7 +457,7 @@ Partial Class FrmWardInformation
         Me.TxtWardID.BackColor = System.Drawing.Color.Beige
         Me.TxtWardID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtWardID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtWardID.Location = New System.Drawing.Point(205, 21)
+        Me.TxtWardID.Location = New System.Drawing.Point(189, 21)
         Me.TxtWardID.Name = "TxtWardID"
         Me.TxtWardID.ReadOnly = True
         Me.TxtWardID.Size = New System.Drawing.Size(87, 21)
@@ -460,7 +468,7 @@ Partial Class FrmWardInformation
         Me.TxtAdmissionDate.BackColor = System.Drawing.Color.Beige
         Me.TxtAdmissionDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtAdmissionDate.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtAdmissionDate.Location = New System.Drawing.Point(117, 43)
+        Me.TxtAdmissionDate.Location = New System.Drawing.Point(101, 43)
         Me.TxtAdmissionDate.Name = "TxtAdmissionDate"
         Me.TxtAdmissionDate.ReadOnly = True
         Me.TxtAdmissionDate.Size = New System.Drawing.Size(175, 21)
@@ -497,7 +505,7 @@ Partial Class FrmWardInformation
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(742, 375)
+        Me.TabPage3.Size = New System.Drawing.Size(1052, 375)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Treatment & Medication"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -635,7 +643,7 @@ Partial Class FrmWardInformation
         Me.DgvSelectedTreatment.Location = New System.Drawing.Point(9, 225)
         Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
         Me.DgvSelectedTreatment.ReadOnly = True
-        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 144)
+        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(1027, 144)
         Me.DgvSelectedTreatment.TabIndex = 153
         '
         'BtnTreatmentDeleteItem
@@ -781,7 +789,7 @@ Partial Class FrmWardInformation
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(742, 375)
+        Me.TabPage2.Size = New System.Drawing.Size(1052, 375)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Diagnosis & Tests"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -850,7 +858,7 @@ Partial Class FrmWardInformation
         Me.TxtDiagnosis.Location = New System.Drawing.Point(15, 295)
         Me.TxtDiagnosis.Multiline = True
         Me.TxtDiagnosis.Name = "TxtDiagnosis"
-        Me.TxtDiagnosis.Size = New System.Drawing.Size(712, 74)
+        Me.TxtDiagnosis.Size = New System.Drawing.Size(448, 74)
         Me.TxtDiagnosis.TabIndex = 12
         '
         'Label10
@@ -928,7 +936,7 @@ Partial Class FrmWardInformation
         Me.DgvSelectedTest.Location = New System.Drawing.Point(15, 153)
         Me.DgvSelectedTest.Name = "DgvSelectedTest"
         Me.DgvSelectedTest.ReadOnly = True
-        Me.DgvSelectedTest.Size = New System.Drawing.Size(712, 121)
+        Me.DgvSelectedTest.Size = New System.Drawing.Size(1019, 121)
         Me.DgvSelectedTest.TabIndex = 18
         '
         'BtnTestDeleteItem
@@ -1022,6 +1030,15 @@ Partial Class FrmWardInformation
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label30)
+        Me.TabPage1.Controls.Add(Me.Label29)
+        Me.TabPage1.Controls.Add(Me.Label28)
+        Me.TabPage1.Controls.Add(Me.Label27)
+        Me.TabPage1.Controls.Add(Me.Label26)
+        Me.TabPage1.Controls.Add(Me.TxtVomitDescription)
+        Me.TabPage1.Controls.Add(Me.TxtUrineDescription)
+        Me.TabPage1.Controls.Add(Me.TxtBowelDescription)
+        Me.TabPage1.Controls.Add(Me.TxtAppetiteDescription)
         Me.TabPage1.Controls.Add(Me.TxtWardDate)
         Me.TabPage1.Controls.Add(Me.TxtFastingDescription)
         Me.TabPage1.Controls.Add(Me.CmbFasting)
@@ -1042,17 +1059,102 @@ Partial Class FrmWardInformation
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(742, 375)
+        Me.TabPage1.Size = New System.Drawing.Size(1052, 375)
         Me.TabPage1.TabIndex = 3
         Me.TabPage1.Text = "Daily Ward Update"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(391, 70)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(61, 14)
+        Me.Label30.TabIndex = 117
+        Me.Label30.Text = "Description"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(5, 70)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(61, 14)
+        Me.Label29.TabIndex = 116
+        Me.Label29.Text = "Description"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(5, 322)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(61, 14)
+        Me.Label28.TabIndex = 115
+        Me.Label28.Text = "Description"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(5, 237)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(61, 14)
+        Me.Label27.TabIndex = 114
+        Me.Label27.Text = "Description"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(5, 150)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(61, 14)
+        Me.Label26.TabIndex = 113
+        Me.Label26.Text = "Description"
+        '
+        'TxtVomitDescription
+        '
+        Me.TxtVomitDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtVomitDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVomitDescription.Location = New System.Drawing.Point(66, 322)
+        Me.TxtVomitDescription.Multiline = True
+        Me.TxtVomitDescription.Name = "TxtVomitDescription"
+        Me.TxtVomitDescription.Size = New System.Drawing.Size(312, 46)
+        Me.TxtVomitDescription.TabIndex = 112
+        '
+        'TxtUrineDescription
+        '
+        Me.TxtUrineDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtUrineDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtUrineDescription.Location = New System.Drawing.Point(66, 237)
+        Me.TxtUrineDescription.Multiline = True
+        Me.TxtUrineDescription.Name = "TxtUrineDescription"
+        Me.TxtUrineDescription.Size = New System.Drawing.Size(312, 46)
+        Me.TxtUrineDescription.TabIndex = 111
+        '
+        'TxtBowelDescription
+        '
+        Me.TxtBowelDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtBowelDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtBowelDescription.Location = New System.Drawing.Point(66, 150)
+        Me.TxtBowelDescription.Multiline = True
+        Me.TxtBowelDescription.Name = "TxtBowelDescription"
+        Me.TxtBowelDescription.Size = New System.Drawing.Size(312, 46)
+        Me.TxtBowelDescription.TabIndex = 110
+        '
+        'TxtAppetiteDescription
+        '
+        Me.TxtAppetiteDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtAppetiteDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtAppetiteDescription.Location = New System.Drawing.Point(66, 70)
+        Me.TxtAppetiteDescription.Multiline = True
+        Me.TxtAppetiteDescription.Name = "TxtAppetiteDescription"
+        Me.TxtAppetiteDescription.Size = New System.Drawing.Size(312, 46)
+        Me.TxtAppetiteDescription.TabIndex = 109
         '
         'TxtWardDate
         '
         Me.TxtWardDate.BackColor = System.Drawing.Color.Beige
         Me.TxtWardDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtWardDate.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtWardDate.Location = New System.Drawing.Point(76, 14)
+        Me.TxtWardDate.Location = New System.Drawing.Point(66, 14)
         Me.TxtWardDate.Name = "TxtWardDate"
         Me.TxtWardDate.Size = New System.Drawing.Size(121, 21)
         Me.TxtWardDate.TabIndex = 108
@@ -1061,18 +1163,18 @@ Partial Class FrmWardInformation
         'TxtFastingDescription
         '
         Me.TxtFastingDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtFastingDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtFastingDescription.Location = New System.Drawing.Point(267, 85)
+        Me.TxtFastingDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtFastingDescription.Location = New System.Drawing.Point(458, 70)
         Me.TxtFastingDescription.Multiline = True
         Me.TxtFastingDescription.Name = "TxtFastingDescription"
-        Me.TxtFastingDescription.Size = New System.Drawing.Size(312, 46)
+        Me.TxtFastingDescription.Size = New System.Drawing.Size(287, 46)
         Me.TxtFastingDescription.TabIndex = 19
         '
         'CmbFasting
         '
         Me.CmbFasting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbFasting.FormattingEnabled = True
-        Me.CmbFasting.Location = New System.Drawing.Point(267, 61)
+        Me.CmbFasting.Location = New System.Drawing.Point(458, 46)
         Me.CmbFasting.Name = "CmbFasting"
         Me.CmbFasting.Size = New System.Drawing.Size(121, 22)
         Me.CmbFasting.TabIndex = 18
@@ -1080,7 +1182,7 @@ Partial Class FrmWardInformation
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(223, 65)
+        Me.Label24.Location = New System.Drawing.Point(391, 50)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(42, 14)
         Me.Label24.TabIndex = 17
@@ -1090,7 +1192,7 @@ Partial Class FrmWardInformation
         '
         Me.CmbFood.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbFood.FormattingEnabled = True
-        Me.CmbFood.Location = New System.Drawing.Point(267, 37)
+        Me.CmbFood.Location = New System.Drawing.Point(458, 126)
         Me.CmbFood.Name = "CmbFood"
         Me.CmbFood.Size = New System.Drawing.Size(121, 22)
         Me.CmbFood.TabIndex = 16
@@ -1098,7 +1200,7 @@ Partial Class FrmWardInformation
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(223, 41)
+        Me.Label22.Location = New System.Drawing.Point(391, 130)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(31, 14)
         Me.Label22.TabIndex = 15
@@ -1107,16 +1209,16 @@ Partial Class FrmWardInformation
         'TxtDailyNotes
         '
         Me.TxtDailyNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDailyNotes.Location = New System.Drawing.Point(22, 167)
+        Me.TxtDailyNotes.Location = New System.Drawing.Point(391, 199)
         Me.TxtDailyNotes.Multiline = True
         Me.TxtDailyNotes.Name = "TxtDailyNotes"
-        Me.TxtDailyNotes.Size = New System.Drawing.Size(692, 193)
+        Me.TxtDailyNotes.Size = New System.Drawing.Size(655, 169)
         Me.TxtDailyNotes.TabIndex = 14
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(19, 150)
+        Me.Label6.Location = New System.Drawing.Point(391, 182)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(173, 14)
         Me.Label6.TabIndex = 13
@@ -1125,7 +1227,7 @@ Partial Class FrmWardInformation
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(19, 17)
+        Me.Label5.Location = New System.Drawing.Point(5, 17)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(29, 14)
         Me.Label5.TabIndex = 8
@@ -1135,7 +1237,7 @@ Partial Class FrmWardInformation
         '
         Me.CmbVomit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbVomit.FormattingEnabled = True
-        Me.CmbVomit.Location = New System.Drawing.Point(76, 109)
+        Me.CmbVomit.Location = New System.Drawing.Point(66, 298)
         Me.CmbVomit.Name = "CmbVomit"
         Me.CmbVomit.Size = New System.Drawing.Size(121, 22)
         Me.CmbVomit.TabIndex = 7
@@ -1143,7 +1245,7 @@ Partial Class FrmWardInformation
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(19, 113)
+        Me.Label4.Location = New System.Drawing.Point(5, 302)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(33, 14)
         Me.Label4.TabIndex = 6
@@ -1153,7 +1255,7 @@ Partial Class FrmWardInformation
         '
         Me.CmbBowel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbBowel.FormattingEnabled = True
-        Me.CmbBowel.Location = New System.Drawing.Point(76, 61)
+        Me.CmbBowel.Location = New System.Drawing.Point(66, 126)
         Me.CmbBowel.Name = "CmbBowel"
         Me.CmbBowel.Size = New System.Drawing.Size(121, 22)
         Me.CmbBowel.TabIndex = 5
@@ -1161,7 +1263,7 @@ Partial Class FrmWardInformation
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(19, 65)
+        Me.Label3.Location = New System.Drawing.Point(5, 130)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(38, 14)
         Me.Label3.TabIndex = 4
@@ -1171,7 +1273,7 @@ Partial Class FrmWardInformation
         '
         Me.CmbUrine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbUrine.FormattingEnabled = True
-        Me.CmbUrine.Location = New System.Drawing.Point(76, 85)
+        Me.CmbUrine.Location = New System.Drawing.Point(66, 213)
         Me.CmbUrine.Name = "CmbUrine"
         Me.CmbUrine.Size = New System.Drawing.Size(121, 22)
         Me.CmbUrine.TabIndex = 3
@@ -1179,7 +1281,7 @@ Partial Class FrmWardInformation
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(19, 89)
+        Me.Label2.Location = New System.Drawing.Point(5, 217)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(32, 14)
         Me.Label2.TabIndex = 2
@@ -1189,7 +1291,7 @@ Partial Class FrmWardInformation
         '
         Me.CmbAppetite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbAppetite.FormattingEnabled = True
-        Me.CmbAppetite.Location = New System.Drawing.Point(76, 37)
+        Me.CmbAppetite.Location = New System.Drawing.Point(66, 46)
         Me.CmbAppetite.Name = "CmbAppetite"
         Me.CmbAppetite.Size = New System.Drawing.Size(121, 22)
         Me.CmbAppetite.TabIndex = 1
@@ -1197,7 +1299,7 @@ Partial Class FrmWardInformation
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(19, 41)
+        Me.Label1.Location = New System.Drawing.Point(5, 50)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(47, 14)
         Me.Label1.TabIndex = 0
@@ -1212,7 +1314,7 @@ Partial Class FrmWardInformation
         Me.TabControl1.Location = New System.Drawing.Point(12, 252)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(750, 402)
+        Me.TabControl1.Size = New System.Drawing.Size(1060, 402)
         Me.TabControl1.TabIndex = 99
         '
         'TabPage4
@@ -1221,7 +1323,7 @@ Partial Class FrmWardInformation
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(742, 375)
+        Me.TabPage4.Size = New System.Drawing.Size(1052, 375)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Ward Progress/Report/Summary"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1237,7 +1339,7 @@ Partial Class FrmWardInformation
         Me.DgvWardSummary.Name = "DgvWardSummary"
         Me.DgvWardSummary.ReadOnly = True
         Me.DgvWardSummary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvWardSummary.Size = New System.Drawing.Size(736, 369)
+        Me.DgvWardSummary.Size = New System.Drawing.Size(1046, 369)
         Me.DgvWardSummary.TabIndex = 0
         '
         'WardDate
@@ -1290,7 +1392,7 @@ Partial Class FrmWardInformation
         'CbIsDischarged
         '
         Me.CbIsDischarged.AutoSize = True
-        Me.CbIsDischarged.Location = New System.Drawing.Point(298, 22)
+        Me.CbIsDischarged.Location = New System.Drawing.Point(282, 22)
         Me.CbIsDischarged.Name = "CbIsDischarged"
         Me.CbIsDischarged.Size = New System.Drawing.Size(75, 18)
         Me.CbIsDischarged.TabIndex = 114
@@ -1301,7 +1403,7 @@ Partial Class FrmWardInformation
         '
         Me.TxtCase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCase.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCase.Location = New System.Drawing.Point(117, 109)
+        Me.TxtCase.Location = New System.Drawing.Point(101, 109)
         Me.TxtCase.Multiline = True
         Me.TxtCase.Name = "TxtCase"
         Me.TxtCase.Size = New System.Drawing.Size(312, 42)
@@ -1339,50 +1441,45 @@ Partial Class FrmWardInformation
         Me.GroupBox1.Controls.Add(Me.TxtPetName)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 86)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(750, 160)
+        Me.GroupBox1.Size = New System.Drawing.Size(1056, 160)
         Me.GroupBox1.TabIndex = 116
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Visit Details"
         '
         'TxtDD
         '
-        Me.TxtDD.BackColor = System.Drawing.Color.Beige
+        Me.TxtDD.BackColor = System.Drawing.Color.White
         Me.TxtDD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDD.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDD.Location = New System.Drawing.Point(558, 76)
+        Me.TxtDD.Location = New System.Drawing.Point(855, 76)
         Me.TxtDD.Name = "TxtDD"
-        Me.TxtDD.ReadOnly = True
         Me.TxtDD.Size = New System.Drawing.Size(175, 21)
         Me.TxtDD.TabIndex = 118
-        Me.TxtDD.Visible = False
         '
         'TxtAD
         '
-        Me.TxtAD.BackColor = System.Drawing.Color.Beige
+        Me.TxtAD.BackColor = System.Drawing.Color.White
         Me.TxtAD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtAD.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtAD.Location = New System.Drawing.Point(558, 49)
+        Me.TxtAD.Location = New System.Drawing.Point(855, 49)
         Me.TxtAD.Name = "TxtAD"
-        Me.TxtAD.ReadOnly = True
         Me.TxtAD.Size = New System.Drawing.Size(175, 21)
         Me.TxtAD.TabIndex = 117
-        Me.TxtAD.Visible = False
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(558, 103)
+        Me.Button1.Location = New System.Drawing.Point(855, 103)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(175, 23)
         Me.Button1.TabIndex = 116
         Me.Button1.Text = "Calculate Ward Charge"
         Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
         '
         'FrmWardInformation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(774, 729)
+        Me.ClientSize = New System.Drawing.Size(1084, 729)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.Panel3)
@@ -1529,4 +1626,13 @@ Partial Class FrmWardInformation
     Friend WithEvents TxtAD As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents BtnGenerateBill As Button
+    Friend WithEvents TxtVomitDescription As TextBox
+    Friend WithEvents TxtUrineDescription As TextBox
+    Friend WithEvents TxtBowelDescription As TextBox
+    Friend WithEvents TxtAppetiteDescription As TextBox
+    Friend WithEvents Label26 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label30 As Label
 End Class

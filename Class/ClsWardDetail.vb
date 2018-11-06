@@ -62,6 +62,16 @@
         End Set
     End Property
 
+    Private _AppetiteDescription As String
+    Public Property AppetiteDescription As String
+        Get
+            Return _AppetiteDescription
+        End Get
+        Set(value As String)
+            _AppetiteDescription = value
+        End Set
+    End Property
+
     Private _Bowel As String
     Public Property Bowel As String
         Get
@@ -69,6 +79,16 @@
         End Get
         Set(value As String)
             _Bowel = value
+        End Set
+    End Property
+
+    Private _BowelDescription As String
+    Public Property BowelDescription As String
+        Get
+            Return _BowelDescription
+        End Get
+        Set(value As String)
+            _BowelDescription = value
         End Set
     End Property
 
@@ -82,6 +102,16 @@
         End Set
     End Property
 
+    Private _UrineDescription As String
+    Public Property UrineDescription As String
+        Get
+            Return _UrineDescription
+        End Get
+        Set(value As String)
+            _UrineDescription = value
+        End Set
+    End Property
+
     Private _Vomit As String
     Public Property Vomit As String
         Get
@@ -89,6 +119,16 @@
         End Get
         Set(value As String)
             _Vomit = value
+        End Set
+    End Property
+
+    Private _VomitDescription As String
+    Public Property VomitDescription As String
+        Get
+            Return _VomitDescription
+        End Get
+        Set(value As String)
+            _VomitDescription = value
         End Set
     End Property
 

@@ -22,13 +22,13 @@
         End Set
     End Property
 
-    Private _TreatmentDate As Date
-    Public Property TreatmentDate As Date
+    Private _WardDate As Date
+    Public Property WardDate As Date
         Get
-            Return _TreatmentDate
+            Return _WardDate
         End Get
         Set(value As Date)
-            _TreatmentDate = value
+            _WardDate = value
         End Set
     End Property
 

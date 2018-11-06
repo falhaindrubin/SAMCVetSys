@@ -44,12 +44,13 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_warddetail ")
-                .Append("(WardID, WardDate, Appetite, Bowel, Urine, Vomit, Food, IsFasting, FastingDescription, DailyNotes, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("(WardID, WardDate, Appetite, AppetiteDescription, Bowel, BowelDescription, Urine, UrineDescription, Vomit, VomitDescription, Food, IsFasting, FastingDescription, DailyNotes, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & W.WardID & "', " & CSQLDate(W.WardDate) & ", '" & W.Appetite & "', '" & W.Bowel & "', '" & W.Urine & "', '" & W.Vomit & "', '" & W.Food & "', '" & W.IsFasting & "', '" & W.FastingDescription & "', '" & CSQLQuote(W.DailyNotes) & "', ")
+                .Append("('" & W.WardID & "', " & CSQLDate(W.WardDate) & ", '" & W.Appetite & "', '" & W.AppetiteDescription & "', '" & W.Bowel & "', '" & W.BowelDescription & "', '" & W.Urine & "', '" & W.UrineDescription & "', '" & W.Vomit & "', '" & W.VomitDescription & "', '" & W.Food & "', '" & W.IsFasting & "', '" & W.FastingDescription & "', '" & CSQLQuote(W.DailyNotes) & "', ")
                 .Append("'" & W.Ref.CreatedBy & "', " & CSQLDateTime(W.Ref.DateCreated) & ", '" & W.Ref.ModifiedBy & "', " & CSQLDateTime(W.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("Appetite = '" & W.Appetite & "', Bowel = '" & W.Bowel & "', Urine = '" & W.Urine & "', Vomit = '" & W.Vomit & "', Food = '" & W.Food & "', IsFasting = '" & W.IsFasting & "', FastingDescription = '" & W.FastingDescription & "', DailyNotes = '" & CSQLQuote(W.DailyNotes) & "', ")
+                .Append("Appetite = '" & W.Appetite & "', AppetiteDescription = '" & W.AppetiteDescription & "', Bowel = '" & W.Bowel & "', BowelDescription = '" & W.BowelDescription & "', Urine = '" & W.Urine & "', UrineDescription = '" & W.UrineDescription & "', Vomit = '" & W.Vomit & "', VomitDescription = '" & W.VomitDescription & "', Food = '" & W.Food & "', IsFasting = '" & W.IsFasting & "', FastingDescription = '" & W.FastingDescription & "', DailyNotes = '" & CSQLQuote(W.DailyNotes) & "', ")
                 .Append("ModifiedBy = '" & W.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
             End With
 
@@ -99,10 +100,10 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_ward_diagnosisdetail ")
-                .Append("(WardID, DiagnoseDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(WardID, WardDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & W.WardID & "', " & CSQLDate(W.DiagnoseDate) & ", '" & W.RowNo & "', '" & W.ItemCode & "', '" & W.ItemDescription & "', '" & W.ItemGroup & "', '" & W.ItemTypeCode & "', '" & W.ItemTypeDescription & "', '" & W.UnitPrice & "', '" & W.Quantity & "', '" & W.TotalPrice & "', ")
+                .Append("('" & W.WardID & "', " & CSQLDate(W.WardDate) & ", '" & W.RowNo & "', '" & W.ItemCode & "', '" & W.ItemDescription & "', '" & W.ItemGroup & "', '" & W.ItemTypeCode & "', '" & W.ItemTypeDescription & "', '" & W.UnitPrice & "', '" & W.Quantity & "', '" & W.TotalPrice & "', ")
                 .Append("'" & W.Ref.CreatedBy & "', " & CSQLDateTime(W.Ref.DateCreated) & ", '" & W.Ref.ModifiedBy & "', " & CSQLDateTime(W.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("ItemCode = '" & W.ItemCode & "', ItemDescription = '" & W.ItemDescription & "', ItemGroup = '" & W.ItemGroup & "', ItemTypeCode = '" & W.ItemTypeCode & "', ItemTypeDescription = '" & W.ItemTypeDescription & "', UnitPrice = '" & W.UnitPrice & "', Quantity = '" & W.Quantity & "', TotalPrice = '" & W.TotalPrice & "', ")
@@ -129,10 +130,10 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_ward_treatment ")
-                .Append("(WardID, VisitID, TreatmentDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(WardID, VisitID, WardDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & W.WardID & "', '" & W.VisitID & "', " & CSQLDate(W.TreatmentDate) & ", '" & W.RowNo & "', '" & W.ItemCode & "', '" & W.ItemDescription & "', '" & W.ItemGroup & "', '" & W.ItemTypeCode & "', '" & W.ItemTypeDescription & "', '" & CSQLQuote(W.Prescription) & "', '" & CSQLQuote(W.Notes) & "', '" & W.UnitPrice & "', '" & W.Quantity & "', '" & W.TotalPrice & "', ")
+                .Append("('" & W.WardID & "', '" & W.VisitID & "', " & CSQLDate(W.WardDate) & ", '" & W.RowNo & "', '" & W.ItemCode & "', '" & W.ItemDescription & "', '" & W.ItemGroup & "', '" & W.ItemTypeCode & "', '" & W.ItemTypeDescription & "', '" & CSQLQuote(W.Prescription) & "', '" & CSQLQuote(W.Notes) & "', '" & W.UnitPrice & "', '" & W.Quantity & "', '" & W.TotalPrice & "', ")
                 .Append("'" & W.Ref.CreatedBy & "', " & CSQLDateTime(W.Ref.DateCreated) & ", '" & W.Ref.ModifiedBy & "', " & CSQLDateTime(W.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("ItemCode = '" & W.ItemCode & "', ItemDescription = '" & W.ItemDescription & "', ItemGroup = '" & W.ItemGroup & "', ItemTypeCode = '" & W.ItemTypeCode & "', ItemTypeDescription = '" & W.ItemTypeDescription & "', Prescription = '" & CSQLQuote(W.Prescription) & "', Notes = '" & CSQLQuote(W.Notes) & "', UnitPrice = '" & W.UnitPrice & "', Quantity = '" & W.Quantity & "', TotalPrice = '" & W.TotalPrice & "', ")
@@ -185,7 +186,7 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, ")
-                .Append("WardDate, Appetite, Bowel, Urine, Vomit, Food, IsFasting, FastingDescription, DailyNotes, ")
+                .Append("WardDate, Appetite, AppetiteDescription, Bowel, BowelDescription, Urine, UrineDescription, Vomit, VomitDescription, Food, IsFasting, FastingDescription, DailyNotes, ")
 
                 If W.GetTodayVet = "1" Then
                     .Append("b.CreatedBy, b.DateCreated, b.ModifiedBy, b.DateModified ")
@@ -230,14 +231,14 @@ Public Class ClsDbWard
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.WardID, VisitID, PetID, PetName, Diagnosis, a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified, ")
-                .Append("DiagnoseDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice ")
+                .Append("WardDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice ")
                 .Append("FROM samc_ward_diagnosis a ")
                 .Append("LEFT JOIN samc_ward_diagnosisdetail b ON a.WardID = b.WardID ")
 
                 If D.WardID <> "" Then
                     .Append("WHERE a.WardID = '" & D.WardID & "' ")
-                    If D.DiagnoseDate <> Nothing Then
-                        .Append("AND DiagnoseDate = " & CSQLDate(D.DiagnoseDate) & " ")
+                    If D.WardDate <> Nothing Then
+                        .Append("AND WardDate = " & CSQLDate(D.WardDate) & " ")
                     End If
                 End If
 
@@ -263,7 +264,7 @@ Public Class ClsDbWard
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT WardID, VisitID, TreatmentDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("SELECT WardID, VisitID, WardDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_ward_treatment ")
                 If T.VisitID <> "" Then
@@ -271,8 +272,8 @@ Public Class ClsDbWard
                 ElseIf T.WardID <> "" Then
                     .Append("WHERE WardID = '" & T.WardID & "' ")
                 End If
-                If T.TreatmentDate <> Nothing Then
-                    .Append("And TreatmentDate = " & CSQLDate(T.TreatmentDate) & " ")
+                If T.WardDate <> Nothing Then
+                    .Append("And WardDate = " & CSQLDate(T.WardDate) & " ")
                 End If
             End With
 

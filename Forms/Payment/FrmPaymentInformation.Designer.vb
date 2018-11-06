@@ -24,7 +24,7 @@ Partial Class FrmPaymentInformation
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPaymentInformation))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
         Me.BtnEdit = New System.Windows.Forms.Button()
@@ -86,6 +86,10 @@ Partial Class FrmPaymentInformation
         Me.BtnAddBillItem = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.TxtPetName = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TxtCustomerName = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
@@ -98,10 +102,6 @@ Partial Class FrmPaymentInformation
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtnGenerateInvoice = New System.Windows.Forms.Button()
         Me.CbIsRecalculate = New System.Windows.Forms.CheckBox()
-        Me.TxtCustomerName = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TxtPetName = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -386,7 +386,6 @@ Partial Class FrmPaymentInformation
         Me.TxtDiscount.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDiscount.Location = New System.Drawing.Point(551, 432)
         Me.TxtDiscount.Name = "TxtDiscount"
-        Me.TxtDiscount.ReadOnly = True
         Me.TxtDiscount.Size = New System.Drawing.Size(156, 21)
         Me.TxtDiscount.TabIndex = 163
         Me.TxtDiscount.Text = "0.00"
@@ -591,8 +590,8 @@ Partial Class FrmPaymentInformation
         '
         Me.DgvBillListing.AllowUserToAddRows = False
         Me.DgvBillListing.AllowUserToDeleteRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice, Me.ItemGroupDgv, Me.ItemTypeCodeDgv, Me.ItemTypeDescriptionDgv})
         Me.DgvBillListing.Location = New System.Drawing.Point(6, 215)
@@ -760,6 +759,46 @@ Partial Class FrmPaymentInformation
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Customer && Pet Information"
         '
+        'TxtPetName
+        '
+        Me.TxtPetName.BackColor = System.Drawing.Color.Beige
+        Me.TxtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtPetName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPetName.Location = New System.Drawing.Point(98, 51)
+        Me.TxtPetName.Name = "TxtPetName"
+        Me.TxtPetName.ReadOnly = True
+        Me.TxtPetName.Size = New System.Drawing.Size(296, 21)
+        Me.TxtPetName.TabIndex = 177
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(11, 54)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 14)
+        Me.Label3.TabIndex = 176
+        Me.Label3.Text = "Pet Name"
+        '
+        'TxtCustomerName
+        '
+        Me.TxtCustomerName.BackColor = System.Drawing.Color.Beige
+        Me.TxtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCustomerName.Location = New System.Drawing.Point(98, 29)
+        Me.TxtCustomerName.Name = "TxtCustomerName"
+        Me.TxtCustomerName.ReadOnly = True
+        Me.TxtCustomerName.Size = New System.Drawing.Size(296, 21)
+        Me.TxtCustomerName.TabIndex = 175
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(11, 32)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(83, 14)
+        Me.Label2.TabIndex = 174
+        Me.Label2.Text = "Customer Name"
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.CheckBox3)
@@ -880,46 +919,6 @@ Partial Class FrmPaymentInformation
         Me.CbIsRecalculate.TabIndex = 171
         Me.CbIsRecalculate.Text = "Re-calculate Bill && Payment"
         Me.CbIsRecalculate.UseVisualStyleBackColor = True
-        '
-        'TxtCustomerName
-        '
-        Me.TxtCustomerName.BackColor = System.Drawing.Color.Beige
-        Me.TxtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerName.Location = New System.Drawing.Point(98, 29)
-        Me.TxtCustomerName.Name = "TxtCustomerName"
-        Me.TxtCustomerName.ReadOnly = True
-        Me.TxtCustomerName.Size = New System.Drawing.Size(296, 21)
-        Me.TxtCustomerName.TabIndex = 175
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(11, 32)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(83, 14)
-        Me.Label2.TabIndex = 174
-        Me.Label2.Text = "Customer Name"
-        '
-        'TxtPetName
-        '
-        Me.TxtPetName.BackColor = System.Drawing.Color.Beige
-        Me.TxtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPetName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetName.Location = New System.Drawing.Point(98, 51)
-        Me.TxtPetName.Name = "TxtPetName"
-        Me.TxtPetName.ReadOnly = True
-        Me.TxtPetName.Size = New System.Drawing.Size(296, 21)
-        Me.TxtPetName.TabIndex = 177
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 54)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(52, 14)
-        Me.Label3.TabIndex = 176
-        Me.Label3.Text = "Pet Name"
         '
         'FrmPaymentInformation
         '

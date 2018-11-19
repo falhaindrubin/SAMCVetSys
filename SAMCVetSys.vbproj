@@ -177,6 +177,7 @@
     <Compile Include="ClassDb\ClsDbBill.vb" />
     <Compile Include="ClassDb\ClsDbPEFindings.vb" />
     <Compile Include="ClassDb\ClsDbTreatment.vb" />
+    <Compile Include="ClassDb\ClsDbSurgery.vb" />
     <Compile Include="ClassDb\ClsDbWard.vb" />
     <Compile Include="Class\ClsBillDetail.vb" />
     <Compile Include="Class\ClsBill.vb" />
@@ -185,6 +186,10 @@
     <Compile Include="Class\ClsDiagnosisDetail.vb" />
     <Compile Include="Class\ClsDiagnosis.vb" />
     <Compile Include="Class\ClsPEFindings.vb" />
+    <Compile Include="Class\ClsSurgeryDetail.vb" />
+    <Compile Include="Class\ClsSurgery.vb" />
+    <Compile Include="Class\ClsSurgeryDischarge.vb" />
+    <Compile Include="Class\ClsSurgeryMaterial.vb" />
     <Compile Include="Class\ClsTreatment.vb" />
     <Compile Include="Class\ClsVisitCharges.vb" />
     <Compile Include="Class\ClsWard.vb" />
@@ -206,6 +211,18 @@
       <DependentUpon>FrmVisitInformation.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\Visit\FrmVisitInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryInformation.Designer.vb">
+      <DependentUpon>FrmSurgeryInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryRecords.Designer.vb">
+      <DependentUpon>FrmSurgeryRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryRecords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Payment\FrmPaymentInvoice.Designer.vb">
@@ -268,16 +285,22 @@
     <Compile Include="Forms\Payment\FrmPaymentRecords.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Management\Products\FrmItemEntry.Designer.vb">
-      <DependentUpon>FrmItemEntry.vb</DependentUpon>
+    <Compile Include="Forms\Management\Products\FrmItemInformation.Designer.vb">
+      <DependentUpon>FrmItemInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Management\Products\FrmItemEntry.vb">
+    <Compile Include="Forms\Management\Products\FrmItemInformation.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Management\Products\FrmItemManagement.Designer.vb">
-      <DependentUpon>FrmItemManagement.vb</DependentUpon>
+    <Compile Include="Forms\Management\Products\FrmItemRecords.Designer.vb">
+      <DependentUpon>FrmItemRecords.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Management\Products\FrmItemManagement.vb">
+    <Compile Include="Forms\Management\Products\FrmItemRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Treatment\FrmDiagnosisPlanning.Designer.vb">
+      <DependentUpon>FrmDiagnosisPlanning.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Treatment\FrmDiagnosisPlanning.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Ward\FrmWardInformation.Designer.vb">
@@ -440,11 +463,20 @@
     <EmbeddedResource Include="Forms\Management\Employees\FrmEmployeeEntry.resx">
       <DependentUpon>FrmEmployeeEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Management\Products\FrmItemEntry.resx">
-      <DependentUpon>FrmItemEntry.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Management\Products\FrmItemInformation.resx">
+      <DependentUpon>FrmItemInformation.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Management\Products\FrmItemManagement.resx">
-      <DependentUpon>FrmItemManagement.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Management\Products\FrmItemRecords.resx">
+      <DependentUpon>FrmItemRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Surgery\FrmSurgeryInformation.resx">
+      <DependentUpon>FrmSurgeryInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Surgery\FrmSurgeryRecords.resx">
+      <DependentUpon>FrmSurgeryRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Treatment\FrmDiagnosisPlanning.resx">
+      <DependentUpon>FrmDiagnosisPlanning.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ward\FrmWardInformation.resx">
       <DependentUpon>FrmWardInformation.vb</DependentUpon>

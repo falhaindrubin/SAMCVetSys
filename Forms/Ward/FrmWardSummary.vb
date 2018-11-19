@@ -120,9 +120,13 @@ Public Class FrmWardSummary
             LblPetCase.Text = DtWardDetail.Rows(0).Item("PetCase")
 
             LblAppetite.Text = IIf(DtWardDetail.Rows(0).Item("Appetite") = "1", "POSITIVE", "NEGATIVE")
+            LblAppetiteDescription.Text = CStrNull(DtWardDetail.Rows(0).Item("AppetiteDescription"))
             LblBowel.Text = IIf(DtWardDetail.Rows(0).Item("Bowel") = "1", "POSITIVE", "NEGATIVE")
+            LblBowelDescription.Text = CStrNull(DtWardDetail.Rows(0).Item("BowelDescription"))
             LblUrine.Text = IIf(DtWardDetail.Rows(0).Item("Urine") = "1", "POSITIVE", "NEGATIVE")
+            LblUrineDescription.Text = CStrNull(DtWardDetail.Rows(0).Item("UrineDescription"))
             LblVomit.Text = IIf(DtWardDetail.Rows(0).Item("Vomit") = "1", "POSITIVE", "NEGATIVE")
+            LblVomitDescription.Text = CStrNull(DtWardDetail.Rows(0).Item("VomitDescription"))
             LblFood.Text = IIf(DtWardDetail.Rows(0).Item("Food") = "1", "OWNER", "CLINIC")
             LblIsFasting.Text = IIf(DtWardDetail.Rows(0).Item("IsFasting") = "1", "YES", "NO")
             LblFastingDescription.Text = IIf(DtWardDetail.Rows(0).Item("IsFasting") = "1", DtWardDetail.Rows(0).Item("FastingDescription"), "")

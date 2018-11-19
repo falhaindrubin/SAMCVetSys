@@ -1,7 +1,7 @@
-﻿Public Class FrmItemManagement
+﻿Public Class FrmItemRecords
 
     Private Sub BtnAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAddNewItem.Click
-        FrmItemEntry.ShowDialog()
+        FrmItemInformation.ShowDialog()
     End Sub
 
     Private Sub FrmItemManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -67,7 +67,7 @@
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     'ItemCode = DgvItemListing.Rows(e.RowIndex).Cells("ItemCode").Value
-                    Dim Frm As New FrmItemEntry With {
+                    Dim Frm As New FrmItemInformation With {
                         .UserCommand = "SHOW_ITEM_INFO",
                         .ItemCode = DgvItemListing.Rows(e.RowIndex).Cells("ItemCode").Value,
                         .ItemGroup = DgvItemListing.Rows(e.RowIndex).Cells("ItemGroup").Value

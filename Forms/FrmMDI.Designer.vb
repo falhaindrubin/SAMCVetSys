@@ -27,8 +27,8 @@ Partial Class FrmMDI
         Me.ClientRegistrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsultationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AppointmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreatmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SurgeryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BillingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaintenanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -42,7 +42,7 @@ Partial Class FrmMDI
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.TreatmentToolStripMenuItem, Me.WardToolStripMenuItem, Me.BillingToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.TreatmentToolStripMenuItem, Me.SurgeryToolStripMenuItem, Me.WardToolStripMenuItem, Me.BillingToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowToolStripMenuItem
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -52,7 +52,7 @@ Partial Class FrmMDI
         '
         'mnuRecord
         '
-        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem, Me.ConsultationToolStripMenuItem, Me.AppointmentToolStripMenuItem, Me.PaymentToolStripMenuItem})
+        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem, Me.ConsultationToolStripMenuItem, Me.AppointmentToolStripMenuItem})
         Me.mnuRecord.Name = "mnuRecord"
         Me.mnuRecord.Size = New System.Drawing.Size(65, 20)
         Me.mnuRecord.Text = "Customer"
@@ -75,17 +75,17 @@ Partial Class FrmMDI
         Me.AppointmentToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.AppointmentToolStripMenuItem.Text = "Appointment"
         '
-        'PaymentToolStripMenuItem
-        '
-        Me.PaymentToolStripMenuItem.Name = "PaymentToolStripMenuItem"
-        Me.PaymentToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.PaymentToolStripMenuItem.Text = "Billing"
-        '
         'TreatmentToolStripMenuItem
         '
         Me.TreatmentToolStripMenuItem.Name = "TreatmentToolStripMenuItem"
         Me.TreatmentToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
         Me.TreatmentToolStripMenuItem.Text = "Examination"
+        '
+        'SurgeryToolStripMenuItem
+        '
+        Me.SurgeryToolStripMenuItem.Name = "SurgeryToolStripMenuItem"
+        Me.SurgeryToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.SurgeryToolStripMenuItem.Text = "Surgery"
         '
         'WardToolStripMenuItem
         '
@@ -160,8 +160,8 @@ Partial Class FrmMDI
     Friend WithEvents EmployeeUserToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConsultationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PaymentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductsServicesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AppointmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BillingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SurgeryToolStripMenuItem As ToolStripMenuItem
 End Class

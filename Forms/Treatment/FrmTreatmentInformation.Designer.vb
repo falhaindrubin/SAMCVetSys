@@ -59,6 +59,7 @@ Partial Class FrmTreatmentInformation
         Me.TxtDiagnosis = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.LblRowNo = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TxtTreatmentTotalPrice = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
@@ -69,20 +70,8 @@ Partial Class FrmTreatmentInformation
         Me.TxtPrescription = New System.Windows.Forms.TextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.TxtNotes = New System.Windows.Forms.TextBox()
-        Me.BtnTreatmentItem = New System.Windows.Forms.Button()
+        Me.BtnAddTreatment = New System.Windows.Forms.Button()
         Me.DgvSelectedTreatment = New System.Windows.Forms.DataGridView()
-        Me.BtnTreatmentDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.TreatmentRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Prescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TreatmentItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TxtTreatmentItem = New System.Windows.Forms.TextBox()
         Me.BtnClearItem = New System.Windows.Forms.Button()
         Me.BtnSearchItem = New System.Windows.Forms.Button()
@@ -103,8 +92,21 @@ Partial Class FrmTreatmentInformation
         Me.TxtDateCreated = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
-        Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
+        Me.BtnTreatmentDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DgvBtnUpdate = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.TreatmentRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Prescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TreatmentItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -470,7 +472,7 @@ Partial Class FrmTreatmentInformation
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(15, 316)
+        Me.Label8.Location = New System.Drawing.Point(12, 316)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(113, 14)
         Me.Label8.TabIndex = 11
@@ -478,6 +480,7 @@ Partial Class FrmTreatmentInformation
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.LblRowNo)
         Me.TabPage3.Controls.Add(Me.Label18)
         Me.TabPage3.Controls.Add(Me.TxtTreatmentTotalPrice)
         Me.TabPage3.Controls.Add(Me.Label20)
@@ -488,7 +491,7 @@ Partial Class FrmTreatmentInformation
         Me.TabPage3.Controls.Add(Me.TxtPrescription)
         Me.TabPage3.Controls.Add(Me.Label35)
         Me.TabPage3.Controls.Add(Me.TxtNotes)
-        Me.TabPage3.Controls.Add(Me.BtnTreatmentItem)
+        Me.TabPage3.Controls.Add(Me.BtnAddTreatment)
         Me.TabPage3.Controls.Add(Me.DgvSelectedTreatment)
         Me.TabPage3.Controls.Add(Me.TxtTreatmentItem)
         Me.TabPage3.Controls.Add(Me.BtnClearItem)
@@ -501,6 +504,16 @@ Partial Class FrmTreatmentInformation
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Treatment & Medication"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'LblRowNo
+        '
+        Me.LblRowNo.AutoSize = True
+        Me.LblRowNo.Location = New System.Drawing.Point(610, 20)
+        Me.LblRowNo.Name = "LblRowNo"
+        Me.LblRowNo.Size = New System.Drawing.Size(43, 14)
+        Me.LblRowNo.TabIndex = 177
+        Me.LblRowNo.Text = "RowNo"
+        Me.LblRowNo.Visible = False
         '
         'Label18
         '
@@ -605,14 +618,14 @@ Partial Class FrmTreatmentInformation
         Me.TxtNotes.Size = New System.Drawing.Size(416, 43)
         Me.TxtNotes.TabIndex = 158
         '
-        'BtnTreatmentItem
+        'BtnAddTreatment
         '
-        Me.BtnTreatmentItem.Location = New System.Drawing.Point(75, 196)
-        Me.BtnTreatmentItem.Name = "BtnTreatmentItem"
-        Me.BtnTreatmentItem.Size = New System.Drawing.Size(121, 23)
-        Me.BtnTreatmentItem.TabIndex = 154
-        Me.BtnTreatmentItem.Text = "Add Item"
-        Me.BtnTreatmentItem.UseVisualStyleBackColor = True
+        Me.BtnAddTreatment.Location = New System.Drawing.Point(75, 196)
+        Me.BtnAddTreatment.Name = "BtnAddTreatment"
+        Me.BtnAddTreatment.Size = New System.Drawing.Size(121, 23)
+        Me.BtnAddTreatment.TabIndex = 154
+        Me.BtnAddTreatment.Text = "Add Item"
+        Me.BtnAddTreatment.UseVisualStyleBackColor = True
         '
         'DgvSelectedTreatment
         '
@@ -620,106 +633,12 @@ Partial Class FrmTreatmentInformation
         Me.DgvSelectedTreatment.AllowUserToDeleteRows = False
         Me.DgvSelectedTreatment.BackgroundColor = System.Drawing.Color.White
         Me.DgvSelectedTreatment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvSelectedTreatment.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnTreatmentDeleteItem, Me.TreatmentRowNo, Me.TreatmentItemCode, Me.TreatmentItemDescription, Me.Prescription, Me.Notes, Me.TreatmentUnitPrice, Me.TreatmentQuantity, Me.TreatmentTotalPrice, Me.TreatmentItemGroup, Me.TreatmentItemTypeCode, Me.TreatmentItemTypeDescription})
+        Me.DgvSelectedTreatment.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnTreatmentDeleteItem, Me.DgvBtnUpdate, Me.TreatmentRowNo, Me.TreatmentItemCode, Me.TreatmentItemDescription, Me.Prescription, Me.Notes, Me.TreatmentUnitPrice, Me.TreatmentQuantity, Me.TreatmentTotalPrice, Me.TreatmentItemGroup, Me.TreatmentItemTypeCode, Me.TreatmentItemTypeDescription})
         Me.DgvSelectedTreatment.Location = New System.Drawing.Point(9, 225)
         Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
         Me.DgvSelectedTreatment.ReadOnly = True
         Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 212)
         Me.DgvSelectedTreatment.TabIndex = 153
-        '
-        'BtnTreatmentDeleteItem
-        '
-        Me.BtnTreatmentDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnTreatmentDeleteItem.HeaderText = "Delete?"
-        Me.BtnTreatmentDeleteItem.Name = "BtnTreatmentDeleteItem"
-        Me.BtnTreatmentDeleteItem.ReadOnly = True
-        Me.BtnTreatmentDeleteItem.Text = "Delete"
-        Me.BtnTreatmentDeleteItem.UseColumnTextForButtonValue = True
-        Me.BtnTreatmentDeleteItem.Width = 49
-        '
-        'TreatmentRowNo
-        '
-        Me.TreatmentRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentRowNo.HeaderText = "No."
-        Me.TreatmentRowNo.Name = "TreatmentRowNo"
-        Me.TreatmentRowNo.ReadOnly = True
-        Me.TreatmentRowNo.Width = 48
-        '
-        'TreatmentItemCode
-        '
-        Me.TreatmentItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentItemCode.HeaderText = "Item Code"
-        Me.TreatmentItemCode.Name = "TreatmentItemCode"
-        Me.TreatmentItemCode.ReadOnly = True
-        Me.TreatmentItemCode.Width = 79
-        '
-        'TreatmentItemDescription
-        '
-        Me.TreatmentItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.TreatmentItemDescription.HeaderText = "Item Description"
-        Me.TreatmentItemDescription.Name = "TreatmentItemDescription"
-        Me.TreatmentItemDescription.ReadOnly = True
-        '
-        'Prescription
-        '
-        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Prescription.HeaderText = "Prescription"
-        Me.Prescription.Name = "Prescription"
-        Me.Prescription.ReadOnly = True
-        Me.Prescription.Width = 89
-        '
-        'Notes
-        '
-        Me.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Notes.HeaderText = "Notes"
-        Me.Notes.Name = "Notes"
-        Me.Notes.ReadOnly = True
-        Me.Notes.Width = 60
-        '
-        'TreatmentUnitPrice
-        '
-        Me.TreatmentUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentUnitPrice.HeaderText = "Unit Price"
-        Me.TreatmentUnitPrice.Name = "TreatmentUnitPrice"
-        Me.TreatmentUnitPrice.ReadOnly = True
-        Me.TreatmentUnitPrice.Width = 77
-        '
-        'TreatmentQuantity
-        '
-        Me.TreatmentQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentQuantity.HeaderText = "Quantity"
-        Me.TreatmentQuantity.Name = "TreatmentQuantity"
-        Me.TreatmentQuantity.ReadOnly = True
-        Me.TreatmentQuantity.Width = 72
-        '
-        'TreatmentTotalPrice
-        '
-        Me.TreatmentTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentTotalPrice.HeaderText = "Total Price"
-        Me.TreatmentTotalPrice.Name = "TreatmentTotalPrice"
-        Me.TreatmentTotalPrice.ReadOnly = True
-        Me.TreatmentTotalPrice.Width = 81
-        '
-        'TreatmentItemGroup
-        '
-        Me.TreatmentItemGroup.HeaderText = "Item Group"
-        Me.TreatmentItemGroup.Name = "TreatmentItemGroup"
-        Me.TreatmentItemGroup.ReadOnly = True
-        Me.TreatmentItemGroup.Visible = False
-        '
-        'TreatmentItemTypeCode
-        '
-        Me.TreatmentItemTypeCode.HeaderText = "Item Type Code"
-        Me.TreatmentItemTypeCode.Name = "TreatmentItemTypeCode"
-        Me.TreatmentItemTypeCode.ReadOnly = True
-        Me.TreatmentItemTypeCode.Visible = False
-        '
-        'TreatmentItemTypeDescription
-        '
-        Me.TreatmentItemTypeDescription.HeaderText = "Item Type Description"
-        Me.TreatmentItemTypeDescription.Name = "TreatmentItemTypeDescription"
-        Me.TreatmentItemTypeDescription.ReadOnly = True
-        Me.TreatmentItemTypeDescription.Visible = False
         '
         'TxtTreatmentItem
         '
@@ -934,17 +853,6 @@ Partial Class FrmTreatmentInformation
         Me.TxtModifiedBy.Size = New System.Drawing.Size(65, 20)
         Me.TxtModifiedBy.TabIndex = 76
         '
-        'CbIsAdmittedToWard
-        '
-        Me.CbIsAdmittedToWard.AutoSize = True
-        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(186, 19)
-        Me.CbIsAdmittedToWard.Name = "CbIsAdmittedToWard"
-        Me.CbIsAdmittedToWard.Size = New System.Drawing.Size(104, 18)
-        Me.CbIsAdmittedToWard.TabIndex = 98
-        Me.CbIsAdmittedToWard.Text = "Ward Admission"
-        Me.CbIsAdmittedToWard.UseVisualStyleBackColor = True
-        Me.CbIsAdmittedToWard.Visible = False
-        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Label7)
@@ -963,6 +871,121 @@ Partial Class FrmTreatmentInformation
         Me.GroupBox1.TabIndex = 99
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer && Pet Information"
+        '
+        'CbIsAdmittedToWard
+        '
+        Me.CbIsAdmittedToWard.AutoSize = True
+        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(186, 19)
+        Me.CbIsAdmittedToWard.Name = "CbIsAdmittedToWard"
+        Me.CbIsAdmittedToWard.Size = New System.Drawing.Size(104, 18)
+        Me.CbIsAdmittedToWard.TabIndex = 98
+        Me.CbIsAdmittedToWard.Text = "Ward Admission"
+        Me.CbIsAdmittedToWard.UseVisualStyleBackColor = True
+        Me.CbIsAdmittedToWard.Visible = False
+        '
+        'BtnTreatmentDeleteItem
+        '
+        Me.BtnTreatmentDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnTreatmentDeleteItem.HeaderText = "Delete?"
+        Me.BtnTreatmentDeleteItem.Name = "BtnTreatmentDeleteItem"
+        Me.BtnTreatmentDeleteItem.ReadOnly = True
+        Me.BtnTreatmentDeleteItem.Text = "Delete"
+        Me.BtnTreatmentDeleteItem.UseColumnTextForButtonValue = True
+        Me.BtnTreatmentDeleteItem.Width = 49
+        '
+        'DgvBtnUpdate
+        '
+        Me.DgvBtnUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnUpdate.HeaderText = "Update"
+        Me.DgvBtnUpdate.Name = "DgvBtnUpdate"
+        Me.DgvBtnUpdate.ReadOnly = True
+        Me.DgvBtnUpdate.Text = "Update"
+        Me.DgvBtnUpdate.UseColumnTextForButtonValue = True
+        Me.DgvBtnUpdate.Width = 47
+        '
+        'TreatmentRowNo
+        '
+        Me.TreatmentRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentRowNo.HeaderText = "No."
+        Me.TreatmentRowNo.Name = "TreatmentRowNo"
+        Me.TreatmentRowNo.ReadOnly = True
+        Me.TreatmentRowNo.Width = 48
+        '
+        'TreatmentItemCode
+        '
+        Me.TreatmentItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentItemCode.HeaderText = "Item Code"
+        Me.TreatmentItemCode.Name = "TreatmentItemCode"
+        Me.TreatmentItemCode.ReadOnly = True
+        Me.TreatmentItemCode.Width = 79
+        '
+        'TreatmentItemDescription
+        '
+        Me.TreatmentItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.TreatmentItemDescription.HeaderText = "Item Description"
+        Me.TreatmentItemDescription.Name = "TreatmentItemDescription"
+        Me.TreatmentItemDescription.ReadOnly = True
+        '
+        'Prescription
+        '
+        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Prescription.HeaderText = "Prescription"
+        Me.Prescription.Name = "Prescription"
+        Me.Prescription.ReadOnly = True
+        Me.Prescription.Width = 89
+        '
+        'Notes
+        '
+        Me.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Notes.HeaderText = "Notes"
+        Me.Notes.Name = "Notes"
+        Me.Notes.ReadOnly = True
+        Me.Notes.Width = 60
+        '
+        'TreatmentUnitPrice
+        '
+        Me.TreatmentUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentUnitPrice.HeaderText = "Unit Price"
+        Me.TreatmentUnitPrice.Name = "TreatmentUnitPrice"
+        Me.TreatmentUnitPrice.ReadOnly = True
+        Me.TreatmentUnitPrice.Width = 77
+        '
+        'TreatmentQuantity
+        '
+        Me.TreatmentQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentQuantity.HeaderText = "Quantity"
+        Me.TreatmentQuantity.Name = "TreatmentQuantity"
+        Me.TreatmentQuantity.ReadOnly = True
+        Me.TreatmentQuantity.Width = 72
+        '
+        'TreatmentTotalPrice
+        '
+        Me.TreatmentTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentTotalPrice.HeaderText = "Total Price"
+        Me.TreatmentTotalPrice.Name = "TreatmentTotalPrice"
+        Me.TreatmentTotalPrice.ReadOnly = True
+        Me.TreatmentTotalPrice.Width = 81
+        '
+        'TreatmentItemGroup
+        '
+        Me.TreatmentItemGroup.HeaderText = "Item Group"
+        Me.TreatmentItemGroup.Name = "TreatmentItemGroup"
+        Me.TreatmentItemGroup.ReadOnly = True
+        Me.TreatmentItemGroup.Visible = False
+        '
+        'TreatmentItemTypeCode
+        '
+        Me.TreatmentItemTypeCode.HeaderText = "Item Type Code"
+        Me.TreatmentItemTypeCode.Name = "TreatmentItemTypeCode"
+        Me.TreatmentItemTypeCode.ReadOnly = True
+        Me.TreatmentItemTypeCode.Visible = False
+        '
+        'TreatmentItemTypeDescription
+        '
+        Me.TreatmentItemTypeDescription.HeaderText = "Item Type Description"
+        Me.TreatmentItemTypeDescription.Name = "TreatmentItemTypeDescription"
+        Me.TreatmentItemTypeDescription.ReadOnly = True
+        Me.TreatmentItemTypeDescription.Visible = False
         '
         'FrmTreatmentInformation
         '
@@ -1016,7 +1039,7 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents TxtTreatmentItem As TextBox
     Friend WithEvents BtnClearItem As Button
     Friend WithEvents BtnSearchItem As Button
-    Friend WithEvents BtnTreatmentItem As Button
+    Friend WithEvents BtnAddTreatment As Button
     Friend WithEvents DgvSelectedTreatment As DataGridView
     Friend WithEvents Label34 As Label
     Friend WithEvents TxtPrescription As TextBox
@@ -1054,7 +1077,19 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents TestItemGroup As DataGridViewTextBoxColumn
     Friend WithEvents TestItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents TestItemTypeDescription As DataGridViewTextBoxColumn
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents TxtCreatedBy As TextBox
+    Friend WithEvents TxtDateModified As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents TxtDateCreated As TextBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents TxtModifiedBy As TextBox
+    Friend WithEvents Label25 As Label
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents CbIsAdmittedToWard As CheckBox
+    Friend WithEvents LblRowNo As Label
     Friend WithEvents BtnTreatmentDeleteItem As DataGridViewButtonColumn
+    Friend WithEvents DgvBtnUpdate As DataGridViewButtonColumn
     Friend WithEvents TreatmentRowNo As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemCode As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemDescription As DataGridViewTextBoxColumn
@@ -1066,14 +1101,4 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents TreatmentItemGroup As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeDescription As DataGridViewTextBoxColumn
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents TxtCreatedBy As TextBox
-    Friend WithEvents TxtDateModified As TextBox
-    Friend WithEvents Label19 As Label
-    Friend WithEvents TxtDateCreated As TextBox
-    Friend WithEvents Label21 As Label
-    Friend WithEvents TxtModifiedBy As TextBox
-    Friend WithEvents CbIsAdmittedToWard As CheckBox
-    Friend WithEvents Label25 As Label
-    Friend WithEvents GroupBox1 As GroupBox
 End Class

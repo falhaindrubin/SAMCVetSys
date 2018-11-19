@@ -345,6 +345,9 @@ Public Class FrmTreatmentInformation
         Dim DtTest As New DataTable
 
         Try
+            'Check if user trying to insert empty item
+            If Not CheckFields("DX") Then Exit Sub
+
             DtTest = InitSelectedItemDt()
             If DgvSelectedTest.Rows.Count > 0 Then
 
@@ -410,8 +413,47 @@ Public Class FrmTreatmentInformation
 
     End Sub
 
-    Private Sub BtnTreatmentItem_Click(sender As Object, e As EventArgs) Handles BtnTreatmentItem.Click
-        AddTreatment()
+    Private Sub BtnTreatmentItem_Click(sender As Object, e As EventArgs) Handles BtnAddTreatment.Click
+        If BtnAddTreatment.Tag = "" Then
+            AddTreatment()
+        ElseIf BtnAddTreatment.Tag = "UPDATE" Then
+            UpdateTreatment()
+        End If
+
+    End Sub
+
+    Private Sub UpdateTreatment()
+
+        Try
+            Dim RowIndex As Integer = CInt(LblRowNo.Text)
+
+            With DgvSelectedTreatment
+                .Rows(RowIndex).Cells("TreatmentItemCode").Value = Trim(TxtTreatmentItem.Tag)
+                .Rows(RowIndex).Cells("TreatmentItemDescription").Value = Trim(TxtTreatmentItem.Text)
+                .Rows(RowIndex).Cells("Prescription").Value = Trim(TxtPrescription.Text)
+                .Rows(RowIndex).Cells("Notes").Value = Trim(TxtNotes.Text)
+                .Rows(RowIndex).Cells("TreatmentUnitPrice").Value = Trim(TxtTreatmentUnitPrice.Text)
+                .Rows(RowIndex).Cells("TreatmentQuantity").Value = Trim(TxtTreatmentQuantity.Text)
+                .Rows(RowIndex).Cells("TreatmentTotalPrice").Value = Trim(TxtTreatmentTotalPrice.Text)
+            End With
+
+            TxtTreatmentItem.Text = ""
+            TxtTreatmentItem.Tag = ""
+            TxtPrescription.Text = ""
+            TxtNotes.Text = ""
+            TxtTreatmentUnitPrice.Text = ""
+            TxtTreatmentQuantity.Text = ""
+            TxtTreatmentTotalPrice.Text = ""
+
+            BtnAddTreatment.Text = "Add Item"
+            BtnAddTreatment.Tag = ""
+
+            MsgBox("Selected item has been updated!", MsgBoxStyle.Information, "Item Updated")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".UpdateTreatment()")
+        End Try
+
     End Sub
 
     Private Sub AddTreatment()
@@ -419,6 +461,9 @@ Public Class FrmTreatmentInformation
         Dim DtTreatment As New DataTable
 
         Try
+            'Check user input; fields validity
+            If Not CheckFields("TX") Then Exit Sub
+
             DtTreatment = InitSelectedItemDt()
             If DgvSelectedTreatment.Rows.Count > 0 Then
 
@@ -438,6 +483,9 @@ Public Class FrmTreatmentInformation
                     DgvRow("ItemTypeCode") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
                     DgvRow("ItemTypeDescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
 
+                    DgvRow("Prescription") = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
+                    DgvRow("Notes") = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+
                     DtTreatment.Rows.Add(DgvRow)
 
                 Next
@@ -455,6 +503,8 @@ Public Class FrmTreatmentInformation
             Row("ItemGroup") = ItemGroup
             Row("ItemTypeDescription") = ItemTypeDescription
             Row("ItemTypeCode") = ItemTypeCode
+            Row("Prescription") = Trim(TxtPrescription.Text) 'DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
+            Row("Notes") = Trim(TxtNotes.Text) 'DgvSelectedTreatment.Rows(i).Cells("Notes").Value
 
             DtTreatment.Rows.Add(Row)
 
@@ -474,6 +524,10 @@ Public Class FrmTreatmentInformation
                         .Rows(i).Cells("TreatmentItemGroup").Value = DtTreatment.Rows(i).Item("ItemGroup")
                         .Rows(i).Cells("TreatmentItemTypeCode").Value = DtTreatment.Rows(i).Item("ItemTypeCode")
                         .Rows(i).Cells("TreatmentItemTypeDescription").Value = DtTreatment.Rows(i).Item("ItemTypeDescription")
+
+                        .Rows(i).Cells("Prescription").Value = DtTreatment.Rows(i).Item("Prescription")
+                        .Rows(i).Cells("Notes").Value = DtTreatment.Rows(i).Item("Notes")
+
                     End With
                 Next
 
@@ -513,7 +567,7 @@ Public Class FrmTreatmentInformation
     End Function
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If Not CheckFields() Then Exit Sub
+        If Not CheckFields("") Then Exit Sub
         If Not SaveTreatmentToDb() Then Exit Sub
         'If Not UpdateBill() Then Exit Sub
     End Sub
@@ -928,13 +982,38 @@ Public Class FrmTreatmentInformation
 
     End Function
 
-    Private Function CheckFields()
+    Private Function CheckFields(FieldSource As String) As Boolean
 
         Try
             If TxtVisitID.Text = "" Then
                 MsgBox("Please select customer visit.", MsgBoxStyle.Exclamation, "No Customer Visit Selected")
                 Return False
             End If
+
+            Select Case FieldSource
+                Case "DX"
+                    If TxtTestItem.Text = "" Then
+                        MsgBox("Please select item.", MsgBoxStyle.Exclamation, "No Item Selected")
+                        Return False
+                    End If
+
+                Case "TX"
+                    If TxtTreatmentItem.Text = "" Then
+                        MsgBox("Please select item.", MsgBoxStyle.Exclamation, "No Item Selected")
+                        Return False
+                    End If
+
+                    For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+
+                        If TxtTreatmentItem.Tag = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value Then
+                            MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
+                            Return False
+                        End If
+
+                    Next
+
+            End Select
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CheckFields()")
@@ -956,6 +1035,7 @@ Public Class FrmTreatmentInformation
 
         Try
             If TxtVisitID.Text = "" Then
+                MsgBox("Please select your visit.", MsgBoxStyle.Exclamation, "No Visit Selected")
                 Return False
             End If
 
@@ -1004,5 +1084,78 @@ Public Class FrmTreatmentInformation
         Return True
 
     End Function
+
+    Private Sub DgvSelectedTreatment_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedTreatment.CellDoubleClick
+
+        Try
+            With DgvSelectedTreatment
+
+                TxtTreatmentItem.Text = .Rows(e.RowIndex).Cells("TreatmentItemDescription").Value
+                TxtTreatmentItem.Tag = .Rows(e.RowIndex).Cells("TreatmentItemCode").Value
+                TxtPrescription.Text = .Rows(e.RowIndex).Cells("Prescription").Value
+                TxtNotes.Text = .Rows(e.RowIndex).Cells("Notes").Value
+                TxtTreatmentUnitPrice.Text = .Rows(e.RowIndex).Cells("TreatmentUnitPrice").Value
+                TxtTreatmentQuantity.Text = .Rows(e.RowIndex).Cells("TreatmentQuantity").Value
+                TxtTreatmentTotalPrice.Text = .Rows(e.RowIndex).Cells("TreatmentTotalPrice").Value
+                BtnAddTreatment.Text = "Update Item" '.Rows(e.RowIndex).Cells("TreatmentUnitPrice").Value
+                BtnAddTreatment.Tag = "UPDATE" '.Rows(e.RowIndex).Cells("TreatmentUnitPrice").Value
+
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvSelectedTreatment_CellDoubleClick()")
+        End Try
+
+    End Sub
+
+    Private Sub DgvSelectedTreatment_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedTreatment.CellContentClick
+
+        Dim BtnDeletePet As New DataGridViewButtonColumn
+        Dim BtnEditPet As New DataGridViewButtonColumn
+        'Dim UserResponse As MsgBoxResult
+
+        Try
+            Dim SenderGrid = DirectCast(sender, DataGridView)
+
+            If TypeOf SenderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+
+                'Data grid view Pet Listing 'Select' button
+                If e.ColumnIndex = 1 Then
+
+                    'UserResponse = MsgBox("Are sure you want to update this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Update Item?")
+                    'If UserResponse = MsgBoxResult.Yes Then
+
+                    With DgvSelectedTreatment
+
+                        TxtTreatmentItem.Text = .Rows(e.RowIndex).Cells("TreatmentItemDescription").Value
+                        TxtTreatmentItem.Tag = .Rows(e.RowIndex).Cells("TreatmentItemCode").Value
+                        TxtPrescription.Text = .Rows(e.RowIndex).Cells("Prescription").Value
+                        TxtNotes.Text = .Rows(e.RowIndex).Cells("Notes").Value
+                        TxtTreatmentUnitPrice.Text = .Rows(e.RowIndex).Cells("TreatmentUnitPrice").Value
+                        TxtTreatmentQuantity.Text = .Rows(e.RowIndex).Cells("TreatmentQuantity").Value
+                        TxtTreatmentTotalPrice.Text = .Rows(e.RowIndex).Cells("TreatmentTotalPrice").Value
+
+                    End With
+
+                    BtnAddTreatment.Text = "Update Item"
+                    BtnAddTreatment.Tag = "UPDATE"
+                    LblRowNo.Text = e.RowIndex
+
+                    'If Not AddPetToDgv(e.RowIndex) Then
+                    '    MsgBox("Failed to select pet for appointment.", MsgBoxStyle.Critical, "Select Pet Failed")
+                    '    Exit Sub
+                    'End If
+
+                    'End If
+
+                    'SetFields("EDIT_PET")
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvPetListing_CellContentClick()")
+        End Try
+    End Sub
 
 End Class

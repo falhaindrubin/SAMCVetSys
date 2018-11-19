@@ -27,6 +27,10 @@ Partial Class FrmWardSummary
         Me.Label35 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.LblVomitDescription = New System.Windows.Forms.Label()
+        Me.LblUrineDescription = New System.Windows.Forms.Label()
+        Me.LblBowelDescription = New System.Windows.Forms.Label()
+        Me.LblAppetiteDescription = New System.Windows.Forms.Label()
         Me.TxtDailyNotes = New System.Windows.Forms.TextBox()
         Me.LblDailyNotes = New System.Windows.Forms.Label()
         Me.LblFastingDescription = New System.Windows.Forms.Label()
@@ -119,10 +123,6 @@ Partial Class FrmWardSummary
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label43 = New System.Windows.Forms.Label()
-        Me.Label45 = New System.Windows.Forms.Label()
-        Me.Label46 = New System.Windows.Forms.Label()
-        Me.Label47 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -166,10 +166,10 @@ Partial Class FrmWardSummary
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Label47)
-        Me.GroupBox1.Controls.Add(Me.Label46)
-        Me.GroupBox1.Controls.Add(Me.Label45)
-        Me.GroupBox1.Controls.Add(Me.Label43)
+        Me.GroupBox1.Controls.Add(Me.LblVomitDescription)
+        Me.GroupBox1.Controls.Add(Me.LblUrineDescription)
+        Me.GroupBox1.Controls.Add(Me.LblBowelDescription)
+        Me.GroupBox1.Controls.Add(Me.LblAppetiteDescription)
         Me.GroupBox1.Controls.Add(Me.TxtDailyNotes)
         Me.GroupBox1.Controls.Add(Me.LblDailyNotes)
         Me.GroupBox1.Controls.Add(Me.LblFastingDescription)
@@ -198,6 +198,42 @@ Partial Class FrmWardSummary
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Daily Physical Examination"
         '
+        'LblVomitDescription
+        '
+        Me.LblVomitDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblVomitDescription.Location = New System.Drawing.Point(184, 126)
+        Me.LblVomitDescription.Name = "LblVomitDescription"
+        Me.LblVomitDescription.Size = New System.Drawing.Size(157, 48)
+        Me.LblVomitDescription.TabIndex = 52
+        Me.LblVomitDescription.Text = "Vomit Description"
+        '
+        'LblUrineDescription
+        '
+        Me.LblUrineDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblUrineDescription.Location = New System.Drawing.Point(9, 126)
+        Me.LblUrineDescription.Name = "LblUrineDescription"
+        Me.LblUrineDescription.Size = New System.Drawing.Size(166, 48)
+        Me.LblUrineDescription.TabIndex = 51
+        Me.LblUrineDescription.Text = "Urine Description"
+        '
+        'LblBowelDescription
+        '
+        Me.LblBowelDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblBowelDescription.Location = New System.Drawing.Point(184, 42)
+        Me.LblBowelDescription.Name = "LblBowelDescription"
+        Me.LblBowelDescription.Size = New System.Drawing.Size(157, 48)
+        Me.LblBowelDescription.TabIndex = 50
+        Me.LblBowelDescription.Text = "Bowel Description"
+        '
+        'LblAppetiteDescription
+        '
+        Me.LblAppetiteDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblAppetiteDescription.Location = New System.Drawing.Point(9, 42)
+        Me.LblAppetiteDescription.Name = "LblAppetiteDescription"
+        Me.LblAppetiteDescription.Size = New System.Drawing.Size(166, 48)
+        Me.LblAppetiteDescription.TabIndex = 49
+        Me.LblAppetiteDescription.Text = "Appetite Description"
+        '
         'TxtDailyNotes
         '
         Me.TxtDailyNotes.BackColor = System.Drawing.Color.White
@@ -222,11 +258,10 @@ Partial Class FrmWardSummary
         '
         'LblFastingDescription
         '
-        Me.LblFastingDescription.AutoSize = True
         Me.LblFastingDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblFastingDescription.Location = New System.Drawing.Point(359, 134)
+        Me.LblFastingDescription.Location = New System.Drawing.Point(359, 126)
         Me.LblFastingDescription.Name = "LblFastingDescription"
-        Me.LblFastingDescription.Size = New System.Drawing.Size(99, 14)
+        Me.LblFastingDescription.Size = New System.Drawing.Size(161, 48)
         Me.LblFastingDescription.TabIndex = 45
         Me.LblFastingDescription.Text = "Fasting Description"
         '
@@ -234,7 +269,7 @@ Partial Class FrmWardSummary
         '
         Me.LblIsFasting.AutoSize = True
         Me.LblIsFasting.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblIsFasting.Location = New System.Drawing.Point(414, 116)
+        Me.LblIsFasting.Location = New System.Drawing.Point(414, 110)
         Me.LblIsFasting.Name = "LblIsFasting"
         Me.LblIsFasting.Size = New System.Drawing.Size(42, 14)
         Me.LblIsFasting.TabIndex = 44
@@ -244,7 +279,7 @@ Partial Class FrmWardSummary
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(402, 116)
+        Me.Label39.Location = New System.Drawing.Point(402, 110)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(10, 14)
         Me.Label39.TabIndex = 43
@@ -255,7 +290,7 @@ Partial Class FrmWardSummary
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label40.Location = New System.Drawing.Point(359, 116)
+        Me.Label40.Location = New System.Drawing.Point(359, 110)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(42, 14)
         Me.Label40.TabIndex = 42
@@ -265,7 +300,7 @@ Partial Class FrmWardSummary
         '
         Me.LblFood.AutoSize = True
         Me.LblFood.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblFood.Location = New System.Drawing.Point(427, 28)
+        Me.LblFood.Location = New System.Drawing.Point(414, 28)
         Me.LblFood.Name = "LblFood"
         Me.LblFood.Size = New System.Drawing.Size(31, 14)
         Me.LblFood.TabIndex = 41
@@ -275,7 +310,7 @@ Partial Class FrmWardSummary
         '
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.Location = New System.Drawing.Point(415, 28)
+        Me.Label36.Location = New System.Drawing.Point(402, 28)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(10, 14)
         Me.Label36.TabIndex = 40
@@ -286,7 +321,7 @@ Partial Class FrmWardSummary
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(365, 28)
+        Me.Label37.Location = New System.Drawing.Point(359, 28)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(31, 14)
         Me.Label37.TabIndex = 39
@@ -296,7 +331,7 @@ Partial Class FrmWardSummary
         '
         Me.LblVomit.AutoSize = True
         Me.LblVomit.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblVomit.Location = New System.Drawing.Point(237, 116)
+        Me.LblVomit.Location = New System.Drawing.Point(226, 110)
         Me.LblVomit.Name = "LblVomit"
         Me.LblVomit.Size = New System.Drawing.Size(33, 14)
         Me.LblVomit.TabIndex = 38
@@ -306,7 +341,7 @@ Partial Class FrmWardSummary
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(225, 116)
+        Me.Label33.Location = New System.Drawing.Point(218, 110)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(10, 14)
         Me.Label33.TabIndex = 37
@@ -317,7 +352,7 @@ Partial Class FrmWardSummary
         '
         Me.Label34.AutoSize = True
         Me.Label34.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.Location = New System.Drawing.Point(182, 116)
+        Me.Label34.Location = New System.Drawing.Point(184, 110)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(33, 14)
         Me.Label34.TabIndex = 36
@@ -327,7 +362,7 @@ Partial Class FrmWardSummary
         '
         Me.LblUrine.AutoSize = True
         Me.LblUrine.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblUrine.Location = New System.Drawing.Point(64, 116)
+        Me.LblUrine.Location = New System.Drawing.Point(61, 110)
         Me.LblUrine.Name = "LblUrine"
         Me.LblUrine.Size = New System.Drawing.Size(32, 14)
         Me.LblUrine.TabIndex = 35
@@ -337,7 +372,7 @@ Partial Class FrmWardSummary
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(52, 116)
+        Me.Label23.Location = New System.Drawing.Point(52, 110)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(10, 14)
         Me.Label23.TabIndex = 34
@@ -348,7 +383,7 @@ Partial Class FrmWardSummary
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(9, 116)
+        Me.Label25.Location = New System.Drawing.Point(9, 110)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(32, 14)
         Me.Label25.TabIndex = 33
@@ -358,7 +393,7 @@ Partial Class FrmWardSummary
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(227, 28)
+        Me.Label26.Location = New System.Drawing.Point(218, 28)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(10, 14)
         Me.Label26.TabIndex = 32
@@ -380,7 +415,7 @@ Partial Class FrmWardSummary
         '
         Me.LblBowel.AutoSize = True
         Me.LblBowel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblBowel.Location = New System.Drawing.Point(239, 28)
+        Me.LblBowel.Location = New System.Drawing.Point(226, 28)
         Me.LblBowel.Name = "LblBowel"
         Me.LblBowel.Size = New System.Drawing.Size(38, 14)
         Me.LblBowel.TabIndex = 30
@@ -390,7 +425,7 @@ Partial Class FrmWardSummary
         '
         Me.LblAppetite.AutoSize = True
         Me.LblAppetite.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblAppetite.Location = New System.Drawing.Point(64, 28)
+        Me.LblAppetite.Location = New System.Drawing.Point(61, 28)
         Me.LblAppetite.Name = "LblAppetite"
         Me.LblAppetite.Size = New System.Drawing.Size(47, 14)
         Me.LblAppetite.TabIndex = 29
@@ -1147,46 +1182,6 @@ Partial Class FrmWardSummary
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Customer ID"
         '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.Location = New System.Drawing.Point(12, 42)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(104, 14)
-        Me.Label43.TabIndex = 49
-        Me.Label43.Text = "Appetite Description"
-        '
-        'Label45
-        '
-        Me.Label45.AutoSize = True
-        Me.Label45.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(184, 42)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(95, 14)
-        Me.Label45.TabIndex = 50
-        Me.Label45.Text = "Bowel Description"
-        '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label46.Location = New System.Drawing.Point(11, 130)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(89, 14)
-        Me.Label46.TabIndex = 51
-        Me.Label46.Text = "Urine Description"
-        '
-        'Label47
-        '
-        Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(184, 130)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(90, 14)
-        Me.Label47.TabIndex = 52
-        Me.Label47.Text = "Vomit Description"
-        '
         'FrmWardSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -1313,8 +1308,8 @@ Partial Class FrmWardSummary
     Friend WithEvents Label41 As Label
     Friend WithEvents LblTodaysVet As Label
     Friend WithEvents Label44 As Label
-    Friend WithEvents Label43 As Label
-    Friend WithEvents Label45 As Label
-    Friend WithEvents Label46 As Label
-    Friend WithEvents Label47 As Label
+    Friend WithEvents LblAppetiteDescription As Label
+    Friend WithEvents LblBowelDescription As Label
+    Friend WithEvents LblUrineDescription As Label
+    Friend WithEvents LblVomitDescription As Label
 End Class

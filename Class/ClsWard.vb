@@ -122,6 +122,16 @@
         End Set
     End Property
 
+    Private _WardDuration As Integer
+    Public Property WardDuration As Integer
+        Get
+            Return _WardDuration
+        End Get
+        Set(value As Integer)
+            _WardDuration = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get

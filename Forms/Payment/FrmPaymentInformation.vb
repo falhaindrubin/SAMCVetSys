@@ -849,9 +849,6 @@ Public Class FrmPaymentInformation
                 End If
             End With
 
-            'Update ward duration
-
-
             'Ward diagnosis
             Dim DtWardDiagnosis As New DataTable
             Dim ClsWardDiagnosis As New ClsWardDiagnosis
@@ -914,6 +911,34 @@ Public Class FrmPaymentInformation
                 End If
             End With
 
+            'Ward
+            'Update ward duration
+            Dim DtWard As New DataTable
+            Dim ClsWard As New ClsWard
+            With ClsWard
+                .VisitID = ""
+                DtWard = .GetWardDetail(ClsWard)
+
+                If DtWard.Rows.Count > 0 Then
+
+                    If DtBill.Rows.Count > 0 Then
+
+                        'Check rate of hospitalization selected; check by ItemTypeCode
+                        For i As Integer = 0 To DtBill.Rows.Count - 1
+                            If DtBill.Rows(i).Item("ItemTypeCode") = "11" Then
+                                'Set Quantity in bill for hospitalization from WardDuration 
+                                DtBill.Rows(i).Item("Quantity") = FormatNumber(DtWard.Rows(0).Item("WardDuration"), 2)
+                                DtBill.Rows(i).Item("TotalPrice") = FormatNumber(DtBill.Rows(i).Item("UnitPrice") * DtBill.Rows(i).Item("Quantity"), 2)
+                                Exit For
+                            End If
+                        Next
+
+                    End If
+
+                End If
+
+            End With
+
             'Arrange RowNo for billing
             If DtBill.Rows.Count > 0 Then
 
@@ -925,7 +950,7 @@ Public Class FrmPaymentInformation
                     'DtBillTotal = SumUpBill()
                 Next
 
-                Dim GrossTotal As Decimal
+                'Dim GrossTotal As Decimal
                 Dim GrandTotal As Decimal
                 Dim TotalDue As Decimal
 
@@ -938,8 +963,8 @@ Public Class FrmPaymentInformation
                     DtBill.Rows(i).Item("RowNo") = i + 1 'Update RowNo
 
                     'Calculate GrossTotal, GrandTotal, TotalDue
-                    GrossTotal = GrossTotal + DtBill.Rows(i).Item("TotalPrice")
-                    GrandTotal = GrossTotal 'GrandTotal = GrossTotal - Discount
+                    GrandTotal = GrandTotal + DtBill.Rows(i).Item("TotalPrice")
+                    'GrandTotal = GrossTotal 'GrandTotal = GrossTotal - Discount
                     TotalDue = GrandTotal 'TotalDue = GrandTotal - Deposit
 
                     With DgvBillListing
@@ -959,9 +984,13 @@ Public Class FrmPaymentInformation
 
                 Next
 
-                TxtGrossTotal.Text = FormatNumber(CDec(GrossTotal), 2)
+                'GrossTotal = GrossTotal - CDec(TxtDeposit.Text)
+                'GrandTotal = GrossTotal
+                'TotalDue = GrossTotal - CDec(TxtDiscount.Text)
+
+                'TxtGrossTotal.Text = FormatNumber(CDec(GrossTotal), 2)
                 TxtGrandTotal.Text = FormatNumber(CDec(GrandTotal), 2)
-                TxtTotalDue.Text = FormatNumber(CDec(TotalDue), 2)
+                TxtTotalDue.Text = FormatNumber(CDec(GrandTotal), 2)
 
             End If
 
@@ -1054,10 +1083,18 @@ Public Class FrmPaymentInformation
     Private Sub TxtDiscount_TextChanged(sender As Object, e As EventArgs) Handles TxtDiscount.TextChanged
 
         Try
-            Dim GrossTotal As Decimal = CDec(IIf(TxtGrossTotal.Text <> "", TxtGrossTotal.Text, 0.0))
+            Dim GrandTotal As Decimal = CDec(IIf(TxtGrandTotal.Text <> "", TxtGrandTotal.Text, 0.0))
             Dim Discount As Decimal = CDec(IIf(TxtDiscount.Text <> "", TxtDiscount.Text, 0.0))
+            Dim Deposit As Decimal = CDec(IIf(TxtDeposit.Text <> "", TxtDeposit.Text, 0.0))
+            Dim TotalDue As Decimal = CDec(IIf(TxtTotalDue.Text <> "", TxtTotalDue.Text, 0.0))
 
-            TxtGrandTotal.Text = FormatNumber(GrossTotal - Discount, 2)
+            TxtTotalDue.Text = FormatNumber((GrandTotal - Deposit) - Discount, 2)
+
+            'Dim GrossTotal As Decimal = CDec(IIf(TxtGrossTotal.Text <> "", TxtGrossTotal.Text, 0.0))
+            'Dim Discount As Decimal = CDec(IIf(TxtDiscount.Text <> "", TxtDiscount.Text, 0.0))
+
+            'TxtGrandTotal.Text = FormatNumber(GrossTotal - Discount, 2)
+            'TxtTotalDue.Text = FormatNumber(GrandTotal - Deposit, 2)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_TextChanged()")

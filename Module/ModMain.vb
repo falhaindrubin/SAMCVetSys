@@ -368,8 +368,8 @@ Module ModMain
                         LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
                         RunningNo = LastNo + 1
 
-                        If RunningNo.ToString.Length <= 2 Then
-                            NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(2, "0"c)
+                        If RunningNo.ToString.Length <= 3 Then
+                            NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(3, "0"c)
                         End If
 
                         'Update LastNo
@@ -401,7 +401,7 @@ Module ModMain
                         LastNo = CInt(DtRunningNo.Rows(0).Item("LastNo"))
                         RunningNo = LastNo + 1
 
-                        If RunningNo.ToString.Length < 4 Then
+                        If RunningNo.ToString.Length <= 4 Then
                             NewRunningNo = ItemTypeCode & RunningNo.ToString.PadLeft(4, "0"c)
                         End If
 

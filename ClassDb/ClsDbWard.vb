@@ -185,7 +185,7 @@ Public Class ClsDbWard
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, ")
+                .Append("SELECT a.WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, WardDuration, ")
                 .Append("WardDate, Appetite, AppetiteDescription, Bowel, BowelDescription, Urine, UrineDescription, Vomit, VomitDescription, Food, IsFasting, FastingDescription, DailyNotes, ")
 
                 If W.GetTodayVet = "1" Then
@@ -297,6 +297,7 @@ Public Class ClsDbWard
                 .Append("UPDATE samc_ward ")
                 .Append("SET IsDischarged = '" & W.IsDischarged & "', ")
                 .Append("DischargeDate = " & CSQLDateTime(W.DischargeDate) & ", ")
+                .Append("WardDuration = '" & W.WardDuration & "', ")
                 .Append("ModifiedBy = '" & W.Ref.ModifiedBy & "', ")
                 .Append("DateModified = " & CSQLDateTime(W.Ref.DateModified) & " ")
                 .Append("WHERE WardID = '" & W.WardID & "' ")

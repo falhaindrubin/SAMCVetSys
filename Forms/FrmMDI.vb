@@ -121,7 +121,7 @@
         End Try
     End Sub
 
-    Private Sub PaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PaymentToolStripMenuItem.Click
+    Private Sub PaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) 
         Try
             Dim Frm As New FrmPaymentRecords()
             'Static intCount As Integer
@@ -144,15 +144,15 @@
 
     Private Sub ProductsServicesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductsServicesToolStripMenuItem.Click
         Try
-            Dim Frm As New FrmItemManagement()
+            Dim Frm As New FrmItemRecords()
             'Static intCount As Integer
             For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmItemManagement Then
+                If TypeOf f Is FrmItemRecords Then
                     f.Activate()
                     Exit Sub
                 End If
             Next
-            Frm = New FrmItemManagement With {
+            Frm = New FrmItemRecords With {
                 .MdiParent = Me
             }
             Frm.Show()
@@ -248,4 +248,26 @@
 
         End Try
     End Sub
+
+    Private Sub SurgeryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SurgeryToolStripMenuItem.Click
+        Try
+            Dim Frm As New FrmSurgeryRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmSurgeryRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmSurgeryRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class

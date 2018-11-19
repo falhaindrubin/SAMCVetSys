@@ -86,15 +86,15 @@
             Select Case Source
                 Case "TREATMENT"
                     If Source = "TREATMENT" Then
-                        If UserCommand = "ADD_NEW_TREATMENT" Then
-                            CbNotAssigned.Checked = True
-                            With ClsVisit
-                                .IsVisitCompleted = "0"
-                                .IsOngoingTreatment = "0"
-                            End With
-                            DtVisit = ClsVisit.GetUnassignedVisitListing(ClsVisit)
-                        End If
-                    Else
+                        '    If UserCommand = "ADD_NEW_TREATMENT" Then
+                        '        CbNotAssigned.Checked = True
+                        '        With ClsVisit
+                        '            .IsVisitCompleted = "0"
+                        '            .IsOngoingTreatment = "0"
+                        '        End With
+                        '        DtVisit = ClsVisit.GetUnassignedVisitListing(ClsVisit)
+                        '    End If
+                        'Else
                         DtVisit = ClsVisit.GetVisitListing(ClsVisit)
                     End If
 

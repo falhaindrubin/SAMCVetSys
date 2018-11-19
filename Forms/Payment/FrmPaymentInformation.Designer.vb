@@ -24,7 +24,7 @@ Partial Class FrmPaymentInformation
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPaymentInformation))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
         Me.BtnEdit = New System.Windows.Forms.Button()
@@ -384,7 +384,7 @@ Partial Class FrmPaymentInformation
         Me.TxtDiscount.BackColor = System.Drawing.Color.White
         Me.TxtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDiscount.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDiscount.Location = New System.Drawing.Point(551, 432)
+        Me.TxtDiscount.Location = New System.Drawing.Point(551, 454)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.Size = New System.Drawing.Size(156, 21)
         Me.TxtDiscount.TabIndex = 163
@@ -394,7 +394,7 @@ Partial Class FrmPaymentInformation
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(470, 435)
+        Me.Label40.Location = New System.Drawing.Point(470, 457)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(75, 14)
         Me.Label40.TabIndex = 162
@@ -405,7 +405,7 @@ Partial Class FrmPaymentInformation
         Me.TxtGrandTotal.BackColor = System.Drawing.Color.Beige
         Me.TxtGrandTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtGrandTotal.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtGrandTotal.Location = New System.Drawing.Point(551, 454)
+        Me.TxtGrandTotal.Location = New System.Drawing.Point(807, 410)
         Me.TxtGrandTotal.Name = "TxtGrandTotal"
         Me.TxtGrandTotal.ReadOnly = True
         Me.TxtGrandTotal.Size = New System.Drawing.Size(156, 21)
@@ -416,11 +416,12 @@ Partial Class FrmPaymentInformation
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(457, 457)
+        Me.Label45.Location = New System.Drawing.Point(457, 413)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(88, 14)
         Me.Label45.TabIndex = 160
-        Me.Label45.Text = "Grand Total (RM)"
+        Me.Label45.Text = "Gross Total (RM)"
+        Me.Label45.Visible = False
         '
         'TxtDeposit
         '
@@ -448,13 +449,14 @@ Partial Class FrmPaymentInformation
         Me.TxtGrossTotal.BackColor = System.Drawing.Color.Beige
         Me.TxtGrossTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtGrossTotal.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtGrossTotal.Location = New System.Drawing.Point(807, 410)
+        Me.TxtGrossTotal.Location = New System.Drawing.Point(551, 410)
         Me.TxtGrossTotal.Name = "TxtGrossTotal"
         Me.TxtGrossTotal.ReadOnly = True
         Me.TxtGrossTotal.Size = New System.Drawing.Size(156, 21)
         Me.TxtGrossTotal.TabIndex = 157
         Me.TxtGrossTotal.Text = "0.00"
         Me.TxtGrossTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TxtGrossTotal.Visible = False
         '
         'Label39
         '
@@ -463,7 +465,7 @@ Partial Class FrmPaymentInformation
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(88, 14)
         Me.Label39.TabIndex = 156
-        Me.Label39.Text = "Gross Total (RM)"
+        Me.Label39.Text = "Grand Total (RM)"
         '
         'Label33
         '
@@ -590,8 +592,8 @@ Partial Class FrmPaymentInformation
         '
         Me.DgvBillListing.AllowUserToAddRows = False
         Me.DgvBillListing.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice, Me.ItemGroupDgv, Me.ItemTypeCodeDgv, Me.ItemTypeDescriptionDgv})
         Me.DgvBillListing.Location = New System.Drawing.Point(6, 215)

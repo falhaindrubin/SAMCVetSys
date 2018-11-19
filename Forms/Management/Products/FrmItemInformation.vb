@@ -1,4 +1,4 @@
-﻿Public Class FrmItemEntry
+﻿Public Class FrmItemInformation
 
     Private _UserCommand As String
     Public Property UserCommand As String
@@ -179,8 +179,8 @@
 
             ItemTypeCode = DirectCast(CmbItemTypeCode.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
 
-            If ItemCode <> "" Then
-                GenItemCode = ItemCode
+            If Trim(TxtItemCode.Text) <> "" Then
+                GenItemCode = Trim(TxtItemCode.Text) 'IIf(Trim(TxtItemCode.Text) <> "", ItemCode, Trim(TxtItemCode.Text))
             Else
                 GenItemCode = GenerateItemRunningNo(ItemTypeCode, ItemGroup, DbConn, DbTrans)
             End If
@@ -246,7 +246,7 @@
                 .ItemGroup = ItemGroup
                 .ItemTypeCode = ItemTypeCode
                 .ItemTypeDescription = DirectCast(CmbItemTypeCode.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-                .UnitPrice = CDec(Trim(TxtUnitPrice.Text))
+                .UnitPrice = IIf(Trim(TxtUnitPrice.Text) <> "", TxtUnitPrice.Text, "0")
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
@@ -297,7 +297,7 @@
                 .ItemGroup = ItemGroup
                 .ItemTypeCode = ItemTypeCode
                 .ItemTypeDescription = DirectCast(CmbItemTypeCode.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-                .UnitPrice = CDec(Trim(TxtUnitPrice.Text))
+                .UnitPrice = IIf(Trim(TxtUnitPrice.Text) <> "", TxtUnitPrice.Text, "0")
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
@@ -455,6 +455,31 @@
 
     Private Sub RbServices_CheckedChanged(sender As Object, e As EventArgs) Handles RbServices.CheckedChanged
         PopulateItemType()
+    End Sub
+
+    Private Sub BtnAddNewItem_Click(sender As Object, e As EventArgs) Handles BtnAddNewItem.Click
+        ClearItem()
+    End Sub
+
+    Private Sub ClearItem()
+
+        Try
+            TxtItemCode.Text = ""
+            TxtItemDescription.Text = ""
+            TxtUnitPrice.Text = "0.00"
+            TxtCreatedBy.Text = ""
+            TxtDateCreated.Text = ""
+            TxtModifiedBy.Text = ""
+            TxtDateModified.Text = ""
+
+            'TxtItemCode.ReadOnly = False
+            TxtItemDescription.ReadOnly = False
+            TxtUnitPrice.ReadOnly = False
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ClearItem()")
+        End Try
+
     End Sub
 
 End Class

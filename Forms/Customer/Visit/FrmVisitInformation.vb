@@ -1795,5 +1795,7 @@ ReplaceCurrentPet:
         End With
     End Sub
 
+    Private Sub DgvSelectedPet_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedPet.CellClick
 
+    End Sub
 End Class

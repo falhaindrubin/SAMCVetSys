@@ -1112,7 +1112,7 @@ Partial Class FrmWardInformation
         'TxtVomitDescription
         '
         Me.TxtVomitDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtVomitDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVomitDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtVomitDescription.Location = New System.Drawing.Point(66, 322)
         Me.TxtVomitDescription.Multiline = True
         Me.TxtVomitDescription.Name = "TxtVomitDescription"
@@ -1122,7 +1122,7 @@ Partial Class FrmWardInformation
         'TxtUrineDescription
         '
         Me.TxtUrineDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUrineDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtUrineDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtUrineDescription.Location = New System.Drawing.Point(66, 237)
         Me.TxtUrineDescription.Multiline = True
         Me.TxtUrineDescription.Name = "TxtUrineDescription"
@@ -1132,7 +1132,7 @@ Partial Class FrmWardInformation
         'TxtBowelDescription
         '
         Me.TxtBowelDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtBowelDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtBowelDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtBowelDescription.Location = New System.Drawing.Point(66, 150)
         Me.TxtBowelDescription.Multiline = True
         Me.TxtBowelDescription.Name = "TxtBowelDescription"
@@ -1142,7 +1142,7 @@ Partial Class FrmWardInformation
         'TxtAppetiteDescription
         '
         Me.TxtAppetiteDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAppetiteDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtAppetiteDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtAppetiteDescription.Location = New System.Drawing.Point(66, 70)
         Me.TxtAppetiteDescription.Multiline = True
         Me.TxtAppetiteDescription.Name = "TxtAppetiteDescription"
@@ -1163,7 +1163,7 @@ Partial Class FrmWardInformation
         'TxtFastingDescription
         '
         Me.TxtFastingDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtFastingDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtFastingDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtFastingDescription.Location = New System.Drawing.Point(458, 70)
         Me.TxtFastingDescription.Multiline = True
         Me.TxtFastingDescription.Name = "TxtFastingDescription"

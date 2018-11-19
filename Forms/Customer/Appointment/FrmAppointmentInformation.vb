@@ -1,4 +1,5 @@
-﻿Imports System.Text
+﻿Imports SAMCVetSys.ModUtility
+Imports System.Text
 
 Public Class FrmAppointmentInformation
 
@@ -276,9 +277,6 @@ Public Class FrmAppointmentInformation
                 ClsAppointment.AppointmentID = AppointmentID
                 DtAppointment = ClsAppointment.GetAppointmentDetail(ClsAppointment)
 
-                'ElseIf UserCommand = "ADD_NEW_APPOINTMENT" Then
-                '    Me.Text = "Create New Appointment"
-
             End If
 
             ClsCustomer.SQLQueryCondition = FilterSQL(StrOp, CustomerID, UserCommand)
@@ -310,9 +308,6 @@ Public Class FrmAppointmentInformation
 
             If DtPet.Rows.Count > 0 Then
 
-                'TxtCustomerIDPI.Text = DtCustomer.Rows(0).Item("CustomerID")
-                'TxtCustomerNamePI.Text = DtCustomer.Rows(0).Item("CustomerName")
-                'TxtPetID.Text = DtPet.Rows(0).Item("PetID")
                 TxtPetName.Text = DtPet.Rows(0).Item("PetName")
                 DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
                 CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
@@ -320,31 +315,56 @@ Public Class FrmAppointmentInformation
                 CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
                 CmbStatus.SelectedValue = CStr(DtPet.Rows(0).Item("StatusCode"))
 
-                With BtnSelect
-                    .HeaderText = "Select"
-                    .Text = "Select"
-                    .Name = "BtnSelect"
-                    .UseColumnTextForButtonValue = True
-                    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                    .DisplayIndex = 0
-                End With
-
-                'Add IsDB indicator here
-                With DtPet
-                    '.Columns.Add("IsDB", GetType(String))
-                    .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
-                End With
-
-                For i As Integer = 0 To DtPet.Rows.Count - 1
-                    'DtPet.Rows(i).Item("IsDb") = "1"
-                    DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
-                Next
-
                 With DgvPetListing
-                    .Columns.Add(BtnSelect)
-                    .DataSource = DtPet
-                    .Show()
+
+                    If .Rows.Count > 0 Then
+                        .Rows.Clear()
+                    End If
+
+                    For i As Integer = 0 To DtPet.Rows.Count - 1
+
+                        .Rows.Add()
+                        .Rows(i).Cells("PetID").Value = DtPet.Rows(i).Item("PetID")
+                        .Rows(i).Cells("PetName").Value = DtPet.Rows(i).Item("PetName")
+                        .Rows(i).Cells("PetDOB").Value = DtPet.Rows(i).Item("PetDOB")
+                        .Rows(i).Cells("AnimalTypeCode").Value = DtPet.Rows(i).Item("AnimalTypeCode")
+                        .Rows(i).Cells("AnimalTypeName").Value = DtPet.Rows(i).Item("AnimalTypeName")
+                        .Rows(i).Cells("BreedCode").Value = DtPet.Rows(i).Item("BreedCode")
+                        .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
+                        .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
+                        .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
+                        .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
+                        .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+
+                    Next
+
                 End With
+
+                'With BtnSelect
+                '    .HeaderText = "Select"
+                '    .Text = "Select"
+                '    .Name = "BtnSelect"
+                '    .UseColumnTextForButtonValue = True
+                '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                '    .DisplayIndex = 0
+                'End With
+
+                ''Add IsDB indicator here
+                'With DtPet
+                '    '.Columns.Add("IsDB", GetType(String))
+                '    .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
+                'End With
+
+                'For i As Integer = 0 To DtPet.Rows.Count - 1
+                '    'DtPet.Rows(i).Item("IsDb") = "1"
+                '    DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
+                'Next
+
+                'With DgvPetListing
+                '    .Columns.Add(BtnSelect)
+                '    .DataSource = DtPet
+                '    .Show()
+                'End With
 
             End If
 
@@ -356,6 +376,7 @@ Public Class FrmAppointmentInformation
                 DtpAppointmentDate.Value = CDate(DtAppointment.Rows(0).Item("AppointmentTime"))
                 DtpAppointmentTime.Value = CDate(DtAppointment.Rows(0).Item("AppointmentTime"))
                 CmbVet.SelectedValue = CStr(DtAppointment.Rows(0).Item("EmployeeID"))
+                TxtAppointmentDesc.Text = CStrNull(DtAppointment.Rows(0).Item("AppointmentDesc"))
 
                 DtSelectedPet = InitPetDatatable()
                 For i As Integer = 0 To DtAppointment.Rows.Count - 1
@@ -374,28 +395,54 @@ Public Class FrmAppointmentInformation
                     DgvRow("SexName") = DtAppointment.Rows(i).Item("SexName")
                     DgvRow("StatusCode") = DtAppointment.Rows(i).Item("StatusCode")
                     DgvRow("StatusName") = DtAppointment.Rows(i).Item("StatusName")
-                    DgvRow("AppointmentDesc") = DtAppointment.Rows(i).Item("AppointmentDesc")
+                    'DgvRow("AppointmentDesc") = DtAppointment.Rows(i).Item("AppointmentDesc")
                     DgvRow("IsDB") = "1"
 
                     DtSelectedPet.Rows.Add(DgvRow)
 
                 Next
 
-                With BtnDelete
-                    .HeaderText = "Delete"
-                    .Text = "Delete"
-                    .Name = "BtnDelete"
-                    .UseColumnTextForButtonValue = True
-                    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                    .DisplayIndex = 0
+                With DgvSelectedPet
+
+                    If .Rows.Count > 0 Then
+                        .Rows.Clear()
+                    End If
+
+                    For i As Integer = 0 To DtSelectedPet.Rows.Count - 1
+
+                        .Rows.Add()
+                        .Rows(i).Cells("SelectedPetID").Value = DtSelectedPet.Rows(i).Item("PetID")
+                        .Rows(i).Cells("SelectedPetName").Value = DtSelectedPet.Rows(i).Item("PetName")
+                        .Rows(i).Cells("SelectedPetDOB").Value = DtSelectedPet.Rows(i).Item("PetDOB")
+                        .Rows(i).Cells("SelectedAnimalTypeCode").Value = DtSelectedPet.Rows(i).Item("AnimalTypeCode")
+                        .Rows(i).Cells("SelectedAnimalTypeName").Value = DtSelectedPet.Rows(i).Item("AnimalTypeName")
+                        .Rows(i).Cells("SelectedBreedCode").Value = DtSelectedPet.Rows(i).Item("BreedCode")
+                        .Rows(i).Cells("SelectedBreedName").Value = DtSelectedPet.Rows(i).Item("BreedName")
+                        .Rows(i).Cells("SelectedSexCode").Value = DtSelectedPet.Rows(i).Item("SexCode")
+                        .Rows(i).Cells("SelectedSexName").Value = DtSelectedPet.Rows(i).Item("SexName")
+                        .Rows(i).Cells("SelectedStatusCode").Value = DtSelectedPet.Rows(i).Item("StatusCode")
+                        .Rows(i).Cells("SelectedStatusName").Value = DtSelectedPet.Rows(i).Item("StatusName")
+                        .Rows(i).Cells("IsDb").Value = "1"
+
+                    Next
+
                 End With
 
-                With DgvSelectedPet
-                    .Columns.Add(BtnDelete)
-                    .DataSource = DtSelectedPet
-                    .Columns("IsDB").Visible = False
-                    .Show()
-                End With
+                'With BtnDelete
+                '    .HeaderText = "Delete"
+                '    .Text = "Delete"
+                '    .Name = "BtnDelete"
+                '    .UseColumnTextForButtonValue = True
+                '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                '    .DisplayIndex = 0
+                'End With
+
+                'With DgvSelectedPet
+                '    .Columns.Add(BtnDelete)
+                '    .DataSource = DtSelectedPet
+                '    .Columns("IsDB").Visible = False
+                '    .Show()
+                'End With
 
                 TxtCreatedBy.Text = DtAppointment.Rows(0).Item("CreatedBy")
                 TxtDateCreated.Text = DtAppointment.Rows(0).Item("DateCreated")
@@ -502,12 +549,12 @@ Public Class FrmAppointmentInformation
             End If
 
             'Check appointment issues/description/complaints for each pets selected for the appontment
-            For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
-                If DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value = "" Then
-                    MsgBox("Please specify pet's issue/problem/complaint for " & DgvSelectedPet.Rows(i).Cells("PetName").Value & ".", MsgBoxStyle.Exclamation, "No Pet Problems Specified")
-                    Return False
-                End If
-            Next
+            'For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+            '    If DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value = "" Then
+            '        MsgBox("Please specify pet's issue/problem/complaint for " & DgvSelectedPet.Rows(i).Cells("PetName").Value & ".", MsgBoxStyle.Exclamation, "No Pet Problems Specified")
+            '        Return False
+            '    End If
+            'Next
 
             'Check existing and vet availability on that day for new appointment
             If TxtAppointmentID.Text = "" Then
@@ -613,18 +660,18 @@ Public Class FrmAppointmentInformation
                     ClsAppointmentDetail = New ClsAppointmentDetail
                     With ClsAppointmentDetail
                         .AppointmentID = GenAppointmentID
-                        .PetID = DgvSelectedPet.Rows(i).Cells("PetID").Value
-                        .PetName = DgvSelectedPet.Rows(i).Cells("PetName").Value
-                        .PetDOB = DgvSelectedPet.Rows(i).Cells("PetDOB").Value
-                        .AnimalTypeCode = DgvSelectedPet.Rows(i).Cells("AnimalTypeCode").Value
-                        .AnimalTypeName = DgvSelectedPet.Rows(i).Cells("AnimalTypeName").Value
-                        .BreedCode = DgvSelectedPet.Rows(i).Cells("BreedCode").Value
-                        .BreedName = DgvSelectedPet.Rows(i).Cells("BreedName").Value
-                        .SexCode = DgvSelectedPet.Rows(i).Cells("SexCode").Value
-                        .SexName = DgvSelectedPet.Rows(i).Cells("SexName").Value
-                        .StatusCode = DgvSelectedPet.Rows(i).Cells("StatusCode").Value
-                        .StatusName = DgvSelectedPet.Rows(i).Cells("StatusName").Value
-                        .AppointmentDesc = DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
+                        .PetID = DgvSelectedPet.Rows(i).Cells("SelectedPetID").Value
+                        .PetName = DgvSelectedPet.Rows(i).Cells("SelectedPetName").Value
+                        .PetDOB = DgvSelectedPet.Rows(i).Cells("SelectedPetDOB").Value
+                        .AnimalTypeCode = DgvSelectedPet.Rows(i).Cells("SelectedAnimalTypeCode").Value
+                        .AnimalTypeName = DgvSelectedPet.Rows(i).Cells("SelectedAnimalTypeName").Value
+                        .BreedCode = DgvSelectedPet.Rows(i).Cells("SelectedBreedCode").Value
+                        .BreedName = DgvSelectedPet.Rows(i).Cells("SelectedBreedName").Value
+                        .SexCode = DgvSelectedPet.Rows(i).Cells("SelectedSexCode").Value
+                        .SexName = DgvSelectedPet.Rows(i).Cells("SelectedSexName").Value
+                        .StatusCode = DgvSelectedPet.Rows(i).Cells("SelectedStatusCode").Value
+                        .StatusName = DgvSelectedPet.Rows(i).Cells("SelectedStatusName").Value
+                        .AppointmentDesc = Trim(TxtAppointmentDesc.Text) 'DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
                         .Ref.CreatedBy = CURR_USER
                         .Ref.DateCreated = Now
                         .Ref.ModifiedBy = CURR_USER
@@ -788,7 +835,7 @@ Public Class FrmAppointmentInformation
 
                 'LblPetName.Tag = DgvSelectedPet.Rows(e.RowIndex).Cells("PetID").Value
                 'LblPetName.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("PetName").Value
-                TxtAppointmentDesc.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("AppointmentDesc").Value
+                'TxtAppointmentDesc.Text = DgvSelectedPet.Rows(e.RowIndex).Cells("AppointmentDesc").Value
 
             End If
 
@@ -852,7 +899,7 @@ Public Class FrmAppointmentInformation
                 .Columns.Add("SexName", GetType(String))
                 .Columns.Add("StatusCode", GetType(String))
                 .Columns.Add("StatusName", GetType(String))
-                .Columns.Add("AppointmentDesc", GetType(String))
+                '.Columns.Add("AppointmentDesc", GetType(String))
                 .Columns.Add("IsDB", GetType(String))
             End With
 
@@ -869,9 +916,29 @@ Public Class FrmAppointmentInformation
         Dim BtnDeletePet As New DataGridViewButtonColumn
         Dim BtnEditPet As New DataGridViewButtonColumn
         Dim DtPet As New DataTable
+        Dim UserResponse As MsgBoxResult
 
         Try
             DtPet = InitPetDatatable()
+
+            If DgvSelectedPet.Rows.Count > 0 Then
+
+                'Check if user trying to add same item
+                For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
+                    If DgvSelectedPet.Rows(i).Cells("SelectedPetID").Value = DgvPetListing.Rows(RowIndex).Cells("PetID").Value Then
+                        MsgBox("You are trying to add same pet into the appointment.", MsgBoxStyle.Exclamation, "Duplicate Pet")
+                        Return True
+                    End If
+                Next
+
+                'Check if user trying to add more than one item
+                UserResponse = MsgBox("Are sure you want to select this pet for the current appointment?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Change Pet?")
+                If UserResponse = MsgBoxResult.Yes Then
+                    'Skip selecting previously selected pet
+                    GoTo ReplaceCurrentPet
+                End If
+
+            End If
 
             If DgvSelectedPet.Rows.Count > 0 Then
 
@@ -880,20 +947,20 @@ Public Class FrmAppointmentInformation
 
                     Dim DgvRow As DataRow = DtPet.NewRow
 
-                    DgvRow("CustomerID") = DgvSelectedPet.Rows(i).Cells("CustomerID").Value
-                    DgvRow("CustomerName") = DgvSelectedPet.Rows(i).Cells("CustomerName").Value
-                    DgvRow("PetID") = DgvSelectedPet.Rows(i).Cells("PetID").Value
-                    DgvRow("PetName") = DgvSelectedPet.Rows(i).Cells("PetName").Value
-                    DgvRow("PetDOB") = DgvSelectedPet.Rows(i).Cells("PetDOB").Value
-                    DgvRow("AnimalTypeCode") = DgvSelectedPet.Rows(i).Cells("AnimalTypeCode").Value
-                    DgvRow("AnimalTypeName") = DgvSelectedPet.Rows(i).Cells("AnimalTypeName").Value
-                    DgvRow("BreedCode") = DgvSelectedPet.Rows(i).Cells("BreedCode").Value
-                    DgvRow("BreedName") = DgvSelectedPet.Rows(i).Cells("BreedName").Value
-                    DgvRow("SexCode") = DgvSelectedPet.Rows(i).Cells("SexCode").Value
-                    DgvRow("SexName") = DgvSelectedPet.Rows(i).Cells("SexName").Value
-                    DgvRow("StatusCode") = DgvSelectedPet.Rows(i).Cells("StatusCode").Value
-                    DgvRow("StatusName") = DgvSelectedPet.Rows(i).Cells("StatusName").Value
-                    DgvRow("AppointmentDesc") = DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
+                    'DgvRow("CustomerID") = DgvSelectedPet.Rows(i).Cells("CustomerID").Value
+                    'DgvRow("CustomerName") = DgvSelectedPet.Rows(i).Cells("CustomerName").Value
+                    DgvRow("PetID") = DgvSelectedPet.Rows(i).Cells("SelectedPetID").Value
+                    DgvRow("PetName") = DgvSelectedPet.Rows(i).Cells("SelectedPetName").Value
+                    DgvRow("PetDOB") = DgvSelectedPet.Rows(i).Cells("SelectedPetDOB").Value
+                    DgvRow("AnimalTypeCode") = DgvSelectedPet.Rows(i).Cells("SelectedAnimalTypeCode").Value
+                    DgvRow("AnimalTypeName") = DgvSelectedPet.Rows(i).Cells("SelectedAnimalTypeName").Value
+                    DgvRow("BreedCode") = DgvSelectedPet.Rows(i).Cells("SelectedBreedCode").Value
+                    DgvRow("BreedName") = DgvSelectedPet.Rows(i).Cells("SelectedBreedName").Value
+                    DgvRow("SexCode") = DgvSelectedPet.Rows(i).Cells("SelectedSexCode").Value
+                    DgvRow("SexName") = DgvSelectedPet.Rows(i).Cells("SelectedSexName").Value
+                    DgvRow("StatusCode") = DgvSelectedPet.Rows(i).Cells("SelectedStatusCode").Value
+                    DgvRow("StatusName") = DgvSelectedPet.Rows(i).Cells("SelectedStatusName").Value
+                    'DgvRow("AppointmentDesc") = DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
 
                     DtPet.Rows.Add(DgvRow)
 
@@ -902,20 +969,21 @@ Public Class FrmAppointmentInformation
             End If
 
             'Check if user trying to select same pet
-            If DtPet.Rows.Count > 0 Then
-                For i As Integer = 0 To DtPet.Rows.Count - 1
-                    If DtPet.Rows(i).Item("PetID") = DgvPetListing.Rows(RowIndex).Cells("PetID").Value Then
-                        MsgBox("You are trying to add same pet into the appointment.", MsgBoxStyle.Exclamation, "Duplicate Pet")
-                        Return True
-                    End If
-                Next
-            End If
+            'If DtPet.Rows.Count > 0 Then
+            '    For i As Integer = 0 To DtPet.Rows.Count - 1
+            '        If DtPet.Rows(i).Item("PetID") = DgvPetListing.Rows(RowIndex).Cells("PetID").Value Then
+            '            MsgBox("You are trying to add same pet into the appointment.", MsgBoxStyle.Exclamation, "Duplicate Pet")
+            '            Return True
+            '        End If
+            '    Next
+            'End If
 
             'Take pet information from fields, e.g. textboxes
+ReplaceCurrentPet:
             Dim Row As DataRow = DtPet.NewRow
 
-            Row("CustomerID") = DgvPetListing.Rows(RowIndex).Cells("CustomerID").Value 'UCase(Trim(TxtCustomerID.Text))
-            Row("CustomerName") = DgvPetListing.Rows(RowIndex).Cells("CustomerName").Value  'UCase(Trim(TxtCustomerName.Text))
+            'Row("CustomerID") = DgvPetListing.Rows(RowIndex).Cells("CustomerID").Value 'UCase(Trim(TxtCustomerID.Text))
+            'Row("CustomerName") = DgvPetListing.Rows(RowIndex).Cells("CustomerName").Value  'UCase(Trim(TxtCustomerName.Text))
             Row("PetID") = DgvPetListing.Rows(RowIndex).Cells("PetID").Value 'UCase(Trim(TxtPetID.Text))
             Row("PetName") = DgvPetListing.Rows(RowIndex).Cells("PetName").Value 'UCase(Trim(TxtPetName.Text))
             Row("PetDOB") = DgvPetListing.Rows(RowIndex).Cells("PetDOB").Value 'DtpPetDOB.Value
@@ -927,36 +995,68 @@ Public Class FrmAppointmentInformation
             Row("SexName") = DgvPetListing.Rows(RowIndex).Cells("SexName").Value 'DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             Row("StatusCode") = DgvPetListing.Rows(RowIndex).Cells("StatusCode").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
             Row("StatusName") = DgvPetListing.Rows(RowIndex).Cells("StatusName").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-            Row("AppointmentDesc") = "" 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+            'Row("AppointmentDesc") = "" 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
 
             DtPet.Rows.Add(Row)
 
-            With BtnDeletePet
-                .HeaderText = "Delete"
-                .Text = "Delete"
-                .Name = "BtnDeletePet"
-                .UseColumnTextForButtonValue = True
-                .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                .DisplayIndex = 0
-            End With
+            If DtPet.Rows.Count > 0 Then
 
-            With DgvSelectedPet
+                With DgvSelectedPet
 
-                If .Rows.Count = 0 Then
-                    .DataSource = Nothing
-                    .Columns.Add(BtnDeletePet)
-                End If
+                    If .Rows.Count > 0 Then
+                        .Rows.Clear()
+                    End If
 
-                .DataSource = DtPet
-                .Columns("CustomerID").Visible = False
-                .Columns("CustomerName").Visible = False
-                .Columns("AnimalTypeCode").Visible = False
-                .Columns("BreedCode").Visible = False
-                .Columns("SexCode").Visible = False
-                .Columns("StatusCode").Visible = False
-                .Show()
+                    For i As Integer = 0 To DtPet.Rows.Count - 1
 
-            End With
+                        .Rows.Add()
+                        .Rows(i).Cells("SelectedPetID").Value = DtPet.Rows(i).Item("PetID")
+                        .Rows(i).Cells("SelectedPetName").Value = DtPet.Rows(i).Item("PetName")
+                        .Rows(i).Cells("SelectedPetDOB").Value = DtPet.Rows(i).Item("PetDOB")
+                        .Rows(i).Cells("SelectedAnimalTypeCode").Value = DtPet.Rows(i).Item("AnimalTypeCode")
+                        .Rows(i).Cells("SelectedAnimalTypeName").Value = DtPet.Rows(i).Item("AnimalTypeName")
+                        .Rows(i).Cells("SelectedBreedCode").Value = DtPet.Rows(i).Item("BreedCode")
+                        .Rows(i).Cells("SelectedBreedName").Value = DtPet.Rows(i).Item("BreedName")
+                        .Rows(i).Cells("SelectedSexCode").Value = DtPet.Rows(i).Item("SexCode")
+                        .Rows(i).Cells("SelectedSexName").Value = DtPet.Rows(i).Item("SexName")
+                        .Rows(i).Cells("SelectedStatusCode").Value = DtPet.Rows(i).Item("StatusCode")
+                        .Rows(i).Cells("SelectedStatusName").Value = DtPet.Rows(i).Item("StatusName")
+                        .Rows(i).Cells("IsDb").Value = "0"
+
+                    Next
+
+                End With
+
+                TcAppointmentInformation.SelectTab("TpAppointmentInformation")
+
+            End If
+
+            'With BtnDeletePet
+            '    .HeaderText = "Delete"
+            '    .Text = "Delete"
+            '    .Name = "BtnDeletePet"
+            '    .UseColumnTextForButtonValue = True
+            '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            '    .DisplayIndex = 0
+            'End With
+
+            'With DgvSelectedPet
+
+            '    If .Rows.Count = 0 Then
+            '        .DataSource = Nothing
+            '        .Columns.Add(BtnDeletePet)
+            '    End If
+
+            '    .DataSource = DtPet
+            '    .Columns("CustomerID").Visible = False
+            '    .Columns("CustomerName").Visible = False
+            '    .Columns("AnimalTypeCode").Visible = False
+            '    .Columns("BreedCode").Visible = False
+            '    .Columns("SexCode").Visible = False
+            '    .Columns("StatusCode").Visible = False
+            '    .Show()
+
+            'End With
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddPetToDGV()")

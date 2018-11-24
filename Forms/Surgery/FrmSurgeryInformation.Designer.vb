@@ -100,6 +100,7 @@ Partial Class FrmSurgeryInformation
         Me.DtpVisitDate = New System.Windows.Forms.DateTimePicker()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox26 = New System.Windows.Forms.GroupBox()
+        Me.BtnCreateNewEvaluation = New System.Windows.Forms.Button()
         Me.TxtEvaluationDate = New System.Windows.Forms.TextBox()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
         Me.TxtSurgeon = New System.Windows.Forms.TextBox()
@@ -225,10 +226,10 @@ Partial Class FrmSurgeryInformation
         Me.Label44 = New System.Windows.Forms.Label()
         Me.TxtSurgeryTotalPrice = New System.Windows.Forms.TextBox()
         Me.GroupBox27 = New System.Windows.Forms.GroupBox()
-        Me.RbIsSurgeryOnGoing = New System.Windows.Forms.RadioButton()
-        Me.RbIsSurgeryCancelled = New System.Windows.Forms.RadioButton()
-        Me.RbIsSurgeryDelayed = New System.Windows.Forms.RadioButton()
-        Me.RbIsSurgeryCompleted = New System.Windows.Forms.RadioButton()
+        Me.CbIsCancelled = New System.Windows.Forms.CheckBox()
+        Me.CbIsOnGoing = New System.Windows.Forms.CheckBox()
+        Me.CbIsDelayed = New System.Windows.Forms.CheckBox()
+        Me.CbIsCompleted = New System.Windows.Forms.CheckBox()
         Me.GroupBox25 = New System.Windows.Forms.GroupBox()
         Me.CbHasReviewDate = New System.Windows.Forms.CheckBox()
         Me.DtpReviewDate = New System.Windows.Forms.DateTimePicker()
@@ -292,7 +293,7 @@ Partial Class FrmSurgeryInformation
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(1177, 73)
+        Me.PnlActionBar.Size = New System.Drawing.Size(1177, 68)
         Me.PnlActionBar.TabIndex = 86
         '
         'Label25
@@ -300,7 +301,7 @@ Partial Class FrmSurgeryInformation
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 19)
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(253, 32)
         Me.Label25.TabIndex = 14
@@ -311,7 +312,7 @@ Partial Class FrmSurgeryInformation
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(806, 6)
+        Me.BtnSearch.Location = New System.Drawing.Point(806, 4)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(60, 60)
         Me.BtnSearch.TabIndex = 5
@@ -322,7 +323,7 @@ Partial Class FrmSurgeryInformation
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(867, 6)
+        Me.BtnPrint.Location = New System.Drawing.Point(867, 4)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 60)
         Me.BtnPrint.TabIndex = 4
@@ -333,7 +334,7 @@ Partial Class FrmSurgeryInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1111, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(1111, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
@@ -344,7 +345,7 @@ Partial Class FrmSurgeryInformation
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(989, 6)
+        Me.BtnCancel.Location = New System.Drawing.Point(989, 4)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(60, 60)
         Me.BtnCancel.TabIndex = 2
@@ -355,7 +356,7 @@ Partial Class FrmSurgeryInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(1050, 6)
+        Me.BtnEdit.Location = New System.Drawing.Point(1050, 4)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 60)
         Me.BtnEdit.TabIndex = 1
@@ -366,7 +367,7 @@ Partial Class FrmSurgeryInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(928, 6)
+        Me.BtnSave.Location = New System.Drawing.Point(928, 4)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 60)
         Me.BtnSave.TabIndex = 0
@@ -1028,6 +1029,7 @@ Partial Class FrmSurgeryInformation
         '
         'GroupBox26
         '
+        Me.GroupBox26.Controls.Add(Me.BtnCreateNewEvaluation)
         Me.GroupBox26.Controls.Add(Me.TxtEvaluationDate)
         Me.GroupBox26.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox26.Name = "GroupBox26"
@@ -1036,11 +1038,20 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox26.TabStop = False
         Me.GroupBox26.Text = "Date of Evaluation"
         '
+        'BtnCreateNewEvaluation
+        '
+        Me.BtnCreateNewEvaluation.Location = New System.Drawing.Point(6, 20)
+        Me.BtnCreateNewEvaluation.Name = "BtnCreateNewEvaluation"
+        Me.BtnCreateNewEvaluation.Size = New System.Drawing.Size(96, 23)
+        Me.BtnCreateNewEvaluation.TabIndex = 90
+        Me.BtnCreateNewEvaluation.Text = "New..."
+        Me.BtnCreateNewEvaluation.UseVisualStyleBackColor = True
+        '
         'TxtEvaluationDate
         '
         Me.TxtEvaluationDate.BackColor = System.Drawing.Color.White
         Me.TxtEvaluationDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEvaluationDate.Location = New System.Drawing.Point(6, 21)
+        Me.TxtEvaluationDate.Location = New System.Drawing.Point(107, 22)
         Me.TxtEvaluationDate.Name = "TxtEvaluationDate"
         Me.TxtEvaluationDate.ReadOnly = True
         Me.TxtEvaluationDate.Size = New System.Drawing.Size(114, 20)
@@ -2030,7 +2041,7 @@ Partial Class FrmSurgeryInformation
         Me.SurgeryRowNo.HeaderText = "No."
         Me.SurgeryRowNo.Name = "SurgeryRowNo"
         Me.SurgeryRowNo.ReadOnly = True
-        Me.SurgeryRowNo.Width = 48
+        Me.SurgeryRowNo.Visible = False
         '
         'SurgeryItemCode
         '
@@ -2274,10 +2285,10 @@ Partial Class FrmSurgeryInformation
         '
         'GroupBox27
         '
-        Me.GroupBox27.Controls.Add(Me.RbIsSurgeryOnGoing)
-        Me.GroupBox27.Controls.Add(Me.RbIsSurgeryCancelled)
-        Me.GroupBox27.Controls.Add(Me.RbIsSurgeryDelayed)
-        Me.GroupBox27.Controls.Add(Me.RbIsSurgeryCompleted)
+        Me.GroupBox27.Controls.Add(Me.CbIsCancelled)
+        Me.GroupBox27.Controls.Add(Me.CbIsOnGoing)
+        Me.GroupBox27.Controls.Add(Me.CbIsDelayed)
+        Me.GroupBox27.Controls.Add(Me.CbIsCompleted)
         Me.GroupBox27.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox27.Name = "GroupBox27"
         Me.GroupBox27.Size = New System.Drawing.Size(213, 86)
@@ -2285,55 +2296,53 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox27.TabStop = False
         Me.GroupBox27.Text = "Surgery Status"
         '
-        'RbIsSurgeryOnGoing
+        'CbIsCancelled
         '
-        Me.RbIsSurgeryOnGoing.AutoSize = True
-        Me.RbIsSurgeryOnGoing.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbIsSurgeryOnGoing.ForeColor = System.Drawing.Color.Blue
-        Me.RbIsSurgeryOnGoing.Location = New System.Drawing.Point(20, 52)
-        Me.RbIsSurgeryOnGoing.Name = "RbIsSurgeryOnGoing"
-        Me.RbIsSurgeryOnGoing.Size = New System.Drawing.Size(76, 18)
-        Me.RbIsSurgeryOnGoing.TabIndex = 42
-        Me.RbIsSurgeryOnGoing.Text = "On-Going"
-        Me.RbIsSurgeryOnGoing.UseVisualStyleBackColor = True
+        Me.CbIsCancelled.AutoSize = True
+        Me.CbIsCancelled.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbIsCancelled.ForeColor = System.Drawing.Color.Red
+        Me.CbIsCancelled.Location = New System.Drawing.Point(120, 51)
+        Me.CbIsCancelled.Name = "CbIsCancelled"
+        Me.CbIsCancelled.Size = New System.Drawing.Size(80, 18)
+        Me.CbIsCancelled.TabIndex = 197
+        Me.CbIsCancelled.Text = "Cancelled"
+        Me.CbIsCancelled.UseVisualStyleBackColor = True
         '
-        'RbIsSurgeryCancelled
+        'CbIsOnGoing
         '
-        Me.RbIsSurgeryCancelled.AutoSize = True
-        Me.RbIsSurgeryCancelled.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbIsSurgeryCancelled.ForeColor = System.Drawing.Color.Red
-        Me.RbIsSurgeryCancelled.Location = New System.Drawing.Point(112, 28)
-        Me.RbIsSurgeryCancelled.Name = "RbIsSurgeryCancelled"
-        Me.RbIsSurgeryCancelled.Size = New System.Drawing.Size(79, 18)
-        Me.RbIsSurgeryCancelled.TabIndex = 2
-        Me.RbIsSurgeryCancelled.Text = "Cancelled"
-        Me.RbIsSurgeryCancelled.UseVisualStyleBackColor = True
+        Me.CbIsOnGoing.AutoSize = True
+        Me.CbIsOnGoing.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbIsOnGoing.ForeColor = System.Drawing.Color.Blue
+        Me.CbIsOnGoing.Location = New System.Drawing.Point(120, 27)
+        Me.CbIsOnGoing.Name = "CbIsOnGoing"
+        Me.CbIsOnGoing.Size = New System.Drawing.Size(77, 18)
+        Me.CbIsOnGoing.TabIndex = 87
+        Me.CbIsOnGoing.Text = "On-Going"
+        Me.CbIsOnGoing.UseVisualStyleBackColor = True
         '
-        'RbIsSurgeryDelayed
+        'CbIsDelayed
         '
-        Me.RbIsSurgeryDelayed.AutoSize = True
-        Me.RbIsSurgeryDelayed.Checked = True
-        Me.RbIsSurgeryDelayed.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbIsSurgeryDelayed.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.RbIsSurgeryDelayed.Location = New System.Drawing.Point(112, 52)
-        Me.RbIsSurgeryDelayed.Name = "RbIsSurgeryDelayed"
-        Me.RbIsSurgeryDelayed.Size = New System.Drawing.Size(68, 18)
-        Me.RbIsSurgeryDelayed.TabIndex = 1
-        Me.RbIsSurgeryDelayed.TabStop = True
-        Me.RbIsSurgeryDelayed.Text = "Delayed"
-        Me.RbIsSurgeryDelayed.UseVisualStyleBackColor = True
+        Me.CbIsDelayed.AutoSize = True
+        Me.CbIsDelayed.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbIsDelayed.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.CbIsDelayed.Location = New System.Drawing.Point(23, 51)
+        Me.CbIsDelayed.Name = "CbIsDelayed"
+        Me.CbIsDelayed.Size = New System.Drawing.Size(69, 18)
+        Me.CbIsDelayed.TabIndex = 86
+        Me.CbIsDelayed.Text = "Delayed"
+        Me.CbIsDelayed.UseVisualStyleBackColor = True
         '
-        'RbIsSurgeryCompleted
+        'CbIsCompleted
         '
-        Me.RbIsSurgeryCompleted.AutoSize = True
-        Me.RbIsSurgeryCompleted.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbIsSurgeryCompleted.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.RbIsSurgeryCompleted.Location = New System.Drawing.Point(20, 28)
-        Me.RbIsSurgeryCompleted.Name = "RbIsSurgeryCompleted"
-        Me.RbIsSurgeryCompleted.Size = New System.Drawing.Size(86, 18)
-        Me.RbIsSurgeryCompleted.TabIndex = 0
-        Me.RbIsSurgeryCompleted.Text = "Completed"
-        Me.RbIsSurgeryCompleted.UseVisualStyleBackColor = True
+        Me.CbIsCompleted.AutoSize = True
+        Me.CbIsCompleted.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbIsCompleted.ForeColor = System.Drawing.Color.Green
+        Me.CbIsCompleted.Location = New System.Drawing.Point(23, 27)
+        Me.CbIsCompleted.Name = "CbIsCompleted"
+        Me.CbIsCompleted.Size = New System.Drawing.Size(87, 18)
+        Me.CbIsCompleted.TabIndex = 85
+        Me.CbIsCompleted.Text = "Completed"
+        Me.CbIsCompleted.UseVisualStyleBackColor = True
         '
         'GroupBox25
         '
@@ -2656,9 +2665,6 @@ Partial Class FrmSurgeryInformation
     Friend WithEvents GroupBox25 As GroupBox
     Friend WithEvents DtpReviewDate As DateTimePicker
     Friend WithEvents GroupBox27 As GroupBox
-    Friend WithEvents RbIsSurgeryCancelled As RadioButton
-    Friend WithEvents RbIsSurgeryDelayed As RadioButton
-    Friend WithEvents RbIsSurgeryCompleted As RadioButton
     Friend WithEvents CbHasReviewDate As CheckBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtMaterialPrescription As TextBox
@@ -2666,7 +2672,6 @@ Partial Class FrmSurgeryInformation
     Friend WithEvents TxtMaterialNotes As TextBox
     Friend WithEvents GroupBox26 As GroupBox
     Friend WithEvents TxtEvaluationDate As TextBox
-    Friend WithEvents RbIsSurgeryOnGoing As RadioButton
     Friend WithEvents GroupBox28 As GroupBox
     Friend WithEvents Label11 As Label
     Friend WithEvents TxtSurgeryPrescription As TextBox
@@ -2712,4 +2717,9 @@ Partial Class FrmSurgeryInformation
     Friend WithEvents SurgeryItemGroup As DataGridViewTextBoxColumn
     Friend WithEvents SurgeryItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents SurgeryItemTypeDescription As DataGridViewTextBoxColumn
+    Friend WithEvents CbIsCancelled As CheckBox
+    Friend WithEvents CbIsOnGoing As CheckBox
+    Friend WithEvents CbIsDelayed As CheckBox
+    Friend WithEvents CbIsCompleted As CheckBox
+    Friend WithEvents BtnCreateNewEvaluation As Button
 End Class

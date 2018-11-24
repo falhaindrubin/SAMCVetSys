@@ -139,17 +139,27 @@ Public Class FrmPaymentInformation
                                 End With
                             Next
 
-                            TxtCustomerName.Text = CStrNull(DtBill.Rows(0).Item("CustomerName"))
-                            TxtCustomerName.Tag = CStrNull(DtBill.Rows(0).Item("CustomerID"))
-                            TxtPetName.Text = CStrNull(DtBill.Rows(0).Item("PetName"))
-                            TxtPetName.Tag = CStrNull(DtBill.Rows(0).Item("PetID"))
                             TxtInvoiceNo.Text = DtBill.Rows(0).Item("InvoiceNo")
                             TxtVisitID.Text = DtBill.Rows(0).Item("VisitID")
-                            TxtGrossTotal.Text = DtBill.Rows(0).Item("GrossTotal")
+                            'TxtGrossTotal.Text = DtBill.Rows(0).Item("GrossTotal")
                             TxtDiscount.Text = DtBill.Rows(0).Item("Discount")
                             TxtGrandTotal.Text = DtBill.Rows(0).Item("GrandTotal")
                             TxtDeposit.Text = DtBill.Rows(0).Item("Deposit")
                             TxtTotalDue.Text = DtBill.Rows(0).Item("TotalDue")
+
+                            'Customer Information
+                            TxtCustomerName.Text = CStrNull(DtBill.Rows(0).Item("CustomerName"))
+                            TxtCustomerName.Tag = CStrNull(DtBill.Rows(0).Item("CustomerID"))
+                            TxtPetName.Text = CStrNull(DtBill.Rows(0).Item("PetName"))
+                            TxtPetName.Tag = CStrNull(DtBill.Rows(0).Item("PetID"))
+
+                            'Payment Status
+                            CbPaymentCompleted.Checked = IIf(DtBill.Rows(0).Item("IsPaymentComplete") = "1", True, False)
+
+                            'Payment Type
+                            CbCash.Checked = IIf(DtBill.Rows(0).Item("IsCash") = "1", True, False)
+                            CbDebitCreditCard.Checked = IIf(DtBill.Rows(0).Item("IsDebitCreditCard") = "1", True, False)
+                            CbCheque.Checked = IIf(DtBill.Rows(0).Item("IsCheque") = "1", True, False)
 
                             TxtCreatedBy.Text = DtBill.Rows(0).Item("CreatedBy")
                             TxtDateCreated.Text = DtBill.Rows(0).Item("DateCreated")
@@ -313,15 +323,34 @@ Public Class FrmPaymentInformation
                     Else
 
                         With DgvBillListing
-                            For Each Row As DataGridViewRow In .SelectedRows
-                                .Rows.Remove(Row)
-                                'Delete items from database if invoice is already generated
-                                If TxtInvoiceNo.Text <> "" Then
-                                    If Not DeleteBillItems(.Rows(e.RowIndex).Cells("RowNo").Value, TxtInvoiceNo.Text) Then
-                                        MsgBox("Failed to delete bill's items(s). Please try again.", MsgBoxStyle.Critical, "Delete Bill Item(s)")
-                                    End If
+
+                            Dim RowIndex As Integer = .Rows(e.RowIndex).Cells("RowNo").Value
+
+                            .Rows.RemoveAt(e.RowIndex)
+
+                            If TxtInvoiceNo.Text <> "" Then
+
+                                If Not DeleteBillItems(RowIndex, TxtInvoiceNo.Text) Then
+                                    MsgBox("Failed to delete bill's items(s). Please try again.", MsgBoxStyle.Critical, "Delete Bill Item(s)")
                                 End If
-                            Next
+
+                            End If
+
+
+                            'For Each Row As DataGridViewRow In .SelectedRows
+
+                            '    'Delete items from database if invoice is already generated
+                            '    If TxtInvoiceNo.Text <> "" Then
+                            '        Dim a As Integer = .Rows(e.RowIndex).Cells("RowNo").Value
+
+                            '        If Not DeleteBillItems(.Rows(e.RowIndex).Cells("RowNo").Value, TxtInvoiceNo.Text) Then
+                            '            MsgBox("Failed to delete bill's items(s). Please try again.", MsgBoxStyle.Critical, "Delete Bill Item(s)")
+                            '        End If
+
+                            '        .Rows.Remove(Row)
+
+                            '    End If
+                            'Next
 
                             'Re-populate bill items
                             PopulateForm("SHOW_BILLING_INFO")
@@ -369,19 +398,51 @@ Public Class FrmPaymentInformation
             End If
 
             'Update RowNo in billing items
+            Dim GrandTotal As Decimal
+            Dim Deposit As Decimal
+            Dim Discount As Decimal
+
             For i As Integer = 0 To DgvBillListing.Rows.Count - 1
+
                 With ClsBillDetail
                     .InvoiceNo = InvoiceNo
                     .RowNo = DgvBillListing.Rows(i).Cells("RowNo").Value
                     .NewRowNo = i + 1
+
+                    If Not ClsBillDetail.UpdateBillRowNo(ClsBillDetail, DbConn, DbTrans) Then
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
                 End With
-                If Not ClsBillDetail.UpdateBillRowNo(ClsBillDetail, DbConn, DbTrans) Then
+
+                'Recalculate billing amount
+                GrandTotal = GrandTotal + DgvBillListing.Rows(i).Cells("TotalPrice").Value
+
+            Next
+
+            Deposit = TxtDeposit.Text
+            Discount = TxtDiscount.Text
+
+            'Update grand total amount in the database
+            With ClsBill
+                .InvoiceNo = InvoiceNo
+                .GrandTotal = GrandTotal
+                .Deposit = Deposit
+                .Discount = Discount
+                .TotalDue = (GrandTotal - Deposit) - Discount
+
+                If Not .UpdateBillingAmount(ClsBill, DbConn, DbTrans) Then
                     DbTrans.Rollback()
                     DbTrans.Dispose()
                     DbTrans = Nothing
                     Return False
                 End If
-            Next
+            End With
+
+            'TxtGrandTotal.Text = FormatNumber(GrandTotal, 2)
 
             DbTrans.Commit()
             DbTrans.Dispose()
@@ -596,6 +657,14 @@ Public Class FrmPaymentInformation
         Dim ClsBillDetail As New ClsBillDetail
 
         Try
+            'Get customer information
+            Dim DtCustomer As New DataTable
+            Dim ClsCustomer As New ClsCustomer
+            With ClsCustomer
+                .CustomerID = CustomerID
+                DtCustomer = .GetCustomerInformation(ClsCustomer)
+            End With
+
             'Create Invoice No.
             If DbTrans IsNot Nothing Then
                 DbTrans = Nothing
@@ -649,16 +718,21 @@ Public Class FrmPaymentInformation
                     .InvoiceDate = IIf(InvoiceDate <> Nothing, InvoiceDate, Now) 'Now
                     .CustomerID = TxtCustomerName.Tag 'CustomerID
                     .CustomerName = TxtCustomerName.Text 'CustomerName
+                    .MobileNo = DtCustomer.Rows(0).Item("MobileNo")
+                    .Email = DtCustomer.Rows(0).Item("Email")
                     .PetID = TxtPetName.Tag
                     .PetName = TxtPetName.Text
-                    .GrossTotal = CDec(TxtGrossTotal.Text)
-                    .Discount = CDec(TxtDiscount.Text)
                     .GrandTotal = CDec(TxtGrandTotal.Text)
                     .Deposit = CDec(TxtDeposit.Text)
+                    '.GrossTotal = CDec(TxtGrossTotal.Text)
+                    .Discount = CDec(TxtDiscount.Text)
                     .TotalDue = CDec(TxtTotalDue.Text)
                     .IsPaymentComplete = IIf(CbPaymentCompleted.Checked = True, "1", "0")
+                    .IsCash = IIf(CbCash.Checked = True, "1", "0")
+                    .IsDebitCreditCard = IIf(CbDebitCreditCard.Checked = True, "1", "0")
+                    .IsCheque = IIf(CbCheque.Checked = True, "1", "0")
                     .Ref.CreatedBy = CURR_USER
-                    .Ref.DateCreated = IIf(TxtDateCreated.Text <> "", CDate(TxtDateCreated.Text), Now) 'Now
+                    .Ref.DateCreated = IIf(TxtDateCreated.Text <> "", TxtDateCreated.Text, Now)
                     .Ref.ModifiedBy = CURR_USER
                     .Ref.DateModified = Now
                 End With
@@ -683,7 +757,7 @@ Public Class FrmPaymentInformation
                         .ItemGroup = CStrNull(DgvBillListing.Rows(i).Cells("ItemGroupDgv").Value)
                         .ItemTypeDescription = CStrNull(DgvBillListing.Rows(i).Cells("ItemTypeDescriptionDgv").Value)
                         .ItemTypeCode = CStrNull(IIf(DgvBillListing.Rows(i).Cells("ItemGroupDgv").Value = "SVC",
-                                                     DgvBillListing.Rows(i).Cells("ItemCodeDgv").Value.ToString.Substring(0, 2),
+                                                     DgvBillListing.Rows(i).Cells("ItemCodeDgv").Value.ToString.Substring(0, 3),
                                                      DgvBillListing.Rows(i).Cells("ItemCodeDgv").Value.ToString.Substring(0, 4)))
                         .Prescription = CStrNull(DgvBillListing.Rows(i).Cells("Prescription").Value)
                         .Notes = CStrNull(DgvBillListing.Rows(i).Cells("Notes").Value)
@@ -916,8 +990,15 @@ Public Class FrmPaymentInformation
             Dim DtWard As New DataTable
             Dim ClsWard As New ClsWard
             With ClsWard
-                .VisitID = ""
-                DtWard = .GetWardDetail(ClsWard)
+                'VisitID = ""
+                'If wardid <> "" Then
+                '    .WardID = wardID
+                'Else
+                '    .VisitID = VisitID
+                'End If
+                .VisitID = VisitID
+                'DtWard = .GetWardDetail(ClsWard)
+                DtWard = .GetWard(ClsWard)
 
                 If DtWard.Rows.Count > 0 Then
 
@@ -925,7 +1006,7 @@ Public Class FrmPaymentInformation
 
                         'Check rate of hospitalization selected; check by ItemTypeCode
                         For i As Integer = 0 To DtBill.Rows.Count - 1
-                            If DtBill.Rows(i).Item("ItemTypeCode") = "11" Then
+                            If DtBill.Rows(i).Item("ItemTypeCode") = "100" Then
                                 'Set Quantity in bill for hospitalization from WardDuration 
                                 DtBill.Rows(i).Item("Quantity") = FormatNumber(DtWard.Rows(0).Item("WardDuration"), 2)
                                 DtBill.Rows(i).Item("TotalPrice") = FormatNumber(DtBill.Rows(i).Item("UnitPrice") * DtBill.Rows(i).Item("Quantity"), 2)

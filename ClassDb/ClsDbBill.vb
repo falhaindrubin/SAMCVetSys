@@ -16,15 +16,18 @@ Public Class ClsDbBill
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_billing ")
-                .Append("(InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, PetID, PetName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
+                .Append("(InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, MobileNo, Email, PetID, PetName, ")
+                .Append("GrandTotal, Deposit, Discount, TotalDue, IsPaymentComplete, IsCash, IsDebitCreditCard, IsCheque, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & BL.InvoiceNo & "', '" & BL.VisitID & "', " & CSQLDate(BL.InvoiceDate) & ", '" & BL.CustomerID & "', '" & BL.CustomerName & "', '" & BL.PetID & "', '" & BL.PetName & "', ")
-                .Append("'" & BL.GrossTotal & "', '" & BL.Discount & "', ")
-                .Append("'" & BL.GrandTotal & "', '" & BL.Deposit & "', '" & BL.TotalDue & "', '" & BL.IsPaymentComplete & "', ")
+                .Append("('" & BL.InvoiceNo & "', '" & BL.VisitID & "', " & CSQLDate(BL.InvoiceDate) & ", '" & BL.CustomerID & "', '" & BL.CustomerName & "', '" & BL.MobileNo & "', '" & BL.Email & "', '" & BL.PetID & "', '" & BL.PetName & "', ")
+                .Append("'" & BL.GrandTotal & "', '" & BL.Deposit & "', '" & BL.Discount & "', '" & BL.TotalDue & "', ")
+                .Append("'" & BL.IsPaymentComplete & "', '" & BL.IsCash & "', '" & BL.IsDebitCreditCard & "', '" & BL.IsCheque & "', ")
                 .Append("'" & BL.Ref.CreatedBy & "', " & CSQLDateTime(BL.Ref.DateCreated) & ", '" & BL.Ref.ModifiedBy & "', " & CSQLDateTime(BL.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("GrossTotal = '" & BL.GrossTotal & "', Discount = '" & BL.Discount & "', GrandTotal = '" & BL.GrandTotal & "', Deposit = '" & BL.Deposit & "', TotalDue = '" & BL.TotalDue & "', ")
+                .Append("GrandTotal = '" & BL.GrandTotal & "', Deposit = '" & BL.Deposit & "', Discount = '" & BL.Discount & "', TotalDue = '" & BL.TotalDue & "', ")
+                .Append("IsPaymentComplete = '" & BL.IsPaymentComplete & "', ")
+                .Append("IsCash = '" & BL.IsCash & "', IsDebitCreditCard = '" & BL.IsDebitCreditCard & "', IsCheque = '" & BL.IsCheque & "', ")
                 .Append("ModifiedBy = '" & BL.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(BL.Ref.DateModified) & " ")
             End With
 
@@ -106,7 +109,9 @@ Public Class ClsDbBill
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, PetID, PetName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, CreatedBy, DateCreated, ModifiedBy, DateModified, ")
+                .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, PetID, PetName, Discount, GrandTotal, Deposit, TotalDue, ")
+                .Append("IsPaymentComplete, IsCash, IsDebitCreditCard, IsCheque, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified, ")
                 .Append("RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice ")
                 .Append("FROM samc_billing a ")
                 .Append("INNER JOIN samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
@@ -178,11 +183,11 @@ Public Class ClsDbBill
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
+                .Append("SELECT a.InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_billing a ")
                 .Append("INNER Join samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
-                .Append("WHERE IsPaymentComplete = '0' ")
+                '.Append("WHERE IsPaymentComplete = '0' ")
                 .Append("GROUP BY a.InvoiceNo ")
             End With
 
@@ -205,7 +210,7 @@ Public Class ClsDbBill
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, GrossTotal, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
+                .Append("SELECT InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, Discount, GrandTotal, Deposit, TotalDue, IsPaymentComplete, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_billing ")
                 If B.VisitID <> "" Then
@@ -281,6 +286,28 @@ Public Class ClsDbBill
 
         Return True
         'Return IIf(Ret = 0, False, True)
+
+    End Function
+
+    Public Function UpdateBillingAmount(B As ClsBill, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("UPDATE samc_billing ")
+                .Append("SET GrandTotal = '" & B.GrandTotal & "', Deposit = '" & B.Deposit & "', Discount = '" & B.Discount & "', TotalDue = '" & B.TotalDue & "' ")
+                .Append("WHERE InvoiceNo = '" & B.InvoiceNo & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.UpdateBillingAmount()")
+            Return False
+        End Try
+
+        Return True
 
     End Function
 

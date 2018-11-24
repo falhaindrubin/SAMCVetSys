@@ -146,6 +146,10 @@
         Return DbWard.AddNewWard(ClsWard, DbConn, DbTrans)
     End Function
 
+    Public Function GetWard(ClsWard As ClsWard) As DataTable
+        Return DbWard.GetWard(ClsWard)
+    End Function
+
     Public Function GetWardDetail(ClsWard) As DataTable
         Return DbWard.GetWardDetail(ClsWard)
     End Function

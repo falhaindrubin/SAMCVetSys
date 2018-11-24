@@ -285,43 +285,6 @@
 
                             End With
 
-                            'With BtnEdit
-                            '    .HeaderText = "Edit"
-                            '    .Text = "Edit"
-                            '    .Name = "BtnEdit"
-                            '    .UseColumnTextForButtonValue = True
-                            '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                            '    .DisplayIndex = 0
-                            'End With
-
-                            'With BtnDelete
-                            '    .HeaderText = "Delete"
-                            '    .Text = "Delete"
-                            '    .Name = "BtnDelete"
-                            '    .UseColumnTextForButtonValue = True
-                            '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                            '    .DisplayIndex = 1
-                            'End With
-
-                            ''Add IsDB indicator here
-                            'With DtPet
-                            '    .Columns.Add("IsDB", GetType(String))
-                            '    .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
-                            'End With
-
-                            'For i As Integer = 0 To DtPet.Rows.Count - 1
-                            '    DtPet.Rows(i).Item("IsDb") = "1"
-                            '    DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
-                            'Next
-
-                            'With DgvPetListing
-                            '    .Columns.Add(BtnEdit)
-                            '    .Columns.Add(BtnDelete)
-                            '    .DataSource = DtPet
-                            '    .Columns("IsDB").Visible = False
-                            '    .Show()
-                            'End With
-
                         End If
 
                         'Show previous visits
@@ -331,6 +294,10 @@
                             .CustomerID = CustomerID
                             DtVisit = .GetVisitListing(ClsVisit)
                             If DtVisit.Rows.Count > 0 Then
+
+                                If DgvVisitHistory.Rows.Count > 0 Then
+                                    DgvVisitHistory.Rows.Clear()
+                                End If
 
                                 For i As Integer = 0 To DtVisit.Rows.Count - 1
                                     With DgvVisitHistory

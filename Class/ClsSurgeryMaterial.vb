@@ -12,6 +12,36 @@
         End Set
     End Property
 
+    Private _SurgeryDate As Date
+    Public Property SurgeryDate As Date
+        Get
+            Return _SurgeryDate
+        End Get
+        Set(value As Date)
+            _SurgeryDate = value
+        End Set
+    End Property
+
+    Private _EmployeeID As String
+    Public Property EmployeeID As String
+        Get
+            Return _EmployeeID
+        End Get
+        Set(value As String)
+            _EmployeeID = value
+        End Set
+    End Property
+
+    Private _EmployeeName As String
+    Public Property EmployeeName As String
+        Get
+            Return _EmployeeName
+        End Get
+        Set(value As String)
+            _EmployeeName = value
+        End Set
+    End Property
+
     Private _RowNo As String
     Public Property RowNo As String
         Get

@@ -178,6 +178,36 @@ Public Class ClsDbWard
 
     End Function
 
+    Public Function GetWard(W As ClsWard) As DataTable
+
+        Dim DtWard As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT WardID, VisitID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, WardDuration, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_ward ")
+                .Append("WHERE ")
+                If W.WardID <> "" Then
+                    .Append("WardID = '" & W.WardID & "' ")
+                ElseIf W.VisitID <> "" Then
+                    .Append("VisitID = '" & W.VisitID & "' ")
+                End If
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtWard)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbWard.GetWard()")
+        End Try
+
+        Return DtWard
+
+    End Function
+
     Public Function GetWardDetail(W As ClsWard) As DataTable
 
         Dim DtWard As New DataTable
@@ -198,7 +228,7 @@ Public Class ClsDbWard
                 .Append("INNER JOIN samc_warddetail b ON a.WardID = b.WardID ")
                 If W.WardID <> "" Then
                     .Append("WHERE a.WardID = '" & W.WardID & "' ")
-                    If W.WardDate <> Nothing Then
+                If W.WardDate <> Nothing Then
                         .Append("AND WardDate = " & CSQLDate(W.WardDate) & " ")
                     End If
 
@@ -230,24 +260,29 @@ Public Class ClsDbWard
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.WardID, VisitID, PetID, PetName, Diagnosis, a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified, ")
-                .Append("WardDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice ")
-                .Append("FROM samc_ward_diagnosis a ")
-                .Append("LEFT JOIN samc_ward_diagnosisdetail b ON a.WardID = b.WardID ")
-
                 If D.WardID <> "" Then
-                    .Append("WHERE a.WardID = '" & D.WardID & "' ")
-                    If D.WardDate <> Nothing Then
-                        .Append("AND WardDate = " & CSQLDate(D.WardDate) & " ")
+
+                    .Append("SELECT a.WardID, VisitID, PetID, PetName, Diagnosis, a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified, ")
+                    .Append("WardDate, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice ")
+                    .Append("FROM samc_ward_diagnosis a ")
+                    .Append("LEFT JOIN samc_ward_diagnosisdetail b ON a.WardID = b.WardID ")
+
+                    If D.WardID <> "" Then
+                        .Append("WHERE a.WardID = '" & D.WardID & "' ")
+                        If D.WardDate <> Nothing Then
+                            .Append("AND WardDate = " & CSQLDate(D.WardDate) & " ")
+                        End If
                     End If
+
+                    .Append("GROUP BY RowNo ")
+
+                    Cmd = New OdbcCommand(Sb.ToString, DbConn)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtWardDiagnosisDetail)
+
                 End If
 
-                .Append("GROUP BY RowNo ")
             End With
-
-            Cmd = New OdbcCommand(Sb.ToString, DbConn)
-            Da = New OdbcDataAdapter(Cmd)
-            Da.Fill(DtWardDiagnosisDetail)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbWard.GetWardDiagnosisDetail()")

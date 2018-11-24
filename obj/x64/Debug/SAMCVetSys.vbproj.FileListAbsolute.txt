@@ -174,13 +174,10 @@ E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.xml
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.pdb
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.vbprojAssemblyReference.cache
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmEmployeeRecords.resources
-E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmEmployeeEntry.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmPaymentRecords.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchCustomer.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchItem.resources
-E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmVisitReport.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmVisitRecords.resources
-E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmPaymentInvoice.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmTreatmentRecords.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchVisit.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmWardRecords.resources
@@ -196,3 +193,7 @@ E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSurgeryI
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSurgeryRecords.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmItemInformation.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmItemRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmEmployeeInformation.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmUserInformation.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmUserRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchEmployee.resources

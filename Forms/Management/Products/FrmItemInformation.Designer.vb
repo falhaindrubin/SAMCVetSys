@@ -48,6 +48,7 @@ Partial Class FrmItemInformation
         Me.TxtDateCreated = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.GroupBox2.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -70,7 +71,7 @@ Partial Class FrmItemInformation
         Me.GroupBox2.Controls.Add(Me.TxtItemCode)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 90)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(389, 239)
+        Me.GroupBox2.Size = New System.Drawing.Size(539, 208)
         Me.GroupBox2.TabIndex = 75
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Services/Products Information"
@@ -80,7 +81,7 @@ Partial Class FrmItemInformation
         Me.CmbItemTypeCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbItemTypeCode.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CmbItemTypeCode.FormattingEnabled = True
-        Me.CmbItemTypeCode.Location = New System.Drawing.Point(92, 67)
+        Me.CmbItemTypeCode.Location = New System.Drawing.Point(92, 50)
         Me.CmbItemTypeCode.Name = "CmbItemTypeCode"
         Me.CmbItemTypeCode.Size = New System.Drawing.Size(277, 22)
         Me.CmbItemTypeCode.TabIndex = 16
@@ -89,7 +90,7 @@ Partial Class FrmItemInformation
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(7, 71)
+        Me.Label4.Location = New System.Drawing.Point(7, 54)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(52, 14)
         Me.Label4.TabIndex = 15
@@ -98,7 +99,7 @@ Partial Class FrmItemInformation
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(92, 198)
+        Me.CheckBox1.Location = New System.Drawing.Point(92, 181)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(85, 18)
         Me.CheckBox1.TabIndex = 14
@@ -109,7 +110,7 @@ Partial Class FrmItemInformation
         'RbProducts
         '
         Me.RbProducts.AutoSize = True
-        Me.RbProducts.Location = New System.Drawing.Point(167, 37)
+        Me.RbProducts.Location = New System.Drawing.Point(167, 27)
         Me.RbProducts.Name = "RbProducts"
         Me.RbProducts.Size = New System.Drawing.Size(68, 18)
         Me.RbProducts.TabIndex = 13
@@ -121,7 +122,7 @@ Partial Class FrmItemInformation
         '
         Me.RbServices.AutoSize = True
         Me.RbServices.Checked = True
-        Me.RbServices.Location = New System.Drawing.Point(95, 37)
+        Me.RbServices.Location = New System.Drawing.Point(95, 27)
         Me.RbServices.Name = "RbServices"
         Me.RbServices.Size = New System.Drawing.Size(68, 18)
         Me.RbServices.TabIndex = 12
@@ -133,7 +134,7 @@ Partial Class FrmItemInformation
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(7, 171)
+        Me.Label3.Location = New System.Drawing.Point(7, 154)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(31, 14)
         Me.Label3.TabIndex = 11
@@ -143,7 +144,7 @@ Partial Class FrmItemInformation
         '
         Me.TxtUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtUnitPrice.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtUnitPrice.Location = New System.Drawing.Point(92, 166)
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(92, 149)
         Me.TxtUnitPrice.Name = "TxtUnitPrice"
         Me.TxtUnitPrice.Size = New System.Drawing.Size(87, 22)
         Me.TxtUnitPrice.TabIndex = 10
@@ -153,7 +154,7 @@ Partial Class FrmItemInformation
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(7, 118)
+        Me.Label2.Location = New System.Drawing.Point(7, 101)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(83, 14)
         Me.Label2.TabIndex = 9
@@ -163,7 +164,7 @@ Partial Class FrmItemInformation
         '
         Me.TxtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtItemDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtItemDescription.Location = New System.Drawing.Point(92, 113)
+        Me.TxtItemDescription.Location = New System.Drawing.Point(92, 96)
         Me.TxtItemDescription.Multiline = True
         Me.TxtItemDescription.Name = "TxtItemDescription"
         Me.TxtItemDescription.Size = New System.Drawing.Size(277, 52)
@@ -173,7 +174,7 @@ Partial Class FrmItemInformation
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(7, 94)
+        Me.Label1.Location = New System.Drawing.Point(7, 77)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(54, 14)
         Me.Label1.TabIndex = 7
@@ -184,7 +185,7 @@ Partial Class FrmItemInformation
         Me.TxtItemCode.BackColor = System.Drawing.Color.Beige
         Me.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtItemCode.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtItemCode.Location = New System.Drawing.Point(92, 90)
+        Me.TxtItemCode.Location = New System.Drawing.Point(92, 73)
         Me.TxtItemCode.Name = "TxtItemCode"
         Me.TxtItemCode.ReadOnly = True
         Me.TxtItemCode.Size = New System.Drawing.Size(277, 22)
@@ -193,6 +194,7 @@ Partial Class FrmItemInformation
         'PnlActionBar
         '
         Me.PnlActionBar.BackColor = System.Drawing.SystemColors.Control
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnAddNewItem)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Controls.Add(Me.BtnCancelEdit)
@@ -200,7 +202,7 @@ Partial Class FrmItemInformation
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(389, 68)
+        Me.PnlActionBar.Size = New System.Drawing.Size(539, 68)
         Me.PnlActionBar.TabIndex = 76
         '
         'BtnAddNewItem
@@ -208,9 +210,9 @@ Partial Class FrmItemInformation
         Me.BtnAddNewItem.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewItem.BackgroundImage = CType(resources.GetObject("BtnAddNewItem.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewItem.Location = New System.Drawing.Point(79, 6)
+        Me.BtnAddNewItem.Location = New System.Drawing.Point(230, 4)
         Me.BtnAddNewItem.Name = "BtnAddNewItem"
-        Me.BtnAddNewItem.Size = New System.Drawing.Size(60, 56)
+        Me.BtnAddNewItem.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewItem.TabIndex = 4
         Me.BtnAddNewItem.UseVisualStyleBackColor = False
         '
@@ -219,9 +221,9 @@ Partial Class FrmItemInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(323, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(474, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -230,9 +232,9 @@ Partial Class FrmItemInformation
         Me.BtnCancelEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancelEdit.BackgroundImage = CType(resources.GetObject("BtnCancelEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancelEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancelEdit.Location = New System.Drawing.Point(201, 6)
+        Me.BtnCancelEdit.Location = New System.Drawing.Point(352, 4)
         Me.BtnCancelEdit.Name = "BtnCancelEdit"
-        Me.BtnCancelEdit.Size = New System.Drawing.Size(60, 56)
+        Me.BtnCancelEdit.Size = New System.Drawing.Size(60, 60)
         Me.BtnCancelEdit.TabIndex = 2
         Me.BtnCancelEdit.UseVisualStyleBackColor = False
         '
@@ -241,9 +243,9 @@ Partial Class FrmItemInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(262, 6)
+        Me.BtnEdit.Location = New System.Drawing.Point(413, 4)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
+        Me.BtnEdit.Size = New System.Drawing.Size(60, 60)
         Me.BtnEdit.TabIndex = 1
         Me.BtnEdit.UseVisualStyleBackColor = False
         '
@@ -252,9 +254,9 @@ Partial Class FrmItemInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(140, 6)
+        Me.BtnSave.Location = New System.Drawing.Point(291, 4)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSave.Size = New System.Drawing.Size(60, 60)
         Me.BtnSave.TabIndex = 0
         Me.BtnSave.UseVisualStyleBackColor = False
         '
@@ -268,9 +270,9 @@ Partial Class FrmItemInformation
         Me.Panel3.Controls.Add(Me.Label18)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel3.Location = New System.Drawing.Point(12, 336)
+        Me.Panel3.Location = New System.Drawing.Point(12, 304)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(389, 61)
+        Me.Panel3.Size = New System.Drawing.Size(539, 62)
         Me.Panel3.TabIndex = 80
         '
         'TxtCreatedBy
@@ -331,11 +333,22 @@ Partial Class FrmItemInformation
         Me.TxtModifiedBy.Size = New System.Drawing.Size(65, 20)
         Me.TxtModifiedBy.TabIndex = 76
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(211, 32)
+        Me.Label25.TabIndex = 17
+        Me.Label25.Text = "Item Information"
+        '
         'FrmItemInformation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(413, 412)
+        Me.ClientSize = New System.Drawing.Size(563, 378)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox2)
@@ -346,6 +359,7 @@ Partial Class FrmItemInformation
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
@@ -377,4 +391,5 @@ Partial Class FrmItemInformation
     Friend WithEvents Label18 As Label
     Friend WithEvents TxtModifiedBy As TextBox
     Friend WithEvents BtnAddNewItem As Button
+    Friend WithEvents Label25 As Label
 End Class

@@ -63,8 +63,47 @@ Module ModMain
             'If CT, select alphabet prefix in database {A-Z}
 
             Select Case Prefix
+
+                'Generate EmployeeID
+                Case "EMP"
+
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+                        'Dim LastNo As Integer
+                        RunningNo = DtRunningNo.Rows(0).Item("LastNo") + 1
+
+                        If RunningNo.ToString.Length < 5 Then
+                            NewRunningNo = RunningNo.ToString.PadLeft(5, "0"c) 'DtRunningNo.Rows(0).Item("Prefix2") & "-" & RunningNo.ToString.PadLeft(5, "0"c)
+                        Else
+                            NewRunningNo = RunningNo.ToString 'DtRunningNo.Rows(0).Item("Prefix2") & "-" & RunningNo.ToString
+                        End If
+
+                        'Update EmployeeID
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+
+                    End If
+
                 'Generate invoice
                 Case "INV" '--INVOICE
+
                     Sb = New StringBuilder
                     With Sb
                         .Append("SELECT LastNo, Prefix2 ")

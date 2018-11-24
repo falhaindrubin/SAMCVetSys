@@ -667,20 +667,20 @@ Public Class FrmTreatmentInformation
             Next
 
             'Update status in samc_visi IsVisitCompleted and IsOngoingTreatment
-            With ClsVisit
-                .VisitID = Trim(TxtVisitID.Text)
-                .IsOngoingTreatment = "1"
-                .Ref.ModifiedBy = CURR_USER
-                .Ref.DateModified = Now
-            End With
+            'With ClsVisit
+            '    .VisitID = Trim(TxtVisitID.Text)
+            '    .IsOngoingTreatment = "1"
+            '    .Ref.ModifiedBy = CURR_USER
+            '    .Ref.DateModified = Now
+            'End With
 
-            If Not ClsVisit.UpdateTreatmentStatus(ClsVisit, DbConn, DbTrans) Then
-                MsgBox("Failed to add update treatment status.", MsgBoxStyle.Critical, "Update Treatment Status Error")
-                DbTrans.Rollback()
-                DbTrans.Dispose()
-                DbTrans = Nothing
-                Return False
-            End If
+            'If Not ClsVisit.UpdateTreatmentStatus(ClsVisit, DbConn, DbTrans) Then
+            '    MsgBox("Failed to add update treatment status.", MsgBoxStyle.Critical, "Update Treatment Status Error")
+            '    DbTrans.Rollback()
+            '    DbTrans.Dispose()
+            '    DbTrans = Nothing
+            '    Return False
+            'End If
 
             DbTrans.Commit()
             DbTrans.Dispose()

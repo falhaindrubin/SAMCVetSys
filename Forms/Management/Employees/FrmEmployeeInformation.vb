@@ -1,4 +1,6 @@
-﻿Public Class FrmEmployeeEntry
+﻿Imports SAMCVetSys.ModUtility
+
+Public Class FrmEmployeeInformation
 
     Private _UserCommand As String
     Public Property UserCommand As String
@@ -7,6 +9,16 @@
         End Get
         Set(value As String)
             _UserCommand = value
+        End Set
+    End Property
+
+    Private _EmployeeID As String
+    Public Property EmployeeID As String
+        Get
+            Return _EmployeeID
+        End Get
+        Set(value As String)
+            _EmployeeID = value
         End Set
     End Property
 
@@ -23,35 +35,95 @@
 
     Private Sub PopulateForm(UserCommand)
 
+        Try
+            Dim DtEmployee As New DataTable
+            Dim ClsEmployee As New ClsEmployee
+
+            If EmployeeID <> "" Then
+
+                With ClsEmployee
+                    .EmployeeID = EmployeeID
+                    DtEmployee = .GetEmployee(ClsEmployee)
+
+                    If DtEmployee.Rows.Count > 0 Then
+
+                        'Employee information
+                        TxtEmployeeID.Text = DtEmployee.Rows(0).Item("EmployeeID")
+                        CmbSalutation.SelectedValue = DtEmployee.Rows(0).Item("SaluteCode")
+                        TxtEmployeeName.Text = DtEmployee.Rows(0).Item("EmployeeName")
+                        CmbSex.SelectedValue = DtEmployee.Rows(0).Item("SexCode")
+                        TxtNRICPassportNo.Text = DtEmployee.Rows(0).Item("NRICPassportNo")
+                        DtpEmployeeDOB.Value = DtEmployee.Rows(0).Item("EmployeeDOB")
+                        TxtEmployeePOB.Text = DtEmployee.Rows(0).Item("EmployeePOB")
+                        TxtNationality.Text = DtEmployee.Rows(0).Item("Nationality")
+
+                        TxtMobileNo.Text = DtEmployee.Rows(0).Item("MobileNo")
+                        TxtTelNo.Text = DtEmployee.Rows(0).Item("TelNo")
+                        TxtEmail.Text = DtEmployee.Rows(0).Item("Email")
+                        TxtAddressLine1.Text = cstrnull(DtEmployee.Rows(0).Item("AddressLine1"))
+                        TxtAddressLine2.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine2"))
+                        TxtAddressLine3.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine3"))
+                        TxtAddressLine4.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine4"))
+                        TxtPostcode.Text = CStrNull(DtEmployee.Rows(0).Item("Postcode"))
+                        TxtCity.Text = CStrNull(DtEmployee.Rows(0).Item("City"))
+                        TxtState.Text = CStrNull(DtEmployee.Rows(0).Item("State"))
+                        TxtCountry.Text = CStrNull(DtEmployee.Rows(0).Item("Country"))
+
+                        CmbPosition.SelectedValue = DtEmployee.Rows(0).Item("PositionCode")
+                        TxtQualification.Text = CStrNull(DtEmployee.Rows(0).Item("Qualification"))
+                        TxtInstitution.Text = CStrNull(DtEmployee.Rows(0).Item("Institution"))
+                        TxtRace.Text = CStrNull(DtEmployee.Rows(0).Item("Race"))
+                        TxtReligion.Text = CStrNull(DtEmployee.Rows(0).Item("Religion"))
+                        CmbMaritalStatus.SelectedValue = DtEmployee.Rows(0).Item("MaritalStatusCode")
+
+                        TxtCreatedBy.Text = DtEmployee.Rows(0).Item("CreatedBy")
+                        TxtDateCreated.Text = DtEmployee.Rows(0).Item("DateCreated")
+                        TxtModifiedBy.Text = DtEmployee.Rows(0).Item("ModifiedBy")
+                        TxtDateModified.Text = DtEmployee.Rows(0).Item("DateModified")
+
+                    End If
+
+                End With
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewEmployee()")
+        End Try
+
     End Sub
 
     Private Function AddNewEmployee() As Boolean
 
-        Dim EmployeeID As String
+        Dim GenEmployeeID As String
         Dim ClsEmployee As New ClsEmployee
         Dim ClsUser As New ClsUser
 
         Try
-            If DBTrans IsNot Nothing Then
-                DBTrans = Nothing
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
             End If
 
-            DBTrans = DBConn.BeginTransaction
+            DbTrans = DbConn.BeginTransaction
 
-            EmployeeID = GenerateRunningNo("EMP", DBConn, DBTrans)
+            If TxtEmployeeID.Text <> "" Then
+                GenEmployeeID = IIf(TxtEmployeeID.Text <> "", TxtEmployeeID.Text, EmployeeID)
+            Else
+                GenEmployeeID = GenerateRunningNo("EMP", DbConn, DbTrans)
+            End If
 
-            If EmployeeID = "" Then
-                MsgBox("Employee ID is failed to generate.", MsgBoxStyle.Critical, "ID Not Generated")
-                DBTrans.Rollback()
-                DBTrans.Dispose()
-                DBTrans = Nothing
+            If GenEmployeeID = "" Then
+                MsgBox("Failed to generate employee ID.", MsgBoxStyle.Critical, "Employee ID Not Generated")
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
                 Return False
             End If
 
             ClsEmployee = New ClsEmployee
             With ClsEmployee
-                .EmployeeID = EmployeeID
-                .EmployeeName = UCase(Trim(TxtEmployeeID.Text))
+                .EmployeeID = GenEmployeeID
+                .EmployeeName = UCase(Trim(TxtEmployeeName.Text))
                 .SaluteCode = UCase(Trim(DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
                 .SaluteName = UCase(Trim(DirectCast(CmbSalutation.SelectedItem, KeyValuePair(Of String, String)).Value.ToString))
                 .NRICPassportNo = UCase(Trim(TxtNRICPassportNo.Text))
@@ -60,10 +132,17 @@
                 .EmployeeDOB = DtpEmployeeDOB.Value.Date
                 .EmployeePOB = UCase(Trim(TxtEmployeePOB.Text))
                 .Nationality = UCase(Trim(TxtNationality.Text))
+                .MobileNo = Trim(TxtMobileNo.Text)
+                .TelNo = Trim(TxtTelNo.Text)
+                .Email = Trim(TxtEmail.Text)
                 .AddressLine1 = UCase(Trim(TxtAddressLine1.Text))
                 .AddressLine2 = UCase(Trim(TxtAddressLine2.Text))
                 .AddressLine3 = UCase(Trim(TxtAddressLine3.Text))
                 .AddressLine4 = UCase(Trim(TxtAddressLine4.Text))
+                .Postcode = Trim(TxtPostcode.Text)
+                .City = UCase(Trim(TxtCity.Text))
+                .State = UCase(Trim(TxtState.Text))
+                .Country = UCase(Trim(TxtCountry.Text))
                 .Race = UCase(Trim(TxtRace.Text))
                 .Religion = UCase(Trim(TxtReligion.Text))
                 .MaritalStatusCode = UCase(Trim(DirectCast(CmbMaritalStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
@@ -78,17 +157,34 @@
                 .Ref.DateModified = Now
             End With
 
-            If Not ClsEmployee.AddNewEmployee(ClsEmployee, DBConn, DBTrans) Then
+            If Not ClsEmployee.AddNewEmployee(ClsEmployee, DbConn, DbTrans) Then
                 MsgBox("Failed to add new employee. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewEmployee()")
-                DBTrans.Rollback()
-                DBTrans.Dispose()
-                DBTrans = Nothing
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
                 Return False
             End If
 
             DbTrans.Commit()
-            DBTrans.Dispose()
-            DBTrans = Nothing
+            DbTrans.Dispose()
+            DbTrans = Nothing
+
+            'Set EmployeeID, Ref to be displayed right after data entry has been saved
+            TxtEmployeeID.Text = GenEmployeeID
+            With ClsEmployee
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
+
+            MsgBox("Employee information has been successfully saved.", MsgBoxStyle.Information, "Employee Information Saved")
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewEmployee()")

@@ -1,7 +1,7 @@
 ﻿Imports System.Text
 Imports SAMCVetSys.ModUtility
 
-Public Class ClsDBEmployee
+Public Class ClsDbEmployee
 
     Dim Sb As StringBuilder
     Dim Cmd As OdbcCommand
@@ -15,26 +15,70 @@ Public Class ClsDBEmployee
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_employee ")
-                .Append("(EmployeeID, EmployeeName, SaluteCode, SaluteName, NRICPassportNo, SexCode, SexName, EmployeeDOB, EmployeePOB, Nationality, ")
-                .Append("AddressLine1, AddressLine2, AddressLine3, AddressLine4, Race, Religion, ")
+                .Append("(EmployeeID, EmployeeName, SaluteCode, SaluteName, NRICPassportNo, SexCode, SexName, EmployeeDOB, EmployeePOB, Nationality, MobileNo, TelNo, Email, ")
+                .Append("AddressLine1, AddressLine2, AddressLine3, AddressLine4, Postcode, City, State, Country, ")
+                .Append("Race, Religion, ")
                 .Append("MaritalStatusCode, MaritalStatusName, PositionCode, PositionName, Qualification, Institution, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
-                .Append("ON KEY DUPLICATE UPDATE ")
-                .Append("('" & EMP.EmployeeID & "', '" & EMP.EmployeeName & "', '" & EMP.SaluteCode & "', '" & EMP.SaluteName & "', '" & EMP.NRICPassportNo & "', '" & EMP.SexCode & "', '" & EMP.SexName & "', ")
-                .Append("" & CSQLDate(EMP.EmployeeDOB) & ", '" & EMP.EmployeePOB & "', '" & EMP.Nationality & "', ")
-                .Append("'" & EMP.AddressLine1 & "', '" & EMP.AddressLine2 & "', '" & EMP.AddressLine3 & "', '" & EMP.AddressLine4 & "', '" & EMP.Race & "', '" & EMP.Religion & "', ")
-                .Append("'" & EMP.MaritalStatusCode & "', '" & EMP.MaritalStatusName & "', '" & EMP.PositionCode & "', '" & EMP.PositionName & "', '" & EMP.Qualification & "', '" & EMP.Institution & "', ")
-                .Append("'" & EMP.Ref.CreatedBy & "', " & CSQLDateTime(EMP.Ref.DateCreated) & ", '" & EMP.Ref.ModifiedBy & "', " & CSQLDate(EMP.Ref.DateModified) & ") ")
+                .Append("VALUES ")
+                .Append("('" & EMP.EmployeeID & "', '" & EMP.EmployeeName & "', '" & EMP.SaluteCode & "', '" & EMP.SaluteName & "', '" & EMP.NRICPassportNo & "', '" & EMP.SexCode & "', '" & EMP.SexName & "', " & CSQLDate(EMP.EmployeeDOB) & ", '" & CSQLQuote(EMP.EmployeePOB) & "', '" & CSQLQuote(EMP.Nationality) & "', ")
+                .Append("'" & EMP.MobileNo & "', '" & EMP.TelNo & "', '" & EMP.Email & "', ")
+                .Append("'" & CSQLQuote(EMP.AddressLine1) & "', '" & CSQLQuote(EMP.AddressLine2) & "', '" & CSQLQuote(EMP.AddressLine3) & "', '" & CSQLQuote(EMP.AddressLine4) & "', ")
+                .Append("'" & EMP.Postcode & "', '" & EMP.City & "', '" & EMP.State & "', '" & EMP.Country & "', ")
+                .Append("'" & CSQLQuote(EMP.Race) & "', '" & CSQLQuote(EMP.Religion) & "', ")
+                .Append("'" & EMP.MaritalStatusCode & "', '" & EMP.MaritalStatusName & "', '" & EMP.PositionCode & "', '" & EMP.PositionName & "', '" & CSQLQuote(EMP.Qualification) & "', '" & CSQLQuote(EMP.Institution) & "', ")
+                .Append("'" & EMP.Ref.CreatedBy & "', " & CSQLDateTime(EMP.Ref.DateCreated) & ", '" & EMP.Ref.ModifiedBy & "', " & CSQLDateTime(EMP.Ref.DateModified) & ") ")
+                .Append("ON DUPLICATE KEY UPDATE ")
+                .Append("EmployeeName = '" & EMP.EmployeeName & "', SaluteCode = '" & EMP.SaluteCode & "', SaluteName = '" & EMP.SaluteName & "', NRICPassportNo = '" & EMP.NRICPassportNo & "', SexCode = '" & EMP.SexCode & "', SexName = '" & EMP.SexName & "', ")
+                .Append("EmployeeDOB = " & CSQLDate(EMP.EmployeeDOB) & ", EmployeePOB = '" & EMP.EmployeePOB & "', Nationality = '" & EMP.Nationality & "', ")
+                .Append("MobileNo = '" & EMP.MobileNo & "', TelNo = '" & EMP.TelNo & "', Email = '" & EMP.Email & "', ")
+                .Append("AddressLine1 = '" & EMP.AddressLine1 & "', AddressLine2 = '" & EMP.AddressLine2 & "', AddressLine3 = '" & EMP.AddressLine3 & "', AddressLine4 = '" & EMP.AddressLine4 & "', ")
+                .Append("Postcode = '" & EMP.Postcode & "', City = '" & EMP.City & "', State = '" & EMP.State & "', Country = '" & EMP.Country & "', ")
+                .Append("Race = '" & EMP.Race & "', Religion = '" & EMP.Religion & "', ")
+                .Append("MaritalStatusCode = '" & EMP.MaritalStatusCode & "', MaritalStatusName = '" & EMP.MaritalStatusName & "', PositionCode = '" & EMP.PositionCode & "', PositionName = '" & EMP.PositionName & "', Qualification = '" & EMP.Qualification & "', Institution = '" & EMP.Institution & "', ")
+                .Append("ModifiedBy = '" & EMP.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(EMP.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
             Ret = Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBEmployee.AddNewEmployee()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbEmployee.AddNewEmployee()")
+            Return False
         End Try
 
         Return IIf(Ret = 0, False, True)
+
+    End Function
+
+    Public Function GetEmployee(EMP As ClsEmployee) As DataTable
+
+        Dim DtEmp As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT EmployeeID, EmployeeName, NRICPassportNo, SaluteCode, SaluteName, SexCode, SexName, EmployeeDOB, EmployeePOB, ")
+                .Append("Nationality, MobileNo, TelNo, Email, AddressLine1, AddressLine2, AddressLine3, AddressLine4, Postcode, City, State, Country, ")
+                .Append("Race, Religion, MaritalStatusCode, MaritalStatusName, ")
+                .Append("PositionCode, PositionName, Qualification, Institution, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_employee ")
+
+                If EMP.EmployeeID <> "" Then
+                    .Append("WHERE EmployeeID = '" & EMP.EmployeeID & "' ")
+                End If
+
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtEmp)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbEmployee.GetEmployee()")
+        End Try
+
+        Return DtEmp
 
     End Function
 
@@ -51,7 +95,7 @@ Public Class ClsDBEmployee
                 .Append("ORDER BY EmployeeName ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtVet)
 
@@ -73,7 +117,7 @@ Public Class ClsDBEmployee
                 .Append("SELECT PositionCode, PositionName FROM samc_position ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtPosition)
 
@@ -95,7 +139,7 @@ Public Class ClsDBEmployee
                 .Append("SELECT * FROM samc_maritalstatus ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtMaritalStatus)
 
@@ -106,7 +150,6 @@ Public Class ClsDBEmployee
         Return DtMaritalStatus
 
     End Function
-
 
     Public Function GetSex(EMP As ClsEmployee) As DataTable
 
@@ -119,7 +162,7 @@ Public Class ClsDBEmployee
                 .Append("FROM samc_sex ")
             End With
 
-            Cmd = New OdbcCommand(Sb.ToString, DBConn)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
             Da = New OdbcDataAdapter(Cmd)
             Da.Fill(DtSex)
 

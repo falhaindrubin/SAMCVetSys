@@ -214,17 +214,19 @@ Public Class FrmSurgeryInformation
                 With ClsSurgery
                     .CaseID = CaseID
 
+                    'Populate surgery header
                     DtSxHeader = .GetSurgeryHeader(ClsSurgery)
                     If DtSxHeader.Rows.Count > 0 Then
 
                         'Surgery status
-                        RbIsSurgeryCompleted.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCompleted")) = "1", True, False)
-                        RbIsSurgeryCancelled.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCancelled")) = "1", True, False)
-                        RbIsSurgeryDelayed.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsDelayed")) = "1", True, False)
-                        RbIsSurgeryOnGoing.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsOnGoing")) = "1", True, False)
+                        CbIsCompleted.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCompleted")) = "1", True, False)
+                        CbIsCancelled.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCancelled")) = "1", True, False)
+                        CbIsDelayed.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsDelayed")) = "1", True, False)
+                        CbIsOnGoing.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsOnGoing")) = "1", True, False)
 
                     End If
 
+                    'Populate surgery detail
                     DtSxDx = .GetSurgeryDetail(ClsSurgery)
                     If DtSxDx.Rows.Count > 0 Then
 
@@ -235,7 +237,7 @@ Public Class FrmSurgeryInformation
                                 TodayWardDate = CDate(DtSxDx.Rows(i).Item("EvaluationDate"))
                                 Exit For
                             Else
-                                TodayWardDate = Nothing
+                                TodayWardDate = CDate(DtSxDx.Rows(i).Item("EvaluationDate")) 'Nothing
                             End If
                         Next
 
@@ -245,6 +247,9 @@ Public Class FrmSurgeryInformation
                             Dim DvSxDx As New DataView
                             DvSxDx = DtSxDx.DefaultView
                             DvSxDx.RowFilter = "EvaluationDate = '" & TodayWardDate & "'"
+
+                            'Date of Evaluation
+                            TxtEvaluationDate.Text = TodayWardDate
 
                             'Surgeon
                             TxtSurgeon.Tag = CStrNull(DvSxDx(0)("EmployeeID"))
@@ -351,7 +356,7 @@ Public Class FrmSurgeryInformation
 
                             For i As Integer = 0 To DtSxDischarge.Rows.Count - 1
                                 .Rows.Add()
-                                .Rows(i).Cells("SurgeryRowNo").Value = DtSxDischarge.Rows(i).Item("RowNo")
+                                .Rows(i).Cells("SurgeryRowNo").Value = "" 'DtSxDischarge.Rows(i).Item("RowNo")
                                 .Rows(i).Cells("SurgeryItemCode").Value = DtSxDischarge.Rows(i).Item("ItemCode")
                                 .Rows(i).Cells("SurgeryItemDescription").Value = DtSxDischarge.Rows(i).Item("ItemDescription")
                                 .Rows(i).Cells("SurgeryItemGroup").Value = DtSxDischarge.Rows(i).Item("ItemGroup")
@@ -931,14 +936,14 @@ Public Class FrmSurgeryInformation
                 .EvaluationDate = CDate(TxtEvaluationDate.Text)
                 .EmployeeID = Trim(TxtSurgeon.Tag)
                 .EmployeeName = Trim(TxtSurgeon.Text)
-                .BodyWeight = Trim(TxtBodyWeight.Text)
+                .BodyWeight = IIf(Trim(TxtBodyWeight.Text) = "", 0, Trim(TxtBodyWeight.Text))
                 .BodyScoreCode = DirectCast(CmbBodyScore.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
                 .BodyScoreName = BodyScoreName
-                .Temperature = Trim(TxtTemperature.Text)
+                .Temperature = IIf(Trim(TxtTemperature.Text) = "", 0, Trim(TxtTemperature.Text))
                 .TemperamentCode = DirectCast(CmbTemperament.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
                 .TemperamentName = TemperamentName
-                .Pulse = Trim(TxtPulse.Text)
-                .RespiratoryRate = Trim(TxtRespiratoryRate.Text)
+                .Pulse = IIf(Trim(TxtPulse.Text) = "", 0, Trim(TxtPulse.Text))
+                .RespiratoryRate = IIf(Trim(TxtRespiratoryRate.Text) = "", 0, Trim(TxtRespiratoryRate.Text))
                 .SurgeryDiagnosis = Trim(TxtSurgeryDiagnosis.Text)
                 .IsFasting = DirectCast(CmbFasting.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
                 .FastingDescription = DirectCast(CmbFasting.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
@@ -992,6 +997,9 @@ Public Class FrmSurgeryInformation
 
                     With ClsSurgeryMaterial
                         .CaseID = CaseID
+                        .SurgeryDate = Now
+                        .EmployeeID = Trim(TxtSurgeon.Tag)
+                        .EmployeeName = Trim(TxtSurgeon.Text)
                         .RowNo = DgvSelectedItem.Rows(i).Cells("MaterialRowNo").Value
                         .ItemCode = DgvSelectedItem.Rows(i).Cells("MaterialItemCode").Value
                         .ItemDescription = DgvSelectedItem.Rows(i).Cells("MaterialItemDescription").Value
@@ -1025,10 +1033,10 @@ Public Class FrmSurgeryInformation
             'update surgery status; 
             Dim ClsSurgeryDischarge As New ClsSurgeryDischarge
             With ClsSurgery
-                .IsCompleted = IIf(RbIsSurgeryCompleted.Checked = True, "1", "0")
-                .IsDelayed = IIf(RbIsSurgeryDelayed.Checked = True, "1", "0")
-                .IsCancelled = IIf(RbIsSurgeryCancelled.Checked = True, "1", "0")
-                .IsOnGoing = IIf(RbIsSurgeryOnGoing.Checked = True, "1", "0")
+                .IsCompleted = IIf(CbIsCompleted.Checked = True, "1", "0")
+                .IsDelayed = IIf(CbIsDelayed.Checked = True, "1", "0")
+                .IsCancelled = IIf(CbIsCancelled.Checked = True, "1", "0")
+                .IsOnGoing = IIf(CbIsOnGoing.Checked = True, "1", "0")
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
 
@@ -1041,7 +1049,7 @@ Public Class FrmSurgeryInformation
                 End If
             End With
 
-            If RbIsSurgeryCompleted.Checked = True Then
+            If CbIsCompleted.Checked = True Then
 
                 If DgvSelectedSurgery.Rows.Count > 0 Then
 
@@ -1057,13 +1065,13 @@ Public Class FrmSurgeryInformation
                         .Quantity = DgvSelectedSurgery.Rows(0).Cells("SurgeryQuantity").Value
                         .TotalPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryTotalPrice").Value
 
-                        If Not .UpdateSurgeryOperation(ClsSurgery, DbConn, DbTrans) Then
-                            MsgBox("Failed to update surgery operation information.", MsgBoxStyle.Critical, "Surgery Operation Update Error")
-                            DbTrans.Rollback()
-                            DbTrans.Dispose()
-                            DbTrans = Nothing
-                            Return False
-                        End If
+                        'If Not .UpdateSurgeryOperation(ClsSurgery, DbConn, DbTrans) Then
+                        '    MsgBox("Failed to update surgery operation information.", MsgBoxStyle.Critical, "Surgery Operation Update Error")
+                        '    DbTrans.Rollback()
+                        '    DbTrans.Dispose()
+                        '    DbTrans = Nothing
+                        '    Return False
+                        'End If
                     End With
 
                 End If
@@ -1075,7 +1083,14 @@ Public Class FrmSurgeryInformation
                     .EmployeeName = TxtSurgeon.Text
                     .SpecificInstruction = Trim(TxtSpecificInstruction.Text)
                     .MedicationPrescribe = Trim(TxtMedicationPrescribe.Text)
-
+                    .ItemCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemCode").Value
+                    .ItemDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemDescription").Value
+                    .ItemGroup = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemGroup").Value
+                    .ItemTypeCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemTypeCode").Value
+                    .ItemTypeDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemTypeDescription").Value
+                    .UnitPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryUnitPrice").Value
+                    .Quantity = DgvSelectedSurgery.Rows(0).Cells("SurgeryQuantity").Value
+                    .TotalPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryTotalPrice").Value
                     .DischargeDate = Now
                     .ReviewDate = DtpReviewDate.Value
                     .Ref.CreatedBy = CURR_USER
@@ -1309,25 +1324,27 @@ Public Class FrmSurgeryInformation
             DtOperation = InitSurgeryItemDt()
             If DgvSelectedSurgery.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DgvSelectedSurgery.Rows.Count - 1
+                DgvSelectedSurgery.Rows.Clear()
 
-                    Dim DgvRow As DataRow = DtOperation.NewRow
+                'For i As Integer = 0 To DgvSelectedSurgery.Rows.Count - 1
 
-                    DgvRow("RowNo") = DgvSelectedSurgery.Rows(i).Cells("SurgeryRowNo").Value
-                    DgvRow("ItemCode") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemCode").Value
-                    DgvRow("ItemDescription") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemDescription").Value
-                    DgvRow("Prescription") = DgvSelectedSurgery.Rows(i).Cells("SurgeryPrescription").Value
-                    DgvRow("Notes") = DgvSelectedSurgery.Rows(i).Cells("SurgeryNotes").Value
-                    DgvRow("Quantity") = DgvSelectedSurgery.Rows(i).Cells("SurgeryQuantity").Value
-                    DgvRow("UnitPrice") = DgvSelectedSurgery.Rows(i).Cells("SurgeryUnitPrice").Value
-                    DgvRow("TotalPrice") = DgvSelectedSurgery.Rows(i).Cells("SurgeryTotalPrice").Value
-                    DgvRow("ItemGroup") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemGroup").Value
-                    DgvRow("ItemTypeCode") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemTypeCode").Value
-                    DgvRow("ItemTypeDescription") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemTypeDescription").Value
+                '    Dim DgvRow As DataRow = DtOperation.NewRow
 
-                    DtOperation.Rows.Add(DgvRow)
+                '    DgvRow("RowNo") = DgvSelectedSurgery.Rows(i).Cells("SurgeryRowNo").Value
+                '    DgvRow("ItemCode") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemCode").Value
+                '    DgvRow("ItemDescription") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemDescription").Value
+                '    DgvRow("Prescription") = DgvSelectedSurgery.Rows(i).Cells("SurgeryPrescription").Value
+                '    DgvRow("Notes") = DgvSelectedSurgery.Rows(i).Cells("SurgeryNotes").Value
+                '    DgvRow("Quantity") = DgvSelectedSurgery.Rows(i).Cells("SurgeryQuantity").Value
+                '    DgvRow("UnitPrice") = DgvSelectedSurgery.Rows(i).Cells("SurgeryUnitPrice").Value
+                '    DgvRow("TotalPrice") = DgvSelectedSurgery.Rows(i).Cells("SurgeryTotalPrice").Value
+                '    DgvRow("ItemGroup") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemGroup").Value
+                '    DgvRow("ItemTypeCode") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemTypeCode").Value
+                '    DgvRow("ItemTypeDescription") = DgvSelectedSurgery.Rows(i).Cells("SurgeryItemTypeDescription").Value
 
-                Next
+                '    DtOperation.Rows.Add(DgvRow)
+
+                'Next
 
             End If
 
@@ -1508,6 +1525,66 @@ Public Class FrmSurgeryInformation
             'ElseIf BtnAddSurgery.Tag = "UPDATE" Then
             'UpdateMaterialItem()
         End If
+    End Sub
+
+    Private Sub BtnCreateNewEvaluation_Click(sender As Object, e As EventArgs) Handles BtnCreateNewEvaluation.Click
+        CreateNewEvaluation()
+    End Sub
+
+    Private Sub CreateNewEvaluation()
+
+        Try
+            'Date of evaluation
+            TxtEvaluationDate.Text = Now.Date
+
+            'Surgeon
+            Dim ClsUser As New ClsUser
+            Dim DtUser As New DataTable
+            With ClsUser
+                .UserID = CURR_USER
+                DtUser = .GetUserInformation(ClsUser)
+                If DtUser.Rows.Count > 0 Then
+                    TxtSurgeon.Text = DtUser.Rows(0).Item("EmployeeName")
+                    TxtSurgeon.Tag = DtUser.Rows(0).Item("EmployeeID")
+                End If
+            End With
+
+            'Level of risk
+            CmbLevelOfRisk.SelectedIndex = 0
+
+            'Physical examination
+            TxtTemperature.Text = 0.00
+            TxtPulse.Text = 0.00
+            TxtRespiratoryRate.Text = 0.00
+            CmbTemperament.SelectedIndex = 0
+            CmbBodyScore.SelectedIndex = 0
+            TxtBodyWeight.Text = 0.00
+
+            'Surgery diagnosis
+            CmbFasting.SelectedIndex = 0
+            CmbVaccine.SelectedIndex = 0
+            CbVaccineDueDate.Checked = False
+            DtpVaccineDueDate.Value = Now
+            DtpVaccineDueDate.Enabled = IIf(CbVaccineDueDate.Checked = True, True, False)
+            CmbGeneralAppearance.SelectedIndex = 0
+            CmbHydration.SelectedIndex = 0
+            CmbMucousMembrane.SelectedIndex = 0
+            CmbCapillaryRefillTime.SelectedIndex = 0
+            CmbRespiratory.SelectedIndex = 0
+            CmbLungSound.SelectedIndex = 0
+            CmbHeartRate.SelectedIndex = 0
+            TxtHeartRateReading.Text = 0.00
+            CmbHeartRhythm.SelectedIndex = 0
+            CmbHeartSound.SelectedIndex = 0
+            TxtSurgeryDiagnosis.Text = ""
+            TxtOtherFindings.Text = ""
+            TxtSurgeonComments.Text = ""
+            TxtSurgicalPlan.Text = ""
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CreateNewEvaluation()")
+        End Try
+
     End Sub
 
 #End Region

@@ -18,12 +18,14 @@ Public Class ClsDbVisit
             With Sb
                 .Append("INSERT INTO samc_visit ")
                 .Append("(VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, ")
+                .Append("IsVisitCompleted, IsAdmittedToWard, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & VS.VisitID & "', '" & VS.EmployeeID & "', '" & VS.EmployeeName & "', '" & VS.CustomerID & "', '" & VS.CustomerName & "', " & CSQLDateTime(VS.VisitTime) & ", ")
+                .Append("'" & VS.IsVisitCompleted & "', '" & VS.IsAdmittedToWard & "', ")
                 .Append("'" & VS.Ref.CreatedBy & "', " & CSQLDateTime(VS.Ref.DateCreated) & ", '" & VS.Ref.ModifiedBy & "', " & CSQLDateTime(VS.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("EmployeeID = '" & VS.EmployeeID & "', EmployeeName = '" & VS.EmployeeName & "', VisitTime = " & CSQLDateTime(VS.VisitTime) & ", ")
+                .Append("VisitTime = " & CSQLDateTime(VS.VisitTime) & ", IsVisitCompleted = '" & VS.IsVisitCompleted & "', IsAdmittedToWard = '" & VS.IsAdmittedToWard & "',  ")
                 .Append("ModifiedBy = '" & VS.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(VS.Ref.DateModified) & " ")
             End With
 
@@ -110,7 +112,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
-                .Append("IsVisitCompleted, IsOngoingTreatment, IsAdmittedToWard, ")
+                .Append("IsVisitCompleted, IsAdmittedToWard, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
@@ -171,7 +173,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
-                .Append("IsVisitCompleted, IsOngoingTreatment, ")
+                .Append("IsVisitCompleted, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
@@ -271,7 +273,7 @@ Public Class ClsDbVisit
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, IsVisitCompleted, IsOngoingTreatment, ")
+                .Append("SELECT a.VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, VisitTime, IsVisitCompleted, IsAdmittedToWard, ")
                 .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, VisitDescription, ")
                 .Append("Temperature, TemperamentCode, TemperamentName, BodyScoreCode, BodyScoreName, BodyWeight, PEFindings, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
@@ -444,7 +446,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("UPDATE samc_visit ")
-                .Append("SET IsAdmittedToWard = '" & V.IsAdmittedToWard & "', IsOngoingTreatment = '" & V.IsOngoingTreatment & "', ")
+                .Append("SET IsAdmittedToWard = '" & V.IsAdmittedToWard & "' ")
                 .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
                 .Append("WHERE VisitID = '" & V.VisitID & "' ")
             End With

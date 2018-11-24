@@ -128,7 +128,7 @@ Public Class ClsVisit
         Return DbVisit.GetWardedVisitListing(ClsVisit)
     End Function
 
-    Public Function AddNewConsultation(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewVisit(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisit(ClsConsultation, DbConn, DbTrans)
     End Function
 

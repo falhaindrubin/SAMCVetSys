@@ -210,10 +210,10 @@ Public Class ClsDbSurgery
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_surgerymaterial ")
-                .Append("(CaseID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(CaseID, SurgeryDate, EmployeeID, EmployeeName, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & SX.CaseID & "', '" & SX.RowNo & "', '" & SX.ItemCode & "', '" & SX.ItemDescription & "', '" & SX.ItemGroup & "', '" & SX.ItemTypeCode & "', '" & SX.ItemTypeDescription & "', '" & SX.UnitPrice & "', ")
+                .Append("('" & SX.CaseID & "', " & CSQLDate(SX.SurgeryDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & SX.RowNo & "', '" & SX.ItemCode & "', '" & SX.ItemDescription & "', '" & SX.ItemGroup & "', '" & SX.ItemTypeCode & "', '" & SX.ItemTypeDescription & "', '" & SX.UnitPrice & "', ")
                 .Append("'" & SX.Quantity & "', '" & SX.TotalPrice & "', ")
                 .Append("'" & SX.Ref.CreatedBy & "', " & CSQLDateTime(SX.Ref.DateCreated) & ", '" & SX.Ref.ModifiedBy & "', " & CSQLDateTime(SX.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
@@ -254,19 +254,25 @@ Public Class ClsDbSurgery
 
     Public Function AddNewSurgeryDischarge(SX As ClsSurgeryDischarge, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
-        Dim Ret As Integer
+        'Dim Ret As Integer
 
         Try
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_surgerydischarge ")
-                .Append("(CaseID, SurgeryDate, EmployeeID, EmployeeName, SpecificInstruction, MedicationPrescribe, DischargeDate, ReviewDate, ")
+                .Append("(CaseID, SurgeryDate, EmployeeID, EmployeeName, SpecificInstruction, MedicationPrescribe, ")
+                .Append("ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("DischargeDate, ReviewDate, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & SX.CaseID & "', " & CSQLDate(SX.SurgeryDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & CSQLQuote(SX.SpecificInstruction) & "', '" & CSQLQuote(SX.MedicationPrescribe) & "', " & CSQLDate(SX.DischargeDate) & ", " & CSQLDate(SX.ReviewDate) & ", ")
+                .Append("('" & SX.CaseID & "', " & CSQLDate(SX.SurgeryDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & CSQLQuote(SX.SpecificInstruction) & "', '" & CSQLQuote(SX.MedicationPrescribe) & "', ")
+                .Append("'" & SX.ItemCode & "', '" & SX.ItemDescription & "', '" & SX.ItemGroup & "', '" & SX.ItemTypeCode & "', '" & SX.ItemTypeDescription & "', '" & SX.UnitPrice & "', '" & SX.Quantity & "', '" & SX.TotalPrice & "', ")
+                .Append("" & CSQLDate(SX.DischargeDate) & ", " & CSQLDate(SX.ReviewDate) & ", ")
                 .Append("'" & SX.Ref.CreatedBy & "', " & CSQLDateTime(SX.Ref.DateCreated) & ", '" & SX.Ref.ModifiedBy & "', " & CSQLDateTime(SX.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("SpecificInstruction = '" & CSQLQuote(SX.SpecificInstruction) & "', MedicationPrescribe = '" & CSQLQuote(SX.MedicationPrescribe) & "', ReviewDate = " & CSQLDate(SX.ReviewDate) & ", ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
+                .Append("SpecificInstruction = '" & CSQLQuote(SX.SpecificInstruction) & "', MedicationPrescribe = '" & CSQLQuote(SX.MedicationPrescribe) & "', ")
+                .Append("ItemCode = '" & SX.ItemCode & "', ItemDescription = '" & SX.ItemDescription & "', ItemGroup = '" & SX.ItemGroup & "', ItemTypeCode = '" & SX.ItemTypeCode & "', ItemTypeDescription = '" & SX.ItemTypeDescription & "', UnitPrice = '" & SX.UnitPrice & "', Quantity = '" & SX.Quantity & "', TotalPrice = '" & SX.TotalPrice & "', ")
+                .Append("ReviewDate = " & CSQLDate(SX.ReviewDate) & ", ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -277,7 +283,7 @@ Public Class ClsDbSurgery
             Return False
         End Try
 
-        Return IIf(Ret = 0, False, True)
+        Return True
 
     End Function
 
@@ -335,7 +341,9 @@ Public Class ClsDbSurgery
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT CaseID, SurgeryDate, EmployeeID, EmployeeName, SpecificInstruction, MedicationPrescribe, DischargeDate, HasReviewDate, ReviewDate, ")
+                .Append("SELECT CaseID, SurgeryDate, EmployeeID, EmployeeName, SpecificInstruction, MedicationPrescribe, ")
+                .Append("ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("DischargeDate, HasReviewDate, ReviewDate, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_surgerydischarge ")
                 If SX.CaseID <> "" Then

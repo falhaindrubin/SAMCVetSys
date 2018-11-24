@@ -1,4 +1,5 @@
 ﻿Public Class FrmPaymentRecords
+
     Private Sub FrmPaymentRecords_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")

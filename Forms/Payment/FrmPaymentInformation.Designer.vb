@@ -24,7 +24,7 @@ Partial Class FrmPaymentInformation
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPaymentInformation))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
         Me.BtnEdit = New System.Windows.Forms.Button()
@@ -91,9 +91,9 @@ Partial Class FrmPaymentInformation
         Me.TxtCustomerName = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CbCheque = New System.Windows.Forms.CheckBox()
+        Me.CbDebitCreditCard = New System.Windows.Forms.CheckBox()
+        Me.CbCash = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CbPaymentCompleted = New System.Windows.Forms.CheckBox()
         Me.Label38 = New System.Windows.Forms.Label()
@@ -118,9 +118,9 @@ Partial Class FrmPaymentInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(735, 6)
+        Me.BtnSave.Location = New System.Drawing.Point(736, 4)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSave.Size = New System.Drawing.Size(60, 60)
         Me.BtnSave.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.BtnSave, "Save")
         Me.BtnSave.UseVisualStyleBackColor = False
@@ -141,9 +141,9 @@ Partial Class FrmPaymentInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(857, 6)
+        Me.BtnEdit.Location = New System.Drawing.Point(858, 4)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
+        Me.BtnEdit.Size = New System.Drawing.Size(60, 60)
         Me.BtnEdit.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.BtnEdit, "Edit")
         Me.BtnEdit.UseVisualStyleBackColor = False
@@ -195,9 +195,9 @@ Partial Class FrmPaymentInformation
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(796, 6)
+        Me.BtnCancel.Location = New System.Drawing.Point(797, 4)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
+        Me.BtnCancel.Size = New System.Drawing.Size(60, 60)
         Me.BtnCancel.TabIndex = 2
         Me.BtnCancel.UseVisualStyleBackColor = False
         '
@@ -206,9 +206,9 @@ Partial Class FrmPaymentInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(918, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(919, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.BtnClose, "Close")
         Me.BtnClose.UseVisualStyleBackColor = False
@@ -218,9 +218,9 @@ Partial Class FrmPaymentInformation
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(613, 6)
+        Me.BtnSearch.Location = New System.Drawing.Point(614, 4)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSearch.Size = New System.Drawing.Size(60, 60)
         Me.BtnSearch.TabIndex = 5
         Me.BtnSearch.UseVisualStyleBackColor = False
         '
@@ -244,20 +244,20 @@ Partial Class FrmPaymentInformation
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(7, 18)
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(227, 32)
+        Me.Label25.Size = New System.Drawing.Size(370, 32)
         Me.Label25.TabIndex = 13
-        Me.Label25.Text = "Billing && Payment"
+        Me.Label25.Text = "Billing && Payment Information"
         '
         'BtnPrint
         '
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(674, 6)
+        Me.BtnPrint.Location = New System.Drawing.Point(675, 4)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
+        Me.BtnPrint.Size = New System.Drawing.Size(60, 60)
         Me.BtnPrint.TabIndex = 4
         Me.BtnPrint.UseVisualStyleBackColor = False
         '
@@ -592,8 +592,8 @@ Partial Class FrmPaymentInformation
         '
         Me.DgvBillListing.AllowUserToAddRows = False
         Me.DgvBillListing.AllowUserToDeleteRows = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice, Me.ItemGroupDgv, Me.ItemTypeCodeDgv, Me.ItemTypeDescriptionDgv})
         Me.DgvBillListing.Location = New System.Drawing.Point(6, 215)
@@ -803,9 +803,9 @@ Partial Class FrmPaymentInformation
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.CheckBox3)
-        Me.GroupBox2.Controls.Add(Me.CheckBox2)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
+        Me.GroupBox2.Controls.Add(Me.CbCheque)
+        Me.GroupBox2.Controls.Add(Me.CbDebitCreditCard)
+        Me.GroupBox2.Controls.Add(Me.CbCash)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 169)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(405, 80)
@@ -813,35 +813,35 @@ Partial Class FrmPaymentInformation
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Payment Type"
         '
-        'CheckBox3
+        'CbCheque
         '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(11, 53)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(63, 18)
-        Me.CheckBox3.TabIndex = 170
-        Me.CheckBox3.Text = "Cheque"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.CbCheque.AutoSize = True
+        Me.CbCheque.Location = New System.Drawing.Point(11, 53)
+        Me.CbCheque.Name = "CbCheque"
+        Me.CbCheque.Size = New System.Drawing.Size(63, 18)
+        Me.CbCheque.TabIndex = 170
+        Me.CbCheque.Text = "Cheque"
+        Me.CbCheque.UseVisualStyleBackColor = True
         '
-        'CheckBox2
+        'CbDebitCreditCard
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(11, 36)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(107, 18)
-        Me.CheckBox2.TabIndex = 169
-        Me.CheckBox2.Text = "Debit/Credit Card"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.CbDebitCreditCard.AutoSize = True
+        Me.CbDebitCreditCard.Location = New System.Drawing.Point(11, 36)
+        Me.CbDebitCreditCard.Name = "CbDebitCreditCard"
+        Me.CbDebitCreditCard.Size = New System.Drawing.Size(107, 18)
+        Me.CbDebitCreditCard.TabIndex = 169
+        Me.CbDebitCreditCard.Text = "Debit/Credit Card"
+        Me.CbDebitCreditCard.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'CbCash
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(11, 19)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(51, 18)
-        Me.CheckBox1.TabIndex = 168
-        Me.CheckBox1.Text = "Cash"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CbCash.AutoSize = True
+        Me.CbCash.Location = New System.Drawing.Point(11, 19)
+        Me.CbCash.Name = "CbCash"
+        Me.CbCash.Size = New System.Drawing.Size(51, 18)
+        Me.CbCash.TabIndex = 168
+        Me.CbCash.Text = "Cash"
+        Me.CbCash.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -921,6 +921,7 @@ Partial Class FrmPaymentInformation
         Me.CbIsRecalculate.TabIndex = 171
         Me.CbIsRecalculate.Text = "Re-calculate Bill && Payment"
         Me.CbIsRecalculate.UseVisualStyleBackColor = True
+        Me.CbIsRecalculate.Visible = False
         '
         'FrmPaymentInformation
         '
@@ -1025,9 +1026,9 @@ Partial Class FrmPaymentInformation
     Friend WithEvents Label1 As Label
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CbCheque As CheckBox
+    Friend WithEvents CbDebitCreditCard As CheckBox
+    Friend WithEvents CbCash As CheckBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents BtnGenerateInvoice As Button

@@ -109,19 +109,19 @@ Partial Class FrmMDI
         'EmployeeUserToolStripMenuItem
         '
         Me.EmployeeUserToolStripMenuItem.Name = "EmployeeUserToolStripMenuItem"
-        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.EmployeeUserToolStripMenuItem.Text = "Employee"
         '
         'UserToolStripMenuItem
         '
         Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UserToolStripMenuItem.Text = "User"
         '
         'ProductsServicesToolStripMenuItem
         '
         Me.ProductsServicesToolStripMenuItem.Name = "ProductsServicesToolStripMenuItem"
-        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ProductsServicesToolStripMenuItem.Text = "Products && Services"
         '
         'WindowToolStripMenuItem

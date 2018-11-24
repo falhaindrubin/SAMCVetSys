@@ -1,6 +1,6 @@
 ﻿Public Class ClsEmployee
 
-    Dim DBEmployee As New ClsDBEmployee
+    Dim DbEmployee As New ClsDbEmployee
 
     Private _EmployeeID As String
     Public Property EmployeeID As String
@@ -82,6 +82,36 @@
         End Set
     End Property
 
+    Private _MobileNo As String
+    Public Property MobileNo As String
+        Get
+            Return _MobileNo
+        End Get
+        Set(value As String)
+            _MobileNo = value
+        End Set
+    End Property
+
+    Private _TelNo As String
+    Public Property TelNo As String
+        Get
+            Return _TelNo
+        End Get
+        Set(value As String)
+            _TelNo = value
+        End Set
+    End Property
+
+    Private _Email As String
+    Public Property Email As String
+        Get
+            Return _Email
+        End Get
+        Set(value As String)
+            _Email = value
+        End Set
+    End Property
+
     Private _AddressLine1 As String
     Public Property AddressLine1 As String
         Get
@@ -119,6 +149,46 @@
         End Get
         Set(value As String)
             _AddressLine4 = value
+        End Set
+    End Property
+
+    Private _Postcode As String
+    Public Property Postcode As String
+        Get
+            Return _Postcode
+        End Get
+        Set(value As String)
+            _Postcode = value
+        End Set
+    End Property
+
+    Private _City As String
+    Public Property City As String
+        Get
+            Return _City
+        End Get
+        Set(value As String)
+            _City = value
+        End Set
+    End Property
+
+    Private _State As String
+    Public Property State As String
+        Get
+            Return _State
+        End Get
+        Set(value As String)
+            _State = value
+        End Set
+    End Property
+
+    Private _Country As String
+    Public Property Country As String
+        Get
+            Return _Country
+        End Get
+        Set(value As String)
+            _Country = value
         End Set
     End Property
 
@@ -234,6 +304,10 @@
 
     Public Function AddNewEmployee(ClsEmployee As ClsEmployee, DBConn As OdbcConnection, DBTrans As OdbcTransaction) As Boolean
         Return DBEmployee.AddNewEmployee(ClsEmployee, DBConn, DBTrans)
+    End Function
+
+    Public Function GetEmployee(ClsEmployee As ClsEmployee) As DataTable
+        Return DbEmployee.GetEmployee(ClsEmployee)
     End Function
 
     'Get Vet

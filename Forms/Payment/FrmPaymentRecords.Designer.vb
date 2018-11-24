@@ -33,6 +33,7 @@ Partial Class FrmPaymentRecords
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         CType(Me.DgvPaymentListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -87,63 +88,70 @@ Partial Class FrmPaymentRecords
         Me.DgvPaymentListing.ReadOnly = True
         Me.DgvPaymentListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DgvPaymentListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvPaymentListing.Size = New System.Drawing.Size(969, 542)
+        Me.DgvPaymentListing.Size = New System.Drawing.Size(969, 528)
         Me.DgvPaymentListing.TabIndex = 2
         '
         'PnlActionBar
         '
         Me.PnlActionBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
         Me.PnlActionBar.Controls.Add(Me.BtnAddNewCustomer)
         Me.PnlActionBar.Controls.Add(Me.BtnReload)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 12)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(984, 57)
+        Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
         Me.PnlActionBar.TabIndex = 76
         '
         'BtnClose
         '
+        Me.BtnClose.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(919, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(919, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 52)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
         'BtnAddNewCustomer
         '
+        Me.BtnAddNewCustomer.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.BtnAddNewCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewCustomer.BackgroundImage = CType(resources.GetObject("BtnAddNewCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 3)
+        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 4)
         Me.BtnAddNewCustomer.Name = "BtnAddNewCustomer"
-        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 52)
+        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewCustomer.TabIndex = 2
         Me.BtnAddNewCustomer.UseVisualStyleBackColor = False
         '
         'BtnReload
         '
+        Me.BtnReload.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(858, 3)
+        Me.BtnReload.Location = New System.Drawing.Point(858, 4)
         Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 52)
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.DgvPaymentListing)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 150)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 164)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(984, 567)
+        Me.GroupBox1.Size = New System.Drawing.Size(984, 553)
         Me.GroupBox1.TabIndex = 78
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Pending Payment List"
+        Me.GroupBox1.Text = "Payment Listing"
         '
         'GroupBox2
         '
@@ -152,11 +160,22 @@ Partial Class FrmPaymentRecords
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.TxtSearchText)
         Me.GroupBox2.Controls.Add(Me.BtnSearchCustomer)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 75)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 86)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(984, 69)
+        Me.GroupBox2.Size = New System.Drawing.Size(984, 72)
         Me.GroupBox2.TabIndex = 77
         Me.GroupBox2.TabStop = False
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(337, 32)
+        Me.Label25.TabIndex = 14
+        Me.Label25.Text = "Billing && Payment Records"
         '
         'FrmPaymentRecords
         '
@@ -171,6 +190,7 @@ Partial Class FrmPaymentRecords
         Me.Text = "Payment & Billing"
         CType(Me.DgvPaymentListing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
+        Me.PnlActionBar.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
@@ -188,4 +208,5 @@ Partial Class FrmPaymentRecords
     Friend WithEvents BtnReload As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label25 As Label
 End Class

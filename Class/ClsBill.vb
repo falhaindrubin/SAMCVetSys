@@ -55,6 +55,26 @@ Public Class ClsBill
         End Set
     End Property
 
+    Private _MobileNo As String
+    Public Property MobileNo As String
+        Get
+            Return _MobileNo
+        End Get
+        Set(value As String)
+            _MobileNo = value
+        End Set
+    End Property
+
+    Private _Email As String
+    Public Property Email As String
+        Get
+            Return _Email
+        End Get
+        Set(value As String)
+            _Email = value
+        End Set
+    End Property
+
     Private _PetID As String
     Public Property PetID As String
         Get
@@ -135,6 +155,36 @@ Public Class ClsBill
         End Set
     End Property
 
+    Private _IsCash As String
+    Public Property IsCash As String
+        Get
+            Return _IsCash
+        End Get
+        Set(value As String)
+            _IsCash = value
+        End Set
+    End Property
+
+    Private _IsDebitCreditCard As String
+    Public Property IsDebitCreditCard As String
+        Get
+            Return _IsDebitCreditCard
+        End Get
+        Set(value As String)
+            _IsDebitCreditCard = value
+        End Set
+    End Property
+
+    Private _IsCheque As String
+    Public Property IsCheque As String
+        Get
+            Return _IsCheque
+        End Get
+        Set(value As String)
+            _IsCheque = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get
@@ -171,6 +221,10 @@ Public Class ClsBill
 
     Public Function DeleteBill(ClsBill As ClsBill, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbBill.DeleteBill(ClsBill, DbConn, DbTrans)
+    End Function
+
+    Public Function UpdateBillingAmount(ClsBill As ClsBill, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbBill.UpdateBillingAmount(ClsBill, DbConn, DbTrans)
     End Function
 
 End Class

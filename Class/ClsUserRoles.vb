@@ -1,6 +1,6 @@
-﻿Public Class ClsUser
+﻿Public Class ClsUserRole
 
-    Dim DbUser As New ClsDBUser
+    Dim DbUserRole As New ClsDBUserRole
 
     Private _EmployeeID As String
     Public Property EmployeeID As String
@@ -9,16 +9,6 @@
         End Get
         Set(value As String)
             _EmployeeID = value
-        End Set
-    End Property
-
-    Private _EmployeeName As String
-    Public Property EmployeeName As String
-        Get
-            Return _EmployeeName
-        End Get
-        Set(value As String)
-            _EmployeeName = value
         End Set
     End Property
 
@@ -63,18 +53,14 @@
     End Property
 
     'Add New User
-    Public Function AddNewUser(ClsUser As ClsUser, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbUser.AddNewUser(ClsUser, DbConn, DbTrans)
-    End Function
-
-    'Get User
-    Public Function GetUser(ClsUser As ClsUser) As DataTable
-        Return DbUser.GetUser(ClsUser)
+    Public Function AddNewRole(ClsUserRole As ClsUserRole, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbUserRole.AddNewRole(ClsUserRole, DbConn, DbTrans)
+        'GetUserRoles(ClsUserRoles)
     End Function
 
     'Get User information
-    Public Function GetUserInformation(ClsUser As ClsUser) As DataTable
-        Return DbUser.GetUserInformation(ClsUser)
+    Public Function GetUserRole(ClsUserRole As ClsUserRole) As DataTable
+        Return DbUserRole.GetUserRole(ClsUserRole)
     End Function
 
 End Class

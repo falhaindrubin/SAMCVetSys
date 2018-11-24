@@ -1280,6 +1280,8 @@ ReplaceCurrentPet:
                     .CustomerID = UCase(Trim(TxtCustomerID.Text))
                     .CustomerName = UCase(Trim(TxtCustomerName.Text))
                     .VisitTime = VisitTime
+                    .IsVisitCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
+                    .IsAdmittedToWard = IIf(CbIsAdmittedToWard.Checked = True, "1", "0")
                     .Ref.CreatedBy = CURR_USER
                     .Ref.DateCreated = Now
                     .Ref.ModifiedBy = CURR_USER
@@ -1287,8 +1289,8 @@ ReplaceCurrentPet:
                 End With
 
                 'Visit header
-                If Not ClsVisit.AddNewConsultation(ClsVisit, DbConn, DbTrans) Then
-                    MsgBox("Failed to create visit header.", MsgBoxStyle.Critical, "Create Visit Failed")
+                If Not ClsVisit.AddNewVisit(ClsVisit, DbConn, DbTrans) Then
+                    MsgBox("Failed to create visit header.", MsgBoxStyle.Critical, "Create Visit Header Error")
                     DbTrans.Rollback()
                     DbTrans.Dispose()
                     DbTrans = Nothing
@@ -1496,14 +1498,6 @@ ReplaceCurrentPet:
 
     End Function
 
-    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Dim Frm As New FrmVisitReport
-        With Frm
-            .ConsultationID = TxtVisitID.Text
-            .ShowDialog()
-        End With
-    End Sub
-
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If Not CheckUserInput(UserCommand) Then Exit Sub
         If Not AddNewVisit() Then Exit Sub
@@ -1581,7 +1575,7 @@ ReplaceCurrentPet:
             DbTrans = DbConn.BeginTransaction
 
             With ClsVisit
-                If CbSendToWard.Checked = True Then
+                If CbIsAdmittedToWard.Checked = True Then
                     .IsAdmittedToWard = "1"
                     Message = "Pet has been added to ward admission."
                 Else
@@ -1589,8 +1583,8 @@ ReplaceCurrentPet:
                     Message = "Pet has been removed from ward admission."
                 End If
 
-                .IsOngoingTreatment = "1"
-                .VisitID = TxtVisitID.Text
+                '.IsOngoingTreatment = "1"
+                .VisitID = Trim(TxtVisitID.Text)
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
 
@@ -1601,6 +1595,7 @@ ReplaceCurrentPet:
                     DbTrans = Nothing
                     Return False
                 End If
+
             End With
 
             DbTrans.Commit()
@@ -1787,7 +1782,7 @@ ReplaceCurrentPet:
         End With
     End Sub
 
-    Private Sub BtnBillPayment_Click(sender As Object, e As EventArgs) Handles BtnBillPayment.Click
+    Private Sub BtnBillPayment_Click(sender As Object, e As EventArgs)
         With FrmPaymentInformation
             .InvoiceNo = BtnBillPayment.Tag
             .UserCommand = "SHOW_BILLING_INFO"
@@ -1798,4 +1793,9 @@ ReplaceCurrentPet:
     Private Sub DgvSelectedPet_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedPet.CellClick
 
     End Sub
+
+    Private Sub CbIsAdmittedToWard_Click(sender As Object, e As EventArgs) Handles CbIsAdmittedToWard.Click
+        If Not AdmitToWard() Then Exit Sub
+    End Sub
+
 End Class

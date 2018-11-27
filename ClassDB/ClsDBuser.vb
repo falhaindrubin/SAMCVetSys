@@ -70,7 +70,7 @@ Public Class ClsDBUser
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.EmployeeID, EmployeeName, SaluteCode, SaluteName, NRICPassportNo, SexCode, SexName, EmployeeDOB, EmployeePOB, Nationality, ")
+                .Append("SELECT a.EmployeeID, a.EmployeeName, SaluteCode, SaluteName, NRICPassportNo, SexCode, SexName, EmployeeDOB, EmployeePOB, Nationality, ")
                 .Append("AddressLine1, AddressLine2, AddressLine3, AddressLine4, Race, Religion, MaritalStatusCode, MaritalStatusName, ")
                 .Append("PositionCode, PositionName, Qualification, Institution, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")

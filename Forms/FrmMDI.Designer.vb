@@ -35,6 +35,7 @@ Partial Class FrmMDI
         Me.EmployeeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductsServicesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RolesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -101,7 +102,7 @@ Partial Class FrmMDI
         '
         'MaintenanceToolStripMenuItem
         '
-        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem, Me.UserToolStripMenuItem, Me.ProductsServicesToolStripMenuItem})
+        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem, Me.UserToolStripMenuItem, Me.ProductsServicesToolStripMenuItem, Me.RolesToolStripMenuItem})
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
         Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(80, 20)
         Me.MaintenanceToolStripMenuItem.Text = "Management"
@@ -109,20 +110,26 @@ Partial Class FrmMDI
         'EmployeeUserToolStripMenuItem
         '
         Me.EmployeeUserToolStripMenuItem.Name = "EmployeeUserToolStripMenuItem"
-        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.EmployeeUserToolStripMenuItem.Text = "Employee"
         '
         'UserToolStripMenuItem
         '
         Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.UserToolStripMenuItem.Text = "User"
         '
         'ProductsServicesToolStripMenuItem
         '
         Me.ProductsServicesToolStripMenuItem.Name = "ProductsServicesToolStripMenuItem"
-        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ProductsServicesToolStripMenuItem.Text = "Products && Services"
+        '
+        'RolesToolStripMenuItem
+        '
+        Me.RolesToolStripMenuItem.Name = "RolesToolStripMenuItem"
+        Me.RolesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.RolesToolStripMenuItem.Text = "Roles"
         '
         'WindowToolStripMenuItem
         '
@@ -164,4 +171,5 @@ Partial Class FrmMDI
     Friend WithEvents AppointmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BillingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SurgeryToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RolesToolStripMenuItem As ToolStripMenuItem
 End Class

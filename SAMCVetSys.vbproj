@@ -194,10 +194,13 @@
     <Compile Include="Class\ClsTreatment.vb" />
     <Compile Include="Class\ClsUserRoles.vb" />
     <Compile Include="Class\ClsVisitCharges.vb" />
+    <Compile Include="Class\ClsWardDischarge.vb" />
     <Compile Include="Class\ClsWard.vb" />
+    <Compile Include="Class\ClsWardHourly.vb" />
     <Compile Include="Class\ClsWardDetail.vb" />
     <Compile Include="Class\ClsWardDiagnosis.vb" />
     <Compile Include="Class\ClsWardDiagnosisDetail.vb" />
+    <Compile Include="Class\ClsWardDischargeMedication.vb" />
     <Compile Include="Class\ClsWardTreatment.vb" />
     <Compile Include="Forms\Customer\Appointment\FrmAppointmentInformation.Designer.vb">
       <DependentUpon>FrmAppointmentInformation.vb</DependentUpon>
@@ -213,6 +216,18 @@
       <DependentUpon>FrmVisitInformation.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\Visit\FrmVisitInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleInformation.Designer.vb">
+      <DependentUpon>FrmRoleInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleRecords.Designer.vb">
+      <DependentUpon>FrmRoleRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleRecords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Management\Users\FrmUserInformation.Designer.vb">
@@ -343,6 +358,7 @@
     <Compile Include="Dataset\DsCustomerInformation.vb">
       <DependentUpon>DsCustomerInformation.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Module\ModUtility.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -465,6 +481,12 @@
     <EmbeddedResource Include="Forms\Management\Products\FrmItemRecords.resx">
       <DependentUpon>FrmItemRecords.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Roles\FrmRoleInformation.resx">
+      <DependentUpon>FrmRoleInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Roles\FrmRoleRecords.resx">
+      <DependentUpon>FrmRoleRecords.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Management\Users\FrmUserInformation.resx">
       <DependentUpon>FrmUserInformation.vb</DependentUpon>
     </EmbeddedResource>
@@ -561,9 +583,7 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Management\Roles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
       <Visible>False</Visible>

@@ -197,3 +197,5 @@ E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmEmployee
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmUserInformation.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmUserRecords.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchEmployee.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmRoleRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmRoleInformation.resources

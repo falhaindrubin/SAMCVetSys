@@ -50,7 +50,7 @@ Public Class ClsDbUserRole
             Da.Fill(DtUser)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbUser.GetUserInformation()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbUserRole.GetUserInformation()")
         End Try
 
         Return DtUser

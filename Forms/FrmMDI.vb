@@ -292,4 +292,28 @@
         End Try
     End Sub
 
+    Private Sub RolesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RolesToolStripMenuItem.Click
+
+        Try
+            Dim Frm As New FrmRoleRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmRoleRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmRoleRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
 End Class

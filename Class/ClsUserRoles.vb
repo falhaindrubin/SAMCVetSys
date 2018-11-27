@@ -58,7 +58,7 @@
         'GetUserRoles(ClsUserRoles)
     End Function
 
-    'Get User information
+    'Get User Role
     Public Function GetUserRole(ClsUserRole As ClsUserRole) As DataTable
         Return DbUserRole.GetUserRole(ClsUserRole)
     End Function

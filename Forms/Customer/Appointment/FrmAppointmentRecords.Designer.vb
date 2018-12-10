@@ -26,6 +26,7 @@ Partial Class FrmAppointmentRecords
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DgvAppoinmentListing = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewAppointment = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
@@ -33,7 +34,6 @@ Partial Class FrmAppointmentRecords
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.BtnSearchAppointment = New System.Windows.Forms.Button()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvAppoinmentListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
@@ -85,14 +85,26 @@ Partial Class FrmAppointmentRecords
         Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
         Me.PnlActionBar.TabIndex = 71
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(277, 32)
+        Me.Label25.TabIndex = 73
+        Me.Label25.Text = "Appointment Records"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'BtnClose
         '
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(920, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(920, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -101,9 +113,9 @@ Partial Class FrmAppointmentRecords
         Me.BtnAddNewAppointment.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewAppointment.BackgroundImage = CType(resources.GetObject("BtnAddNewAppointment.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewAppointment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewAppointment.Location = New System.Drawing.Point(798, 6)
+        Me.BtnAddNewAppointment.Location = New System.Drawing.Point(798, 4)
         Me.BtnAddNewAppointment.Name = "BtnAddNewAppointment"
-        Me.BtnAddNewAppointment.Size = New System.Drawing.Size(60, 56)
+        Me.BtnAddNewAppointment.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewAppointment.TabIndex = 2
         Me.BtnAddNewAppointment.UseVisualStyleBackColor = False
         '
@@ -112,9 +124,9 @@ Partial Class FrmAppointmentRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(859, 6)
+        Me.BtnReload.Location = New System.Drawing.Point(859, 4)
         Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
         '
@@ -160,18 +172,6 @@ Partial Class FrmAppointmentRecords
         Me.BtnSearchAppointment.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearchAppointment.TabIndex = 5
         Me.BtnSearchAppointment.UseVisualStyleBackColor = False
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 18)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(277, 32)
-        Me.Label25.TabIndex = 73
-        Me.Label25.Text = "Appointment Records"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'FrmAppointmentRecords
         '

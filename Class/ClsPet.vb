@@ -102,23 +102,23 @@
         End Set
     End Property
 
-    Private _StatusCode As String
-    Public Property StatusCode As String
+    Private _NeuterCode As String
+    Public Property NeuterCode As String
         Get
-            Return _StatusCode
+            Return _NeuterCode
         End Get
         Set(value As String)
-            _StatusCode = value
+            _NeuterCode = value
         End Set
     End Property
 
-    Private _StatusName As String
-    Public Property StatusName As String
+    Private _NeuterName As String
+    Public Property NeuterName As String
         Get
-            Return _StatusName
+            Return _NeuterName
         End Get
         Set(value As String)
-            _StatusName = value
+            _NeuterName = value
         End Set
     End Property
 
@@ -192,8 +192,8 @@
         Return DBPet.GetPetBreed(ClsPet)
     End Function
 
-    Public Function GetPetStatus(ClsPet As ClsPet) As DataTable
-        Return DBPet.GetPetStatus(ClsPet)
+    Public Function GetNeuterStatus(ClsPet As ClsPet) As DataTable
+        Return DbPet.GetNeuterStatus(ClsPet)
     End Function
 
     Public Function GetPetSex(ClsPet As ClsPet) As DataTable

@@ -1,4 +1,4 @@
-﻿Public Class ClsWardDischargeMedication
+﻿Public Class ClsWardDischargeDetail
 
     Dim DbWard As New ClsDbWard
 
@@ -146,8 +146,12 @@
 
 #End Region
 
-    Public Function AddNewWardDischargeMedication(ClsWardDischargeMedication As ClsWardDischargeMedication, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    Public Function AddNewWardDischargeMedication(ClsWardDischargeMedication As ClsWardDischargeDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbWard.AddNewWardDischargeMedication(ClsWardDischargeMedication, DbConn, DbTrans)
+    End Function
+
+    Public Function GetWardDischargeMedication(ClsWardDischargeMedication As ClsWardDischargeDetail) As DataTable
+        Return DbWard.GetWardDischargeMedication(ClsWardDischargeMedication)
     End Function
 
 End Class

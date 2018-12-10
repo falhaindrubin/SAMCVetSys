@@ -1,4 +1,5 @@
 ﻿Public Class FrmSearchVisit
+
 #Region "FormProperty"
     Private _VisitID As String
     Public Property VisitID As String
@@ -7,6 +8,16 @@
         End Get
         Set(value As String)
             _VisitID = value
+        End Set
+    End Property
+
+    Private _InvoiceNo As String
+    Public Property InvoiceNo As String
+        Get
+            Return _InvoiceNo
+        End Get
+        Set(value As String)
+            _InvoiceNo = value
         End Set
     End Property
 
@@ -88,7 +99,7 @@
                     If Source = "TREATMENT" Then
                         '    If UserCommand = "ADD_NEW_TREATMENT" Then
                         '        CbNotAssigned.Checked = True
-                        '        With ClsVisit
+                        '    y    With ClsVisit
                         '            .IsVisitCompleted = "0"
                         '            .IsOngoingTreatment = "0"
                         '        End With
@@ -108,17 +119,22 @@
 
                 Case "WARD"
                     If Source = "WARD" Then
-                        If UserCommand = "ADD_NEW_WARD" Then
-                            CbIsWarded.Checked = True
-                            With ClsVisit
-                                .IsAdmittedToWard = "0"
-                                .IsOngoingTreatment = "1"
-                                .IsVisitCompleted = "0"
-                            End With
-                            DtVisit = ClsVisit.GetWardedVisitListing(ClsVisit)
-                        End If
+
+                        With ClsVisit
+
+                            .IsAdmittedToWard = IIf(CbIsWarded.Checked = True, "1", "0")
+                            .IsVisitCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
+                            DtVisit = .GetAdmittedToWardVisit(ClsVisit)
+
+                        End With
+
                     Else
                         DtVisit = ClsVisit.GetVisitListing(ClsVisit)
+
+                    End If
+
+                    If DgvVisit.Rows.Count > 0 Then
+                        DgvVisit.DataSource = Nothing
                     End If
 
                     If DtVisit.Rows.Count > 0 Then
@@ -174,6 +190,7 @@
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     VisitID = DgvVisit.Rows(e.RowIndex).Cells("VisitID").Value
+                    InvoiceNo = ""
                     CustomerID = DgvVisit.Rows(e.RowIndex).Cells("CustomerID").Value
                     CustomerName = DgvVisit.Rows(e.RowIndex).Cells("CustomerName").Value
                     PetID = DgvVisit.Rows(e.RowIndex).Cells("PetID").Value
@@ -189,5 +206,36 @@
         End Try
 
     End Sub
+
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        PopulateVisitListing()
+    End Sub
+
+    'Private Sub PopulateAdmittedToWardVisit()
+
+    '    Try
+    '        Dim ClsVisit As New ClsVisit
+    '        Dim DtVisit As New DataTable
+
+    '        With ClsVisit
+    '            .IsAdmittedToWard = IIf(CbIsWarded.Checked = True, "1", "0")
+    '            .IsVisitCompleted = "0"
+    '            DtVisit = .GetAdmittedToWardVisit(ClsVisit)
+    '            If DtVisit.Rows.Count > 0 Then
+    '                DgvVisit.DataSource = DtVisit
+    '                DgvVisit.Show()
+    '            End If
+
+    '        End With
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvVisit_CellDoubleClick()")
+    '    End Try
+
+    'End Sub
+
+    'Private Sub CbIsWarded_CheckedChanged(sender As Object, e As EventArgs) Handles CbIsWarded.CheckedChanged
+    '    PopulateAdmittedToWardVisit()
+    'End Sub
 
 End Class

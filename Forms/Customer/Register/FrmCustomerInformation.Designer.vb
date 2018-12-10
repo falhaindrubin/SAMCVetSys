@@ -23,7 +23,7 @@ Partial Class FrmCustomerInformation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCustomerInformation))
         Me.CmbSalutation = New System.Windows.Forms.ComboBox()
         Me.TxtMobileNo = New System.Windows.Forms.TextBox()
@@ -56,6 +56,20 @@ Partial Class FrmCustomerInformation
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.DgvPetListing = New System.Windows.Forms.DataGridView()
+        Me.DgvBtnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DgvBtnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.PetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnimalTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BreedCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SexCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SexName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NeuterCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NeuterName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -69,7 +83,8 @@ Partial Class FrmCustomerInformation
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TxtEmail = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.CmbStatus = New System.Windows.Forms.ComboBox()
+        Me.LblPetRowIndex = New System.Windows.Forms.Label()
+        Me.CmbNeuterStatus = New System.Windows.Forms.ComboBox()
         Me.CmbBreed = New System.Windows.Forms.ComboBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.DgvVisitHistory = New System.Windows.Forms.DataGridView()
@@ -79,6 +94,8 @@ Partial Class FrmCustomerInformation
         Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IsVisitCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.BtnReload = New System.Windows.Forms.Button()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnPrint = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnCancel = New System.Windows.Forms.Button()
@@ -92,23 +109,6 @@ Partial Class FrmCustomerInformation
         Me.TxtDateCreated = New System.Windows.Forms.TextBox()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.DgvBtnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.DgvBtnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.PetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnimalTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BreedCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SexCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SexName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IsDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.BtnReload = New System.Windows.Forms.Button()
-        Me.LblPetRowIndex = New System.Windows.Forms.Label()
         CType(Me.DgvPetListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -267,7 +267,7 @@ Partial Class FrmCustomerInformation
         '
         'BtnCancelEdit
         '
-        Me.BtnCancelEdit.Location = New System.Drawing.Point(301, 156)
+        Me.BtnCancelEdit.Location = New System.Drawing.Point(301, 155)
         Me.BtnCancelEdit.Name = "BtnCancelEdit"
         Me.BtnCancelEdit.Size = New System.Drawing.Size(100, 25)
         Me.BtnCancelEdit.TabIndex = 16
@@ -277,7 +277,7 @@ Partial Class FrmCustomerInformation
         '
         'BtnClearPet
         '
-        Me.BtnClearPet.Location = New System.Drawing.Point(198, 156)
+        Me.BtnClearPet.Location = New System.Drawing.Point(198, 155)
         Me.BtnClearPet.Name = "BtnClearPet"
         Me.BtnClearPet.Size = New System.Drawing.Size(100, 25)
         Me.BtnClearPet.TabIndex = 15
@@ -286,7 +286,7 @@ Partial Class FrmCustomerInformation
         '
         'BtnAddPet
         '
-        Me.BtnAddPet.Location = New System.Drawing.Point(95, 156)
+        Me.BtnAddPet.Location = New System.Drawing.Point(95, 155)
         Me.BtnAddPet.Name = "BtnAddPet"
         Me.BtnAddPet.Size = New System.Drawing.Size(100, 25)
         Me.BtnAddPet.TabIndex = 14
@@ -297,7 +297,7 @@ Partial Class FrmCustomerInformation
         '
         Me.CmbSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbSex.FormattingEnabled = True
-        Me.CmbSex.Location = New System.Drawing.Point(95, 105)
+        Me.CmbSex.Location = New System.Drawing.Point(95, 99)
         Me.CmbSex.Name = "CmbSex"
         Me.CmbSex.Size = New System.Drawing.Size(183, 22)
         Me.CmbSex.TabIndex = 12
@@ -305,7 +305,7 @@ Partial Class FrmCustomerInformation
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(10, 134)
+        Me.Label13.Location = New System.Drawing.Point(10, 127)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(38, 14)
         Me.Label13.TabIndex = 61
@@ -314,7 +314,7 @@ Partial Class FrmCustomerInformation
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(10, 109)
+        Me.Label15.Location = New System.Drawing.Point(10, 103)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(26, 14)
         Me.Label15.TabIndex = 60
@@ -323,7 +323,7 @@ Partial Class FrmCustomerInformation
         'DtpPetDOB
         '
         Me.DtpPetDOB.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpPetDOB.Location = New System.Drawing.Point(95, 31)
+        Me.DtpPetDOB.Location = New System.Drawing.Point(95, 29)
         Me.DtpPetDOB.Name = "DtpPetDOB"
         Me.DtpPetDOB.Size = New System.Drawing.Size(183, 20)
         Me.DtpPetDOB.TabIndex = 9
@@ -331,7 +331,7 @@ Partial Class FrmCustomerInformation
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(10, 34)
+        Me.Label11.Location = New System.Drawing.Point(10, 32)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(67, 14)
         Me.Label11.TabIndex = 58
@@ -341,7 +341,7 @@ Partial Class FrmCustomerInformation
         '
         Me.CmbAnimalType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbAnimalType.FormattingEnabled = True
-        Me.CmbAnimalType.Location = New System.Drawing.Point(95, 55)
+        Me.CmbAnimalType.Location = New System.Drawing.Point(95, 51)
         Me.CmbAnimalType.Name = "CmbAnimalType"
         Me.CmbAnimalType.Size = New System.Drawing.Size(183, 22)
         Me.CmbAnimalType.TabIndex = 10
@@ -366,7 +366,7 @@ Partial Class FrmCustomerInformation
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(10, 59)
+        Me.Label10.Location = New System.Drawing.Point(10, 55)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(77, 14)
         Me.Label10.TabIndex = 54
@@ -375,7 +375,7 @@ Partial Class FrmCustomerInformation
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(10, 84)
+        Me.Label12.Location = New System.Drawing.Point(10, 79)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(36, 14)
         Me.Label12.TabIndex = 55
@@ -392,14 +392,129 @@ Partial Class FrmCustomerInformation
         Me.DgvPetListing.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.DgvPetListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvPetListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvPetListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DgvBtnEdit, Me.DgvBtnDelete, Me.PetID, Me.PetName, Me.PetDOB, Me.AnimalTypeCode, Me.AnimalTypeName, Me.BreedCode, Me.BreedName, Me.SexCode, Me.SexName, Me.StatusCode, Me.StatusName, Me.IsDb})
+        Me.DgvPetListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DgvBtnEdit, Me.DgvBtnDelete, Me.PetID, Me.PetName, Me.PetDOB, Me.AnimalTypeCode, Me.AnimalTypeName, Me.BreedCode, Me.BreedName, Me.SexCode, Me.SexName, Me.NeuterCode, Me.NeuterName, Me.IsDb})
         Me.DgvPetListing.Location = New System.Drawing.Point(8, 187)
         Me.DgvPetListing.MultiSelect = False
         Me.DgvPetListing.Name = "DgvPetListing"
         Me.DgvPetListing.ReadOnly = True
         Me.DgvPetListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvPetListing.Size = New System.Drawing.Size(836, 348)
+        Me.DgvPetListing.Size = New System.Drawing.Size(836, 233)
         Me.DgvPetListing.TabIndex = 67
+        '
+        'DgvBtnEdit
+        '
+        Me.DgvBtnEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnEdit.HeaderText = "Edit"
+        Me.DgvBtnEdit.Name = "DgvBtnEdit"
+        Me.DgvBtnEdit.ReadOnly = True
+        Me.DgvBtnEdit.Text = "Edit"
+        Me.DgvBtnEdit.UseColumnTextForButtonValue = True
+        Me.DgvBtnEdit.Width = 30
+        '
+        'DgvBtnDelete
+        '
+        Me.DgvBtnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnDelete.HeaderText = "Delete?"
+        Me.DgvBtnDelete.Name = "DgvBtnDelete"
+        Me.DgvBtnDelete.ReadOnly = True
+        Me.DgvBtnDelete.Text = "Delete"
+        Me.DgvBtnDelete.UseColumnTextForButtonValue = True
+        Me.DgvBtnDelete.Width = 49
+        '
+        'PetID
+        '
+        Me.PetID.HeaderText = "Pet ID"
+        Me.PetID.Name = "PetID"
+        Me.PetID.ReadOnly = True
+        Me.PetID.Width = 59
+        '
+        'PetName
+        '
+        Me.PetName.HeaderText = "Pet Name"
+        Me.PetName.Name = "PetName"
+        Me.PetName.ReadOnly = True
+        Me.PetName.Width = 77
+        '
+        'PetDOB
+        '
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle1
+        Me.PetDOB.HeaderText = "DOB"
+        Me.PetDOB.Name = "PetDOB"
+        Me.PetDOB.ReadOnly = True
+        Me.PetDOB.Width = 54
+        '
+        'AnimalTypeCode
+        '
+        Me.AnimalTypeCode.HeaderText = "AnimalTypeCode"
+        Me.AnimalTypeCode.Name = "AnimalTypeCode"
+        Me.AnimalTypeCode.ReadOnly = True
+        Me.AnimalTypeCode.Visible = False
+        Me.AnimalTypeCode.Width = 112
+        '
+        'AnimalTypeName
+        '
+        Me.AnimalTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.AnimalTypeName.HeaderText = "Animal Type"
+        Me.AnimalTypeName.Name = "AnimalTypeName"
+        Me.AnimalTypeName.ReadOnly = True
+        Me.AnimalTypeName.Width = 90
+        '
+        'BreedCode
+        '
+        Me.BreedCode.HeaderText = "BreedCode"
+        Me.BreedCode.Name = "BreedCode"
+        Me.BreedCode.ReadOnly = True
+        Me.BreedCode.Visible = False
+        Me.BreedCode.Width = 86
+        '
+        'BreedName
+        '
+        Me.BreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.BreedName.HeaderText = "Breed"
+        Me.BreedName.Name = "BreedName"
+        Me.BreedName.ReadOnly = True
+        '
+        'SexCode
+        '
+        Me.SexCode.HeaderText = "SexCode"
+        Me.SexCode.Name = "SexCode"
+        Me.SexCode.ReadOnly = True
+        Me.SexCode.Visible = False
+        Me.SexCode.Width = 76
+        '
+        'SexName
+        '
+        Me.SexName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SexName.HeaderText = "Sex"
+        Me.SexName.Name = "SexName"
+        Me.SexName.ReadOnly = True
+        Me.SexName.Width = 51
+        '
+        'NeuterCode
+        '
+        Me.NeuterCode.HeaderText = "StatusCode"
+        Me.NeuterCode.Name = "NeuterCode"
+        Me.NeuterCode.ReadOnly = True
+        Me.NeuterCode.Visible = False
+        Me.NeuterCode.Width = 88
+        '
+        'NeuterName
+        '
+        Me.NeuterName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NeuterName.HeaderText = "Status"
+        Me.NeuterName.Name = "NeuterName"
+        Me.NeuterName.ReadOnly = True
+        Me.NeuterName.Width = 63
+        '
+        'IsDb
+        '
+        Me.IsDb.HeaderText = "IsDb"
+        Me.IsDb.Name = "IsDb"
+        Me.IsDb.ReadOnly = True
+        Me.IsDb.Visible = False
+        Me.IsDb.Width = 53
         '
         'TabControl1
         '
@@ -409,7 +524,7 @@ Partial Class FrmCustomerInformation
         Me.TabControl1.Location = New System.Drawing.Point(12, 86)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(860, 568)
+        Me.TabControl1.Size = New System.Drawing.Size(860, 453)
         Me.TabControl1.TabIndex = 68
         '
         'TabPage1
@@ -444,7 +559,7 @@ Partial Class FrmCustomerInformation
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(852, 541)
+        Me.TabPage1.Size = New System.Drawing.Size(852, 426)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Customer Information"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -541,7 +656,7 @@ Partial Class FrmCustomerInformation
         Me.TabPage2.Controls.Add(Me.DtpPetDOB)
         Me.TabPage2.Controls.Add(Me.CmbSex)
         Me.TabPage2.Controls.Add(Me.Label11)
-        Me.TabPage2.Controls.Add(Me.CmbStatus)
+        Me.TabPage2.Controls.Add(Me.CmbNeuterStatus)
         Me.TabPage2.Controls.Add(Me.BtnAddPet)
         Me.TabPage2.Controls.Add(Me.CmbBreed)
         Me.TabPage2.Controls.Add(Me.CmbAnimalType)
@@ -556,25 +671,35 @@ Partial Class FrmCustomerInformation
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(852, 541)
+        Me.TabPage2.Size = New System.Drawing.Size(852, 426)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Pet Information"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'CmbStatus
+        'LblPetRowIndex
         '
-        Me.CmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CmbStatus.FormattingEnabled = True
-        Me.CmbStatus.Location = New System.Drawing.Point(95, 130)
-        Me.CmbStatus.Name = "CmbStatus"
-        Me.CmbStatus.Size = New System.Drawing.Size(183, 22)
-        Me.CmbStatus.TabIndex = 13
+        Me.LblPetRowIndex.AutoSize = True
+        Me.LblPetRowIndex.Location = New System.Drawing.Point(282, 10)
+        Me.LblPetRowIndex.Name = "LblPetRowIndex"
+        Me.LblPetRowIndex.Size = New System.Drawing.Size(56, 14)
+        Me.LblPetRowIndex.TabIndex = 68
+        Me.LblPetRowIndex.Text = "RowIndex"
+        Me.LblPetRowIndex.Visible = False
+        '
+        'CmbNeuterStatus
+        '
+        Me.CmbNeuterStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbNeuterStatus.FormattingEnabled = True
+        Me.CmbNeuterStatus.Location = New System.Drawing.Point(95, 123)
+        Me.CmbNeuterStatus.Name = "CmbNeuterStatus"
+        Me.CmbNeuterStatus.Size = New System.Drawing.Size(183, 22)
+        Me.CmbNeuterStatus.TabIndex = 13
         '
         'CmbBreed
         '
         Me.CmbBreed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbBreed.FormattingEnabled = True
-        Me.CmbBreed.Location = New System.Drawing.Point(95, 80)
+        Me.CmbBreed.Location = New System.Drawing.Point(95, 75)
         Me.CmbBreed.Name = "CmbBreed"
         Me.CmbBreed.Size = New System.Drawing.Size(183, 22)
         Me.CmbBreed.TabIndex = 11
@@ -585,7 +710,7 @@ Partial Class FrmCustomerInformation
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(852, 541)
+        Me.TabPage3.Size = New System.Drawing.Size(852, 426)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Visit History"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -603,7 +728,7 @@ Partial Class FrmCustomerInformation
         Me.DgvVisitHistory.Location = New System.Drawing.Point(3, 3)
         Me.DgvVisitHistory.Name = "DgvVisitHistory"
         Me.DgvVisitHistory.ReadOnly = True
-        Me.DgvVisitHistory.Size = New System.Drawing.Size(846, 535)
+        Me.DgvVisitHistory.Size = New System.Drawing.Size(846, 420)
         Me.DgvVisitHistory.TabIndex = 0
         '
         'VisitID
@@ -660,14 +785,38 @@ Partial Class FrmCustomerInformation
         Me.PnlActionBar.Size = New System.Drawing.Size(860, 68)
         Me.PnlActionBar.TabIndex = 69
         '
+        'BtnReload
+        '
+        Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
+        Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnReload.Location = New System.Drawing.Point(490, 4)
+        Me.BtnReload.Name = "BtnReload"
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
+        Me.BtnReload.TabIndex = 80
+        Me.BtnReload.UseVisualStyleBackColor = False
+        Me.BtnReload.Visible = False
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(276, 32)
+        Me.Label25.TabIndex = 14
+        Me.Label25.Text = "Customer Information"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'BtnPrint
         '
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(550, 6)
+        Me.BtnPrint.Location = New System.Drawing.Point(552, 4)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
+        Me.BtnPrint.Size = New System.Drawing.Size(60, 60)
         Me.BtnPrint.TabIndex = 4
         Me.BtnPrint.UseVisualStyleBackColor = False
         '
@@ -676,9 +825,9 @@ Partial Class FrmCustomerInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(794, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(796, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.BtnClose, "Close")
         Me.BtnClose.UseVisualStyleBackColor = False
@@ -688,9 +837,9 @@ Partial Class FrmCustomerInformation
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(672, 6)
+        Me.BtnCancel.Location = New System.Drawing.Point(674, 4)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
+        Me.BtnCancel.Size = New System.Drawing.Size(60, 60)
         Me.BtnCancel.TabIndex = 2
         Me.BtnCancel.UseVisualStyleBackColor = False
         '
@@ -699,9 +848,9 @@ Partial Class FrmCustomerInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(733, 6)
+        Me.BtnEdit.Location = New System.Drawing.Point(735, 4)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
+        Me.BtnEdit.Size = New System.Drawing.Size(60, 60)
         Me.BtnEdit.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.BtnEdit, "Edit")
         Me.BtnEdit.UseVisualStyleBackColor = False
@@ -711,9 +860,9 @@ Partial Class FrmCustomerInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(611, 6)
+        Me.BtnSave.Location = New System.Drawing.Point(613, 4)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSave.Size = New System.Drawing.Size(60, 60)
         Me.BtnSave.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.BtnSave, "Save")
         Me.BtnSave.UseVisualStyleBackColor = False
@@ -760,7 +909,7 @@ Partial Class FrmCustomerInformation
         '
         Me.TxtDateCreated.BackColor = System.Drawing.Color.Beige
         Me.TxtDateCreated.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDateCreated.Location = New System.Drawing.Point(145, 7)
+        Me.TxtDateCreated.Location = New System.Drawing.Point(143, 7)
         Me.TxtDateCreated.Name = "TxtDateCreated"
         Me.TxtDateCreated.ReadOnly = True
         Me.TxtDateCreated.Size = New System.Drawing.Size(132, 20)
@@ -770,7 +919,7 @@ Partial Class FrmCustomerInformation
         '
         Me.TxtDateModified.BackColor = System.Drawing.Color.Beige
         Me.TxtDateModified.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDateModified.Location = New System.Drawing.Point(145, 29)
+        Me.TxtDateModified.Location = New System.Drawing.Point(143, 29)
         Me.TxtDateModified.Name = "TxtDateModified"
         Me.TxtDateModified.ReadOnly = True
         Me.TxtDateModified.Size = New System.Drawing.Size(132, 20)
@@ -785,158 +934,10 @@ Partial Class FrmCustomerInformation
         Me.Panel3.Controls.Add(Me.TxtDateCreated)
         Me.Panel3.Controls.Add(Me.Label18)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
-        Me.Panel3.Location = New System.Drawing.Point(12, 660)
+        Me.Panel3.Location = New System.Drawing.Point(12, 545)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(856, 57)
+        Me.Panel3.Size = New System.Drawing.Size(856, 56)
         Me.Panel3.TabIndex = 79
-        '
-        'DgvBtnEdit
-        '
-        Me.DgvBtnEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DgvBtnEdit.HeaderText = "Edit"
-        Me.DgvBtnEdit.Name = "DgvBtnEdit"
-        Me.DgvBtnEdit.ReadOnly = True
-        Me.DgvBtnEdit.Text = "Edit"
-        Me.DgvBtnEdit.UseColumnTextForButtonValue = True
-        Me.DgvBtnEdit.Width = 30
-        '
-        'DgvBtnDelete
-        '
-        Me.DgvBtnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DgvBtnDelete.HeaderText = "Delete?"
-        Me.DgvBtnDelete.Name = "DgvBtnDelete"
-        Me.DgvBtnDelete.ReadOnly = True
-        Me.DgvBtnDelete.Text = "Delete"
-        Me.DgvBtnDelete.UseColumnTextForButtonValue = True
-        Me.DgvBtnDelete.Width = 49
-        '
-        'PetID
-        '
-        Me.PetID.HeaderText = "Pet ID"
-        Me.PetID.Name = "PetID"
-        Me.PetID.ReadOnly = True
-        Me.PetID.Width = 59
-        '
-        'PetName
-        '
-        Me.PetName.HeaderText = "Pet Name"
-        Me.PetName.Name = "PetName"
-        Me.PetName.ReadOnly = True
-        Me.PetName.Width = 77
-        '
-        'PetDOB
-        '
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle2
-        Me.PetDOB.HeaderText = "DOB"
-        Me.PetDOB.Name = "PetDOB"
-        Me.PetDOB.ReadOnly = True
-        Me.PetDOB.Width = 54
-        '
-        'AnimalTypeCode
-        '
-        Me.AnimalTypeCode.HeaderText = "AnimalTypeCode"
-        Me.AnimalTypeCode.Name = "AnimalTypeCode"
-        Me.AnimalTypeCode.ReadOnly = True
-        Me.AnimalTypeCode.Visible = False
-        Me.AnimalTypeCode.Width = 112
-        '
-        'AnimalTypeName
-        '
-        Me.AnimalTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.AnimalTypeName.HeaderText = "Animal Type"
-        Me.AnimalTypeName.Name = "AnimalTypeName"
-        Me.AnimalTypeName.ReadOnly = True
-        Me.AnimalTypeName.Width = 90
-        '
-        'BreedCode
-        '
-        Me.BreedCode.HeaderText = "BreedCode"
-        Me.BreedCode.Name = "BreedCode"
-        Me.BreedCode.ReadOnly = True
-        Me.BreedCode.Visible = False
-        Me.BreedCode.Width = 86
-        '
-        'BreedName
-        '
-        Me.BreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.BreedName.HeaderText = "Breed"
-        Me.BreedName.Name = "BreedName"
-        Me.BreedName.ReadOnly = True
-        '
-        'SexCode
-        '
-        Me.SexCode.HeaderText = "SexCode"
-        Me.SexCode.Name = "SexCode"
-        Me.SexCode.ReadOnly = True
-        Me.SexCode.Visible = False
-        Me.SexCode.Width = 76
-        '
-        'SexName
-        '
-        Me.SexName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SexName.HeaderText = "Sex"
-        Me.SexName.Name = "SexName"
-        Me.SexName.ReadOnly = True
-        Me.SexName.Width = 51
-        '
-        'StatusCode
-        '
-        Me.StatusCode.HeaderText = "StatusCode"
-        Me.StatusCode.Name = "StatusCode"
-        Me.StatusCode.ReadOnly = True
-        Me.StatusCode.Visible = False
-        Me.StatusCode.Width = 88
-        '
-        'StatusName
-        '
-        Me.StatusName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.StatusName.HeaderText = "Status"
-        Me.StatusName.Name = "StatusName"
-        Me.StatusName.ReadOnly = True
-        Me.StatusName.Width = 63
-        '
-        'IsDb
-        '
-        Me.IsDb.HeaderText = "IsDb"
-        Me.IsDb.Name = "IsDb"
-        Me.IsDb.ReadOnly = True
-        Me.IsDb.Visible = False
-        Me.IsDb.Width = 53
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 17)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(276, 32)
-        Me.Label25.TabIndex = 14
-        Me.Label25.Text = "Customer Information"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'BtnReload
-        '
-        Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
-        Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(488, 6)
-        Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
-        Me.BtnReload.TabIndex = 80
-        Me.BtnReload.UseVisualStyleBackColor = False
-        '
-        'LblPetRowIndex
-        '
-        Me.LblPetRowIndex.AutoSize = True
-        Me.LblPetRowIndex.Location = New System.Drawing.Point(282, 10)
-        Me.LblPetRowIndex.Name = "LblPetRowIndex"
-        Me.LblPetRowIndex.Size = New System.Drawing.Size(56, 14)
-        Me.LblPetRowIndex.TabIndex = 68
-        Me.LblPetRowIndex.Text = "RowIndex"
-        Me.LblPetRowIndex.Visible = False
         '
         'FrmCustomerInformation
         '
@@ -944,7 +945,7 @@ Partial Class FrmCustomerInformation
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(884, 729)
+        Me.ClientSize = New System.Drawing.Size(884, 610)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.TabControl1)
@@ -1008,7 +1009,7 @@ Partial Class FrmCustomerInformation
     Friend WithEvents BtnCancel As Button
     Friend WithEvents BtnClose As Button
     Friend WithEvents CmbBreed As ComboBox
-    Friend WithEvents CmbStatus As ComboBox
+    Friend WithEvents CmbNeuterStatus As ComboBox
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents Label16 As Label
     Friend WithEvents TxtEmail As TextBox
@@ -1035,6 +1036,9 @@ Partial Class FrmCustomerInformation
     Friend WithEvents VisitDescription As DataGridViewTextBoxColumn
     Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
     Friend WithEvents IsVisitCompleted As DataGridViewTextBoxColumn
+    Friend WithEvents Label25 As Label
+    Friend WithEvents BtnReload As Button
+    Friend WithEvents LblPetRowIndex As Label
     Friend WithEvents DgvBtnEdit As DataGridViewButtonColumn
     Friend WithEvents DgvBtnDelete As DataGridViewButtonColumn
     Friend WithEvents PetID As DataGridViewTextBoxColumn
@@ -1046,10 +1050,7 @@ Partial Class FrmCustomerInformation
     Friend WithEvents BreedName As DataGridViewTextBoxColumn
     Friend WithEvents SexCode As DataGridViewTextBoxColumn
     Friend WithEvents SexName As DataGridViewTextBoxColumn
-    Friend WithEvents StatusCode As DataGridViewTextBoxColumn
-    Friend WithEvents StatusName As DataGridViewTextBoxColumn
+    Friend WithEvents NeuterCode As DataGridViewTextBoxColumn
+    Friend WithEvents NeuterName As DataGridViewTextBoxColumn
     Friend WithEvents IsDb As DataGridViewTextBoxColumn
-    Friend WithEvents Label25 As Label
-    Friend WithEvents BtnReload As Button
-    Friend WithEvents LblPetRowIndex As Label
 End Class

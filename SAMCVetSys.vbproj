@@ -200,7 +200,7 @@
     <Compile Include="Class\ClsWardDetail.vb" />
     <Compile Include="Class\ClsWardDiagnosis.vb" />
     <Compile Include="Class\ClsWardDiagnosisDetail.vb" />
-    <Compile Include="Class\ClsWardDischargeMedication.vb" />
+    <Compile Include="Class\ClsWardDischargeDetail.vb" />
     <Compile Include="Class\ClsWardTreatment.vb" />
     <Compile Include="Forms\Customer\Appointment\FrmAppointmentInformation.Designer.vb">
       <DependentUpon>FrmAppointmentInformation.vb</DependentUpon>
@@ -318,6 +318,12 @@
       <DependentUpon>FrmDiagnosisPlanning.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Treatment\FrmDiagnosisPlanning.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmMedication.Designer.vb">
+      <DependentUpon>FrmMedication.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmMedication.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Ward\FrmWardInformation.Designer.vb">
@@ -504,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Treatment\FrmDiagnosisPlanning.resx">
       <DependentUpon>FrmDiagnosisPlanning.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ward\FrmMedication.resx">
+      <DependentUpon>FrmMedication.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ward\FrmWardInformation.resx">
       <DependentUpon>FrmWardInformation.vb</DependentUpon>

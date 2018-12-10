@@ -44,10 +44,11 @@
 
                 End If
 
-                DtUser = ClsLogin.GetUserLoginInfo(ClsLogin, DBConn)
+                DtUser = ClsLogin.GetUser(ClsLogin, DbConn)
                 If DtUser.Rows.Count > 0 Then
                     CURR_USER = Trim(UCase(UserID))
-
+                    CURR_EMPLOYEE_ID = Trim(DtUser.Rows(0).Item("EmployeeID"))
+                    CURR_EMPLOYEE_NAME = Trim(DtUser.Rows(0).Item("EmployeeName"))
                 Else
                     MsgBox("User not found.", MsgBoxStyle.OkOnly + MsgBoxStyle.Critical, "Login")
                     Return False

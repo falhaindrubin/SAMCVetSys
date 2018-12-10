@@ -34,8 +34,7 @@
                     Dim Frm As New FrmWardInformation With {
                         .UserCommand = "SHOW_WARD_INFO",
                         .WardID = DgvWardListing.Rows(e.RowIndex).Cells("WardID").Value,
-                        .CustomerID = DgvWardListing.Rows(e.RowIndex).Cells("CustomerID").Value,
-                        .VisitID = DgvWardListing.Rows(e.RowIndex).Cells("VisitID").Value
+                        .CustomerID = DgvWardListing.Rows(e.RowIndex).Cells("CustomerID").Value
                     }
                     Frm.ShowDialog()
                 End If

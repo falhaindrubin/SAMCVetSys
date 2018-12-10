@@ -1,5 +1,6 @@
 ﻿Public Class FrmItemInformation
 
+#Region "FormProperty"
     Private _UserCommand As String
     Public Property UserCommand As String
         Get
@@ -29,6 +30,7 @@
             _ItemCode = value
         End Set
     End Property
+#End Region
 
     Private Sub FrmItemEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Application.DoEvents()

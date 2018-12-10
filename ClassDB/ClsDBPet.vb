@@ -16,15 +16,15 @@ Public Class ClsDBPet
             sb = New StringBuilder
             With sb
                 .Append("INSERT INTO samc_pet ")
-                .Append("(CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, StatusCode, StatusName, ")
+                .Append("(CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, NeuterCode, NeuterName, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & PET.CustomerID & "', '" & PET.PetID & "', '" & PET.PetName & "', " & CSQLDate(PET.PetDOB) & ", '" & PET.AnimalTypeCode & "', '" & PET.AnimalTypeName & "', ")
-                .Append("'" & PET.BreedCode & "', '" & PET.BreedName & "', '" & PET.SexCode & "', '" & PET.SexName & "', '" & PET.StatusCode & "', '" & PET.StatusName & "', ")
+                .Append("'" & PET.BreedCode & "', '" & PET.BreedName & "', '" & PET.SexCode & "', '" & PET.SexName & "', '" & PET.NeuterCode & "', '" & PET.NeuterName & "', ")
                 .Append("'" & PET.Ref.CreatedBy & "', " & CSQLDateTime(PET.Ref.DateCreated) & ", '" & PET.Ref.ModifiedBy & "', " & CSQLDateTime(PET.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("PetName = '" & PET.PetName & "', PetDOB = " & CSQLDate(PET.PetDOB) & ", AnimalTypeCode = '" & PET.AnimalTypeCode & "', AnimalTypeName = '" & PET.AnimalTypeName & "', ")
-                .Append("BreedCode = '" & PET.BreedCode & "', BreedName = '" & PET.BreedName & "', SexCode = '" & PET.SexCode & "', SexName = '" & PET.SexName & "', StatusCode ='" & PET.StatusCode & "', StatusName = '" & PET.StatusName & "', ")
+                .Append("BreedCode = '" & PET.BreedCode & "', BreedName = '" & PET.BreedName & "', SexCode = '" & PET.SexCode & "', SexName = '" & PET.SexName & "', NeuterCode ='" & PET.NeuterCode & "', NeuterName = '" & PET.NeuterName & "', ")
                 .Append("ModifiedBy = '" & PET.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(PET.Ref.DateModified) & " ")
             End With
 
@@ -46,15 +46,15 @@ Public Class ClsDBPet
             sb = New StringBuilder
             With sb
                 .Append("INSERT INTO samc_pet ")
-                .Append("(CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, StatusCode, StatusName, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("(CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, NeuterCode, NeuterName, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & PET.CustomerID & "', '" & PET.PetID & "', '" & PET.PetName & "', " & CSQLDate(PET.PetDOB) & ", '" & PET.AnimalTypeCode & "', '" & PET.AnimalTypeName & "', ")
-                .Append("'" & PET.BreedCode & "', '" & PET.BreedName & "', '" & PET.SexCode & "', '" & PET.SexName & "', '" & PET.StatusCode & "', '" & PET.StatusName & "', ")
+                .Append("'" & PET.BreedCode & "', '" & PET.BreedName & "', '" & PET.SexCode & "', '" & PET.SexName & "', '" & PET.NeuterCode & "', '" & PET.NeuterName & "', ")
                 .Append("'" & PET.Ref.CreatedBy & "', " & CSQLDateTime(PET.Ref.DateCreated) & ", '" & PET.Ref.ModifiedBy & "', " & CSQLDateTime(PET.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("CustomerID = '" & PET.CustomerID & "', PetID = '" & PET.PetID & "', PetName = '" & PET.PetName & "', PetDOB = " & CSQLDate(PET.PetDOB) & ", ")
                 .Append("AnimalTypeCode = '" & PET.AnimalTypeCode & "', AnimalTypeName = '" & PET.AnimalTypeName & "', BreedCode = '" & PET.BreedCode & "', BreedName = '" & PET.BreedName & "', ")
-                .Append("SexCode = '" & PET.SexCode & "', SexName = '" & PET.SexName & "', StatusCode = '" & PET.StatusCode & "', StatusName = '" & PET.StatusName & "', ")
+                .Append("SexCode = '" & PET.SexCode & "', SexName = '" & PET.SexName & "', NeuterCode = '" & PET.NeuterCode & "', NeuterName = '" & PET.NeuterName & "', ")
                 .Append("CreatedBy = '" & PET.Ref.CreatedBy & "', DateCreated = " & CSQLDateTime(PET.Ref.DateCreated) & ", ")
                 .Append("ModifiedBy = '" & PET.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(PET.Ref.DateModified) & " ")
             End With
@@ -77,8 +77,8 @@ Public Class ClsDBPet
 
         Try
             sb = New StringBuilder
-            With sb
-                .Append("Select a.CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, StatusCode, StatusName, ")
+            With Sb
+                .Append("Select a.CustomerID, PetID, PetName, PetDOB, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, SexCode, SexName, NeuterCode, NeuterName, ")
                 .Append("b.CreatedBy, b.DateCreated, b.ModifiedBy, b.DateModified ")
                 .Append("FROM samc_pet a ")
                 .Append("INNER JOIN samc_customer b On a.CustomerID = b.CustomerID ")
@@ -149,23 +149,23 @@ Public Class ClsDBPet
 
     End Function
 
-    Public Function GetPetStatus(PET As ClsPet) As DataTable
+    Public Function GetNeuterStatus(PET As ClsPet) As DataTable
 
         Dim DtPetStatus As New DataTable
 
         Try
-            sb = New StringBuilder
-            With sb
-                .Append("SELECT StatusCode, StatusName ")
-                .Append("FROM samc_petstatus ")
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT NeuterCode, NeuterName ")
+                .Append("FROM samc_neuter ")
             End With
 
-            cmd = New OdbcCommand(sb.ToString, DBConn)
-            da = New OdbcDataAdapter(cmd)
-            da.Fill(DtPetStatus)
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtPetStatus)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBPet.GetPetStatus()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDBPet.GetNeuterStatus()")
         End Try
 
         Return DtPetStatus

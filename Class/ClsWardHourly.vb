@@ -13,13 +13,23 @@
         End Set
     End Property
 
-    Private _WardTime As DateTime
-    Public Property WardTime As DateTime
+    Private _RowNo As Integer
+    Public Property RowNo As Integer
         Get
-            Return _WardTime
+            Return _RowNo
+        End Get
+        Set(value As Integer)
+            _RowNo = value
+        End Set
+    End Property
+
+    Private _WardDate As DateTime
+    Public Property WardDate As DateTime
+        Get
+            Return _WardDate
         End Get
         Set(value As DateTime)
-            _WardTime = value
+            _WardDate = value
         End Set
     End Property
 

@@ -46,15 +46,15 @@ Public Class ClsDBAppointment
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_appointmentdetail ")
-                .Append("(AppointmentID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, AppointmentDesc, ")
+                .Append("(AppointmentID, PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, NeuterCode, NeuterName, AppointmentDescription, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & APPD.AppointmentID & "', '" & APPD.PetID & "', '" & APPD.PetName & "', " & CSQLDate(APPD.PetDOB) & ", '" & APPD.SexCode & "', '" & APPD.SexName & "', ")
                 .Append("'" & APPD.AnimalTypeCode & "', '" & APPD.AnimalTypeName & "', '" & APPD.BreedCode & "', ")
-                .Append("'" & APPD.BreedName & "', '" & APPD.StatusCode & "', '" & APPD.StatusName & "', '" & APPD.AppointmentDesc & "', ")
+                .Append("'" & APPD.BreedName & "', '" & APPD.NeuterCode & "', '" & APPD.NeuterName & "', '" & APPD.AppointmentDescription & "', ")
                 .Append("'" & APPD.Ref.CreatedBy & "', " & CSQLDateTime(APPD.Ref.DateCreated) & ", '" & APPD.Ref.ModifiedBy & "', " & CSQLDateTime(APPD.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("AppointmentDesc = '" & APPD.AppointmentDesc & "', ModifiedBy = '" & APPD.Ref.ModifiedBy & "',  DateModified = " & CSQLDateTime(APPD.Ref.DateModified) & " ")
+                .Append("AppointmentDescription = '" & APPD.AppointmentDescription & "', ModifiedBy = '" & APPD.Ref.ModifiedBy & "',  DateModified = " & CSQLDateTime(APPD.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
@@ -123,7 +123,7 @@ Public Class ClsDBAppointment
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, AppointmentTime, ")
-                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, AppointmentDesc, ")
+                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, NeuterCode, NeuterName, AppointmentDescription, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
                 .Append("FROM samc_appointment a ")
                 .Append("INNER JOIN samc_appointmentdetail b ON a.AppointmentID = b.AppointmentID ")
@@ -154,7 +154,7 @@ Public Class ClsDBAppointment
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, AppointmentTime, ")
-                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, StatusCode, StatusName, AppointmentDesc, ")
+                .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, NeuterCode, NeuterName, AppointmentDescription, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
                 .Append("FROM samc_appointment a ")
                 .Append("INNER JOIN samc_appointmentdetail b ON a.AppointmentID = b.AppointmentID ")
@@ -180,7 +180,7 @@ Public Class ClsDBAppointment
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, a.CustomerID, a.CustomerName, a.PetID, a.PetName, SexName, PetDOB, b.AnimalTypeName, b.BreedName, b.StatusName, AppointmentTime, AppointmentDesc AS 'PetIssue' ")
+                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, a.CustomerID, a.CustomerName, a.PetID, a.PetName, SexName, PetDOB, b.AnimalTypeName, b.BreedName, b.StatusName, AppointmentTime, AppointmentDescription AS 'PetIssue' ")
                 .Append("FROM samc_appointment a ")
                 .Append("INNER JOIN samc_pet b ON a.CustomerID = b.CustomerID AND a.PetID = b.PetID ")
                 .Append("WHERE a.CustomerID = @CustomerID AND DATE(a.AppointmentTime) = DATE(@AppointmentTime) ")
@@ -210,7 +210,7 @@ Public Class ClsDBAppointment
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, PetID, PetName, AppointmentTime, AppointmentDesc, ")
+                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, PetID, PetName, AppointmentTime, AppointmentDescription, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_appointment ")
                 .Append("WHERE CustomerID = @CustomerID AND DATE(AppointmentTime) = DATE(@AppointmentTime) ")
@@ -240,7 +240,7 @@ Public Class ClsDBAppointment
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, PetID, PetName, AppointmentTime, AppointmentDesc ")
+                .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName, PetID, PetName, AppointmentTime, AppointmentDescription ")
                 .Append("FROM samc_appointment ")
                 .Append("WHERE CustomerID = @CustomerID ")
                 .Append("ORDER BY AppointmentTime DESC ")

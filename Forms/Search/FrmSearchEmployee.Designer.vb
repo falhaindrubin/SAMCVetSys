@@ -85,7 +85,7 @@ Partial Class FrmSearchEmployee
         Me.TxtSearchText.BackColor = System.Drawing.Color.White
         Me.TxtSearchText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSearchText.Location = New System.Drawing.Point(9, 34)
+        Me.TxtSearchText.Location = New System.Drawing.Point(10, 30)
         Me.TxtSearchText.Name = "TxtSearchText"
         Me.TxtSearchText.Size = New System.Drawing.Size(529, 25)
         Me.TxtSearchText.TabIndex = 1
@@ -95,9 +95,9 @@ Partial Class FrmSearchEmployee
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(544, 20)
+        Me.BtnSearch.Location = New System.Drawing.Point(544, 12)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(60, 52)
+        Me.BtnSearch.Size = New System.Drawing.Size(60, 60)
         Me.BtnSearch.TabIndex = 2
         Me.BtnSearch.UseVisualStyleBackColor = False
         '
@@ -115,7 +115,7 @@ Partial Class FrmSearchEmployee
         Me.DgvSearchResult.Name = "DgvSearchResult"
         Me.DgvSearchResult.ReadOnly = True
         Me.DgvSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSearchResult.Size = New System.Drawing.Size(722, 231)
+        Me.DgvSearchResult.Size = New System.Drawing.Size(722, 275)
         Me.DgvSearchResult.TabIndex = 77
         '
         'GroupBox2
@@ -123,7 +123,7 @@ Partial Class FrmSearchEmployee
         Me.GroupBox2.Controls.Add(Me.DgvSearchResult)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 179)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(728, 250)
+        Me.GroupBox2.Size = New System.Drawing.Size(728, 294)
         Me.GroupBox2.TabIndex = 78
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Employee List"
@@ -132,7 +132,7 @@ Partial Class FrmSearchEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(752, 441)
+        Me.ClientSize = New System.Drawing.Size(752, 485)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.PnlActionBar)

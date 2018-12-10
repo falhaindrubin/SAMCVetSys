@@ -12,15 +12,25 @@
         End Set
     End Property
 
-    'Private _RowNo As Integer
-    'Public Property RowNo As Integer
-    '    Get
-    '        Return _RowNo
-    '    End Get
-    '    Set(value As Integer)
-    '        _RowNo = value
-    '    End Set
-    'End Property
+    Private _EmployeeID As String
+    Public Property EmployeeID As String
+        Get
+            Return _EmployeeID
+        End Get
+        Set(value As String)
+            _EmployeeID = value
+        End Set
+    End Property
+
+    Private _EmployeeName As String
+    Public Property EmployeeName As String
+        Get
+            Return _EmployeeName
+        End Get
+        Set(value As String)
+            _EmployeeName = value
+        End Set
+    End Property
 
     Private _WardDate As Date
     Public Property WardDate As Date
@@ -139,6 +149,16 @@
         End Get
         Set(value As String)
             _Food = value
+        End Set
+    End Property
+
+    Private _Diagnosis As String
+    Public Property Diagnosis As String
+        Get
+            Return _Diagnosis
+        End Get
+        Set(value As String)
+            _Diagnosis = value
         End Set
     End Property
 

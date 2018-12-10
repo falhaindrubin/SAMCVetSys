@@ -44,6 +44,16 @@
         End Set
     End Property
 
+    Private _TreatmentSummary As String
+    Public Property TreatmentSummary As String
+        Get
+            Return _TreatmentSummary
+        End Get
+        Set(value As String)
+            _TreatmentSummary = value
+        End Set
+    End Property
+
     Private _DischargeCondition As String
     Public Property DischargeCondition As String
         Get
@@ -98,6 +108,10 @@
 
     Public Function AddNewWardDischarge(ClsWardDischarge As ClsWardDischarge, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbWard.AddNewWardDischarge(ClsWardDischarge, DbConn, DbTrans)
+    End Function
+
+    Public Function GetWardDischarge(ClsWardDischarge As ClsWardDischarge) As DataTable
+        Return DbWard.GetWardDischarge(ClsWardDischarge)
     End Function
 
 End Class

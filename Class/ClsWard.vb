@@ -2,6 +2,7 @@
 
     Dim DbWard As New ClsDbWard
 
+#Region "FormProperty"
     Private _WardID As String
     Public Property WardID As String
         Get
@@ -82,6 +83,96 @@
         End Set
     End Property
 
+    Private _TelNo As String
+    Public Property TelNo As String
+        Get
+            Return _TelNo
+        End Get
+        Set(value As String)
+            _TelNo = value
+        End Set
+    End Property
+
+    Private _MobileNo As String
+    Public Property MobileNo As String
+        Get
+            Return _MobileNo
+        End Get
+        Set(value As String)
+            _MobileNo = value
+        End Set
+    End Property
+
+    Private _SexCode As String
+    Public Property SexCode As String
+        Get
+            Return _SexCode
+        End Get
+        Set(value As String)
+            _SexCode = value
+        End Set
+    End Property
+
+    Private _SexName As String
+    Public Property SexName As String
+        Get
+            Return _SexName
+        End Get
+        Set(value As String)
+            _SexName = value
+        End Set
+    End Property
+
+    Private _AnimalTypeCode As String
+    Public Property AnimalTypeCode As String
+        Get
+            Return _AnimalTypeCode
+        End Get
+        Set(value As String)
+            _AnimalTypeCode = value
+        End Set
+    End Property
+
+    Private _AnimalTypeName As String
+    Public Property AnimalTypeName As String
+        Get
+            Return _AnimalTypeName
+        End Get
+        Set(value As String)
+            _AnimalTypeName = value
+        End Set
+    End Property
+
+    Private _BreedCode As String
+    Public Property BreedCode As String
+        Get
+            Return _BreedCode
+        End Get
+        Set(value As String)
+            _BreedCode = value
+        End Set
+    End Property
+
+    Private _BreedName As String
+    Public Property BreedName As String
+        Get
+            Return _BreedName
+        End Get
+        Set(value As String)
+            _BreedName = value
+        End Set
+    End Property
+
+    Private _IsNeutered As String
+    Public Property IsNeutered As String
+        Get
+            Return _IsNeutered
+        End Get
+        Set(value As String)
+            _IsNeutered = value
+        End Set
+    End Property
+
     Private _PetCase As String
     Public Property PetCase As String
         Get
@@ -141,6 +232,7 @@
             _Ref = value
         End Set
     End Property
+#End Region
 
     Public Function AddNewWard(ClsWard As ClsWard, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbWard.AddNewWard(ClsWard, DbConn, DbTrans)

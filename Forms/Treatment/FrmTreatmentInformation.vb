@@ -121,9 +121,9 @@ Public Class FrmTreatmentInformation
             Select Case UserCommand
                 Case "POPULATE_CUSTOMER_INFO"
                     TxtVisitID.Text = VisitID
-                    TxtCustomerID.Text = CustomerID
+                    TxtCustomerName.Tag = CustomerID
                     TxtCustomerName.Text = CustomerName
-                    TxtPetID.Text = PetID
+                    TxtPetName.Tag = PetID
                     TxtPetName.Text = PetName
 
                 Case "SHOW_TREATMENT_INFO"
@@ -140,26 +140,11 @@ Public Class FrmTreatmentInformation
                     DtVisit = ClsVisit.GetVisitDetail(ClsVisit)
                     If DtVisit.Rows.Count > 0 Then
                         TxtVisitID.Text = DtVisit.Rows(0).Item("VisitID")
-                        TxtCustomerID.Text = DtVisit.Rows(0).Item("CustomerID")
+                        TxtCustomerName.Tag = DtVisit.Rows(0).Item("CustomerID")
                         TxtCustomerName.Text = DtVisit.Rows(0).Item("CustomerName")
-                        TxtPetID.Text = DtVisit.Rows(0).Item("PetID")
+                        TxtPetName.Tag = DtVisit.Rows(0).Item("PetID")
                         TxtPetName.Text = DtVisit.Rows(0).Item("PetName")
                     End If
-
-                    'Get PEFindings
-                    'ClsPEFindings.VisitID = VisitID
-                    'DtPEF = ClsPEFindings.GetPEFindings(ClsPEFindings)
-                    'If DtPEF.Rows.Count > 0 Then
-                    '    TxtTemperature.Text = DtPEF.Rows(0).Item("Temperature")
-                    '    CmbTemperament.SelectedItem = DtPEF.Rows(0).Item("TemperamentCode")
-                    '    CmbBodyScore.SelectedItem = DtPEF.Rows(0).Item("BodyScoreCode")
-                    '    TxtBodyWeight.Text = CStrNull(DtPEF.Rows(0).Item("BodyWeight"))
-                    '    TxtFindings.Text = DtPEF.Rows(0).Item("PEFindings")
-                    '    TxtCreatedBy.Text = DtPEF.Rows(0).Item("CreatedBy")
-                    '    TxtDateCreated.Text = DtPEF.Rows(0).Item("DateCreated")
-                    '    TxtModifiedBy.Text = DtPEF.Rows(0).Item("ModifiedBy")
-                    '    TxtDateModified.Text = DtPEF.Rows(0).Item("DateModified")
-                    'End If
 
                     'Get Diagnosis
                     ClsDiagnosis.VisitID = VisitID
@@ -591,7 +576,7 @@ Public Class FrmTreatmentInformation
             'Diagnosis header
             With ClsDiagnosis
                 .VisitID = Trim(TxtVisitID.Text)
-                .PetID = Trim(TxtPetID.Text)
+                .PetID = Trim(TxtPetName.Tag)
                 .PetName = Trim(TxtPetName.Text)
                 .Diagnosis = Trim(TxtDiagnosis.Text)
                 .Ref.CreatedBy = CURR_USER

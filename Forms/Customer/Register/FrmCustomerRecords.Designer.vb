@@ -28,12 +28,12 @@ Partial Class FrmCustomerRecords
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.DgvCustomerListing = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewCustomer = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label25 = New System.Windows.Forms.Label()
         CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -104,14 +104,26 @@ Partial Class FrmCustomerRecords
         Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
         Me.PnlActionBar.TabIndex = 70
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(4, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(243, 32)
+        Me.Label25.TabIndex = 73
+        Me.Label25.Text = "Customer Records"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'BtnClose
         '
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(919, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(920, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -120,9 +132,9 @@ Partial Class FrmCustomerRecords
         Me.BtnAddNewCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewCustomer.BackgroundImage = CType(resources.GetObject("BtnAddNewCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 6)
+        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(798, 4)
         Me.BtnAddNewCustomer.Name = "BtnAddNewCustomer"
-        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 56)
+        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewCustomer.TabIndex = 2
         Me.BtnAddNewCustomer.UseVisualStyleBackColor = False
         '
@@ -131,9 +143,9 @@ Partial Class FrmCustomerRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(858, 6)
+        Me.BtnReload.Location = New System.Drawing.Point(859, 4)
         Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
         '
@@ -159,18 +171,6 @@ Partial Class FrmCustomerRecords
         Me.GroupBox1.TabIndex = 72
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer List"
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 18)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(243, 32)
-        Me.Label25.TabIndex = 73
-        Me.Label25.Text = "Customer Records"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'FrmCustomerRecords
         '

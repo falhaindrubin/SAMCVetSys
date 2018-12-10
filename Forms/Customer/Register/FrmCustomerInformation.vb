@@ -41,7 +41,7 @@
         PopulateAnimalType()
         PopulateBreed()
         PopulatePetSex()
-        PopulatePetStatus()
+        PopulateNeuterStatus()
         PopulateForm(UserCommand)
     End Sub
 
@@ -171,33 +171,33 @@
 
     End Sub
 
-    Private Sub PopulatePetStatus()
+    Private Sub PopulateNeuterStatus()
 
         Dim DtPetStatus As New DataTable
         Dim ClsPet As New ClsPet
         Dim CmbSource As New Dictionary(Of String, String)
 
         Try
-            DtPetStatus = ClsPet.GetPetStatus(ClsPet)
+            DtPetStatus = ClsPet.GetNeuterStatus(ClsPet)
             If DtPetStatus.Rows.Count > 0 Then
 
                 For i As Integer = 0 To DtPetStatus.Rows.Count - 1
-                    CmbSource.Add(DtPetStatus.Rows(i).Item("StatusCode"), DtPetStatus.Rows(i).Item("StatusName"))
+                    CmbSource.Add(DtPetStatus.Rows(i).Item("NeuterCode"), DtPetStatus.Rows(i).Item("NeuterName"))
                 Next
 
-                If CmbStatus.Items.Count > 0 Then
-                    CmbStatus.DataSource = Nothing
-                    CmbStatus.Items.Clear()
+                If CmbNeuterStatus.Items.Count > 0 Then
+                    CmbNeuterStatus.DataSource = Nothing
+                    CmbNeuterStatus.Items.Clear()
                 End If
 
-                CmbStatus.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbStatus.DisplayMember = "Value"
-                CmbStatus.ValueMember = "Key"
+                CmbNeuterStatus.DataSource = New BindingSource(CmbSource, Nothing)
+                CmbNeuterStatus.DisplayMember = "Value"
+                CmbNeuterStatus.ValueMember = "Key"
 
             End If
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulatePetStatus()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateNeuterStatus()")
         End Try
 
     End Sub
@@ -259,7 +259,7 @@
                             CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
                             CmbBreed.SelectedValue = CStr(DtPet.Rows(0).Item("BreedCode"))
                             CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
-                            CmbStatus.SelectedValue = CStr(DtPet.Rows(0).Item("StatusCode"))
+                            CmbNeuterStatus.SelectedValue = CStr(DtPet.Rows(0).Item("NeuterCode"))
 
                             With DgvPetListing
 
@@ -278,8 +278,8 @@
                                     .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
                                     .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
                                     .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
-                                    .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
-                                    .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+                                    .Rows(i).Cells("NeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
+                                    .Rows(i).Cells("NeuterName").Value = DtPet.Rows(i).Item("NeuterName")
                                     .Rows(i).Cells("IsDb").Value = "1"
                                 Next
 
@@ -337,7 +337,7 @@
                     TxtPetName.Text = ""
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
-                    CmbStatus.SelectedIndex = 0
+                    CmbNeuterStatus.SelectedIndex = 0
                     CmbSex.SelectedIndex = 0
 
                 Case "ADD_NEW_CUSTOMER"
@@ -381,7 +381,7 @@
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
                     CmbSex.SelectedIndex = 0
-                    CmbStatus.SelectedIndex = 0
+                    CmbNeuterStatus.SelectedIndex = 0
 
                 Case "SHOW_CUSTOMER_INFO", "CANCELEDIT_CUSTOMER_INFO"
 
@@ -407,7 +407,7 @@
                     CmbAnimalType.Enabled = False
                     CmbBreed.Enabled = False
                     CmbSex.Enabled = False
-                    CmbStatus.Enabled = False
+                    CmbNeuterStatus.Enabled = False
                     BtnAddPet.Enabled = False
                     BtnClearPet.Enabled = False
                     DgvPetListing.Enabled = False
@@ -438,7 +438,7 @@
                     CmbAnimalType.Enabled = True
                     CmbBreed.Enabled = True
                     CmbSex.Enabled = True
-                    CmbStatus.Enabled = True
+                    CmbNeuterStatus.Enabled = True
                     BtnAddPet.Enabled = True
                     BtnClearPet.Enabled = True
                     DgvPetListing.Enabled = True
@@ -458,7 +458,7 @@
                     CmbAnimalType.SelectedIndex = 0
                     CmbBreed.SelectedIndex = 0
                     CmbSex.SelectedIndex = 0
-                    CmbStatus.SelectedIndex = 0
+                    CmbNeuterStatus.SelectedIndex = 0
 
             End Select
 
@@ -475,11 +475,11 @@
         Dim PetID As String = ""
 
         Try
-            If DBTrans IsNot Nothing Then
-                DBTrans = Nothing
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
             End If
 
-            DBTrans = DBConn.BeginTransaction
+            DbTrans = DbConn.BeginTransaction
 
             ClsCustomer = New ClsCustomer
             With ClsCustomer
@@ -503,8 +503,8 @@
                 .Ref.DateModified = Now
             End With
 
-            If Not ClsCustomer.UpdateCustomer(ClsCustomer, DBConn, DBTrans) Then
-                DBTrans.Rollback()
+            If Not ClsCustomer.UpdateCustomer(ClsCustomer, DbConn, DbTrans) Then
+                DbTrans.Rollback()
                 MsgBox("Failed to update customer.", MsgBoxStyle.Critical, FORM_NAME & ".UpdateCustomer()")
                 Return False
             End If
@@ -526,11 +526,11 @@
 
                     If DgvPetListing.Rows(i).Cells("PetID").Value = "" Then
 
-                        PetID = GenerateRunningNo("PT", DBConn, DBTrans, CStr(PetCount))
+                        PetID = GenerateRunningNo("PT", DbConn, DbTrans, CStr(PetCount))
                         If PetID = "" Then
                             MsgBox("Failed to generate pet ID.", MsgBoxStyle.Critical, FORM_NAME & ".UpdateCustomer()")
-                            DBTrans.Rollback()
-                            DBTrans.Dispose()
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
                             Return False
                         End If
 
@@ -548,16 +548,16 @@
                         .BreedName = DgvPetListing.Rows(i).Cells("BreedName").Value
                         .SexCode = DgvPetListing.Rows(i).Cells("SexCode").Value
                         .SexName = DgvPetListing.Rows(i).Cells("SexName").Value
-                        .StatusCode = DgvPetListing.Rows(i).Cells("StatusCode").Value
-                        .StatusName = DgvPetListing.Rows(i).Cells("StatusName").Value
+                        .NeuterCode = DgvPetListing.Rows(i).Cells("NeuterCode").Value
+                        .NeuterName = DgvPetListing.Rows(i).Cells("NeuterName").Value
                         .Ref.DateCreated = Now
                         .Ref.CreatedBy = UCase(CURR_USER)
                         .Ref.DateModified = Now
                         .Ref.ModifiedBy = UCase(CURR_USER)
                     End With
 
-                    If Not ClsPet.UpdatePet(ClsPet, DBConn, DBTrans) Then
-                        DBTrans.Rollback()
+                    If Not ClsPet.UpdatePet(ClsPet, DbConn, DbTrans) Then
+                        DbTrans.Rollback()
                         MsgBox("Failed to update pet information.", MsgBoxStyle.Critical, FORM_NAME & ".UpdateCustomer()")
                         Return False
                     End If
@@ -566,20 +566,20 @@
 
             End If
 
-            If Not ResetPetIDRunningNo("PT", DBConn, DBTrans) Then
-                DBTrans.Rollback()
-                DBTrans.Dispose()
+            If Not ResetPetIDRunningNo("PT", DbConn, DbTrans) Then
+                DbTrans.Rollback()
+                DbTrans.Dispose()
                 MsgBox("Failed to update Pet ID.", MsgBoxStyle.Critical, "Failed to reset Pet ID.")
                 Return False
             End If
 
-            DBTrans.Commit()
+            DbTrans.Commit()
             ShowPetListing()
             MsgBox("Customer and pet information has been successfully updated!", MsgBoxStyle.Information, "Customer Update Succeeded!")
 
         Catch ex As Exception
-            DBTrans.Rollback()
-            DBTrans.Dispose()
+            DbTrans.Rollback()
+            DbTrans.Dispose()
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".UpdateCustomer()")
             Return False
         End Try
@@ -587,75 +587,6 @@
         Return True
 
     End Function
-
-    'Private Function UpdatePet() As Boolean
-
-    '    Dim ClsPet As ClsPet
-    '    Dim PetID As String
-
-    '    Try
-    '        If DBTrans IsNot Nothing Then
-    '            DBTrans = Nothing
-    '        End If
-
-    '        DBTrans = DBConn.BeginTransaction
-
-    '        If DgvPetListing.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DgvPetListing.Rows.Count - 1
-
-    '                If DgvPetListing.Rows(i).Cells("PetID").Value = "" Then
-
-    '                    PetID = GenerateRunningNo("PT", DBConn, DBTrans)
-    '                    If PetID = "" Then
-    '                        DBTrans.Rollback()
-    '                        DBTrans.Dispose()
-    '                        Return False
-    '                    End If
-
-    '                    ClsPet = New ClsPet
-    '                    With ClsPet
-    '                        .CustomerID = UCase(Trim(TxtCustomerIDPI.Text))
-    '                        .PetID = PetID
-    '                        .PetName = DgvPetListing.Rows(i).Cells("PetName").Value
-    '                        .PetDOB = DgvPetListing.Rows(i).Cells("PetDOB").Value
-    '                        .AnimalTypeCode = DgvPetListing.Rows(i).Cells("AnimalType").Value
-    '                        .AnimalTypeName = DgvPetListing.Rows(i).Cells("AnimalType").Value
-    '                        .BreedCode = DgvPetListing.Rows(i).Cells("Breed").Value
-    '                        .BreedName = DgvPetListing.Rows(i).Cells("Breed").Value
-    '                        .SexCode = DgvPetListing.Rows(i).Cells("Sex").Value
-    '                        .SexName = DgvPetListing.Rows(i).Cells("Sex").Value
-    '                        .StatusCode = DgvPetListing.Rows(i).Cells("PetStatus").Value
-    '                        .StatusName = DgvPetListing.Rows(i).Cells("PetStatus").Value
-    '                        .Ref.DateCreated = Now
-    '                        .Ref.CreatedBy = UCase(CURR_USER)
-    '                        .Ref.DateModified = Now
-    '                        .Ref.ModifiedBy = UCase(CURR_USER)
-    '                    End With
-
-    '                    If Not ClsPet.UpdatePet(ClsPet, DBConn, DBTrans) Then
-    '                        DBTrans.Rollback()
-    '                        MsgBox("Failed to update pet information.", MsgBoxStyle.Critical, "FrmCustomerEntry.UpdatePet()")
-    '                        Return False
-    '                    End If
-
-    '                End If
-
-    '            Next
-
-    '        End If
-
-    '        DBTrans.Commit()
-
-    '    Catch ex As Exception
-    '        DBTrans.Rollback()
-    '        Return False
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.UpdatePet()")
-    '    End Try
-
-    '    Return True
-
-    'End Function
 
     Private Function CheckUserInput(UserCommand As String) As Boolean
 
@@ -768,19 +699,19 @@
         Dim DtCustomer As New DataTable
 
         Try
-            If DBTrans IsNot Nothing Then
-                DBTrans = Nothing
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
             End If
 
-            DBTrans = DBConn.BeginTransaction
+            DbTrans = DbConn.BeginTransaction
 
             CustomerInitial = UCase(Trim(TxtCustomerName.Text)).Substring(0, 1)
-            CustomerID = GenerateRunningNo("CT", DBConn, DBTrans, CustomerInitial)
+            CustomerID = GenerateRunningNo("CT", DbConn, DbTrans, CustomerInitial)
             TxtCustomerID.Tag = CustomerID
 
             If CustomerID = "" Then
-                DBTrans.Rollback()
-                DBTrans.Dispose()
+                DbTrans.Rollback()
+                DbTrans.Dispose()
                 Return False
             End If
 
@@ -808,9 +739,9 @@
                 .Ref.ModifiedBy = CURR_USER
             End With
 
-            If Not ClsCustomer.AddNewCustomer(ClsCustomer, DBConn, DBTrans) Then
+            If Not ClsCustomer.AddNewCustomer(ClsCustomer, DbConn, DbTrans) Then
                 MsgBox("Failed to add new customer. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
-                DBTrans.Rollback()
+                DbTrans.Rollback()
                 Return False
             End If
 
@@ -818,10 +749,10 @@
                 MsgBox("Failed to add new pet. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
             End If
 
-            If DBTrans IsNot Nothing Then
-                DBTrans.Commit()
-                DBTrans.Dispose()
-                DBTrans = Nothing
+            If DbTrans IsNot Nothing Then
+                DbTrans.Commit()
+                DbTrans.Dispose()
+                DbTrans = Nothing
             End If
 
             'Change customer information tab page to readonly
@@ -831,9 +762,9 @@
             'GoToPetInformation()
 
         Catch ex As Exception
-            DBTrans.Rollback()
-            DBTrans.Dispose()
-            DBTrans = Nothing
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
         End Try
 
@@ -847,8 +778,8 @@
         Dim PetID As String = ""
 
         Try
-            If DBTrans Is Nothing Then
-                DBTrans = DBConn.BeginTransaction
+            If DbTrans Is Nothing Then
+                DbTrans = DbConn.BeginTransaction
             End If
 
             'Take value from data grid view, loop data grid view
@@ -867,13 +798,13 @@
                             Param = CStr(PetIDLastNo)
                         End If
 
-                        PetID = GenerateRunningNo("PT", DBConn, DBTrans, Param)
+                        PetID = GenerateRunningNo("PT", DbConn, DbTrans, Param)
                         TxtPetName.Tag = PetID
 
                         If PetID = "" Then
-                            DBTrans.Rollback()
-                            DBTrans.Dispose()
-                            DBTrans = Nothing
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
                             Return False
                         End If
 
@@ -889,17 +820,17 @@
                             .BreedName = DgvPetListing.Rows(i).Cells("BreedName").Value
                             .SexCode = DgvPetListing.Rows(i).Cells("SexCode").Value
                             .SexName = DgvPetListing.Rows(i).Cells("SexName").Value
-                            .StatusCode = DgvPetListing.Rows(i).Cells("StatusCode").Value
-                            .StatusName = DgvPetListing.Rows(i).Cells("StatusName").Value
+                            .NeuterCode = DgvPetListing.Rows(i).Cells("NeuterCode").Value
+                            .NeuterName = DgvPetListing.Rows(i).Cells("NeuterName").Value
                             .Ref.DateCreated = Now
                             .Ref.CreatedBy = UCase(CURR_USER)
                             .Ref.DateModified = Now
                             .Ref.ModifiedBy = UCase(CURR_USER)
                         End With
 
-                        If Not ClsPet.AddNewPet(ClsPet, DBConn, DBTrans) Then
+                        If Not ClsPet.AddNewPet(ClsPet, DbConn, DbTrans) Then
                             MsgBox("Failed to add new pet. Please try again.", MsgBoxStyle.Critical, "FrmAddNewCustomer.AddNewPet()")
-                            DBTrans.Rollback()
+                            DbTrans.Rollback()
                             Return False
                         End If
 
@@ -913,18 +844,18 @@
 
             End If
 
-            If Not ResetPetIDRunningNo("PT", DBConn, DBTrans) Then Throw New Exception("Failed to update Pet ID number.")
-            DBTrans.Commit()
-            DBTrans.Dispose()
-            DBTrans = Nothing
+            If Not ResetPetIDRunningNo("PT", DbConn, DbTrans) Then Throw New Exception("Failed to update Pet ID number.")
+            DbTrans.Commit()
+            DbTrans.Dispose()
+            DbTrans = Nothing
 
             'Show keyed in pet information to data grid view
             ShowPetListing()
 
         Catch ex As Exception
-            DBTrans.Rollback()
-            DBTrans.Dispose()
-            DBTrans = Nothing
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "FrmAddNewCustomer.AddNewPet()")
             Return False
         End Try
@@ -1007,8 +938,8 @@
                 .Rows(RowIndex).Cells("BreedName").Value = DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
                 .Rows(RowIndex).Cells("SexCode").Value = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
                 .Rows(RowIndex).Cells("SexName").Value = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-                .Rows(RowIndex).Cells("StatusCode").Value = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-                .Rows(RowIndex).Cells("StatusName").Value = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                .Rows(RowIndex).Cells("NeuterCode").Value = DirectCast(CmbNeuterStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+                .Rows(RowIndex).Cells("NeuterName").Value = DirectCast(CmbNeuterStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             End With
 
             SetFields("EDITED_PET")
@@ -1040,8 +971,8 @@
                 .Columns.Add("BreedName", GetType(String))
                 .Columns.Add("SexCode", GetType(String))
                 .Columns.Add("SexName", GetType(String))
-                .Columns.Add("StatusCode", GetType(String))
-                .Columns.Add("StatusName", GetType(String))
+                .Columns.Add("NeuterCode", GetType(String))
+                .Columns.Add("NeuterName", GetType(String))
                 .Columns.Add("IsDB", GetType(String))
             End With
 
@@ -1081,8 +1012,8 @@
                     DgvRow("BreedName") = DgvPetListing.Rows(i).Cells("BreedName").Value
                     DgvRow("SexCode") = DgvPetListing.Rows(i).Cells("SexCode").Value
                     DgvRow("SexName") = DgvPetListing.Rows(i).Cells("SexName").Value
-                    DgvRow("StatusCode") = DgvPetListing.Rows(i).Cells("StatusCode").Value
-                    DgvRow("StatusName") = DgvPetListing.Rows(i).Cells("StatusName").Value
+                    DgvRow("NeuterCode") = DgvPetListing.Rows(i).Cells("NeuterCode").Value
+                    DgvRow("NeuterName") = DgvPetListing.Rows(i).Cells("NeuterName").Value
                     DgvRow("IsDB") = DgvPetListing.Rows(i).Cells("IsDB").Value
 
                     DtPet.Rows.Add(DgvRow)
@@ -1105,8 +1036,8 @@
             Row("BreedName") = DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             Row("SexCode") = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
             Row("SexName") = DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-            Row("StatusCode") = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-            Row("StatusName") = DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+            Row("NeuterCode") = DirectCast(CmbNeuterStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+            Row("NeuterName") = DirectCast(CmbNeuterStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             Row("IsDB") = "0"
 
             DtPet.Rows.Add(Row)
@@ -1130,8 +1061,8 @@
                         .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
                         .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
                         .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
-                        .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
-                        .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+                        .Rows(i).Cells("NeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
+                        .Rows(i).Cells("NeuterName").Value = DtPet.Rows(i).Item("NeuterName")
                     End With
 
                 Next
@@ -1221,6 +1152,8 @@
                 If Not .AddNewCustomer(ClsCustomer, DbConn, DbTrans) Then
                     MsgBox("Failed to add new customer. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
                     DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
                     Return False
                 End If
 
@@ -1267,8 +1200,8 @@
                         .BreedName = DgvPetListing.Rows(i).Cells("BreedName").Value
                         .SexCode = DgvPetListing.Rows(i).Cells("SexCode").Value
                         .SexName = DgvPetListing.Rows(i).Cells("SexName").Value
-                        .StatusCode = DgvPetListing.Rows(i).Cells("StatusCode").Value
-                        .StatusName = DgvPetListing.Rows(i).Cells("StatusName").Value
+                        .NeuterCode = DgvPetListing.Rows(i).Cells("NeuterCode").Value
+                        .NeuterName = DgvPetListing.Rows(i).Cells("NeuterName").Value
                         .Ref.DateCreated = Now
                         .Ref.CreatedBy = UCase(CURR_USER)
                         .Ref.DateModified = Now
@@ -1277,60 +1210,12 @@
                         If Not .AddNewPet(ClsPet, DbConn, DbTrans) Then
                             MsgBox("Failed to add new pet. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
                             DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
                             Return False
                         End If
 
                     End With
-
-                    'If DgvPetListing.Rows(i).Cells("PetID").Value = "" Then
-
-                    '    If PetIDLastNo = 0 Then
-                    '        Param = ""
-                    '    Else
-                    '        Param = CStr(PetIDLastNo)
-                    '    End If
-
-                    '    PetID = GenerateRunningNo("PT", DbConn, DbTrans, Param)
-
-                    '    If PetID = "" Then
-                    '        MsgBox("Failed to generate Pet ID.", MsgBoxStyle.Critical, "Pet ID Generation Error")
-                    '        DbTrans.Rollback()
-                    '        DbTrans.Dispose()
-                    '        DbTrans = Nothing
-                    '        Return False
-                    '    End If
-
-                    '    ClsPet = New ClsPet
-                    '    With ClsPet
-                    '        .CustomerID = IIf(TxtCustomerID.Text <> "", UCase(TxtCustomerID.Text), CustomerID)
-                    '        .PetID = PetID
-                    '        .PetName = DgvPetListing.Rows(i).Cells("PetName").Value
-                    '        .PetDOB = DgvPetListing.Rows(i).Cells("PetDOB").Value
-                    '        .AnimalTypeCode = DgvPetListing.Rows(i).Cells("AnimalTypeCode").Value
-                    '        .AnimalTypeName = DgvPetListing.Rows(i).Cells("AnimalTypeName").Value
-                    '        .BreedCode = DgvPetListing.Rows(i).Cells("BreedCode").Value
-                    '        .BreedName = DgvPetListing.Rows(i).Cells("BreedName").Value
-                    '        .SexCode = DgvPetListing.Rows(i).Cells("SexCode").Value
-                    '        .SexName = DgvPetListing.Rows(i).Cells("SexName").Value
-                    '        .StatusCode = DgvPetListing.Rows(i).Cells("StatusCode").Value
-                    '        .StatusName = DgvPetListing.Rows(i).Cells("StatusName").Value
-                    '        .Ref.DateCreated = Now
-                    '        .Ref.CreatedBy = UCase(CURR_USER)
-                    '        .Ref.DateModified = Now
-                    '        .Ref.ModifiedBy = UCase(CURR_USER)
-
-                    '        If Not .AddNewPet(ClsPet, DbConn, DbTrans) Then
-                    '            MsgBox("Failed to add new pet. Please try again.", MsgBoxStyle.Critical, FORM_NAME & ".AddNewCustomer()")
-                    '            DbTrans.Rollback()
-                    '            Return False
-                    '        End If
-
-                    '    End With
-
-                    'Else
-                    '    PetIDLastNo += 1
-
-                    'End If
 
                 Next
 
@@ -1348,8 +1233,6 @@
             For i As Integer = 0 To DgvPetListing.Rows.Count - 1
                 DgvPetListing.Rows(i).Cells("IsDb").Value = "1"
             Next
-
-            'ShowPetListing()
 
             TxtCustomerID.Text = CustomerID
             TxtCustomerID.Tag = CustomerID
@@ -1371,6 +1254,9 @@
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveCustomerToDB()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
             Return False
         End Try
 
@@ -1433,7 +1319,7 @@
                     CmbAnimalType.SelectedValue = DgvPetListing.Rows(e.RowIndex).Cells("AnimalTypeCode").Value
                     CmbBreed.SelectedValue = DgvPetListing.Rows(e.RowIndex).Cells("BreedCode").Value
                     CmbSex.SelectedValue = DgvPetListing.Rows(e.RowIndex).Cells("SexCode").Value
-                    CmbStatus.SelectedValue = DgvPetListing.Rows(e.RowIndex).Cells("StatusCode").Value
+                    CmbNeuterStatus.SelectedValue = DgvPetListing.Rows(e.RowIndex).Cells("NeuterCode").Value
 
                     SetFields("EDIT_PET")
 

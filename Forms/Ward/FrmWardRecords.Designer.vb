@@ -24,6 +24,7 @@ Partial Class FrmWardRecords
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmWardRecords))
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewWard = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
@@ -33,7 +34,6 @@ Partial Class FrmWardRecords
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         CType(Me.DgvWardListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -53,14 +53,25 @@ Partial Class FrmWardRecords
         Me.PnlActionBar.Size = New System.Drawing.Size(1161, 68)
         Me.PnlActionBar.TabIndex = 82
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(4, 18)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(191, 32)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "Ward Records"
+        '
         'BtnClose
         '
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1096, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(1097, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -69,9 +80,9 @@ Partial Class FrmWardRecords
         Me.BtnAddNewWard.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewWard.BackgroundImage = CType(resources.GetObject("BtnAddNewWard.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewWard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewWard.Location = New System.Drawing.Point(974, 6)
+        Me.BtnAddNewWard.Location = New System.Drawing.Point(975, 4)
         Me.BtnAddNewWard.Name = "BtnAddNewWard"
-        Me.BtnAddNewWard.Size = New System.Drawing.Size(60, 56)
+        Me.BtnAddNewWard.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewWard.TabIndex = 2
         Me.BtnAddNewWard.UseVisualStyleBackColor = False
         '
@@ -80,9 +91,9 @@ Partial Class FrmWardRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(1035, 6)
+        Me.BtnReload.Location = New System.Drawing.Point(1036, 4)
         Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
         '
@@ -159,17 +170,6 @@ Partial Class FrmWardRecords
         Me.BtnSearchCustomer.Size = New System.Drawing.Size(60, 56)
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(3, 18)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(191, 32)
-        Me.Label2.TabIndex = 11
-        Me.Label2.Text = "Ward Records"
         '
         'FrmWardRecords
         '

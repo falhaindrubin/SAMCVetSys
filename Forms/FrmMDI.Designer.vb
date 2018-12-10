@@ -79,8 +79,8 @@ Partial Class FrmMDI
         'TreatmentToolStripMenuItem
         '
         Me.TreatmentToolStripMenuItem.Name = "TreatmentToolStripMenuItem"
-        Me.TreatmentToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
-        Me.TreatmentToolStripMenuItem.Text = "Examination"
+        Me.TreatmentToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
+        Me.TreatmentToolStripMenuItem.Text = "Treatment"
         '
         'SurgeryToolStripMenuItem
         '

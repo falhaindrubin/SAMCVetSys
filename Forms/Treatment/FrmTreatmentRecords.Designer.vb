@@ -109,9 +109,9 @@ Partial Class FrmTreatmentRecords
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(919, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(921, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -120,9 +120,9 @@ Partial Class FrmTreatmentRecords
         Me.BtnAddNewCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewCustomer.BackgroundImage = CType(resources.GetObject("BtnAddNewCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(797, 6)
+        Me.BtnAddNewCustomer.Location = New System.Drawing.Point(799, 4)
         Me.BtnAddNewCustomer.Name = "BtnAddNewCustomer"
-        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 56)
+        Me.BtnAddNewCustomer.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewCustomer.TabIndex = 2
         Me.BtnAddNewCustomer.UseVisualStyleBackColor = False
         '
@@ -131,9 +131,9 @@ Partial Class FrmTreatmentRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(858, 6)
+        Me.BtnReload.Location = New System.Drawing.Point(860, 4)
         Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 56)
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
         '

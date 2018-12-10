@@ -14,6 +14,9 @@ Module ModMain
     Public UID As String
     Public PWD As String
     Public CURR_USER As String
+    Public CURR_EMPLOYEE_NAME As String
+    Public CURR_EMPLOYEE_ID As String
+    Public CURR_EMPLOYEE_POS As String
     'Public CURR_USER_EMPID As String
     Public FORM_NAME As String
     Public SOFTWARE_VERSION As String
@@ -86,6 +89,42 @@ Module ModMain
                             NewRunningNo = RunningNo.ToString.PadLeft(5, "0"c) 'DtRunningNo.Rows(0).Item("Prefix2") & "-" & RunningNo.ToString.PadLeft(5, "0"c)
                         Else
                             NewRunningNo = RunningNo.ToString 'DtRunningNo.Rows(0).Item("Prefix2") & "-" & RunningNo.ToString
+                        End If
+
+                        'Update EmployeeID
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+
+                    End If
+
+                Case "AP"
+
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+                        'Dim LastNo As Integer
+                        RunningNo = DtRunningNo.Rows(0).Item("LastNo") + 1
+
+                        If RunningNo.ToString.Length < 5 Then
+                            NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                        Else
+                            NewRunningNo = Prefix & RunningNo.ToString
                         End If
 
                         'Update EmployeeID

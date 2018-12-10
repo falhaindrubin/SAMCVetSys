@@ -16,6 +16,16 @@ Public Class ClsVisit
         End Set
     End Property
 
+    Private _PetID As String
+    Public Property PetID As String
+        Get
+            Return _PetID
+        End Get
+        Set(value As String)
+            _PetID = value
+        End Set
+    End Property
+
     Private _EmployeeID As String
     Public Property EmployeeID As String
         Get
@@ -53,6 +63,26 @@ Public Class ClsVisit
         End Get
         Set(value As String)
             _CustomerName = value
+        End Set
+    End Property
+
+    Private _TelNo As String
+    Public Property TelNo As String
+        Get
+            Return _TelNo
+        End Get
+        Set(value As String)
+            _TelNo = value
+        End Set
+    End Property
+
+    Private _MobileNo As String
+    Public Property MobileNo As String
+        Get
+            Return _MobileNo
+        End Get
+        Set(value As String)
+            _MobileNo = value
         End Set
     End Property
 
@@ -124,12 +154,16 @@ Public Class ClsVisit
         Return DbVisit.GetUnassignedVisitListing(ClsVisit)
     End Function
 
-    Public Function GetWardedVisitListing(ClsVisit As ClsVisit) As DataTable
-        Return DbVisit.GetWardedVisitListing(ClsVisit)
-    End Function
+    'Public Function GetWardedVisitListing(ClsVisit As ClsVisit) As DataTable
+    '    Return DbVisit.GetWardedVisitListing(ClsVisit)
+    'End Function
 
     Public Function AddNewVisit(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisit(ClsConsultation, DbConn, DbTrans)
+    End Function
+
+    Public Function GetVisit(ClsVisit As ClsVisit) As DataTable
+        Return DbVisit.GetVisit(ClsVisit)
     End Function
 
     Public Function GetVisitDetail(ClsVisit As ClsVisit) As DataTable
@@ -150,6 +184,10 @@ Public Class ClsVisit
 
     Public Function UpdateWardAdmission(ClsVisit As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.UpdateWardAdmission(ClsVisit, DbConn, DbTrans)
+    End Function
+
+    Public Function GetAdmittedToWardVisit(ClsVisit) As DataTable
+        Return DbVisit.GetAdmittedToWardVisit(ClsVisit)
     End Function
 
 End Class

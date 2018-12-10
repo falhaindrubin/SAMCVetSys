@@ -909,7 +909,7 @@ Partial Class FrmPaymentInformation
         Me.BtnGenerateInvoice.Name = "BtnGenerateInvoice"
         Me.BtnGenerateInvoice.Size = New System.Drawing.Size(169, 25)
         Me.BtnGenerateInvoice.TabIndex = 168
-        Me.BtnGenerateInvoice.Text = "Calculate Bill && Payment"
+        Me.BtnGenerateInvoice.Text = "Calculate Bill && Payment..."
         Me.BtnGenerateInvoice.UseVisualStyleBackColor = True
         '
         'CbIsRecalculate

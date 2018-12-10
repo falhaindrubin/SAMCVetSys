@@ -107,70 +107,68 @@ Public Class FrmPaymentInformation
         Dim ClsBill As New ClsBill
 
         Try
-            If UserCommand <> "" Then
-                Select Case UserCommand
-                    Case "SHOW_BILLING_INFO"
-                        With ClsBill
-                            .InvoiceNo = InvoiceNo
+            If InvoiceNo <> "" Then
+
+                With ClsBill
+                    .InvoiceNo = InvoiceNo
+                End With
+
+                DtBill = ClsBill.GetBillingInfo(ClsBill)
+                If DtBill.Rows.Count > 0 Then
+
+                    'Clear previous information that has been populated into the data grid view; to reload new information
+                    If DgvBillListing.Rows.Count > 0 Then
+                        DgvBillListing.Rows.Clear()
+                    End If
+
+                    For i As Integer = 0 To DtBill.Rows.Count - 1
+                        With DgvBillListing
+                            .Rows.Add()
+                            .Rows(i).Cells("RowNo").Value = DtBill.Rows(i).Item("RowNo")
+                            .Rows(i).Cells("ItemCodeDgv").Value = DtBill.Rows(i).Item("ItemCode")
+                            .Rows(i).Cells("ItemDescription").Value = DtBill.Rows(i).Item("ItemDescription")
+                            .Rows(i).Cells("Prescription").Value = DtBill.Rows(i).Item("Prescription")
+                            .Rows(i).Cells("Notes").Value = DtBill.Rows(i).Item("Notes")
+                            .Rows(i).Cells("Quantity").Value = DtBill.Rows(i).Item("Quantity")
+                            .Rows(i).Cells("UnitPrice").Value = DtBill.Rows(i).Item("UnitPrice")
+                            .Rows(i).Cells("TotalPrice").Value = DtBill.Rows(i).Item("TotalPrice")
+                            .Rows(i).Cells("ItemGroupDgv").Value = DtBill.Rows(i).Item("ItemGroup")
+                            .Rows(i).Cells("ItemTypeDescriptionDgv").Value = DtBill.Rows(i).Item("ItemTypeDescription")
+                            .Rows(i).Cells("ItemTypeCodeDgv").Value = DtBill.Rows(i).Item("ItemTypeCode")
                         End With
+                    Next
 
-                        DtBill = ClsBill.GetBillingInfo(ClsBill)
-                        If DtBill.Rows.Count > 0 Then
+                    TxtInvoiceNo.Text = DtBill.Rows(0).Item("InvoiceNo")
+                    TxtVisitID.Text = DtBill.Rows(0).Item("VisitID")
+                    'TxtGrossTotal.Text = DtBill.Rows(0).Item("GrossTotal")
+                    TxtDiscount.Text = DtBill.Rows(0).Item("Discount")
+                    TxtGrandTotal.Text = DtBill.Rows(0).Item("GrandTotal")
+                    TxtDeposit.Text = DtBill.Rows(0).Item("Deposit")
+                    TxtTotalDue.Text = DtBill.Rows(0).Item("TotalDue")
 
-                            'Clear previous information that has been populated into the data grid view; to reload new information
-                            If DgvBillListing.Rows.Count > 0 Then
-                                DgvBillListing.Rows.Clear()
-                            End If
+                    'Customer Information
+                    TxtCustomerName.Text = CStrNull(DtBill.Rows(0).Item("CustomerName"))
+                    TxtCustomerName.Tag = CStrNull(DtBill.Rows(0).Item("CustomerID"))
+                    TxtPetName.Text = CStrNull(DtBill.Rows(0).Item("PetName"))
+                    TxtPetName.Tag = CStrNull(DtBill.Rows(0).Item("PetID"))
 
-                            For i As Integer = 0 To DtBill.Rows.Count - 1
-                                With DgvBillListing
-                                    .Rows.Add()
-                                    .Rows(i).Cells("RowNo").Value = DtBill.Rows(i).Item("RowNo")
-                                    .Rows(i).Cells("ItemCodeDgv").Value = DtBill.Rows(i).Item("ItemCode")
-                                    .Rows(i).Cells("ItemDescription").Value = DtBill.Rows(i).Item("ItemDescription")
-                                    .Rows(i).Cells("Prescription").Value = DtBill.Rows(i).Item("Prescription")
-                                    .Rows(i).Cells("Notes").Value = DtBill.Rows(i).Item("Notes")
-                                    .Rows(i).Cells("Quantity").Value = DtBill.Rows(i).Item("Quantity")
-                                    .Rows(i).Cells("UnitPrice").Value = DtBill.Rows(i).Item("UnitPrice")
-                                    .Rows(i).Cells("TotalPrice").Value = DtBill.Rows(i).Item("TotalPrice")
-                                    .Rows(i).Cells("ItemGroupDgv").Value = DtBill.Rows(i).Item("ItemGroup")
-                                    .Rows(i).Cells("ItemTypeDescriptionDgv").Value = DtBill.Rows(i).Item("ItemTypeDescription")
-                                    .Rows(i).Cells("ItemTypeCodeDgv").Value = DtBill.Rows(i).Item("ItemTypeCode")
-                                End With
-                            Next
+                    'Payment Status
+                    CbPaymentCompleted.Checked = IIf(DtBill.Rows(0).Item("IsPaymentComplete") = "1", True, False)
 
-                            TxtInvoiceNo.Text = DtBill.Rows(0).Item("InvoiceNo")
-                            TxtVisitID.Text = DtBill.Rows(0).Item("VisitID")
-                            'TxtGrossTotal.Text = DtBill.Rows(0).Item("GrossTotal")
-                            TxtDiscount.Text = DtBill.Rows(0).Item("Discount")
-                            TxtGrandTotal.Text = DtBill.Rows(0).Item("GrandTotal")
-                            TxtDeposit.Text = DtBill.Rows(0).Item("Deposit")
-                            TxtTotalDue.Text = DtBill.Rows(0).Item("TotalDue")
+                    'Payment Type
+                    CbCash.Checked = IIf(DtBill.Rows(0).Item("IsCash") = "1", True, False)
+                    CbDebitCreditCard.Checked = IIf(DtBill.Rows(0).Item("IsDebitCreditCard") = "1", True, False)
+                    CbCheque.Checked = IIf(DtBill.Rows(0).Item("IsCheque") = "1", True, False)
 
-                            'Customer Information
-                            TxtCustomerName.Text = CStrNull(DtBill.Rows(0).Item("CustomerName"))
-                            TxtCustomerName.Tag = CStrNull(DtBill.Rows(0).Item("CustomerID"))
-                            TxtPetName.Text = CStrNull(DtBill.Rows(0).Item("PetName"))
-                            TxtPetName.Tag = CStrNull(DtBill.Rows(0).Item("PetID"))
+                    TxtCreatedBy.Text = DtBill.Rows(0).Item("CreatedBy")
+                    TxtDateCreated.Text = DtBill.Rows(0).Item("DateCreated")
+                    TxtModifiedBy.Text = DtBill.Rows(0).Item("ModifiedBy")
+                    TxtDateModified.Text = DtBill.Rows(0).Item("DateModified")
 
-                            'Payment Status
-                            CbPaymentCompleted.Checked = IIf(DtBill.Rows(0).Item("IsPaymentComplete") = "1", True, False)
+                End If
 
-                            'Payment Type
-                            CbCash.Checked = IIf(DtBill.Rows(0).Item("IsCash") = "1", True, False)
-                            CbDebitCreditCard.Checked = IIf(DtBill.Rows(0).Item("IsDebitCreditCard") = "1", True, False)
-                            CbCheque.Checked = IIf(DtBill.Rows(0).Item("IsCheque") = "1", True, False)
+                SetFields(UserCommand)
 
-                            TxtCreatedBy.Text = DtBill.Rows(0).Item("CreatedBy")
-                            TxtDateCreated.Text = DtBill.Rows(0).Item("DateCreated")
-                            TxtModifiedBy.Text = DtBill.Rows(0).Item("ModifiedBy")
-                            TxtDateModified.Text = DtBill.Rows(0).Item("DateModified")
-
-                        End If
-
-                        SetFields(UserCommand)
-
-                End Select
             End If
 
         Catch ex As Exception
@@ -255,52 +253,6 @@ Public Class FrmPaymentInformation
 
     End Sub
 
-    'Private Sub TxtDiscount_TextChanged(sender As Object, e As EventArgs)
-
-    '    Try
-    '        'If Trim(TxtDiscount.Text) <> "" Then
-    '        '    If Not IsNumeric(Trim(TxtDiscount.Text)) Then
-    '        '        MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
-
-    '        '        Dim LastIndex As Integer
-    '        '        For i As Integer = 0 To TxtDiscount.Text.Length - 1
-    '        '            LastIndex += 1
-    '        '        Next
-
-    '        '        Dim StrDiscount As String = TxtDiscount.Text
-    '        '        TxtDiscount.Text = FormatNumber(StrDiscount.Replace(StrDiscount.Chars(LastIndex - 1), ""), 2)
-
-    '        '    End If
-
-    '        '    TxtDiscount.Text = FormatNumber(CDec(TxtDiscount.Text), 2)
-
-    '        'End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_TextChanged()")
-    '    End Try
-
-    'End Sub
-
-    'Private Sub TxtDiscount_Leave(sender As Object, e As EventArgs)
-
-    '    Try
-    '        'If Trim(TxtDiscount.Text) = "" Then
-    '        '    TxtDiscount.Text = FormatNumber(0, 2)
-    '        'Else
-    '        '    If Not IsNumeric(Trim(TxtDiscount.Text)) Then
-    '        '        MsgBox("Please enter numeric character.", MsgBoxStyle.Exclamation, "Non-Numeric Character Input Detected")
-    '        '        TxtDiscount.Text = FormatNumber(0, 2)
-    '        '    End If
-    '        '    TxtDiscount.Text = FormatNumber(CDec(TxtDiscount.Text), 2)
-    '        'End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".TxtDiscount_Leave()")
-    '    End Try
-
-    'End Sub
-
     Private Sub DgvBillListing_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvBillListing.CellContentClick
 
         Dim BtnDeletePet As New DataGridViewButtonColumn
@@ -335,22 +287,6 @@ Public Class FrmPaymentInformation
                                 End If
 
                             End If
-
-
-                            'For Each Row As DataGridViewRow In .SelectedRows
-
-                            '    'Delete items from database if invoice is already generated
-                            '    If TxtInvoiceNo.Text <> "" Then
-                            '        Dim a As Integer = .Rows(e.RowIndex).Cells("RowNo").Value
-
-                            '        If Not DeleteBillItems(.Rows(e.RowIndex).Cells("RowNo").Value, TxtInvoiceNo.Text) Then
-                            '            MsgBox("Failed to delete bill's items(s). Please try again.", MsgBoxStyle.Critical, "Delete Bill Item(s)")
-                            '        End If
-
-                            '        .Rows.Remove(Row)
-
-                            '    End If
-                            'Next
 
                             'Re-populate bill items
                             PopulateForm("SHOW_BILLING_INFO")
@@ -923,11 +859,12 @@ Public Class FrmPaymentInformation
                 End If
             End With
 
+#Region "CalculateWard"
             'Ward diagnosis
             Dim DtWardDiagnosis As New DataTable
             Dim ClsWardDiagnosis As New ClsWardDiagnosis
             With ClsWardDiagnosis
-                .VisitID = Trim(TxtVisitID.Text)
+                .WardID = Trim(TxtVisitID.Text)
                 DtWardDiagnosis = .GetWardDiagnosisDetail(ClsWardDiagnosis)
                 If DtWardDiagnosis.Rows.Count > 0 Then
                     For i As Integer = 0 To DtWardDiagnosis.Rows.Count - 1
@@ -960,7 +897,7 @@ Public Class FrmPaymentInformation
             Dim DtWardTreatment As New DataTable
             Dim ClsWardTreatment As New ClsWardTreatment
             With ClsWardTreatment
-                .VisitID = Trim(TxtVisitID.Text)
+                .WardID = Trim(TxtVisitID.Text)
                 DtWardTreatment = .GetWardTreatmentDetail(ClsWardTreatment)
                 If DtWardTreatment.Rows.Count > 0 Then
                     For i As Integer = 0 To DtWardTreatment.Rows.Count - 1
@@ -985,19 +922,44 @@ Public Class FrmPaymentInformation
                 End If
             End With
 
+            'Ward Discharge Medication
+            Dim ClsWardDischargeMedication As New ClsWardDischargeDetail
+            Dim DtWardDiscMed As New DataTable
+            With ClsWardDischargeMedication
+                .WardID = VisitID
+                DtWardDiscMed = .GetWardDischargeMedication(ClsWardDischargeMedication)
+                If DtWardDiscMed.Rows.Count > 0 Then
+
+                    For i As Integer = 0 To DtWardDiscMed.Rows.Count - 1
+                        With DtBill
+                            Dim WardDiscMedRow As DataRow = DtBill.NewRow
+
+                            WardDiscMedRow("RowNo") = DtWardDiscMed.Rows(i).Item("RowNo")
+                            WardDiscMedRow("ItemCode") = DtWardDiscMed.Rows(i).Item("ItemCode")
+                            WardDiscMedRow("ItemDescription") = DtWardDiscMed.Rows(i).Item("ItemDescription") & "***WARD-DISCHARGE-MEDICATION"
+                            WardDiscMedRow("ItemGroup") = DtWardDiscMed.Rows(i).Item("ItemGroup")
+                            WardDiscMedRow("ItemTypeCode") = DtWardDiscMed.Rows(i).Item("ItemTypeCode")
+                            WardDiscMedRow("ItemTypeDescription") = DtWardDiscMed.Rows(i).Item("ItemTypeDescription")
+                            WardDiscMedRow("Prescription") = DtWardDiscMed.Rows(i).Item("Prescription")
+                            WardDiscMedRow("Notes") = DtWardDiscMed.Rows(i).Item("Notes")
+                            WardDiscMedRow("UnitPrice") = DtWardDiscMed.Rows(i).Item("UnitPrice")
+                            WardDiscMedRow("Quantity") = DtWardDiscMed.Rows(i).Item("Quantity")
+                            WardDiscMedRow("TotalPrice") = DtWardDiscMed.Rows(i).Item("TotalPrice")
+
+                            DtBill.Rows.Add(WardDiscMedRow)
+                        End With
+                    Next
+
+                End If
+            End With
+
             'Ward
             'Update ward duration
             Dim DtWard As New DataTable
             Dim ClsWard As New ClsWard
+
             With ClsWard
-                'VisitID = ""
-                'If wardid <> "" Then
-                '    .WardID = wardID
-                'Else
-                '    .VisitID = VisitID
-                'End If
-                .VisitID = VisitID
-                'DtWard = .GetWardDetail(ClsWard)
+                .WardID = VisitID
                 DtWard = .GetWard(ClsWard)
 
                 If DtWard.Rows.Count > 0 Then
@@ -1019,6 +981,8 @@ Public Class FrmPaymentInformation
                 End If
 
             End With
+
+#End Region
 
             'Arrange RowNo for billing
             If DtBill.Rows.Count > 0 Then
@@ -1091,6 +1055,7 @@ Public Class FrmPaymentInformation
                 .Source = ""
                 .UserCommand = ""
                 .ShowDialog()
+
                 VisitID = .VisitID
                 TxtVisitID.Text = .VisitID
                 TxtCustomerName.Text = .CustomerName
@@ -1098,20 +1063,25 @@ Public Class FrmPaymentInformation
                 TxtCustomerName.Tag = .CustomerID
                 TxtPetName.Tag = .PetID
 
-                'Check if visit already created invoice; if already created invoice then populate invoice items
-
-                'CustomerID = .CustomerID
-                'CustomerName = .CustomerName
-                'PetID = .PetID
-                'PetName = .PetName
-                'UserCommand = IIf(.VisitID <> "", "ADD_NEW_WARD", "")
             End With
 
-            'If UserCommand = "" Then
-            '    Exit Sub
-            'Else
-            '    PopulateForm(UserCommand)
-            'End If
+            'Get invoice number from visit
+            Dim DtInvoiceNo As New DataTable
+            Dim ClsBill As New ClsBill
+            With ClsBill
+                .VisitID = VisitID
+                DtInvoiceNo = .GetInvoiceByVisitID(ClsBill)
+                If DtInvoiceNo.Rows.Count > 0 Then
+                    InvoiceNo = DtInvoiceNo.Rows(0).Item("InvoiceNo")
+                Else
+                    InvoiceNo = ""
+                End If
+
+            End With
+
+            If InvoiceNo <> "" Then
+                PopulateForm(UserCommand)
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".BtnSearch_Click")

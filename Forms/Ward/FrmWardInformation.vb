@@ -115,54 +115,59 @@ Public Class FrmWardInformation
     Private Sub PopulateForm(UserCommand As String)
 
         Dim DtWardDetail As New DataTable
+        Dim DtWardDiagnosis As New DataTable
         Dim DtWardDiagnosisDetail As New DataTable
         Dim DtWardTreatmentDetail As New DataTable
         Dim DtWardSummary As New DataTable
         Dim DtInvoice As New DataTable
-        Dim DtWardHourly As New DataTable
+
 
         Dim ClsWard As New ClsWard
         Dim ClsBill As New ClsBill
         Dim ClsWardDiagnosis As New ClsWardDiagnosis
         Dim ClsWardTreatment As New ClsWardTreatment
-        Dim ClsWardHourly As New ClsWardHourly
+
 
         Try
+            TxtWardHourlyTime.Text = Now
+            TxtVet.Tag = CURR_EMPLOYEE_ID
+            TxtVet.Text = CURR_EMPLOYEE_NAME
+
             If WardID <> "" Then
 
-                'BtnSearch.Visible = False
-
-                'ClsBill.VisitID = VisitID
-                'DtInvoice = ClsBill.GetBillHeader(ClsBill)
-                'If DtInvoice.Rows.Count > 0 Then
-                '    BtnBillPayment.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
-                '    BtnBillPayment.Tag = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
-                'End If
-
                 'Get ward summary; daily
-                ClsWard.WardID = WardID
-                'ClsWard.VisitID = VisitID
-                DtWardSummary = ClsWard.GetWardDetail(ClsWard)
+                With ClsWard
+                    .WardID = WardID
+                    DtWardSummary = .GetWardDetail(ClsWard)
+                End With
 
                 'Get current day entry for ward; populate if any
-                ClsWard.WardID = WardID
-                'ClsWard.VisitID = VisitID
-                DtWardDetail = ClsWard.GetWardDetail(ClsWard)
-
-                ClsWardDiagnosis.WardDate = Now.Date
-                ClsWardDiagnosis.WardID = WardID
-                DtWardDiagnosisDetail = ClsWardDiagnosis.GetWardDiagnosisDetail(ClsWardDiagnosis)
-
-                ClsWardTreatment.WardID = WardID
-                ClsWardTreatment.WardDate = Now.Date
-                DtWardTreatmentDetail = ClsWardTreatment.GetWardTreatmentDetail(ClsWardTreatment)
-                'Get current day entry for ward; populate if any-END
-
-                'Get ward hourly updates
-                With ClsWardHourly
+                With ClsWard
                     .WardID = WardID
-                    DtWardHourly = .GetWardHourly(ClsWardHourly)
+                    DtWardDetail = .GetWardDetail(ClsWard)
                 End With
+
+                'Get ward diagnosis header/diagnosis recorded
+                With ClsWardDiagnosis
+                    .WardDate = Now.Date
+                    .WardID = WardID
+                    DtWardDiagnosis = .GetWardDiagnosis(ClsWardDiagnosis)
+                End With
+
+                'Get ward diagnosis item
+                With ClsWardDiagnosis
+                    .WardDate = Now.Date
+                    .WardID = WardID
+                    DtWardDiagnosisDetail = .GetWardDiagnosisDetail(ClsWardDiagnosis)
+                End With
+
+                'Get ward treatment items
+                With ClsWardTreatment
+                    .WardID = WardID
+                    .WardDate = Now.Date
+                    DtWardTreatmentDetail = .GetWardTreatmentDetail(ClsWardTreatment)
+                End With
+                'Get current day entry for ward; populate if any-END
 
                 If DtWardDetail.Rows.Count > 0 Then
 
@@ -175,6 +180,8 @@ Public Class FrmWardInformation
                     TxtPetName.Text = DtWardDetail.Rows(0).Item("PetName")
                     TxtCase.Text = DtWardDetail.Rows(0).Item("PetCase")
                     CbIsDischarged.Checked = IIf(DtWardDetail.Rows(0).Item("IsDischarged") = "1", True, False)
+                    CbIsDischarged.Enabled = IIf(DtWardDetail.Rows(0).Item("IsDischarged") = "1", False, True)
+                    TxtDischargeDate.Text = IIf(DtWardDetail.Rows(0).Item("IsDischarged") = "1", CDate(DtWardDetail.Rows(0).Item("DischargeDate")), "")
                     TxtWardDate.Text = Now.Date
 
                     'Populate current day daily physical examination
@@ -221,19 +228,19 @@ Public Class FrmWardInformation
                             For i As Integer = 0 To DvWardDetail.Count - 1
                                 With DgvSelectedTest
                                     .Rows.Add()
-                                    .Rows(i).Cells("TestRowNo").Value = DtWardDiagnosisDetail.Rows(i).Item("RowNo") ' DvWardDetail(i)("DailyNotes")
-                                    .Rows(i).Cells("TestItemCode").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemCode") 'DvWardDetail(i)("DailyNotes")
-                                    .Rows(i).Cells("TestItemDescription").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemDescription") 'DvWardDetail(i)("DailyNotes")
-                                    .Rows(i).Cells("TestUnitPrice").Value = DtWardDiagnosisDetail.Rows(i).Item("UnitPrice") 'DvWardDetail(i)("DailyNotes") 'DtWardDiagnosisDetail.Rows(i).Item("UnitPrice")
-                                    .Rows(i).Cells("TestQuantity").Value = DtWardDiagnosisDetail.Rows(i).Item("Quantity") 'DvWardDetail(i)("DailyNotes") 'DtWardDiagnosisDetail.Rows(i).Item("Quantity")
-                                    .Rows(i).Cells("TestTotalPrice").Value = DtWardDiagnosisDetail.Rows(i).Item("TotalPrice") 'DvWardDetail(i)("DailyNotes") 'DtWardDiagnosisDetail.Rows(i).Item("TotalPrice")
-                                    .Rows(i).Cells("TestItemGroup").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemGroup") 'DvWardDetail(i)("DailyNotes") 'DtWardDiagnosisDetail.Rows(i).Item("ItemGroup")
-                                    .Rows(i).Cells("TestItemTypeCode").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemTypeCode") 'DvWardDetail(i)("DailyNotes") 'DtWardDiagnosisDetail.Rows(i).Item("ItemTypeCode")
-                                    .Rows(i).Cells("TestItemTypeDescription").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemTypeDescription") 'DvWardDetail(i)("DailyNotes") 'DtWardDiagnosisDetail.Rows(i).Item("ItemTypeDescription")
+                                    .Rows(i).Cells("TestRowNo").Value = DtWardDiagnosisDetail.Rows(i).Item("RowNo")
+                                    .Rows(i).Cells("TestItemCode").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemCode")
+                                    .Rows(i).Cells("TestItemDescription").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemDescription")
+                                    .Rows(i).Cells("TestUnitPrice").Value = DtWardDiagnosisDetail.Rows(i).Item("UnitPrice")
+                                    .Rows(i).Cells("TestQuantity").Value = DtWardDiagnosisDetail.Rows(i).Item("Quantity")
+                                    .Rows(i).Cells("TestTotalPrice").Value = DtWardDiagnosisDetail.Rows(i).Item("TotalPrice")
+                                    .Rows(i).Cells("TestItemGroup").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemGroup")
+                                    .Rows(i).Cells("TestItemTypeCode").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemTypeCode")
+                                    .Rows(i).Cells("TestItemTypeDescription").Value = DtWardDiagnosisDetail.Rows(i).Item("ItemTypeDescription")
                                 End With
                             Next
 
-                            TxtDiagnosis.Text = DtWardDiagnosisDetail.Rows(0).Item("Diagnosis") 'IIf(DtWardDiagnosisDetail.Rows.Count > 0, DtWardDiagnosisDetail.Rows(0).Item("Diagnosis"), "")
+                            TxtDiagnosis.Text = DtWardDiagnosis.Rows(0).Item("Diagnosis")
 
                         Else
                             TxtDiagnosis.Text = ""
@@ -292,16 +299,100 @@ Public Class FrmWardInformation
 
                     End If
 
+                    'Show ward hourly
+                    'Get ward hourly updates
+                    Dim DtWardHourly As New DataTable
+                    Dim ClsWardHourly As New ClsWardHourly
+                    With ClsWardHourly
+                        .WardID = WardID
+                        DtWardHourly = .GetWardHourly(ClsWardHourly)
+                        If DtWardHourly.Rows.Count > 0 Then
+
+                            DgvHourlyList.Rows.Clear()
+
+                            For i As Integer = 0 To DtWardHourly.Rows.Count - 1
+
+                                With DgvHourlyList
+                                    .Rows.Add()
+                                    .Rows(i).Cells("HourlyWardID").Value = DtWardHourly.Rows(i).Item("WardID")
+                                    .Rows(i).Cells("HourlyEmployeeID").Value = DtWardHourly.Rows(i).Item("EmployeeID")
+                                    .Rows(i).Cells("HourlyWardTime").Value = DtWardHourly.Rows(i).Item("WardDate")
+                                    .Rows(i).Cells("HourlyEmployeeName").Value = DtWardHourly.Rows(i).Item("EmployeeName")
+                                    .Rows(i).Cells("HourlyHourlyNotes").Value = DtWardHourly.Rows(i).Item("HourlyNotes")
+                                    .Rows(i).Cells("HourlyCreatedBy").Value = DtWardHourly.Rows(i).Item("CreatedBy")
+                                    .Rows(i).Cells("HourlyDateCreated").Value = DtWardHourly.Rows(i).Item("DateCreated")
+                                    .Rows(i).Cells("HourlyModifiedBy").Value = DtWardHourly.Rows(i).Item("ModifiedBy")
+                                    .Rows(i).Cells("HourlyDateModified").Value = DtWardHourly.Rows(i).Item("DateModified")
+                                End With
+
+                            Next
+
+                        End If
+                    End With
+
+                    'Show discharge details if any
+                    If DtWardDetail.Rows(0).Item("IsDischarged") = "1" Then
+
+                        Dim ClsWardDischarge As New ClsWardDischarge
+                        Dim ClsWardDiscMed As New ClsWardDischargeDetail
+                        Dim DtWardDischarge As New DataTable
+                        Dim DtWardDiscMed As New DataTable
+
+                        With ClsWardDischarge
+                            .WardID = WardID
+                            DtWardDischarge = .GetWardDischarge(ClsWardDischarge)
+                            If DtWardDischarge.Rows.Count > 0 Then
+
+                                TxtAdmitIssue.Text = DtWardDischarge.Rows(0).Item("AdmitIssue")
+                                TxtAdmitDiagnosis.Text = DtWardDischarge.Rows(0).Item("AdmitDiagnosis")
+                                TxtDischargeCondition.Text = DtWardDischarge.Rows(0).Item("DischargeCondition")
+                                TxtDischargeReason.Text = DtWardDischarge.Rows(0).Item("DischargeReason")
+                                TxtPossibleComplications.Text = DtWardDischarge.Rows(0).Item("PossibleComplications")
+                                TxtAdditionalInstructions.Text = DtWardDischarge.Rows(0).Item("AdditionalInstruction")
+                                'Add test/diagnosis/treatment/medication summary here
+
+                            End If
+
+                        End With
+
+                        With ClsWardDiscMed
+                            .WardID = WardID
+                            DtWardDiscMed = .GetWardDischargeMedication(ClsWardDiscMed)
+                            If DtWardDiscMed.Rows.Count > 0 Then
+
+                                For i As Integer = 0 To DtWardDiscMed.Rows.Count - 1
+                                    With DgvDischargeMedication
+                                        .Rows.Add()
+                                        .Rows(i).Cells("DiscMedRowNo").Value = DtWardDiscMed.Rows(i).Item("RowNo")
+                                        .Rows(i).Cells("DiscMedItemCode").Value = DtWardDiscMed.Rows(i).Item("ItemCode")
+                                        .Rows(i).Cells("DiscMedItemDescription").Value = DtWardDiscMed.Rows(i).Item("ItemDescription")
+                                        .Rows(i).Cells("DiscMedUnitPrice").Value = DtWardDiscMed.Rows(i).Item("UnitPrice")
+                                        .Rows(i).Cells("DiscMedQuantity").Value = DtWardDiscMed.Rows(i).Item("Quantity")
+                                        .Rows(i).Cells("DiscMedTotalPrice").Value = DtWardDiscMed.Rows(i).Item("TotalPrice")
+                                        .Rows(i).Cells("DiscMedItemGroup").Value = DtWardDiscMed.Rows(i).Item("ItemGroup")
+                                        .Rows(i).Cells("DiscMedItemTypeCode").Value = DtWardDiscMed.Rows(i).Item("ItemTypeCode")
+                                        .Rows(i).Cells("DiscMedItemTypeDescription").Value = DtWardDiscMed.Rows(i).Item("ItemTypeDescription")
+                                    End With
+                                Next
+
+                            End If
+
+                        End With
+
+
+                    End If
+
                 End If
 
             Else
+
                 TxtAdmissionDate.Text = Now
                 TxtCustomerName.Text = CustomerName
                 TxtCustomerName.Tag = CustomerID
                 TxtPetName.Text = PetName
                 TxtPetName.Tag = PetID
                 TxtWardDate.Text = Now.Date
-                TxtWardTime.Text = Now
+                TxtWardHourlyTime.Text = Now
 
                 Dim DtUser As New DataTable
                 Dim ClsUser As New ClsUser
@@ -330,43 +421,43 @@ Public Class FrmWardInformation
         Dim ClsWardDiagnosis As New ClsWardDiagnosis
         Dim ClsWardDiagnosisDetail As New ClsWardDiagnosisDetail
         Dim ClsWardTreatment As New ClsWardTreatment
-        Dim ClsVisit As New ClsVisit
-        'Dim GenWardID As String
-
         Dim DtWardDetail As New DataTable
         Dim DtWardDiagnosisDetail As New DataTable
         Dim DtWardTreatmentDetail As New DataTable
 
         Try
+            Dim ClsVisit As New ClsVisit
+            Dim DtVisit As New DataTable
+
+            'Get pet information from current visit
+            With ClsVisit
+                .VisitID = WardID
+                DtVisit = .GetVisitDetail(ClsVisit)
+            End With
+
             If DbTrans IsNot Nothing Then
                 DbTrans = Nothing
             End If
 
             DbTrans = DbConn.BeginTransaction
 
-            'Create WardID or set existing WardID
-            'If TxtWardID.Text <> "" Then
-            '    GenWardID = TxtWardID.Text
-            'Else
-            '    GenWardID = GenerateRunningNo("WD", DbConn, DbTrans)
-            'End If
-
-            'If GenWardID = "" Then
-            '    MsgBox("Failed to create ward ID.", MsgBoxStyle.Critical, "Create Ward ID Error")
-            '    DbTrans.Rollback()
-            '    DbTrans.Dispose()
-            '    Return False
-            'End If
-
             'Add ward header
             With ClsWard
-                .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text)) 'GenWardID
-                '.VisitID = VisitID
+                .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
                 .AdmissionDate = TxtAdmissionDate.Text
-                .CustomerID = CustomerID
-                .CustomerName = CustomerName
-                .PetID = PetID
-                .PetName = PetName
+                .CustomerID = TxtCustomerName.Tag
+                .CustomerName = TxtCustomerName.Text
+                .PetID = TxtPetName.Tag
+                .PetName = TxtPetName.Text
+                .TelNo = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("TelNo")), "")
+                .MobileNo = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("MobileNo")), "")
+                .SexCode = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("SexCode")), "")
+                .SexName = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("SexName")), "")
+                .AnimalTypeCode = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("AnimalTypeCode")), "")
+                .AnimalTypeName = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("AnimalTypeName")), "")
+                .BreedCode = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("BreedCode")), "")
+                .BreedName = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("BreedName")), "")
+                .IsNeutered = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("NeuterCode")), "")
                 .PetCase = Trim(TxtCase.Text)
                 .IsDischarged = IIf(CbIsDischarged.Checked = True, "1", "0")
                 .DischargeDate = IIf(CbIsDischarged.Tag = Nothing, Nothing, CbIsDischarged.Tag)
@@ -388,6 +479,8 @@ Public Class FrmWardInformation
             With ClsWardDetail
                 .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
                 .WardDate = CDate(TxtWardDate.Text)
+                .EmployeeID = Trim(TxtVet.Tag)
+                .EmployeeName = Trim(TxtVet.Text)
                 .Appetite = Trim(DirectCast(CmbAppetite.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
                 .AppetiteDescription = Trim(TxtAppetiteDescription.Text)
                 .Bowel = Trim(DirectCast(CmbBowel.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
@@ -399,6 +492,7 @@ Public Class FrmWardInformation
                 .Food = Trim(DirectCast(CmbFood.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
                 .IsFasting = Trim(DirectCast(CmbFasting.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
                 .FastingDescription = Trim(TxtFastingDescription.Text)
+                .Diagnosis = Trim(TxtDiagnosis.Text)
                 .DailyNotes = Trim(TxtDailyNotes.Text)
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
@@ -414,62 +508,64 @@ Public Class FrmWardInformation
                 Return False
             End If
 
-            'Add ward diagnose
-            With ClsWardDiagnosis
-                '.VisitID = VisitID
-                .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
-                .PetID = PetID
-                .PetName = PetName
-                .Diagnosis = Trim(TxtDiagnosis.Text)
-                .Ref.CreatedBy = CURR_USER
-                .Ref.DateCreated = Now
-                .Ref.ModifiedBy = CURR_USER
-                .Ref.DateModified = Now
-            End With
+            'Add ward diagnose -- Disabled on 08/12/2018
+            'With ClsWardDiagnosis
+            '    .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
+            '    .WardDate = CDate(TxtWardDate.Text)
+            '    .PetID = PetID
+            '    .PetName = PetName
+            '    .Diagnosis = Trim(TxtDiagnosis.Text)
+            '    .Ref.CreatedBy = CURR_USER
+            '    .Ref.DateCreated = Now
+            '    .Ref.ModifiedBy = CURR_USER
+            '    .Ref.DateModified = Now
+            'End With
 
-            If Not ClsWardDiagnosis.AddNewWardDiagnosis(ClsWardDiagnosis, DbConn, DbTrans) Then
-                MsgBox("Failed to create ward diagnosis.", MsgBoxStyle.Critical, "Create Ward Diagnosis Error")
-                DbTrans.Rollback()
-                DbTrans.Dispose()
-                DbTrans = Nothing
-                Return False
-            End If
+            'If Not ClsWardDiagnosis.AddNewWardDiagnosis(ClsWardDiagnosis, DbConn, DbTrans) Then
+            '    MsgBox("Failed to create ward diagnosis.", MsgBoxStyle.Critical, "Create Ward Diagnosis Error")
+            '    DbTrans.Rollback()
+            '    DbTrans.Dispose()
+            '    DbTrans = Nothing
+            '    Return False
+            'End If
 
             'Add ward diagnose detail
-            For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
-                With ClsWardDiagnosisDetail
-                    .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
-                    .WardDate = CDate(TxtWardDate.Text)
-                    .RowNo = i + 1
-                    .ItemCode = DgvSelectedTest.Rows(i).Cells("TestItemCode").Value
-                    .ItemDescription = DgvSelectedTest.Rows(i).Cells("TestItemDescription").Value
-                    .ItemGroup = DgvSelectedTest.Rows(i).Cells("TestItemGroup").Value
-                    .ItemTypeCode = DgvSelectedTest.Rows(i).Cells("TestItemTypeCode").Value
-                    .ItemTypeDescription = DgvSelectedTest.Rows(i).Cells("TestItemTypeDescription").Value
-                    .UnitPrice = DgvSelectedTest.Rows(i).Cells("TestUnitPrice").Value
-                    .Quantity = DgvSelectedTest.Rows(i).Cells("TestQuantity").Value
-                    .TotalPrice = DgvSelectedTest.Rows(i).Cells("TestTotalPrice").Value
-                    .Ref.CreatedBy = CURR_USER
-                    .Ref.DateCreated = Now
-                    .Ref.ModifiedBy = CURR_USER
-                    .Ref.DateModified = Now
-                End With
+            If DgvSelectedTest.Rows.Count > 0 Then
+                For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
+                    With ClsWardDiagnosisDetail
+                        .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
+                        .WardDate = CDate(TxtWardDate.Text)
+                        .RowNo = i + 1
+                        .ItemCode = DgvSelectedTest.Rows(i).Cells("TestItemCode").Value
+                        .ItemDescription = DgvSelectedTest.Rows(i).Cells("TestItemDescription").Value
+                        .ItemGroup = DgvSelectedTest.Rows(i).Cells("TestItemGroup").Value
+                        .ItemTypeCode = DgvSelectedTest.Rows(i).Cells("TestItemTypeCode").Value
+                        .ItemTypeDescription = DgvSelectedTest.Rows(i).Cells("TestItemTypeDescription").Value
+                        .UnitPrice = DgvSelectedTest.Rows(i).Cells("TestUnitPrice").Value
+                        .Quantity = DgvSelectedTest.Rows(i).Cells("TestQuantity").Value
+                        .TotalPrice = DgvSelectedTest.Rows(i).Cells("TestTotalPrice").Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
 
-                If Not ClsWardDiagnosisDetail.AddNewWardDiagnosisDetail(ClsWardDiagnosisDetail, DbConn, DbTrans) Then
-                    MsgBox("Failed to create ward diagnosis details.", MsgBoxStyle.Critical, "Create Ward Diagnosis Error")
-                    DbTrans.Rollback()
-                    DbTrans.Dispose()
-                    DbTrans = Nothing
-                    Return False
-                End If
-            Next
+                        If Not .AddNewWardDiagnosisDetail(ClsWardDiagnosisDetail, DbConn, DbTrans) Then
+                            MsgBox("Failed to create ward diagnosis details.", MsgBoxStyle.Critical, "Create Ward Diagnosis Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+                Next
+            End If
 
             'Add ward treatment
             If DgvSelectedTreatment.Rows.Count > 0 Then
                 For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
                     With ClsWardTreatment
                         .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
-                        '.VisitID = VisitID
                         .WardDate = CDate(TxtWardDate.Text)
                         .RowNo = i + 1
                         .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
@@ -477,8 +573,8 @@ Public Class FrmWardInformation
                         .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
                         .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
                         .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-                        .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                        .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                        .Prescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value
+                        .Notes = DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value
                         .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
                         .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
                         .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
@@ -507,7 +603,8 @@ Public Class FrmWardInformation
 
                     With ClsWardHourly
                         .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
-                        .WardTime = DgvHourlyList.Rows(i).Cells("HourlyWardTime").Value
+                        .RowNo = i + 1
+                        .WardDate = DgvHourlyList.Rows(i).Cells("HourlyWardTime").Value
                         .EmployeeID = DgvHourlyList.Rows(i).Cells("HourlyEmployeeID").Value
                         .EmployeeName = DgvHourlyList.Rows(i).Cells("HourlyEmployeeName").Value
                         .HourlyNotes = DgvHourlyList.Rows(i).Cells("HourlyHourlyNotes").Value
@@ -532,23 +629,24 @@ Public Class FrmWardInformation
 
             'Check and calculate ward duration, insert data to ward_discharge, ward_dischargemedication
             Dim ClsWardDischarge As New ClsWardDischarge
-            Dim ClsWardDischargeMedication As New ClsWardDischargeMedication
+            Dim ClsWardDischargeMedication As New ClsWardDischargeDetail
 
             If CbIsDischarged.Checked = True Then
 
                 With ClsWardDischarge
                     .WardID = TxtWardID.Text
                     .DischargeDate = Now
-                    .AdmitIssue = ""
-                    .AdmitDiagnosis = ""
-                    .DischargeCondition = ""
-                    .DischargeReason = ""
-                    .PossibleComplications = ""
-                    .AdditionalInstruction = ""
-                    .Ref.CreatedBy = ""
-                    .Ref.DateCreated = ""
-                    .Ref.ModifiedBy = ""
-                    .Ref.DateModified = ""
+                    .AdmitIssue = Trim(TxtAdmitIssue.Text)
+                    .AdmitDiagnosis = Trim(TxtAdmitDiagnosis.Text)
+                    .TreatmentSummary = Trim(TxtTreatmentSummary.Text)
+                    .DischargeCondition = Trim(TxtDischargeCondition.Text)
+                    .DischargeReason = Trim(TxtDischargeReason.Text)
+                    .PossibleComplications = Trim(TxtPossibleComplications.Text)
+                    .AdditionalInstruction = Trim(TxtAdditionalInstructions.Text)
+                    .Ref.CreatedBy = CURR_USER
+                    .Ref.DateCreated = Now
+                    .Ref.ModifiedBy = CURR_USER
+                    .Ref.DateModified = Now
 
                     If Not .AddNewWardDischarge(ClsWardDischarge, DbConn, DbTrans) Then
                         MsgBox("Failed to update ward discharge details.", MsgBoxStyle.Critical, "Ward Discharge Update Error")
@@ -564,25 +662,25 @@ Public Class FrmWardInformation
 
                     For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
 
-                        ClsWardDischargeMedication = New ClsWardDischargeMedication
+                        ClsWardDischargeMedication = New ClsWardDischargeDetail
                         With ClsWardDischargeMedication
-                            .WardID = ""
-                            .DischargeDate = ""
-                            .RowNo = ""
-                            .ItemCode = ""
-                            .ItemDescription = ""
-                            .ItemGroup = ""
-                            .ItemTypeCode = ""
-                            .ItemTypeDescription = ""
-                            .Prescription = ""
-                            .Notes = ""
-                            .UnitPrice = ""
-                            .Quantity = ""
-                            .TotalPrice = ""
-                            .Ref.CreatedBy = ""
-                            .Ref.DateCreated = ""
-                            .Ref.ModifiedBy = ""
-                            .Ref.DateModified = ""
+                            .WardID = TxtWardID.Text
+                            .DischargeDate = Now
+                            .RowNo = DgvDischargeMedication.Rows(i).Cells("DiscMedRowNo").Value
+                            .ItemCode = DgvDischargeMedication.Rows(i).Cells("DiscMedItemCode").Value
+                            .ItemDescription = DgvDischargeMedication.Rows(i).Cells("DiscMedItemDescription").Value
+                            .ItemGroup = DgvDischargeMedication.Rows(i).Cells("DiscMedItemGroup").Value
+                            .ItemTypeCode = DgvDischargeMedication.Rows(i).Cells("DiscMedItemTypeCode").Value
+                            .ItemTypeDescription = DgvDischargeMedication.Rows(i).Cells("DiscMedItemTypeDescription").Value
+                            .Prescription = DgvDischargeMedication.Rows(i).Cells("DiscMedPrescription").Value
+                            .Notes = DgvDischargeMedication.Rows(i).Cells("DiscMedNotes").Value
+                            .UnitPrice = DgvDischargeMedication.Rows(i).Cells("DiscMedUnitPrice").Value
+                            .Quantity = DgvDischargeMedication.Rows(i).Cells("DiscMedQuantity").Value
+                            .TotalPrice = DgvDischargeMedication.Rows(i).Cells("DiscMedTotalPrice").Value
+                            .Ref.CreatedBy = CURR_USER
+                            .Ref.DateCreated = Now
+                            .Ref.ModifiedBy = CURR_USER
+                            .Ref.DateModified = Now
 
                             If Not .AddNewWardDischargeMedication(ClsWardDischargeMedication, DbConn, DbTrans) Then
                                 MsgBox("Failed to udpate ward discharge medication.", MsgBoxStyle.Critical, "Ward Discharge Medication Update Error")
@@ -598,15 +696,20 @@ Public Class FrmWardInformation
 
                 End If
 
+                'Calculate ward duration and update to ward header
+                If Not DischargePet(DbConn, DbTrans) Then
+                    MsgBox("Failed to update discharge status.", MsgBoxStyle.Critical, "Discharge Status Update Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
             End If
 
             DbTrans.Commit()
             DbTrans.Dispose()
             DbTrans = Nothing
-
-            'TxtWardID.Text = GenWardID
-            'TxtWardID.Tag = GenWardID
-            'WardID = GenWardID
 
             With ClsWard
                 If TxtCreatedBy.Text = "" Then
@@ -634,6 +737,127 @@ Public Class FrmWardInformation
         Return True
 
     End Function
+
+    Private Function DischargePet(DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Dim UserResponse As MsgBoxResult
+
+        Try
+            If CbIsDischarged.Checked = True Then
+
+                UserResponse = MsgBox("Are sure you want to discharge this pet? Your action cannot be undone.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Discharge Pet?")
+                If UserResponse = MsgBoxResult.Yes Then
+
+                    'Set fixed AdmissionDate & DischargeDate
+                    Dim StrFixedAD As String = CDate(TxtAdmissionDate.Text).Date.ToShortDateString & " 12:00:00"
+                    Dim StrFixedDD As String = Now.Date.ToShortDateString & " 12:00:00"
+                    Dim FixedAD As Date = CDate(StrFixedAD)
+                    Dim FixedDD As Date = CDate(StrFixedDD)
+                    Dim FixDuration As TimeSpan
+
+                    'Get actual admission date & actual discharge date
+                    Dim ActualAD As Date = CDate(TxtAdmissionDate.Text)
+                    Dim ActualDD As Date = IIf(TxtDischargeDate.Text <> "", TxtDischargeDate.Text, Now) 'Now
+
+                    FixDuration = FixedDD - FixedAD
+                    Dim WardDuration As Integer = FixDuration.Days
+
+                    If ActualDD > FixedDD Then
+                        WardDuration = WardDuration + 1
+                    End If
+
+                    'Update IsDischarge, DischargeDate
+                    'If DbTrans IsNot Nothing Then
+                    '    DbTrans = Nothing
+                    'End If
+
+                    'DbTrans = DbConn.BeginTransaction
+
+                    Dim ClsWard As New ClsWard
+                    With ClsWard
+                        .WardID = Trim(TxtWardID.Text)
+                        .IsDischarged = "1"
+                        .DischargeDate = ActualDD
+                        .WardDuration = WardDuration
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .DischargePet(ClsWard, DbConn, DbTrans) Then
+                            CbIsDischarged.Checked = False
+                            'MsgBox("Failed to update discharge status.", MsgBoxStyle.Critical, "Discharge Status Update Error")
+                            'DbTrans.Rollback()
+                            'DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+
+                    TxtDischargeDate.Text = ActualDD
+
+                    ' DbTrans.Commit()
+                    ' DbTrans.Dispose()
+                    ' DbTrans = Nothing
+
+                    ' MsgBox("Admission Date : " & ActualAD & Environment.NewLine &
+                    '"Discharge Date : " & ActualDD & Environment.NewLine &
+                    '"Ward Duration : " & WardDuration)
+
+                    MsgBox("Your selected pet has been successfully discharged!", MsgBoxStyle.Information, "Pet Discharge Completed")
+                Else
+                    CbIsDischarged.Checked = False
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DischargePet()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    'Private Function CalculateWardDuration(DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+    '    Try
+    '        'Set fixed AdmissionDate & DischargeDate
+    '        Dim StrFixedAdmissionDate As String = CDate(TxtAdmissionDate.Text).Date.ToShortDateString & " 12:00:00"
+    '        Dim StrFixedDischargeDate As String = Now.Date.ToShortDateString & " 12:00:00"
+
+    '        Dim FixedAD As Date = CDate(StrFixedAdmissionDate)
+    '        Dim FixedDD As Date = CDate(StrFixedDischargeDate)
+
+    '        Dim DurationSpan As TimeSpan
+
+    '        'Get actual admission date & actual discharge date
+    '        Dim ActualAD As Date = CDate(TxtAdmissionDate.Text) '"19/10/2018 13:00:00"
+    '        Dim ActualDD As Date = Now 'CDate(TxtDD.Text) '"20/10/2018 12:01:00"
+
+    '        DurationSpan = FixedDD - FixedAD
+    '        Dim WardDuration As Integer = DurationSpan.Days
+
+    '        If ActualDD > FixedDD Then
+    '            WardDuration = WardDuration + 1
+    '        End If
+
+    '        'Update ward duration in datatase  
+    '        Dim ClsWard As New ClsWard
+    '        With ClsWard
+    '            If Not .UpdateWardDuration() Then
+    '                Return False
+    '            End If
+    '        End With
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CalculateWardDuration()")
+    '        Return False
+    '    End Try
+
+    '    Return True
+
+    'End Function
 
     Private Function UpdateBill() As Boolean
 
@@ -907,7 +1131,19 @@ Public Class FrmWardInformation
     End Function
 
     Private Function CheckFields() As Boolean
+
+        Try
+            If TxtWardID.Text = "" Then
+                MsgBox("Please select customer visit to save ward information.", MsgBoxStyle.Exclamation, "Ward ID Missing")
+                Return False
+            End If
+
+        Catch ex As Exception
+            Return False
+        End Try
+
         Return True
+
     End Function
 
     Private Sub PopulateDPE()
@@ -971,8 +1207,8 @@ Public Class FrmWardInformation
             'Fasting
             With CmbFasting
                 Dim CmbSource As New Dictionary(Of String, String) From {
-                    {"1", "YES"},
-                    {"0", "NO"}
+                    {"0", "NO"},
+                    {"1", "YES"}
                 }
                 .DataSource = New BindingSource(CmbSource, Nothing)
                 .DisplayMember = "Value"
@@ -985,13 +1221,13 @@ Public Class FrmWardInformation
 
     End Sub
 
-    Private Sub AddTest()
+    Private Function AddTest() As Boolean
 
         Dim DtTest As New DataTable
 
         Try
             If TxtTestItem.Tag = "" Then
-                Exit Sub
+                Return False
             End If
 
             DtTest = InitSelectedItemDt()
@@ -1058,17 +1294,30 @@ Public Class FrmWardInformation
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddTest()")
+            Return False
         End Try
 
-    End Sub
+        Return True
 
-    Private Sub AddTreatment()
+    End Function
+
+    Private Function AddTreatment() As Boolean
 
         Dim DtTreatment As New DataTable
 
         Try
+            'Check user input
             If TxtTreatmentItem.Tag = "" Then
-                Exit Sub
+                Return False
+            End If
+
+            If DgvSelectedTreatment.Rows.Count > 0 Then
+                For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+                    If TxtTreatmentItem.Tag = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value Then
+                        MsgBox("You are trying to add same item into the list.", MsgBoxStyle.Exclamation, "Duplicate Entry")
+                        Return False
+                    End If
+                Next
             End If
 
             DtTreatment = InitSelectedItemDt()
@@ -1081,8 +1330,8 @@ Public Class FrmWardInformation
                     DgvRow("RowNo") = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
                     DgvRow("ItemCode") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
                     DgvRow("ItemDescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
-                    DgvRow("Prescription") = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                    DgvRow("Notes") = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                    DgvRow("Prescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value
+                    DgvRow("Notes") = DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value
                     DgvRow("Quantity") = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
                     DgvRow("UnitPrice") = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
                     DgvRow("TotalPrice") = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
@@ -1101,6 +1350,10 @@ Public Class FrmWardInformation
             Row("RowNo") = IIf(DtTreatment.Rows.Count = 0, 1, DtTreatment.Rows.Count + 1)
             Row("ItemCode") = UCase(Trim(TxtTreatmentItem.Tag))
             Row("ItemDescription") = UCase(Trim(TxtTreatmentItem.Text))
+
+            Row("Prescription") = Trim(TxtTreatmentPrescription.Text)
+            Row("Notes") = Trim(TxtTreatmentNotes.Text)
+
             Row("UnitPrice") = UCase(Trim(TxtTreatmentUnitPrice.Text))
             Row("Quantity") = UCase(Trim(TxtTreatmentQuantity.Text))
             Row("TotalPrice") = FormatNumber(CDec(TxtTreatmentTotalPrice.Text) * CDec(TxtTreatmentQuantity.Text), 2)
@@ -1120,6 +1373,10 @@ Public Class FrmWardInformation
                         .Rows(i).Cells("TreatmentRowNo").Value = DtTreatment.Rows(i).Item("RowNo")
                         .Rows(i).Cells("TreatmentItemCode").Value = DtTreatment.Rows(i).Item("ItemCode")
                         .Rows(i).Cells("TreatmentItemDescription").Value = DtTreatment.Rows(i).Item("ItemDescription")
+
+                        .Rows(i).Cells("TreatmentPrescription").Value = DtTreatment.Rows(i).Item("Prescription")
+                        .Rows(i).Cells("TreatmentNotes").Value = DtTreatment.Rows(i).Item("Notes")
+
                         .Rows(i).Cells("TreatmentUnitPrice").Value = DtTreatment.Rows(i).Item("UnitPrice")
                         .Rows(i).Cells("TreatmentQuantity").Value = DtTreatment.Rows(i).Item("Quantity")
                         .Rows(i).Cells("TreatmentTotalPrice").Value = DtTreatment.Rows(i).Item("TotalPrice")
@@ -1133,12 +1390,20 @@ Public Class FrmWardInformation
 
             TxtTreatmentItem.Text = ""
             TxtTreatmentItem.Tag = ""
+            TxtTreatmentPrescription.Text = ""
+            TxtTreatmentNotes.Text = ""
+            TxtTreatmentUnitPrice.Text = "0.00"
+            TxtTreatmentQuantity.Text = "1.00"
+            TxtTreatmentTotalPrice.Text = "0.00"
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddTreatment()")
+            Return False
         End Try
 
-    End Sub
+        Return True
+
+    End Function
 
     Private Function InitWardSummaryDt() As DataTable
 
@@ -1186,85 +1451,6 @@ Public Class FrmWardInformation
         End Try
 
         Return DtTreatment
-
-    End Function
-
-    Private Function DischargePet() As Boolean
-
-        Dim UserResponse As MsgBoxResult
-
-        Try
-            If CbIsDischarged.Checked = True Then
-
-                UserResponse = MsgBox("Are sure you want to discharge this pet? Your action cannot be undone.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Discharge Pet?")
-                If UserResponse = MsgBoxResult.Yes Then
-
-                    'Set fixed AdmissionDate & DischargeDate
-                    Dim StrFixedAD As String = CDate(TxtAdmissionDate.Text).Date.ToShortDateString & " 12:00:00"
-                    Dim StrFixedDD As String = Now.Date.ToShortDateString & " 12:00:00"
-                    Dim FixedAD As Date = CDate(StrFixedAD)
-                    Dim FixedDD As Date = CDate(StrFixedDD)
-                    Dim FixDuration As TimeSpan
-
-                    'Get actual admission date & actual discharge date
-                    Dim ActualAD As Date = CDate(TxtAdmissionDate.Text)
-                    Dim ActualDD As Date = Now
-
-                    FixDuration = FixedDD - FixedAD
-                    Dim WardDuration As Integer = FixDuration.Days
-
-                    If ActualDD > FixedDD Then
-                        WardDuration = WardDuration + 1
-                    End If
-
-                    'Update IsDischarge, DischargeDate
-                    If DbTrans IsNot Nothing Then
-                        DbTrans = Nothing
-                    End If
-
-                    DbTrans = DbConn.BeginTransaction
-
-                    Dim ClsWard As New ClsWard
-                    With ClsWard
-                        .WardID = Trim(TxtWardID.Text)
-                        .IsDischarged = "1"
-                        .DischargeDate = ActualDD
-                        .WardDuration = WardDuration
-                        .Ref.ModifiedBy = CURR_USER
-                        .Ref.DateModified = Now
-
-                        If Not .DischargePet(ClsWard, DbConn, DbTrans) Then
-                            CbIsDischarged.Checked = False
-                            MsgBox("Failed to update discharge status.", MsgBoxStyle.Critical, "Discharge Status Update Error")
-                            DbTrans.Rollback()
-                            DbTrans = Nothing
-                            Return False
-                        End If
-
-                    End With
-
-                    DbTrans.Commit()
-                    DbTrans.Dispose()
-                    DbTrans = Nothing
-
-                    MsgBox("Admission Date : " & ActualAD & Environment.NewLine &
-                   "Discharge Date : " & ActualDD & Environment.NewLine &
-                   "Ward Duration : " & WardDuration)
-
-                    MsgBox("Your selected pet has been successfully discharged!", MsgBoxStyle.Information, "Pet Discharge Completed")
-                Else
-                    CbIsDischarged.Checked = False
-
-                End If
-
-            End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DischargePet()")
-            Return False
-        End Try
-
-        Return True
 
     End Function
 
@@ -1336,15 +1522,18 @@ Public Class FrmWardInformation
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If Not CheckFields() Then Exit Sub
         If Not SaveWardToDb() Then Exit Sub
-        'If Not UpdateBill() Then Exit Sub
     End Sub
 
     Private Sub BtnAddTest_Click(sender As Object, e As EventArgs) Handles BtnAddTest.Click
-        AddTest()
+        If Not AddTest() Then Exit Sub
     End Sub
 
     Private Sub BtnTreatmentItem_Click(sender As Object, e As EventArgs) Handles BtnTreatmentItem.Click
-        AddTreatment()
+        If BtnTreatmentItem.Tag = "UPDATE" Then
+            If Not UpdateTreatment() Then Exit Sub
+        Else
+            If Not AddTreatment() Then Exit Sub
+        End If
     End Sub
 
     Private Sub BtnClearTest_Click(sender As Object, e As EventArgs) Handles BtnClearTest.Click
@@ -1358,7 +1547,7 @@ Public Class FrmWardInformation
     End Sub
 
     Private Sub CbIsDischarged_Click(sender As Object, e As EventArgs)
-        If Not DischargePet() Then Exit Sub
+        'If Not DischargePet() Then Exit Sub
     End Sub
 
     Private Sub DgvWardSummary_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvWardSummary.CellDoubleClick
@@ -1367,15 +1556,14 @@ Public Class FrmWardInformation
             If e.RowIndex = -1 Or e.ColumnIndex = -1 Then
                 Exit Sub
             Else
-                'If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
-                '    Dim Frm As New FrmWardSummary With {
-                '        .WardID = TxtWardID.Text,
-                '        .VisitID = TxtVisitID.Text,
-                '        .CustomerID = TxtCustomerID.Text,
-                '        .WardDate = DgvWardSummary.Rows(e.RowIndex).Cells("WardDate").Value
-                '    }
-                '    Frm.ShowDialog()
-                'End If
+                If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
+                    Dim Frm As New FrmWardSummary With {
+                        .WardID = TxtWardID.Text,
+                        .CustomerID = TxtCustomerName.Tag,
+                        .WardDate = DgvWardSummary.Rows(e.RowIndex).Cells("WardDate").Value
+                    }
+                    Frm.ShowDialog()
+                End If
             End If
 
         Catch ex As Exception
@@ -1438,6 +1626,15 @@ Public Class FrmWardInformation
         Try
             Dim DtHourly As New DataTable
 
+            'Check if user trying to spam entry
+            If DgvHourlyList.Rows.Count > 0 Then
+                For i As Integer = 0 To DgvHourlyList.Rows.Count - 1
+                    If TxtWardHourlyTime.Text = DgvHourlyList.Rows(i).Cells("HourlyWardTime").Value Then
+                        Return False
+                    End If
+                Next
+            End If
+
             DtHourly = InitWardHourlyDt()
 
             If DgvHourlyList.Rows.Count > 0 Then
@@ -1465,7 +1662,7 @@ Public Class FrmWardInformation
             Dim NewRow As DataRow = DtHourly.NewRow
 
             NewRow("WardID") = "" 'TxtVisitID.Text
-            NewRow("WardTime") = CDate(TxtWardTime.Text)
+            NewRow("WardTime") = CDate(TxtWardHourlyTime.Text)
             NewRow("EmployeeID") = UCase(Trim(TxtVet.Tag))
             NewRow("EmployeeName") = UCase(Trim(TxtVet.Text))
             NewRow("HourlyNotes") = Trim(TxtHourlyNotes.Text)
@@ -1532,5 +1729,246 @@ Public Class FrmWardInformation
         Return DtHourly
 
     End Function
+
+    Private Sub BtnSearchDiscMediItem_Click(sender As Object, e As EventArgs) Handles BtnSearchDiscMediItem.Click
+        With FrmSearchItem
+            .ShowDialog()
+            TxtDischargeItem.Tag = .ItemCode
+            TxtDischargeItem.Text = .ItemDescription
+            TxtDischargeUnitPrice.Text = .UnitPrice
+            TxtDischargeTotalPrice.Text = FormatNumber(.UnitPrice * CDec(TxtTreatmentQuantity.Text), 2)
+            ItemGroup = .ItemGroup
+            ItemTypeDescription = .ItemTypeDescription
+            ItemTypeCode = .ItemTypeCode
+        End With
+    End Sub
+
+    Private Sub BtnAddDischargeItem_Click(sender As Object, e As EventArgs) Handles BtnAddDischargeItem.Click
+        AddDischargeMedication()
+    End Sub
+
+    Private Sub AddDischargeMedication()
+
+        Dim DtMedication As New DataTable
+
+        Try
+            If TxtDischargeItem.Tag = "" Then
+                Exit Sub
+            End If
+
+            DtMedication = InitSelectedItemDt()
+            If DgvDischargeMedication.Rows.Count > 0 Then
+
+                For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
+
+                    Dim DgvRow As DataRow = DtMedication.NewRow
+
+                    DgvRow("RowNo") = DgvDischargeMedication.Rows(i).Cells("DiscMedRowNo").Value
+                    DgvRow("ItemCode") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemCode").Value
+                    DgvRow("ItemDescription") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemDescription").Value
+                    DgvRow("Prescription") = DgvDischargeMedication.Rows(i).Cells("DiscMedPrescription").Value
+                    DgvRow("Notes") = DgvDischargeMedication.Rows(i).Cells("DiscMedNotes").Value
+                    DgvRow("Quantity") = DgvDischargeMedication.Rows(i).Cells("DiscMedQuantity").Value
+                    DgvRow("UnitPrice") = DgvDischargeMedication.Rows(i).Cells("DiscMedUnitPrice").Value
+                    DgvRow("TotalPrice") = DgvDischargeMedication.Rows(i).Cells("DiscMedTotalPrice").Value
+                    DgvRow("ItemGroup") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemGroup").Value
+                    DgvRow("ItemTypeCode") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemTypeCode").Value
+                    DgvRow("ItemTypeDescription") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemTypeDescription").Value
+
+                    DtMedication.Rows.Add(DgvRow)
+
+                Next
+
+            End If
+
+            Dim Row As DataRow = DtMedication.NewRow
+
+            Row("RowNo") = IIf(DtMedication.Rows.Count = 0, 1, DtMedication.Rows.Count + 1)
+            Row("ItemCode") = UCase(Trim(TxtDischargeItem.Tag))
+            Row("ItemDescription") = UCase(Trim(TxtDischargeItem.Text))
+            Row("UnitPrice") = UCase(Trim(TxtDischargeUnitPrice.Text))
+            Row("Quantity") = UCase(Trim(TxtDischargeQuantity.Text))
+            Row("TotalPrice") = FormatNumber(CDec(TxtDischargeTotalPrice.Text) * CDec(TxtDischargeQuantity.Text), 2)
+            Row("ItemGroup") = ItemGroup
+            Row("ItemTypeDescription") = ItemTypeDescription
+            Row("ItemTypeCode") = ItemTypeCode
+
+            DtMedication.Rows.Add(Row)
+
+            If DtMedication.Rows.Count > 0 Then
+
+                DgvDischargeMedication.Rows.Clear()
+
+                For i As Integer = 0 To DtMedication.Rows.Count - 1
+                    With DgvDischargeMedication
+                        .Rows.Add()
+                        .Rows(i).Cells("DiscMedRowNo").Value = DtMedication.Rows(i).Item("RowNo")
+                        .Rows(i).Cells("DiscMedItemCode").Value = DtMedication.Rows(i).Item("ItemCode")
+                        .Rows(i).Cells("DiscMedItemDescription").Value = DtMedication.Rows(i).Item("ItemDescription")
+                        .Rows(i).Cells("DiscMedUnitPrice").Value = DtMedication.Rows(i).Item("UnitPrice")
+                        .Rows(i).Cells("DiscMedQuantity").Value = DtMedication.Rows(i).Item("Quantity")
+                        .Rows(i).Cells("DiscMedTotalPrice").Value = DtMedication.Rows(i).Item("TotalPrice")
+                        .Rows(i).Cells("DiscMedItemGroup").Value = DtMedication.Rows(i).Item("ItemGroup")
+                        .Rows(i).Cells("DiscMedItemTypeCode").Value = DtMedication.Rows(i).Item("ItemTypeCode")
+                        .Rows(i).Cells("DiscMedItemTypeDescription").Value = DtMedication.Rows(i).Item("ItemTypeDescription")
+                    End With
+                Next
+
+            End If
+
+            TxtDischargeItem.Text = ""
+            TxtDischargeItem.Tag = ""
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddDischargeMedication()")
+        End Try
+
+    End Sub
+
+    Private Sub DgvSelectedTest_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedTest.CellContentClick
+
+        Dim UserResponse As MsgBoxResult
+
+        Try
+            Dim SenderGrid = DirectCast(sender, DataGridView)
+
+            If TypeOf SenderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+
+                UserResponse = MsgBox("Are sure you want to delete this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Delete Item?")
+                If UserResponse = MsgBoxResult.Yes Then
+
+                    With DgvSelectedTest
+
+                        .Rows.RemoveAt(e.RowIndex)
+
+                        TxtTestItem.Tag = ""
+                        TxtTestItem.Text = ""
+                        TxtTestUnitPrice.Text = "0.00"
+                        TxtTestQuantity.Text = "1.00"
+                        TxtTestTotalPrice.Text = "0.00"
+
+                    End With
+
+                Else
+                    Exit Sub
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvBillListing_CellContentClick()")
+        End Try
+
+    End Sub
+
+    Private Sub DgvSelectedTreatment_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedTreatment.CellContentClick
+
+        Dim UserResponse As MsgBoxResult
+
+        Try
+            Dim SenderGrid = DirectCast(sender, DataGridView)
+
+            If TypeOf SenderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+
+                If e.ColumnIndex = 0 Then
+
+                    UserResponse = MsgBox("Are sure you want to delete this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Delete Item?")
+                    If UserResponse = MsgBoxResult.Yes Then
+
+                        With DgvSelectedTreatment
+
+                            .Rows.RemoveAt(e.RowIndex)
+
+                            TxtTreatmentItem.Text = ""
+                            TxtTreatmentItem.Tag = ""
+                            TxtTreatmentPrescription.Text = ""
+                            TxtTreatmentNotes.Text = ""
+                            TxtTreatmentUnitPrice.Text = "0.00"
+                            TxtTreatmentQuantity.Text = "1.00"
+                            TxtTreatmentTotalPrice.Text = "0.00"
+
+                        End With
+
+                    Else
+                        Exit Sub
+                    End If
+
+                ElseIf e.ColumnIndex = 1 Then
+
+                    With DgvSelectedTreatment
+
+                        BtnTreatmentItem.Tag = "UPDATE"
+                        BtnTreatmentItem.Text = "Update Item"
+                        LblTreatmentRowNo.Text = e.RowIndex
+
+                        TxtTreatmentItem.Text = .Rows(e.RowIndex).Cells("TreatmentItemDescription").Value
+                        TxtTreatmentItem.Tag = .Rows(e.RowIndex).Cells("TreatmentItemCode").Value
+                        TxtTreatmentPrescription.Text = .Rows(e.RowIndex).Cells("TreatmentPrescription").Value
+                        TxtTreatmentNotes.Text = .Rows(e.RowIndex).Cells("TreatmentNotes").Value
+                        TxtTreatmentUnitPrice.Text = .Rows(e.RowIndex).Cells("TreatmentUnitPrice").Value
+                        TxtTreatmentQuantity.Text = .Rows(e.RowIndex).Cells("TreatmentQuantity").Value
+                        TxtTreatmentTotalPrice.Text = .Rows(e.RowIndex).Cells("TreatmentTotalPrice").Value
+
+                    End With
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvBillListing_CellContentClick()")
+        End Try
+
+    End Sub
+
+    Private Function UpdateTreatment() As Boolean
+
+        Try
+            With DgvSelectedTreatment
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentItemCode").Value = TxtTreatmentItem.Tag
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentItemDescription").Value = TxtTreatmentItem.Text
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentPrescription").Value = TxtTreatmentPrescription.Text
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentNotes").Value = TxtTreatmentNotes.Text
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentUnitPrice").Value = TxtTreatmentUnitPrice.Text
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentQuantity").Value = TxtTreatmentQuantity.Text
+                .Rows(CInt(LblTreatmentRowNo.Text)).Cells("TreatmentTotalPrice").Value = TxtTreatmentTotalPrice.Text
+            End With
+
+            BtnTreatmentItem.Tag = ""
+            BtnTreatmentItem.Text = "Add Item"
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".UpdateTreatment()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Sub BtnNewWardTime_Click(sender As Object, e As EventArgs) Handles BtnNewWardTime.Click
+        TxtWardHourlyTime.Text = Now
+        TxtVet.Tag = CURR_EMPLOYEE_ID
+        TxtVet.Text = CURR_EMPLOYEE_NAME
+        TxtHourlyNotes.Text = ""
+    End Sub
+
+    Private Sub DgvHourlyList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvHourlyList.CellClick
+
+        Try
+            If e.RowIndex > -1 Then
+                With DgvHourlyList
+                    TxtWardHourlyTime.Text = .Rows(e.RowIndex).Cells("HourlyWardTime").Value
+                    TxtVet.Text = .Rows(e.RowIndex).Cells("HourlyEmployeeName").Value
+                    TxtVet.Tag = .Rows(e.RowIndex).Cells("HourlyEmployeeID").Value
+                    TxtHourlyNotes.Text = .Rows(e.RowIndex).Cells("HourlyHourlyNotes").Value
+                End With
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvHourlyList_CellClick()")
+        End Try
+
+    End Sub
 
 End Class

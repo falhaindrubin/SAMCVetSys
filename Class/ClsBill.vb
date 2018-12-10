@@ -227,4 +227,8 @@ Public Class ClsBill
         Return DbBill.UpdateBillingAmount(ClsBill, DbConn, DbTrans)
     End Function
 
+    Public Function GetInvoiceByVisitID(ClsBill As ClsBill) As DataTable
+        Return DbBill.GetInvoiceByVisitID(ClsBill)
+    End Function
+
 End Class

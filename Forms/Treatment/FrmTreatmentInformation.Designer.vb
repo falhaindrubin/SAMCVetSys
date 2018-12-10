@@ -33,18 +33,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.TxtTestTotalPrice = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TxtTestQuantity = New System.Windows.Forms.TextBox()
-        Me.TxtTestItem = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.BtnSearchTestItem = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TxtTestUnitPrice = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.BtnAddTest = New System.Windows.Forms.Button()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.TxtDiagnosis = New System.Windows.Forms.TextBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedTest = New System.Windows.Forms.DataGridView()
         Me.BtnTestDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.TestRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -56,44 +47,21 @@ Partial Class FrmTreatmentInformation
         Me.TestItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TestItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TestItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TxtDiagnosis = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.BtnSearchTestItem = New System.Windows.Forms.Button()
+        Me.BtnAddTest = New System.Windows.Forms.Button()
+        Me.TxtTestTotalPrice = New System.Windows.Forms.TextBox()
+        Me.TxtTestUnitPrice = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TxtTestQuantity = New System.Windows.Forms.TextBox()
+        Me.TxtTestItem = New System.Windows.Forms.TextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.LblRowNo = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.TxtTreatmentTotalPrice = New System.Windows.Forms.TextBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.TxtTreatmentUnitPrice = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.TxtTreatmentQuantity = New System.Windows.Forms.TextBox()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.TxtPrescription = New System.Windows.Forms.TextBox()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.TxtNotes = New System.Windows.Forms.TextBox()
-        Me.BtnAddTreatment = New System.Windows.Forms.Button()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedTreatment = New System.Windows.Forms.DataGridView()
-        Me.TxtTreatmentItem = New System.Windows.Forms.TextBox()
-        Me.BtnClearItem = New System.Windows.Forms.Button()
-        Me.BtnSearchItem = New System.Windows.Forms.Button()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.TxtVisitID = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.BtnBillPayment = New System.Windows.Forms.Button()
-        Me.TxtCustomerID = New System.Windows.Forms.TextBox()
-        Me.TxtCustomerName = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.TxtPetID = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.TxtPetName = New System.Windows.Forms.TextBox()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.TxtCreatedBy = New System.Windows.Forms.TextBox()
-        Me.TxtDateModified = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.TxtDateCreated = New System.Windows.Forms.TextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
         Me.BtnTreatmentDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.DgvBtnUpdate = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.TreatmentRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -107,12 +75,50 @@ Partial Class FrmTreatmentInformation
         Me.TreatmentItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TreatmentItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TreatmentItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.LblRowNo = New System.Windows.Forms.Label()
+        Me.TxtTreatmentTotalPrice = New System.Windows.Forms.TextBox()
+        Me.BtnSearchItem = New System.Windows.Forms.Button()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.TxtTreatmentUnitPrice = New System.Windows.Forms.TextBox()
+        Me.BtnClearItem = New System.Windows.Forms.Button()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.TxtTreatmentItem = New System.Windows.Forms.TextBox()
+        Me.TxtTreatmentQuantity = New System.Windows.Forms.TextBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.BtnAddTreatment = New System.Windows.Forms.Button()
+        Me.TxtNotes = New System.Windows.Forms.TextBox()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.TxtPrescription = New System.Windows.Forms.TextBox()
+        Me.TxtVisitID = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.BtnBillPayment = New System.Windows.Forms.Button()
+        Me.TxtCustomerName = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TxtPetName = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.TxtCreatedBy = New System.Windows.Forms.TextBox()
+        Me.TxtDateModified = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.TxtDateCreated = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
         Me.PnlActionBar.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         CType(Me.DgvSelectedTest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox5.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -148,9 +154,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(379, 6)
+        Me.BtnSearch.Location = New System.Drawing.Point(381, 4)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSearch.Size = New System.Drawing.Size(60, 60)
         Me.BtnSearch.TabIndex = 5
         Me.BtnSearch.UseVisualStyleBackColor = False
         '
@@ -159,9 +165,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(440, 6)
+        Me.BtnPrint.Location = New System.Drawing.Point(442, 4)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(60, 56)
+        Me.BtnPrint.Size = New System.Drawing.Size(60, 60)
         Me.BtnPrint.TabIndex = 4
         Me.BtnPrint.UseVisualStyleBackColor = False
         '
@@ -170,9 +176,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(684, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(686, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -181,9 +187,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
         Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
         Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(562, 6)
+        Me.BtnCancel.Location = New System.Drawing.Point(564, 4)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(60, 56)
+        Me.BtnCancel.Size = New System.Drawing.Size(60, 60)
         Me.BtnCancel.TabIndex = 2
         Me.BtnCancel.UseVisualStyleBackColor = False
         '
@@ -192,9 +198,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(623, 6)
+        Me.BtnEdit.Location = New System.Drawing.Point(625, 4)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(60, 56)
+        Me.BtnEdit.Size = New System.Drawing.Size(60, 60)
         Me.BtnEdit.TabIndex = 1
         Me.BtnEdit.UseVisualStyleBackColor = False
         '
@@ -203,9 +209,9 @@ Partial Class FrmTreatmentInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(501, 6)
+        Me.BtnSave.Location = New System.Drawing.Point(503, 4)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSave.Size = New System.Drawing.Size(60, 60)
         Me.BtnSave.TabIndex = 0
         Me.BtnSave.UseVisualStyleBackColor = False
         '
@@ -221,21 +227,9 @@ Partial Class FrmTreatmentInformation
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Label17)
-        Me.TabPage2.Controls.Add(Me.TxtTestTotalPrice)
-        Me.TabPage2.Controls.Add(Me.Label10)
-        Me.TabPage2.Controls.Add(Me.TxtTestQuantity)
-        Me.TabPage2.Controls.Add(Me.TxtTestItem)
-        Me.TabPage2.Controls.Add(Me.Button3)
-        Me.TabPage2.Controls.Add(Me.BtnSearchTestItem)
-        Me.TabPage2.Controls.Add(Me.Label9)
-        Me.TabPage2.Controls.Add(Me.Label13)
-        Me.TabPage2.Controls.Add(Me.TxtTestUnitPrice)
-        Me.TabPage2.Controls.Add(Me.Label11)
-        Me.TabPage2.Controls.Add(Me.BtnAddTest)
-        Me.TabPage2.Controls.Add(Me.DgvSelectedTest)
-        Me.TabPage2.Controls.Add(Me.TxtDiagnosis)
-        Me.TabPage2.Controls.Add(Me.Label8)
+        Me.TabPage2.Controls.Add(Me.GroupBox4)
+        Me.TabPage2.Controls.Add(Me.GroupBox3)
+        Me.TabPage2.Controls.Add(Me.GroupBox2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -244,128 +238,34 @@ Partial Class FrmTreatmentInformation
         Me.TabPage2.Text = "Diagnosis & Tests"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Label17
+        'GroupBox4
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(12, 83)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(56, 14)
-        Me.Label17.TabIndex = 169
-        Me.Label17.Text = "Total Price"
+        Me.GroupBox4.Controls.Add(Me.TxtDiagnosis)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 312)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(730, 125)
+        Me.GroupBox4.TabIndex = 173
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Diagnosis/Planning"
         '
-        'TxtTestTotalPrice
+        'TxtDiagnosis
         '
-        Me.TxtTestTotalPrice.BackColor = System.Drawing.Color.Beige
-        Me.TxtTestTotalPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTestTotalPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTestTotalPrice.Location = New System.Drawing.Point(72, 80)
-        Me.TxtTestTotalPrice.Name = "TxtTestTotalPrice"
-        Me.TxtTestTotalPrice.ReadOnly = True
-        Me.TxtTestTotalPrice.Size = New System.Drawing.Size(52, 21)
-        Me.TxtTestTotalPrice.TabIndex = 170
-        Me.TxtTestTotalPrice.Text = "0.00"
-        Me.TxtTestTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TxtDiagnosis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDiagnosis.Location = New System.Drawing.Point(3, 19)
+        Me.TxtDiagnosis.Multiline = True
+        Me.TxtDiagnosis.Name = "TxtDiagnosis"
+        Me.TxtDiagnosis.Size = New System.Drawing.Size(721, 100)
+        Me.TxtDiagnosis.TabIndex = 12
         '
-        'Label10
+        'GroupBox3
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 61)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(47, 14)
-        Me.Label10.TabIndex = 167
-        Me.Label10.Text = "Quantity"
-        '
-        'TxtTestQuantity
-        '
-        Me.TxtTestQuantity.BackColor = System.Drawing.Color.White
-        Me.TxtTestQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTestQuantity.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTestQuantity.Location = New System.Drawing.Point(72, 58)
-        Me.TxtTestQuantity.Name = "TxtTestQuantity"
-        Me.TxtTestQuantity.Size = New System.Drawing.Size(52, 21)
-        Me.TxtTestQuantity.TabIndex = 168
-        Me.TxtTestQuantity.Text = "1.00"
-        Me.TxtTestQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TxtTestItem
-        '
-        Me.TxtTestItem.BackColor = System.Drawing.Color.Beige
-        Me.TxtTestItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTestItem.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTestItem.Location = New System.Drawing.Point(72, 14)
-        Me.TxtTestItem.Name = "TxtTestItem"
-        Me.TxtTestItem.ReadOnly = True
-        Me.TxtTestItem.Size = New System.Drawing.Size(374, 21)
-        Me.TxtTestItem.TabIndex = 164
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(482, 12)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(77, 25)
-        Me.Button3.TabIndex = 166
-        Me.Button3.Text = "Clear"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'BtnSearchTestItem
-        '
-        Me.BtnSearchTestItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearchTestItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnSearchTestItem.Location = New System.Drawing.Point(447, 12)
-        Me.BtnSearchTestItem.Name = "BtnSearchTestItem"
-        Me.BtnSearchTestItem.Size = New System.Drawing.Size(35, 25)
-        Me.BtnSearchTestItem.TabIndex = 165
-        Me.BtnSearchTestItem.Text = "..."
-        Me.BtnSearchTestItem.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 17)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(26, 14)
-        Me.Label9.TabIndex = 163
-        Me.Label9.Text = "Item"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(12, 39)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(52, 14)
-        Me.Label13.TabIndex = 161
-        Me.Label13.Text = "Unit Price"
-        '
-        'TxtTestUnitPrice
-        '
-        Me.TxtTestUnitPrice.BackColor = System.Drawing.Color.Beige
-        Me.TxtTestUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTestUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTestUnitPrice.Location = New System.Drawing.Point(72, 36)
-        Me.TxtTestUnitPrice.Name = "TxtTestUnitPrice"
-        Me.TxtTestUnitPrice.ReadOnly = True
-        Me.TxtTestUnitPrice.Size = New System.Drawing.Size(52, 21)
-        Me.TxtTestUnitPrice.TabIndex = 162
-        Me.TxtTestUnitPrice.Text = "0.00"
-        Me.TxtTestUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(12, 136)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(92, 14)
-        Me.Label11.TabIndex = 20
-        Me.Label11.Text = "Selected Test(s) :"
-        '
-        'BtnAddTest
-        '
-        Me.BtnAddTest.Location = New System.Drawing.Point(72, 106)
-        Me.BtnAddTest.Name = "BtnAddTest"
-        Me.BtnAddTest.Size = New System.Drawing.Size(121, 23)
-        Me.BtnAddTest.TabIndex = 19
-        Me.BtnAddTest.Text = "Add Test"
-        Me.BtnAddTest.UseVisualStyleBackColor = True
+        Me.GroupBox3.Controls.Add(Me.DgvSelectedTest)
+        Me.GroupBox3.Location = New System.Drawing.Point(6, 160)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(730, 146)
+        Me.GroupBox3.TabIndex = 172
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Selected Test(s)"
         '
         'DgvSelectedTest
         '
@@ -374,10 +274,11 @@ Partial Class FrmTreatmentInformation
         Me.DgvSelectedTest.BackgroundColor = System.Drawing.Color.White
         Me.DgvSelectedTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvSelectedTest.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnTestDeleteItem, Me.TestRowNo, Me.TestItemCode, Me.TestItemDescription, Me.TestUnitPrice, Me.TestQuantity, Me.TestTotalPrice, Me.TestItemGroup, Me.TestItemTypeCode, Me.TestItemTypeDescription})
-        Me.DgvSelectedTest.Location = New System.Drawing.Point(15, 153)
+        Me.DgvSelectedTest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvSelectedTest.Location = New System.Drawing.Point(3, 16)
         Me.DgvSelectedTest.Name = "DgvSelectedTest"
         Me.DgvSelectedTest.ReadOnly = True
-        Me.DgvSelectedTest.Size = New System.Drawing.Size(712, 160)
+        Me.DgvSelectedTest.Size = New System.Drawing.Size(724, 127)
         Me.DgvSelectedTest.TabIndex = 18
         '
         'BtnTestDeleteItem
@@ -460,43 +361,144 @@ Partial Class FrmTreatmentInformation
         Me.TestItemTypeDescription.ReadOnly = True
         Me.TestItemTypeDescription.Visible = False
         '
-        'TxtDiagnosis
+        'GroupBox2
         '
-        Me.TxtDiagnosis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDiagnosis.Location = New System.Drawing.Point(15, 333)
-        Me.TxtDiagnosis.Multiline = True
-        Me.TxtDiagnosis.Name = "TxtDiagnosis"
-        Me.TxtDiagnosis.Size = New System.Drawing.Size(712, 104)
-        Me.TxtDiagnosis.TabIndex = 12
+        Me.GroupBox2.Controls.Add(Me.Label9)
+        Me.GroupBox2.Controls.Add(Me.Button3)
+        Me.GroupBox2.Controls.Add(Me.Label17)
+        Me.GroupBox2.Controls.Add(Me.BtnSearchTestItem)
+        Me.GroupBox2.Controls.Add(Me.BtnAddTest)
+        Me.GroupBox2.Controls.Add(Me.TxtTestTotalPrice)
+        Me.GroupBox2.Controls.Add(Me.TxtTestUnitPrice)
+        Me.GroupBox2.Controls.Add(Me.Label10)
+        Me.GroupBox2.Controls.Add(Me.Label13)
+        Me.GroupBox2.Controls.Add(Me.TxtTestQuantity)
+        Me.GroupBox2.Controls.Add(Me.TxtTestItem)
+        Me.GroupBox2.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(730, 148)
+        Me.GroupBox2.TabIndex = 171
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Select Test"
         '
-        'Label8
+        'Label9
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 316)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(113, 14)
-        Me.Label8.TabIndex = 11
-        Me.Label8.Text = "Diagnosis && Planning :"
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(10, 30)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(26, 14)
+        Me.Label9.TabIndex = 163
+        Me.Label9.Text = "Item"
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(481, 25)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(77, 25)
+        Me.Button3.TabIndex = 166
+        Me.Button3.Text = "Clear"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(10, 93)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(56, 14)
+        Me.Label17.TabIndex = 169
+        Me.Label17.Text = "Total Price"
+        '
+        'BtnSearchTestItem
+        '
+        Me.BtnSearchTestItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnSearchTestItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSearchTestItem.Location = New System.Drawing.Point(446, 25)
+        Me.BtnSearchTestItem.Name = "BtnSearchTestItem"
+        Me.BtnSearchTestItem.Size = New System.Drawing.Size(35, 25)
+        Me.BtnSearchTestItem.TabIndex = 165
+        Me.BtnSearchTestItem.Text = "..."
+        Me.BtnSearchTestItem.UseVisualStyleBackColor = True
+        '
+        'BtnAddTest
+        '
+        Me.BtnAddTest.Location = New System.Drawing.Point(75, 116)
+        Me.BtnAddTest.Name = "BtnAddTest"
+        Me.BtnAddTest.Size = New System.Drawing.Size(121, 23)
+        Me.BtnAddTest.TabIndex = 19
+        Me.BtnAddTest.Text = "Add Test"
+        Me.BtnAddTest.UseVisualStyleBackColor = True
+        '
+        'TxtTestTotalPrice
+        '
+        Me.TxtTestTotalPrice.BackColor = System.Drawing.Color.Beige
+        Me.TxtTestTotalPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTestTotalPrice.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTestTotalPrice.Location = New System.Drawing.Point(75, 90)
+        Me.TxtTestTotalPrice.Name = "TxtTestTotalPrice"
+        Me.TxtTestTotalPrice.ReadOnly = True
+        Me.TxtTestTotalPrice.Size = New System.Drawing.Size(52, 20)
+        Me.TxtTestTotalPrice.TabIndex = 170
+        Me.TxtTestTotalPrice.Text = "0.00"
+        Me.TxtTestTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TxtTestUnitPrice
+        '
+        Me.TxtTestUnitPrice.BackColor = System.Drawing.Color.Beige
+        Me.TxtTestUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTestUnitPrice.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTestUnitPrice.Location = New System.Drawing.Point(75, 48)
+        Me.TxtTestUnitPrice.Name = "TxtTestUnitPrice"
+        Me.TxtTestUnitPrice.ReadOnly = True
+        Me.TxtTestUnitPrice.Size = New System.Drawing.Size(52, 20)
+        Me.TxtTestUnitPrice.TabIndex = 162
+        Me.TxtTestUnitPrice.Text = "0.00"
+        Me.TxtTestUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(10, 72)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(47, 14)
+        Me.Label10.TabIndex = 167
+        Me.Label10.Text = "Quantity"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(10, 51)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(52, 14)
+        Me.Label13.TabIndex = 161
+        Me.Label13.Text = "Unit Price"
+        '
+        'TxtTestQuantity
+        '
+        Me.TxtTestQuantity.BackColor = System.Drawing.Color.White
+        Me.TxtTestQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTestQuantity.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTestQuantity.Location = New System.Drawing.Point(75, 69)
+        Me.TxtTestQuantity.Name = "TxtTestQuantity"
+        Me.TxtTestQuantity.Size = New System.Drawing.Size(52, 20)
+        Me.TxtTestQuantity.TabIndex = 168
+        Me.TxtTestQuantity.Text = "1.00"
+        Me.TxtTestQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TxtTestItem
+        '
+        Me.TxtTestItem.BackColor = System.Drawing.Color.Beige
+        Me.TxtTestItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTestItem.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTestItem.Location = New System.Drawing.Point(75, 27)
+        Me.TxtTestItem.Name = "TxtTestItem"
+        Me.TxtTestItem.ReadOnly = True
+        Me.TxtTestItem.Size = New System.Drawing.Size(370, 20)
+        Me.TxtTestItem.TabIndex = 164
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.LblRowNo)
-        Me.TabPage3.Controls.Add(Me.Label18)
-        Me.TabPage3.Controls.Add(Me.TxtTreatmentTotalPrice)
-        Me.TabPage3.Controls.Add(Me.Label20)
-        Me.TabPage3.Controls.Add(Me.TxtTreatmentUnitPrice)
-        Me.TabPage3.Controls.Add(Me.Label36)
-        Me.TabPage3.Controls.Add(Me.TxtTreatmentQuantity)
-        Me.TabPage3.Controls.Add(Me.Label34)
-        Me.TabPage3.Controls.Add(Me.TxtPrescription)
-        Me.TabPage3.Controls.Add(Me.Label35)
-        Me.TabPage3.Controls.Add(Me.TxtNotes)
-        Me.TabPage3.Controls.Add(Me.BtnAddTreatment)
-        Me.TabPage3.Controls.Add(Me.DgvSelectedTreatment)
-        Me.TabPage3.Controls.Add(Me.TxtTreatmentItem)
-        Me.TabPage3.Controls.Add(Me.BtnClearItem)
-        Me.TabPage3.Controls.Add(Me.BtnSearchItem)
-        Me.TabPage3.Controls.Add(Me.Label12)
+        Me.TabPage3.Controls.Add(Me.GroupBox6)
+        Me.TabPage3.Controls.Add(Me.GroupBox5)
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -505,42 +507,215 @@ Partial Class FrmTreatmentInformation
         Me.TabPage3.Text = "Treatment & Medication"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.DgvSelectedTreatment)
+        Me.GroupBox6.Location = New System.Drawing.Point(6, 249)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(723, 188)
+        Me.GroupBox6.TabIndex = 179
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Selected Medication(s)"
+        '
+        'DgvSelectedTreatment
+        '
+        Me.DgvSelectedTreatment.AllowUserToAddRows = False
+        Me.DgvSelectedTreatment.AllowUserToDeleteRows = False
+        Me.DgvSelectedTreatment.BackgroundColor = System.Drawing.Color.White
+        Me.DgvSelectedTreatment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvSelectedTreatment.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnTreatmentDeleteItem, Me.DgvBtnUpdate, Me.TreatmentRowNo, Me.TreatmentItemCode, Me.TreatmentItemDescription, Me.Prescription, Me.Notes, Me.TreatmentUnitPrice, Me.TreatmentQuantity, Me.TreatmentTotalPrice, Me.TreatmentItemGroup, Me.TreatmentItemTypeCode, Me.TreatmentItemTypeDescription})
+        Me.DgvSelectedTreatment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvSelectedTreatment.Location = New System.Drawing.Point(3, 16)
+        Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
+        Me.DgvSelectedTreatment.ReadOnly = True
+        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(717, 169)
+        Me.DgvSelectedTreatment.TabIndex = 153
+        '
+        'BtnTreatmentDeleteItem
+        '
+        Me.BtnTreatmentDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnTreatmentDeleteItem.HeaderText = "Delete?"
+        Me.BtnTreatmentDeleteItem.Name = "BtnTreatmentDeleteItem"
+        Me.BtnTreatmentDeleteItem.ReadOnly = True
+        Me.BtnTreatmentDeleteItem.Text = "Delete"
+        Me.BtnTreatmentDeleteItem.UseColumnTextForButtonValue = True
+        Me.BtnTreatmentDeleteItem.Width = 49
+        '
+        'DgvBtnUpdate
+        '
+        Me.DgvBtnUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnUpdate.HeaderText = "Update"
+        Me.DgvBtnUpdate.Name = "DgvBtnUpdate"
+        Me.DgvBtnUpdate.ReadOnly = True
+        Me.DgvBtnUpdate.Text = "Update"
+        Me.DgvBtnUpdate.UseColumnTextForButtonValue = True
+        Me.DgvBtnUpdate.Width = 47
+        '
+        'TreatmentRowNo
+        '
+        Me.TreatmentRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentRowNo.HeaderText = "No."
+        Me.TreatmentRowNo.Name = "TreatmentRowNo"
+        Me.TreatmentRowNo.ReadOnly = True
+        Me.TreatmentRowNo.Width = 48
+        '
+        'TreatmentItemCode
+        '
+        Me.TreatmentItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentItemCode.HeaderText = "Item Code"
+        Me.TreatmentItemCode.Name = "TreatmentItemCode"
+        Me.TreatmentItemCode.ReadOnly = True
+        Me.TreatmentItemCode.Width = 79
+        '
+        'TreatmentItemDescription
+        '
+        Me.TreatmentItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.TreatmentItemDescription.HeaderText = "Item Description"
+        Me.TreatmentItemDescription.Name = "TreatmentItemDescription"
+        Me.TreatmentItemDescription.ReadOnly = True
+        '
+        'Prescription
+        '
+        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Prescription.HeaderText = "Prescription"
+        Me.Prescription.Name = "Prescription"
+        Me.Prescription.ReadOnly = True
+        Me.Prescription.Width = 89
+        '
+        'Notes
+        '
+        Me.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Notes.HeaderText = "Notes"
+        Me.Notes.Name = "Notes"
+        Me.Notes.ReadOnly = True
+        Me.Notes.Width = 60
+        '
+        'TreatmentUnitPrice
+        '
+        Me.TreatmentUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentUnitPrice.HeaderText = "Unit Price"
+        Me.TreatmentUnitPrice.Name = "TreatmentUnitPrice"
+        Me.TreatmentUnitPrice.ReadOnly = True
+        Me.TreatmentUnitPrice.Width = 77
+        '
+        'TreatmentQuantity
+        '
+        Me.TreatmentQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentQuantity.HeaderText = "Quantity"
+        Me.TreatmentQuantity.Name = "TreatmentQuantity"
+        Me.TreatmentQuantity.ReadOnly = True
+        Me.TreatmentQuantity.Width = 72
+        '
+        'TreatmentTotalPrice
+        '
+        Me.TreatmentTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TreatmentTotalPrice.HeaderText = "Total Price"
+        Me.TreatmentTotalPrice.Name = "TreatmentTotalPrice"
+        Me.TreatmentTotalPrice.ReadOnly = True
+        Me.TreatmentTotalPrice.Width = 75
+        '
+        'TreatmentItemGroup
+        '
+        Me.TreatmentItemGroup.HeaderText = "Item Group"
+        Me.TreatmentItemGroup.Name = "TreatmentItemGroup"
+        Me.TreatmentItemGroup.ReadOnly = True
+        Me.TreatmentItemGroup.Visible = False
+        '
+        'TreatmentItemTypeCode
+        '
+        Me.TreatmentItemTypeCode.HeaderText = "Item Type Code"
+        Me.TreatmentItemTypeCode.Name = "TreatmentItemTypeCode"
+        Me.TreatmentItemTypeCode.ReadOnly = True
+        Me.TreatmentItemTypeCode.Visible = False
+        '
+        'TreatmentItemTypeDescription
+        '
+        Me.TreatmentItemTypeDescription.HeaderText = "Item Type Description"
+        Me.TreatmentItemTypeDescription.Name = "TreatmentItemTypeDescription"
+        Me.TreatmentItemTypeDescription.ReadOnly = True
+        Me.TreatmentItemTypeDescription.Visible = False
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Label12)
+        Me.GroupBox5.Controls.Add(Me.Label18)
+        Me.GroupBox5.Controls.Add(Me.LblRowNo)
+        Me.GroupBox5.Controls.Add(Me.TxtTreatmentTotalPrice)
+        Me.GroupBox5.Controls.Add(Me.BtnSearchItem)
+        Me.GroupBox5.Controls.Add(Me.Label20)
+        Me.GroupBox5.Controls.Add(Me.TxtTreatmentUnitPrice)
+        Me.GroupBox5.Controls.Add(Me.BtnClearItem)
+        Me.GroupBox5.Controls.Add(Me.Label36)
+        Me.GroupBox5.Controls.Add(Me.TxtTreatmentItem)
+        Me.GroupBox5.Controls.Add(Me.TxtTreatmentQuantity)
+        Me.GroupBox5.Controls.Add(Me.Label34)
+        Me.GroupBox5.Controls.Add(Me.BtnAddTreatment)
+        Me.GroupBox5.Controls.Add(Me.TxtNotes)
+        Me.GroupBox5.Controls.Add(Me.Label35)
+        Me.GroupBox5.Controls.Add(Me.TxtPrescription)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(723, 237)
+        Me.GroupBox5.TabIndex = 178
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Select Conducted Treatment/Medication"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(10, 30)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(26, 14)
+        Me.Label12.TabIndex = 14
+        Me.Label12.Text = "Item"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(10, 181)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(56, 14)
+        Me.Label18.TabIndex = 175
+        Me.Label18.Text = "Total Price"
+        '
         'LblRowNo
         '
         Me.LblRowNo.AutoSize = True
-        Me.LblRowNo.Location = New System.Drawing.Point(610, 20)
+        Me.LblRowNo.Location = New System.Drawing.Point(576, 30)
         Me.LblRowNo.Name = "LblRowNo"
         Me.LblRowNo.Size = New System.Drawing.Size(43, 14)
         Me.LblRowNo.TabIndex = 177
         Me.LblRowNo.Text = "RowNo"
         Me.LblRowNo.Visible = False
         '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(10, 174)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(56, 14)
-        Me.Label18.TabIndex = 175
-        Me.Label18.Text = "Total Price"
-        '
         'TxtTreatmentTotalPrice
         '
         Me.TxtTreatmentTotalPrice.BackColor = System.Drawing.Color.Beige
         Me.TxtTreatmentTotalPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTreatmentTotalPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTreatmentTotalPrice.Location = New System.Drawing.Point(75, 171)
+        Me.TxtTreatmentTotalPrice.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTreatmentTotalPrice.Location = New System.Drawing.Point(75, 178)
         Me.TxtTreatmentTotalPrice.Name = "TxtTreatmentTotalPrice"
         Me.TxtTreatmentTotalPrice.ReadOnly = True
-        Me.TxtTreatmentTotalPrice.Size = New System.Drawing.Size(52, 21)
+        Me.TxtTreatmentTotalPrice.Size = New System.Drawing.Size(52, 20)
         Me.TxtTreatmentTotalPrice.TabIndex = 176
         Me.TxtTreatmentTotalPrice.Text = "0.00"
         Me.TxtTreatmentTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'BtnSearchItem
+        '
+        Me.BtnSearchItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnSearchItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSearchItem.Location = New System.Drawing.Point(446, 25)
+        Me.BtnSearchItem.Name = "BtnSearchItem"
+        Me.BtnSearchItem.Size = New System.Drawing.Size(35, 25)
+        Me.BtnSearchItem.TabIndex = 151
+        Me.BtnSearchItem.Text = "..."
+        Me.BtnSearchItem.UseVisualStyleBackColor = True
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(10, 130)
+        Me.Label20.Location = New System.Drawing.Point(10, 139)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(52, 14)
         Me.Label20.TabIndex = 171
@@ -550,32 +725,52 @@ Partial Class FrmTreatmentInformation
         '
         Me.TxtTreatmentUnitPrice.BackColor = System.Drawing.Color.Beige
         Me.TxtTreatmentUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTreatmentUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTreatmentUnitPrice.Location = New System.Drawing.Point(75, 127)
+        Me.TxtTreatmentUnitPrice.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTreatmentUnitPrice.Location = New System.Drawing.Point(75, 136)
         Me.TxtTreatmentUnitPrice.Name = "TxtTreatmentUnitPrice"
         Me.TxtTreatmentUnitPrice.ReadOnly = True
-        Me.TxtTreatmentUnitPrice.Size = New System.Drawing.Size(52, 21)
+        Me.TxtTreatmentUnitPrice.Size = New System.Drawing.Size(52, 20)
         Me.TxtTreatmentUnitPrice.TabIndex = 172
         Me.TxtTreatmentUnitPrice.Text = "0.00"
         Me.TxtTreatmentUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'BtnClearItem
+        '
+        Me.BtnClearItem.Location = New System.Drawing.Point(481, 25)
+        Me.BtnClearItem.Name = "BtnClearItem"
+        Me.BtnClearItem.Size = New System.Drawing.Size(77, 25)
+        Me.BtnClearItem.TabIndex = 152
+        Me.BtnClearItem.Text = "Clear"
+        Me.BtnClearItem.UseVisualStyleBackColor = True
+        '
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(10, 152)
+        Me.Label36.Location = New System.Drawing.Point(10, 160)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(47, 14)
         Me.Label36.TabIndex = 159
         Me.Label36.Text = "Quantity"
         '
+        'TxtTreatmentItem
+        '
+        Me.TxtTreatmentItem.BackColor = System.Drawing.Color.Beige
+        Me.TxtTreatmentItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtTreatmentItem.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTreatmentItem.Location = New System.Drawing.Point(75, 27)
+        Me.TxtTreatmentItem.Name = "TxtTreatmentItem"
+        Me.TxtTreatmentItem.ReadOnly = True
+        Me.TxtTreatmentItem.Size = New System.Drawing.Size(370, 20)
+        Me.TxtTreatmentItem.TabIndex = 150
+        '
         'TxtTreatmentQuantity
         '
         Me.TxtTreatmentQuantity.BackColor = System.Drawing.Color.White
         Me.TxtTreatmentQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTreatmentQuantity.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTreatmentQuantity.Location = New System.Drawing.Point(75, 149)
+        Me.TxtTreatmentQuantity.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTreatmentQuantity.Location = New System.Drawing.Point(75, 157)
         Me.TxtTreatmentQuantity.Name = "TxtTreatmentQuantity"
-        Me.TxtTreatmentQuantity.Size = New System.Drawing.Size(52, 21)
+        Me.TxtTreatmentQuantity.Size = New System.Drawing.Size(52, 20)
         Me.TxtTreatmentQuantity.TabIndex = 160
         Me.TxtTreatmentQuantity.Text = "1.00"
         Me.TxtTreatmentQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -583,112 +778,59 @@ Partial Class FrmTreatmentInformation
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(10, 39)
+        Me.Label34.Location = New System.Drawing.Point(10, 48)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(64, 14)
         Me.Label34.TabIndex = 155
         Me.Label34.Text = "Prescription"
         '
-        'TxtPrescription
-        '
-        Me.TxtPrescription.BackColor = System.Drawing.Color.White
-        Me.TxtPrescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPrescription.Location = New System.Drawing.Point(75, 39)
-        Me.TxtPrescription.Multiline = True
-        Me.TxtPrescription.Name = "TxtPrescription"
-        Me.TxtPrescription.Size = New System.Drawing.Size(416, 43)
-        Me.TxtPrescription.TabIndex = 156
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(10, 83)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(35, 14)
-        Me.Label35.TabIndex = 157
-        Me.Label35.Text = "Notes"
-        '
-        'TxtNotes
-        '
-        Me.TxtNotes.BackColor = System.Drawing.Color.White
-        Me.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNotes.Location = New System.Drawing.Point(75, 83)
-        Me.TxtNotes.Multiline = True
-        Me.TxtNotes.Name = "TxtNotes"
-        Me.TxtNotes.Size = New System.Drawing.Size(416, 43)
-        Me.TxtNotes.TabIndex = 158
-        '
         'BtnAddTreatment
         '
-        Me.BtnAddTreatment.Location = New System.Drawing.Point(75, 196)
+        Me.BtnAddTreatment.Location = New System.Drawing.Point(75, 205)
         Me.BtnAddTreatment.Name = "BtnAddTreatment"
         Me.BtnAddTreatment.Size = New System.Drawing.Size(121, 23)
         Me.BtnAddTreatment.TabIndex = 154
         Me.BtnAddTreatment.Text = "Add Item"
         Me.BtnAddTreatment.UseVisualStyleBackColor = True
         '
-        'DgvSelectedTreatment
+        'TxtNotes
         '
-        Me.DgvSelectedTreatment.AllowUserToAddRows = False
-        Me.DgvSelectedTreatment.AllowUserToDeleteRows = False
-        Me.DgvSelectedTreatment.BackgroundColor = System.Drawing.Color.White
-        Me.DgvSelectedTreatment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvSelectedTreatment.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnTreatmentDeleteItem, Me.DgvBtnUpdate, Me.TreatmentRowNo, Me.TreatmentItemCode, Me.TreatmentItemDescription, Me.Prescription, Me.Notes, Me.TreatmentUnitPrice, Me.TreatmentQuantity, Me.TreatmentTotalPrice, Me.TreatmentItemGroup, Me.TreatmentItemTypeCode, Me.TreatmentItemTypeDescription})
-        Me.DgvSelectedTreatment.Location = New System.Drawing.Point(9, 225)
-        Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
-        Me.DgvSelectedTreatment.ReadOnly = True
-        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(724, 212)
-        Me.DgvSelectedTreatment.TabIndex = 153
+        Me.TxtNotes.BackColor = System.Drawing.Color.White
+        Me.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtNotes.Location = New System.Drawing.Point(75, 92)
+        Me.TxtNotes.Multiline = True
+        Me.TxtNotes.Name = "TxtNotes"
+        Me.TxtNotes.Size = New System.Drawing.Size(370, 43)
+        Me.TxtNotes.TabIndex = 158
         '
-        'TxtTreatmentItem
+        'Label35
         '
-        Me.TxtTreatmentItem.BackColor = System.Drawing.Color.Beige
-        Me.TxtTreatmentItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTreatmentItem.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTreatmentItem.Location = New System.Drawing.Point(75, 17)
-        Me.TxtTreatmentItem.Name = "TxtTreatmentItem"
-        Me.TxtTreatmentItem.ReadOnly = True
-        Me.TxtTreatmentItem.Size = New System.Drawing.Size(416, 21)
-        Me.TxtTreatmentItem.TabIndex = 150
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(10, 92)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(35, 14)
+        Me.Label35.TabIndex = 157
+        Me.Label35.Text = "Notes"
         '
-        'BtnClearItem
+        'TxtPrescription
         '
-        Me.BtnClearItem.Location = New System.Drawing.Point(527, 15)
-        Me.BtnClearItem.Name = "BtnClearItem"
-        Me.BtnClearItem.Size = New System.Drawing.Size(77, 25)
-        Me.BtnClearItem.TabIndex = 152
-        Me.BtnClearItem.Text = "Clear"
-        Me.BtnClearItem.UseVisualStyleBackColor = True
-        '
-        'BtnSearchItem
-        '
-        Me.BtnSearchItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearchItem.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnSearchItem.Location = New System.Drawing.Point(492, 15)
-        Me.BtnSearchItem.Name = "BtnSearchItem"
-        Me.BtnSearchItem.Size = New System.Drawing.Size(35, 25)
-        Me.BtnSearchItem.TabIndex = 151
-        Me.BtnSearchItem.Text = "..."
-        Me.BtnSearchItem.UseVisualStyleBackColor = True
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(10, 20)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(26, 14)
-        Me.Label12.TabIndex = 14
-        Me.Label12.Text = "Item"
+        Me.TxtPrescription.BackColor = System.Drawing.Color.White
+        Me.TxtPrescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtPrescription.Location = New System.Drawing.Point(75, 48)
+        Me.TxtPrescription.Multiline = True
+        Me.TxtPrescription.Name = "TxtPrescription"
+        Me.TxtPrescription.Size = New System.Drawing.Size(370, 43)
+        Me.TxtPrescription.TabIndex = 156
         '
         'TxtVisitID
         '
         Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
         Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVisitID.Location = New System.Drawing.Point(93, 17)
+        Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVisitID.Location = New System.Drawing.Point(88, 17)
         Me.TxtVisitID.Name = "TxtVisitID"
         Me.TxtVisitID.ReadOnly = True
-        Me.TxtVisitID.Size = New System.Drawing.Size(87, 21)
+        Me.TxtVisitID.Size = New System.Drawing.Size(224, 20)
         Me.TxtVisitID.TabIndex = 88
         '
         'Label7
@@ -711,54 +853,32 @@ Partial Class FrmTreatmentInformation
         Me.BtnBillPayment.UseVisualStyleBackColor = True
         Me.BtnBillPayment.Visible = False
         '
-        'TxtCustomerID
-        '
-        Me.TxtCustomerID.BackColor = System.Drawing.Color.Beige
-        Me.TxtCustomerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCustomerID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerID.Location = New System.Drawing.Point(93, 39)
-        Me.TxtCustomerID.Name = "TxtCustomerID"
-        Me.TxtCustomerID.ReadOnly = True
-        Me.TxtCustomerID.Size = New System.Drawing.Size(87, 21)
-        Me.TxtCustomerID.TabIndex = 91
-        '
         'TxtCustomerName
         '
         Me.TxtCustomerName.BackColor = System.Drawing.Color.Beige
         Me.TxtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCustomerName.Location = New System.Drawing.Point(181, 39)
+        Me.TxtCustomerName.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCustomerName.Location = New System.Drawing.Point(88, 38)
         Me.TxtCustomerName.Name = "TxtCustomerName"
         Me.TxtCustomerName.ReadOnly = True
-        Me.TxtCustomerName.Size = New System.Drawing.Size(224, 21)
+        Me.TxtCustomerName.Size = New System.Drawing.Size(224, 20)
         Me.TxtCustomerName.TabIndex = 93
         '
         'Label15
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(5, 42)
+        Me.Label15.Location = New System.Drawing.Point(5, 41)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(83, 14)
         Me.Label15.TabIndex = 92
         Me.Label15.Text = "Customer Name"
         '
-        'TxtPetID
-        '
-        Me.TxtPetID.BackColor = System.Drawing.Color.Beige
-        Me.TxtPetID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPetID.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetID.Location = New System.Drawing.Point(93, 61)
-        Me.TxtPetID.Name = "TxtPetID"
-        Me.TxtPetID.ReadOnly = True
-        Me.TxtPetID.Size = New System.Drawing.Size(87, 21)
-        Me.TxtPetID.TabIndex = 95
-        '
         'Label16
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(6, 64)
+        Me.Label16.Location = New System.Drawing.Point(6, 62)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(52, 14)
         Me.Label16.TabIndex = 94
@@ -768,11 +888,11 @@ Partial Class FrmTreatmentInformation
         '
         Me.TxtPetName.BackColor = System.Drawing.Color.Beige
         Me.TxtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtPetName.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPetName.Location = New System.Drawing.Point(181, 61)
+        Me.TxtPetName.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPetName.Location = New System.Drawing.Point(88, 59)
         Me.TxtPetName.Name = "TxtPetName"
         Me.TxtPetName.ReadOnly = True
-        Me.TxtPetName.Size = New System.Drawing.Size(224, 21)
+        Me.TxtPetName.Size = New System.Drawing.Size(224, 20)
         Me.TxtPetName.TabIndex = 96
         '
         'Panel3
@@ -860,14 +980,12 @@ Partial Class FrmTreatmentInformation
         Me.GroupBox1.Controls.Add(Me.TxtVisitID)
         Me.GroupBox1.Controls.Add(Me.BtnBillPayment)
         Me.GroupBox1.Controls.Add(Me.TxtPetName)
-        Me.GroupBox1.Controls.Add(Me.TxtCustomerID)
-        Me.GroupBox1.Controls.Add(Me.TxtPetID)
         Me.GroupBox1.Controls.Add(Me.Label15)
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.TxtCustomerName)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 86)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(750, 97)
+        Me.GroupBox1.Size = New System.Drawing.Size(750, 87)
         Me.GroupBox1.TabIndex = 99
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer && Pet Information"
@@ -875,7 +993,7 @@ Partial Class FrmTreatmentInformation
         'CbIsAdmittedToWard
         '
         Me.CbIsAdmittedToWard.AutoSize = True
-        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(186, 19)
+        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(323, 20)
         Me.CbIsAdmittedToWard.Name = "CbIsAdmittedToWard"
         Me.CbIsAdmittedToWard.Size = New System.Drawing.Size(104, 18)
         Me.CbIsAdmittedToWard.TabIndex = 98
@@ -883,115 +1001,11 @@ Partial Class FrmTreatmentInformation
         Me.CbIsAdmittedToWard.UseVisualStyleBackColor = True
         Me.CbIsAdmittedToWard.Visible = False
         '
-        'BtnTreatmentDeleteItem
-        '
-        Me.BtnTreatmentDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnTreatmentDeleteItem.HeaderText = "Delete?"
-        Me.BtnTreatmentDeleteItem.Name = "BtnTreatmentDeleteItem"
-        Me.BtnTreatmentDeleteItem.ReadOnly = True
-        Me.BtnTreatmentDeleteItem.Text = "Delete"
-        Me.BtnTreatmentDeleteItem.UseColumnTextForButtonValue = True
-        Me.BtnTreatmentDeleteItem.Width = 49
-        '
-        'DgvBtnUpdate
-        '
-        Me.DgvBtnUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DgvBtnUpdate.HeaderText = "Update"
-        Me.DgvBtnUpdate.Name = "DgvBtnUpdate"
-        Me.DgvBtnUpdate.ReadOnly = True
-        Me.DgvBtnUpdate.Text = "Update"
-        Me.DgvBtnUpdate.UseColumnTextForButtonValue = True
-        Me.DgvBtnUpdate.Width = 47
-        '
-        'TreatmentRowNo
-        '
-        Me.TreatmentRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentRowNo.HeaderText = "No."
-        Me.TreatmentRowNo.Name = "TreatmentRowNo"
-        Me.TreatmentRowNo.ReadOnly = True
-        Me.TreatmentRowNo.Width = 48
-        '
-        'TreatmentItemCode
-        '
-        Me.TreatmentItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentItemCode.HeaderText = "Item Code"
-        Me.TreatmentItemCode.Name = "TreatmentItemCode"
-        Me.TreatmentItemCode.ReadOnly = True
-        Me.TreatmentItemCode.Width = 79
-        '
-        'TreatmentItemDescription
-        '
-        Me.TreatmentItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.TreatmentItemDescription.HeaderText = "Item Description"
-        Me.TreatmentItemDescription.Name = "TreatmentItemDescription"
-        Me.TreatmentItemDescription.ReadOnly = True
-        '
-        'Prescription
-        '
-        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Prescription.HeaderText = "Prescription"
-        Me.Prescription.Name = "Prescription"
-        Me.Prescription.ReadOnly = True
-        Me.Prescription.Width = 89
-        '
-        'Notes
-        '
-        Me.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Notes.HeaderText = "Notes"
-        Me.Notes.Name = "Notes"
-        Me.Notes.ReadOnly = True
-        Me.Notes.Width = 60
-        '
-        'TreatmentUnitPrice
-        '
-        Me.TreatmentUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentUnitPrice.HeaderText = "Unit Price"
-        Me.TreatmentUnitPrice.Name = "TreatmentUnitPrice"
-        Me.TreatmentUnitPrice.ReadOnly = True
-        Me.TreatmentUnitPrice.Width = 77
-        '
-        'TreatmentQuantity
-        '
-        Me.TreatmentQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentQuantity.HeaderText = "Quantity"
-        Me.TreatmentQuantity.Name = "TreatmentQuantity"
-        Me.TreatmentQuantity.ReadOnly = True
-        Me.TreatmentQuantity.Width = 72
-        '
-        'TreatmentTotalPrice
-        '
-        Me.TreatmentTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TreatmentTotalPrice.HeaderText = "Total Price"
-        Me.TreatmentTotalPrice.Name = "TreatmentTotalPrice"
-        Me.TreatmentTotalPrice.ReadOnly = True
-        Me.TreatmentTotalPrice.Width = 81
-        '
-        'TreatmentItemGroup
-        '
-        Me.TreatmentItemGroup.HeaderText = "Item Group"
-        Me.TreatmentItemGroup.Name = "TreatmentItemGroup"
-        Me.TreatmentItemGroup.ReadOnly = True
-        Me.TreatmentItemGroup.Visible = False
-        '
-        'TreatmentItemTypeCode
-        '
-        Me.TreatmentItemTypeCode.HeaderText = "Item Type Code"
-        Me.TreatmentItemTypeCode.Name = "TreatmentItemTypeCode"
-        Me.TreatmentItemTypeCode.ReadOnly = True
-        Me.TreatmentItemTypeCode.Visible = False
-        '
-        'TreatmentItemTypeDescription
-        '
-        Me.TreatmentItemTypeDescription.HeaderText = "Item Type Description"
-        Me.TreatmentItemTypeDescription.Name = "TreatmentItemTypeDescription"
-        Me.TreatmentItemTypeDescription.ReadOnly = True
-        Me.TreatmentItemTypeDescription.Visible = False
-        '
         'FrmTreatmentInformation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(772, 729)
+        Me.ClientSize = New System.Drawing.Size(772, 732)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.TabControl1)
@@ -1004,11 +1018,17 @@ Partial Class FrmTreatmentInformation
         Me.PnlActionBar.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
         CType(Me.DgvSelectedTest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
@@ -1031,9 +1051,7 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents Label7 As Label
     Friend WithEvents BtnBillPayment As Button
     Friend WithEvents TxtDiagnosis As TextBox
-    Friend WithEvents Label8 As Label
     Friend WithEvents DgvSelectedTest As DataGridView
-    Friend WithEvents Label11 As Label
     Friend WithEvents BtnAddTest As Button
     Friend WithEvents Label12 As Label
     Friend WithEvents TxtTreatmentItem As TextBox
@@ -1049,10 +1067,8 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents TxtTreatmentQuantity As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents TxtTestUnitPrice As TextBox
-    Friend WithEvents TxtCustomerID As TextBox
     Friend WithEvents TxtCustomerName As TextBox
     Friend WithEvents Label15 As Label
-    Friend WithEvents TxtPetID As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents TxtPetName As TextBox
     Friend WithEvents TxtTestItem As TextBox
@@ -1101,4 +1117,9 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents TreatmentItemGroup As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeDescription As DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents GroupBox6 As GroupBox
 End Class

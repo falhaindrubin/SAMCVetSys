@@ -16,12 +16,12 @@ Public Class ClsDbSurgery
             With Sb
                 .Append("INSERT INTO samc_surgery ")
                 .Append("(CaseID, CustomerID, CustomerName, NRICPassportNo, TelNo, MobileNo, PetID, PetName, PetAge, SexCode, SexName, ")
-                .Append("AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, IsNeuter, NeuterDescription, ")
+                .Append("AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, NeuterCode, NeuterName, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & SX.CaseID & "', '" & SX.CustomerID & "', '" & CSQLQuote(SX.CustomerName) & "', '" & SX.NRICPassportNo & "', '" & SX.TelNo & "', '" & SX.MobileNo & "', ")
                 .Append("'" & SX.PetID & "', '" & SX.PetName & "', '" & SX.PetAge & "', '" & SX.SexCode & "', '" & SX.SexName & "', ")
-                .Append("'" & SX.AnimalTypeCode & "', '" & SX.AnimalTypeName & "', '" & SX.BreedCode & "', '" & SX.BreedName & "', '" & SX.IsNeuter & "', '" & SX.NeuterDescription & "', ")
+                .Append("'" & SX.AnimalTypeCode & "', '" & SX.AnimalTypeName & "', '" & SX.BreedCode & "', '" & SX.BreedName & "', '" & SX.NeuterCode & "', '" & SX.NeuterName & "', ")
                 .Append("'" & SX.Ref.CreatedBy & "', " & CSQLDateTime(SX.Ref.DateCreated) & ", '" & SX.Ref.ModifiedBy & "', " & CSQLDateTime(SX.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
@@ -97,7 +97,7 @@ Public Class ClsDbSurgery
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.CaseID, EvaluationDate, CustomerID, CustomerName, NRICPassportNo, PetName, TelNo, MobileNo, PetID, PetAge, SexCode, SexName, AnimalTypeCode, AnimalTypeName, ")
-                .Append("BreedCode, BreedName, IsNeuter, NeuterDescription, ")
+                .Append("BreedCode, BreedName, NeuterCode, NeuterName, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
                 .Append("FROM samc_surgery a ")
                 .Append("INNER JOIN samc_surgerydetail b ON a.CaseID = b.CaseID ")
@@ -124,7 +124,7 @@ Public Class ClsDbSurgery
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT CaseID, CustomerID, CustomerName, NRICPassportNo, TelNo, MobileNo, PetID, PetName, PetAge, SexCode, SexName, ")
-                .Append("AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, IsNeuter, NeuterDescription, IsCompleted, IsCancelled, IsDelayed, IsOnGoing, ")
+                .Append("AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, NeuterCode, NeuterName, IsCompleted, IsCancelled, IsDelayed, IsOnGoing, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_surgery ")
                 If SX.CaseID <> "" Then

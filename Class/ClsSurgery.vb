@@ -197,23 +197,23 @@ Public Class ClsSurgery
         End Set
     End Property
 
-    Private _IsNeuter As String
-    Public Property IsNeuter As String
+    Private _NeuterCode As String
+    Public Property NeuterCode As String
         Get
-            Return _IsNeuter
+            Return _NeuterCode
         End Get
         Set(value As String)
-            _IsNeuter = value
+            _NeuterCode = value
         End Set
     End Property
 
-    Private _NeuterDescription As String
-    Public Property NeuterDescription As String
+    Private _NeuterName As String
+    Public Property NeuterName As String
         Get
-            Return _NeuterDescription
+            Return _NeuterName
         End Get
         Set(value As String)
-            _NeuterDescription = value
+            _NeuterName = value
         End Set
     End Property
 

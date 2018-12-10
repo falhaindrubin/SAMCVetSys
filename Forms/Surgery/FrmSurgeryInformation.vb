@@ -78,7 +78,7 @@ Public Class FrmSurgeryInformation
     Private Sub FrmSurgeryInformation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
-        PopulateSalutation()
+        'PopulateSalutation()
         'PopulateAnimalType()
         'PopulateBreed()
         'PopulatePetStatus()
@@ -111,7 +111,8 @@ Public Class FrmSurgeryInformation
                     If DtCustomer.Rows.Count > 0 Then
 
                         TxtCustomerID.Text = DtCustomer.Rows(0).Item("CustomerID")
-                        CmbSalutation.SelectedValue = DtCustomer.Rows(0).Item("SaluteCode")
+                        TxtSalutation.Tag = DtCustomer.Rows(0).Item("SaluteCode")
+                        TxtSalutation.Text = DtCustomer.Rows(0).Item("SaluteName")
                         TxtCustomerName.Text = DtCustomer.Rows(0).Item("CustomerName")
                         TxtNRICPassportNo.Text = DtCustomer.Rows(0).Item("NRICPassportNo")
                         TxtTelNo.Text = DtCustomer.Rows(0).Item("TelNo")
@@ -155,8 +156,8 @@ Public Class FrmSurgeryInformation
                                 .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
                                 .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
                                 .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
-                                .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
-                                .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+                                .Rows(i).Cells("NeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
+                                .Rows(i).Cells("NeuterName").Value = DtPet.Rows(i).Item("NeuterName")
                             Next
 
                         End With
@@ -196,8 +197,8 @@ Public Class FrmSurgeryInformation
                                 .Rows(i).Cells("SelectedBreedName").Value = DtVisit.Rows(i).Item("BreedName")
                                 .Rows(i).Cells("SelectedSexCode").Value = DtVisit.Rows(i).Item("SexCode")
                                 .Rows(i).Cells("SelectedSexName").Value = DtVisit.Rows(i).Item("SexName")
-                                .Rows(i).Cells("SelectedStatusCode").Value = DtVisit.Rows(i).Item("StatusCode")
-                                .Rows(i).Cells("SelectedStatusName").Value = DtVisit.Rows(i).Item("StatusName")
+                                .Rows(i).Cells("SelectedNeuterCode").Value = DtVisit.Rows(i).Item("NeuterCode")
+                                .Rows(i).Cells("SelectedNeuterName").Value = DtVisit.Rows(i).Item("NeuterName")
 
                             Next
 
@@ -219,10 +220,10 @@ Public Class FrmSurgeryInformation
                     If DtSxHeader.Rows.Count > 0 Then
 
                         'Surgery status
-                        CbIsCompleted.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCompleted")) = "1", True, False)
-                        CbIsCancelled.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCancelled")) = "1", True, False)
-                        CbIsDelayed.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsDelayed")) = "1", True, False)
-                        CbIsOnGoing.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsOnGoing")) = "1", True, False)
+                        RbIsCompleted.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCompleted")) = "1", True, False)
+                        RbIsCancelled.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsCancelled")) = "1", True, False)
+                        RbIsDelayed.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsDelayed")) = "1", True, False)
+                        RbIsOnGoing.Checked = IIf(CStrNull(DtSxHeader.Rows(0).Item("IsOnGoing")) = "1", True, False)
 
                     End If
 
@@ -688,36 +689,36 @@ Public Class FrmSurgeryInformation
 
     End Sub
 
-    Private Sub PopulateSalutation()
+    'Private Sub PopulateSalutation()
 
-        Dim DtSalute As New DataTable
-        Dim ClsCustomer As New ClsCustomer
-        Dim CmbSource As New Dictionary(Of String, String)
+    '    Dim DtSalute As New DataTable
+    '    Dim ClsCustomer As New ClsCustomer
+    '    Dim CmbSource As New Dictionary(Of String, String)
 
-        Try
-            DtSalute = ClsCustomer.GetSalutation(ClsCustomer)
-            If DtSalute.Rows.Count > 0 Then
+    '    Try
+    '        DtSalute = ClsCustomer.GetSalutation(ClsCustomer)
+    '        If DtSalute.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DtSalute.Rows.Count - 1
-                    CmbSource.Add(DtSalute.Rows(i).Item("SaluteCode"), DtSalute.Rows(i).Item("SaluteName"))
-                Next
+    '            For i As Integer = 0 To DtSalute.Rows.Count - 1
+    '                CmbSource.Add(DtSalute.Rows(i).Item("SaluteCode"), DtSalute.Rows(i).Item("SaluteName"))
+    '            Next
 
-                If CmbSalutation.Items.Count > 0 Then
-                    CmbSalutation.DataSource = Nothing
-                    CmbSalutation.Items.Clear()
-                End If
+    '            If CmbSalutation.Items.Count > 0 Then
+    '                CmbSalutation.DataSource = Nothing
+    '                CmbSalutation.Items.Clear()
+    '            End If
 
-                CmbSalutation.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbSalutation.DisplayMember = "Value"
-                CmbSalutation.ValueMember = "Key"
+    '            CmbSalutation.DataSource = New BindingSource(CmbSource, Nothing)
+    '            CmbSalutation.DisplayMember = "Value"
+    '            CmbSalutation.ValueMember = "Key"
 
-            End If
+    '        End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateSalutation()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateSalutation()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub PopulateBodyScore()
 
@@ -907,8 +908,8 @@ Public Class FrmSurgeryInformation
                 .AnimalTypeName = DgvSelectedPet.Rows(0).Cells("SelectedAnimalTypeName").Value
                 .BreedCode = DgvSelectedPet.Rows(0).Cells("SelectedBreedCode").Value
                 .BreedName = DgvSelectedPet.Rows(0).Cells("SelectedBreedName").Value
-                .IsNeuter = DgvSelectedPet.Rows(0).Cells("SelectedStatusCode").Value
-                .NeuterDescription = DgvSelectedPet.Rows(0).Cells("SelectedStatusName").Value
+                .NeuterCode = DgvSelectedPet.Rows(0).Cells("SelectedNeuterCode").Value
+                .NeuterName = DgvSelectedPet.Rows(0).Cells("SelectedNeuterName").Value
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
@@ -1033,10 +1034,10 @@ Public Class FrmSurgeryInformation
             'update surgery status; 
             Dim ClsSurgeryDischarge As New ClsSurgeryDischarge
             With ClsSurgery
-                .IsCompleted = IIf(CbIsCompleted.Checked = True, "1", "0")
-                .IsDelayed = IIf(CbIsDelayed.Checked = True, "1", "0")
-                .IsCancelled = IIf(CbIsCancelled.Checked = True, "1", "0")
-                .IsOnGoing = IIf(CbIsOnGoing.Checked = True, "1", "0")
+                .IsCompleted = IIf(RbIsCompleted.Checked = True, "1", "0")
+                .IsDelayed = IIf(RbIsDelayed.Checked = True, "1", "0")
+                .IsCancelled = IIf(RbIsCancelled.Checked = True, "1", "0")
+                .IsOnGoing = IIf(RbIsOnGoing.Checked = True, "1", "0")
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
 
@@ -1049,7 +1050,7 @@ Public Class FrmSurgeryInformation
                 End If
             End With
 
-            If CbIsCompleted.Checked = True Then
+            If RbIsCompleted.Checked = True Then
 
                 If DgvSelectedSurgery.Rows.Count > 0 Then
 
@@ -1586,6 +1587,8 @@ Public Class FrmSurgeryInformation
         End Try
 
     End Sub
+
+
 
 #End Region
 

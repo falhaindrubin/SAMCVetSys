@@ -3,6 +3,8 @@ Imports System.Text
 
 Public Class FrmAppointmentInformation
 
+#Region "FormProperty"
+
     Private _UserCommand As String
     Public Property UserCommand As String
         Get
@@ -43,15 +45,17 @@ Public Class FrmAppointmentInformation
         End Set
     End Property
 
+#End Region
+
     Public Sub FrmAppointmentEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         Me.Text = IIf(FormTitle <> "", FormTitle, Me.Text)
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
-        PopulateSalutation()
-        PopulateAnimalType()
-        PopulateBreed()
-        PopulatePetStatus()
-        PopulatePetSex()
+        'PopulateSalutation()
+        'PopulateAnimalType()
+        'PopulateBreed()
+        'PopulatePetStatus()
+        'PopulatePetSex()
         PopulateVet()
 
         If UserCommand = "ADD_NEW_APPOINTMENT" Then
@@ -67,162 +71,162 @@ Public Class FrmAppointmentInformation
         Me.Close()
     End Sub
 
-    Private Sub PopulateSalutation()
+    'Private Sub PopulateSalutation()
 
-        Dim DtSalute As New DataTable
-        Dim ClsCustomer As New ClsCustomer
-        Dim CmbSource As New Dictionary(Of String, String)
+    '    Dim DtSalute As New DataTable
+    '    Dim ClsCustomer As New ClsCustomer
+    '    Dim CmbSource As New Dictionary(Of String, String)
 
-        Try
-            DtSalute = ClsCustomer.GetSalutation(ClsCustomer)
-            If DtSalute.Rows.Count > 0 Then
+    '    Try
+    '        DtSalute = ClsCustomer.GetSalutation(ClsCustomer)
+    '        If DtSalute.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DtSalute.Rows.Count - 1
-                    CmbSource.Add(DtSalute.Rows(i).Item("SaluteCode"), DtSalute.Rows(i).Item("SaluteName"))
-                Next
+    '            For i As Integer = 0 To DtSalute.Rows.Count - 1
+    '                CmbSource.Add(DtSalute.Rows(i).Item("SaluteCode"), DtSalute.Rows(i).Item("SaluteName"))
+    '            Next
 
-                If CmbSalutation.Items.Count > 0 Then
-                    CmbSalutation.DataSource = Nothing
-                    CmbSalutation.Items.Clear()
-                End If
+    '            If CmbSalutation.Items.Count > 0 Then
+    '                CmbSalutation.DataSource = Nothing
+    '                CmbSalutation.Items.Clear()
+    '            End If
 
-                CmbSalutation.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbSalutation.DisplayMember = "Value"
-                CmbSalutation.ValueMember = "Key"
+    '            CmbSalutation.DataSource = New BindingSource(CmbSource, Nothing)
+    '            CmbSalutation.DisplayMember = "Value"
+    '            CmbSalutation.ValueMember = "Key"
 
-            End If
+    '        End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateSalutation()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateSalutation()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub PopulateAnimalType()
+    'Private Sub PopulateAnimalType()
 
-        Dim DtAnimalType As New DataTable
-        Dim ClsPet As New ClsPet
-        Dim CmbSource As New Dictionary(Of String, String)
+    '    Dim DtAnimalType As New DataTable
+    '    Dim ClsPet As New ClsPet
+    '    Dim CmbSource As New Dictionary(Of String, String)
 
-        Try
-            DtAnimalType = ClsPet.GetAnimalType(ClsPet)
-            If DtAnimalType.Rows.Count > 0 Then
+    '    Try
+    '        DtAnimalType = ClsPet.GetAnimalType(ClsPet)
+    '        If DtAnimalType.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DtAnimalType.Rows.Count - 1
-                    CmbSource.Add(DtAnimalType.Rows(i).Item("AnimalTypeCode"), DtAnimalType.Rows(i).Item("AnimalTypeName"))
-                Next
+    '            For i As Integer = 0 To DtAnimalType.Rows.Count - 1
+    '                CmbSource.Add(DtAnimalType.Rows(i).Item("AnimalTypeCode"), DtAnimalType.Rows(i).Item("AnimalTypeName"))
+    '            Next
 
-                If CmbAnimalType.Items.Count > 0 Then
-                    CmbAnimalType.DataSource = Nothing
-                    CmbAnimalType.Items.Clear()
-                End If
+    '            If CmbAnimalType.Items.Count > 0 Then
+    '                CmbAnimalType.DataSource = Nothing
+    '                CmbAnimalType.Items.Clear()
+    '            End If
 
-                CmbAnimalType.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbAnimalType.DisplayMember = "Value"
-                CmbAnimalType.ValueMember = "Key"
+    '            CmbAnimalType.DataSource = New BindingSource(CmbSource, Nothing)
+    '            CmbAnimalType.DisplayMember = "Value"
+    '            CmbAnimalType.ValueMember = "Key"
 
-            End If
+    '        End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateAnimalType()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateAnimalType()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub PopulateBreed()
+    'Private Sub PopulateBreed()
 
-        Dim DtBreed As New DataTable
-        Dim ClsPet As New ClsPet
-        Dim CmbSource As New Dictionary(Of String, String)
+    '    Dim DtBreed As New DataTable
+    '    Dim ClsPet As New ClsPet
+    '    Dim CmbSource As New Dictionary(Of String, String)
 
-        Try
-            ClsPet.AnimalTypeCode = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+    '    Try
+    '        ClsPet.AnimalTypeCode = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
 
-            DtBreed = ClsPet.GetPetBreed(ClsPet)
-            If DtBreed.Rows.Count > 0 Then
+    '        DtBreed = ClsPet.GetPetBreed(ClsPet)
+    '        If DtBreed.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DtBreed.Rows.Count - 1
-                    CmbSource.Add(DtBreed.Rows(i).Item("BreedCode"), DtBreed.Rows(i).Item("BreedName"))
-                Next
+    '            For i As Integer = 0 To DtBreed.Rows.Count - 1
+    '                CmbSource.Add(DtBreed.Rows(i).Item("BreedCode"), DtBreed.Rows(i).Item("BreedName"))
+    '            Next
 
-                If CmbBreed.Items.Count > 0 Then
-                    CmbBreed.DataSource = Nothing
-                    CmbBreed.Items.Clear()
-                End If
+    '            If CmbBreed.Items.Count > 0 Then
+    '                CmbBreed.DataSource = Nothing
+    '                CmbBreed.Items.Clear()
+    '            End If
 
-                CmbBreed.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbBreed.DisplayMember = "Value"
-                CmbBreed.ValueMember = "Key"
+    '            CmbBreed.DataSource = New BindingSource(CmbSource, Nothing)
+    '            CmbBreed.DisplayMember = "Value"
+    '            CmbBreed.ValueMember = "Key"
 
-            End If
+    '        End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateBreed()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateBreed()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub PopulatePetSex()
+    'Private Sub PopulatePetSex()
 
-        Dim DtPetSex As New DataTable
-        Dim ClsPet As New ClsPet
-        Dim CmbSource As New Dictionary(Of String, String)
+    '    Dim DtPetSex As New DataTable
+    '    Dim ClsPet As New ClsPet
+    '    Dim CmbSource As New Dictionary(Of String, String)
 
-        Try
-            DtPetSex = ClsPet.GetPetSex(ClsPet)
-            If DtPetSex.Rows.Count > 0 Then
+    '    Try
+    '        DtPetSex = ClsPet.GetPetSex(ClsPet)
+    '        If DtPetSex.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DtPetSex.Rows.Count - 1
-                    CmbSource.Add(DtPetSex.Rows(i).Item("SexCode"), DtPetSex.Rows(i).Item("SexName"))
-                Next
+    '            For i As Integer = 0 To DtPetSex.Rows.Count - 1
+    '                CmbSource.Add(DtPetSex.Rows(i).Item("SexCode"), DtPetSex.Rows(i).Item("SexName"))
+    '            Next
 
-                If CmbSex.Items.Count > 0 Then
-                    CmbSex.DataSource = Nothing
-                    CmbSex.Items.Clear()
-                End If
+    '            If CmbSex.Items.Count > 0 Then
+    '                CmbSex.DataSource = Nothing
+    '                CmbSex.Items.Clear()
+    '            End If
 
-                CmbSex.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbSex.DisplayMember = "Value"
-                CmbSex.ValueMember = "Key"
+    '            CmbSex.DataSource = New BindingSource(CmbSource, Nothing)
+    '            CmbSex.DisplayMember = "Value"
+    '            CmbSex.ValueMember = "Key"
 
-            End If
+    '        End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulatePetSex()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulatePetSex()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub PopulatePetStatus()
+    'Private Sub PopulatePetStatus()
 
-        Dim DtPetStatus As New DataTable
-        Dim ClsPet As New ClsPet
-        Dim CmbSource As New Dictionary(Of String, String)
+    '    Dim DtPetStatus As New DataTable
+    '    Dim ClsPet As New ClsPet
+    '    Dim CmbSource As New Dictionary(Of String, String)
 
-        Try
-            DtPetStatus = ClsPet.GetPetStatus(ClsPet)
-            If DtPetStatus.Rows.Count > 0 Then
+    '    Try
+    '        DtPetStatus = ClsPet.GetNeuterStatus(ClsPet)
+    '        If DtPetStatus.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DtPetStatus.Rows.Count - 1
-                    CmbSource.Add(DtPetStatus.Rows(i).Item("StatusCode"), DtPetStatus.Rows(i).Item("StatusName"))
-                Next
+    '            For i As Integer = 0 To DtPetStatus.Rows.Count - 1
+    '                CmbSource.Add(DtPetStatus.Rows(i).Item("StatusCode"), DtPetStatus.Rows(i).Item("StatusName"))
+    '            Next
 
-                If CmbStatus.Items.Count > 0 Then
-                    CmbStatus.DataSource = Nothing
-                    CmbStatus.Items.Clear()
-                End If
+    '            If CmbStatus.Items.Count > 0 Then
+    '                CmbStatus.DataSource = Nothing
+    '                CmbStatus.Items.Clear()
+    '            End If
 
-                CmbStatus.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbStatus.DisplayMember = "Value"
-                CmbStatus.ValueMember = "Key"
+    '            CmbStatus.DataSource = New BindingSource(CmbSource, Nothing)
+    '            CmbStatus.DisplayMember = "Value"
+    '            CmbStatus.ValueMember = "Key"
 
-            End If
+    '        End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulatePetStatus()")
-        End Try
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulatePetStatus()")
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub PopulateVet()
 
@@ -289,7 +293,8 @@ Public Class FrmAppointmentInformation
 
                 'Set fields using Customer information retrieved from database
                 TxtCustomerID.Text = DtCustomer.Rows(0).Item("CustomerID")
-                CmbSalutation.Text = DtCustomer.Rows(0).Item("SaluteName")
+                TxtSalutation.Tag = DtCustomer.Rows(0).Item("SaluteCode")
+                TxtSalutation.Text = DtCustomer.Rows(0).Item("SaluteName")
                 TxtCustomerName.Text = DtCustomer.Rows(0).Item("CustomerName")
                 TxtNRICPassportNo.Text = DtCustomer.Rows(0).Item("NRICPassportNo")
                 TxtAddress1.Text = DtCustomer.Rows(0).Item("AddressLine1")
@@ -307,13 +312,6 @@ Public Class FrmAppointmentInformation
             End If
 
             If DtPet.Rows.Count > 0 Then
-
-                TxtPetName.Text = DtPet.Rows(0).Item("PetName")
-                DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
-                CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
-                CmbBreed.SelectedValue = CStr(DtPet.Rows(0).Item("BreedCode"))
-                CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
-                CmbStatus.SelectedValue = CStr(DtPet.Rows(0).Item("StatusCode"))
 
                 With DgvPetListing
 
@@ -333,38 +331,12 @@ Public Class FrmAppointmentInformation
                         .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
                         .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
                         .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
-                        .Rows(i).Cells("StatusCode").Value = DtPet.Rows(i).Item("StatusCode")
-                        .Rows(i).Cells("StatusName").Value = DtPet.Rows(i).Item("StatusName")
+                        .Rows(i).Cells("NeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
+                        .Rows(i).Cells("NeuterName").Value = DtPet.Rows(i).Item("NeuterName")
 
                     Next
 
                 End With
-
-                'With BtnSelect
-                '    .HeaderText = "Select"
-                '    .Text = "Select"
-                '    .Name = "BtnSelect"
-                '    .UseColumnTextForButtonValue = True
-                '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                '    .DisplayIndex = 0
-                'End With
-
-                ''Add IsDB indicator here
-                'With DtPet
-                '    '.Columns.Add("IsDB", GetType(String))
-                '    .Columns.Add("CustomerName", GetType(String)).SetOrdinal(1)
-                'End With
-
-                'For i As Integer = 0 To DtPet.Rows.Count - 1
-                '    'DtPet.Rows(i).Item("IsDb") = "1"
-                '    DtPet.Rows(i).Item("CustomerName") = DtCustomer.Rows(0).Item("CustomerName")
-                'Next
-
-                'With DgvPetListing
-                '    .Columns.Add(BtnSelect)
-                '    .DataSource = DtPet
-                '    .Show()
-                'End With
 
             End If
 
@@ -376,7 +348,7 @@ Public Class FrmAppointmentInformation
                 DtpAppointmentDate.Value = CDate(DtAppointment.Rows(0).Item("AppointmentTime"))
                 DtpAppointmentTime.Value = CDate(DtAppointment.Rows(0).Item("AppointmentTime"))
                 CmbVet.SelectedValue = CStr(DtAppointment.Rows(0).Item("EmployeeID"))
-                TxtAppointmentDesc.Text = CStrNull(DtAppointment.Rows(0).Item("AppointmentDesc"))
+                TxtAppointmentDesc.Text = CStrNull(DtAppointment.Rows(0).Item("AppointmentDescription"))
 
                 DtSelectedPet = InitPetDatatable()
                 For i As Integer = 0 To DtAppointment.Rows.Count - 1
@@ -393,9 +365,8 @@ Public Class FrmAppointmentInformation
                     DgvRow("BreedName") = DtAppointment.Rows(i).Item("BreedName")
                     DgvRow("SexCode") = DtAppointment.Rows(i).Item("SexCode")
                     DgvRow("SexName") = DtAppointment.Rows(i).Item("SexName")
-                    DgvRow("StatusCode") = DtAppointment.Rows(i).Item("StatusCode")
-                    DgvRow("StatusName") = DtAppointment.Rows(i).Item("StatusName")
-                    'DgvRow("AppointmentDesc") = DtAppointment.Rows(i).Item("AppointmentDesc")
+                    DgvRow("NeuterCode") = DtAppointment.Rows(i).Item("NeuterCode")
+                    DgvRow("NeuterName") = DtAppointment.Rows(i).Item("NeuterName")
                     DgvRow("IsDB") = "1"
 
                     DtSelectedPet.Rows.Add(DgvRow)
@@ -420,29 +391,13 @@ Public Class FrmAppointmentInformation
                         .Rows(i).Cells("SelectedBreedName").Value = DtSelectedPet.Rows(i).Item("BreedName")
                         .Rows(i).Cells("SelectedSexCode").Value = DtSelectedPet.Rows(i).Item("SexCode")
                         .Rows(i).Cells("SelectedSexName").Value = DtSelectedPet.Rows(i).Item("SexName")
-                        .Rows(i).Cells("SelectedStatusCode").Value = DtSelectedPet.Rows(i).Item("StatusCode")
-                        .Rows(i).Cells("SelectedStatusName").Value = DtSelectedPet.Rows(i).Item("StatusName")
+                        .Rows(i).Cells("SelectedNeuterCode").Value = DtSelectedPet.Rows(i).Item("NeuterCode")
+                        .Rows(i).Cells("SelectedNeuterName").Value = DtSelectedPet.Rows(i).Item("NeuterName")
                         .Rows(i).Cells("IsDb").Value = "1"
 
                     Next
 
                 End With
-
-                'With BtnDelete
-                '    .HeaderText = "Delete"
-                '    .Text = "Delete"
-                '    .Name = "BtnDelete"
-                '    .UseColumnTextForButtonValue = True
-                '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                '    .DisplayIndex = 0
-                'End With
-
-                'With DgvSelectedPet
-                '    .Columns.Add(BtnDelete)
-                '    .DataSource = DtSelectedPet
-                '    .Columns("IsDB").Visible = False
-                '    .Show()
-                'End With
 
                 TxtCreatedBy.Text = DtAppointment.Rows(0).Item("CreatedBy")
                 TxtDateCreated.Text = DtAppointment.Rows(0).Item("DateCreated")
@@ -548,14 +503,6 @@ Public Class FrmAppointmentInformation
                 Return False
             End If
 
-            'Check appointment issues/description/complaints for each pets selected for the appontment
-            'For i As Integer = 0 To DgvSelectedPet.Rows.Count - 1
-            '    If DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value = "" Then
-            '        MsgBox("Please specify pet's issue/problem/complaint for " & DgvSelectedPet.Rows(i).Cells("PetName").Value & ".", MsgBoxStyle.Exclamation, "No Pet Problems Specified")
-            '        Return False
-            '    End If
-            'Next
-
             'Check existing and vet availability on that day for new appointment
             If TxtAppointmentID.Text = "" Then
 
@@ -582,11 +529,6 @@ Public Class FrmAppointmentInformation
                 End If
 
             End If
-
-            'If TxtAppointmentDesc.Text = "" Then
-            '    MsgBox("Please specify your pet issues/complaints/problems.", MsgBoxStyle.Exclamation, "No Pet Issues Specified")
-            '    Return False
-            'End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CheckUserInput()")
@@ -618,6 +560,7 @@ Public Class FrmAppointmentInformation
             End If
 
             TxtAppointmentID.Tag = GenAppointmentID
+
             If GenAppointmentID = "" Then
                 DBTrans.Rollback()
                 DBTrans.Dispose()
@@ -669,9 +612,9 @@ Public Class FrmAppointmentInformation
                         .BreedName = DgvSelectedPet.Rows(i).Cells("SelectedBreedName").Value
                         .SexCode = DgvSelectedPet.Rows(i).Cells("SelectedSexCode").Value
                         .SexName = DgvSelectedPet.Rows(i).Cells("SelectedSexName").Value
-                        .StatusCode = DgvSelectedPet.Rows(i).Cells("SelectedStatusCode").Value
-                        .StatusName = DgvSelectedPet.Rows(i).Cells("SelectedStatusName").Value
-                        .AppointmentDesc = Trim(TxtAppointmentDesc.Text) 'DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
+                        .NeuterCode = DgvSelectedPet.Rows(i).Cells("SelectedNeuterCode").Value
+                        .NeuterName = DgvSelectedPet.Rows(i).Cells("SelectedNeuterName").Value
+                        .AppointmentDescription = Trim(TxtAppointmentDesc.Text)
                         .Ref.CreatedBy = CURR_USER
                         .Ref.DateCreated = Now
                         .Ref.ModifiedBy = CURR_USER
@@ -694,12 +637,20 @@ Public Class FrmAppointmentInformation
             DBTrans = Nothing
 
             'PopulateCustomerAppointment()
+            'Set VisitID, Ref to be displayed right after data entry has been saved
+            TxtAppointmentID.Text = GenAppointmentID
+            With ClsAppointment
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
 
-            TxtAppointmentID.Text = AppointmentID
-            TxtCreatedBy.Text = "" 'ClsAppointment.Ref.CreatedBy
-            TxtDateCreated.Text = "" 'ClsAppointment.Ref.DateCreated
-            TxtModifiedBy.Text = "" 'ClsAppointment.Ref.ModifiedBy
-            TxtDateModified.Text = "" 'ClsAppointment.Ref.DateModified
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
 
             SetFields(UserCommand)
 
@@ -897,8 +848,8 @@ Public Class FrmAppointmentInformation
                 .Columns.Add("BreedName", GetType(String))
                 .Columns.Add("SexCode", GetType(String))
                 .Columns.Add("SexName", GetType(String))
-                .Columns.Add("StatusCode", GetType(String))
-                .Columns.Add("StatusName", GetType(String))
+                .Columns.Add("NeuterCode", GetType(String))
+                .Columns.Add("NeuterName", GetType(String))
                 '.Columns.Add("AppointmentDesc", GetType(String))
                 .Columns.Add("IsDB", GetType(String))
             End With
@@ -958,8 +909,8 @@ Public Class FrmAppointmentInformation
                     DgvRow("BreedName") = DgvSelectedPet.Rows(i).Cells("SelectedBreedName").Value
                     DgvRow("SexCode") = DgvSelectedPet.Rows(i).Cells("SelectedSexCode").Value
                     DgvRow("SexName") = DgvSelectedPet.Rows(i).Cells("SelectedSexName").Value
-                    DgvRow("StatusCode") = DgvSelectedPet.Rows(i).Cells("SelectedStatusCode").Value
-                    DgvRow("StatusName") = DgvSelectedPet.Rows(i).Cells("SelectedStatusName").Value
+                    DgvRow("NeuterCode") = DgvSelectedPet.Rows(i).Cells("SelectedNeuterCode").Value
+                    DgvRow("NeuterName") = DgvSelectedPet.Rows(i).Cells("SelectedNeuterName").Value
                     'DgvRow("AppointmentDesc") = DgvSelectedPet.Rows(i).Cells("AppointmentDesc").Value
 
                     DtPet.Rows.Add(DgvRow)
@@ -993,8 +944,8 @@ ReplaceCurrentPet:
             Row("BreedName") = DgvPetListing.Rows(RowIndex).Cells("BreedName").Value 'DirectCast(CmbBreed.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             Row("SexCode") = DgvPetListing.Rows(RowIndex).Cells("SexCode").Value 'DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
             Row("SexName") = DgvPetListing.Rows(RowIndex).Cells("SexName").Value 'DirectCast(CmbSex.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
-            Row("StatusCode") = DgvPetListing.Rows(RowIndex).Cells("StatusCode").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-            Row("StatusName") = DgvPetListing.Rows(RowIndex).Cells("StatusName").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+            Row("NeuterCode") = DgvPetListing.Rows(RowIndex).Cells("NeuterCode").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
+            Row("NeuterName") = DgvPetListing.Rows(RowIndex).Cells("NeuterName").Value 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
             'Row("AppointmentDesc") = "" 'DirectCast(CmbStatus.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
 
             DtPet.Rows.Add(Row)
@@ -1019,8 +970,8 @@ ReplaceCurrentPet:
                         .Rows(i).Cells("SelectedBreedName").Value = DtPet.Rows(i).Item("BreedName")
                         .Rows(i).Cells("SelectedSexCode").Value = DtPet.Rows(i).Item("SexCode")
                         .Rows(i).Cells("SelectedSexName").Value = DtPet.Rows(i).Item("SexName")
-                        .Rows(i).Cells("SelectedStatusCode").Value = DtPet.Rows(i).Item("StatusCode")
-                        .Rows(i).Cells("SelectedStatusName").Value = DtPet.Rows(i).Item("StatusName")
+                        .Rows(i).Cells("SelectedNeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
+                        .Rows(i).Cells("SelectedNeuterName").Value = DtPet.Rows(i).Item("NeuterName")
                         .Rows(i).Cells("IsDb").Value = "0"
 
                     Next
@@ -1030,33 +981,6 @@ ReplaceCurrentPet:
                 TcAppointmentInformation.SelectTab("TpAppointmentInformation")
 
             End If
-
-            'With BtnDeletePet
-            '    .HeaderText = "Delete"
-            '    .Text = "Delete"
-            '    .Name = "BtnDeletePet"
-            '    .UseColumnTextForButtonValue = True
-            '    .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            '    .DisplayIndex = 0
-            'End With
-
-            'With DgvSelectedPet
-
-            '    If .Rows.Count = 0 Then
-            '        .DataSource = Nothing
-            '        .Columns.Add(BtnDeletePet)
-            '    End If
-
-            '    .DataSource = DtPet
-            '    .Columns("CustomerID").Visible = False
-            '    .Columns("CustomerName").Visible = False
-            '    .Columns("AnimalTypeCode").Visible = False
-            '    .Columns("BreedCode").Visible = False
-            '    .Columns("SexCode").Visible = False
-            '    .Columns("StatusCode").Visible = False
-            '    .Show()
-
-            'End With
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddPetToDGV()")
@@ -1099,16 +1023,16 @@ ReplaceCurrentPet:
                 Case "SET_PET_FIELDS"
 
                     'TxtPetID.Text = ""
-                    TxtPetName.Text = ""
-                    CmbAnimalType.SelectedIndex = 0
-                    CmbBreed.SelectedIndex = 0
-                    CmbStatus.SelectedIndex = 0
-                    CmbSex.SelectedIndex = 0
+                    'TxtPetName.Text = ""
+                    'CmbAnimalType.SelectedIndex = 0
+                    'CmbBreed.SelectedIndex = 0
+                    'CmbStatus.SelectedIndex = 0
+                    'CmbSex.SelectedIndex = 0
 
                 Case "ADD_NEW_CUSTOMER", "ADD_NEW_APPOINTMENT"
 
                     'Customer information
-                    CmbSalutation.Enabled = False
+                    'TxtSalutation.Enabled = False
                     TxtCustomerName.ReadOnly = True
                     TxtNRICPassportNo.ReadOnly = True
                     TxtAddress1.ReadOnly = True
@@ -1134,20 +1058,20 @@ ReplaceCurrentPet:
                     'TxtCustomerIDPI.Text = UCase(TxtCustomerID.Tag)
                     'TxtCustomerNamePI.Text = UCase(TxtCustomerName.Text)
                     'TxtPetID.Text = UCase(TxtPetID.Tag)
-                    TxtPetName.Text = UCase(TxtPetName.Text)
+                    'TxtPetName.Text = UCase(TxtPetName.Text)
 
                 Case "CLEAR_PET_FIELDS"
                     'TxtPetID.Text = ""
-                    TxtPetName.Text = ""
-                    CmbAnimalType.SelectedIndex = 0
-                    CmbBreed.SelectedIndex = 0
-                    CmbSex.SelectedIndex = 0
-                    CmbStatus.SelectedIndex = 0
+                    'TxtPetName.Text = ""
+                    'CmbAnimalType.SelectedIndex = 0
+                    'CmbBreed.SelectedIndex = 0
+                    'CmbSex.SelectedIndex = 0
+                    'CmbStatus.SelectedIndex = 0
 
                 Case "SHOW_CUSTOMER_INFO", "CANCELEDIT_CUSTOMER_INFO", "POPULATE_CUSTOMER_INFO", "SHOW_CUSTOMER_APPOINTMENT"
 
                     'BtnSave.Enabled = False
-                    CmbSalutation.Enabled = False
+                    'CmbSalutation.Enabled = False
                     TxtCustomerName.ReadOnly = True
                     TxtNRICPassportNo.ReadOnly = True
                     TxtTelNo.ReadOnly = True
@@ -1162,12 +1086,12 @@ ReplaceCurrentPet:
                     TxtState.ReadOnly = True
                     TxtCountry.ReadOnly = True
 
-                    TxtPetName.ReadOnly = True
-                    DtpPetDOB.Enabled = False
-                    CmbAnimalType.Enabled = False
-                    CmbBreed.Enabled = False
-                    CmbSex.Enabled = False
-                    CmbStatus.Enabled = False
+                    'TxtPetName.ReadOnly = True
+                    'DtpPetDOB.Enabled = False
+                    'CmbAnimalType.Enabled = False
+                    'CmbBreed.Enabled = False
+                    'CmbSex.Enabled = False
+                    'CmbStatus.Enabled = False
                     'BtnAddPet.Enabled = False
                     'BtnClearPet.Enabled = False
                     'DgvPetListing.Enabled = False
@@ -1176,7 +1100,7 @@ ReplaceCurrentPet:
 
                     BtnSave.Enabled = True
 
-                    CmbSalutation.Enabled = True
+                    'CmbSalutation.Enabled = True
                     TxtCustomerName.ReadOnly = False
                     TxtNRICPassportNo.ReadOnly = False
                     TxtTelNo.ReadOnly = False
@@ -1192,13 +1116,13 @@ ReplaceCurrentPet:
                     TxtCountry.ReadOnly = False
 
                     'TxtPetID.Text = ""
-                    TxtPetName.Text = ""
-                    TxtPetName.ReadOnly = False
-                    DtpPetDOB.Enabled = True
-                    CmbAnimalType.Enabled = True
-                    CmbBreed.Enabled = True
-                    CmbSex.Enabled = True
-                    CmbStatus.Enabled = True
+                    'TxtPetName.Text = ""
+                    'TxtPetName.ReadOnly = False
+                    'DtpPetDOB.Enabled = True
+                    'CmbAnimalType.Enabled = True
+                    'CmbBreed.Enabled = True
+                    'CmbSex.Enabled = True
+                    'CmbStatus.Enabled = True
                     'BtnAddPet.Enabled = True
                     'BtnClearPet.Enabled = True
                     DgvPetListing.Enabled = True
@@ -1213,12 +1137,12 @@ ReplaceCurrentPet:
                     'BtnAddPet.Tag = ""
                     'BtnCancelEdit.Visible = False
                     'TxtPetID.Text = ""
-                    TxtPetName.Text = ""
-                    DtpPetDOB.Value = Now
-                    CmbAnimalType.SelectedIndex = 0
-                    CmbBreed.SelectedIndex = 0
-                    CmbSex.SelectedIndex = 0
-                    CmbStatus.SelectedIndex = 0
+                    'TxtPetName.Text = ""
+                    'DtpPetDOB.Value = Now
+                    'CmbAnimalType.SelectedIndex = 0
+                    'CmbBreed.SelectedIndex = 0
+                    'CmbSex.SelectedIndex = 0
+                    'CmbStatus.SelectedIndex = 0
 
             End Select
 

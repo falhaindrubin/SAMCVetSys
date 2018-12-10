@@ -7,14 +7,17 @@ Public Class ClsDBLogin
     Dim cmd As OdbcCommand
     Dim da As OdbcDataAdapter
 
-    Public Function GetUserLoginInfo(ByRef USER As ClsLogin, ByRef DBConn As OdbcConnection) As DataTable
+    Public Function GetUser(ByRef USER As ClsLogin, ByRef DBConn As OdbcConnection) As DataTable
 
         Dim DtUser As New DataTable
 
         Try
             sb = New StringBuilder
             With sb
-                .Append("SELECT UserID, UserPassword ")
+                '.Append("SELECT UserID, UserPassword ")
+                '.Append("FROM samc_user ")
+                .Append("SELECT UserID, EmployeeID, EmployeeName, UserPassword, UserRole, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_user ")
                 .Append("WHERE UserID = '" & USER.UserID & "' AND UserPassword = '" & USER.Password & "'; ")
             End With

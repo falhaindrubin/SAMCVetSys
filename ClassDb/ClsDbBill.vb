@@ -311,4 +311,29 @@ Public Class ClsDbBill
 
     End Function
 
+    Public Function GetInvoiceByVisitID(B As ClsBill) As DataTable
+
+        Dim DtInvoiceNo As New DataTable
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("SELECT InvoiceNo, VisitID, InvoiceDate, CustomerID, CustomerName, MobileNo, Email, PetID, PetName, GrandTotal, Deposit, Discount, TotalDue, IsPaymentComplete, IsCash, IsDebitCreditCard, IsCheque, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("FROM samc_billing ")
+                .Append("WHERE VisitID = '" & B.VisitID & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn)
+            Da = New OdbcDataAdapter(Cmd)
+            Da.Fill(DtInvoiceNo)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbBill.GetInvoiceByVisitID()")
+        End Try
+
+        Return DtInvoiceNo
+
+    End Function
+
 End Class

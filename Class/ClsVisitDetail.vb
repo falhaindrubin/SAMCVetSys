@@ -3,7 +3,10 @@ Imports System.Data.Odbc
 Imports System
 
 Public Class ClsVisitDetail
-    ReadOnly DbVisit As New ClsDbVisit
+
+    Dim DbVisit As New ClsDbVisit
+
+#Region "FormProperty"
 
     Private _VisitID As String
     Public Property VisitID As String
@@ -85,23 +88,23 @@ Public Class ClsVisitDetail
         End Set
     End Property
 
-    Private _StatusCode As String
-    Public Property StatusCode As String
+    Private _NeuterCode As String
+    Public Property NeuterCode As String
         Get
-            Return _StatusCode
+            Return _NeuterCode
         End Get
         Set(value As String)
-            _StatusCode = value
+            _NeuterCode = value
         End Set
     End Property
 
-    Private _StatusName As String
-    Public Property StatusName As String
+    Private _NeuterName As String
+    Public Property NeuterName As String
         Get
-            Return _StatusName
+            Return _NeuterName
         End Get
         Set(value As String)
-            _StatusName = value
+            _NeuterName = value
         End Set
     End Property
 
@@ -214,6 +217,8 @@ Public Class ClsVisitDetail
             _Ref = value
         End Set
     End Property
+
+#End Region
 
     Public Function AddNewVisitDetail(ClsVisitDetail As ClsVisitDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisitDetail(ClsVisitDetail, DbConn, DbTrans)

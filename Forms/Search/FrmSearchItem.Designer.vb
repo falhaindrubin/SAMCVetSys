@@ -24,6 +24,7 @@ Partial Class FrmSearchItem
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSearchItem))
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -32,7 +33,6 @@ Partial Class FrmSearchItem
         Me.RbServices = New System.Windows.Forms.RadioButton()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.DgvSearchResult = New System.Windows.Forms.DataGridView()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,14 +48,25 @@ Partial Class FrmSearchItem
         Me.PnlActionBar.Size = New System.Drawing.Size(743, 68)
         Me.PnlActionBar.TabIndex = 73
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(162, 32)
+        Me.Label25.TabIndex = 13
+        Me.Label25.Text = "Search Item"
+        '
         'BtnClose
         '
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(677, 6)
+        Me.BtnClose.Location = New System.Drawing.Point(679, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 56)
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 9
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -64,9 +75,9 @@ Partial Class FrmSearchItem
         Me.BtnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearch.BackgroundImage = CType(resources.GetObject("BtnSearch.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearch.Location = New System.Drawing.Point(550, 67)
+        Me.BtnSearch.Location = New System.Drawing.Point(550, 63)
         Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(60, 52)
+        Me.BtnSearch.Size = New System.Drawing.Size(60, 60)
         Me.BtnSearch.TabIndex = 2
         Me.BtnSearch.UseVisualStyleBackColor = False
         '
@@ -140,17 +151,6 @@ Partial Class FrmSearchItem
         Me.DgvSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvSearchResult.Size = New System.Drawing.Size(743, 386)
         Me.DgvSearchResult.TabIndex = 74
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 18)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(162, 32)
-        Me.Label25.TabIndex = 13
-        Me.Label25.Text = "Search Item"
         '
         'FrmSearchItem
         '

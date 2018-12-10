@@ -82,23 +82,23 @@
         End Set
     End Property
 
-    Private _StatusCode As String
-    Public Property StatusCode As String
+    Private _NeuterCode As String
+    Public Property NeuterCode As String
         Get
-            Return _StatusCode
+            Return _NeuterCode
         End Get
         Set(value As String)
-            _StatusCode = value
+            _NeuterCode = value
         End Set
     End Property
 
-    Private _StatusName As String
-    Public Property StatusName As String
+    Private _NeuterName As String
+    Public Property NeuterName As String
         Get
-            Return _StatusName
+            Return _NeuterName
         End Get
         Set(value As String)
-            _StatusName = value
+            _NeuterName = value
         End Set
     End Property
 
@@ -122,13 +122,13 @@
         End Set
     End Property
 
-    Private _AppointmentDesc As String
-    Public Property AppointmentDesc As String
+    Private _AppointmentDescription As String
+    Public Property AppointmentDescription As String
         Get
-            Return _AppointmentDesc
+            Return _AppointmentDescription
         End Get
         Set(value As String)
-            _AppointmentDesc = value
+            _AppointmentDescription = value
         End Set
     End Property
 

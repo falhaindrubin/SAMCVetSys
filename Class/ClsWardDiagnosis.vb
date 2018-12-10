@@ -2,6 +2,7 @@
 
     Dim DbWard As New ClsDbWard
 
+#Region "FormProperty"
     Private _WardID As String
     Public Property WardID As String
         Get
@@ -71,9 +72,14 @@
             _Ref = value
         End Set
     End Property
+#End Region
 
     Public Function AddNewWardDiagnosis(ClsWardDiagnosis As ClsWardDiagnosis, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbWard.AddNewWardDiagnosis(ClsWardDiagnosis, DbConn, DbTrans)
+    End Function
+
+    Public Function GetWardDiagnosis(ClsWardDiagnosis As ClsWardDiagnosis) As DataTable
+        Return DbWard.GetWardDiagnosis(ClsWardDiagnosis)
     End Function
 
     Public Function GetWardDiagnosisDetail(ClsWardDiagnosis As ClsWardDiagnosis) As DataTable

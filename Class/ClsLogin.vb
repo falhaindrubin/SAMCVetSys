@@ -22,8 +22,8 @@
         End Set
     End Property
 
-    Public Function GetUserLoginInfo(ByVal ClsLogin As ClsLogin, ByRef DBConn As OdbcConnection) As DataTable
-        Return DBLogin.GetUserLoginInfo(ClsLogin, DBConn)
+    Public Function GetUser(ByVal ClsLogin As ClsLogin, ByRef DBConn As OdbcConnection) As DataTable
+        Return DBLogin.GetUser(ClsLogin, DBConn)
     End Function
 
 End Class

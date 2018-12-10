@@ -25,6 +25,7 @@ Partial Class FrmItemRecords
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmItemRecords))
         Me.DgvItemListing = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewItem = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
@@ -34,7 +35,6 @@ Partial Class FrmItemRecords
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label25 = New System.Windows.Forms.Label()
         CType(Me.DgvItemListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -73,12 +73,23 @@ Partial Class FrmItemRecords
         Me.PnlActionBar.Size = New System.Drawing.Size(985, 68)
         Me.PnlActionBar.TabIndex = 73
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(4, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(178, 32)
+        Me.Label25.TabIndex = 17
+        Me.Label25.Text = "Item Records"
+        '
         'BtnClose
         '
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(920, 3)
+        Me.BtnClose.Location = New System.Drawing.Point(921, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
@@ -89,7 +100,7 @@ Partial Class FrmItemRecords
         Me.BtnAddNewItem.BackColor = System.Drawing.SystemColors.Control
         Me.BtnAddNewItem.BackgroundImage = CType(resources.GetObject("BtnAddNewItem.BackgroundImage"), System.Drawing.Image)
         Me.BtnAddNewItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewItem.Location = New System.Drawing.Point(798, 3)
+        Me.BtnAddNewItem.Location = New System.Drawing.Point(799, 4)
         Me.BtnAddNewItem.Name = "BtnAddNewItem"
         Me.BtnAddNewItem.Size = New System.Drawing.Size(60, 60)
         Me.BtnAddNewItem.TabIndex = 2
@@ -100,7 +111,7 @@ Partial Class FrmItemRecords
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(859, 3)
+        Me.BtnReload.Location = New System.Drawing.Point(860, 4)
         Me.BtnReload.Name = "BtnReload"
         Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
@@ -169,17 +180,6 @@ Partial Class FrmItemRecords
         Me.GroupBox2.TabIndex = 76
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Service && Product Listing"
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 17)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(178, 32)
-        Me.Label25.TabIndex = 17
-        Me.Label25.Text = "Item Records"
         '
         'FrmItemRecords
         '

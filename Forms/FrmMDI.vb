@@ -316,4 +316,52 @@
 
     End Sub
 
+    Private Sub SurgeryToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SurgeryToolStripMenuItem1.Click
+
+        Try
+            Dim Frm As New FrmSurgeryManagement()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmSurgeryManagement Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmSurgeryManagement With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub PharmacyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PharmacyToolStripMenuItem.Click
+
+        Try
+            Dim Frm As New FrmPharmacyRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmPharmacyRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmPharmacyRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
 End Class

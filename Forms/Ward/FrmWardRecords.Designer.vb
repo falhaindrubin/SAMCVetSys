@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmWardRecords
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmWardRecords
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmWardRecords))
         Me.PnlActionBar = New System.Windows.Forms.Panel()
@@ -34,10 +34,13 @@ Partial Class FrmWardRecords
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
+        Me.CbIsDischarged = New System.Windows.Forms.CheckBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.PnlActionBar.SuspendLayout()
         CType(Me.DgvWardListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'PnlActionBar
@@ -101,19 +104,19 @@ Partial Class FrmWardRecords
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(6, 31)
+        Me.Label1.Location = New System.Drawing.Point(10, 35)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(42, 14)
+        Me.Label1.Size = New System.Drawing.Size(52, 14)
         Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Search"
+        Me.Label1.Text = "Keyword"
         '
         'TxtSearchText
         '
         Me.TxtSearchText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSearchText.Location = New System.Drawing.Point(50, 27)
+        Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSearchText.Location = New System.Drawing.Point(62, 29)
         Me.TxtSearchText.Name = "TxtSearchText"
-        Me.TxtSearchText.Size = New System.Drawing.Size(319, 22)
+        Me.TxtSearchText.Size = New System.Drawing.Size(319, 26)
         Me.TxtSearchText.TabIndex = 6
         '
         'DgvWardListing
@@ -134,15 +137,17 @@ Partial Class FrmWardRecords
         Me.DgvWardListing.ReadOnly = True
         Me.DgvWardListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DgvWardListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvWardListing.Size = New System.Drawing.Size(1146, 536)
+        Me.DgvWardListing.Size = New System.Drawing.Size(1146, 525)
         Me.DgvWardListing.TabIndex = 2
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.DgvWardListing)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 161)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 172)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1161, 563)
+        Me.GroupBox1.Size = New System.Drawing.Size(1161, 552)
         Me.GroupBox1.TabIndex = 84
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ward Records List"
@@ -154,28 +159,52 @@ Partial Class FrmWardRecords
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.TxtSearchText)
         Me.GroupBox2.Controls.Add(Me.BtnSearchCustomer)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 80)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 86)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1161, 74)
+        Me.GroupBox2.Size = New System.Drawing.Size(446, 80)
         Me.GroupBox2.TabIndex = 83
         Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Search Ward"
         '
         'BtnSearchCustomer
         '
         Me.BtnSearchCustomer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSearchCustomer.BackgroundImage = CType(resources.GetObject("BtnSearchCustomer.BackgroundImage"), System.Drawing.Image)
         Me.BtnSearchCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSearchCustomer.Location = New System.Drawing.Point(375, 12)
+        Me.BtnSearchCustomer.Location = New System.Drawing.Point(383, 15)
         Me.BtnSearchCustomer.Name = "BtnSearchCustomer"
-        Me.BtnSearchCustomer.Size = New System.Drawing.Size(60, 56)
+        Me.BtnSearchCustomer.Size = New System.Drawing.Size(55, 55)
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
+        '
+        'CbIsDischarged
+        '
+        Me.CbIsDischarged.AutoSize = True
+        Me.CbIsDischarged.Location = New System.Drawing.Point(10, 30)
+        Me.CbIsDischarged.Name = "CbIsDischarged"
+        Me.CbIsDischarged.Size = New System.Drawing.Size(81, 18)
+        Me.CbIsDischarged.TabIndex = 8
+        Me.CbIsDischarged.Text = "Discharged"
+        Me.CbIsDischarged.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.CbIsDischarged)
+        Me.GroupBox3.Location = New System.Drawing.Point(464, 86)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(709, 80)
+        Me.GroupBox3.TabIndex = 85
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Ward Status"
         '
         'FrmWardRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1185, 736)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
@@ -188,6 +217,8 @@ Partial Class FrmWardRecords
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -203,4 +234,6 @@ Partial Class FrmWardRecords
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents BtnSearchCustomer As Button
     Friend WithEvents Label2 As Label
+    Friend WithEvents CbIsDischarged As CheckBox
+    Friend WithEvents GroupBox3 As GroupBox
 End Class

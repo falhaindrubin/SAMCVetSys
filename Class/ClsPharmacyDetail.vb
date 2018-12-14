@@ -1,47 +1,24 @@
-﻿Public Class ClsSurgeryMaterial
+﻿Public Class ClsPharmacyDetail
 
-    Dim DbSurgery As New ClsDbSurgery
-    Dim DbManagement As New ClsDbManagement
+    Dim DbPharmacy As New ClsDbPharmacy
 
-#Region "FormProperty"
-
-    Private _CaseID As String
-    Public Property CaseID As String
+    Private _RequestID As String
+    Public Property RequestID As String
         Get
-            Return _CaseID
+            Return _RequestID
         End Get
         Set(value As String)
-            _CaseID = value
+            _RequestID = value
         End Set
     End Property
 
-    Private _SurgeryDate As Date
-    Public Property SurgeryDate As Date
+    Private _VisitID As String
+    Public Property VisitID As String
         Get
-            Return _SurgeryDate
-        End Get
-        Set(value As Date)
-            _SurgeryDate = value
-        End Set
-    End Property
-
-    Private _EmployeeID As String
-    Public Property EmployeeID As String
-        Get
-            Return _EmployeeID
+            Return _VisitID
         End Get
         Set(value As String)
-            _EmployeeID = value
-        End Set
-    End Property
-
-    Private _EmployeeName As String
-    Public Property EmployeeName As String
-        Get
-            Return _EmployeeName
-        End Get
-        Set(value As String)
-            _EmployeeName = value
+            _VisitID = value
         End Set
     End Property
 
@@ -165,31 +142,16 @@
         End Set
     End Property
 
-#End Region
-
-    'Surgery
-    Public Function AddNewSurgeryMaterial(ClsSurgeryMaterial As ClsSurgeryMaterial, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbSurgery.AddNewSurgeryMaterial(ClsSurgeryMaterial, DbConn, DbTrans)
+    Public Function AddNewPharmacyRequestDetail(ClsPharmacyDetail As ClsPharmacyDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbPharmacy.AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans)
     End Function
 
-    'Surgery
-    Public Function GetSurgeryMaterials(ClsSurgeryMaterial As ClsSurgeryMaterial) As DataTable
-        Return DbSurgery.GetSurgeryMaterials(ClsSurgeryMaterial)
-    End Function
+    'Public Function AddNewTreatment(ClsTreatment As ClsTreatment, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+    '    Return DbTreatment.AddNewTreatment(ClsTreatment, DbConn, DbTrans)
+    'End Function
 
-    'Surgery
-    Public Function DeleteSurgeryItem(ClsSurgeryMaterial As ClsSurgeryMaterial, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbSurgery.DeleteSurgeryItem(ClsSurgeryMaterial, DbConn, DbTrans)
-    End Function
-
-    'Management
-    Public Function AddNewSurgeryMaterialMgmt(ClsSurgeryMaterial As ClsSurgeryMaterial, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbManagement.AddNewSurgeryMaterialMgmt(ClsSurgeryMaterial, DbConn, DbTrans)
-    End Function
-
-    'Management
-    Public Function GetSurgeryMaterialsMgmt(ClsSurgeryMaterial) As DataTable
-        Return DbManagement.GetSurgeryMaterialsMgmt(ClsSurgeryMaterial)
-    End Function
+    'Public Function GetTreatmentDetail(ClsTreatment As ClsTreatment) As DataTable
+    '    Return DbTreatment.GetTreatmentDetail(ClsTreatment)
+    'End Function
 
 End Class

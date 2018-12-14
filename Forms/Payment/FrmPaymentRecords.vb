@@ -14,6 +14,7 @@
 
         Try
             DtPendingBill = ClsBill.GetPendingInvoiceList(ClsBill)
+
             If DtPendingBill.Rows.Count > 0 Then
                 DgvPaymentListing.DataSource = DtPendingBill
                 DgvPaymentListing.Show()

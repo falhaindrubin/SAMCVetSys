@@ -107,7 +107,9 @@ Partial Class FrmTreatmentInformation
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.LblInvoiceNo = New System.Windows.Forms.Label()
         Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
+        Me.BtnSendToPharmacy = New System.Windows.Forms.Button()
         Me.PnlActionBar.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -612,7 +614,7 @@ Partial Class FrmTreatmentInformation
         Me.TreatmentTotalPrice.HeaderText = "Total Price"
         Me.TreatmentTotalPrice.Name = "TreatmentTotalPrice"
         Me.TreatmentTotalPrice.ReadOnly = True
-        Me.TreatmentTotalPrice.Width = 75
+        Me.TreatmentTotalPrice.Width = 81
         '
         'TreatmentItemGroup
         '
@@ -845,7 +847,7 @@ Partial Class FrmTreatmentInformation
         '
         'BtnBillPayment
         '
-        Me.BtnBillPayment.Location = New System.Drawing.Point(558, 13)
+        Me.BtnBillPayment.Location = New System.Drawing.Point(558, 58)
         Me.BtnBillPayment.Name = "BtnBillPayment"
         Me.BtnBillPayment.Size = New System.Drawing.Size(186, 23)
         Me.BtnBillPayment.TabIndex = 89
@@ -975,6 +977,8 @@ Partial Class FrmTreatmentInformation
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.BtnSendToPharmacy)
+        Me.GroupBox1.Controls.Add(Me.LblInvoiceNo)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.CbIsAdmittedToWard)
         Me.GroupBox1.Controls.Add(Me.TxtVisitID)
@@ -990,16 +994,34 @@ Partial Class FrmTreatmentInformation
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer && Pet Information"
         '
+        'LblInvoiceNo
+        '
+        Me.LblInvoiceNo.AutoSize = True
+        Me.LblInvoiceNo.Location = New System.Drawing.Point(318, 20)
+        Me.LblInvoiceNo.Name = "LblInvoiceNo"
+        Me.LblInvoiceNo.Size = New System.Drawing.Size(68, 14)
+        Me.LblInvoiceNo.TabIndex = 99
+        Me.LblInvoiceNo.Text = "LblInvoiceNo"
+        '
         'CbIsAdmittedToWard
         '
         Me.CbIsAdmittedToWard.AutoSize = True
-        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(323, 20)
+        Me.CbIsAdmittedToWard.Location = New System.Drawing.Point(318, 40)
         Me.CbIsAdmittedToWard.Name = "CbIsAdmittedToWard"
         Me.CbIsAdmittedToWard.Size = New System.Drawing.Size(104, 18)
         Me.CbIsAdmittedToWard.TabIndex = 98
         Me.CbIsAdmittedToWard.Text = "Ward Admission"
         Me.CbIsAdmittedToWard.UseVisualStyleBackColor = True
         Me.CbIsAdmittedToWard.Visible = False
+        '
+        'BtnSendToPharmacy
+        '
+        Me.BtnSendToPharmacy.Location = New System.Drawing.Point(558, 16)
+        Me.BtnSendToPharmacy.Name = "BtnSendToPharmacy"
+        Me.BtnSendToPharmacy.Size = New System.Drawing.Size(186, 23)
+        Me.BtnSendToPharmacy.TabIndex = 100
+        Me.BtnSendToPharmacy.Text = "Send To Pharmacy..."
+        Me.BtnSendToPharmacy.UseVisualStyleBackColor = True
         '
         'FrmTreatmentInformation
         '
@@ -1122,4 +1144,6 @@ Partial Class FrmTreatmentInformation
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents LblInvoiceNo As Label
+    Friend WithEvents BtnSendToPharmacy As Button
 End Class

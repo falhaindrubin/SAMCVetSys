@@ -30,12 +30,14 @@ Partial Class FrmMDI
         Me.TreatmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SurgeryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PharmacyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BillingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaintenanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmployeeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductsServicesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RolesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SurgeryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -43,7 +45,7 @@ Partial Class FrmMDI
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.TreatmentToolStripMenuItem, Me.SurgeryToolStripMenuItem, Me.WardToolStripMenuItem, Me.BillingToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.TreatmentToolStripMenuItem, Me.SurgeryToolStripMenuItem, Me.WardToolStripMenuItem, Me.PharmacyToolStripMenuItem, Me.BillingToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowToolStripMenuItem
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -94,6 +96,12 @@ Partial Class FrmMDI
         Me.WardToolStripMenuItem.Size = New System.Drawing.Size(45, 20)
         Me.WardToolStripMenuItem.Text = "Ward"
         '
+        'PharmacyToolStripMenuItem
+        '
+        Me.PharmacyToolStripMenuItem.Name = "PharmacyToolStripMenuItem"
+        Me.PharmacyToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
+        Me.PharmacyToolStripMenuItem.Text = "Pharmacy"
+        '
         'BillingToolStripMenuItem
         '
         Me.BillingToolStripMenuItem.Name = "BillingToolStripMenuItem"
@@ -102,7 +110,7 @@ Partial Class FrmMDI
         '
         'MaintenanceToolStripMenuItem
         '
-        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem, Me.UserToolStripMenuItem, Me.ProductsServicesToolStripMenuItem, Me.RolesToolStripMenuItem})
+        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem, Me.UserToolStripMenuItem, Me.ProductsServicesToolStripMenuItem, Me.RolesToolStripMenuItem, Me.SurgeryToolStripMenuItem1})
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
         Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(80, 20)
         Me.MaintenanceToolStripMenuItem.Text = "Management"
@@ -130,6 +138,12 @@ Partial Class FrmMDI
         Me.RolesToolStripMenuItem.Name = "RolesToolStripMenuItem"
         Me.RolesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.RolesToolStripMenuItem.Text = "Roles"
+        '
+        'SurgeryToolStripMenuItem1
+        '
+        Me.SurgeryToolStripMenuItem1.Name = "SurgeryToolStripMenuItem1"
+        Me.SurgeryToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
+        Me.SurgeryToolStripMenuItem1.Text = "Surgery"
         '
         'WindowToolStripMenuItem
         '
@@ -172,4 +186,6 @@ Partial Class FrmMDI
     Friend WithEvents BillingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SurgeryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RolesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PharmacyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SurgeryToolStripMenuItem1 As ToolStripMenuItem
 End Class

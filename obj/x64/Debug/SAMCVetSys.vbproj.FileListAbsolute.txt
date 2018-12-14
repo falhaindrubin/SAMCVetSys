@@ -200,3 +200,6 @@ E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSearchEm
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmRoleRecords.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmRoleInformation.resources
 E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmMedication.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmSurgeryManagement.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmPharmacyRecords.resources
+E:\DEVELOPMENT\SYSTEM\SAMCVetSys\SAMCVetSys\obj\x64\Debug\SAMCVetSys.FrmPharmacyRequest.resources

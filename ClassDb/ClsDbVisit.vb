@@ -152,7 +152,7 @@ Public Class ClsDbVisit
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
-                .Append("WHERE IsVisitCompleted = '0' ")
+                '.Append("WHERE IsVisitCompleted = '0' ")
 
                 If VS.CustomerID <> "" Then
                     .Append("AND CustomerID = '" & VS.CustomerID & "' ")

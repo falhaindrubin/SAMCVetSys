@@ -48,21 +48,6 @@ Partial Class FrmWardInformation
         Me.TxtAdmissionDate = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.GroupBox29 = New System.Windows.Forms.GroupBox()
-        Me.DgvMedicationSummary = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewButtonColumn3 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.DataGridViewButtonColumn4 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedTreatment = New System.Windows.Forms.DataGridView()
         Me.BtnTreatmentDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
@@ -232,8 +217,6 @@ Partial Class FrmWardInformation
         Me.Panel3.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        Me.GroupBox29.SuspendLayout()
-        CType(Me.DgvMedicationSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox17.SuspendLayout()
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox16.SuspendLayout()
@@ -547,7 +530,6 @@ Partial Class FrmWardInformation
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.GroupBox29)
         Me.TabPage3.Controls.Add(Me.GroupBox17)
         Me.TabPage3.Controls.Add(Me.GroupBox16)
         Me.TabPage3.Location = New System.Drawing.Point(4, 23)
@@ -558,140 +540,12 @@ Partial Class FrmWardInformation
         Me.TabPage3.Text = "Treatment & Medication"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'GroupBox29
-        '
-        Me.GroupBox29.Controls.Add(Me.DgvMedicationSummary)
-        Me.GroupBox29.Location = New System.Drawing.Point(504, 6)
-        Me.GroupBox29.Name = "GroupBox29"
-        Me.GroupBox29.Size = New System.Drawing.Size(542, 238)
-        Me.GroupBox29.TabIndex = 179
-        Me.GroupBox29.TabStop = False
-        Me.GroupBox29.Text = "Medication Summary"
-        '
-        'DgvMedicationSummary
-        '
-        Me.DgvMedicationSummary.AllowUserToAddRows = False
-        Me.DgvMedicationSummary.AllowUserToDeleteRows = False
-        Me.DgvMedicationSummary.BackgroundColor = System.Drawing.Color.White
-        Me.DgvMedicationSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvMedicationSummary.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewButtonColumn3, Me.DataGridViewButtonColumn4, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn27, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.DataGridViewTextBoxColumn30, Me.DataGridViewTextBoxColumn31, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn33})
-        Me.DgvMedicationSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DgvMedicationSummary.Location = New System.Drawing.Point(3, 16)
-        Me.DgvMedicationSummary.Name = "DgvMedicationSummary"
-        Me.DgvMedicationSummary.ReadOnly = True
-        Me.DgvMedicationSummary.Size = New System.Drawing.Size(536, 219)
-        Me.DgvMedicationSummary.TabIndex = 154
-        '
-        'DataGridViewButtonColumn3
-        '
-        Me.DataGridViewButtonColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewButtonColumn3.HeaderText = "Delete?"
-        Me.DataGridViewButtonColumn3.Name = "DataGridViewButtonColumn3"
-        Me.DataGridViewButtonColumn3.ReadOnly = True
-        Me.DataGridViewButtonColumn3.Text = "Delete"
-        Me.DataGridViewButtonColumn3.UseColumnTextForButtonValue = True
-        Me.DataGridViewButtonColumn3.Visible = False
-        '
-        'DataGridViewButtonColumn4
-        '
-        Me.DataGridViewButtonColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewButtonColumn4.HeaderText = "Edit"
-        Me.DataGridViewButtonColumn4.Name = "DataGridViewButtonColumn4"
-        Me.DataGridViewButtonColumn4.ReadOnly = True
-        Me.DataGridViewButtonColumn4.Text = "Edit"
-        Me.DataGridViewButtonColumn4.ToolTipText = "Edit"
-        Me.DataGridViewButtonColumn4.UseColumnTextForButtonValue = True
-        Me.DataGridViewButtonColumn4.Visible = False
-        '
-        'DataGridViewTextBoxColumn23
-        '
-        Me.DataGridViewTextBoxColumn23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewTextBoxColumn23.HeaderText = "No."
-        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
-        Me.DataGridViewTextBoxColumn23.ReadOnly = True
-        Me.DataGridViewTextBoxColumn23.Width = 48
-        '
-        'DataGridViewTextBoxColumn24
-        '
-        Me.DataGridViewTextBoxColumn24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewTextBoxColumn24.HeaderText = "Item Code"
-        Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
-        Me.DataGridViewTextBoxColumn24.ReadOnly = True
-        Me.DataGridViewTextBoxColumn24.Width = 79
-        '
-        'DataGridViewTextBoxColumn25
-        '
-        Me.DataGridViewTextBoxColumn25.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewTextBoxColumn25.HeaderText = "Item Description"
-        Me.DataGridViewTextBoxColumn25.Name = "DataGridViewTextBoxColumn25"
-        Me.DataGridViewTextBoxColumn25.ReadOnly = True
-        Me.DataGridViewTextBoxColumn25.Width = 108
-        '
-        'DataGridViewTextBoxColumn26
-        '
-        Me.DataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn26.HeaderText = "Prescription"
-        Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
-        Me.DataGridViewTextBoxColumn26.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn27
-        '
-        Me.DataGridViewTextBoxColumn27.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn27.HeaderText = "Notes"
-        Me.DataGridViewTextBoxColumn27.Name = "DataGridViewTextBoxColumn27"
-        Me.DataGridViewTextBoxColumn27.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn28
-        '
-        Me.DataGridViewTextBoxColumn28.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewTextBoxColumn28.HeaderText = "Unit Price"
-        Me.DataGridViewTextBoxColumn28.Name = "DataGridViewTextBoxColumn28"
-        Me.DataGridViewTextBoxColumn28.ReadOnly = True
-        Me.DataGridViewTextBoxColumn28.Visible = False
-        '
-        'DataGridViewTextBoxColumn29
-        '
-        Me.DataGridViewTextBoxColumn29.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewTextBoxColumn29.HeaderText = "Quantity"
-        Me.DataGridViewTextBoxColumn29.Name = "DataGridViewTextBoxColumn29"
-        Me.DataGridViewTextBoxColumn29.ReadOnly = True
-        Me.DataGridViewTextBoxColumn29.Visible = False
-        '
-        'DataGridViewTextBoxColumn30
-        '
-        Me.DataGridViewTextBoxColumn30.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DataGridViewTextBoxColumn30.HeaderText = "Total Price"
-        Me.DataGridViewTextBoxColumn30.Name = "DataGridViewTextBoxColumn30"
-        Me.DataGridViewTextBoxColumn30.ReadOnly = True
-        Me.DataGridViewTextBoxColumn30.Visible = False
-        '
-        'DataGridViewTextBoxColumn31
-        '
-        Me.DataGridViewTextBoxColumn31.HeaderText = "Item Group"
-        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
-        Me.DataGridViewTextBoxColumn31.ReadOnly = True
-        Me.DataGridViewTextBoxColumn31.Visible = False
-        '
-        'DataGridViewTextBoxColumn32
-        '
-        Me.DataGridViewTextBoxColumn32.HeaderText = "Item Type Code"
-        Me.DataGridViewTextBoxColumn32.Name = "DataGridViewTextBoxColumn32"
-        Me.DataGridViewTextBoxColumn32.ReadOnly = True
-        Me.DataGridViewTextBoxColumn32.Visible = False
-        '
-        'DataGridViewTextBoxColumn33
-        '
-        Me.DataGridViewTextBoxColumn33.HeaderText = "Item Type Description"
-        Me.DataGridViewTextBoxColumn33.Name = "DataGridViewTextBoxColumn33"
-        Me.DataGridViewTextBoxColumn33.ReadOnly = True
-        Me.DataGridViewTextBoxColumn33.Visible = False
-        '
         'GroupBox17
         '
         Me.GroupBox17.Controls.Add(Me.DgvSelectedTreatment)
-        Me.GroupBox17.Location = New System.Drawing.Point(6, 250)
+        Me.GroupBox17.Location = New System.Drawing.Point(504, 6)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(1040, 168)
+        Me.GroupBox17.Size = New System.Drawing.Size(542, 412)
         Me.GroupBox17.TabIndex = 178
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Selected Treatment/Medication"
@@ -707,7 +561,7 @@ Partial Class FrmWardInformation
         Me.DgvSelectedTreatment.Location = New System.Drawing.Point(3, 16)
         Me.DgvSelectedTreatment.Name = "DgvSelectedTreatment"
         Me.DgvSelectedTreatment.ReadOnly = True
-        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(1034, 149)
+        Me.DgvSelectedTreatment.Size = New System.Drawing.Size(536, 393)
         Me.DgvSelectedTreatment.TabIndex = 153
         '
         'BtnTreatmentDeleteItem
@@ -833,7 +687,7 @@ Partial Class FrmWardInformation
         Me.GroupBox16.Controls.Add(Me.Label20)
         Me.GroupBox16.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(492, 238)
+        Me.GroupBox16.Size = New System.Drawing.Size(492, 409)
         Me.GroupBox16.TabIndex = 177
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Select Treatment/Medication"
@@ -2390,8 +2244,6 @@ Partial Class FrmWardInformation
         Me.PnlActionBar.ResumeLayout(False)
         Me.PnlActionBar.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
-        Me.GroupBox29.ResumeLayout(False)
-        CType(Me.DgvMedicationSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox17.ResumeLayout(False)
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox16.ResumeLayout(False)
@@ -2646,20 +2498,5 @@ Partial Class FrmWardInformation
     Friend WithEvents TreatmentItemGroup As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeDescription As DataGridViewTextBoxColumn
-    Friend WithEvents GroupBox29 As GroupBox
-    Friend WithEvents DgvMedicationSummary As DataGridView
-    Friend WithEvents DataGridViewButtonColumn3 As DataGridViewButtonColumn
-    Friend WithEvents DataGridViewButtonColumn4 As DataGridViewButtonColumn
-    Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn26 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn27 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn28 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn29 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn30 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn31 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn32 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn33 As DataGridViewTextBoxColumn
     Friend WithEvents TxtTreatmentSummary As TextBox
 End Class

@@ -60,4 +60,9 @@
             .ShowDialog()
         End With
     End Sub
+
+    Private Sub BtnSearchCustomer_Click(sender As Object, e As EventArgs) Handles BtnSearchCustomer.Click
+        PopulateWardListing()
+    End Sub
+
 End Class

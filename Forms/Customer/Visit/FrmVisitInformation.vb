@@ -97,57 +97,15 @@ Public Class FrmVisitInformation
 #End Region
 
     Private Sub FrmConsultationEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         FORM_NAME = Me.Name
         Me.Text = IIf(FormTitle <> "", FormTitle, Me.Text)
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
-        'PopulateSalutation()
-        'PopulateAnimalType()
-        'PopulateBreed()
-        'PopulateNeuterStatus()
-        'PopulatePetSex()
-        'PopulateVet()
         PopulateTemperament()
         PopulateBodyScore()
         PopulateForm(UserCommand)
 
-        'If UserCommand = "ADD_NEW_CONSULTATION" Then
-        '    Exit Sub
-        'Else
-        '    PopulateForm(UserCommand)
-        'End If
-
     End Sub
-
-    'Private Sub PopulateSalutation()
-
-    '    Dim DtSalute As New DataTable
-    '    Dim ClsCustomer As New ClsCustomer
-    '    Dim CmbSource As New Dictionary(Of String, String)
-
-    '    Try
-    '        DtSalute = ClsCustomer.GetSalutation(ClsCustomer)
-    '        If DtSalute.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DtSalute.Rows.Count - 1
-    '                CmbSource.Add(DtSalute.Rows(i).Item("SaluteCode"), DtSalute.Rows(i).Item("SaluteName"))
-    '            Next
-
-    '            If CmbSalutation.Items.Count > 0 Then
-    '                CmbSalutation.DataSource = Nothing
-    '                CmbSalutation.Items.Clear()
-    '            End If
-
-    '            CmbSalutation.DataSource = New BindingSource(CmbSource, Nothing)
-    '            CmbSalutation.DisplayMember = "Value"
-    '            CmbSalutation.ValueMember = "Key"
-
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateSalutation()")
-    '    End Try
-
-    'End Sub
 
     Private Sub PopulateTemperament()
 
@@ -210,163 +168,6 @@ Public Class FrmVisitInformation
         End Try
 
     End Sub
-
-    'Private Sub PopulateAnimalType()
-
-    '    Dim DtAnimalType As New DataTable
-    '    Dim ClsPet As New ClsPet
-    '    Dim CmbSource As New Dictionary(Of String, String)
-
-    '    Try
-    '        DtAnimalType = ClsPet.GetAnimalType(ClsPet)
-    '        If DtAnimalType.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DtAnimalType.Rows.Count - 1
-    '                CmbSource.Add(DtAnimalType.Rows(i).Item("AnimalTypeCode"), DtAnimalType.Rows(i).Item("AnimalTypeName"))
-    '            Next
-
-    '            If CmbAnimalType.Items.Count > 0 Then
-    '                CmbAnimalType.DataSource = Nothing
-    '                CmbAnimalType.Items.Clear()
-    '            End If
-
-    '            CmbAnimalType.DataSource = New BindingSource(CmbSource, Nothing)
-    '            CmbAnimalType.DisplayMember = "Value"
-    '            CmbAnimalType.ValueMember = "Key"
-
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateAnimalType()")
-    '    End Try
-
-    'End Sub
-
-    'Private Sub PopulateBreed()
-
-    '    Dim DtBreed As New DataTable
-    '    Dim ClsPet As New ClsPet
-    '    Dim CmbSource As New Dictionary(Of String, String)
-
-    '    Try
-    '        ClsPet.AnimalTypeCode = DirectCast(CmbAnimalType.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
-
-    '        DtBreed = ClsPet.GetPetBreed(ClsPet)
-    '        If DtBreed.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DtBreed.Rows.Count - 1
-    '                CmbSource.Add(DtBreed.Rows(i).Item("BreedCode"), DtBreed.Rows(i).Item("BreedName"))
-    '            Next
-
-    '            If CmbBreed.Items.Count > 0 Then
-    '                CmbBreed.DataSource = Nothing
-    '                CmbBreed.Items.Clear()
-    '            End If
-
-    '            CmbBreed.DataSource = New BindingSource(CmbSource, Nothing)
-    '            CmbBreed.DisplayMember = "Value"
-    '            CmbBreed.ValueMember = "Key"
-
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateBreed()")
-    '    End Try
-
-    'End Sub
-
-    'Private Sub PopulatePetSex()
-
-    '    Dim DtPetSex As New DataTable
-    '    Dim ClsPet As New ClsPet
-    '    Dim CmbSource As New Dictionary(Of String, String)
-
-    '    Try
-    '        DtPetSex = ClsPet.GetPetSex(ClsPet)
-    '        If DtPetSex.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DtPetSex.Rows.Count - 1
-    '                CmbSource.Add(DtPetSex.Rows(i).Item("SexCode"), DtPetSex.Rows(i).Item("SexName"))
-    '            Next
-
-    '            If CmbSex.Items.Count > 0 Then
-    '                CmbSex.DataSource = Nothing
-    '                CmbSex.Items.Clear()
-    '            End If
-
-    '            CmbSex.DataSource = New BindingSource(CmbSource, Nothing)
-    '            CmbSex.DisplayMember = "Value"
-    '            CmbSex.ValueMember = "Key"
-
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulatePetSex()")
-    '    End Try
-
-    'End Sub
-
-    'Private Sub PopulateNeuterStatus()
-
-    '    Dim DtPetStatus As New DataTable
-    '    Dim ClsPet As New ClsPet
-    '    Dim CmbSource As New Dictionary(Of String, String)
-
-    '    Try
-    '        DtPetStatus = ClsPet.GetNeuterStatus(ClsPet)
-    '        If DtPetStatus.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DtPetStatus.Rows.Count - 1
-    '                CmbSource.Add(DtPetStatus.Rows(i).Item("NeuterCode"), DtPetStatus.Rows(i).Item("NeuterName"))
-    '            Next
-
-    '            If CmbStatus.Items.Count > 0 Then
-    '                CmbStatus.DataSource = Nothing
-    '                CmbStatus.Items.Clear()
-    '            End If
-
-    '            CmbStatus.DataSource = New BindingSource(CmbSource, Nothing)
-    '            CmbStatus.DisplayMember = "Value"
-    '            CmbStatus.ValueMember = "Key"
-
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmCustomerEntry.PopulateNeuterStatus()")
-    '    End Try
-
-    'End Sub
-
-    'Private Sub PopulateVet()
-
-    '    Dim DtVet As New DataTable
-    '    Dim ClsEmployee As New ClsEmployee
-    '    Dim CmbSource As New Dictionary(Of String, String)
-
-    '    Try
-    '        DtVet = ClsEmployee.GetVet(ClsEmployee)
-    '        If DtVet.Rows.Count > 0 Then
-
-    '            For i As Integer = 0 To DtVet.Rows.Count - 1
-    '                CmbSource.Add(DtVet.Rows(i).Item("EmployeeID"), DtVet.Rows(i).Item("EmployeeName"))
-    '            Next
-
-    '            If CmbVet.Items.Count > 0 Then
-    '                CmbVet.DataSource = Nothing
-    '                CmbVet.Items.Clear()
-    '            End If
-
-    '            CmbVet.DataSource = New BindingSource(CmbSource, Nothing)
-    '            CmbVet.DisplayMember = "Value"
-    '            CmbVet.ValueMember = "Key"
-
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateVet()")
-    '    End Try
-
-    'End Sub
 
     Private Sub PopulateForm(Optional UserCommand As String = Nothing)
 
@@ -555,6 +356,9 @@ Public Class FrmVisitInformation
 
                         End With
 
+                        'Check if invoice created
+
+
                         TxtCreatedBy.Text = DtVisit.Rows(0).Item("CreatedBy")
                         TxtDateCreated.Text = DtVisit.Rows(0).Item("DateCreated")
                         TxtModifiedBy.Text = DtVisit.Rows(0).Item("ModifiedBy")
@@ -620,7 +424,7 @@ Public Class FrmVisitInformation
             Sb = New StringBuilder
             With Sb
                 If Param2 <> "" And Param2 = "POPULATE_CUSTOMER_INFO" Then
-                    If Trim(Param1) <> "" Then 'Param1 = CustomerID
+                    If Trim(Param1) <> "" Then
                         .Append("" & GetOP(StrOP) & " CustomerID LIKE '%" & Param1 & "%' ")
                     End If
                 End If
@@ -642,10 +446,11 @@ Public Class FrmVisitInformation
 
     End Function
 
-    Private Sub SetFields(ByVal ClearCommand As String, Optional ByVal Param1 As String = "")
+    Private Sub SetFields(Optional ClearCommand As String = "", Optional Param1 As String = "")
 
         Try
             Select Case ClearCommand
+
                 Case "SET_PET_FIELDS"
 
                     'TxtPetID.Text = ""

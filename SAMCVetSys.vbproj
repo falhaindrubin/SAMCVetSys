@@ -174,12 +174,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassDb\ClsDbPharmacy.vb" />
     <Compile Include="ClassDb\ClsDbBill.vb" />
     <Compile Include="ClassDb\ClsDbPEFindings.vb" />
+    <Compile Include="ClassDb\ClsDbManagement.vb" />
     <Compile Include="ClassDb\ClsDbTreatment.vb" />
     <Compile Include="ClassDb\ClsDbSurgery.vb" />
     <Compile Include="ClassDb\ClsDbUserRole.vb" />
     <Compile Include="ClassDb\ClsDbWard.vb" />
+    <Compile Include="Class\ClsPharmacy.vb" />
     <Compile Include="Class\ClsBillDetail.vb" />
     <Compile Include="Class\ClsBill.vb" />
     <Compile Include="ClassDb\ClsDbDiagnosis.vb" />
@@ -191,6 +194,7 @@
     <Compile Include="Class\ClsSurgery.vb" />
     <Compile Include="Class\ClsSurgeryDischarge.vb" />
     <Compile Include="Class\ClsSurgeryMaterial.vb" />
+    <Compile Include="Class\ClsPharmacyDetail.vb" />
     <Compile Include="Class\ClsTreatment.vb" />
     <Compile Include="Class\ClsUserRoles.vb" />
     <Compile Include="Class\ClsVisitCharges.vb" />
@@ -230,6 +234,12 @@
     <Compile Include="Forms\Management\Roles\FrmRoleRecords.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Management\Surgery\FrmSurgeryManagement.Designer.vb">
+      <DependentUpon>FrmSurgeryManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Surgery\FrmSurgeryManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Management\Users\FrmUserInformation.Designer.vb">
       <DependentUpon>FrmUserInformation.vb</DependentUpon>
     </Compile>
@@ -240,6 +250,18 @@
       <DependentUpon>FrmUserRecords.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Management\Users\FrmUserRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRequest.Designer.vb">
+      <DependentUpon>FrmPharmacyRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRecords.Designer.vb">
+      <DependentUpon>FrmPharmacyRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRecords.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Search\FrmSearchEmployee.Designer.vb">
@@ -493,11 +515,20 @@
     <EmbeddedResource Include="Forms\Management\Roles\FrmRoleRecords.resx">
       <DependentUpon>FrmRoleRecords.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Surgery\FrmSurgeryManagement.resx">
+      <DependentUpon>FrmSurgeryManagement.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Management\Users\FrmUserInformation.resx">
       <DependentUpon>FrmUserInformation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Management\Users\FrmUserRecords.resx">
       <DependentUpon>FrmUserRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pharmacy\FrmPharmacyRecords.resx">
+      <DependentUpon>FrmPharmacyRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pharmacy\FrmPharmacyRequest.resx">
+      <DependentUpon>FrmPharmacyRequest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Search\FrmSearchEmployee.resx">
       <DependentUpon>FrmSearchEmployee.vb</DependentUpon>

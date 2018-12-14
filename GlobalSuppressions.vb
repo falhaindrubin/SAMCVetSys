@@ -5,3 +5,4 @@
 ' a specific target and scoped to a namespace, type, member, etc.
 
 <Assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification:="<Pending>", Scope:="member", Target:="~F:SAMCVetSys.ClsWardDischarge.DbWard")>
+<Assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification:="<Pending>", Scope:="member", Target:="~F:SAMCVetSys.ClsPharmacyDetail.DbPharmacy")>

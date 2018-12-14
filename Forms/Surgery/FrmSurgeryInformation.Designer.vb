@@ -23,8 +23,8 @@ Partial Class FrmSurgeryInformation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSurgeryInformation))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnSearch = New System.Windows.Forms.Button()
@@ -36,6 +36,7 @@ Partial Class FrmSurgeryInformation
         Me.TcVisitInformation = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox22 = New System.Windows.Forms.GroupBox()
+        Me.TxtSalutation = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -71,17 +72,17 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox32 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedPet = New System.Windows.Forms.DataGridView()
         Me.GroupBox31 = New System.Windows.Forms.GroupBox()
+        Me.TxtVet = New System.Windows.Forms.TextBox()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.DtpVisitDate = New System.Windows.Forms.DateTimePicker()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.DtpVisitTime = New System.Windows.Forms.DateTimePicker()
-        Me.CmbVet = New System.Windows.Forms.ComboBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox26 = New System.Windows.Forms.GroupBox()
         Me.BtnCreateNewEvaluation = New System.Windows.Forms.Button()
         Me.TxtEvaluationDate = New System.Windows.Forms.TextBox()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
-        Me.TxtSurgeon = New System.Windows.Forms.TextBox()
+        Me.CmbSurgeon = New System.Windows.Forms.ComboBox()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
         Me.TxtOtherFindings = New System.Windows.Forms.TextBox()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
@@ -138,6 +139,24 @@ Partial Class FrmSurgeryInformation
         Me.Label35 = New System.Windows.Forms.Label()
         Me.CmbHeartRate = New System.Windows.Forms.ComboBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.GroupBox34 = New System.Windows.Forms.GroupBox()
+        Me.DgvFixedSxMaterials = New System.Windows.Forms.DataGridView()
+        Me.DgvCbSelectItem = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DataGridViewButtonColumn2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.SxMaterialsRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SxMaterialsItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedItem = New System.Windows.Forms.DataGridView()
         Me.BtnMaterialDelete = New System.Windows.Forms.DataGridViewButtonColumn()
@@ -153,8 +172,6 @@ Partial Class FrmSurgeryInformation
         Me.MaterialItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MaterialItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MaterialItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.TxtMaterialPrescription = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TxtMaterialNotes = New System.Windows.Forms.TextBox()
@@ -217,7 +234,6 @@ Partial Class FrmSurgeryInformation
         Me.TxtSpecificInstruction = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.TxtVisitID = New System.Windows.Forms.TextBox()
-        Me.TxtSalutation = New System.Windows.Forms.TextBox()
         Me.SelectedPetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SelectedPetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SelectedPetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -276,9 +292,11 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        Me.GroupBox34.SuspendLayout()
+        CType(Me.DgvFixedSxMaterials, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         CType(Me.DgvSelectedItem, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.GroupBox28.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
@@ -438,10 +456,20 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox22.Controls.Add(Me.TxtPostcode)
         Me.GroupBox22.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox22.Name = "GroupBox22"
-        Me.GroupBox22.Size = New System.Drawing.Size(1161, 550)
+        Me.GroupBox22.Size = New System.Drawing.Size(414, 550)
         Me.GroupBox22.TabIndex = 111
         Me.GroupBox22.TabStop = False
         Me.GroupBox22.Text = "Customer Details"
+        '
+        'TxtSalutation
+        '
+        Me.TxtSalutation.BackColor = System.Drawing.SystemColors.Control
+        Me.TxtSalutation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtSalutation.Location = New System.Drawing.Point(94, 48)
+        Me.TxtSalutation.Name = "TxtSalutation"
+        Me.TxtSalutation.ReadOnly = True
+        Me.TxtSalutation.Size = New System.Drawing.Size(157, 20)
+        Me.TxtSalutation.TabIndex = 111
         '
         'Label1
         '
@@ -694,7 +722,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox30.Controls.Add(Me.DgvPetListing)
         Me.GroupBox30.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox30.Name = "GroupBox30"
-        Me.GroupBox30.Size = New System.Drawing.Size(1161, 550)
+        Me.GroupBox30.Size = New System.Drawing.Size(650, 236)
         Me.GroupBox30.TabIndex = 68
         Me.GroupBox30.TabStop = False
         Me.GroupBox30.Text = "Pet List(s) && Details"
@@ -714,7 +742,7 @@ Partial Class FrmSurgeryInformation
         Me.DgvPetListing.Name = "DgvPetListing"
         Me.DgvPetListing.ReadOnly = True
         Me.DgvPetListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvPetListing.Size = New System.Drawing.Size(1155, 531)
+        Me.DgvPetListing.Size = New System.Drawing.Size(644, 217)
         Me.DgvPetListing.TabIndex = 67
         '
         'TpVisitInformation
@@ -735,7 +763,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox33.Controls.Add(Me.TxtVisitDescription)
         Me.GroupBox33.Location = New System.Drawing.Point(6, 317)
         Me.GroupBox33.Name = "GroupBox33"
-        Me.GroupBox33.Size = New System.Drawing.Size(573, 199)
+        Me.GroupBox33.Size = New System.Drawing.Size(650, 199)
         Me.GroupBox33.TabIndex = 95
         Me.GroupBox33.TabStop = False
         Me.GroupBox33.Text = "Pet Issue(s)"
@@ -748,7 +776,7 @@ Partial Class FrmSurgeryInformation
         Me.TxtVisitDescription.Multiline = True
         Me.TxtVisitDescription.Name = "TxtVisitDescription"
         Me.TxtVisitDescription.ReadOnly = True
-        Me.TxtVisitDescription.Size = New System.Drawing.Size(561, 174)
+        Me.TxtVisitDescription.Size = New System.Drawing.Size(638, 174)
         Me.TxtVisitDescription.TabIndex = 91
         '
         'GroupBox32
@@ -756,7 +784,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox32.Controls.Add(Me.DgvSelectedPet)
         Me.GroupBox32.Location = New System.Drawing.Point(6, 95)
         Me.GroupBox32.Name = "GroupBox32"
-        Me.GroupBox32.Size = New System.Drawing.Size(1161, 216)
+        Me.GroupBox32.Size = New System.Drawing.Size(650, 216)
         Me.GroupBox32.TabIndex = 94
         Me.GroupBox32.TabStop = False
         Me.GroupBox32.Text = "Selected Pet(s)"
@@ -775,22 +803,33 @@ Partial Class FrmSurgeryInformation
         Me.DgvSelectedPet.Name = "DgvSelectedPet"
         Me.DgvSelectedPet.ReadOnly = True
         Me.DgvSelectedPet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSelectedPet.Size = New System.Drawing.Size(1155, 197)
+        Me.DgvSelectedPet.Size = New System.Drawing.Size(644, 197)
         Me.DgvSelectedPet.TabIndex = 84
         '
         'GroupBox31
         '
+        Me.GroupBox31.Controls.Add(Me.TxtVet)
         Me.GroupBox31.Controls.Add(Me.Label31)
         Me.GroupBox31.Controls.Add(Me.DtpVisitDate)
         Me.GroupBox31.Controls.Add(Me.Label30)
         Me.GroupBox31.Controls.Add(Me.DtpVisitTime)
-        Me.GroupBox31.Controls.Add(Me.CmbVet)
         Me.GroupBox31.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox31.Name = "GroupBox31"
-        Me.GroupBox31.Size = New System.Drawing.Size(1161, 83)
+        Me.GroupBox31.Size = New System.Drawing.Size(650, 83)
         Me.GroupBox31.TabIndex = 93
         Me.GroupBox31.TabStop = False
         Me.GroupBox31.Text = "Visit Details"
+        '
+        'TxtVet
+        '
+        Me.TxtVet.BackColor = System.Drawing.Color.Beige
+        Me.TxtVet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtVet.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVet.Location = New System.Drawing.Point(97, 48)
+        Me.TxtVet.Name = "TxtVet"
+        Me.TxtVet.ReadOnly = True
+        Me.TxtVet.Size = New System.Drawing.Size(185, 20)
+        Me.TxtVet.TabIndex = 90
         '
         'Label31
         '
@@ -813,7 +852,7 @@ Partial Class FrmSurgeryInformation
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(10, 53)
+        Me.Label30.Location = New System.Drawing.Point(10, 51)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(85, 14)
         Me.Label30.TabIndex = 87
@@ -829,16 +868,6 @@ Partial Class FrmSurgeryInformation
         Me.DtpVisitTime.ShowUpDown = True
         Me.DtpVisitTime.Size = New System.Drawing.Size(84, 20)
         Me.DtpVisitTime.TabIndex = 88
-        '
-        'CmbVet
-        '
-        Me.CmbVet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CmbVet.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CmbVet.FormattingEnabled = True
-        Me.CmbVet.Location = New System.Drawing.Point(97, 49)
-        Me.CmbVet.Name = "CmbVet"
-        Me.CmbVet.Size = New System.Drawing.Size(185, 22)
-        Me.CmbVet.TabIndex = 89
         '
         'TabPage4
         '
@@ -891,7 +920,7 @@ Partial Class FrmSurgeryInformation
         '
         'GroupBox21
         '
-        Me.GroupBox21.Controls.Add(Me.TxtSurgeon)
+        Me.GroupBox21.Controls.Add(Me.CmbSurgeon)
         Me.GroupBox21.Location = New System.Drawing.Point(240, 6)
         Me.GroupBox21.Name = "GroupBox21"
         Me.GroupBox21.Size = New System.Drawing.Size(269, 54)
@@ -899,15 +928,14 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox21.TabStop = False
         Me.GroupBox21.Text = "Surgeon"
         '
-        'TxtSurgeon
+        'CmbSurgeon
         '
-        Me.TxtSurgeon.BackColor = System.Drawing.Color.White
-        Me.TxtSurgeon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSurgeon.Location = New System.Drawing.Point(6, 21)
-        Me.TxtSurgeon.Name = "TxtSurgeon"
-        Me.TxtSurgeon.ReadOnly = True
-        Me.TxtSurgeon.Size = New System.Drawing.Size(257, 20)
-        Me.TxtSurgeon.TabIndex = 20
+        Me.CmbSurgeon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbSurgeon.FormattingEnabled = True
+        Me.CmbSurgeon.Location = New System.Drawing.Point(6, 20)
+        Me.CmbSurgeon.Name = "CmbSurgeon"
+        Me.CmbSurgeon.Size = New System.Drawing.Size(257, 22)
+        Me.CmbSurgeon.TabIndex = 76
         '
         'GroupBox20
         '
@@ -1454,7 +1482,7 @@ Partial Class FrmSurgeryInformation
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.GroupBox17)
+        Me.TabPage5.Controls.Add(Me.GroupBox34)
         Me.TabPage5.Controls.Add(Me.GroupBox1)
         Me.TabPage5.Location = New System.Drawing.Point(4, 23)
         Me.TabPage5.Name = "TabPage5"
@@ -1464,15 +1492,181 @@ Partial Class FrmSurgeryInformation
         Me.TabPage5.Text = "Surgery Operation/Materials"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'GroupBox34
+        '
+        Me.GroupBox34.Controls.Add(Me.DgvFixedSxMaterials)
+        Me.GroupBox34.Location = New System.Drawing.Point(575, 6)
+        Me.GroupBox34.Name = "GroupBox34"
+        Me.GroupBox34.Size = New System.Drawing.Size(592, 550)
+        Me.GroupBox34.TabIndex = 194
+        Me.GroupBox34.TabStop = False
+        Me.GroupBox34.Text = "Surgery Materials"
+        '
+        'DgvFixedSxMaterials
+        '
+        Me.DgvFixedSxMaterials.AllowUserToAddRows = False
+        Me.DgvFixedSxMaterials.AllowUserToDeleteRows = False
+        Me.DgvFixedSxMaterials.BackgroundColor = System.Drawing.Color.White
+        Me.DgvFixedSxMaterials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvFixedSxMaterials.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DgvCbSelectItem, Me.DataGridViewButtonColumn1, Me.DataGridViewButtonColumn2, Me.SxMaterialsRowNo, Me.SxMaterialsItemCode, Me.SxMaterialsItemDescription, Me.SxMaterialsPrescription, Me.SxMaterialsNotes, Me.SxMaterialsUnitPrice, Me.SxMaterialsQuantity, Me.SxMaterialsTotalPrice, Me.SxMaterialsItemGroup, Me.SxMaterialsItemTypeCode, Me.SxMaterialsItemTypeDescription})
+        Me.DgvFixedSxMaterials.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvFixedSxMaterials.Location = New System.Drawing.Point(3, 16)
+        Me.DgvFixedSxMaterials.Name = "DgvFixedSxMaterials"
+        Me.DgvFixedSxMaterials.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvFixedSxMaterials.Size = New System.Drawing.Size(586, 531)
+        Me.DgvFixedSxMaterials.TabIndex = 172
+        '
+        'DgvCbSelectItem
+        '
+        Me.DgvCbSelectItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvCbSelectItem.HeaderText = "Select"
+        Me.DgvCbSelectItem.Name = "DgvCbSelectItem"
+        Me.DgvCbSelectItem.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DgvCbSelectItem.ToolTipText = "Select Item"
+        Me.DgvCbSelectItem.Width = 43
+        '
+        'DataGridViewButtonColumn1
+        '
+        Me.DataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DataGridViewButtonColumn1.HeaderText = "Delete?"
+        Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
+        Me.DataGridViewButtonColumn1.Text = "Delete"
+        Me.DataGridViewButtonColumn1.UseColumnTextForButtonValue = True
+        Me.DataGridViewButtonColumn1.Visible = False
+        '
+        'DataGridViewButtonColumn2
+        '
+        Me.DataGridViewButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DataGridViewButtonColumn2.HeaderText = "Edit"
+        Me.DataGridViewButtonColumn2.Name = "DataGridViewButtonColumn2"
+        Me.DataGridViewButtonColumn2.Text = "Edit"
+        Me.DataGridViewButtonColumn2.UseColumnTextForButtonValue = True
+        Me.DataGridViewButtonColumn2.Visible = False
+        '
+        'SxMaterialsRowNo
+        '
+        Me.SxMaterialsRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsRowNo.HeaderText = "No."
+        Me.SxMaterialsRowNo.Name = "SxMaterialsRowNo"
+        Me.SxMaterialsRowNo.ReadOnly = True
+        Me.SxMaterialsRowNo.Width = 48
+        '
+        'SxMaterialsItemCode
+        '
+        Me.SxMaterialsItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsItemCode.HeaderText = "Item Code"
+        Me.SxMaterialsItemCode.Name = "SxMaterialsItemCode"
+        Me.SxMaterialsItemCode.ReadOnly = True
+        Me.SxMaterialsItemCode.Visible = False
+        '
+        'SxMaterialsItemDescription
+        '
+        Me.SxMaterialsItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsItemDescription.HeaderText = "Item Description"
+        Me.SxMaterialsItemDescription.Name = "SxMaterialsItemDescription"
+        Me.SxMaterialsItemDescription.ReadOnly = True
+        Me.SxMaterialsItemDescription.Width = 108
+        '
+        'SxMaterialsPrescription
+        '
+        Me.SxMaterialsPrescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.SxMaterialsPrescription.HeaderText = "Prescription"
+        Me.SxMaterialsPrescription.Name = "SxMaterialsPrescription"
+        Me.SxMaterialsPrescription.Visible = False
+        '
+        'SxMaterialsNotes
+        '
+        Me.SxMaterialsNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.SxMaterialsNotes.HeaderText = "Notes"
+        Me.SxMaterialsNotes.Name = "SxMaterialsNotes"
+        '
+        'SxMaterialsUnitPrice
+        '
+        Me.SxMaterialsUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsUnitPrice.HeaderText = "Unit Price"
+        Me.SxMaterialsUnitPrice.Name = "SxMaterialsUnitPrice"
+        Me.SxMaterialsUnitPrice.ReadOnly = True
+        Me.SxMaterialsUnitPrice.Visible = False
+        '
+        'SxMaterialsQuantity
+        '
+        Me.SxMaterialsQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsQuantity.HeaderText = "Quantity"
+        Me.SxMaterialsQuantity.Name = "SxMaterialsQuantity"
+        Me.SxMaterialsQuantity.Width = 72
+        '
+        'SxMaterialsTotalPrice
+        '
+        Me.SxMaterialsTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsTotalPrice.HeaderText = "Total Price"
+        Me.SxMaterialsTotalPrice.Name = "SxMaterialsTotalPrice"
+        Me.SxMaterialsTotalPrice.Visible = False
+        '
+        'SxMaterialsItemGroup
+        '
+        Me.SxMaterialsItemGroup.HeaderText = "Item Group"
+        Me.SxMaterialsItemGroup.Name = "SxMaterialsItemGroup"
+        Me.SxMaterialsItemGroup.Visible = False
+        '
+        'SxMaterialsItemTypeCode
+        '
+        Me.SxMaterialsItemTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsItemTypeCode.HeaderText = "Item Type Code"
+        Me.SxMaterialsItemTypeCode.Name = "SxMaterialsItemTypeCode"
+        Me.SxMaterialsItemTypeCode.Visible = False
+        '
+        'SxMaterialsItemTypeDescription
+        '
+        Me.SxMaterialsItemTypeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SxMaterialsItemTypeDescription.HeaderText = "Item Type Description"
+        Me.SxMaterialsItemTypeDescription.Name = "SxMaterialsItemTypeDescription"
+        Me.SxMaterialsItemTypeDescription.Visible = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.GroupBox17)
+        Me.GroupBox1.Controls.Add(Me.TxtMaterialPrescription)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.TxtMaterialNotes)
+        Me.GroupBox1.Controls.Add(Me.LblRowNo)
+        Me.GroupBox1.Controls.Add(Me.Label39)
+        Me.GroupBox1.Controls.Add(Me.BtnAddMaterialItem)
+        Me.GroupBox1.Controls.Add(Me.BtnSearchItem)
+        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.TxtMaterialUnitPrice)
+        Me.GroupBox1.Controls.Add(Me.TxtMaterialItem)
+        Me.GroupBox1.Controls.Add(Me.Label23)
+        Me.GroupBox1.Controls.Add(Me.TxtMaterialQuantity)
+        Me.GroupBox1.Controls.Add(Me.Label40)
+        Me.GroupBox1.Controls.Add(Me.Label24)
+        Me.GroupBox1.Controls.Add(Me.TxtMaterialTotalPrice)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(563, 550)
+        Me.GroupBox1.TabIndex = 192
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Item Information"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(10, 49)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(64, 14)
+        Me.Label5.TabIndex = 193
+        Me.Label5.Text = "Prescription"
+        '
         'GroupBox17
         '
         Me.GroupBox17.Controls.Add(Me.DgvSelectedItem)
-        Me.GroupBox17.Location = New System.Drawing.Point(6, 255)
+        Me.GroupBox17.Location = New System.Drawing.Point(13, 253)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(1161, 301)
+        Me.GroupBox17.Size = New System.Drawing.Size(303, 211)
         Me.GroupBox17.TabIndex = 193
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Selected Item(s) / Material(s)"
+        Me.GroupBox17.Visible = False
         '
         'DgvSelectedItem
         '
@@ -1486,7 +1680,7 @@ Partial Class FrmSurgeryInformation
         Me.DgvSelectedItem.Name = "DgvSelectedItem"
         Me.DgvSelectedItem.ReadOnly = True
         Me.DgvSelectedItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSelectedItem.Size = New System.Drawing.Size(1155, 282)
+        Me.DgvSelectedItem.Size = New System.Drawing.Size(297, 192)
         Me.DgvSelectedItem.TabIndex = 171
         '
         'BtnMaterialDelete
@@ -1594,40 +1788,6 @@ Partial Class FrmSurgeryInformation
         Me.MaterialItemTypeDescription.ReadOnly = True
         Me.MaterialItemTypeDescription.Visible = False
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.TxtMaterialPrescription)
-        Me.GroupBox1.Controls.Add(Me.Label10)
-        Me.GroupBox1.Controls.Add(Me.TxtMaterialNotes)
-        Me.GroupBox1.Controls.Add(Me.LblRowNo)
-        Me.GroupBox1.Controls.Add(Me.Label39)
-        Me.GroupBox1.Controls.Add(Me.BtnAddMaterialItem)
-        Me.GroupBox1.Controls.Add(Me.BtnSearchItem)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.TxtMaterialUnitPrice)
-        Me.GroupBox1.Controls.Add(Me.TxtMaterialItem)
-        Me.GroupBox1.Controls.Add(Me.Label23)
-        Me.GroupBox1.Controls.Add(Me.TxtMaterialQuantity)
-        Me.GroupBox1.Controls.Add(Me.Label40)
-        Me.GroupBox1.Controls.Add(Me.Label24)
-        Me.GroupBox1.Controls.Add(Me.TxtMaterialTotalPrice)
-        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1161, 243)
-        Me.GroupBox1.TabIndex = 192
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Item Information"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 49)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(64, 14)
-        Me.Label5.TabIndex = 193
-        Me.Label5.Text = "Prescription"
-        '
         'TxtMaterialPrescription
         '
         Me.TxtMaterialPrescription.BackColor = System.Drawing.Color.White
@@ -1660,7 +1820,7 @@ Partial Class FrmSurgeryInformation
         'LblRowNo
         '
         Me.LblRowNo.AutoSize = True
-        Me.LblRowNo.Location = New System.Drawing.Point(562, 30)
+        Me.LblRowNo.Location = New System.Drawing.Point(133, 143)
         Me.LblRowNo.Name = "LblRowNo"
         Me.LblRowNo.Size = New System.Drawing.Size(43, 14)
         Me.LblRowNo.TabIndex = 192
@@ -2269,22 +2429,13 @@ Partial Class FrmSurgeryInformation
         Me.TxtVisitID.Size = New System.Drawing.Size(195, 20)
         Me.TxtVisitID.TabIndex = 89
         '
-        'TxtSalutation
-        '
-        Me.TxtSalutation.BackColor = System.Drawing.Color.Beige
-        Me.TxtSalutation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSalutation.Location = New System.Drawing.Point(94, 48)
-        Me.TxtSalutation.Name = "TxtSalutation"
-        Me.TxtSalutation.ReadOnly = True
-        Me.TxtSalutation.Size = New System.Drawing.Size(157, 20)
-        Me.TxtSalutation.TabIndex = 111
-        '
         'SelectedPetID
         '
         Me.SelectedPetID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.SelectedPetID.HeaderText = "Pet ID"
         Me.SelectedPetID.Name = "SelectedPetID"
         Me.SelectedPetID.ReadOnly = True
+        Me.SelectedPetID.Visible = False
         Me.SelectedPetID.Width = 59
         '
         'SelectedPetName
@@ -2298,9 +2449,9 @@ Partial Class FrmSurgeryInformation
         'SelectedPetDOB
         '
         Me.SelectedPetDOB.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.SelectedPetDOB.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Format = "d"
+        DataGridViewCellStyle9.NullValue = Nothing
+        Me.SelectedPetDOB.DefaultCellStyle = DataGridViewCellStyle9
         Me.SelectedPetDOB.HeaderText = "DOB"
         Me.SelectedPetDOB.Name = "SelectedPetDOB"
         Me.SelectedPetDOB.ReadOnly = True
@@ -2400,6 +2551,7 @@ Partial Class FrmSurgeryInformation
         Me.PetID.HeaderText = "Pet ID"
         Me.PetID.Name = "PetID"
         Me.PetID.ReadOnly = True
+        Me.PetID.Visible = False
         Me.PetID.Width = 59
         '
         'PetName
@@ -2412,9 +2564,9 @@ Partial Class FrmSurgeryInformation
         '
         'PetDOB
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle10.Format = "d"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle10
         Me.PetDOB.HeaderText = "DOB"
         Me.PetDOB.Name = "PetDOB"
         Me.PetDOB.ReadOnly = True
@@ -2513,7 +2665,6 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox26.ResumeLayout(False)
         Me.GroupBox26.PerformLayout()
         Me.GroupBox21.ResumeLayout(False)
-        Me.GroupBox21.PerformLayout()
         Me.GroupBox20.ResumeLayout(False)
         Me.GroupBox20.PerformLayout()
         Me.GroupBox19.ResumeLayout(False)
@@ -2540,10 +2691,12 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
-        Me.GroupBox17.ResumeLayout(False)
-        CType(Me.DgvSelectedItem, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox34.ResumeLayout(False)
+        CType(Me.DgvFixedSxMaterials, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox17.ResumeLayout(False)
+        CType(Me.DgvSelectedItem, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
         Me.GroupBox28.ResumeLayout(False)
         Me.GroupBox28.PerformLayout()
@@ -2602,7 +2755,6 @@ Partial Class FrmSurgeryInformation
     Friend WithEvents DgvPetListing As DataGridView
     Friend WithEvents TpVisitInformation As TabPage
     Friend WithEvents TxtVisitDescription As TextBox
-    Friend WithEvents CmbVet As ComboBox
     Friend WithEvents DtpVisitTime As DateTimePicker
     Friend WithEvents DgvSelectedPet As DataGridView
     Friend WithEvents Label30 As Label
@@ -2683,7 +2835,6 @@ Partial Class FrmSurgeryInformation
     Friend WithEvents TxtOtherFindings As TextBox
     Friend WithEvents LblRowNo As Label
     Friend WithEvents GroupBox21 As GroupBox
-    Friend WithEvents TxtSurgeon As TextBox
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents GroupBox23 As GroupBox
     Friend WithEvents TxtSpecificInstruction As TextBox
@@ -2755,6 +2906,24 @@ Partial Class FrmSurgeryInformation
     Friend WithEvents GroupBox33 As GroupBox
     Friend WithEvents GroupBox32 As GroupBox
     Friend WithEvents TxtSalutation As TextBox
+    Friend WithEvents CmbSurgeon As ComboBox
+    Friend WithEvents TxtVet As TextBox
+    Friend WithEvents GroupBox34 As GroupBox
+    Friend WithEvents DgvFixedSxMaterials As DataGridView
+    Friend WithEvents DgvCbSelectItem As DataGridViewCheckBoxColumn
+    Friend WithEvents DataGridViewButtonColumn1 As DataGridViewButtonColumn
+    Friend WithEvents DataGridViewButtonColumn2 As DataGridViewButtonColumn
+    Friend WithEvents SxMaterialsRowNo As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsItemCode As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsItemDescription As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsPrescription As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsNotes As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsUnitPrice As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsQuantity As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsTotalPrice As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsItemGroup As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsItemTypeCode As DataGridViewTextBoxColumn
+    Friend WithEvents SxMaterialsItemTypeDescription As DataGridViewTextBoxColumn
     Friend WithEvents SelectedPetID As DataGridViewTextBoxColumn
     Friend WithEvents SelectedPetName As DataGridViewTextBoxColumn
     Friend WithEvents SelectedPetDOB As DataGridViewTextBoxColumn

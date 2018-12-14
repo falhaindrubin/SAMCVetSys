@@ -63,7 +63,7 @@ Public Class ClsDbSurgery
                 .Append("'" & SX.LevelOfRisk & "', '" & SX.LevelOfRiskDescription & "', '" & CSQLQuote(SX.SurgeonComments) & "', '" & CSQLQuote(SX.SurgicalPlan) & "', ")
                 .Append("'" & SX.Ref.CreatedBy & "', " & CSQLDateTime(SX.Ref.DateCreated) & ", '" & SX.Ref.ModifiedBy & "', " & CSQLDateTime(SX.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("BodyWeight = '" & SX.BodyWeight & "', BodyScoreCode = '" & SX.BodyScoreCode & "', BodyScoreName = '" & SX.BodyScoreName & "', Temperature = '" & SX.Temperature & "', ")
+                .Append("EmployeeID = '" & SX.EmployeeID & "', EmployeeName = '" & SX.EmployeeName & "', BodyWeight = '" & SX.BodyWeight & "', BodyScoreCode = '" & SX.BodyScoreCode & "', BodyScoreName = '" & SX.BodyScoreName & "', Temperature = '" & SX.Temperature & "', ")
                 .Append("TemperamentCode = '" & SX.TemperamentCode & "', TemperamentName = '" & SX.TemperamentName & "', Pulse = '" & SX.Pulse & "', RespiratoryRate = '" & SX.RespiratoryRate & "', ")
                 .Append("SurgeryDiagnosis = '" & CSQLQuote(SX.SurgeryDiagnosis) & "', IsFasting = '" & SX.IsFasting & "', FastingDescription = '" & CSQLQuote(SX.FastingDescription) & "', ")
                 .Append("IsVaccine = '" & SX.IsVaccine & "', VaccineDescription = '" & SX.VaccineDescription & "', HasVaccineDueDate = '" & SX.HasVaccineDueDate & "', VaccineNextDueDate = " & CSQLDate(SX.VaccineNextDueDate) & ", ")
@@ -175,7 +175,7 @@ Public Class ClsDbSurgery
 
     End Function
 
-    Public Function GetSurgeryMaterials(SX As ClsSurgery) As DataTable
+    Public Function GetSurgeryMaterials(SX As ClsSurgeryMaterial) As DataTable
 
         Dim DtSx As New DataTable
 

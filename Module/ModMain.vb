@@ -13,13 +13,17 @@ Module ModMain
     Public PORT As String
     Public UID As String
     Public PWD As String
+
     Public CURR_USER As String
     Public CURR_EMPLOYEE_NAME As String
     Public CURR_EMPLOYEE_ID As String
     Public CURR_EMPLOYEE_POS As String
-    'Public CURR_USER_EMPID As String
+
     Public FORM_NAME As String
     Public SOFTWARE_VERSION As String
+
+    Public FORM_SOURCE As String
+    'TREATMENT, WARD-TREATMENT, WARD-DISCHARGE, 
 
     Dim Sb As StringBuilder
     Dim Cmd As OdbcCommand
@@ -381,6 +385,45 @@ Module ModMain
                         MsgBox("Failed to generate running number [" & Prefix & "].", MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")
 
                     End If
+
+                Case "RQ"
+                    Sb = New StringBuilder
+                    With Sb
+                        .Append("SELECT LastNo, Prefix2 ")
+                        .Append("FROM samc_runningno ")
+                        .Append("WHERE Prefix = '" & Prefix & "' ")
+                    End With
+
+                    Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                    Da = New OdbcDataAdapter(Cmd)
+                    Da.Fill(DtRunningNo)
+
+                    If DtRunningNo.Rows.Count > 0 Then
+
+                        RunningNo = CInt(DtRunningNo.Rows(0).Item("LastNo")) + 1
+
+                        If RunningNo.ToString.Length < 8 Then
+                            NewRunningNo = Prefix & RunningNo.ToString.PadLeft(8, "0"c)
+                        Else
+                            NewRunningNo = Prefix & RunningNo.ToString
+                        End If
+
+                        'Update RequestID
+                        Sb = New StringBuilder
+                        With Sb
+                            .Append("UPDATE samc_runningno ")
+                            .Append("SET LastNo = '" & RunningNo & "' ")
+                            .Append("WHERE Prefix = '" & Prefix & "' ")
+                        End With
+
+                        Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+                        Cmd.ExecuteNonQuery()
+
+                    Else
+                        MsgBox("Failed to generate running number [" & Prefix & "].", MsgBoxStyle.Critical, "ModMain.GenerateRunningNo()")
+
+                    End If
+
 
             End Select
 

@@ -364,8 +364,8 @@ Public Class ClsSurgery
         Return DbSurgery.GetSurgeryDetail(ClsSurgery)
     End Function
 
-    Public Function GetSurgeryMaterials(ClsSurgery As ClsSurgery) As DataTable
-        Return DbSurgery.GetSurgeryMaterials(ClsSurgery)
+    Public Function GetSurgeryMaterials(ClsSurgeryMaterial As ClsSurgeryMaterial) As DataTable
+        Return DbSurgery.GetSurgeryMaterials(ClsSurgeryMaterial)
     End Function
 
     Public Function UpdateSurgeryStatus(ClsSurgery As ClsSurgery, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean

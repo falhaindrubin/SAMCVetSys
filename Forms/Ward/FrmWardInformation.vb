@@ -217,6 +217,7 @@ Public Class FrmWardInformation
                         CmbFasting.SelectedValue = DvWardDetail(0)("IsFasting")
                         TxtFastingDescription.Text = DvWardDetail(0)("FastingDescription")
                         TxtDailyNotes.Text = DvWardDetail(0)("DailyNotes")
+                        TxtDiagnosis.Text = CStrNull(DvWardDetail(0)("Diagnosis"))
 
                         If DtWardDiagnosisDetail.Rows.Count > 0 Then
 
@@ -240,10 +241,10 @@ Public Class FrmWardInformation
                                 End With
                             Next
 
-                            TxtDiagnosis.Text = DtWardDiagnosis.Rows(0).Item("Diagnosis")
+                            'TxtDiagnosis.Text = DtWardDiagnosisDetail.Rows(0).Item("Diagnosis")
 
                         Else
-                            TxtDiagnosis.Text = ""
+                            'TxtDiagnosis.Text = ""
 
                         End If
 
@@ -1967,6 +1968,26 @@ Public Class FrmWardInformation
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvHourlyList_CellClick()")
+        End Try
+
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        PrintWard()
+    End Sub
+
+    Private Sub PrintWard()
+
+        Try
+            If TxtWardID.Text = "" Then
+                MsgBox("Please select your ward to print.", MsgBoxStyle.Critical, "No Ward Loaded")
+                Exit Sub
+            End If
+
+            Process.Start(My.Application.Info.DirectoryPath & "/Ward.exe", Trim(TxtWardID.Text))
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PrintWard")
         End Try
 
     End Sub

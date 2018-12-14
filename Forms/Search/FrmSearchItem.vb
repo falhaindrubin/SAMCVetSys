@@ -313,7 +313,7 @@
                 End If
             End If
 
-            Me.Hide()
+            Me.Close()
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvSearchResult_CellDoubleClick()")
@@ -322,7 +322,7 @@
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Me.Dispose()
+        'Me.Hide()
         Me.Close()
     End Sub
 

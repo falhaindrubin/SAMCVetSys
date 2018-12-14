@@ -83,9 +83,10 @@ Public Class FrmSurgeryInformation
         'PopulateBreed()
         'PopulatePetStatus()
         'PopulatePetSex()
-        PopulateVet()
+        PopulateVetSurgeon()
         PopulateTemperament()
         PopulateBodyScore()
+        PopulateSurgeryMaterials()
         PopulateSurgeryDiagnosis()
         PopulateForm(UserCommand)
     End Sub
@@ -176,7 +177,9 @@ Public Class FrmSurgeryInformation
 
                         DtpVisitDate.Value = CDate(DtVisit.Rows(0).Item("VisitTime"))
                         DtpVisitTime.Value = CDate(DtVisit.Rows(0).Item("VisitTime"))
-                        CmbVet.SelectedValue = DtVisit.Rows(0).Item("EmployeeID")
+                        'CmbVet.SelectedValue = DtVisit.Rows(0).Item("EmployeeID")
+                        TxtVet.Tag = DtVisit.Rows(0).Item("EmployeeID")
+                        TxtVet.Text = DtVisit.Rows(0).Item("EmployeeName")
                         TxtVisitDescription.Text = DtVisit.Rows(0).Item("VisitDescription")
 
                         With DgvSelectedPet
@@ -253,8 +256,9 @@ Public Class FrmSurgeryInformation
                             TxtEvaluationDate.Text = TodayWardDate
 
                             'Surgeon
-                            TxtSurgeon.Tag = CStrNull(DvSxDx(0)("EmployeeID"))
-                            TxtSurgeon.Text = CStrNull(DvSxDx(0)("EmployeeName"))
+                            'TxtSurgeon.Tag = CStrNull(DvSxDx(0)("EmployeeID"))
+                            'TxtSurgeon.Text = CStrNull(DvSxDx(0)("EmployeeName"))
+                            CmbSurgeon.SelectedValue = CStrNull(DvSxDx(0)("EmployeeID"))
 
                             'Physical examination
                             TxtTemperature.Text = DvSxDx(0)("Temperature") 'DtSxDx.Rows(0).Item("Temperature")
@@ -303,11 +307,11 @@ Public Class FrmSurgeryInformation
 
                 'Populate surgery materials
                 Dim DtSxMaterials As New DataTable
-                ClsSurgery = New ClsSurgery
-                With ClsSurgery
+                Dim ClsSurgeryMaterial As New ClsSurgeryMaterial
+                With ClsSurgeryMaterial
 
                     .CaseID = CaseID
-                    DtSxMaterials = .GetSurgeryMaterials(ClsSurgery)
+                    DtSxMaterials = .GetSurgeryMaterials(ClsSurgeryMaterial)
                     If DtSxMaterials.Rows.Count > 0 Then
 
                         With DgvSelectedItem
@@ -384,8 +388,9 @@ Public Class FrmSurgeryInformation
                     DtUser = .GetUserInformation(ClsUser)
 
                     If DtUser.Rows.Count > 0 Then
-                        TxtSurgeon.Tag = DtUser.Rows(0).Item("EmployeeID")
-                        TxtSurgeon.Text = DtUser.Rows(0).Item("EmployeeName")
+                        'TxtSurgeon.Tag = DtUser.Rows(0).Item("EmployeeID")
+                        'TxtSurgeon.Text = DtUser.Rows(0).Item("EmployeeName")
+                        CmbSurgeon.SelectedValue = DtUser.Rows(0).Item("EmployeeID")
                     End If
 
                 End With
@@ -782,7 +787,7 @@ Public Class FrmSurgeryInformation
 
     End Sub
 
-    Private Sub PopulateVet()
+    Private Sub PopulateVetSurgeon()
 
         Dim DtVet As New DataTable
         Dim ClsEmployee As New ClsEmployee
@@ -796,29 +801,101 @@ Public Class FrmSurgeryInformation
                     CmbSource.Add(DtVet.Rows(i).Item("EmployeeID"), DtVet.Rows(i).Item("EmployeeName"))
                 Next
 
-                If CmbVet.Items.Count > 0 Then
-                    CmbVet.DataSource = Nothing
-                    CmbVet.Items.Clear()
-                End If
-
-                CmbVet.DataSource = New BindingSource(CmbSource, Nothing)
-                CmbVet.DisplayMember = "Value"
-                CmbVet.ValueMember = "Key"
-
-                'Populate vet surgeon
-                'If CmbSurgeon.Items.Count > 0 Then
-                '    CmbSurgeon.DataSource = Nothing
-                '    CmbSurgeon.Items.Clear()
+                'If CmbVet.Items.Count > 0 Then
+                '    CmbVet.DataSource = Nothing
+                '    CmbVet.Items.Clear()
                 'End If
 
-                'CmbSurgeon.DataSource = New BindingSource(CmbSource, Nothing)
-                'CmbSurgeon.DisplayMember = "Value"
-                'CmbSurgeon.ValueMember = "Key"
+                'CmbVet.DataSource = New BindingSource(CmbSource, Nothing)
+                'CmbVet.DisplayMember = "Value"
+                'CmbVet.ValueMember = "Key"
+
+                'Populate vet surgeon
+                If CmbSurgeon.Items.Count > 0 Then
+                    CmbSurgeon.DataSource = Nothing
+                    CmbSurgeon.Items.Clear()
+                End If
+
+                CmbSurgeon.DataSource = New BindingSource(CmbSource, Nothing)
+                CmbSurgeon.DisplayMember = "Value"
+                CmbSurgeon.ValueMember = "Key"
 
             End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateVet()")
+        End Try
+
+    End Sub
+
+    Private Sub PopulateSurgeryMaterials()
+
+        Try
+            Dim ClsSurgeryMaterial As New ClsSurgeryMaterial
+            Dim DtSxMaterials As New DataTable
+            Dim DtSelectedSxMaterials As New DataTable
+
+            With ClsSurgeryMaterial
+
+                .CaseID = CaseID
+
+                DtSxMaterials = .GetSurgeryMaterialsMgmt(ClsSurgeryMaterial)
+
+                If CaseID <> "" Then
+                    DtSelectedSxMaterials = .GetSurgeryMaterials(ClsSurgeryMaterial)
+                End If
+
+                If DtSxMaterials.Rows.Count > 0 Then
+
+                    For i As Integer = 0 To DtSxMaterials.Rows.Count - 1
+
+                        With DgvFixedSxMaterials
+                            .Rows.Add()
+                            .Rows(i).Cells("SxMaterialsRowNo").Value = DtSxMaterials.Rows(i).Item("RowNo")
+                            .Rows(i).Cells("SxMaterialsItemCode").Value = DtSxMaterials.Rows(i).Item("ItemCode")
+                            .Rows(i).Cells("SxMaterialsItemDescription").Value = DtSxMaterials.Rows(i).Item("ItemDescription")
+                            .Rows(i).Cells("SxMaterialsUnitPrice").Value = DtSxMaterials.Rows(i).Item("UnitPrice")
+                            .Rows(i).Cells("SxMaterialsQuantity").Value = DtSxMaterials.Rows(i).Item("Quantity")
+                            .Rows(i).Cells("SxMaterialsTotalPrice").Value = DtSxMaterials.Rows(i).Item("TotalPrice")
+                            .Rows(i).Cells("SxMaterialsItemGroup").Value = DtSxMaterials.Rows(i).Item("ItemGroup")
+                            .Rows(i).Cells("SxMaterialsItemTypeCode").Value = DtSxMaterials.Rows(i).Item("ItemTypeCode")
+                            .Rows(i).Cells("SxMaterialsItemTypeDescription").Value = DtSxMaterials.Rows(i).Item("ItemTypeDescription")
+                            .Rows(i).Cells("SxMaterialsPrescription").Value = DtSxMaterials.Rows(i).Item("Prescription")
+                            .Rows(i).Cells("SxMaterialsNotes").Value = DtSxMaterials.Rows(i).Item("Notes")
+                        End With
+
+                    Next
+
+                End If
+
+                'Check previously selected surgery materials
+                If DtSelectedSxMaterials.Rows.Count > 0 Then
+
+                    For i As Integer = 0 To DtSelectedSxMaterials.Rows.Count - 1
+
+                        For j As Integer = 0 To DgvFixedSxMaterials.Rows.Count - 1
+
+                            If DtSelectedSxMaterials.Rows(i).Item("ItemCode") = DgvFixedSxMaterials.Rows(j).Cells("SxMaterialsItemCode").Value Then
+
+                                DgvFixedSxMaterials.Rows(j).Cells("DgvCbSelectItem").Value = True
+                                Exit For
+
+                            End If
+
+                        Next
+
+                    Next
+                Else
+                    For i As Integer = 0 To DgvFixedSxMaterials.Rows.Count - 1
+                        DgvFixedSxMaterials.Rows(i).Cells("DgvCbSelectItem").Value = False
+                    Next
+
+                End If
+
+            End With
+
+        Catch ex As Exception
+
         End Try
 
     End Sub
@@ -935,8 +1012,8 @@ Public Class FrmSurgeryInformation
 
                 .CaseID = CaseID
                 .EvaluationDate = CDate(TxtEvaluationDate.Text)
-                .EmployeeID = Trim(TxtSurgeon.Tag)
-                .EmployeeName = Trim(TxtSurgeon.Text)
+                .EmployeeID = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Key.ToString 'Trim(TxtSurgeon.Tag)
+                .EmployeeName = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Value.ToString 'Trim(TxtSurgeon.Tag) 'Trim(TxtSurgeon.Text)
                 .BodyWeight = IIf(Trim(TxtBodyWeight.Text) = "", 0, Trim(TxtBodyWeight.Text))
                 .BodyScoreCode = DirectCast(CmbBodyScore.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
                 .BodyScoreName = BodyScoreName
@@ -992,38 +1069,44 @@ Public Class FrmSurgeryInformation
 
             'Add surgery materials
             Dim ClsSurgeryMaterial As New ClsSurgeryMaterial
-            If DgvSelectedItem.Rows.Count > 0 Then
+            If DgvFixedSxMaterials.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DgvSelectedItem.Rows.Count - 1
+                For i As Integer = 0 To DgvFixedSxMaterials.Rows.Count - 1
 
-                    With ClsSurgeryMaterial
-                        .CaseID = CaseID
-                        .SurgeryDate = Now
-                        .EmployeeID = Trim(TxtSurgeon.Tag)
-                        .EmployeeName = Trim(TxtSurgeon.Text)
-                        .RowNo = DgvSelectedItem.Rows(i).Cells("MaterialRowNo").Value
-                        .ItemCode = DgvSelectedItem.Rows(i).Cells("MaterialItemCode").Value
-                        .ItemDescription = DgvSelectedItem.Rows(i).Cells("MaterialItemDescription").Value
-                        .ItemGroup = DgvSelectedItem.Rows(i).Cells("MaterialItemGroup").Value
-                        .ItemTypeCode = DgvSelectedItem.Rows(i).Cells("MaterialItemTypeCode").Value
-                        .ItemTypeDescription = DgvSelectedItem.Rows(i).Cells("MaterialItemTypeDescription").Value
-                        .UnitPrice = DgvSelectedItem.Rows(i).Cells("MaterialUnitPrice").Value
-                        .Quantity = DgvSelectedItem.Rows(i).Cells("MaterialQuantity").Value
-                        .TotalPrice = DgvSelectedItem.Rows(i).Cells("MaterialTotalPrice").Value
-                        .Ref.CreatedBy = CURR_USER
-                        .Ref.DateCreated = Now
-                        .Ref.ModifiedBy = CURR_USER
-                        .Ref.DateModified = Now
+                    'ctype(dgvChooseQs.Rows(0).findcontrol("whateverYourCheckBoxIsNamed"), checkbox).checked
+                    'CBool(DirectCast(TheGrid.Rows(i).Cells("CheckOut"), DataGridViewCheckBoxCell).Value) = True
+                    If CBool(DirectCast(DgvFixedSxMaterials.Rows(i).Cells("DgvCbSelectItem"), DataGridViewCheckBoxCell).Value) = True Then
 
-                        If Not .AddNewSurgeryMaterial(ClsSurgeryMaterial, DbConn, DbTrans) Then
-                            MsgBox("Failed to add surgery materials information.", MsgBoxStyle.Critical, "Add Surgery Materials Error")
-                            DbTrans.Rollback()
-                            DbTrans.Dispose()
-                            DbTrans = Nothing
-                            Return False
-                        End If
+                        With ClsSurgeryMaterial
+                            .CaseID = CaseID
+                            .SurgeryDate = Now
+                            .EmployeeID = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Key.ToString 'Trim(TxtSurgeon.Tag) 'Trim(TxtSurgeon.Tag)
+                            .EmployeeName = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Value.ToString 'Trim(TxtSurgeon.Tag) 'Trim(TxtSurgeon.Text)
+                            .RowNo = i + 1 'DgvSelectedItem.Rows(i).Cells("MaterialRowNo").Value
+                            .ItemCode = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemCode").Value
+                            .ItemDescription = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemDescription").Value
+                            .ItemGroup = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemGroup").Value
+                            .ItemTypeCode = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemTypeCode").Value
+                            .ItemTypeDescription = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemTypeDescription").Value
+                            .UnitPrice = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsUnitPrice").Value
+                            .Quantity = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsQuantity").Value
+                            .TotalPrice = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsTotalPrice").Value
+                            .Ref.CreatedBy = CURR_USER
+                            .Ref.DateCreated = Now
+                            .Ref.ModifiedBy = CURR_USER
+                            .Ref.DateModified = Now
 
-                    End With
+                            If Not .AddNewSurgeryMaterial(ClsSurgeryMaterial, DbConn, DbTrans) Then
+                                MsgBox("Failed to add surgery materials information.", MsgBoxStyle.Critical, "Add Surgery Materials Error")
+                                DbTrans.Rollback()
+                                DbTrans.Dispose()
+                                DbTrans = Nothing
+                                Return False
+                            End If
+
+                        End With
+
+                    End If
 
                 Next
 
@@ -1080,8 +1163,8 @@ Public Class FrmSurgeryInformation
                 With ClsSurgeryDischarge
                     .CaseID = CaseID
                     .SurgeryDate = Now
-                    .EmployeeID = TxtSurgeon.Tag
-                    .EmployeeName = TxtSurgeon.Text
+                    .EmployeeID = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Key.ToString 'Trim(TxtSurgeon.Tag) 'TxtSurgeon.Tag
+                    .EmployeeName = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Value.ToString 'Trim(TxtSurgeon.Tag) 'TxtSurgeon.Text
                     .SpecificInstruction = Trim(TxtSpecificInstruction.Text)
                     .MedicationPrescribe = Trim(TxtMedicationPrescribe.Text)
                     .ItemCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemCode").Value
@@ -1545,8 +1628,10 @@ Public Class FrmSurgeryInformation
                 .UserID = CURR_USER
                 DtUser = .GetUserInformation(ClsUser)
                 If DtUser.Rows.Count > 0 Then
-                    TxtSurgeon.Text = DtUser.Rows(0).Item("EmployeeName")
-                    TxtSurgeon.Tag = DtUser.Rows(0).Item("EmployeeID")
+                    'TxtSurgeon.Text = DtUser.Rows(0).Item("EmployeeName")
+                    'TxtSurgeon.Tag = DtUser.Rows(0).Item("EmployeeID")
+                    'DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Key.ToString 'Trim(TxtSurgeon.Tag)
+                    CmbSurgeon.SelectedValue = DtUser.Rows(0).Item("EmployeeID")
                 End If
             End With
 
@@ -1588,10 +1673,6 @@ Public Class FrmSurgeryInformation
 
     End Sub
 
-
-
 #End Region
-
-
 
 End Class

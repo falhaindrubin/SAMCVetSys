@@ -221,6 +221,7 @@ Public Class ClsDbWard
             With Sb
                 .Append("SELECT a.WardID, AdmissionDate, CustomerID, CustomerName, PetID, PetName, PetCase, IsDischarged, DischargeDate, WardDuration, ")
                 .Append("WardDate, Appetite, AppetiteDescription, Bowel, BowelDescription, Urine, UrineDescription, Vomit, VomitDescription, Food, IsFasting, FastingDescription, DailyNotes, ")
+                .Append("Diagnosis, ")
 
                 If W.GetTodayVet = "1" Then
                     .Append("b.CreatedBy, b.DateCreated, b.ModifiedBy, b.DateModified ")

@@ -110,11 +110,14 @@ Partial Class FrmPharmacyRecords
         Me.DgvPharmacyRecords.AllowUserToAddRows = False
         Me.DgvPharmacyRecords.AllowUserToDeleteRows = False
         Me.DgvPharmacyRecords.BackgroundColor = System.Drawing.Color.White
+        Me.DgvPharmacyRecords.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvPharmacyRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvPharmacyRecords.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvPharmacyRecords.Location = New System.Drawing.Point(3, 16)
+        Me.DgvPharmacyRecords.MultiSelect = False
         Me.DgvPharmacyRecords.Name = "DgvPharmacyRecords"
         Me.DgvPharmacyRecords.ReadOnly = True
+        Me.DgvPharmacyRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvPharmacyRecords.Size = New System.Drawing.Size(978, 611)
         Me.DgvPharmacyRecords.TabIndex = 0
         '

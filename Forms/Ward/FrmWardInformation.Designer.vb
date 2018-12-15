@@ -64,6 +64,7 @@ Partial Class FrmWardInformation
         Me.TreatmentItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TreatmentItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.BtnSendToPharmacy = New System.Windows.Forms.Button()
         Me.LblTreatmentRowNo = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -691,6 +692,15 @@ Partial Class FrmWardInformation
         Me.GroupBox16.TabIndex = 177
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Select Treatment/Medication"
+        '
+        'BtnSendToPharmacy
+        '
+        Me.BtnSendToPharmacy.Location = New System.Drawing.Point(439, 68)
+        Me.BtnSendToPharmacy.Name = "BtnSendToPharmacy"
+        Me.BtnSendToPharmacy.Size = New System.Drawing.Size(226, 23)
+        Me.BtnSendToPharmacy.TabIndex = 178
+        Me.BtnSendToPharmacy.Text = "Send To Pharmacy..."
+        Me.BtnSendToPharmacy.UseVisualStyleBackColor = True
         '
         'LblTreatmentRowNo
         '
@@ -2208,6 +2218,7 @@ Partial Class FrmWardInformation
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.BtnSendToPharmacy)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.TxtCase)
         Me.GroupBox1.Controls.Add(Me.Label23)
@@ -2499,4 +2510,5 @@ Partial Class FrmWardInformation
     Friend WithEvents TreatmentItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents TreatmentItemTypeDescription As DataGridViewTextBoxColumn
     Friend WithEvents TxtTreatmentSummary As TextBox
+    Friend WithEvents BtnSendToPharmacy As Button
 End Class

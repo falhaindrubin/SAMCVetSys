@@ -13,13 +13,13 @@ Public Class FrmWardInformation
         End Set
     End Property
 
-    Private _VisitID As String
-    Public Property VisitID As String
+    Private _RequestID As String
+    Public Property RequestID As String
         Get
-            Return _VisitID
+            Return _RequestID
         End Get
         Set(value As String)
-            _VisitID = value
+            _RequestID = value
         End Set
     End Property
 
@@ -107,6 +107,7 @@ Public Class FrmWardInformation
 
     Private Sub FrmWard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
+        FORM_SOURCE = "WARD"
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
         PopulateDPE()
         PopulateForm(UserCommand)
@@ -121,12 +122,10 @@ Public Class FrmWardInformation
         Dim DtWardSummary As New DataTable
         Dim DtInvoice As New DataTable
 
-
         Dim ClsWard As New ClsWard
         Dim ClsBill As New ClsBill
         Dim ClsWardDiagnosis As New ClsWardDiagnosis
         Dim ClsWardTreatment As New ClsWardTreatment
-
 
         Try
             TxtWardHourlyTime.Text = Now
@@ -1991,5 +1990,195 @@ Public Class FrmWardInformation
         End Try
 
     End Sub
+
+    Private Sub BtnSendToPharmacy_Click(sender As Object, e As EventArgs) Handles BtnSendToPharmacy.Click
+        If Not SendRequestToPharmacy() Then Exit Sub
+    End Sub
+
+    Private Function SendRequestToPharmacy() As Boolean
+
+        Dim GenRequestID As String = ""
+
+        Try
+            Dim UserResponse As MsgBoxResult
+            UserResponse = MsgBox("Are sure you want to send request to pharmacy?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Send Request To Pharmacy?")
+
+            If UserResponse = MsgBoxResult.Yes Then
+
+                If DgvSelectedTreatment.Rows.Count = 0 Then
+                    MsgBox("Please complete your medication list before requesting.", MsgBoxStyle.Exclamation, "No Medication Request Specified")
+                    Return False
+                End If
+
+                If DbTrans IsNot Nothing Then
+                    DbTrans = Nothing
+                End If
+
+                DbTrans = DbConn.BeginTransaction
+
+                GenRequestID = IIf(BtnSendToPharmacy.Tag <> "", BtnSendToPharmacy.Tag, GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+
+                If GenRequestID = "" Then
+                    MsgBox("Failed to generate Request ID.", MsgBoxStyle.Critical, "Request ID Generation Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+                Dim ClsPharmacy As New ClsPharmacy
+                With ClsPharmacy
+                    .RequestID = GenRequestID
+                    .VisitID = TxtWardID.Text
+                    .RequestDate = Now
+                    .Source = FORM_SOURCE
+                    .RqEmpID = CURR_EMPLOYEE_ID
+                    .RqEmpName = CURR_EMPLOYEE_NAME
+                    .PhEmpID = ""
+                    .PhEmpName = ""
+                    .ApprovalDate = Nothing
+                    .IsCompleted = "0"
+                    .Ref.CreatedBy = CURR_USER
+                    .Ref.DateCreated = Now
+                    .Ref.ModifiedBy = CURR_USER
+                    .Ref.DateModified = Now
+
+                    If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
+                        MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
+                End With
+
+                'Ward Treatment
+                Dim ClsPharmacyDetail As New ClsPharmacyDetail
+                If DgvSelectedTreatment.Rows.Count > 0 Then
+
+                    For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+
+                        ClsPharmacyDetail = New ClsPharmacyDetail
+                        With ClsPharmacyDetail
+                            .RequestID = GenRequestID
+                            .VisitID = TxtWardID.Text
+                            .RowNo = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
+                            .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
+                            .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
+                            .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
+                            .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
+                            .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
+                            .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
+                            .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                            .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
+                            .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
+                            .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
+                            .Ref.CreatedBy = CURR_USER
+                            .Ref.DateCreated = Now
+                            .Ref.ModifiedBy = CURR_USER
+                            .Ref.DateModified = Now
+
+                            If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
+                                MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                                DbTrans.Rollback()
+                                DbTrans.Dispose()
+                                DbTrans = Nothing
+                                Return False
+                            End If
+                        End With
+
+                    Next
+
+                End If
+
+                'Ward Medication
+                If DgvDischargeMedication.Rows.Count > 0 Then
+
+                    ClsPharmacy = New ClsPharmacy
+                    With ClsPharmacy
+                        .RequestID = GenRequestID
+                        .VisitID = TxtWardID.Text
+                        .RequestDate = Now
+                        .Source = FORM_SOURCE & "-DISCHARGE"
+                        .RqEmpID = CURR_EMPLOYEE_ID
+                        .RqEmpName = CURR_EMPLOYEE_NAME
+                        .PhEmpID = ""
+                        .PhEmpName = ""
+                        .ApprovalDate = Nothing
+                        .IsCompleted = "0"
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
+                            MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+
+                    For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
+
+                        ClsPharmacyDetail = New ClsPharmacyDetail
+                        With ClsPharmacyDetail
+                            .RequestID = GenRequestID
+                            .VisitID = TxtWardID.Text
+                            .RowNo = DgvSelectedTreatment.Rows(i).Cells("MedicationRowNo").Value
+                            .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
+                            .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
+                            .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
+                            .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
+                            .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
+                            .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
+                            .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                            .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
+                            .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
+                            .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
+                            .Ref.CreatedBy = CURR_USER
+                            .Ref.DateCreated = Now
+                            .Ref.ModifiedBy = CURR_USER
+                            .Ref.DateModified = Now
+
+                            If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
+                                MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                                DbTrans.Rollback()
+                                DbTrans.Dispose()
+                                DbTrans = Nothing
+                                Return False
+                            End If
+                        End With
+
+                    Next
+
+                End If
+
+            End If
+
+            BtnSendToPharmacy.Tag = GenRequestID
+            RequestID = GenRequestID
+
+            DbTrans.Commit()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+
+            MsgBox("Your pharmacy request has been successfully sent!", MsgBoxStyle.Information, "Pharmacy Request Sent")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SendRequestToPharmacy()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+            Return False
+        End Try
+
+        Return True
+
+
+    End Function
 
 End Class

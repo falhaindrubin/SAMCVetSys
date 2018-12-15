@@ -107,9 +107,9 @@ Partial Class FrmTreatmentInformation
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.BtnSendToPharmacy = New System.Windows.Forms.Button()
         Me.LblInvoiceNo = New System.Windows.Forms.Label()
         Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
-        Me.BtnSendToPharmacy = New System.Windows.Forms.Button()
         Me.PnlActionBar.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -639,6 +639,7 @@ Partial Class FrmTreatmentInformation
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.BtnSendToPharmacy)
         Me.GroupBox5.Controls.Add(Me.Label12)
         Me.GroupBox5.Controls.Add(Me.Label18)
         Me.GroupBox5.Controls.Add(Me.LblRowNo)
@@ -977,7 +978,6 @@ Partial Class FrmTreatmentInformation
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.BtnSendToPharmacy)
         Me.GroupBox1.Controls.Add(Me.LblInvoiceNo)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.CbIsAdmittedToWard)
@@ -993,6 +993,15 @@ Partial Class FrmTreatmentInformation
         Me.GroupBox1.TabIndex = 99
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer && Pet Information"
+        '
+        'BtnSendToPharmacy
+        '
+        Me.BtnSendToPharmacy.Location = New System.Drawing.Point(531, 205)
+        Me.BtnSendToPharmacy.Name = "BtnSendToPharmacy"
+        Me.BtnSendToPharmacy.Size = New System.Drawing.Size(186, 23)
+        Me.BtnSendToPharmacy.TabIndex = 100
+        Me.BtnSendToPharmacy.Text = "Send To Pharmacy..."
+        Me.BtnSendToPharmacy.UseVisualStyleBackColor = True
         '
         'LblInvoiceNo
         '
@@ -1013,15 +1022,6 @@ Partial Class FrmTreatmentInformation
         Me.CbIsAdmittedToWard.Text = "Ward Admission"
         Me.CbIsAdmittedToWard.UseVisualStyleBackColor = True
         Me.CbIsAdmittedToWard.Visible = False
-        '
-        'BtnSendToPharmacy
-        '
-        Me.BtnSendToPharmacy.Location = New System.Drawing.Point(558, 16)
-        Me.BtnSendToPharmacy.Name = "BtnSendToPharmacy"
-        Me.BtnSendToPharmacy.Size = New System.Drawing.Size(186, 23)
-        Me.BtnSendToPharmacy.TabIndex = 100
-        Me.BtnSendToPharmacy.Text = "Send To Pharmacy..."
-        Me.BtnSendToPharmacy.UseVisualStyleBackColor = True
         '
         'FrmTreatmentInformation
         '

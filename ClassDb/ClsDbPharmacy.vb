@@ -23,6 +23,7 @@ Public Class ClsDbPharmacy
                 .Append("('" & P.RequestID & "', '" & P.VisitID & "', '" & P.Source & "', " & CSQLDateTime(P.RequestDate) & ", '" & P.RqEmpID & "', '" & P.RqEmpName & "', '" & P.PhEmpID & "', '" & P.PhEmpName & "', " & CSQLDateTime(P.ApprovalDate) & ", '" & P.IsCompleted & "', ")
                 .Append("'" & P.Ref.CreatedBy & "', " & CSQLDateTime(P.Ref.DateCreated) & ", '" & P.Ref.ModifiedBy & "', " & CSQLDateTime(P.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
+                .Append("PhEmpID = '" & P.PhEmpID & "', PhEmpName = '" & P.PhEmpName & "', ApprovalDate = " & CSQLDateTime(P.ApprovalDate) & ", IsCompleted = '" & P.IsCompleted & "', ")
                 .Append("ModifiedBy = '" & P.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(P.Ref.DateModified) & " ")
             End With
 

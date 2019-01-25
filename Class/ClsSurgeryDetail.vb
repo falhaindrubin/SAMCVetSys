@@ -6,6 +6,8 @@ Public Class ClsSurgeryDetail
 
     Dim DbSurgery As New ClsDbSurgery
 
+#Region "Property"
+
     Private _CaseID As String
     Public Property CaseID As String
         Get
@@ -16,12 +18,12 @@ Public Class ClsSurgeryDetail
         End Set
     End Property
 
-    Private _EvaluationDate As Date
-    Public Property EvaluationDate As Date
+    Private _EvaluationDate As DateTime
+    Public Property EvaluationDate As DateTime
         Get
             Return _EvaluationDate
         End Get
-        Set(value As Date)
+        Set(value As DateTime)
             _EvaluationDate = value
         End Set
     End Property
@@ -446,6 +448,8 @@ Public Class ClsSurgeryDetail
         End Set
     End Property
 
+#End Region
+
     Public Function AddNewSurgeryDetail(ClsSurgeryDetail As ClsSurgeryDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbSurgery.AddNewSurgeryDetail(ClsSurgeryDetail, DbConn, DbTrans)
     End Function
@@ -498,6 +502,5 @@ Public Class ClsSurgeryDetail
 
 
 #End Region
-
 
 End Class

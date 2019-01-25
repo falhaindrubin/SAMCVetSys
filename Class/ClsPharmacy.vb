@@ -125,6 +125,11 @@ Public Class ClsPharmacy
         Return DbPharmacy.AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans)
     End Function
 
+    'Update pharmacy request
+    Public Function UpdatePharmacyRequest(ClsPharmacy As ClsPharmacy, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbPharmacy.UpdatePharmacyRequest(ClsPharmacy, DbConn, DbTrans)
+    End Function
+
     'Get pharmacy header
     Public Function GetPharmacyRequest(ClsPharcmacy As ClsPharmacy) As DataTable
         Return DbPharmacy.GetPharmacyRequest(ClsPharcmacy)

@@ -23,7 +23,7 @@ Partial Class FrmCustomerInformation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCustomerInformation))
         Me.CmbSalutation = New System.Windows.Forms.ComboBox()
         Me.TxtMobileNo = New System.Windows.Forms.TextBox()
@@ -131,7 +131,7 @@ Partial Class FrmCustomerInformation
         'TxtMobileNo
         '
         Me.TxtMobileNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtMobileNo.Location = New System.Drawing.Point(94, 127)
+        Me.TxtMobileNo.Location = New System.Drawing.Point(94, 124)
         Me.TxtMobileNo.Name = "TxtMobileNo"
         Me.TxtMobileNo.Size = New System.Drawing.Size(305, 20)
         Me.TxtMobileNo.TabIndex = 5
@@ -139,7 +139,7 @@ Partial Class FrmCustomerInformation
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(9, 130)
+        Me.Label8.Location = New System.Drawing.Point(9, 127)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(78, 14)
         Me.Label8.TabIndex = 17
@@ -148,7 +148,7 @@ Partial Class FrmCustomerInformation
         'TxtAddress2
         '
         Me.TxtAddress2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddress2.Location = New System.Drawing.Point(94, 217)
+        Me.TxtAddress2.Location = New System.Drawing.Point(94, 216)
         Me.TxtAddress2.Name = "TxtAddress2"
         Me.TxtAddress2.Size = New System.Drawing.Size(305, 20)
         Me.TxtAddress2.TabIndex = 8
@@ -156,7 +156,7 @@ Partial Class FrmCustomerInformation
         'TxtAddress3
         '
         Me.TxtAddress3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddress3.Location = New System.Drawing.Point(94, 239)
+        Me.TxtAddress3.Location = New System.Drawing.Point(94, 237)
         Me.TxtAddress3.Name = "TxtAddress3"
         Me.TxtAddress3.Size = New System.Drawing.Size(305, 20)
         Me.TxtAddress3.TabIndex = 9
@@ -164,7 +164,7 @@ Partial Class FrmCustomerInformation
         'TxtAddress4
         '
         Me.TxtAddress4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAddress4.Location = New System.Drawing.Point(94, 261)
+        Me.TxtAddress4.Location = New System.Drawing.Point(94, 258)
         Me.TxtAddress4.Name = "TxtAddress4"
         Me.TxtAddress4.Size = New System.Drawing.Size(305, 20)
         Me.TxtAddress4.TabIndex = 10
@@ -189,7 +189,7 @@ Partial Class FrmCustomerInformation
         'TxtTelNo
         '
         Me.TxtTelNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTelNo.Location = New System.Drawing.Point(94, 105)
+        Me.TxtTelNo.Location = New System.Drawing.Point(94, 103)
         Me.TxtTelNo.Name = "TxtTelNo"
         Me.TxtTelNo.Size = New System.Drawing.Size(305, 20)
         Me.TxtTelNo.TabIndex = 4
@@ -197,7 +197,7 @@ Partial Class FrmCustomerInformation
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(9, 108)
+        Me.Label6.Location = New System.Drawing.Point(9, 106)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(75, 14)
         Me.Label6.TabIndex = 10
@@ -214,7 +214,7 @@ Partial Class FrmCustomerInformation
         'TxtNRICPassportNo
         '
         Me.TxtNRICPassportNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNRICPassportNo.Location = New System.Drawing.Point(94, 83)
+        Me.TxtNRICPassportNo.Location = New System.Drawing.Point(94, 82)
         Me.TxtNRICPassportNo.Name = "TxtNRICPassportNo"
         Me.TxtNRICPassportNo.Size = New System.Drawing.Size(305, 20)
         Me.TxtNRICPassportNo.TabIndex = 3
@@ -231,7 +231,7 @@ Partial Class FrmCustomerInformation
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 86)
+        Me.Label3.Location = New System.Drawing.Point(9, 85)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(76, 14)
         Me.Label3.TabIndex = 3
@@ -437,9 +437,9 @@ Partial Class FrmCustomerInformation
         '
         'PetDOB
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle10.Format = "d"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle10
         Me.PetDOB.HeaderText = "DOB"
         Me.PetDOB.Name = "PetDOB"
         Me.PetDOB.ReadOnly = True
@@ -567,7 +567,7 @@ Partial Class FrmCustomerInformation
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(9, 371)
+        Me.Label22.Location = New System.Drawing.Point(9, 368)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(45, 14)
         Me.Label22.TabIndex = 110
@@ -576,7 +576,7 @@ Partial Class FrmCustomerInformation
         'TxtCountry
         '
         Me.TxtCountry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCountry.Location = New System.Drawing.Point(94, 368)
+        Me.TxtCountry.Location = New System.Drawing.Point(94, 365)
         Me.TxtCountry.Name = "TxtCountry"
         Me.TxtCountry.Size = New System.Drawing.Size(157, 20)
         Me.TxtCountry.TabIndex = 14
@@ -584,7 +584,7 @@ Partial Class FrmCustomerInformation
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(9, 327)
+        Me.Label21.Location = New System.Drawing.Point(9, 326)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(25, 14)
         Me.Label21.TabIndex = 108
@@ -593,7 +593,7 @@ Partial Class FrmCustomerInformation
         'TxtCity
         '
         Me.TxtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCity.Location = New System.Drawing.Point(94, 324)
+        Me.TxtCity.Location = New System.Drawing.Point(94, 323)
         Me.TxtCity.Name = "TxtCity"
         Me.TxtCity.Size = New System.Drawing.Size(157, 20)
         Me.TxtCity.TabIndex = 12
@@ -601,7 +601,7 @@ Partial Class FrmCustomerInformation
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(9, 349)
+        Me.Label20.Location = New System.Drawing.Point(9, 347)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(32, 14)
         Me.Label20.TabIndex = 106
@@ -610,7 +610,7 @@ Partial Class FrmCustomerInformation
         'TxtState
         '
         Me.TxtState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtState.Location = New System.Drawing.Point(94, 346)
+        Me.TxtState.Location = New System.Drawing.Point(94, 344)
         Me.TxtState.Name = "TxtState"
         Me.TxtState.Size = New System.Drawing.Size(157, 20)
         Me.TxtState.TabIndex = 13
@@ -635,7 +635,7 @@ Partial Class FrmCustomerInformation
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(9, 152)
+        Me.Label16.Location = New System.Drawing.Point(9, 148)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(31, 14)
         Me.Label16.TabIndex = 102
@@ -644,7 +644,7 @@ Partial Class FrmCustomerInformation
         'TxtEmail
         '
         Me.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmail.Location = New System.Drawing.Point(94, 149)
+        Me.TxtEmail.Location = New System.Drawing.Point(94, 145)
         Me.TxtEmail.Name = "TxtEmail"
         Me.TxtEmail.Size = New System.Drawing.Size(305, 20)
         Me.TxtEmail.TabIndex = 6
@@ -819,6 +819,7 @@ Partial Class FrmCustomerInformation
         Me.BtnPrint.Size = New System.Drawing.Size(60, 60)
         Me.BtnPrint.TabIndex = 4
         Me.BtnPrint.UseVisualStyleBackColor = False
+        Me.BtnPrint.Visible = False
         '
         'BtnClose
         '

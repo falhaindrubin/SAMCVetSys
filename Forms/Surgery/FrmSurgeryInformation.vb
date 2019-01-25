@@ -306,37 +306,39 @@ Public Class FrmSurgeryInformation
                 End With
 
                 'Populate surgery materials
-                Dim DtSxMaterials As New DataTable
-                Dim ClsSurgeryMaterial As New ClsSurgeryMaterial
-                With ClsSurgeryMaterial
+                'Dim DtSxMaterials As New DataTable
+                'Dim ClsSurgeryMaterial As New ClsSurgeryMaterial
+                'With ClsSurgeryMaterial
 
-                    .CaseID = CaseID
-                    DtSxMaterials = .GetSurgeryMaterials(ClsSurgeryMaterial)
-                    If DtSxMaterials.Rows.Count > 0 Then
+                '    .CaseID = CaseID
+                '    DtSxMaterials = .GetSurgeryMaterials(ClsSurgeryMaterial)
+                '    If DtSxMaterials.Rows.Count > 0 Then
 
-                        With DgvSelectedItem
+                '        With DgvFixedSxMaterials
 
-                            If .Rows.Count > 0 Then
-                                .Rows.Clear()
-                            End If
+                '            If .Rows.Count > 0 Then
+                '                .Rows.Clear()
+                '            End If
 
-                            For i As Integer = 0 To DtSxMaterials.Rows.Count - 1
-                                .Rows.Add()
-                                .Rows(i).Cells("MaterialRowNo").Value = DtSxMaterials.Rows(i).Item("RowNo")
-                                .Rows(i).Cells("MaterialItemCode").Value = DtSxMaterials.Rows(i).Item("ItemCode")
-                                .Rows(i).Cells("MaterialItemDescription").Value = DtSxMaterials.Rows(i).Item("ItemDescription")
-                                .Rows(i).Cells("MaterialItemGroup").Value = DtSxMaterials.Rows(i).Item("ItemGroup")
-                                .Rows(i).Cells("MaterialItemTypeCode").Value = DtSxMaterials.Rows(i).Item("ItemTypeCode")
-                                .Rows(i).Cells("MaterialItemTypeDescription").Value = DtSxMaterials.Rows(i).Item("ItemTypeDescription")
-                                .Rows(i).Cells("MaterialUnitPrice").Value = DtSxMaterials.Rows(i).Item("UnitPrice")
-                                .Rows(i).Cells("MaterialQuantity").Value = DtSxMaterials.Rows(i).Item("Quantity")
-                                .Rows(i).Cells("MaterialTotalPrice").Value = DtSxMaterials.Rows(i).Item("TotalPrice")
-                            Next
+                '            For i As Integer = 0 To DtSxMaterials.Rows.Count - 1
+                '                .Rows.Add()
+                '                .Rows(i).Cells("SxMaterialsRowNo").Value = DtSxMaterials.Rows(i).Item("RowNo")
+                '                .Rows(i).Cells("SxMaterialsItemCode").Value = DtSxMaterials.Rows(i).Item("ItemCode")
+                '                .Rows(i).Cells("SxMaterialsItemDescription").Value = DtSxMaterials.Rows(i).Item("ItemDescription")
+                '                .Rows(i).Cells("SxMaterialsPrescription").Value = DtSxMaterials.Rows(i).Item("Prescription")
+                '                .Rows(i).Cells("SxMaterialsNotes").Value = DtSxMaterials.Rows(i).Item("Notes")
+                '                .Rows(i).Cells("SxMaterialsItemGroup").Value = DtSxMaterials.Rows(i).Item("ItemGroup")
+                '                .Rows(i).Cells("SxMaterialsItemTypeCode").Value = DtSxMaterials.Rows(i).Item("ItemTypeCode")
+                '                .Rows(i).Cells("SxMaterialsItemTypeDescription").Value = DtSxMaterials.Rows(i).Item("ItemTypeDescription")
+                '                .Rows(i).Cells("SxMaterialsUnitPrice").Value = DtSxMaterials.Rows(i).Item("UnitPrice")
+                '                .Rows(i).Cells("SxMaterialsQuantity").Value = DtSxMaterials.Rows(i).Item("Quantity")
+                '                .Rows(i).Cells("SxMaterialsTotalPrice").Value = DtSxMaterials.Rows(i).Item("TotalPrice")
+                '            Next
 
-                        End With
+                '        End With
 
-                    End If
-                End With
+                '    End If
+                'End With
 
                 'Populate surgery dischare information
                 Dim DtSxDischarge As New DataTable
@@ -350,7 +352,7 @@ Public Class FrmSurgeryInformation
                         TxtMedicationPrescribe.Text = CStrNull(DtSxDischarge.Rows(0).Item("MedicationPrescribe"))
 
                         CbHasReviewDate.Checked = IIf(CStrNull(DtSxDischarge.Rows(0).Item("HasReviewDate") = "1"), True, False)
-                        DtpReviewDate.Enabled = IIf(CStrNull(DtSxDischarge.Rows(0).Item("HasReviewDate") = "1"), True, False)
+                        DtpReviewDate.Enabled = IIf(CStrNull(DtSxDischarge.Rows(0).Item("HasReviewDate") = "1"), False, True)
                         DtpReviewDate.Value = DtSxDischarge.Rows(0).Item("ReviewDate")
 
                         With DgvSelectedSurgery
@@ -878,6 +880,7 @@ Public Class FrmSurgeryInformation
                             If DtSelectedSxMaterials.Rows(i).Item("ItemCode") = DgvFixedSxMaterials.Rows(j).Cells("SxMaterialsItemCode").Value Then
 
                                 DgvFixedSxMaterials.Rows(j).Cells("DgvCbSelectItem").Value = True
+                                DgvFixedSxMaterials.Rows(j).Cells("SxMaterialsNotes").Value = DtSelectedSxMaterials.Rows(i).Item("Notes")
                                 Exit For
 
                             End If
@@ -1085,6 +1088,8 @@ Public Class FrmSurgeryInformation
                             .RowNo = i + 1 'DgvSelectedItem.Rows(i).Cells("MaterialRowNo").Value
                             .ItemCode = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemCode").Value
                             .ItemDescription = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemDescription").Value
+                            .Prescription = ""
+                            .Notes = CStrNull(DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsNotes").Value)
                             .ItemGroup = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemGroup").Value
                             .ItemTypeCode = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemTypeCode").Value
                             .ItemTypeDescription = DgvFixedSxMaterials.Rows(i).Cells("SxMaterialsItemTypeDescription").Value
@@ -1138,8 +1143,33 @@ Public Class FrmSurgeryInformation
                 If DgvSelectedSurgery.Rows.Count > 0 Then
 
                     'Update type of operation used in surgery
-                    With ClsSurgery
+                    'With ClsSurgery
+                    '    .CaseID = CaseID
+                    '    .ItemCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemCode").Value
+                    '    .ItemDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemDescription").Value
+                    '    .ItemGroup = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemGroup").Value
+                    '    .ItemTypeCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemTypeCode").Value
+                    '    .ItemTypeDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemTypeDescription").Value
+                    '    .UnitPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryUnitPrice").Value
+                    '    .Quantity = DgvSelectedSurgery.Rows(0).Cells("SurgeryQuantity").Value
+                    '    .TotalPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryTotalPrice").Value
+
+                    '    'If Not .UpdateSurgeryOperation(ClsSurgery, DbConn, DbTrans) Then
+                    '    '    MsgBox("Failed to update surgery operation information.", MsgBoxStyle.Critical, "Surgery Operation Update Error")
+                    '    '    DbTrans.Rollback()
+                    '    '    DbTrans.Dispose()
+                    '    '    DbTrans = Nothing
+                    '    '    Return False
+                    '    'End If
+                    'End With
+
+                    With ClsSurgeryDischarge
                         .CaseID = CaseID
+                        .SurgeryDate = Now
+                        .EmployeeID = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Key.ToString 'Trim(TxtSurgeon.Tag) 'TxtSurgeon.Tag
+                        .EmployeeName = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Value.ToString 'Trim(TxtSurgeon.Tag) 'TxtSurgeon.Text
+                        .SpecificInstruction = Trim(TxtSpecificInstruction.Text)
+                        .MedicationPrescribe = Trim(TxtMedicationPrescribe.Text)
                         .ItemCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemCode").Value
                         .ItemDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemDescription").Value
                         .ItemGroup = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemGroup").Value
@@ -1148,49 +1178,33 @@ Public Class FrmSurgeryInformation
                         .UnitPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryUnitPrice").Value
                         .Quantity = DgvSelectedSurgery.Rows(0).Cells("SurgeryQuantity").Value
                         .TotalPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryTotalPrice").Value
+                        .DischargeDate = Now
+                        .HasReviewDate = IIf(CbHasReviewDate.Checked = True, "1", "0")
+                        .ReviewDate = DtpReviewDate.Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
 
-                        'If Not .UpdateSurgeryOperation(ClsSurgery, DbConn, DbTrans) Then
-                        '    MsgBox("Failed to update surgery operation information.", MsgBoxStyle.Critical, "Surgery Operation Update Error")
-                        '    DbTrans.Rollback()
-                        '    DbTrans.Dispose()
-                        '    DbTrans = Nothing
-                        '    Return False
-                        'End If
+                        If Not .AddNewSurgeryDischarge(ClsSurgeryDischarge, DbConn, DbTrans) Then
+                            MsgBox("Failed to update surgery discharge details.", MsgBoxStyle.Critical, "Surgery Discharge Update Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
                     End With
 
+                Else
+                    MsgBox("Please select your type of surgery. Surgery discharge will be not updated.", MsgBoxStyle.Exclamation, "Select Surgery Type")
+                    RbIsOnGoing.Checked = True
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+
                 End If
-
-                With ClsSurgeryDischarge
-                    .CaseID = CaseID
-                    .SurgeryDate = Now
-                    .EmployeeID = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Key.ToString 'Trim(TxtSurgeon.Tag) 'TxtSurgeon.Tag
-                    .EmployeeName = DirectCast(CmbSurgeon.SelectedItem, KeyValuePair(Of String, String)).Value.ToString 'Trim(TxtSurgeon.Tag) 'TxtSurgeon.Text
-                    .SpecificInstruction = Trim(TxtSpecificInstruction.Text)
-                    .MedicationPrescribe = Trim(TxtMedicationPrescribe.Text)
-                    .ItemCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemCode").Value
-                    .ItemDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemDescription").Value
-                    .ItemGroup = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemGroup").Value
-                    .ItemTypeCode = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemTypeCode").Value
-                    .ItemTypeDescription = DgvSelectedSurgery.Rows(0).Cells("SurgeryItemTypeDescription").Value
-                    .UnitPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryUnitPrice").Value
-                    .Quantity = DgvSelectedSurgery.Rows(0).Cells("SurgeryQuantity").Value
-                    .TotalPrice = DgvSelectedSurgery.Rows(0).Cells("SurgeryTotalPrice").Value
-                    .DischargeDate = Now
-                    .ReviewDate = DtpReviewDate.Value
-                    .Ref.CreatedBy = CURR_USER
-                    .Ref.DateCreated = Now
-                    .Ref.ModifiedBy = CURR_USER
-                    .Ref.DateModified = Now
-
-                    If Not .AddNewSurgeryDischarge(ClsSurgeryDischarge, DbConn, DbTrans) Then
-                        MsgBox("Failed to update surgery discharge details.", MsgBoxStyle.Critical, "Surgery Discharge Update Error")
-                        DbTrans.Rollback()
-                        DbTrans.Dispose()
-                        DbTrans = Nothing
-                        Return False
-                    End If
-
-                End With
 
             End If
 
@@ -1669,6 +1683,26 @@ Public Class FrmSurgeryInformation
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CreateNewEvaluation()")
+        End Try
+
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        PrintSurgery()
+    End Sub
+
+    Private Sub PrintSurgery()
+
+        Try
+            If TxtVisitID.Text = "" Then
+                MsgBox("Please select your surgery to print.", MsgBoxStyle.Critical, "No Surgery Loaded")
+                Exit Sub
+            End If
+
+            Process.Start(My.Application.Info.DirectoryPath & "/Surgery.exe", Trim(TxtVisitID.Text))
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PrintSurgery")
         End Try
 
     End Sub

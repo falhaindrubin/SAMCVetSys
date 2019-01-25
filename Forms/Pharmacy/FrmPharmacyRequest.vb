@@ -67,7 +67,7 @@
             Dim DtPharmacyRqDetail As New DataTable
             Dim ClsPharmacy As New ClsPharmacy
 
-            If RequestID <> "" Then
+            If VisitID <> "" Then 'RequestID
 
                 With ClsPharmacy
 
@@ -127,9 +127,8 @@
 
             End If
 
-
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")
         End Try
 
     End Sub
@@ -137,6 +136,8 @@
     Private Function SaveRequestToDb() As Boolean
 
         Try
+            If Not CheckFields() Then Return False
+
             If DbTrans IsNot Nothing Then
                 DbTrans = Nothing
             End If
@@ -144,25 +145,19 @@
             DbTrans = DbConn.BeginTransaction
 
             Dim ClsPharmacy As New ClsPharmacy
-            Dim ClsPharmacyDetail As New ClsPharmacyDetail
+            'Dim ClsPharmacyDetail As New ClsPharmacyDetail
 
-            'Save/update request header
             With ClsPharmacy
-                .RequestID = IIf(TxtRequestID.Text <> "", TxtRequestID.Text, RequestID)
                 .VisitID = IIf(TxtVisitID.Text <> "", TxtVisitID.Text, VisitID)
-                .RequestDate = TxtRequestDate.Text
-                .RqEmpID = TxtVet.Tag
-                .RqEmpName = TxtVet.Text
+                .RequestID = IIf(TxtRequestID.Text <> "", TxtRequestID.Text, RequestID)
                 .PhEmpID = IIf(TxtInCharge.Tag <> "", TxtInCharge.Tag, CURR_EMPLOYEE_ID)
                 .PhEmpName = IIf(TxtInCharge.Text <> "", TxtInCharge.Text, CURR_EMPLOYEE_NAME)
+                .IsCompleted = "1"
                 .ApprovalDate = Now
-                .IsCompleted = IIf(CbIsCompleted.Checked = True, "1", "0")
-                .Ref.CreatedBy = CURR_USER
-                .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
 
-                If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
+                If Not .UpdatePharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
                     MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
                     DbTrans.Rollback()
                     DbTrans.Dispose()
@@ -172,43 +167,72 @@
 
             End With
 
+            '.Append("SET PhEmpID = '" & P.PhEmpID & "', PhEmpName = '" & P.PhEmpName & "', ApprovalDate = " & CSQLDateTime(P.ApprovalDate) & ", IsCompleted = '" & P.IsCompleted & "', ")
+            '.Append("ModifiedBy = '" & P.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(P.Ref.DateModified) & " ")
+
+            'Save/update request header
+            'With ClsPharmacy
+            '    .RequestID = IIf(TxtRequestID.Text <> "", TxtRequestID.Text, RequestID)
+            '    .VisitID = IIf(TxtVisitID.Text <> "", TxtVisitID.Text, VisitID)
+            '    .RequestDate = TxtRequestDate.Text
+            '    .RqEmpID = TxtVet.Tag
+            '    .RqEmpName = TxtVet.Text
+            '    .PhEmpID = IIf(TxtInCharge.Tag <> "", TxtInCharge.Tag, CURR_EMPLOYEE_ID)
+            '    .PhEmpName = IIf(TxtInCharge.Text <> "", TxtInCharge.Text, CURR_EMPLOYEE_NAME)
+            '    .ApprovalDate = Now
+            '    .IsCompleted = "1" 'IIf(CbIsCompleted.Checked = True, "1", "0")
+            '    .Ref.CreatedBy = CURR_USER
+            '    .Ref.DateCreated = Now
+            '    .Ref.ModifiedBy = CURR_USER
+            '    .Ref.DateModified = Now
+
+            '    If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
+            '        MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+            '        DbTrans.Rollback()
+            '        DbTrans.Dispose()
+            '        DbTrans = Nothing
+            '        Return False
+            '    End If
+
+            'End With
+
             'Save/update details
-            If DgvPharmacyRequest.Rows.Count > 0 Then
+            'If DgvPharmacyRequest.Rows.Count > 0 Then
 
-                For i As Integer = 0 To DgvPharmacyRequest.Rows.Count - 1
+            '    For i As Integer = 0 To DgvPharmacyRequest.Rows.Count - 1
 
-                    With ClsPharmacyDetail
-                        .RequestID = IIf(TxtRequestID.Text <> "", TxtRequestID.Text, RequestID)
-                        .VisitID = IIf(TxtVisitID.Text <> "", TxtVisitID.Text, VisitID)
-                        .RowNo = DgvPharmacyRequest.Rows(i).Cells("RqRowNo").Value
-                        .ItemCode = DgvPharmacyRequest.Rows(i).Cells("RqItemCode").Value
-                        .ItemDescription = DgvPharmacyRequest.Rows(i).Cells("RqItemDescription").Value
-                        .ItemGroup = DgvPharmacyRequest.Rows(i).Cells("RqItemGroup").Value
-                        .ItemTypeCode = DgvPharmacyRequest.Rows(i).Cells("RqItemTypeCode").Value
-                        .ItemTypeDescription = DgvPharmacyRequest.Rows(i).Cells("RqItemTypeDescription").Value
-                        .Prescription = DgvPharmacyRequest.Rows(i).Cells("RqPrescription").Value
-                        .Notes = DgvPharmacyRequest.Rows(i).Cells("RqNotes").Value
-                        .UnitPrice = DgvPharmacyRequest.Rows(i).Cells("RqUnitPrice").Value
-                        .Quantity = DgvPharmacyRequest.Rows(i).Cells("RqQuantity").Value
-                        .TotalPrice = DgvPharmacyRequest.Rows(i).Cells("RqTotalPrice").Value
-                        .Ref.CreatedBy = CURR_USER
-                        .Ref.DateCreated = Now
-                        .Ref.ModifiedBy = CURR_USER
-                        .Ref.DateModified = Now
+            '        With ClsPharmacyDetail
+            '            .RequestID = IIf(TxtRequestID.Text <> "", TxtRequestID.Text, RequestID)
+            '            .VisitID = IIf(TxtVisitID.Text <> "", TxtVisitID.Text, VisitID)
+            '            .RowNo = DgvPharmacyRequest.Rows(i).Cells("RqRowNo").Value
+            '            .ItemCode = DgvPharmacyRequest.Rows(i).Cells("RqItemCode").Value
+            '            .ItemDescription = DgvPharmacyRequest.Rows(i).Cells("RqItemDescription").Value
+            '            .ItemGroup = DgvPharmacyRequest.Rows(i).Cells("RqItemGroup").Value
+            '            .ItemTypeCode = DgvPharmacyRequest.Rows(i).Cells("RqItemTypeCode").Value
+            '            .ItemTypeDescription = DgvPharmacyRequest.Rows(i).Cells("RqItemTypeDescription").Value
+            '            .Prescription = DgvPharmacyRequest.Rows(i).Cells("RqPrescription").Value
+            '            .Notes = DgvPharmacyRequest.Rows(i).Cells("RqNotes").Value
+            '            .UnitPrice = DgvPharmacyRequest.Rows(i).Cells("RqUnitPrice").Value
+            '            .Quantity = DgvPharmacyRequest.Rows(i).Cells("RqQuantity").Value
+            '            .TotalPrice = DgvPharmacyRequest.Rows(i).Cells("RqTotalPrice").Value
+            '            .Ref.CreatedBy = CURR_USER
+            '            .Ref.DateCreated = Now
+            '            .Ref.ModifiedBy = CURR_USER
+            '            .Ref.DateModified = Now
 
-                        If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
-                            MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
-                            DbTrans.Rollback()
-                            DbTrans.Dispose()
-                            DbTrans = Nothing
-                            Return False
-                        End If
+            '            If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
+            '                MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+            '                DbTrans.Rollback()
+            '                DbTrans.Dispose()
+            '                DbTrans = Nothing
+            '                Return False
+            '            End If
 
-                    End With
+            '        End With
 
-                Next
+            '    Next
 
-            End If
+            'End If
 
             DbTrans.Commit()
             DbTrans.Dispose()
@@ -227,6 +251,9 @@
                 TxtDateModified.Text = .Ref.DateModified
                 TxtApprovalDate.Text = .ApprovalDate
             End With
+
+            CbIsCompleted.Checked = True
+            CbIsCompleted.Enabled = False
 
             MsgBox("Your pharmacy request has been successfully updated!", MsgBoxStyle.Information, "Pharmacy Request Updated")
 
@@ -371,24 +398,35 @@
     Private Function CheckFields(Optional FieldSource As String = "") As Boolean
 
         Try
+            'Check if visit information is populated
             If TxtVisitID.Text = "" Then
                 MsgBox("Please select customer visit.", MsgBoxStyle.Exclamation, "No Customer Visit Selected")
                 Return False
             End If
 
-            If TxtItem.Text = "" Or TxtItem.Tag = "" Then
-                MsgBox("Please select item.", MsgBoxStyle.Exclamation, "No Item Selected")
-                Return False
-            End If
+            If DgvPharmacyRequest.Rows.Count > 0 Then
 
-            For i As Integer = 0 To DgvPharmacyRequest.Rows.Count - 1
+                For i As Integer = 0 To DgvPharmacyRequest.Rows.Count - 1
 
-                If TxtItem.Tag = DgvPharmacyRequest.Rows(i).Cells("RqItemCode").Value Then
-                    MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
+                    If TxtItem.Tag = DgvPharmacyRequest.Rows(i).Cells("RqItemCode").Value Then
+                        MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
+                        Return False
+                    End If
+
+                Next
+
+            Else
+                If TxtItem.Text = "" Or TxtItem.Tag = "" Then
+                    MsgBox("Please select item.", MsgBoxStyle.Exclamation, "No Item Selected")
                     Return False
                 End If
 
-            Next
+            End If
+
+            If CbIsCompleted.Checked = True Then
+                MsgBox("Your already approved this request.", MsgBoxStyle.Exclamation, "Request Approved")
+                Return False
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CheckFields()")

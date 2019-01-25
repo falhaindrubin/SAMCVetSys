@@ -3,7 +3,10 @@ Imports System.Data.Odbc
 Imports System
 
 Public Class ClsBillDetail
-    ReadOnly DbBill As New ClsDbBill
+
+    Dim DbBill As New ClsDbBill
+
+#Region "Property"
 
     Private _InvoiceNo As String
     Public Property InvoiceNo As String
@@ -144,6 +147,28 @@ Public Class ClsBillDetail
             _TotalPrice = value
         End Set
     End Property
+
+    Private _ChSource As String
+    Public Property ChSource As String
+        Get
+            Return _ChSource
+        End Get
+        Set(value As String)
+            _ChSource = value
+        End Set
+    End Property
+
+    Private _ChSourceName As String
+    Public Property ChSourceName As String
+        Get
+            Return _ChSourceName
+        End Get
+        Set(value As String)
+            _ChSourceName = value
+        End Set
+    End Property
+
+#End Region
 
     Public Function AddNewBillDetail(ClsBillDetail As ClsBillDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbBill.AddNewBillDetail(ClsBillDetail, DbConn, DbTrans)

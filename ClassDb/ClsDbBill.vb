@@ -51,14 +51,14 @@ Public Class ClsDbBill
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_billingdetail ")
-                .Append("(InvoiceNo, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice) ")
+                .Append("(InvoiceNo, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice, ChSource, ChSourceName) ")
                 .Append("VALUES ")
                 .Append("('" & BL.InvoiceNo & "', '" & BL.RowNo & "', '" & BL.ItemCode & "', '" & CSQLQuote(BL.ItemDescription) & "', '" & BL.ItemGroup & "', '" & BL.ItemTypeCode & "', '" & BL.ItemTypeDescription & "', '" & CSQLQuote(BL.Prescription) & "', ")
-                .Append("'" & BL.Notes & "', '" & BL.Quantity & "', '" & BL.UnitPrice & "', '" & BL.TotalPrice & "') ")
+                .Append("'" & BL.Notes & "', '" & BL.Quantity & "', '" & BL.UnitPrice & "', '" & BL.TotalPrice & "', '" & BL.ChSource & "', '" & BL.ChSourceName & "') ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 '.Append("ItemCode = '" & BL.ItemCode & "', ItemDescription = '" & CSQLQuote(BL.ItemDescription) & "', ItemGroup = '" & BL.ItemGroup & "', ItemTypeCode = '" & BL.ItemTypeCode & "', ItemTypeDescription = '" & BL.ItemTypeDescription & "', ")
                 .Append("Prescription = '" & CSQLQuote(BL.Prescription) & "', Notes = '" & CSQLQuote(BL.Notes) & "', Quantity = '" & BL.Quantity & "', UnitPrice = '" & BL.UnitPrice & "', ")
-                .Append("TotalPrice = '" & BL.TotalPrice & "' ")
+                .Append("TotalPrice = '" & BL.TotalPrice & "', ChSource = '" & BL.ChSource & "', ChSourceName = '" & BL.ChSourceName & "' ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -112,7 +112,8 @@ Public Class ClsDbBill
                 .Append("SELECT a.InvoiceNo, a.VisitID, InvoiceDate, CustomerID, CustomerName, PetID, PetName, Discount, GrandTotal, Deposit, TotalDue, ")
                 .Append("IsPaymentComplete, IsCash, IsDebitCreditCard, IsCheque, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified, ")
-                .Append("RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice ")
+                .Append("RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, Quantity, UnitPrice, TotalPrice, ")
+                .Append("ChSource, ChSourceName ")
                 .Append("FROM samc_billing a ")
                 .Append("INNER JOIN samc_billingdetail b ON a.InvoiceNo = b.InvoiceNo ")
                 If BL.InvoiceNo <> "" Then

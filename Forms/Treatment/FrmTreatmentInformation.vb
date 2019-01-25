@@ -124,86 +124,100 @@ Public Class FrmTreatmentInformation
         Dim ClsVisit As New ClsVisit
         Dim ClsPEFindings As New ClsPEFindings
         Dim ClsDiagnosis As New ClsDiagnosis
+        Dim ClsTreatmentDetail As New ClsTreatmentDetail
         Dim ClsTreatment As New ClsTreatment
         Dim ClsBill As New ClsBill
 
         Try
             'Get pet info from VisitID
-            Select Case UserCommand
-                Case "POPULATE_CUSTOMER_INFO"
-                    TxtVisitID.Text = VisitID
-                    TxtCustomerName.Tag = CustomerID
-                    TxtCustomerName.Text = CustomerName
-                    TxtPetName.Tag = PetID
-                    TxtPetName.Text = PetName
+            If VisitID <> "" Then
 
-                Case "SHOW_TREATMENT_INFO"
-                    'Get invoice info
-                    ClsBill.VisitID = VisitID
-                    DtInvoice = ClsBill.GetBillHeader(ClsBill)
-                    If DtInvoice.Rows.Count > 0 Then
-                        LblInvoiceNo.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
-                        'BtnBillPayment.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
-                        'BtnBillPayment.Tag = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
-                    End If
+                'Get invoice info
+                ClsBill.VisitID = VisitID
+                DtInvoice = ClsBill.GetBillHeader(ClsBill)
+                If DtInvoice.Rows.Count > 0 Then
+                    LblInvoiceNo.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                    'BtnBillPayment.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                    'BtnBillPayment.Tag = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                End If
 
-                    'Get Visit
-                    ClsVisit.VisitID = VisitID
-                    DtVisit = ClsVisit.GetVisitDetail(ClsVisit)
-                    If DtVisit.Rows.Count > 0 Then
-                        TxtVisitID.Text = DtVisit.Rows(0).Item("VisitID")
-                        TxtCustomerName.Tag = DtVisit.Rows(0).Item("CustomerID")
-                        TxtCustomerName.Text = DtVisit.Rows(0).Item("CustomerName")
-                        TxtPetName.Tag = DtVisit.Rows(0).Item("PetID")
-                        TxtPetName.Text = DtVisit.Rows(0).Item("PetName")
-                    End If
+                'Get Visit
+                ClsVisit.VisitID = VisitID
+                DtVisit = ClsVisit.GetVisitDetail(ClsVisit)
+                If DtVisit.Rows.Count > 0 Then
+                    TxtVisitID.Text = DtVisit.Rows(0).Item("VisitID")
+                    TxtCustomerName.Tag = DtVisit.Rows(0).Item("CustomerID")
+                    TxtCustomerName.Text = DtVisit.Rows(0).Item("CustomerName")
+                    TxtPetName.Tag = DtVisit.Rows(0).Item("PetID")
+                    TxtPetName.Text = DtVisit.Rows(0).Item("PetName")
+                End If
 
-                    'Get Diagnosis
-                    ClsDiagnosis.VisitID = VisitID
-                    DtDiagnosis = ClsDiagnosis.GetDiagnosisDetail(ClsDiagnosis)
-                    If DtDiagnosis.Rows.Count > 0 Then
-                        For i As Integer = 0 To DtDiagnosis.Rows.Count - 1
-                            With DgvSelectedTest
-                                .Rows.Add()
-                                .Rows(i).Cells("TestRowNo").Value = DtDiagnosis.Rows(i).Item("RowNo")
-                                .Rows(i).Cells("TestItemCode").Value = DtDiagnosis.Rows(i).Item("ItemCode")
-                                .Rows(i).Cells("TestItemDescription").Value = DtDiagnosis.Rows(i).Item("ItemDescription")
-                                .Rows(i).Cells("TestUnitPrice").Value = DtDiagnosis.Rows(i).Item("UnitPrice")
-                                .Rows(i).Cells("TestQuantity").Value = DtDiagnosis.Rows(i).Item("Quantity")
-                                .Rows(i).Cells("TestTotalPrice").Value = DtDiagnosis.Rows(i).Item("TotalPrice")
-                                .Rows(i).Cells("TestItemGroup").Value = DtDiagnosis.Rows(i).Item("ItemGroup")
-                                .Rows(i).Cells("TestItemTypeCode").Value = DtDiagnosis.Rows(i).Item("ItemTypeCode")
-                                .Rows(i).Cells("TestItemTypeDescription").Value = DtDiagnosis.Rows(i).Item("ItemTypeDescription")
-                            End With
-                        Next
+                'Get Diagnosis
+                ClsDiagnosis.VisitID = VisitID
+                DtDiagnosis = ClsDiagnosis.GetDiagnosisDetail(ClsDiagnosis)
+                If DtDiagnosis.Rows.Count > 0 Then
+                    For i As Integer = 0 To DtDiagnosis.Rows.Count - 1
+                        With DgvSelectedTest
+                            .Rows.Add()
+                            .Rows(i).Cells("TestRowNo").Value = DtDiagnosis.Rows(i).Item("RowNo")
+                            .Rows(i).Cells("TestItemCode").Value = DtDiagnosis.Rows(i).Item("ItemCode")
+                            .Rows(i).Cells("TestItemDescription").Value = DtDiagnosis.Rows(i).Item("ItemDescription")
+                            .Rows(i).Cells("TestUnitPrice").Value = DtDiagnosis.Rows(i).Item("UnitPrice")
+                            .Rows(i).Cells("TestQuantity").Value = DtDiagnosis.Rows(i).Item("Quantity")
+                            .Rows(i).Cells("TestTotalPrice").Value = DtDiagnosis.Rows(i).Item("TotalPrice")
+                            .Rows(i).Cells("TestItemGroup").Value = DtDiagnosis.Rows(i).Item("ItemGroup")
+                            .Rows(i).Cells("TestItemTypeCode").Value = DtDiagnosis.Rows(i).Item("ItemTypeCode")
+                            .Rows(i).Cells("TestItemTypeDescription").Value = DtDiagnosis.Rows(i).Item("ItemTypeDescription")
+                        End With
+                    Next
 
-                        TxtDiagnosis.Text = CStr(DtDiagnosis.Rows(0).Item("Diagnosis"))
+                    TxtDiagnosis.Text = CStr(DtDiagnosis.Rows(0).Item("Diagnosis"))
 
-                    End If
+                    TxtDxCreatedBy.Text = IIf(DtDiagnosis.Rows.Count > 0, DtDiagnosis.Rows(0).Item("CreatedBy"), "")
+                    TxtDxDateCreated.Text = IIf(DtDiagnosis.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("DateCreated")), "")
+                    TxtDxModifiedBy.Text = IIf(DtDiagnosis.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("ModifiedBy")), "")
+                    TxtDxDateModified.Text = IIf(DtDiagnosis.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("DateModified")), "")
 
-                    'Get Treatment
-                    ClsTreatment.VisitID = VisitID
-                    DtTreatment = ClsTreatment.GetTreatmentDetail(ClsTreatment)
-                    If DtTreatment.Rows.Count > 0 Then
-                        For i As Integer = 0 To DtTreatment.Rows.Count - 1
-                            With DgvSelectedTreatment
-                                .Rows.Add()
-                                .Rows(i).Cells("TreatmentRowNo").Value = DtTreatment.Rows(i).Item("RowNo")
-                                .Rows(i).Cells("TreatmentItemCode").Value = DtTreatment.Rows(i).Item("ItemCode")
-                                .Rows(i).Cells("TreatmentItemDescription").Value = DtTreatment.Rows(i).Item("ItemDescription")
-                                .Rows(i).Cells("Prescription").Value = DtTreatment.Rows(i).Item("Prescription")
-                                .Rows(i).Cells("Notes").Value = DtTreatment.Rows(i).Item("Notes")
-                                .Rows(i).Cells("TreatmentUnitPrice").Value = DtTreatment.Rows(i).Item("UnitPrice")
-                                .Rows(i).Cells("TreatmentQuantity").Value = DtTreatment.Rows(i).Item("Quantity")
-                                .Rows(i).Cells("TreatmentTotalPrice").Value = DtTreatment.Rows(i).Item("TotalPrice")
-                                .Rows(i).Cells("TreatmentItemGroup").Value = DtTreatment.Rows(i).Item("ItemGroup")
-                                .Rows(i).Cells("TreatmentItemTypeCode").Value = DtTreatment.Rows(i).Item("ItemTypeCode")
-                                .Rows(i).Cells("TreatmentItemTypeDescription").Value = DtTreatment.Rows(i).Item("ItemTypeDescription")
-                            End With
-                        Next
-                    End If
+                End If
 
-            End Select
+                'Get Treatment
+                ClsTreatment.VisitID = VisitID
+                DtTreatment = ClsTreatment.GetTreatmentDetail(ClsTreatment)
+                If DtTreatment.Rows.Count > 0 Then
+                    For i As Integer = 0 To DtTreatment.Rows.Count - 1
+                        With DgvSelectedTreatment
+                            .Rows.Add()
+                            .Rows(i).Cells("TreatmentRowNo").Value = DtTreatment.Rows(i).Item("RowNo")
+                            .Rows(i).Cells("TreatmentItemCode").Value = DtTreatment.Rows(i).Item("ItemCode")
+                            .Rows(i).Cells("TreatmentItemDescription").Value = DtTreatment.Rows(i).Item("ItemDescription")
+                            .Rows(i).Cells("TreatmentPrescription").Value = DtTreatment.Rows(i).Item("Prescription")
+                            .Rows(i).Cells("TreatmentNotes").Value = DtTreatment.Rows(i).Item("Notes")
+                            .Rows(i).Cells("TreatmentUnitPrice").Value = DtTreatment.Rows(i).Item("UnitPrice")
+                            .Rows(i).Cells("TreatmentQuantity").Value = DtTreatment.Rows(i).Item("Quantity")
+                            .Rows(i).Cells("TreatmentTotalPrice").Value = DtTreatment.Rows(i).Item("TotalPrice")
+                            .Rows(i).Cells("TreatmentItemGroup").Value = DtTreatment.Rows(i).Item("ItemGroup")
+                            .Rows(i).Cells("TreatmentItemTypeCode").Value = DtTreatment.Rows(i).Item("ItemTypeCode")
+                            .Rows(i).Cells("TreatmentItemTypeDescription").Value = DtTreatment.Rows(i).Item("ItemTypeDescription")
+                            .Rows(i).Cells("TreatmentPhRequestID").Value = DtTreatment.Rows(i).Item("PhRequestID")
+                            .Rows(i).Cells("IsDb").Value = "1"
+                        End With
+                    Next
+
+                    TxtDxCreatedBy.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("CreatedBy")), "")
+                    TxtDxDateCreated.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("DateCreated")), "")
+                    TxtDxModifiedBy.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("ModifiedBy")), "")
+                    TxtDxDateModified.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("DateModified")), "")
+
+                End If
+
+            Else
+                TxtVisitID.Text = VisitID
+                TxtCustomerName.Tag = CustomerID
+                TxtCustomerName.Text = CustomerName
+                TxtPetName.Tag = PetID
+                TxtPetName.Text = PetName
+
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")
@@ -427,8 +441,8 @@ Public Class FrmTreatmentInformation
             With DgvSelectedTreatment
                 .Rows(RowIndex).Cells("TreatmentItemCode").Value = Trim(TxtTreatmentItem.Tag)
                 .Rows(RowIndex).Cells("TreatmentItemDescription").Value = Trim(TxtTreatmentItem.Text)
-                .Rows(RowIndex).Cells("Prescription").Value = Trim(TxtPrescription.Text)
-                .Rows(RowIndex).Cells("Notes").Value = Trim(TxtNotes.Text)
+                .Rows(RowIndex).Cells("TreatmentPrescription").Value = Trim(TxtPrescription.Text)
+                .Rows(RowIndex).Cells("TreatmentNotes").Value = Trim(TxtNotes.Text)
                 .Rows(RowIndex).Cells("TreatmentUnitPrice").Value = Trim(TxtTreatmentUnitPrice.Text)
                 .Rows(RowIndex).Cells("TreatmentQuantity").Value = Trim(TxtTreatmentQuantity.Text)
                 .Rows(RowIndex).Cells("TreatmentTotalPrice").Value = Trim(TxtTreatmentTotalPrice.Text)
@@ -469,19 +483,18 @@ Public Class FrmTreatmentInformation
                     Dim DgvRow As DataRow = DtTreatment.NewRow
 
                     DgvRow("RowNo") = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
+                    DgvRow("PhRequestID") = DgvSelectedTreatment.Rows(i).Cells("TreatmentPhRequestID").Value
                     DgvRow("ItemCode") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
                     DgvRow("ItemDescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
-                    DgvRow("Prescription") = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                    DgvRow("Notes") = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                    DgvRow("Prescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value
+                    DgvRow("Notes") = DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value
                     DgvRow("Quantity") = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
                     DgvRow("UnitPrice") = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
                     DgvRow("TotalPrice") = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
                     DgvRow("ItemGroup") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
                     DgvRow("ItemTypeCode") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
                     DgvRow("ItemTypeDescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-
-                    DgvRow("Prescription") = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                    DgvRow("Notes") = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                    DgvRow("IsDb") = DgvSelectedTreatment.Rows(i).Cells("IsDb").Value
 
                     DtTreatment.Rows.Add(DgvRow)
 
@@ -492,6 +505,7 @@ Public Class FrmTreatmentInformation
             Dim Row As DataRow = DtTreatment.NewRow
 
             Row("RowNo") = IIf(DtTreatment.Rows.Count = 0, 1, DtTreatment.Rows.Count + 1)
+            Row("PhRequestID") = DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value
             Row("ItemCode") = UCase(Trim(TxtTreatmentItem.Tag))
             Row("ItemDescription") = UCase(Trim(TxtTreatmentItem.Text))
             Row("UnitPrice") = UCase(Trim(TxtTreatmentUnitPrice.Text))
@@ -500,8 +514,9 @@ Public Class FrmTreatmentInformation
             Row("ItemGroup") = ItemGroup
             Row("ItemTypeDescription") = ItemTypeDescription
             Row("ItemTypeCode") = ItemTypeCode
-            Row("Prescription") = Trim(TxtPrescription.Text) 'DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-            Row("Notes") = Trim(TxtNotes.Text) 'DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+            Row("Prescription") = Trim(TxtPrescription.Text)
+            Row("Notes") = Trim(TxtNotes.Text)
+            Row("IsDb") = "0"
 
             DtTreatment.Rows.Add(Row)
 
@@ -513,6 +528,7 @@ Public Class FrmTreatmentInformation
                     With DgvSelectedTreatment
                         .Rows.Add()
                         .Rows(i).Cells("TreatmentRowNo").Value = DtTreatment.Rows(i).Item("RowNo")
+                        .Rows(i).Cells("TreatmentPhRequestID").Value = DtTreatment.Rows(i).Item("PhRequestID")
                         .Rows(i).Cells("TreatmentItemCode").Value = DtTreatment.Rows(i).Item("ItemCode")
                         .Rows(i).Cells("TreatmentItemDescription").Value = DtTreatment.Rows(i).Item("ItemDescription")
                         .Rows(i).Cells("TreatmentUnitPrice").Value = DtTreatment.Rows(i).Item("UnitPrice")
@@ -521,14 +537,21 @@ Public Class FrmTreatmentInformation
                         .Rows(i).Cells("TreatmentItemGroup").Value = DtTreatment.Rows(i).Item("ItemGroup")
                         .Rows(i).Cells("TreatmentItemTypeCode").Value = DtTreatment.Rows(i).Item("ItemTypeCode")
                         .Rows(i).Cells("TreatmentItemTypeDescription").Value = DtTreatment.Rows(i).Item("ItemTypeDescription")
-
-                        .Rows(i).Cells("Prescription").Value = DtTreatment.Rows(i).Item("Prescription")
-                        .Rows(i).Cells("Notes").Value = DtTreatment.Rows(i).Item("Notes")
-
+                        .Rows(i).Cells("TreatmentPrescription").Value = DtTreatment.Rows(i).Item("Prescription")
+                        .Rows(i).Cells("TreatmentNotes").Value = DtTreatment.Rows(i).Item("Notes")
+                        .Rows(i).Cells("IsDb").Value = DtTreatment.Rows(i).Item("IsDb")
                     End With
                 Next
 
             End If
+
+            TxtTreatmentItem.Text = ""
+            TxtTreatmentItem.Tag = ""
+            TxtPrescription.Text = ""
+            TxtNotes.Text = ""
+            TxtTreatmentUnitPrice.Text = "0.00"
+            TxtTreatmentQuantity.Text = "1.00"
+            TxtTreatmentTotalPrice.Text = "0.00"
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddTreatment()")
@@ -543,6 +566,7 @@ Public Class FrmTreatmentInformation
         Try
             With DtTreatment
                 .Columns.Add("RowNo", GetType(Integer))
+                .Columns.Add("PhRequestID", GetType(String))
                 .Columns.Add("ItemCode", GetType(String))
                 .Columns.Add("ItemDescription", GetType(String))
                 .Columns.Add("ItemGroup", GetType(String))
@@ -553,6 +577,7 @@ Public Class FrmTreatmentInformation
                 .Columns.Add("UnitPrice", GetType(Decimal))
                 .Columns.Add("Quantity", GetType(Decimal))
                 .Columns.Add("TotalPrice", GetType(Decimal))
+                .Columns.Add("IsDb", GetType(String))
             End With
 
         Catch ex As Exception
@@ -575,9 +600,18 @@ Public Class FrmTreatmentInformation
         Dim ClsDiagnosis As New ClsDiagnosis
         Dim ClsDiagnosisDetail As New ClsDiagnosisDetail
         Dim ClsTreatment As New ClsTreatment
+        Dim ClsTreatmentDetail As New ClsTreatmentDetail
         Dim ClsVisit As New ClsVisit
 
         Try
+            'Get visit information to be saved into treatment header
+            Dim DtVisit As New DataTable
+
+            With ClsVisit
+                .VisitID = VisitID
+                DtVisit = .GetVisit(ClsVisit)
+            End With
+
             If DbTrans IsNot Nothing Then
                 DbTrans = Nothing
             End If
@@ -595,15 +629,16 @@ Public Class FrmTreatmentInformation
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
-            End With
 
-            If Not ClsDiagnosis.AddNewDiagnosis(ClsDiagnosis, DbConn, DbTrans) Then
-                MsgBox("Failed to add new diagnosis.", MsgBoxStyle.Critical, "Add New Diagnosis Error")
-                DbTrans.Rollback()
-                DbTrans.Dispose()
-                DbTrans = Nothing
-                Return False
-            End If
+                If Not .AddNewDiagnosis(ClsDiagnosis, DbConn, DbTrans) Then
+                    MsgBox("Failed to add new diagnosis.", MsgBoxStyle.Critical, "Add New Diagnosis Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+            End With
 
             'Add new diagnosis detail
             For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
@@ -632,52 +667,110 @@ Public Class FrmTreatmentInformation
             Next
 
             'Add new treatment
-            For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+            If DgvSelectedTreatment.Rows.Count > 0 Then
 
                 With ClsTreatment
-                    .VisitID = Trim(TxtVisitID.Text)
-                    .RowNo = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
-                    .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                    .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
-                    .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
-                    .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
-                    .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-                    .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                    .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
-                    .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
-                    .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
-                    .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
+                    .VisitID = TxtVisitID.Text
+                    .TreatmentDate = Now
+                    .EmployeeID = CURR_EMPLOYEE_ID
+                    .EmployeeName = CURR_EMPLOYEE_NAME
+                    .CustomerID = TxtCustomerName.Tag
+                    .CustomerName = TxtCustomerName.Text
+                    .TelNo = CStrNull(DtVisit.Rows(0).Item("TelNo"))
+                    .MobileNo = CStrNull(DtVisit.Rows(0).Item("MobileNo"))
+                    '.Email = CStrNull(DtVisit.Rows(0).Item("Email"))
                     .Ref.CreatedBy = CURR_USER
                     .Ref.DateCreated = Now
                     .Ref.ModifiedBy = CURR_USER
                     .Ref.DateModified = Now
+
+                    If Not .AddNewTreatment(ClsTreatment, DbConn, DbTrans) Then
+                        MsgBox("Failed to add new treatment.", MsgBoxStyle.Critical, "Add New Treatment Error")
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
                 End With
 
-                If Not ClsTreatment.AddNewTreatment(ClsTreatment, DbConn, DbTrans) Then
-                    MsgBox("Failed to add new treatment.", MsgBoxStyle.Critical, "Add New Treatment Error")
-                    DbTrans.Rollback()
-                    DbTrans.Dispose()
-                    DbTrans = Nothing
-                    Return False
-                End If
+                For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
 
-            Next
+                    With ClsTreatmentDetail
+                        .VisitID = Trim(TxtVisitID.Text)
+                        .PhRequestID = DgvSelectedTreatment.Rows(i).Cells("TreatmentPhRequestID").Value
+                        .TreatmentDate = Now
+                        .RowNo = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
+                        .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
+                        .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
+                        .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
+                        .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
+                        .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
+                        .Prescription = CStrNull(DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value)
+                        .Notes = CStrNull(DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value)
+                        .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
+                        .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
+                        .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .AddNewTreatmentDetail(ClsTreatmentDetail, DbConn, DbTrans) Then
+                            MsgBox("Failed to add new treatment.", MsgBoxStyle.Critical, "Add New Treatment Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+
+                Next
+
+            End If
 
             DbTrans.Commit()
             DbTrans.Dispose()
             DbTrans = Nothing
 
+            'Set items to IsDb = "1" after items has been saved into the database
+            With DgvSelectedTreatment
+
+                For i As Integer = 0 To .Rows.Count - 1
+                    .Rows(i).Cells("IsDb").Value = "1"
+                Next
+
+            End With
+
             With ClsDiagnosis
-                If TxtCreatedBy.Text = "" Then
-                    TxtCreatedBy.Text = .Ref.CreatedBy
+
+                If TxtDxCreatedBy.Text = "" Then
+                    TxtDxCreatedBy.Text = .Ref.CreatedBy
                 End If
 
-                If TxtDateModified.Text = "" Then
-                    TxtDateCreated.Text = .Ref.DateCreated
+                If TxtDxDateModified.Text = "" Then
+                    TxtDxDateCreated.Text = .Ref.DateCreated
                 End If
 
-                TxtModifiedBy.Text = .Ref.ModifiedBy
-                TxtDateModified.Text = .Ref.DateModified
+                TxtDxModifiedBy.Text = .Ref.ModifiedBy
+                TxtDxDateModified.Text = .Ref.DateModified
+
+            End With
+
+            With ClsTreatment
+
+                If TxtTxCreatedBy.Text = "" Then
+                    TxtTxCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtTxDateModified.Text = "" Then
+                    TxtTxDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtTxModifiedBy.Text = .Ref.ModifiedBy
+                TxtTxDateModified.Text = .Ref.DateModified
+
             End With
 
             MsgBox("Your treatment has been successfully added!", MsgBoxStyle.Information, "New Treatment Added")
@@ -704,6 +797,7 @@ Public Class FrmTreatmentInformation
         Dim DtUpdateBill As New DataTable
         Dim ClsDiagnosis As New ClsDiagnosis
         Dim ClsTreatment As New ClsTreatment
+        Dim ClsTreatmentDetail As New ClsTreatmentDetail
         Dim ClsBill As New ClsBill
         Dim ClsBillDetail As New ClsBillDetail
 
@@ -770,6 +864,7 @@ Public Class FrmTreatmentInformation
             End If
 
             'Retrieve items from treatment
+
             ClsTreatment.VisitID = Trim(TxtVisitID.Text)
             DtTreatment = ClsTreatment.GetTreatmentDetail(ClsTreatment)
             If DtTreatment.Rows.Count > 0 Then
@@ -1093,7 +1188,7 @@ Public Class FrmTreatmentInformation
 
         Dim BtnDeletePet As New DataGridViewButtonColumn
         Dim BtnEditPet As New DataGridViewButtonColumn
-        'Dim UserResponse As MsgBoxResult
+        Dim UserResponse As MsgBoxResult
 
         Try
             Dim SenderGrid = DirectCast(sender, DataGridView)
@@ -1101,17 +1196,34 @@ Public Class FrmTreatmentInformation
             If TypeOf SenderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
 
                 'Data grid view Pet Listing 'Select' button
-                If e.ColumnIndex = 1 Then
+                If e.ColumnIndex = 0 Then
 
-                    'UserResponse = MsgBox("Are sure you want to update this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Update Item?")
-                    'If UserResponse = MsgBoxResult.Yes Then
+                    UserResponse = MsgBox("Are sure you want to update this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Update Item?")
+                    If UserResponse = MsgBoxResult.Yes Then
 
-                    With DgvSelectedTreatment
+                        With DgvSelectedTreatment
+
+                            If .Rows(e.RowIndex).Cells("IsDb").Value = "0" Then
+                                .Rows.RemoveAt(e.RowIndex)
+                            Else
+                                MsgBox("Unable to delete item that has been saved into the database.", MsgBoxStyle.Exclamation, "Read-Only Item")
+                            End If
+
+                        End With
+
+                    End If
+
+                ElseIf e.ColumnIndex = 1 Then
+
+                        'UserResponse = MsgBox("Are sure you want to update this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Update Item?")
+                        'If UserResponse = MsgBoxResult.Yes Then
+
+                        With DgvSelectedTreatment
 
                         TxtTreatmentItem.Text = .Rows(e.RowIndex).Cells("TreatmentItemDescription").Value
                         TxtTreatmentItem.Tag = .Rows(e.RowIndex).Cells("TreatmentItemCode").Value
-                        TxtPrescription.Text = .Rows(e.RowIndex).Cells("Prescription").Value
-                        TxtNotes.Text = .Rows(e.RowIndex).Cells("Notes").Value
+                        TxtPrescription.Text = CStrNull(.Rows(e.RowIndex).Cells("TreatmentPrescription").Value)
+                        TxtNotes.Text = CStrNull(.Rows(e.RowIndex).Cells("TreatmentNotes").Value)
                         TxtTreatmentUnitPrice.Text = .Rows(e.RowIndex).Cells("TreatmentUnitPrice").Value
                         TxtTreatmentQuantity.Text = .Rows(e.RowIndex).Cells("TreatmentQuantity").Value
                         TxtTreatmentTotalPrice.Text = .Rows(e.RowIndex).Cells("TreatmentTotalPrice").Value
@@ -1122,14 +1234,6 @@ Public Class FrmTreatmentInformation
                     BtnAddTreatment.Tag = "UPDATE"
                     LblRowNo.Text = e.RowIndex
 
-                    'If Not AddPetToDgv(e.RowIndex) Then
-                    '    MsgBox("Failed to select pet for appointment.", MsgBoxStyle.Critical, "Select Pet Failed")
-                    '    Exit Sub
-                    'End If
-
-                    'End If
-
-                    'SetFields("EDIT_PET")
                 End If
 
             End If
@@ -1217,45 +1321,49 @@ Public Class FrmTreatmentInformation
 
                 DbTrans = DbConn.BeginTransaction
 
-                GenRequestID = IIf(BtnSendToPharmacy.Tag <> "", BtnSendToPharmacy.Tag, GenerateRunningNo("RQ", DbConn, DbTrans, ""))
-
-                If GenRequestID = "" Then
-                    MsgBox("Failed to generate Request ID.", MsgBoxStyle.Critical, "Request ID Generation Error")
-                    DbTrans.Rollback()
-                    DbTrans.Dispose()
-                    DbTrans = Nothing
-                    Return False
-                End If
-
                 Dim ClsPharmacy As New ClsPharmacy
-                With ClsPharmacy
-                    .RequestID = GenRequestID
-                    .VisitID = TxtVisitID.Text
-                    .RequestDate = Now
-                    .Source = FORM_SOURCE
-                    .RqEmpID = CURR_EMPLOYEE_ID
-                    .RqEmpName = CURR_EMPLOYEE_NAME
-                    .PhEmpID = ""
-                    .PhEmpName = ""
-                    .ApprovalDate = Nothing
-                    .IsCompleted = "0"
-                    .Ref.CreatedBy = CURR_USER
-                    .Ref.DateCreated = Now
-                    .Ref.ModifiedBy = CURR_USER
-                    .Ref.DateModified = Now
+                Dim ClsPharmacyDetail As New ClsPharmacyDetail
 
-                    If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
-                        MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                If DgvSelectedTreatment.Rows.Count > 0 Then
+
+                    GenRequestID = IIf(DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value <> "",
+                                       DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value,
+                                       GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+
+                    If GenRequestID = "" Then
+                        MsgBox("Failed to generate Request ID.", MsgBoxStyle.Critical, "Request ID Generation Error")
                         DbTrans.Rollback()
                         DbTrans.Dispose()
                         DbTrans = Nothing
                         Return False
                     End If
 
-                End With
+                    With ClsPharmacy
+                        .RequestID = GenRequestID
+                        .VisitID = TxtVisitID.Text
+                        .RequestDate = Now
+                        .Source = FORM_SOURCE
+                        .RqEmpID = CURR_EMPLOYEE_ID
+                        .RqEmpName = CURR_EMPLOYEE_NAME
+                        .PhEmpID = ""
+                        .PhEmpName = ""
+                        .ApprovalDate = Nothing
+                        .IsCompleted = "0"
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
 
-                Dim ClsPharmacyDetail As New ClsPharmacyDetail
-                If DgvSelectedTreatment.Rows.Count > 0 Then
+                        If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
+                            MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+
 
                     For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
 
@@ -1268,8 +1376,8 @@ Public Class FrmTreatmentInformation
                             .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
                             .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
                             .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-                            .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                            .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
+                            .Prescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value
+                            .Notes = DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value
                             .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
                             .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
                             .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
@@ -1293,12 +1401,18 @@ Public Class FrmTreatmentInformation
 
             End If
 
-            BtnSendToPharmacy.Tag = GenRequestID
-            RequestID = GenRequestID
+            'BtnSendToPharmacy.Tag = GenRequestID
+            'RequestID = GenRequestID
 
             DbTrans.Commit()
             DbTrans.Dispose()
             DbTrans = Nothing
+
+            If DgvSelectedTreatment.Rows.Count > 0 Then
+                For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+                    DgvSelectedTreatment.Rows(i).Cells("TreatmentPhRequestID").Value = GenRequestID
+                Next
+            End If
 
             MsgBox("Your pharmacy request has been successfully sent!", MsgBoxStyle.Information, "Pharmacy Request Sent")
 

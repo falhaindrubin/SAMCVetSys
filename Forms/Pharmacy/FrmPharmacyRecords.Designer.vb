@@ -30,6 +30,15 @@ Partial Class FrmPharmacyRecords
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DgvPharmacyRecords = New System.Windows.Forms.DataGridView()
+        Me.VisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RequestID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RequestDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqEmpID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqEmpName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PhEmpID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PhEmpName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ApprovalDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvPharmacyRecords, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +121,7 @@ Partial Class FrmPharmacyRecords
         Me.DgvPharmacyRecords.BackgroundColor = System.Drawing.Color.White
         Me.DgvPharmacyRecords.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvPharmacyRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvPharmacyRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VisitID, Me.RequestID, Me.RequestDate, Me.RqEmpID, Me.RqEmpName, Me.PhEmpID, Me.PhEmpName, Me.IsCompleted, Me.ApprovalDate})
         Me.DgvPharmacyRecords.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvPharmacyRecords.Location = New System.Drawing.Point(3, 16)
         Me.DgvPharmacyRecords.MultiSelect = False
@@ -120,6 +130,74 @@ Partial Class FrmPharmacyRecords
         Me.DgvPharmacyRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvPharmacyRecords.Size = New System.Drawing.Size(978, 611)
         Me.DgvPharmacyRecords.TabIndex = 0
+        '
+        'VisitID
+        '
+        Me.VisitID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.VisitID.HeaderText = "Visit ID"
+        Me.VisitID.Name = "VisitID"
+        Me.VisitID.ReadOnly = True
+        Me.VisitID.Width = 65
+        '
+        'RequestID
+        '
+        Me.RequestID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RequestID.HeaderText = "Request ID"
+        Me.RequestID.Name = "RequestID"
+        Me.RequestID.ReadOnly = True
+        Me.RequestID.Width = 84
+        '
+        'RequestDate
+        '
+        Me.RequestDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RequestDate.HeaderText = "Request Date"
+        Me.RequestDate.Name = "RequestDate"
+        Me.RequestDate.ReadOnly = True
+        Me.RequestDate.Width = 97
+        '
+        'RqEmpID
+        '
+        Me.RqEmpID.HeaderText = "RqEmpID"
+        Me.RqEmpID.Name = "RqEmpID"
+        Me.RqEmpID.ReadOnly = True
+        Me.RqEmpID.Visible = False
+        '
+        'RqEmpName
+        '
+        Me.RqEmpName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RqEmpName.HeaderText = "Vet"
+        Me.RqEmpName.Name = "RqEmpName"
+        Me.RqEmpName.ReadOnly = True
+        '
+        'PhEmpID
+        '
+        Me.PhEmpID.HeaderText = "PhEmpID"
+        Me.PhEmpID.Name = "PhEmpID"
+        Me.PhEmpID.ReadOnly = True
+        Me.PhEmpID.Visible = False
+        '
+        'PhEmpName
+        '
+        Me.PhEmpName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.PhEmpName.HeaderText = "Pharmacy In-Charge"
+        Me.PhEmpName.Name = "PhEmpName"
+        Me.PhEmpName.ReadOnly = True
+        '
+        'IsCompleted
+        '
+        Me.IsCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IsCompleted.HeaderText = "Status"
+        Me.IsCompleted.Name = "IsCompleted"
+        Me.IsCompleted.ReadOnly = True
+        Me.IsCompleted.Width = 63
+        '
+        'ApprovalDate
+        '
+        Me.ApprovalDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ApprovalDate.HeaderText = "Approval Date"
+        Me.ApprovalDate.Name = "ApprovalDate"
+        Me.ApprovalDate.ReadOnly = True
+        Me.ApprovalDate.Width = 101
         '
         'FrmPharmacyRecords
         '
@@ -146,4 +224,13 @@ Partial Class FrmPharmacyRecords
     Friend WithEvents BtnReload As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DgvPharmacyRecords As DataGridView
+    Friend WithEvents VisitID As DataGridViewTextBoxColumn
+    Friend WithEvents RequestID As DataGridViewTextBoxColumn
+    Friend WithEvents RequestDate As DataGridViewTextBoxColumn
+    Friend WithEvents RqEmpID As DataGridViewTextBoxColumn
+    Friend WithEvents RqEmpName As DataGridViewTextBoxColumn
+    Friend WithEvents PhEmpID As DataGridViewTextBoxColumn
+    Friend WithEvents PhEmpName As DataGridViewTextBoxColumn
+    Friend WithEvents IsCompleted As DataGridViewTextBoxColumn
+    Friend WithEvents ApprovalDate As DataGridViewTextBoxColumn
 End Class

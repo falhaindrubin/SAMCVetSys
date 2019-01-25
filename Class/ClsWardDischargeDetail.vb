@@ -14,6 +14,16 @@
         End Set
     End Property
 
+    Private _PhRequestID As String
+    Public Property PhRequestID As String
+        Get
+            Return _PhRequestID
+        End Get
+        Set(value As String)
+            _PhRequestID = value
+        End Set
+    End Property
+
     Private _DischargeDate As Date
     Public Property DischargeDate As Date
         Get

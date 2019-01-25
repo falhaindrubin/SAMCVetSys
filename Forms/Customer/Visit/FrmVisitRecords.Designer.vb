@@ -26,7 +26,7 @@ Partial Class FrmVisitRecords
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
-        Me.DgvConsultationListing = New System.Windows.Forms.DataGridView()
+        Me.DgvVisit = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
@@ -34,7 +34,16 @@ Partial Class FrmVisitRecords
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        CType(Me.DgvConsultationListing, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.VisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VisitTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VisitDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VisitStatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        CType(Me.DgvVisit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -70,26 +79,27 @@ Partial Class FrmVisitRecords
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
         '
-        'DgvConsultationListing
+        'DgvVisit
         '
-        Me.DgvConsultationListing.AllowUserToAddRows = False
-        Me.DgvConsultationListing.AllowUserToDeleteRows = False
-        Me.DgvConsultationListing.AllowUserToOrderColumns = True
-        Me.DgvConsultationListing.AllowUserToResizeRows = False
-        Me.DgvConsultationListing.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.DgvVisit.AllowUserToAddRows = False
+        Me.DgvVisit.AllowUserToDeleteRows = False
+        Me.DgvVisit.AllowUserToOrderColumns = True
+        Me.DgvVisit.AllowUserToResizeRows = False
+        Me.DgvVisit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DgvConsultationListing.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.DgvConsultationListing.BackgroundColor = System.Drawing.Color.White
-        Me.DgvConsultationListing.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DgvConsultationListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvConsultationListing.Location = New System.Drawing.Point(9, 20)
-        Me.DgvConsultationListing.Name = "DgvConsultationListing"
-        Me.DgvConsultationListing.ReadOnly = True
-        Me.DgvConsultationListing.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DgvConsultationListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvConsultationListing.Size = New System.Drawing.Size(969, 529)
-        Me.DgvConsultationListing.TabIndex = 2
+        Me.DgvVisit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.DgvVisit.BackgroundColor = System.Drawing.Color.White
+        Me.DgvVisit.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DgvVisit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvVisit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VisitID, Me.VisitTime, Me.CustomerID, Me.CustomerName, Me.PetName, Me.EmployeeID, Me.EmployeeName, Me.VisitDescription, Me.VisitStatus})
+        Me.DgvVisit.Location = New System.Drawing.Point(9, 20)
+        Me.DgvVisit.Name = "DgvVisit"
+        Me.DgvVisit.ReadOnly = True
+        Me.DgvVisit.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DgvVisit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvVisit.Size = New System.Drawing.Size(969, 529)
+        Me.DgvVisit.TabIndex = 2
         '
         'PnlActionBar
         '
@@ -151,7 +161,7 @@ Partial Class FrmVisitRecords
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.DgvConsultationListing)
+        Me.GroupBox1.Controls.Add(Me.DgvVisit)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 161)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(984, 556)
@@ -172,6 +182,77 @@ Partial Class FrmVisitRecords
         Me.GroupBox2.TabIndex = 74
         Me.GroupBox2.TabStop = False
         '
+        'VisitID
+        '
+        Me.VisitID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.VisitID.HeaderText = "Visit ID"
+        Me.VisitID.Name = "VisitID"
+        Me.VisitID.ReadOnly = True
+        Me.VisitID.Width = 65
+        '
+        'VisitTime
+        '
+        Me.VisitTime.HeaderText = "Visit Time"
+        Me.VisitTime.Name = "VisitTime"
+        Me.VisitTime.ReadOnly = True
+        Me.VisitTime.Width = 78
+        '
+        'CustomerID
+        '
+        Me.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CustomerID.HeaderText = "Customer ID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Visible = False
+        Me.CustomerID.Width = 90
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CustomerName.HeaderText = "Customer Name"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        Me.CustomerName.Width = 108
+        '
+        'PetName
+        '
+        Me.PetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PetName.HeaderText = "Pet Name"
+        Me.PetName.Name = "PetName"
+        Me.PetName.ReadOnly = True
+        Me.PetName.Width = 77
+        '
+        'EmployeeID
+        '
+        Me.EmployeeID.HeaderText = "EmployeeID"
+        Me.EmployeeID.Name = "EmployeeID"
+        Me.EmployeeID.ReadOnly = True
+        Me.EmployeeID.Visible = False
+        Me.EmployeeID.Width = 87
+        '
+        'EmployeeName
+        '
+        Me.EmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.EmployeeName.HeaderText = "Vet"
+        Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.ReadOnly = True
+        Me.EmployeeName.Width = 48
+        '
+        'VisitDescription
+        '
+        Me.VisitDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.VisitDescription.HeaderText = "Visit Description"
+        Me.VisitDescription.Name = "VisitDescription"
+        Me.VisitDescription.ReadOnly = True
+        '
+        'VisitStatus
+        '
+        Me.VisitStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.VisitStatus.HeaderText = "Visit Status"
+        Me.VisitStatus.Name = "VisitStatus"
+        Me.VisitStatus.ReadOnly = True
+        Me.VisitStatus.Width = 87
+        '
         'FrmVisitRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -183,7 +264,7 @@ Partial Class FrmVisitRecords
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "FrmVisitRecords"
         Me.Text = "Visit Records"
-        CType(Me.DgvConsultationListing, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvVisit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlActionBar.ResumeLayout(False)
         Me.PnlActionBar.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
@@ -196,7 +277,7 @@ Partial Class FrmVisitRecords
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtSearchText As TextBox
     Friend WithEvents BtnSearchCustomer As Button
-    Friend WithEvents DgvConsultationListing As DataGridView
+    Friend WithEvents DgvVisit As DataGridView
     Friend WithEvents PnlActionBar As Panel
     Friend WithEvents BtnClose As Button
     Friend WithEvents BtnAddNewConsultation As Button
@@ -204,4 +285,13 @@ Partial Class FrmVisitRecords
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label25 As Label
+    Friend WithEvents VisitID As DataGridViewTextBoxColumn
+    Friend WithEvents VisitTime As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents PetName As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeID As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
+    Friend WithEvents VisitDescription As DataGridViewTextBoxColumn
+    Friend WithEvents VisitStatus As DataGridViewTextBoxColumn
 End Class

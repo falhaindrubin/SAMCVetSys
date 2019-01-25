@@ -204,101 +204,100 @@
 
     Private Sub PopulateForm(ByVal UserCommand As String)
 
-        Dim BtnDelete As New DataGridViewButtonColumn
-        Dim BtnEdit As New DataGridViewButtonColumn
+        'Dim BtnDelete As New DataGridViewButtonColumn
+        'Dim BtnEdit As New DataGridViewButtonColumn
         Dim DtCustomer As New DataTable
         Dim DtPet As New DataTable
         Dim ClsCustomer As New ClsCustomer
         Dim ClsPet As New ClsPet
 
         Try
-            If UserCommand <> "" Then
+            If CustomerID <> "" Then 'UserCommand
 
-                If UserCommand = "SHOW_CUSTOMER_INFO" Then
+                'If UserCommand = "SHOW_CUSTOMER_INFO" Then
 
-                    'Get customer and pet information from database
-                    ClsCustomer = New ClsCustomer
-                    With ClsCustomer
+                'Get customer information 
+                ClsCustomer = New ClsCustomer
+                With ClsCustomer
+                    .CustomerID = CustomerID
+                    DtCustomer = .GetCustomerInformation(ClsCustomer)
+                End With
+
+                'Get pet information
+                ClsPet = New ClsPet
+                With ClsPet
+                    .CustomerID = CustomerID
+                    DtPet = .GetPetListing(ClsPet)
+                End With
+
+                If DtCustomer.Rows.Count > 0 Then
+
+                    'Set fields using Customer information retrieved from database
+                    TxtCustomerID.Text = DtCustomer.Rows(0).Item("CustomerID")
+                    CmbSalutation.Text = DtCustomer.Rows(0).Item("SaluteName")
+                    TxtCustomerName.Text = DtCustomer.Rows(0).Item("CustomerName")
+                    TxtNRICPassportNo.Text = DtCustomer.Rows(0).Item("NRICPassportNo")
+                    TxtAddress1.Text = DtCustomer.Rows(0).Item("AddressLine1")
+                    TxtAddress2.Text = DtCustomer.Rows(0).Item("AddressLine2")
+                    TxtAddress3.Text = DtCustomer.Rows(0).Item("AddressLine3")
+                    TxtAddress4.Text = DtCustomer.Rows(0).Item("AddressLine4")
+                    TxtTelNo.Text = DtCustomer.Rows(0).Item("TelNo")
+                    TxtMobileNo.Text = DtCustomer.Rows(0).Item("MobileNo")
+                    TxtEmail.Text = DtCustomer.Rows(0).Item("Email")
+                    TxtPostcode.Text = DtCustomer.Rows(0).Item("Postcode")
+                    TxtCity.Text = DtCustomer.Rows(0).Item("City")
+                    TxtState.Text = DtCustomer.Rows(0).Item("State")
+                    TxtCountry.Text = DtCustomer.Rows(0).Item("Country")
+                    TxtCreatedBy.Text = DtCustomer.Rows(0).Item("CreatedBy")
+                    TxtDateCreated.Text = DtCustomer.Rows(0).Item("DateCreated")
+                    TxtModifiedBy.Text = DtCustomer.Rows(0).Item("ModifiedBy")
+                    TxtDateModified.Text = DtCustomer.Rows(0).Item("DateModified")
+
+                    If DtPet.Rows.Count > 0 Then
+
+                        TxtPetName.Text = DtPet.Rows(0).Item("PetName")
+                        DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
+                        CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
+                        CmbBreed.SelectedValue = CStr(DtPet.Rows(0).Item("BreedCode"))
+                        CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
+                        CmbNeuterStatus.SelectedValue = CStr(DtPet.Rows(0).Item("NeuterCode"))
+
+                        With DgvPetListing
+
+                            If DgvPetListing.Rows.Count > 0 Then
+                                DgvPetListing.Rows.Clear()
+                            End If
+
+                            For i As Integer = 0 To DtPet.Rows.Count - 1
+                                .Rows.Add()
+                                .Rows(i).Cells("PetID").Value = DtPet.Rows(i).Item("PetID")
+                                .Rows(i).Cells("PetName").Value = DtPet.Rows(i).Item("PetName")
+                                .Rows(i).Cells("PetDOB").Value = CDate(DtPet.Rows(i).Item("PetDOB")).ToShortDateString
+                                .Rows(i).Cells("AnimalTypeCode").Value = DtPet.Rows(i).Item("AnimalTypeCode")
+                                .Rows(i).Cells("AnimalTypeName").Value = DtPet.Rows(i).Item("AnimalTypeName")
+                                .Rows(i).Cells("BreedCode").Value = DtPet.Rows(i).Item("BreedCode")
+                                .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
+                                .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
+                                .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
+                                .Rows(i).Cells("NeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
+                                .Rows(i).Cells("NeuterName").Value = DtPet.Rows(i).Item("NeuterName")
+                                .Rows(i).Cells("IsDb").Value = "1"
+                            Next
+
+                        End With
+
+                    End If
+
+                    'Show previous visits
+                    Dim ClsVisit As New ClsVisit
+                    Dim DtVisit As New DataTable
+                    With ClsVisit
                         .CustomerID = CustomerID
-                        DtCustomer = .GetCustomerInformation(ClsCustomer)
-                    End With
+                        DtVisit = .GetVisitListing(ClsVisit)
+                        If DtVisit.Rows.Count > 0 Then
 
-                    ClsPet = New ClsPet
-                    With ClsPet
-                        .CustomerID = CustomerID
-                        DtPet = .GetPetListing(ClsPet)
-                    End With
-
-                    If DtCustomer.Rows.Count > 0 Then
-
-                        'Set fields using Customer information retrieved from database
-                        TxtCustomerID.Text = DtCustomer.Rows(0).Item("CustomerID")
-                        CmbSalutation.Text = DtCustomer.Rows(0).Item("SaluteName")
-                        TxtCustomerName.Text = DtCustomer.Rows(0).Item("CustomerName")
-                        TxtNRICPassportNo.Text = DtCustomer.Rows(0).Item("NRICPassportNo")
-                        TxtAddress1.Text = DtCustomer.Rows(0).Item("AddressLine1")
-                        TxtAddress2.Text = DtCustomer.Rows(0).Item("AddressLine2")
-                        TxtAddress3.Text = DtCustomer.Rows(0).Item("AddressLine3")
-                        TxtAddress4.Text = DtCustomer.Rows(0).Item("AddressLine4")
-                        TxtTelNo.Text = DtCustomer.Rows(0).Item("TelNo")
-                        TxtMobileNo.Text = DtCustomer.Rows(0).Item("MobileNo")
-                        TxtEmail.Text = DtCustomer.Rows(0).Item("Email")
-                        TxtPostcode.Text = DtCustomer.Rows(0).Item("Postcode")
-                        TxtCity.Text = DtCustomer.Rows(0).Item("City")
-                        TxtState.Text = DtCustomer.Rows(0).Item("State")
-                        TxtCountry.Text = DtCustomer.Rows(0).Item("Country")
-                        TxtCreatedBy.Text = DtCustomer.Rows(0).Item("CreatedBy")
-                        TxtDateCreated.Text = DtCustomer.Rows(0).Item("DateCreated")
-                        TxtModifiedBy.Text = DtCustomer.Rows(0).Item("ModifiedBy")
-                        TxtDateModified.Text = DtCustomer.Rows(0).Item("DateModified")
-
-                        If DtPet.Rows.Count > 0 Then
-
-                            TxtPetName.Text = DtPet.Rows(0).Item("PetName")
-                            DtpPetDOB.Value = CDate(DtPet.Rows(0).Item("PetDOB")).Date
-                            CmbAnimalType.SelectedValue = CStr(DtPet.Rows(0).Item("AnimalTypeCode"))
-                            CmbBreed.SelectedValue = CStr(DtPet.Rows(0).Item("BreedCode"))
-                            CmbSex.SelectedValue = CStr(DtPet.Rows(0).Item("SexCode"))
-                            CmbNeuterStatus.SelectedValue = CStr(DtPet.Rows(0).Item("NeuterCode"))
-
-                            With DgvPetListing
-
-                                If DgvPetListing.Rows.Count > 0 Then
-                                    DgvPetListing.Rows.Clear()
-                                End If
-
-                                For i As Integer = 0 To DtPet.Rows.Count - 1
-                                    .Rows.Add()
-                                    .Rows(i).Cells("PetID").Value = DtPet.Rows(i).Item("PetID")
-                                    .Rows(i).Cells("PetName").Value = DtPet.Rows(i).Item("PetName")
-                                    .Rows(i).Cells("PetDOB").Value = CDate(DtPet.Rows(i).Item("PetDOB")).ToShortDateString
-                                    .Rows(i).Cells("AnimalTypeCode").Value = DtPet.Rows(i).Item("AnimalTypeCode")
-                                    .Rows(i).Cells("AnimalTypeName").Value = DtPet.Rows(i).Item("AnimalTypeName")
-                                    .Rows(i).Cells("BreedCode").Value = DtPet.Rows(i).Item("BreedCode")
-                                    .Rows(i).Cells("BreedName").Value = DtPet.Rows(i).Item("BreedName")
-                                    .Rows(i).Cells("SexCode").Value = DtPet.Rows(i).Item("SexCode")
-                                    .Rows(i).Cells("SexName").Value = DtPet.Rows(i).Item("SexName")
-                                    .Rows(i).Cells("NeuterCode").Value = DtPet.Rows(i).Item("NeuterCode")
-                                    .Rows(i).Cells("NeuterName").Value = DtPet.Rows(i).Item("NeuterName")
-                                    .Rows(i).Cells("IsDb").Value = "1"
-                                Next
-
-                            End With
-
-                        End If
-
-                        'Show previous visits
-                        Dim ClsVisit As New ClsVisit
-                        Dim DtVisit As New DataTable
-                        With ClsVisit
-                            .CustomerID = CustomerID
-                            DtVisit = .GetVisitListing(ClsVisit)
-                            If DtVisit.Rows.Count > 0 Then
-
-                                If DgvVisitHistory.Rows.Count > 0 Then
-                                    DgvVisitHistory.Rows.Clear()
-                                End If
-
+                            With DgvVisitHistory
+                                .Rows.Clear()
                                 For i As Integer = 0 To DtVisit.Rows.Count - 1
                                     With DgvVisitHistory
                                         .Rows.Add()
@@ -309,15 +308,20 @@
                                         .Rows(i).Cells("IsVisitCompleted").Value = IIf(DtVisit.Rows(i).Item("IsVisitCompleted") = "1", "COMPLETED", "ON-GOING")
                                     End With
                                 Next
+                            End With
 
-                            End If
-                        End With
+                            'If DgvVisitHistory.Rows.Count > 0 Then
+                            '    DgvVisitHistory.Rows.Clear()
+                            'End If
 
-                    End If
-
-                    SetFields(UserCommand)
+                        End If
+                    End With
 
                 End If
+
+                SetFields(UserCommand)
+
+                'End If
 
             End If
 
@@ -1080,14 +1084,7 @@
     End Function
 
     Private Sub BtnClearPet_Click(sender As Object, e As EventArgs) Handles BtnClearPet.Click
-
-        Try
-            SetFields("CLEAR_PET_FIELDS")
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".BtnCearPet()")
-        End Try
-
+        SetFields("CLEAR_PET_FIELDS")
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
@@ -1253,7 +1250,7 @@
             MsgBox("Customer information has been successfully saved!", MsgBoxStyle.Information, "Customer Information Saved")
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveCustomerToDB()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveCustomerToDb()")
             DbTrans.Rollback()
             DbTrans.Dispose()
             DbTrans = Nothing

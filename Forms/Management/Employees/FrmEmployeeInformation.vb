@@ -48,19 +48,19 @@ Public Class FrmEmployeeInformation
                     If DtEmployee.Rows.Count > 0 Then
 
                         'Employee information
-                        TxtEmployeeID.Text = DtEmployee.Rows(0).Item("EmployeeID")
+                        TxtEmployeeID.Text = CStrNull(DtEmployee.Rows(0).Item("EmployeeID"))
                         CmbSalutation.SelectedValue = DtEmployee.Rows(0).Item("SaluteCode")
                         TxtEmployeeName.Text = DtEmployee.Rows(0).Item("EmployeeName")
                         CmbSex.SelectedValue = DtEmployee.Rows(0).Item("SexCode")
                         TxtNRICPassportNo.Text = DtEmployee.Rows(0).Item("NRICPassportNo")
-                        DtpEmployeeDOB.Value = DtEmployee.Rows(0).Item("EmployeeDOB")
+                        DtpEmployeeDOB.Value = CStrNull(DtEmployee.Rows(0).Item("EmployeeDOB"))
                         TxtEmployeePOB.Text = DtEmployee.Rows(0).Item("EmployeePOB")
                         TxtNationality.Text = DtEmployee.Rows(0).Item("Nationality")
 
-                        TxtMobileNo.Text = DtEmployee.Rows(0).Item("MobileNo")
-                        TxtTelNo.Text = DtEmployee.Rows(0).Item("TelNo")
-                        TxtEmail.Text = DtEmployee.Rows(0).Item("Email")
-                        TxtAddressLine1.Text = cstrnull(DtEmployee.Rows(0).Item("AddressLine1"))
+                        TxtMobileNo.Text = CStrNull(DtEmployee.Rows(0).Item("MobileNo"))
+                        TxtTelNo.Text = CStrNull(DtEmployee.Rows(0).Item("TelNo"))
+                        TxtEmail.Text = CStrNull(DtEmployee.Rows(0).Item("Email"))
+                        TxtAddressLine1.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine1"))
                         TxtAddressLine2.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine2"))
                         TxtAddressLine3.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine3"))
                         TxtAddressLine4.Text = CStrNull(DtEmployee.Rows(0).Item("AddressLine4"))

@@ -18,19 +18,35 @@ Public Class FrmCustomerRecords
             DtCustomer = ClsCustomer.GetCustomerListing(ClsCustomer)
 
             If DtCustomer.Rows.Count > 0 Then
-                DgvCustomerListing.DataSource = DtCustomer
-                DgvCustomerListing.Show()
-            Else
-                DgvCustomerListing.DataSource = DtCustomer
-                DgvCustomerListing.Show()
+
+                With DgvCustomerListing
+
+                    .Rows.Clear()
+
+                    For i As Integer = 0 To DtCustomer.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("CustomerID").Value = DtCustomer.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("NRICPassportNo").Value = DtCustomer.Rows(i).Item("NRICPassportNo")
+                        .Rows(i).Cells("CustomerName").Value = DtCustomer.Rows(i).Item("CustomerName")
+                    Next
+                End With
+
             End If
 
-            For i As Integer = 0 To DgvCustomerListing.Rows.Count - 1
+            'If DtCustomer.Rows.Count > 0 Then
+            '    DgvCustomerListing.DataSource = DtCustomer
+            '    DgvCustomerListing.Show()
+            'Else
+            '    DgvCustomerListing.DataSource = DtCustomer
+            '    DgvCustomerListing.Show()
+            'End If
 
-                DgvCustomerListing.Columns("SaluteCode").Visible = False
-                DgvCustomerListing.Columns("SaluteName").Visible = False
+            'For i As Integer = 0 To DgvCustomerListing.Rows.Count - 1
 
-            Next
+            '    DgvCustomerListing.Columns("SaluteCode").Visible = False
+            '    DgvCustomerListing.Columns("SaluteName").Visible = False
+
+            'Next
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ShowCustomerRecords()")

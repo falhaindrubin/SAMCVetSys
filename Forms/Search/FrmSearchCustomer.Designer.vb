@@ -24,14 +24,17 @@ Partial Class FrmSearchCustomer
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSearchCustomer))
         Me.BtnSearch = New System.Windows.Forms.Button()
-        Me.DgvSearchResult = New System.Windows.Forms.DataGridView()
+        Me.DgvCustomerList = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.DgvCustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvNRICPassportNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvCustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        CType(Me.DgvCustomerList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -48,22 +51,23 @@ Partial Class FrmSearchCustomer
         Me.BtnSearch.TabIndex = 2
         Me.BtnSearch.UseVisualStyleBackColor = False
         '
-        'DgvSearchResult
+        'DgvCustomerList
         '
-        Me.DgvSearchResult.AllowUserToAddRows = False
-        Me.DgvSearchResult.AllowUserToOrderColumns = True
-        Me.DgvSearchResult.AllowUserToResizeRows = False
-        Me.DgvSearchResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
-        Me.DgvSearchResult.BackgroundColor = System.Drawing.Color.White
-        Me.DgvSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvSearchResult.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DgvSearchResult.Location = New System.Drawing.Point(3, 16)
-        Me.DgvSearchResult.MultiSelect = False
-        Me.DgvSearchResult.Name = "DgvSearchResult"
-        Me.DgvSearchResult.ReadOnly = True
-        Me.DgvSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSearchResult.Size = New System.Drawing.Size(737, 284)
-        Me.DgvSearchResult.TabIndex = 71
+        Me.DgvCustomerList.AllowUserToAddRows = False
+        Me.DgvCustomerList.AllowUserToOrderColumns = True
+        Me.DgvCustomerList.AllowUserToResizeRows = False
+        Me.DgvCustomerList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.DgvCustomerList.BackgroundColor = System.Drawing.Color.White
+        Me.DgvCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvCustomerList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DgvCustomerID, Me.DgvNRICPassportNo, Me.DgvCustomerName})
+        Me.DgvCustomerList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvCustomerList.Location = New System.Drawing.Point(3, 16)
+        Me.DgvCustomerList.MultiSelect = False
+        Me.DgvCustomerList.Name = "DgvCustomerList"
+        Me.DgvCustomerList.ReadOnly = True
+        Me.DgvCustomerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvCustomerList.Size = New System.Drawing.Size(737, 284)
+        Me.DgvCustomerList.TabIndex = 71
         '
         'GroupBox1
         '
@@ -120,13 +124,36 @@ Partial Class FrmSearchCustomer
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.DgvSearchResult)
+        Me.GroupBox2.Controls.Add(Me.DgvCustomerList)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 170)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(743, 303)
         Me.GroupBox2.TabIndex = 75
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Customer List"
+        '
+        'DgvCustomerID
+        '
+        Me.DgvCustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvCustomerID.HeaderText = "Customer ID"
+        Me.DgvCustomerID.Name = "DgvCustomerID"
+        Me.DgvCustomerID.ReadOnly = True
+        Me.DgvCustomerID.Width = 90
+        '
+        'DgvNRICPassportNo
+        '
+        Me.DgvNRICPassportNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvNRICPassportNo.HeaderText = "NRIC / Passport No."
+        Me.DgvNRICPassportNo.Name = "DgvNRICPassportNo"
+        Me.DgvNRICPassportNo.ReadOnly = True
+        Me.DgvNRICPassportNo.Width = 101
+        '
+        'DgvCustomerName
+        '
+        Me.DgvCustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DgvCustomerName.HeaderText = "CustomerName"
+        Me.DgvCustomerName.Name = "DgvCustomerName"
+        Me.DgvCustomerName.ReadOnly = True
         '
         'FrmSearchCustomer
         '
@@ -140,7 +167,7 @@ Partial Class FrmSearchCustomer
         Me.Name = "FrmSearchCustomer"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Search Customer"
-        CType(Me.DgvSearchResult, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvCustomerList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.PnlActionBar.ResumeLayout(False)
@@ -150,11 +177,14 @@ Partial Class FrmSearchCustomer
 
     End Sub
     Friend WithEvents BtnSearch As Button
-    Friend WithEvents DgvSearchResult As DataGridView
+    Friend WithEvents DgvCustomerList As DataGridView
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TxtSearchText As TextBox
     Friend WithEvents PnlActionBar As Panel
     Friend WithEvents Label25 As Label
     Friend WithEvents BtnClose As Button
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents DgvCustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents DgvNRICPassportNo As DataGridViewTextBoxColumn
+    Friend WithEvents DgvCustomerName As DataGridViewTextBoxColumn
 End Class

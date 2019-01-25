@@ -56,20 +56,6 @@ Partial Class FrmPaymentInformation
         Me.Label40 = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.DgvBillListing = New System.Windows.Forms.DataGridView()
-        Me.BtnDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.RowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItemCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Prescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Remark = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItemDiscount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItemGroupDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItemTypeCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ItemTypeDescriptionDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
@@ -106,6 +92,22 @@ Partial Class FrmPaymentInformation
         Me.BtnGenerateInvoice = New System.Windows.Forms.Button()
         Me.CbIsRecalculate = New System.Windows.Forms.CheckBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.BtnDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.RowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChSource = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChSourceName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Prescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Remark = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemDiscount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemGroupDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemTypeCodeDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemTypeDescriptionDgv = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -290,7 +292,7 @@ Partial Class FrmPaymentInformation
         Me.Panel3.Controls.Add(Me.Label18)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel3.Location = New System.Drawing.Point(12, 748)
+        Me.Panel3.Location = New System.Drawing.Point(12, 817)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(984, 61)
         Me.Panel3.TabIndex = 85
@@ -303,7 +305,7 @@ Partial Class FrmPaymentInformation
         Me.TabControl1.Location = New System.Drawing.Point(12, 171)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(984, 571)
+        Me.TabControl1.Size = New System.Drawing.Size(984, 640)
         Me.TabControl1.TabIndex = 83
         '
         'TabPage4
@@ -314,7 +316,7 @@ Partial Class FrmPaymentInformation
         Me.TabPage4.Location = New System.Drawing.Point(4, 23)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(976, 544)
+        Me.TabPage4.Size = New System.Drawing.Size(976, 613)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Billing & Payment"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -331,7 +333,7 @@ Partial Class FrmPaymentInformation
         Me.GroupBox7.Controls.Add(Me.TxtDiscount)
         Me.GroupBox7.Controls.Add(Me.TxtGrandTotal)
         Me.GroupBox7.Controls.Add(Me.Label40)
-        Me.GroupBox7.Location = New System.Drawing.Point(6, 442)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 511)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Size = New System.Drawing.Size(964, 96)
         Me.GroupBox7.TabIndex = 168
@@ -453,7 +455,7 @@ Partial Class FrmPaymentInformation
         Me.GroupBox6.Controls.Add(Me.DgvBillListing)
         Me.GroupBox6.Location = New System.Drawing.Point(6, 245)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(964, 191)
+        Me.GroupBox6.Size = New System.Drawing.Size(964, 260)
         Me.GroupBox6.TabIndex = 167
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Item List"
@@ -465,127 +467,15 @@ Partial Class FrmPaymentInformation
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.DgvBillListing.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvBillListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice, Me.ItemGroupDgv, Me.ItemTypeCodeDgv, Me.ItemTypeDescriptionDgv})
+        Me.DgvBillListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BtnDeleteItem, Me.RowNo, Me.ItemCodeDgv, Me.ItemDescription, Me.ChSource, Me.ChSourceName, Me.Prescription, Me.Notes, Me.Remark, Me.Quantity, Me.UnitPrice, Me.ItemDiscount, Me.TotalPrice, Me.ItemGroupDgv, Me.ItemTypeCodeDgv, Me.ItemTypeDescriptionDgv})
         Me.DgvBillListing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvBillListing.Location = New System.Drawing.Point(3, 16)
         Me.DgvBillListing.MultiSelect = False
         Me.DgvBillListing.Name = "DgvBillListing"
         Me.DgvBillListing.ReadOnly = True
         Me.DgvBillListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvBillListing.Size = New System.Drawing.Size(958, 172)
+        Me.DgvBillListing.Size = New System.Drawing.Size(958, 241)
         Me.DgvBillListing.TabIndex = 140
-        '
-        'BtnDeleteItem
-        '
-        Me.BtnDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnDeleteItem.HeaderText = "Delete?"
-        Me.BtnDeleteItem.Name = "BtnDeleteItem"
-        Me.BtnDeleteItem.ReadOnly = True
-        Me.BtnDeleteItem.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.BtnDeleteItem.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.BtnDeleteItem.Text = "Delete"
-        Me.BtnDeleteItem.ToolTipText = "Delete Item?"
-        Me.BtnDeleteItem.UseColumnTextForButtonValue = True
-        Me.BtnDeleteItem.Width = 68
-        '
-        'RowNo
-        '
-        Me.RowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RowNo.HeaderText = "No."
-        Me.RowNo.Name = "RowNo"
-        Me.RowNo.ReadOnly = True
-        Me.RowNo.Width = 48
-        '
-        'ItemCodeDgv
-        '
-        Me.ItemCodeDgv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ItemCodeDgv.HeaderText = "ItemCode"
-        Me.ItemCodeDgv.Name = "ItemCodeDgv"
-        Me.ItemCodeDgv.ReadOnly = True
-        Me.ItemCodeDgv.Width = 76
-        '
-        'ItemDescription
-        '
-        Me.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.ItemDescription.HeaderText = "ItemDescription"
-        Me.ItemDescription.Name = "ItemDescription"
-        Me.ItemDescription.ReadOnly = True
-        '
-        'Prescription
-        '
-        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Prescription.HeaderText = "Prescription"
-        Me.Prescription.Name = "Prescription"
-        Me.Prescription.ReadOnly = True
-        Me.Prescription.Width = 89
-        '
-        'Notes
-        '
-        Me.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Notes.HeaderText = "Notes"
-        Me.Notes.Name = "Notes"
-        Me.Notes.ReadOnly = True
-        Me.Notes.Width = 60
-        '
-        'Remark
-        '
-        Me.Remark.HeaderText = "Remark"
-        Me.Remark.Name = "Remark"
-        Me.Remark.ReadOnly = True
-        Me.Remark.Visible = False
-        '
-        'Quantity
-        '
-        Me.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Quantity.HeaderText = "Quantity"
-        Me.Quantity.Name = "Quantity"
-        Me.Quantity.ReadOnly = True
-        Me.Quantity.Width = 72
-        '
-        'UnitPrice
-        '
-        Me.UnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.UnitPrice.HeaderText = "Unit Price"
-        Me.UnitPrice.Name = "UnitPrice"
-        Me.UnitPrice.ReadOnly = True
-        Me.UnitPrice.Width = 77
-        '
-        'ItemDiscount
-        '
-        Me.ItemDiscount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ItemDiscount.HeaderText = "Discount"
-        Me.ItemDiscount.Name = "ItemDiscount"
-        Me.ItemDiscount.ReadOnly = True
-        Me.ItemDiscount.Visible = False
-        '
-        'TotalPrice
-        '
-        Me.TotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TotalPrice.HeaderText = "Total Price"
-        Me.TotalPrice.Name = "TotalPrice"
-        Me.TotalPrice.ReadOnly = True
-        Me.TotalPrice.Width = 81
-        '
-        'ItemGroupDgv
-        '
-        Me.ItemGroupDgv.HeaderText = "ItemGroup"
-        Me.ItemGroupDgv.Name = "ItemGroupDgv"
-        Me.ItemGroupDgv.ReadOnly = True
-        Me.ItemGroupDgv.Visible = False
-        '
-        'ItemTypeCodeDgv
-        '
-        Me.ItemTypeCodeDgv.HeaderText = "ItemTypeCode"
-        Me.ItemTypeCodeDgv.Name = "ItemTypeCodeDgv"
-        Me.ItemTypeCodeDgv.ReadOnly = True
-        Me.ItemTypeCodeDgv.Visible = False
-        '
-        'ItemTypeDescriptionDgv
-        '
-        Me.ItemTypeDescriptionDgv.HeaderText = "ItemTypeDescription"
-        Me.ItemTypeDescriptionDgv.Name = "ItemTypeDescriptionDgv"
-        Me.ItemTypeDescriptionDgv.ReadOnly = True
-        Me.ItemTypeDescriptionDgv.Visible = False
         '
         'GroupBox5
         '
@@ -977,11 +867,143 @@ Partial Class FrmPaymentInformation
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "GroupBox4"
         '
+        'BtnDeleteItem
+        '
+        Me.BtnDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnDeleteItem.HeaderText = "Delete?"
+        Me.BtnDeleteItem.Name = "BtnDeleteItem"
+        Me.BtnDeleteItem.ReadOnly = True
+        Me.BtnDeleteItem.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.BtnDeleteItem.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.BtnDeleteItem.Text = "Delete"
+        Me.BtnDeleteItem.ToolTipText = "Delete Item?"
+        Me.BtnDeleteItem.UseColumnTextForButtonValue = True
+        Me.BtnDeleteItem.Width = 68
+        '
+        'RowNo
+        '
+        Me.RowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RowNo.HeaderText = "No."
+        Me.RowNo.Name = "RowNo"
+        Me.RowNo.ReadOnly = True
+        Me.RowNo.Width = 48
+        '
+        'ItemCodeDgv
+        '
+        Me.ItemCodeDgv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ItemCodeDgv.HeaderText = "Item Code"
+        Me.ItemCodeDgv.Name = "ItemCodeDgv"
+        Me.ItemCodeDgv.ReadOnly = True
+        Me.ItemCodeDgv.Width = 79
+        '
+        'ItemDescription
+        '
+        Me.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.ItemDescription.HeaderText = "Item Description"
+        Me.ItemDescription.Name = "ItemDescription"
+        Me.ItemDescription.ReadOnly = True
+        '
+        'ChSource
+        '
+        Me.ChSource.HeaderText = "ChSource"
+        Me.ChSource.Name = "ChSource"
+        Me.ChSource.ReadOnly = True
+        Me.ChSource.Visible = False
+        Me.ChSource.Width = 67
+        '
+        'ChSourceName
+        '
+        Me.ChSourceName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChSourceName.HeaderText = "Source"
+        Me.ChSourceName.Name = "ChSourceName"
+        Me.ChSourceName.ReadOnly = True
+        Me.ChSourceName.Visible = False
+        Me.ChSourceName.Width = 67
+        '
+        'Prescription
+        '
+        Me.Prescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Prescription.HeaderText = "Prescription"
+        Me.Prescription.Name = "Prescription"
+        Me.Prescription.ReadOnly = True
+        Me.Prescription.Visible = False
+        Me.Prescription.Width = 89
+        '
+        'Notes
+        '
+        Me.Notes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Notes.HeaderText = "Notes"
+        Me.Notes.Name = "Notes"
+        Me.Notes.ReadOnly = True
+        Me.Notes.Visible = False
+        Me.Notes.Width = 60
+        '
+        'Remark
+        '
+        Me.Remark.HeaderText = "Remark"
+        Me.Remark.Name = "Remark"
+        Me.Remark.ReadOnly = True
+        Me.Remark.Visible = False
+        '
+        'Quantity
+        '
+        Me.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Quantity.HeaderText = "Quantity"
+        Me.Quantity.Name = "Quantity"
+        Me.Quantity.ReadOnly = True
+        Me.Quantity.Width = 72
+        '
+        'UnitPrice
+        '
+        Me.UnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.UnitPrice.HeaderText = "Unit Price"
+        Me.UnitPrice.Name = "UnitPrice"
+        Me.UnitPrice.ReadOnly = True
+        Me.UnitPrice.Width = 77
+        '
+        'ItemDiscount
+        '
+        Me.ItemDiscount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ItemDiscount.HeaderText = "Discount"
+        Me.ItemDiscount.Name = "ItemDiscount"
+        Me.ItemDiscount.ReadOnly = True
+        Me.ItemDiscount.Visible = False
+        Me.ItemDiscount.Width = 74
+        '
+        'TotalPrice
+        '
+        Me.TotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TotalPrice.HeaderText = "Total Price"
+        Me.TotalPrice.Name = "TotalPrice"
+        Me.TotalPrice.ReadOnly = True
+        Me.TotalPrice.Width = 81
+        '
+        'ItemGroupDgv
+        '
+        Me.ItemGroupDgv.HeaderText = "ItemGroup"
+        Me.ItemGroupDgv.Name = "ItemGroupDgv"
+        Me.ItemGroupDgv.ReadOnly = True
+        Me.ItemGroupDgv.Visible = False
+        '
+        'ItemTypeCodeDgv
+        '
+        Me.ItemTypeCodeDgv.HeaderText = "ItemTypeCode"
+        Me.ItemTypeCodeDgv.Name = "ItemTypeCodeDgv"
+        Me.ItemTypeCodeDgv.ReadOnly = True
+        Me.ItemTypeCodeDgv.Visible = False
+        '
+        'ItemTypeDescriptionDgv
+        '
+        Me.ItemTypeDescriptionDgv.HeaderText = "ItemTypeDescription"
+        Me.ItemTypeDescriptionDgv.Name = "ItemTypeDescriptionDgv"
+        Me.ItemTypeDescriptionDgv.ReadOnly = True
+        Me.ItemTypeDescriptionDgv.Visible = False
+        '
         'FrmPaymentInformation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 817)
+        Me.ClientSize = New System.Drawing.Size(1008, 890)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.PnlActionBar)
@@ -1062,20 +1084,6 @@ Partial Class FrmPaymentInformation
     Friend WithEvents BtnAddBillItem As Button
     Friend WithEvents CbPaymentCompleted As CheckBox
     Friend WithEvents Label25 As Label
-    Friend WithEvents BtnDeleteItem As DataGridViewButtonColumn
-    Friend WithEvents RowNo As DataGridViewTextBoxColumn
-    Friend WithEvents ItemCodeDgv As DataGridViewTextBoxColumn
-    Friend WithEvents ItemDescription As DataGridViewTextBoxColumn
-    Friend WithEvents Prescription As DataGridViewTextBoxColumn
-    Friend WithEvents Notes As DataGridViewTextBoxColumn
-    Friend WithEvents Remark As DataGridViewTextBoxColumn
-    Friend WithEvents Quantity As DataGridViewTextBoxColumn
-    Friend WithEvents UnitPrice As DataGridViewTextBoxColumn
-    Friend WithEvents ItemDiscount As DataGridViewTextBoxColumn
-    Friend WithEvents TotalPrice As DataGridViewTextBoxColumn
-    Friend WithEvents ItemGroupDgv As DataGridViewTextBoxColumn
-    Friend WithEvents ItemTypeCodeDgv As DataGridViewTextBoxColumn
-    Friend WithEvents ItemTypeDescriptionDgv As DataGridViewTextBoxColumn
     Friend WithEvents TxtVisitID As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents TabPage1 As TabPage
@@ -1095,4 +1103,20 @@ Partial Class FrmPaymentInformation
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents BtnDeleteItem As DataGridViewButtonColumn
+    Friend WithEvents RowNo As DataGridViewTextBoxColumn
+    Friend WithEvents ItemCodeDgv As DataGridViewTextBoxColumn
+    Friend WithEvents ItemDescription As DataGridViewTextBoxColumn
+    Friend WithEvents ChSource As DataGridViewTextBoxColumn
+    Friend WithEvents ChSourceName As DataGridViewTextBoxColumn
+    Friend WithEvents Prescription As DataGridViewTextBoxColumn
+    Friend WithEvents Notes As DataGridViewTextBoxColumn
+    Friend WithEvents Remark As DataGridViewTextBoxColumn
+    Friend WithEvents Quantity As DataGridViewTextBoxColumn
+    Friend WithEvents UnitPrice As DataGridViewTextBoxColumn
+    Friend WithEvents ItemDiscount As DataGridViewTextBoxColumn
+    Friend WithEvents TotalPrice As DataGridViewTextBoxColumn
+    Friend WithEvents ItemGroupDgv As DataGridViewTextBoxColumn
+    Friend WithEvents ItemTypeCodeDgv As DataGridViewTextBoxColumn
+    Friend WithEvents ItemTypeDescriptionDgv As DataGridViewTextBoxColumn
 End Class

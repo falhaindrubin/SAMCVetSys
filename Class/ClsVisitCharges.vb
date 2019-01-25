@@ -6,6 +6,8 @@ Public Class ClsVisitCharges
 
     ReadOnly DbVisit As New ClsDbVisit
 
+#Region "Property"
+
     Private _VisitID As String
     Public Property VisitID As String
         Get
@@ -126,6 +128,26 @@ Public Class ClsVisitCharges
         End Set
     End Property
 
+    Private _ChSource As String
+    Public Property ChSource As String
+        Get
+            Return _ChSource
+        End Get
+        Set(value As String)
+            _ChSource = value
+        End Set
+    End Property
+
+    Private _ChSourceName As String
+    Public Property ChSourceName As String
+        Get
+            Return _ChSourceName
+        End Get
+        Set(value As String)
+            _ChSourceName = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get
@@ -135,6 +157,7 @@ Public Class ClsVisitCharges
             _Ref = value
         End Set
     End Property
+#End Region
 
     Public Function AddNewVisitCharges(ClsVisitCharges As ClsVisitCharges, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisitCharges(ClsVisitCharges, DbConn, DbTrans)

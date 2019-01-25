@@ -135,6 +135,8 @@ Public Class FrmPaymentInformation
                             .Rows(i).Cells("ItemGroupDgv").Value = DtBill.Rows(i).Item("ItemGroup")
                             .Rows(i).Cells("ItemTypeDescriptionDgv").Value = DtBill.Rows(i).Item("ItemTypeDescription")
                             .Rows(i).Cells("ItemTypeCodeDgv").Value = DtBill.Rows(i).Item("ItemTypeCode")
+                            .Rows(i).Cells("ChSource").Value = DtBill.Rows(i).Item("ChSource")
+                            .Rows(i).Cells("ChSourceName").Value = DtBill.Rows(i).Item("ChSourceName")
                         End With
                     Next
 
@@ -572,6 +574,8 @@ Public Class FrmPaymentInformation
                 .Columns.Add("UnitPrice", GetType(Decimal))
                 .Columns.Add("Quantity", GetType(Decimal))
                 .Columns.Add("TotalPrice", GetType(Decimal))
+                .Columns.Add("ChSource", GetType(String))
+                .Columns.Add("ChSourceName", GetType(String))
             End With
 
         Catch ex As Exception
@@ -701,6 +705,8 @@ Public Class FrmPaymentInformation
                         .UnitPrice = DgvBillListing.Rows(i).Cells("UnitPrice").Value
                         .ItemDiscount = DgvBillListing.Rows(i).Cells("ItemDiscount").Value
                         .TotalPrice = DgvBillListing.Rows(i).Cells("TotalPrice").Value
+                        .ChSource = DgvBillListing.Rows(i).Cells("ChSource").Value
+                        .ChSourceName = DgvBillListing.Rows(i).Cells("ChSourceName").Value
                     End With
 
                     If Not ClsBillDetail.AddNewBillDetail(ClsBillDetail, DbConn, DbTrans) Then
@@ -755,6 +761,18 @@ Public Class FrmPaymentInformation
     Private Function CalculateBillPayment() As Boolean
 
         Try
+            'Get charges source; specified charges source
+            Dim ClsChSource As New ClsChSource
+            Dim DtChSource As New DataTable
+
+            With ClsChSource
+                DtChSource = .GetChSource(ClsChSource)
+                If DtChSource.Rows.Count = 0 Then
+                    MsgBox("Failed to initiate charge sources.", MsgBoxStyle.Critical, "Charge Sources Initiation Error")
+                    Return False
+                End If
+            End With
+
             'Get items by VisitID from:
             'samc_visitcharges, samc_diagnosis, samc_treatment, samc_ward, samc_warddetail, samc_warddiagnosis, samc_warddiagnosisdetail, samc_wardtreatment
 
@@ -775,6 +793,17 @@ Public Class FrmPaymentInformation
                 .VisitID = Trim(TxtVisitID.Text)
                 DtVisitCharges = .GetVisitCharges(ClsVisitCharges)
 
+                Dim VisitChSource As String = ""
+                Dim VisitChSourceName As String = ""
+
+                For i As Integer = 0 To DtChSource.Rows.Count - 1
+                    If DtChSource.Rows(i).Item("ChSource") = "1" Then ' 1 = VISIT
+                        VisitChSource = DtChSource.Rows(i).Item("ChSource")
+                        VisitChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                        Exit For
+                    End If
+                Next
+
                 If DtVisitCharges.Rows.Count > 0 Then
                     For i As Integer = 0 To DtVisitCharges.Rows.Count - 1
                         With DtBill
@@ -792,6 +821,9 @@ Public Class FrmPaymentInformation
                             VisitChargesRow("Quantity") = DtVisitCharges.Rows(i).Item("Quantity")
                             VisitChargesRow("TotalPrice") = DtVisitCharges.Rows(i).Item("TotalPrice")
 
+                            VisitChargesRow("ChSource") = VisitChSource
+                            VisitChargesRow("ChSourceName") = VisitChSourceName
+
                             DtBill.Rows.Add(VisitChargesRow)
 
                         End With
@@ -803,9 +835,21 @@ Public Class FrmPaymentInformation
             'Diagnosis (outpatient)
             Dim DtDiagnosis As New DataTable
             Dim ClsDiagnosis As New ClsDiagnosis
+
             With ClsDiagnosis
                 .VisitID = Trim(TxtVisitID.Text)
                 DtDiagnosis = ClsDiagnosis.GetDiagnosisDetail(ClsDiagnosis)
+
+                Dim DiagnosisChSource As String = ""
+                Dim DiagnosisChSourceName As String = ""
+
+                For i As Integer = 0 To DtChSource.Rows.Count - 1
+                    If DtChSource.Rows(i).Item("ChSource") = "2" Then ' 2 = DIAGNOSIS
+                        DiagnosisChSource = DtChSource.Rows(i).Item("ChSource")
+                        DiagnosisChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                        Exit For
+                    End If
+                Next
 
                 If DtDiagnosis.Rows.Count > 0 Then
                     For i As Integer = 0 To DtDiagnosis.Rows.Count - 1
@@ -814,7 +858,7 @@ Public Class FrmPaymentInformation
 
                             DiagnosisRow("RowNo") = DtDiagnosis.Rows(i).Item("RowNo")
                             DiagnosisRow("ItemCode") = DtDiagnosis.Rows(i).Item("ItemCode")
-                            DiagnosisRow("ItemDescription") = DtDiagnosis.Rows(i).Item("ItemDescription") & "***DIAGNOSIS"
+                            DiagnosisRow("ItemDescription") = DtDiagnosis.Rows(i).Item("ItemDescription") '& "***DIAGNOSIS"
                             DiagnosisRow("ItemGroup") = DtDiagnosis.Rows(i).Item("ItemGroup")
                             DiagnosisRow("ItemTypeCode") = DtDiagnosis.Rows(i).Item("ItemTypeCode")
                             DiagnosisRow("ItemTypeDescription") = DtDiagnosis.Rows(i).Item("ItemTypeDescription")
@@ -824,11 +868,16 @@ Public Class FrmPaymentInformation
                             DiagnosisRow("Quantity") = DtDiagnosis.Rows(i).Item("Quantity")
                             DiagnosisRow("TotalPrice") = DtDiagnosis.Rows(i).Item("TotalPrice")
 
+                            DiagnosisRow("ChSource") = DiagnosisChSource
+                            DiagnosisRow("ChSourceName") = DiagnosisChSourceName
+
                             DtBill.Rows.Add(DiagnosisRow)
                         End With
                     Next
                 End If
             End With
+
+#Region "Calculate Treatment (Out-Patient)"
 
             'Treatment
             Dim DtTreatment As New DataTable
@@ -836,6 +885,18 @@ Public Class FrmPaymentInformation
             With ClsTreatment
                 .VisitID = Trim(TxtVisitID.Text)
                 DtTreatment = ClsTreatment.GetTreatmentDetail(ClsTreatment)
+
+                Dim TreatmentChSource As String = ""
+                Dim TreatmentChSourceName As String = ""
+
+                For i As Integer = 0 To DtChSource.Rows.Count - 1
+                    If DtChSource.Rows(i).Item("ChSource") = "3" Then ' 3 = TREATMENT
+                        TreatmentChSource = DtChSource.Rows(i).Item("ChSource")
+                        TreatmentChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                        Exit For
+                    End If
+                Next
+
                 If DtTreatment.Rows.Count > 0 Then
                     For i As Integer = 0 To DtTreatment.Rows.Count - 1
                         With DtBill
@@ -843,7 +904,7 @@ Public Class FrmPaymentInformation
 
                             TreatmentRow("RowNo") = DtTreatment.Rows(i).Item("RowNo")
                             TreatmentRow("ItemCode") = DtTreatment.Rows(i).Item("ItemCode")
-                            TreatmentRow("ItemDescription") = DtTreatment.Rows(i).Item("ItemDescription") & "***TREATMENT"
+                            TreatmentRow("ItemDescription") = DtTreatment.Rows(i).Item("ItemDescription") ' & "***TREATMENT"
                             TreatmentRow("ItemGroup") = DtTreatment.Rows(i).Item("ItemGroup")
                             TreatmentRow("ItemTypeCode") = DtTreatment.Rows(i).Item("ItemTypeCode")
                             TreatmentRow("ItemTypeDescription") = DtTreatment.Rows(i).Item("ItemTypeDescription")
@@ -853,19 +914,86 @@ Public Class FrmPaymentInformation
                             TreatmentRow("Quantity") = DtTreatment.Rows(i).Item("Quantity")
                             TreatmentRow("TotalPrice") = DtTreatment.Rows(i).Item("TotalPrice")
 
+                            TreatmentRow("ChSource") = TreatmentChSource 'DtTreatment.Rows(i).Item("TotalPrice")
+                            TreatmentRow("ChSourceName") = TreatmentChSourceName 'DtTreatment.Rows(i).Item("TotalPrice")
+
                             DtBill.Rows.Add(TreatmentRow)
                         End With
                     Next
                 End If
             End With
 
-#Region "CalculateWard"
+#End Region
+
+#Region "Calculate Surgery"
+
+            Dim DtSurgeryDischarge As New DataTable
+            Dim ClsSurgery As New ClsSurgery
+            With ClsSurgery
+                .CaseID = ""
+                DtSurgeryDischarge = .GetSurgeryDischarge(ClsSurgery)
+
+                Dim SurgeryChSource As String = ""
+                Dim SurgeryChSourceName As String = ""
+
+                For i As Integer = 0 To DtChSource.Rows.Count - 1
+                    If DtChSource.Rows(i).Item("ChSource") = "4" Then ' 4 = SURGERY
+                        SurgeryChSource = DtChSource.Rows(i).Item("ChSource")
+                        SurgeryChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                        Exit For
+                    End If
+                Next
+
+                If DtSurgeryDischarge.Rows.Count > 0 Then
+
+                    For i As Integer = 0 To DtSurgeryDischarge.Rows.Count - 1
+                        With DtBill
+                            Dim SurgeryDischarge As DataRow = DtBill.NewRow
+
+                            SurgeryDischarge("RowNo") = 0 'DtSurgeryDischarge.Rows(i).Item("RowNo")
+                            SurgeryDischarge("ItemCode") = DtSurgeryDischarge.Rows(i).Item("ItemCode")
+                            SurgeryDischarge("ItemDescription") = DtSurgeryDischarge.Rows(i).Item("ItemDescription") '& "***WARD-DIAGNOSIS"
+                            SurgeryDischarge("ItemGroup") = DtSurgeryDischarge.Rows(i).Item("ItemGroup")
+                            SurgeryDischarge("ItemTypeCode") = DtSurgeryDischarge.Rows(i).Item("ItemTypeCode")
+                            SurgeryDischarge("ItemTypeDescription") = DtSurgeryDischarge.Rows(i).Item("ItemTypeDescription")
+                            SurgeryDischarge("Prescription") = "" 'DtWardDiagnosis.Rows(i).Item("Prescription")
+                            SurgeryDischarge("Notes") = "" 'DtWardDiagnosis.Rows(i).Item("Notes")
+                            SurgeryDischarge("UnitPrice") = DtSurgeryDischarge.Rows(i).Item("UnitPrice")
+                            SurgeryDischarge("Quantity") = DtSurgeryDischarge.Rows(i).Item("Quantity")
+                            SurgeryDischarge("TotalPrice") = DtSurgeryDischarge.Rows(i).Item("TotalPrice")
+
+                            SurgeryDischarge("ChSource") = DtSurgeryDischarge 'DtTreatment.Rows(i).Item("TotalPrice")
+                            SurgeryDischarge("ChSourceName") = DtSurgeryDischarge 'DtTreatment.Rows(i).Item("TotalPrice")
+
+                        End With
+                    Next
+
+                End If
+
+            End With
+
+#End Region
+
+#Region "Calculate Ward"
+
             'Ward diagnosis
             Dim DtWardDiagnosis As New DataTable
             Dim ClsWardDiagnosis As New ClsWardDiagnosis
             With ClsWardDiagnosis
                 .WardID = Trim(TxtVisitID.Text)
                 DtWardDiagnosis = .GetWardDiagnosisDetail(ClsWardDiagnosis)
+
+                Dim WardChSource As String = ""
+                Dim WardChSourceName As String = ""
+
+                For i As Integer = 0 To DtChSource.Rows.Count - 1
+                    If DtChSource.Rows(i).Item("ChSource") = "5" Then ' 5 = WARD DIAGNOSIS
+                        WardChSource = DtChSource.Rows(i).Item("ChSource")
+                        WardChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                        Exit For
+                    End If
+                Next
+
                 If DtWardDiagnosis.Rows.Count > 0 Then
                     For i As Integer = 0 To DtWardDiagnosis.Rows.Count - 1
                         With DtBill
@@ -873,7 +1001,7 @@ Public Class FrmPaymentInformation
 
                             WardDiagnosisRow("RowNo") = DtWardDiagnosis.Rows(i).Item("RowNo")
                             WardDiagnosisRow("ItemCode") = DtWardDiagnosis.Rows(i).Item("ItemCode")
-                            WardDiagnosisRow("ItemDescription") = DtWardDiagnosis.Rows(i).Item("ItemDescription") & "***WARD-DIAGNOSIS"
+                            WardDiagnosisRow("ItemDescription") = DtWardDiagnosis.Rows(i).Item("ItemDescription") '& "***WARD-DIAGNOSIS"
                             WardDiagnosisRow("ItemGroup") = DtWardDiagnosis.Rows(i).Item("ItemGroup")
                             WardDiagnosisRow("ItemTypeCode") = DtWardDiagnosis.Rows(i).Item("ItemTypeCode")
                             WardDiagnosisRow("ItemTypeDescription") = DtWardDiagnosis.Rows(i).Item("ItemTypeDescription")
@@ -883,7 +1011,10 @@ Public Class FrmPaymentInformation
                             WardDiagnosisRow("Quantity") = DtWardDiagnosis.Rows(i).Item("Quantity")
                             WardDiagnosisRow("TotalPrice") = DtWardDiagnosis.Rows(i).Item("TotalPrice")
 
-                            If cstrnull(WardDiagnosisRow("ItemCode")) <> "" Then
+                            WardDiagnosisRow("ChSource") = WardChSource
+                            WardDiagnosisRow("ChSourceName") = WardChSourceName
+
+                            If CStrNull(WardDiagnosisRow("ItemCode")) <> "" Then
                                 DtBill.Rows.Add(WardDiagnosisRow)
                             End If
 
@@ -899,6 +1030,18 @@ Public Class FrmPaymentInformation
             With ClsWardTreatment
                 .WardID = Trim(TxtVisitID.Text)
                 DtWardTreatment = .GetWardTreatmentDetail(ClsWardTreatment)
+
+                Dim WardChSource As String = ""
+                Dim WardChSourceName As String = ""
+
+                For i As Integer = 0 To DtChSource.Rows.Count - 1
+                    If DtChSource.Rows(i).Item("ChSource") = "6" Then ' 6 = WARD TREATMENT
+                        WardChSource = DtChSource.Rows(i).Item("ChSource")
+                        WardChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                        Exit For
+                    End If
+                Next
+
                 If DtWardTreatment.Rows.Count > 0 Then
                     For i As Integer = 0 To DtWardTreatment.Rows.Count - 1
                         With DtBill
@@ -906,7 +1049,7 @@ Public Class FrmPaymentInformation
 
                             WardTreatmentRow("RowNo") = DtWardTreatment.Rows(i).Item("RowNo")
                             WardTreatmentRow("ItemCode") = DtWardTreatment.Rows(i).Item("ItemCode")
-                            WardTreatmentRow("ItemDescription") = DtWardTreatment.Rows(i).Item("ItemDescription") & "***WARD-TREATMENT"
+                            WardTreatmentRow("ItemDescription") = DtWardTreatment.Rows(i).Item("ItemDescription") '& "***WARD-TREATMENT"
                             WardTreatmentRow("ItemGroup") = DtWardTreatment.Rows(i).Item("ItemGroup")
                             WardTreatmentRow("ItemTypeCode") = DtWardTreatment.Rows(i).Item("ItemTypeCode")
                             WardTreatmentRow("ItemTypeDescription") = DtWardTreatment.Rows(i).Item("ItemTypeDescription")
@@ -915,6 +1058,9 @@ Public Class FrmPaymentInformation
                             WardTreatmentRow("UnitPrice") = DtWardTreatment.Rows(i).Item("UnitPrice")
                             WardTreatmentRow("Quantity") = DtWardTreatment.Rows(i).Item("Quantity")
                             WardTreatmentRow("TotalPrice") = DtWardTreatment.Rows(i).Item("TotalPrice")
+
+                            WardTreatmentRow("ChSource") = WardChSource 'DtWardTreatment.Rows(i).Item("Quantity")
+                            WardTreatmentRow("ChSourceName") = WardChSourceName 'DtWardTreatment.Rows(i).Item("TotalPrice")
 
                             DtBill.Rows.Add(WardTreatmentRow)
                         End With
@@ -930,13 +1076,24 @@ Public Class FrmPaymentInformation
                 DtWardDiscMed = .GetWardDischargeMedication(ClsWardDischargeMedication)
                 If DtWardDiscMed.Rows.Count > 0 Then
 
+                    Dim WardChSource As String = ""
+                    Dim WardChSourceName As String = ""
+
+                    For i As Integer = 0 To DtChSource.Rows.Count - 1
+                        If DtChSource.Rows(i).Item("ChSource") = "7" Then ' 7 = WARD DISCHARGE
+                            WardChSource = DtChSource.Rows(i).Item("ChSource")
+                            WardChSourceName = DtChSource.Rows(i).Item("ChSourceName")
+                            Exit For
+                        End If
+                    Next
+
                     For i As Integer = 0 To DtWardDiscMed.Rows.Count - 1
                         With DtBill
                             Dim WardDiscMedRow As DataRow = DtBill.NewRow
 
                             WardDiscMedRow("RowNo") = DtWardDiscMed.Rows(i).Item("RowNo")
                             WardDiscMedRow("ItemCode") = DtWardDiscMed.Rows(i).Item("ItemCode")
-                            WardDiscMedRow("ItemDescription") = DtWardDiscMed.Rows(i).Item("ItemDescription") & "***WARD-DISCHARGE-MEDICATION"
+                            WardDiscMedRow("ItemDescription") = DtWardDiscMed.Rows(i).Item("ItemDescription") '& "***WARD-DISCHARGE-MEDICATION"
                             WardDiscMedRow("ItemGroup") = DtWardDiscMed.Rows(i).Item("ItemGroup")
                             WardDiscMedRow("ItemTypeCode") = DtWardDiscMed.Rows(i).Item("ItemTypeCode")
                             WardDiscMedRow("ItemTypeDescription") = DtWardDiscMed.Rows(i).Item("ItemTypeDescription")
@@ -945,6 +1102,9 @@ Public Class FrmPaymentInformation
                             WardDiscMedRow("UnitPrice") = DtWardDiscMed.Rows(i).Item("UnitPrice")
                             WardDiscMedRow("Quantity") = DtWardDiscMed.Rows(i).Item("Quantity")
                             WardDiscMedRow("TotalPrice") = DtWardDiscMed.Rows(i).Item("TotalPrice")
+
+                            WardDiscMedRow("ChSource") = WardChSource 'DtWardDiscMed.Rows(i).Item("TotalPrice")
+                            WardDiscMedRow("ChSourceName") = WardChSourceName 'DtWardDiscMed.Rows(i).Item("TotalPrice")
 
                             DtBill.Rows.Add(WardDiscMedRow)
                         End With
@@ -987,15 +1147,6 @@ Public Class FrmPaymentInformation
             'Arrange RowNo for billing
             If DtBill.Rows.Count > 0 Then
 
-                'Rearrange and merge duplicate items; sum up quantity and totalprie
-                Dim DtBillTotal As New DataTable
-                For i As Integer = 0 To DtBill.Rows.Count - 1
-                    'Check if same item then sum up quantity
-                    'TotalPrice = UnitPrice * Quantity
-                    'DtBillTotal = SumUpBill()
-                Next
-
-                'Dim GrossTotal As Decimal
                 Dim GrandTotal As Decimal
                 Dim TotalDue As Decimal
 
@@ -1005,12 +1156,10 @@ Public Class FrmPaymentInformation
 
                 'Calculate Total
                 For i As Integer = 0 To DtBill.Rows.Count - 1
-                    DtBill.Rows(i).Item("RowNo") = i + 1 'Update RowNo
 
-                    'Calculate GrossTotal, GrandTotal, TotalDue
+                    DtBill.Rows(i).Item("RowNo") = i + 1 'Update RowNo
                     GrandTotal = GrandTotal + DtBill.Rows(i).Item("TotalPrice")
-                    'GrandTotal = GrossTotal 'GrandTotal = GrossTotal - Discount
-                    TotalDue = GrandTotal 'TotalDue = GrandTotal - Deposit
+                    TotalDue = GrandTotal
 
                     With DgvBillListing
                         .Rows.Add()
@@ -1025,15 +1174,12 @@ Public Class FrmPaymentInformation
                         .Rows(i).Cells("ItemGroupDgv").Value = DtBill.Rows(i).Item("ItemGroup")
                         .Rows(i).Cells("ItemTypeCodeDgv").Value = DtBill.Rows(i).Item("ItemTypeCode")
                         .Rows(i).Cells("ItemTypeDescriptionDgv").Value = DtBill.Rows(i).Item("ItemTypeDescription")
+                        .Rows(i).Cells("ChSource").Value = DtBill.Rows(i).Item("ChSource")
+                        .Rows(i).Cells("ChSourceName").Value = DtBill.Rows(i).Item("ChSourceName")
                     End With
 
                 Next
 
-                'GrossTotal = GrossTotal - CDec(TxtDeposit.Text)
-                'GrandTotal = GrossTotal
-                'TotalDue = GrossTotal - CDec(TxtDiscount.Text)
-
-                'TxtGrossTotal.Text = FormatNumber(CDec(GrossTotal), 2)
                 TxtGrandTotal.Text = FormatNumber(CDec(GrandTotal), 2)
                 TxtTotalDue.Text = FormatNumber(CDec(GrandTotal), 2)
 
@@ -1061,6 +1207,7 @@ Public Class FrmPaymentInformation
                 TxtCustomerName.Text = .CustomerName
                 TxtPetName.Text = .PetName
                 TxtCustomerName.Tag = .CustomerID
+                CustomerID = .CustomerID
                 TxtPetName.Tag = .PetID
 
             End With
@@ -1091,6 +1238,8 @@ Public Class FrmPaymentInformation
 
     Private Sub PrintInvoice()
 
+        Me.Cursor = Cursors.WaitCursor
+
         Try
             If TxtInvoiceNo.Text = "" Then
                 MsgBox("Please select your invoice to print.", MsgBoxStyle.Critical, "No Invoice Loaded")
@@ -1102,6 +1251,8 @@ Public Class FrmPaymentInformation
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PrintInvoice")
         End Try
+
+        Me.Cursor = Cursors.Default
 
     End Sub
 

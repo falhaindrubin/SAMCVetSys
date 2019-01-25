@@ -61,9 +61,19 @@ Public Class FrmSearchCustomer
 
             If DtCustomer.Rows.Count > 0 Then
 
-                DgvSearchResult.DataSource = DtCustomer
-                DgvSearchResult.Columns("SaluteCode").Visible = False
-                DgvSearchResult.Show()
+                With DgvCustomerList
+                    .Rows.Clear()
+                    For i As Integer = 0 To DtCustomer.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("DgvCustomerID").Value = DtCustomer.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("DgvCustomerName").Value = DtCustomer.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("DgvNRICPassportNo").Value = DtCustomer.Rows(i).Item("NRICPassportNo")
+                    Next
+                End With
+
+                'DgvSearchResult.DataSource = DtCustomer
+                'DgvSearchResult.Columns("SaluteCode").Visible = False
+                'DgvSearchResult.Show()
 
             End If
 
@@ -91,8 +101,8 @@ Public Class FrmSearchCustomer
                 DtSearchResult = ClsCustomer.GetCustomerListing(ClsCustomer)
                 If DtSearchResult.Rows.Count > 0 Then
 
-                    DgvSearchResult.DataSource = DtSearchResult
-                    DgvSearchResult.Show()
+                    DgvCustomerList.DataSource = DtSearchResult
+                    DgvCustomerList.Show()
 
                 End If
 
@@ -163,16 +173,16 @@ Public Class FrmSearchCustomer
 
     End Sub
 
-    Private Sub DgvSearchResult_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSearchResult.CellDoubleClick
+    Private Sub DgvSearchResult_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvCustomerList.CellDoubleClick
 
         Try
             Select Case Source
                 Case "APPOINTMENT"
-                    CustomerID = DgvSearchResult.Rows(e.RowIndex).Cells("CustomerID").Value
+                    CustomerID = DgvCustomerList.Rows(e.RowIndex).Cells("DgvCustomerID").Value
                     UserCommand = "POPULATE_CUSTOMER_INFO"
 
                 Case "CONSULTATION"
-                    CustomerID = DgvSearchResult.Rows(e.RowIndex).Cells("CustomerID").Value
+                    CustomerID = DgvCustomerList.Rows(e.RowIndex).Cells("DgvCustomerID").Value
                     UserCommand = "POPULATE_CUSTOMER_INFO"
 
             End Select

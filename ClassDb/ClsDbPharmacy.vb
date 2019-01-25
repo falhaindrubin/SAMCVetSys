@@ -17,13 +17,13 @@ Public Class ClsDbPharmacy
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_pharmacy_req ")
-                .Append("(RequestID, VisitID, Source, RequestDate, RqEmpID, RqEmpName, PhEmpID, PhEmpName, ApprovalDate, IsCompleted, ")
+                .Append("(VisitID, RequestID, Source, RequestDate, RqEmpID, RqEmpName, PhEmpID, PhEmpName, ApprovalDate, IsCompleted, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & P.RequestID & "', '" & P.VisitID & "', '" & P.Source & "', " & CSQLDateTime(P.RequestDate) & ", '" & P.RqEmpID & "', '" & P.RqEmpName & "', '" & P.PhEmpID & "', '" & P.PhEmpName & "', " & CSQLDateTime(P.ApprovalDate) & ", '" & P.IsCompleted & "', ")
+                .Append("('" & P.VisitID & "', '" & P.RequestID & "', '" & P.Source & "', " & CSQLDateTime(P.RequestDate) & ", '" & P.RqEmpID & "', '" & P.RqEmpName & "', '" & P.PhEmpID & "', '" & P.PhEmpName & "', " & CSQLDateTime(P.ApprovalDate) & ", '" & P.IsCompleted & "', ")
                 .Append("'" & P.Ref.CreatedBy & "', " & CSQLDateTime(P.Ref.DateCreated) & ", '" & P.Ref.ModifiedBy & "', " & CSQLDateTime(P.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("PhEmpID = '" & P.PhEmpID & "', PhEmpName = '" & P.PhEmpName & "', ApprovalDate = " & CSQLDateTime(P.ApprovalDate) & ", IsCompleted = '" & P.IsCompleted & "', ")
+                '.Append("PhEmpID = '" & P.PhEmpID & "', PhEmpName = '" & P.PhEmpName & "', ApprovalDate = " & CSQLDateTime(P.ApprovalDate) & ", IsCompleted = '" & P.IsCompleted & "', ")
                 .Append("ModifiedBy = '" & P.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(P.Ref.DateModified) & " ")
             End With
 
@@ -47,10 +47,10 @@ Public Class ClsDbPharmacy
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_pharmacy_reqdetail ")
-                .Append("(RequestID, VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(VisitID, RequestID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & P.RequestID & "', '" & P.VisitID & "', '" & P.RowNo & "', '" & P.ItemCode & "', '" & CSQLQuote(P.ItemDescription) & "', '" & P.ItemGroup & "', '" & P.ItemTypeCode & "', '" & P.ItemTypeDescription & "', '" & CSQLQuote(P.Prescription) & "', ")
+                .Append("('" & P.VisitID & "', '" & P.RequestID & "', '" & P.RowNo & "', '" & P.ItemCode & "', '" & CSQLQuote(P.ItemDescription) & "', '" & P.ItemGroup & "', '" & P.ItemTypeCode & "', '" & P.ItemTypeDescription & "', '" & CSQLQuote(P.Prescription) & "', ")
                 .Append("'" & P.Notes & "', '" & P.UnitPrice & "', '" & P.Quantity & "', '" & P.TotalPrice & "', ")
                 .Append("'" & P.Ref.CreatedBy & "', " & CSQLDateTime(P.Ref.DateCreated) & ", '" & P.Ref.ModifiedBy & "', " & CSQLDateTime(P.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
@@ -73,6 +73,29 @@ Public Class ClsDbPharmacy
 
     End Function
 
+    Public Function UpdatePharmacyRequest(P As ClsPharmacy, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Try
+            Sb = New StringBuilder
+            With Sb
+                .Append("UPDATE samc_pharmacy_req ")
+                .Append("SET PhEmpID = '" & P.PhEmpID & "', PhEmpName = '" & P.PhEmpName & "', ApprovalDate = " & CSQLDateTime(P.ApprovalDate) & ", IsCompleted = '" & P.IsCompleted & "', ")
+                .Append("ModifiedBy = '" & P.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(P.Ref.DateModified) & " ")
+                .Append("WHERE VisitID = '" & P.VisitID & "' AND RequestID = '" & P.RequestID & "' ")
+            End With
+
+            Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
+            Cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbPharmacy.UpdatePharmacyRequest()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
     Public Function GetPharmacyRequest(P As ClsPharmacy) As DataTable
 
         Dim DtPharmacy As New DataTable
@@ -80,11 +103,14 @@ Public Class ClsDbPharmacy
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT RequestID, VisitID, RequestDate, RqEmpID, RqEmpName, PhEmpID, PhEmpName, ApprovalDate, IsCompleted, ")
+                .Append("SELECT VisitID, RequestID, RequestDate, RqEmpID, RqEmpName, PhEmpID, PhEmpName, ApprovalDate, IsCompleted, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_pharmacy_req ")
+                If P.VisitID <> "" Then
+                    .Append("WHERE VisitID = '" & P.VisitID & "' ")
+                End If
                 If P.RequestID <> "" Then
-                    .Append("WHERE RequestID = '" & P.RequestID & "' ")
+                    .Append("AND RequestID = '" & P.RequestID & "' ")
                 End If
             End With
 
@@ -107,11 +133,14 @@ Public Class ClsDbPharmacy
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT RequestID, VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("SELECT VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_pharmacy_reqdetail ")
+                If P.VisitID <> "" Then
+                    .Append("WHERE VisitID = '" & P.VisitID & "' ")
+                End If
                 If P.RequestID <> "" Then
-                    .Append("WHERE RequestID = '" & P.RequestID & "' ")
+                    .Append("AND RequestID = '" & P.RequestID & "' ")
                 End If
             End With
 

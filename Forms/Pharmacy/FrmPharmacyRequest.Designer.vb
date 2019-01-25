@@ -32,6 +32,19 @@ Partial Class FrmPharmacyRequest
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DgvPharmacyRequest = New System.Windows.Forms.DataGridView()
+        Me.DgvBtnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DgvBtnUpdate = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.RqRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RqItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CbIsCompleted = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -39,9 +52,13 @@ Partial Class FrmPharmacyRequest
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtInCharge = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TxtRequestID = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TxtVisitID = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TxtRequestDate = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.TxtRequestDate = New System.Windows.Forms.TextBox()
         Me.TxtVet = New System.Windows.Forms.TextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -60,10 +77,6 @@ Partial Class FrmPharmacyRequest
         Me.TxtNotes = New System.Windows.Forms.TextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.TxtPrescription = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TxtVisitID = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TxtRequestID = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TxtCreatedBy = New System.Windows.Forms.TextBox()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
@@ -71,19 +84,7 @@ Partial Class FrmPharmacyRequest
         Me.TxtDateCreated = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
-        Me.DgvBtnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.DgvBtnUpdate = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.RqRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RqItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnCancelRequest = New System.Windows.Forms.Button()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvPharmacyRequest, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,16 +199,120 @@ Partial Class FrmPharmacyRequest
         Me.DgvPharmacyRequest.Size = New System.Drawing.Size(978, 253)
         Me.DgvPharmacyRequest.TabIndex = 154
         '
+        'DgvBtnDelete
+        '
+        Me.DgvBtnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnDelete.HeaderText = "Delete?"
+        Me.DgvBtnDelete.Name = "DgvBtnDelete"
+        Me.DgvBtnDelete.ReadOnly = True
+        Me.DgvBtnDelete.Text = "Delete"
+        Me.DgvBtnDelete.UseColumnTextForButtonValue = True
+        Me.DgvBtnDelete.Visible = False
+        '
+        'DgvBtnUpdate
+        '
+        Me.DgvBtnUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnUpdate.HeaderText = "Update"
+        Me.DgvBtnUpdate.Name = "DgvBtnUpdate"
+        Me.DgvBtnUpdate.ReadOnly = True
+        Me.DgvBtnUpdate.Text = "Update"
+        Me.DgvBtnUpdate.UseColumnTextForButtonValue = True
+        Me.DgvBtnUpdate.Width = 47
+        '
+        'RqRowNo
+        '
+        Me.RqRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RqRowNo.HeaderText = "No."
+        Me.RqRowNo.Name = "RqRowNo"
+        Me.RqRowNo.ReadOnly = True
+        Me.RqRowNo.Width = 48
+        '
+        'RqItemCode
+        '
+        Me.RqItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RqItemCode.HeaderText = "Item Code"
+        Me.RqItemCode.Name = "RqItemCode"
+        Me.RqItemCode.ReadOnly = True
+        Me.RqItemCode.Width = 79
+        '
+        'RqItemDescription
+        '
+        Me.RqItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RqItemDescription.HeaderText = "Item Description"
+        Me.RqItemDescription.Name = "RqItemDescription"
+        Me.RqItemDescription.ReadOnly = True
+        Me.RqItemDescription.Width = 108
+        '
+        'RqPrescription
+        '
+        Me.RqPrescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RqPrescription.HeaderText = "Prescription"
+        Me.RqPrescription.Name = "RqPrescription"
+        Me.RqPrescription.ReadOnly = True
+        '
+        'RqNotes
+        '
+        Me.RqNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RqNotes.HeaderText = "Notes"
+        Me.RqNotes.Name = "RqNotes"
+        Me.RqNotes.ReadOnly = True
+        '
+        'RqUnitPrice
+        '
+        Me.RqUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RqUnitPrice.HeaderText = "Unit Price"
+        Me.RqUnitPrice.Name = "RqUnitPrice"
+        Me.RqUnitPrice.ReadOnly = True
+        Me.RqUnitPrice.Visible = False
+        '
+        'RqQuantity
+        '
+        Me.RqQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RqQuantity.HeaderText = "Quantity"
+        Me.RqQuantity.Name = "RqQuantity"
+        Me.RqQuantity.ReadOnly = True
+        Me.RqQuantity.Width = 72
+        '
+        'RqTotalPrice
+        '
+        Me.RqTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RqTotalPrice.HeaderText = "Total Price"
+        Me.RqTotalPrice.Name = "RqTotalPrice"
+        Me.RqTotalPrice.ReadOnly = True
+        Me.RqTotalPrice.Visible = False
+        '
+        'RqItemGroup
+        '
+        Me.RqItemGroup.HeaderText = "Item Group"
+        Me.RqItemGroup.Name = "RqItemGroup"
+        Me.RqItemGroup.ReadOnly = True
+        Me.RqItemGroup.Visible = False
+        '
+        'RqItemTypeCode
+        '
+        Me.RqItemTypeCode.HeaderText = "Item Type Code"
+        Me.RqItemTypeCode.Name = "RqItemTypeCode"
+        Me.RqItemTypeCode.ReadOnly = True
+        Me.RqItemTypeCode.Visible = False
+        '
+        'RqItemTypeDescription
+        '
+        Me.RqItemTypeDescription.HeaderText = "Item Type Description"
+        Me.RqItemTypeDescription.Name = "RqItemTypeDescription"
+        Me.RqItemTypeDescription.ReadOnly = True
+        Me.RqItemTypeDescription.Visible = False
+        '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.BtnCancelRequest)
         Me.GroupBox1.Controls.Add(Me.CbIsCompleted)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.TxtApprovalDate)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.TxtInCharge)
-        Me.GroupBox1.Location = New System.Drawing.Point(407, 87)
+        Me.GroupBox1.Location = New System.Drawing.Point(603, 87)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(248, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(393, 100)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Pharmacy Information"
@@ -274,30 +379,59 @@ Partial Class FrmPharmacyRequest
         Me.GroupBox4.Controls.Add(Me.TxtVet)
         Me.GroupBox4.Location = New System.Drawing.Point(12, 87)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(389, 100)
+        Me.GroupBox4.Size = New System.Drawing.Size(585, 100)
         Me.GroupBox4.TabIndex = 88
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Request Information"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(10, 72)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(59, 14)
+        Me.Label6.TabIndex = 159
+        Me.Label6.Text = "Request ID"
+        '
+        'TxtRequestID
+        '
+        Me.TxtRequestID.BackColor = System.Drawing.Color.Beige
+        Me.TxtRequestID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtRequestID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtRequestID.Location = New System.Drawing.Point(71, 69)
+        Me.TxtRequestID.Name = "TxtRequestID"
+        Me.TxtRequestID.ReadOnly = True
+        Me.TxtRequestID.Size = New System.Drawing.Size(125, 20)
+        Me.TxtRequestID.TabIndex = 160
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(10, 51)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(40, 14)
+        Me.Label5.TabIndex = 157
+        Me.Label5.Text = "Visit ID"
+        '
+        'TxtVisitID
+        '
+        Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
+        Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVisitID.Location = New System.Drawing.Point(71, 48)
+        Me.TxtVisitID.Name = "TxtVisitID"
+        Me.TxtVisitID.ReadOnly = True
+        Me.TxtVisitID.Size = New System.Drawing.Size(125, 20)
+        Me.TxtVisitID.TabIndex = 158
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(194, 30)
+        Me.Label3.Location = New System.Drawing.Point(393, 30)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 14)
         Me.Label3.TabIndex = 155
         Me.Label3.Text = "Request Date"
-        '
-        'TxtRequestDate
-        '
-        Me.TxtRequestDate.BackColor = System.Drawing.Color.Beige
-        Me.TxtRequestDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtRequestDate.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtRequestDate.Location = New System.Drawing.Point(266, 27)
-        Me.TxtRequestDate.Name = "TxtRequestDate"
-        Me.TxtRequestDate.ReadOnly = True
-        Me.TxtRequestDate.Size = New System.Drawing.Size(114, 20)
-        Me.TxtRequestDate.TabIndex = 156
         '
         'Label2
         '
@@ -308,6 +442,18 @@ Partial Class FrmPharmacyRequest
         Me.Label2.TabIndex = 153
         Me.Label2.Text = "Vet"
         '
+        'TxtRequestDate
+        '
+        Me.TxtRequestDate.BackColor = System.Drawing.Color.Beige
+        Me.TxtRequestDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtRequestDate.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtRequestDate.Location = New System.Drawing.Point(465, 27)
+        Me.TxtRequestDate.Name = "TxtRequestDate"
+        Me.TxtRequestDate.ReadOnly = True
+        Me.TxtRequestDate.Size = New System.Drawing.Size(114, 20)
+        Me.TxtRequestDate.TabIndex = 156
+        Me.TxtRequestDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'TxtVet
         '
         Me.TxtVet.BackColor = System.Drawing.Color.Beige
@@ -316,7 +462,7 @@ Partial Class FrmPharmacyRequest
         Me.TxtVet.Location = New System.Drawing.Point(71, 27)
         Me.TxtVet.Name = "TxtVet"
         Me.TxtVet.ReadOnly = True
-        Me.TxtVet.Size = New System.Drawing.Size(114, 20)
+        Me.TxtVet.Size = New System.Drawing.Size(267, 20)
         Me.TxtVet.TabIndex = 154
         '
         'GroupBox5
@@ -506,46 +652,6 @@ Partial Class FrmPharmacyRequest
         Me.TxtPrescription.Size = New System.Drawing.Size(424, 43)
         Me.TxtPrescription.TabIndex = 156
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 51)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(40, 14)
-        Me.Label5.TabIndex = 157
-        Me.Label5.Text = "Visit ID"
-        '
-        'TxtVisitID
-        '
-        Me.TxtVisitID.BackColor = System.Drawing.Color.Beige
-        Me.TxtVisitID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtVisitID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVisitID.Location = New System.Drawing.Point(71, 48)
-        Me.TxtVisitID.Name = "TxtVisitID"
-        Me.TxtVisitID.ReadOnly = True
-        Me.TxtVisitID.Size = New System.Drawing.Size(114, 20)
-        Me.TxtVisitID.TabIndex = 158
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(10, 72)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(59, 14)
-        Me.Label6.TabIndex = 159
-        Me.Label6.Text = "Request ID"
-        '
-        'TxtRequestID
-        '
-        Me.TxtRequestID.BackColor = System.Drawing.Color.Beige
-        Me.TxtRequestID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtRequestID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtRequestID.Location = New System.Drawing.Point(71, 69)
-        Me.TxtRequestID.Name = "TxtRequestID"
-        Me.TxtRequestID.ReadOnly = True
-        Me.TxtRequestID.Size = New System.Drawing.Size(114, 20)
-        Me.TxtRequestID.TabIndex = 160
-        '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.SystemColors.Control
@@ -624,111 +730,14 @@ Partial Class FrmPharmacyRequest
         Me.TxtModifiedBy.Size = New System.Drawing.Size(65, 20)
         Me.TxtModifiedBy.TabIndex = 76
         '
-        'DgvBtnDelete
+        'BtnCancelRequest
         '
-        Me.DgvBtnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DgvBtnDelete.HeaderText = "Delete?"
-        Me.DgvBtnDelete.Name = "DgvBtnDelete"
-        Me.DgvBtnDelete.ReadOnly = True
-        Me.DgvBtnDelete.Text = "Delete"
-        Me.DgvBtnDelete.UseColumnTextForButtonValue = True
-        Me.DgvBtnDelete.Visible = False
-        Me.DgvBtnDelete.Width = 49
-        '
-        'DgvBtnUpdate
-        '
-        Me.DgvBtnUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DgvBtnUpdate.HeaderText = "Update"
-        Me.DgvBtnUpdate.Name = "DgvBtnUpdate"
-        Me.DgvBtnUpdate.ReadOnly = True
-        Me.DgvBtnUpdate.Text = "Update"
-        Me.DgvBtnUpdate.UseColumnTextForButtonValue = True
-        Me.DgvBtnUpdate.Width = 47
-        '
-        'RqRowNo
-        '
-        Me.RqRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RqRowNo.HeaderText = "No."
-        Me.RqRowNo.Name = "RqRowNo"
-        Me.RqRowNo.ReadOnly = True
-        Me.RqRowNo.Width = 48
-        '
-        'RqItemCode
-        '
-        Me.RqItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RqItemCode.HeaderText = "Item Code"
-        Me.RqItemCode.Name = "RqItemCode"
-        Me.RqItemCode.ReadOnly = True
-        Me.RqItemCode.Width = 79
-        '
-        'RqItemDescription
-        '
-        Me.RqItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RqItemDescription.HeaderText = "Item Description"
-        Me.RqItemDescription.Name = "RqItemDescription"
-        Me.RqItemDescription.ReadOnly = True
-        Me.RqItemDescription.Width = 108
-        '
-        'RqPrescription
-        '
-        Me.RqPrescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.RqPrescription.HeaderText = "Prescription"
-        Me.RqPrescription.Name = "RqPrescription"
-        Me.RqPrescription.ReadOnly = True
-        '
-        'RqNotes
-        '
-        Me.RqNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.RqNotes.HeaderText = "Notes"
-        Me.RqNotes.Name = "RqNotes"
-        Me.RqNotes.ReadOnly = True
-        '
-        'RqUnitPrice
-        '
-        Me.RqUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RqUnitPrice.HeaderText = "Unit Price"
-        Me.RqUnitPrice.Name = "RqUnitPrice"
-        Me.RqUnitPrice.ReadOnly = True
-        Me.RqUnitPrice.Visible = False
-        Me.RqUnitPrice.Width = 77
-        '
-        'RqQuantity
-        '
-        Me.RqQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RqQuantity.HeaderText = "Quantity"
-        Me.RqQuantity.Name = "RqQuantity"
-        Me.RqQuantity.ReadOnly = True
-        Me.RqQuantity.Width = 72
-        '
-        'RqTotalPrice
-        '
-        Me.RqTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.RqTotalPrice.HeaderText = "Total Price"
-        Me.RqTotalPrice.Name = "RqTotalPrice"
-        Me.RqTotalPrice.ReadOnly = True
-        Me.RqTotalPrice.Visible = False
-        Me.RqTotalPrice.Width = 81
-        '
-        'RqItemGroup
-        '
-        Me.RqItemGroup.HeaderText = "Item Group"
-        Me.RqItemGroup.Name = "RqItemGroup"
-        Me.RqItemGroup.ReadOnly = True
-        Me.RqItemGroup.Visible = False
-        '
-        'RqItemTypeCode
-        '
-        Me.RqItemTypeCode.HeaderText = "Item Type Code"
-        Me.RqItemTypeCode.Name = "RqItemTypeCode"
-        Me.RqItemTypeCode.ReadOnly = True
-        Me.RqItemTypeCode.Visible = False
-        '
-        'RqItemTypeDescription
-        '
-        Me.RqItemTypeDescription.HeaderText = "Item Type Description"
-        Me.RqItemTypeDescription.Name = "RqItemTypeDescription"
-        Me.RqItemTypeDescription.ReadOnly = True
-        Me.RqItemTypeDescription.Visible = False
+        Me.BtnCancelRequest.Location = New System.Drawing.Point(242, 26)
+        Me.BtnCancelRequest.Name = "BtnCancelRequest"
+        Me.BtnCancelRequest.Size = New System.Drawing.Size(130, 23)
+        Me.BtnCancelRequest.TabIndex = 156
+        Me.BtnCancelRequest.Text = "Cancel Request"
+        Me.BtnCancelRequest.UseVisualStyleBackColor = True
         '
         'FrmPharmacyRequest
         '
@@ -822,4 +831,5 @@ Partial Class FrmPharmacyRequest
     Friend WithEvents RqItemGroup As DataGridViewTextBoxColumn
     Friend WithEvents RqItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents RqItemTypeDescription As DataGridViewTextBoxColumn
+    Friend WithEvents BtnCancelRequest As Button
 End Class

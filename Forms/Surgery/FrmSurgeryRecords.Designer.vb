@@ -34,6 +34,16 @@ Partial Class FrmSurgeryRecords
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
+        Me.CaseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EvaluationDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SurgeryDiagnosis = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Status = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvSurgeryListing, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +127,7 @@ Partial Class FrmSurgeryRecords
         Me.DgvSurgeryListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvSurgeryListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvSurgeryListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvSurgeryListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CaseID, Me.EvaluationDate, Me.EmployeeName, Me.CustomerID, Me.CustomerName, Me.PetName, Me.SurgeryDiagnosis, Me.AnimalTypeName, Me.BreedName, Me.Status})
         Me.DgvSurgeryListing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvSurgeryListing.Location = New System.Drawing.Point(3, 16)
         Me.DgvSurgeryListing.Name = "DgvSurgeryListing"
@@ -169,6 +180,84 @@ Partial Class FrmSurgeryRecords
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
         '
+        'CaseID
+        '
+        Me.CaseID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CaseID.HeaderText = "CaseID"
+        Me.CaseID.Name = "CaseID"
+        Me.CaseID.ReadOnly = True
+        Me.CaseID.Width = 66
+        '
+        'EvaluationDate
+        '
+        Me.EvaluationDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.EvaluationDate.HeaderText = "Evaluation Date"
+        Me.EvaluationDate.Name = "EvaluationDate"
+        Me.EvaluationDate.ReadOnly = True
+        Me.EvaluationDate.Width = 106
+        '
+        'EmployeeName
+        '
+        Me.EmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.EmployeeName.HeaderText = "Surgeon"
+        Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.ReadOnly = True
+        Me.EmployeeName.Width = 73
+        '
+        'CustomerID
+        '
+        Me.CustomerID.HeaderText = "CustomerID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Visible = False
+        Me.CustomerID.Width = 87
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CustomerName.HeaderText = "Customer Name"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        Me.CustomerName.Width = 108
+        '
+        'PetName
+        '
+        Me.PetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PetName.HeaderText = "Pet Name"
+        Me.PetName.Name = "PetName"
+        Me.PetName.ReadOnly = True
+        Me.PetName.Width = 77
+        '
+        'SurgeryDiagnosis
+        '
+        Me.SurgeryDiagnosis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.SurgeryDiagnosis.HeaderText = "Diagnosis"
+        Me.SurgeryDiagnosis.Name = "SurgeryDiagnosis"
+        Me.SurgeryDiagnosis.ReadOnly = True
+        '
+        'AnimalTypeName
+        '
+        Me.AnimalTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.AnimalTypeName.HeaderText = "Animal Type"
+        Me.AnimalTypeName.Name = "AnimalTypeName"
+        Me.AnimalTypeName.ReadOnly = True
+        Me.AnimalTypeName.Width = 90
+        '
+        'BreedName
+        '
+        Me.BreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BreedName.HeaderText = "Breed"
+        Me.BreedName.Name = "BreedName"
+        Me.BreedName.ReadOnly = True
+        Me.BreedName.Width = 61
+        '
+        'Status
+        '
+        Me.Status.HeaderText = "Status"
+        Me.Status.Name = "Status"
+        Me.Status.ReadOnly = True
+        Me.Status.Width = 63
+        '
         'FrmSurgeryRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -201,4 +290,14 @@ Partial Class FrmSurgeryRecords
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtSearchText As TextBox
     Friend WithEvents BtnSearchCustomer As Button
+    Friend WithEvents CaseID As DataGridViewTextBoxColumn
+    Friend WithEvents EvaluationDate As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents PetName As DataGridViewTextBoxColumn
+    Friend WithEvents SurgeryDiagnosis As DataGridViewTextBoxColumn
+    Friend WithEvents AnimalTypeName As DataGridViewTextBoxColumn
+    Friend WithEvents BreedName As DataGridViewTextBoxColumn
+    Friend WithEvents Status As DataGridViewTextBoxColumn
 End Class

@@ -17,14 +17,33 @@
 
     Protected Sub PopulateVisitListing()
 
-        Dim DtConsultation As New DataTable
+        Dim DtVisit As New DataTable
         Dim ClsConsultation As New ClsVisit
 
         Try
-            DtConsultation = ClsConsultation.GetVisitListing(ClsConsultation)
-            If DtConsultation.Rows.Count > 0 Then
-                DgvConsultationListing.DataSource = DtConsultation
-                DgvConsultationListing.Show()
+            DtVisit = ClsConsultation.GetVisitListing(ClsConsultation)
+            If DtVisit.Rows.Count > 0 Then
+
+                With DgvVisit
+
+                    If .Rows.Count > 0 Then
+                        .Rows.Clear()
+                    End If
+
+                    For i As Integer = 0 To DtVisit.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("VisitID").Value = DtVisit.Rows(i).Item("VisitID")
+                        .Rows(i).Cells("CustomerID").Value = DtVisit.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("CustomerName").Value = DtVisit.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("PetName").Value = DtVisit.Rows(i).Item("PetName")
+                        .Rows(i).Cells("VisitTime").Value = DtVisit.Rows(i).Item("VisitTime")
+                        .Rows(i).Cells("EmployeeName").Value = DtVisit.Rows(i).Item("EmployeeName")
+                        .Rows(i).Cells("VisitDescription").Value = DtVisit.Rows(i).Item("VisitDescription")
+                        .Rows(i).Cells("VisitStatus").Value = IIf(DtVisit.Rows(i).Item("IsVisitCompleted") = "1", "COMPLETED", "ON-GOING")
+                    Next
+
+                End With
+
             End If
 
         Catch ex As Exception
@@ -37,7 +56,7 @@
         Me.Close()
     End Sub
 
-    Private Sub DgvConsultationListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvConsultationListing.CellDoubleClick
+    Private Sub DgvConsultationListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvVisit.CellDoubleClick
 
         Dim CustomerID As String
         Dim VisitID As String
@@ -47,8 +66,8 @@
                 Exit Sub
             Else
                 If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
-                    CustomerID = DgvConsultationListing.Rows(e.RowIndex).Cells("CustomerID").Value
-                    VisitID = DgvConsultationListing.Rows(e.RowIndex).Cells("VisitID").Value
+                    CustomerID = DgvVisit.Rows(e.RowIndex).Cells("CustomerID").Value
+                    VisitID = DgvVisit.Rows(e.RowIndex).Cells("VisitID").Value
                     Dim Frm As New FrmVisitInformation With {
                         .UserCommand = "SHOW_CUSTOMER_CONSULTATION",
                         .VisitID = VisitID,

@@ -3,6 +3,7 @@
 Public Class FrmWardInformation
 
 #Region "FormProperty"
+
     Private _WardID As String
     Public Property WardID As String
         Get
@@ -113,7 +114,7 @@ Public Class FrmWardInformation
         PopulateForm(UserCommand)
     End Sub
 
-    Private Sub PopulateForm(UserCommand As String)
+    Private Sub PopulateForm(Optional UserCommand As String = "")
 
         Dim DtWardDetail As New DataTable
         Dim DtWardDiagnosis As New DataTable
@@ -257,6 +258,7 @@ Public Class FrmWardInformation
                             For i As Integer = 0 To DtWardTreatmentDetail.Rows.Count - 1
                                 With DgvSelectedTreatment
                                     .Rows.Add()
+                                    .Rows(i).Cells("TreatmentPhRequestID").Value = DtWardTreatmentDetail.Rows(i).Item("PhRequestID")
                                     .Rows(i).Cells("TreatmentRowNo").Value = DtWardTreatmentDetail.Rows(i).Item("RowNo")
                                     .Rows(i).Cells("TreatmentItemCode").Value = DtWardTreatmentDetail.Rows(i).Item("ItemCode")
                                     .Rows(i).Cells("TreatmentItemDescription").Value = DtWardTreatmentDetail.Rows(i).Item("ItemDescription")
@@ -331,7 +333,8 @@ Public Class FrmWardInformation
                     End With
 
                     'Show discharge details if any
-                    If DtWardDetail.Rows(0).Item("IsDischarged") = "1" Then
+                    If DtWardDetail.Rows.Count > 0 Then
+                        'If DtWardDetail.Rows(0).Item("IsDischarged") = "1" Then
 
                         Dim ClsWardDischarge As New ClsWardDischarge
                         Dim ClsWardDiscMed As New ClsWardDischargeDetail
@@ -341,8 +344,10 @@ Public Class FrmWardInformation
                         With ClsWardDischarge
                             .WardID = WardID
                             DtWardDischarge = .GetWardDischarge(ClsWardDischarge)
+
                             If DtWardDischarge.Rows.Count > 0 Then
 
+                                TxtDischargeDate.Text = DtWardDischarge.Rows(0).Item("DischargeDate")
                                 TxtAdmitIssue.Text = DtWardDischarge.Rows(0).Item("AdmitIssue")
                                 TxtAdmitDiagnosis.Text = DtWardDischarge.Rows(0).Item("AdmitDiagnosis")
                                 TxtDischargeCondition.Text = DtWardDischarge.Rows(0).Item("DischargeCondition")
@@ -360,9 +365,12 @@ Public Class FrmWardInformation
                             DtWardDiscMed = .GetWardDischargeMedication(ClsWardDiscMed)
                             If DtWardDiscMed.Rows.Count > 0 Then
 
+                                DgvDischargeMedication.Rows.Clear()
+
                                 For i As Integer = 0 To DtWardDiscMed.Rows.Count - 1
                                     With DgvDischargeMedication
                                         .Rows.Add()
+                                        .Rows(i).Cells("DiscMedPhRequestID").Value = DtWardDiscMed.Rows(i).Item("PhRequestID")
                                         .Rows(i).Cells("DiscMedRowNo").Value = DtWardDiscMed.Rows(i).Item("RowNo")
                                         .Rows(i).Cells("DiscMedItemCode").Value = DtWardDiscMed.Rows(i).Item("ItemCode")
                                         .Rows(i).Cells("DiscMedItemDescription").Value = DtWardDiscMed.Rows(i).Item("ItemDescription")
@@ -379,12 +387,11 @@ Public Class FrmWardInformation
 
                         End With
 
-
                     End If
 
                 End If
 
-            Else
+                Else
 
                 TxtAdmissionDate.Text = Now
                 TxtCustomerName.Text = CustomerName
@@ -458,22 +465,23 @@ Public Class FrmWardInformation
                 .BreedCode = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("BreedCode")), "")
                 .BreedName = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("BreedName")), "")
                 .IsNeutered = IIf(DtVisit.Rows.Count > 0, CStrNull(DtVisit.Rows(0).Item("NeuterCode")), "")
-                .PetCase = Trim(TxtCase.Text)
+                .PetCase = UCase(Trim(TxtCase.Text))
                 .IsDischarged = IIf(CbIsDischarged.Checked = True, "1", "0")
-                .DischargeDate = IIf(CbIsDischarged.Tag = Nothing, Nothing, CbIsDischarged.Tag)
+                .DischargeDate = IIf(TxtDischargeDate.Text <> "", TxtDischargeDate.Text, Nothing) 'IIf(CbIsDischarged.Tag = Nothing, Nothing, CbIsDischarged.Tag)
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
-            End With
 
-            If Not ClsWard.AddNewWard(ClsWard, DbConn, DbTrans) Then
-                MsgBox("Failed to create ward admission.", MsgBoxStyle.Critical, "Create New Ward Admission Error")
-                DbTrans.Rollback()
-                DbTrans.Dispose()
-                DbTrans = Nothing
-                Return False
-            End If
+                If Not .AddNewWard(ClsWard, DbConn, DbTrans) Then
+                    MsgBox("Failed to create ward admission.", MsgBoxStyle.Critical, "Create New Ward Admission Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+            End With
 
             'Add ward detail
             With ClsWardDetail
@@ -498,15 +506,16 @@ Public Class FrmWardInformation
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
-            End With
 
-            If Not ClsWardDetail.AddNewWardDetail(ClsWardDetail, DbConn, DbTrans) Then
-                MsgBox("Failed to create ward admission details.", MsgBoxStyle.Critical, "Create New Ward Admission Error")
-                DbTrans.Rollback()
-                DbTrans.Dispose()
-                DbTrans = Nothing
-                Return False
-            End If
+                If Not .AddNewWardDetail(ClsWardDetail, DbConn, DbTrans) Then
+                    MsgBox("Failed to create ward admission details.", MsgBoxStyle.Critical, "Create New Ward Admission Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+            End With
 
             'Add ward diagnose -- Disabled on 08/12/2018
             'With ClsWardDiagnosis
@@ -531,7 +540,9 @@ Public Class FrmWardInformation
 
             'Add ward diagnose detail
             If DgvSelectedTest.Rows.Count > 0 Then
+
                 For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
+
                     With ClsWardDiagnosisDetail
                         .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
                         .WardDate = CDate(TxtWardDate.Text)
@@ -558,23 +569,41 @@ Public Class FrmWardInformation
                         End If
 
                     End With
+
                 Next
+
             End If
 
             'Add ward treatment
             If DgvSelectedTreatment.Rows.Count > 0 Then
+
+                'Dim PhRequestID As String = ""
+                'PhRequestID = IIf(CStrNull(DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value) <> "",
+                '                  CStrNull(DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value),
+                '                  GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+
+                'If PhRequestID = "" Then
+                '    MsgBox("Failed to create pharmacy request ID .", MsgBoxStyle.Critical, "Pharmacy Request ID Error")
+                '    DbTrans.Rollback()
+                '    DbTrans.Dispose()
+                '    DbTrans = Nothing
+                '    Return False
+                'End If
+
                 For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+
                     With ClsWardTreatment
                         .WardID = IIf(WardID <> "", WardID, Trim(TxtWardID.Text))
                         .WardDate = CDate(TxtWardDate.Text)
+                        .PhRequestID = DgvSelectedTreatment.Rows(i).Cells("TreatmentPhRequestID").Value '"" 'PhRequestID
                         .RowNo = i + 1
                         .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
                         .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
                         .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
                         .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
                         .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-                        .Prescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value
-                        .Notes = DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value
+                        .Prescription = CStrNull(DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value)
+                        .Notes = CStrNull(DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value)
                         .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
                         .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
                         .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
@@ -582,17 +611,28 @@ Public Class FrmWardInformation
                         .Ref.DateCreated = Now
                         .Ref.ModifiedBy = CURR_USER
                         .Ref.DateModified = Now
+
+                        If Not .AddNewWardTreatment(ClsWardTreatment, DbConn, DbTrans) Then
+                            MsgBox("Failed to create ward diagnosis details.", MsgBoxStyle.Critical, "Create Ward Diagnosis Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
                     End With
 
-                    If Not ClsWardTreatment.AddNewWardTreatment(ClsWardTreatment, DbConn, DbTrans) Then
-                        MsgBox("Failed to create ward diagnosis details.", MsgBoxStyle.Critical, "Create Ward Diagnosis Error")
-                        DbTrans.Rollback()
-                        DbTrans.Dispose()
-                        DbTrans = Nothing
-                        Return False
-                    End If
-
                 Next
+
+                'If pharmacy request ID already exists; dont update request
+                'If Not SendRequestToPharmacyWardTx(PhRequestID, "TX") Then
+                '    MsgBox("Failed to create pharmacy request.", MsgBoxStyle.Critical, "Ward Treatment Pharmacy Request Error")
+                '    DbTrans.Rollback()
+                '    DbTrans.Dispose()
+                '    DbTrans = Nothing
+                '    Return False
+                'End If
+
             End If
 
             'Add ward hourly checking and medication
@@ -627,11 +667,64 @@ Public Class FrmWardInformation
 
             End If
 
-            'Check and calculate ward duration, insert data to ward_discharge, ward_dischargemedication
-            Dim ClsWardDischarge As New ClsWardDischarge
-            Dim ClsWardDischargeMedication As New ClsWardDischargeDetail
+            DbTrans.Commit()
+            DbTrans.Dispose()
+            DbTrans = Nothing
 
-            If CbIsDischarged.Checked = True Then
+            With ClsWard
+                If TxtCreatedBy.Text = "" Then
+                    TxtCreatedBy.Text = .Ref.CreatedBy
+                End If
+
+                If TxtDateModified.Text = "" Then
+                    TxtDateCreated.Text = .Ref.DateCreated
+                End If
+
+                TxtModifiedBy.Text = .Ref.ModifiedBy
+                TxtDateModified.Text = .Ref.DateModified
+            End With
+
+            MsgBox("Ward progress has been updated!", MsgBoxStyle.Information, "Ward Progress Updated")
+            PopulateForm()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveWardToDb()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function DischargePet() As Boolean
+
+        Dim UserResponse As MsgBoxResult
+
+        Try
+            UserResponse = MsgBox("Are sure you want to discharge this pet? Your action cannot be undone.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Discharge Pet?")
+            If UserResponse = MsgBoxResult.Yes Then
+
+                If DbTrans IsNot Nothing Then
+                    DbTrans = Nothing
+                End If
+
+                DbTrans = DbConn.BeginTransaction
+
+                'Calculate ward duration and update to ward header
+                If Not CalculateWardDuration(DbConn, DbTrans) Then
+                    MsgBox("Failed to update discharge status and ward duration.", MsgBoxStyle.Critical, "Discharge Status Update Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+                'Check and calculate ward duration, insert data to ward_discharge, ward_dischargemedication
+                Dim ClsWardDischarge As New ClsWardDischarge
+                Dim ClsWardDischargeMedication As New ClsWardDischargeDetail
 
                 With ClsWardDischarge
                     .WardID = TxtWardID.Text
@@ -660,12 +753,26 @@ Public Class FrmWardInformation
 
                 If DgvDischargeMedication.Rows.Count > 0 Then
 
+                    Dim PhRequestID As String = ""
+                    PhRequestID = IIf(CStrNull(DgvDischargeMedication.Rows(0).Cells("DiscMedPhRequestID").Value) <> "",
+                                  DgvDischargeMedication.Rows(0).Cells("DiscMedPhRequestID").Value,
+                                  GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+
+                    If PhRequestID = "" Then
+                        MsgBox("Failed to create pharmacy request ID .", MsgBoxStyle.Critical, "Pharmacy Request ID Error")
+                        DbTrans.Rollback()
+                        DbTrans.Dispose()
+                        DbTrans = Nothing
+                        Return False
+                    End If
+
                     For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
 
                         ClsWardDischargeMedication = New ClsWardDischargeDetail
                         With ClsWardDischargeMedication
                             .WardID = TxtWardID.Text
                             .DischargeDate = Now
+                            .PhRequestID = PhRequestID
                             .RowNo = DgvDischargeMedication.Rows(i).Cells("DiscMedRowNo").Value
                             .ItemCode = DgvDischargeMedication.Rows(i).Cells("DiscMedItemCode").Value
                             .ItemDescription = DgvDischargeMedication.Rows(i).Cells("DiscMedItemDescription").Value
@@ -683,7 +790,7 @@ Public Class FrmWardInformation
                             .Ref.DateModified = Now
 
                             If Not .AddNewWardDischargeMedication(ClsWardDischargeMedication, DbConn, DbTrans) Then
-                                MsgBox("Failed to udpate ward discharge medication.", MsgBoxStyle.Critical, "Ward Discharge Medication Update Error")
+                                MsgBox("Failed to update ward discharge medication.", MsgBoxStyle.Critical, "Ward Discharge Medication Update Error")
                                 DbTrans.Rollback()
                                 DbTrans.Dispose()
                                 DbTrans = Nothing
@@ -694,15 +801,15 @@ Public Class FrmWardInformation
 
                     Next
 
-                End If
+                    'If pharmacy request ID already exists; dont update request
+                    'If Not SendRequestToPharmacyWardDc(PhRequestID, "DC") Then
+                    '    MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Ward Discharge Pharmacy Request Error")
+                    '    DbTrans.Rollback()
+                    '    DbTrans.Dispose()
+                    '    DbTrans = Nothing
+                    '    Return False
+                    'End If
 
-                'Calculate ward duration and update to ward header
-                If Not DischargePet(DbConn, DbTrans) Then
-                    MsgBox("Failed to update discharge status.", MsgBoxStyle.Critical, "Discharge Status Update Error")
-                    DbTrans.Rollback()
-                    DbTrans.Dispose()
-                    DbTrans = Nothing
-                    Return False
                 End If
 
             End If
@@ -711,23 +818,16 @@ Public Class FrmWardInformation
             DbTrans.Dispose()
             DbTrans = Nothing
 
-            With ClsWard
-                If TxtCreatedBy.Text = "" Then
-                    TxtCreatedBy.Text = .Ref.CreatedBy
-                End If
+            ' MsgBox("Admission Date : " & ActualAD & Environment.NewLine &
+            '"Discharge Date : " & ActualDD & Environment.NewLine &
+            '"Ward Duration : " & WardDuration)
 
-                If TxtDateModified.Text = "" Then
-                    TxtDateCreated.Text = .Ref.DateCreated
-                End If
-
-                TxtModifiedBy.Text = .Ref.ModifiedBy
-                TxtDateModified.Text = .Ref.DateModified
-            End With
-
-            MsgBox("Ward progress has been updated!", MsgBoxStyle.Information, "Ward Progress Updated")
+            CbIsDischarged.Checked = True
+            CbIsDischarged.Enabled = False
+            MsgBox("Your selected pet has been successfully discharged!", MsgBoxStyle.Information, "Pet Discharge Completed")
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveWardToDb()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DischargePet()")
             DbTrans.Rollback()
             DbTrans.Dispose()
             DbTrans = Nothing
@@ -738,126 +838,53 @@ Public Class FrmWardInformation
 
     End Function
 
-    Private Function DischargePet(DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-
-        Dim UserResponse As MsgBoxResult
+    Private Function CalculateWardDuration(DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Try
-            If CbIsDischarged.Checked = True Then
+            'Set fixed AdmissionDate & DischargeDate
+            Dim StrFixedAD As String = CDate(TxtAdmissionDate.Text).Date.ToShortDateString & " 12:00:00"
+            Dim StrFixedDD As String = Now.Date.ToShortDateString & " 12:00:00"
+            Dim FixedAD As Date = CDate(StrFixedAD)
+            Dim FixedDD As Date = CDate(StrFixedDD)
+            Dim FixDuration As TimeSpan
 
-                UserResponse = MsgBox("Are sure you want to discharge this pet? Your action cannot be undone.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Discharge Pet?")
-                If UserResponse = MsgBoxResult.Yes Then
+            'Get actual admission date & actual discharge date
+            Dim ActualAD As Date = CDate(TxtAdmissionDate.Text)
+            Dim ActualDD As Date = IIf(TxtDischargeDate.Text <> "", TxtDischargeDate.Text, Now)
 
-                    'Set fixed AdmissionDate & DischargeDate
-                    Dim StrFixedAD As String = CDate(TxtAdmissionDate.Text).Date.ToShortDateString & " 12:00:00"
-                    Dim StrFixedDD As String = Now.Date.ToShortDateString & " 12:00:00"
-                    Dim FixedAD As Date = CDate(StrFixedAD)
-                    Dim FixedDD As Date = CDate(StrFixedDD)
-                    Dim FixDuration As TimeSpan
+            FixDuration = FixedDD - FixedAD
+            Dim WardDuration As Integer = FixDuration.Days
 
-                    'Get actual admission date & actual discharge date
-                    Dim ActualAD As Date = CDate(TxtAdmissionDate.Text)
-                    Dim ActualDD As Date = IIf(TxtDischargeDate.Text <> "", TxtDischargeDate.Text, Now) 'Now
-
-                    FixDuration = FixedDD - FixedAD
-                    Dim WardDuration As Integer = FixDuration.Days
-
-                    If ActualDD > FixedDD Then
-                        WardDuration = WardDuration + 1
-                    End If
-
-                    'Update IsDischarge, DischargeDate
-                    'If DbTrans IsNot Nothing Then
-                    '    DbTrans = Nothing
-                    'End If
-
-                    'DbTrans = DbConn.BeginTransaction
-
-                    Dim ClsWard As New ClsWard
-                    With ClsWard
-                        .WardID = Trim(TxtWardID.Text)
-                        .IsDischarged = "1"
-                        .DischargeDate = ActualDD
-                        .WardDuration = WardDuration
-                        .Ref.ModifiedBy = CURR_USER
-                        .Ref.DateModified = Now
-
-                        If Not .DischargePet(ClsWard, DbConn, DbTrans) Then
-                            CbIsDischarged.Checked = False
-                            'MsgBox("Failed to update discharge status.", MsgBoxStyle.Critical, "Discharge Status Update Error")
-                            'DbTrans.Rollback()
-                            'DbTrans = Nothing
-                            Return False
-                        End If
-
-                    End With
-
-                    TxtDischargeDate.Text = ActualDD
-
-                    ' DbTrans.Commit()
-                    ' DbTrans.Dispose()
-                    ' DbTrans = Nothing
-
-                    ' MsgBox("Admission Date : " & ActualAD & Environment.NewLine &
-                    '"Discharge Date : " & ActualDD & Environment.NewLine &
-                    '"Ward Duration : " & WardDuration)
-
-                    MsgBox("Your selected pet has been successfully discharged!", MsgBoxStyle.Information, "Pet Discharge Completed")
-                Else
-                    CbIsDischarged.Checked = False
-
-                End If
-
+            If ActualDD > FixedDD Then
+                WardDuration = WardDuration + 1
             End If
 
+            Dim ClsWard As New ClsWard
+            With ClsWard
+                .WardID = Trim(TxtWardID.Text)
+                .IsDischarged = "1"
+                .DischargeDate = ActualDD
+                .WardDuration = WardDuration
+                .Ref.ModifiedBy = CURR_USER
+                .Ref.DateModified = Now
+
+                If Not .DischargePet(ClsWard, DbConn, DbTrans) Then
+                    CbIsDischarged.Checked = False
+                    Return False
+                End If
+
+            End With
+
+            TxtDischargeDate.Text = ActualDD
+
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DischargePet()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CalculateWardDuration()")
             Return False
         End Try
 
         Return True
 
     End Function
-
-    'Private Function CalculateWardDuration(DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-
-    '    Try
-    '        'Set fixed AdmissionDate & DischargeDate
-    '        Dim StrFixedAdmissionDate As String = CDate(TxtAdmissionDate.Text).Date.ToShortDateString & " 12:00:00"
-    '        Dim StrFixedDischargeDate As String = Now.Date.ToShortDateString & " 12:00:00"
-
-    '        Dim FixedAD As Date = CDate(StrFixedAdmissionDate)
-    '        Dim FixedDD As Date = CDate(StrFixedDischargeDate)
-
-    '        Dim DurationSpan As TimeSpan
-
-    '        'Get actual admission date & actual discharge date
-    '        Dim ActualAD As Date = CDate(TxtAdmissionDate.Text) '"19/10/2018 13:00:00"
-    '        Dim ActualDD As Date = Now 'CDate(TxtDD.Text) '"20/10/2018 12:01:00"
-
-    '        DurationSpan = FixedDD - FixedAD
-    '        Dim WardDuration As Integer = DurationSpan.Days
-
-    '        If ActualDD > FixedDD Then
-    '            WardDuration = WardDuration + 1
-    '        End If
-
-    '        'Update ward duration in datatase  
-    '        Dim ClsWard As New ClsWard
-    '        With ClsWard
-    '            If Not .UpdateWardDuration() Then
-    '                Return False
-    '            End If
-    '        End With
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CalculateWardDuration()")
-    '        Return False
-    '    End Try
-
-    '    Return True
-
-    'End Function
 
     Private Function UpdateBill() As Boolean
 
@@ -1003,7 +1030,7 @@ Public Class FrmWardInformation
                 ClsBill = New ClsBill
                 With ClsBill
                     .InvoiceNo = DtBillHeader.Rows(0).Item("InvoiceNo")
-                    .VisitID = VisitID
+                    .VisitID = WardID
                     .InvoiceDate = Now
                     .CustomerID = CustomerID
                     .CustomerName = CustomerName
@@ -1327,6 +1354,7 @@ Public Class FrmWardInformation
 
                     Dim DgvRow As DataRow = DtTreatment.NewRow
 
+                    DgvRow("PhRequestID") = DgvSelectedTreatment.Rows(i).Cells("TreatmentPhRequestID").Value
                     DgvRow("RowNo") = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
                     DgvRow("ItemCode") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
                     DgvRow("ItemDescription") = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
@@ -1361,6 +1389,8 @@ Public Class FrmWardInformation
             Row("ItemTypeDescription") = ItemTypeDescription
             Row("ItemTypeCode") = ItemTypeCode
 
+            Row("PhRequestID") = DtTreatment.Rows(0).Item("PhRequestID")
+
             DtTreatment.Rows.Add(Row)
 
             If DtTreatment.Rows.Count > 0 Then
@@ -1370,6 +1400,7 @@ Public Class FrmWardInformation
                 For i As Integer = 0 To DtTreatment.Rows.Count - 1
                     With DgvSelectedTreatment
                         .Rows.Add()
+                        .Rows(i).Cells("TreatmentPhRequestID").Value = DtTreatment.Rows(i).Item("PhRequestID")
                         .Rows(i).Cells("TreatmentRowNo").Value = DtTreatment.Rows(i).Item("RowNo")
                         .Rows(i).Cells("TreatmentItemCode").Value = DtTreatment.Rows(i).Item("ItemCode")
                         .Rows(i).Cells("TreatmentItemDescription").Value = DtTreatment.Rows(i).Item("ItemDescription")
@@ -1433,6 +1464,7 @@ Public Class FrmWardInformation
 
         Try
             With DtTreatment
+                .Columns.Add("PhRequestID", GetType(String))
                 .Columns.Add("RowNo", GetType(Integer))
                 .Columns.Add("ItemCode", GetType(String))
                 .Columns.Add("ItemDescription", GetType(String))
@@ -1546,9 +1578,9 @@ Public Class FrmWardInformation
         TxtTreatmentItem.Tag = ""
     End Sub
 
-    Private Sub CbIsDischarged_Click(sender As Object, e As EventArgs)
-        'If Not DischargePet() Then Exit Sub
-    End Sub
+    'Private Sub CbIsDischarged_Click(sender As Object, e As EventArgs)
+    '    'If Not DischargePet() Then Exit Sub
+    'End Sub
 
     Private Sub DgvWardSummary_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvWardSummary.CellDoubleClick
 
@@ -1744,17 +1776,55 @@ Public Class FrmWardInformation
     End Sub
 
     Private Sub BtnAddDischargeItem_Click(sender As Object, e As EventArgs) Handles BtnAddDischargeItem.Click
-        AddDischargeMedication()
+        'AddDischargeMedication()
+        If BtnAddDischargeItem.Tag = "UPDATE" Then
+            If Not UpdateDischargeMedication() Then Exit Sub
+        Else
+            If Not AddDischargeMedication() Then Exit Sub
+        End If
     End Sub
 
-    Private Sub AddDischargeMedication()
+    Private Function CheckFields(FieldSource As String) As Boolean
+
+        Try
+            Select Case FieldSource
+                Case "DISCMED"
+                    If TxtWardID.Text = "" Then
+                        MsgBox("Please select customer visit.", MsgBoxStyle.Exclamation, "No Customer Visit Selected")
+                        Return False
+                    End If
+
+                    If TxtDischargeItem.Tag = "" Then
+                        Return False
+                    End If
+
+                    If DgvDischargeMedication.Rows.Count > 0 Then
+                        For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
+
+                            If TxtTreatmentItem.Tag = DgvDischargeMedication.Rows(i).Cells("DiscMedItemCode").Value Then
+                                MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
+                                Return False
+                            End If
+                        Next
+                    End If
+
+            End Select
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".CheckFields()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function AddDischargeMedication() As Boolean
 
         Dim DtMedication As New DataTable
 
         Try
-            If TxtDischargeItem.Tag = "" Then
-                Exit Sub
-            End If
+            If Not CheckFields() Then Return False
 
             DtMedication = InitSelectedItemDt()
             If DgvDischargeMedication.Rows.Count > 0 Then
@@ -1763,6 +1833,7 @@ Public Class FrmWardInformation
 
                     Dim DgvRow As DataRow = DtMedication.NewRow
 
+                    DgvRow("PhRequestID") = DgvDischargeMedication.Rows(i).Cells("DiscMedPhRequestID").Value
                     DgvRow("RowNo") = DgvDischargeMedication.Rows(i).Cells("DiscMedRowNo").Value
                     DgvRow("ItemCode") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemCode").Value
                     DgvRow("ItemDescription") = DgvDischargeMedication.Rows(i).Cells("DiscMedItemDescription").Value
@@ -1802,6 +1873,7 @@ Public Class FrmWardInformation
                 For i As Integer = 0 To DtMedication.Rows.Count - 1
                     With DgvDischargeMedication
                         .Rows.Add()
+                        .Rows(i).Cells("DiscMedPhRequestID").Value = DtMedication.Rows(i).Item("PhRequestID")
                         .Rows(i).Cells("DiscMedRowNo").Value = DtMedication.Rows(i).Item("RowNo")
                         .Rows(i).Cells("DiscMedItemCode").Value = DtMedication.Rows(i).Item("ItemCode")
                         .Rows(i).Cells("DiscMedItemDescription").Value = DtMedication.Rows(i).Item("ItemDescription")
@@ -1818,12 +1890,57 @@ Public Class FrmWardInformation
 
             TxtDischargeItem.Text = ""
             TxtDischargeItem.Tag = ""
+            TxtDischargePrescription.Text = ""
+            TxtDischargeNotes.Text = ""
+            TxtDischargeUnitPrice.Text = "0.00"
+            TxtDischargeQuantity.Text = "1.00"
+            TxtDischargeTotalPrice.Text = "0.00"
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddDischargeMedication()")
+            Return False
         End Try
 
-    End Sub
+        Return True
+
+    End Function
+
+    Private Function UpdateDischargeMedication() As Boolean
+
+        Try
+            Dim RowIndex As Integer = CInt(LblDiscMedRowNo.Text)
+
+            With DgvDischargeMedication
+                .Rows(RowIndex).Cells("DiscMedItemCode").Value = Trim(TxtDischargeItem.Tag)
+                .Rows(RowIndex).Cells("DiscMedItemDescription").Value = Trim(TxtDischargeItem.Text)
+                .Rows(RowIndex).Cells("DiscMedPrescription").Value = Trim(TxtDischargePrescription.Text)
+                .Rows(RowIndex).Cells("DiscMedNotes").Value = Trim(TxtDischargeNotes.Text)
+                .Rows(RowIndex).Cells("DiscMedUnitPrice").Value = Trim(TxtDischargeUnitPrice.Text)
+                .Rows(RowIndex).Cells("DiscMedQuantity").Value = Trim(TxtDischargeQuantity.Text)
+                .Rows(RowIndex).Cells("DiscMedTotalPrice").Value = Trim(TxtDischargeTotalPrice.Text)
+            End With
+
+            TxtDischargeItem.Text = ""
+            TxtDischargeItem.Tag = ""
+            TxtDischargePrescription.Text = ""
+            TxtDischargeNotes.Text = ""
+            TxtDischargeUnitPrice.Text = ""
+            TxtDischargeQuantity.Text = ""
+            TxtDischargeTotalPrice.Text = ""
+
+            BtnAddDischargeItem.Text = "Add Item"
+            BtnAddDischargeItem.Tag = ""
+
+            MsgBox("Selected item has been updated!", MsgBoxStyle.Information, "Item Updated")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".UpdateDischargeMedication()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
 
     Private Sub DgvSelectedTest_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedTest.CellContentClick
 
@@ -1946,6 +2063,8 @@ Public Class FrmWardInformation
 
     End Function
 
+
+
     Private Sub BtnNewWardTime_Click(sender As Object, e As EventArgs) Handles BtnNewWardTime.Click
         TxtWardHourlyTime.Text = Now
         TxtVet.Tag = CURR_EMPLOYEE_ID
@@ -1983,7 +2102,7 @@ Public Class FrmWardInformation
                 Exit Sub
             End If
 
-            Process.Start(My.Application.Info.DirectoryPath & "/Ward.exe", Trim(TxtWardID.Text))
+            Process.Start(My.Application.Info.DirectoryPath & "/WardReport.exe", Trim(TxtWardID.Text))
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PrintWard")
@@ -1991,13 +2110,15 @@ Public Class FrmWardInformation
 
     End Sub
 
-    Private Sub BtnSendToPharmacy_Click(sender As Object, e As EventArgs) Handles BtnSendToPharmacy.Click
-        If Not SendRequestToPharmacy() Then Exit Sub
+    Private Sub BtnSendToPharmacyWardTx_Click(sender As Object, e As EventArgs) Handles BtnSendToPharmacyWardTx.Click
+        If Not SendRequestToPharmacy("TX") Then Exit Sub
     End Sub
 
-    Private Function SendRequestToPharmacy() As Boolean
+    Private Sub BtnSendToPharmacyWardDisc_Click(sender As Object, e As EventArgs) Handles BtnSendToPharmacyWardDc.Click
+        If Not SendRequestToPharmacy("DC") Then Exit Sub
+    End Sub
 
-        Dim GenRequestID As String = ""
+    Private Function SendRequestToPharmacy(Source As String) As Boolean
 
         Try
             Dim UserResponse As MsgBoxResult
@@ -2005,33 +2126,184 @@ Public Class FrmWardInformation
 
             If UserResponse = MsgBoxResult.Yes Then
 
-                If DgvSelectedTreatment.Rows.Count = 0 Then
-                    MsgBox("Please complete your medication list before requesting.", MsgBoxStyle.Exclamation, "No Medication Request Specified")
-                    Return False
-                End If
+                Select Case Source
 
-                If DbTrans IsNot Nothing Then
-                    DbTrans = Nothing
-                End If
+                    Case "TX"  'WARD-TX -- WARD TREATMENT
 
-                DbTrans = DbConn.BeginTransaction
+                        If Not SendRequestToPharmacyWardTx(Source) Then Return False
 
-                GenRequestID = IIf(BtnSendToPharmacy.Tag <> "", BtnSendToPharmacy.Tag, GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+                    Case "DC" 'WARD-DISC -- WARD DISCHARGE
 
-                If GenRequestID = "" Then
-                    MsgBox("Failed to generate Request ID.", MsgBoxStyle.Critical, "Request ID Generation Error")
+                        If Not SendRequestToPharmacyWardDc(Source) Then Return False
+
+                End Select
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SendRequestToPharmacy()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function SendRequestToPharmacyWardTx(Src As String) As Boolean
+
+        Try
+            Dim PhRequestID As String
+
+            If Not ValidatePharmacyRequestUpdate() Then Return True
+            'If Not SaveWardToDb() Then Return False
+
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
+            End If
+
+            DbTrans = DbConn.BeginTransaction
+
+            PhRequestID = IIf(CStrNull(DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value) <> "",
+                              CStrNull(DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value),
+                              GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+
+            If PhRequestID = "" Then
+                MsgBox("Failed to create pharmacy request ID .", MsgBoxStyle.Critical, "Pharmacy Request ID Error")
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+                Return False
+            End If
+
+            Dim ClsPharmacy As New ClsPharmacy
+            With ClsPharmacy
+                .RequestID = PhRequestID
+                .VisitID = TxtWardID.Text
+                .RequestDate = Now
+                .Source = FORM_SOURCE & Src
+                .RqEmpID = CURR_EMPLOYEE_ID
+                .RqEmpName = CURR_EMPLOYEE_NAME
+                .PhEmpID = ""
+                .PhEmpName = ""
+                .ApprovalDate = Nothing
+                .IsCompleted = IIf(CStrNull(DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value) <> "", "1", "0")
+                .Ref.CreatedBy = CURR_USER
+                .Ref.DateCreated = Now
+                .Ref.ModifiedBy = CURR_USER
+                .Ref.DateModified = Now
+
+                If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
                     DbTrans.Rollback()
                     DbTrans.Dispose()
                     DbTrans = Nothing
                     Return False
                 End If
 
-                Dim ClsPharmacy As New ClsPharmacy
+            End With
+
+            'Ward Treatment
+            Dim ClsPharmacyDetail As New ClsPharmacyDetail
+            If DgvSelectedTreatment.Rows.Count > 0 Then
+
+                For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+
+                    ClsPharmacyDetail = New ClsPharmacyDetail
+                    With ClsPharmacyDetail
+                        .RequestID = PhRequestID
+                        .VisitID = TxtWardID.Text
+                        .RowNo = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
+                        .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
+                        .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
+                        .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
+                        .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
+                        .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
+                        .Prescription = CStrNull(DgvSelectedTreatment.Rows(i).Cells("TreatmentPrescription").Value)
+                        .Notes = CStrNull(DgvSelectedTreatment.Rows(i).Cells("TreatmentNotes").Value)
+                        .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
+                        .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
+                        .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    End With
+
+                Next
+
+            End If
+
+            DbTrans.Commit()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+
+            With DgvSelectedTreatment
+
+                For i As Integer = 0 To .Rows.Count - 1
+
+                    .Rows(i).Cells("TreatmentPhRequestID").Value = PhRequestID
+
+                Next
+
+            End With
+
+            MsgBox("Your pharmacy request has been successfully sent!", MsgBoxStyle.Information, "Pharmacy Request Sent")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SendRequestToPharmacyWardTx()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Function SendRequestToPharmacyWardDc(Src As String) As Boolean
+
+        Try
+            Dim PhRequestID As String
+
+            If Not ValidatePharmacyRequestUpdate("DC") Then Return True
+
+            If DbTrans IsNot Nothing Then
+                DbTrans = Nothing
+            End If
+
+            DbTrans = DbConn.BeginTransaction
+
+            PhRequestID = IIf(CStrNull(DgvDischargeMedication.Rows(0).Cells("DiscMedPhRequestID").Value) <> "",
+                              CStrNull(DgvDischargeMedication.Rows(0).Cells("DiscMedPhRequestID").Value),
+                              GenerateRunningNo("RQ", DbConn, DbTrans, ""))
+
+            If PhRequestID = "" Then
+                MsgBox("Failed to create pharmacy request ID .", MsgBoxStyle.Critical, "Pharmacy Request ID Error")
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+                Return False
+            End If
+
+            'Ward Treatment
+            Dim ClsPharmacy As New ClsPharmacy
+            Dim ClsPharmacyDetail As New ClsPharmacyDetail
+
+            If DgvDischargeMedication.Rows.Count > 0 Then
+
                 With ClsPharmacy
-                    .RequestID = GenRequestID
+                    .RequestID = PhRequestID
                     .VisitID = TxtWardID.Text
                     .RequestDate = Now
-                    .Source = FORM_SOURCE
+                    .Source = FORM_SOURCE & Src
                     .RqEmpID = CURR_EMPLOYEE_ID
                     .RqEmpName = CURR_EMPLOYEE_NAME
                     .PhEmpID = ""
@@ -2053,67 +2325,30 @@ Public Class FrmWardInformation
 
                 End With
 
-                'Ward Treatment
-                Dim ClsPharmacyDetail As New ClsPharmacyDetail
-                If DgvSelectedTreatment.Rows.Count > 0 Then
+                For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
 
-                    For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
-
-                        ClsPharmacyDetail = New ClsPharmacyDetail
-                        With ClsPharmacyDetail
-                            .RequestID = GenRequestID
-                            .VisitID = TxtWardID.Text
-                            .RowNo = DgvSelectedTreatment.Rows(i).Cells("TreatmentRowNo").Value
-                            .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                            .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
-                            .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
-                            .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
-                            .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-                            .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                            .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
-                            .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
-                            .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
-                            .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
-                            .Ref.CreatedBy = CURR_USER
-                            .Ref.DateCreated = Now
-                            .Ref.ModifiedBy = CURR_USER
-                            .Ref.DateModified = Now
-
-                            If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
-                                MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
-                                DbTrans.Rollback()
-                                DbTrans.Dispose()
-                                DbTrans = Nothing
-                                Return False
-                            End If
-                        End With
-
-                    Next
-
-                End If
-
-                'Ward Medication
-                If DgvDischargeMedication.Rows.Count > 0 Then
-
-                    ClsPharmacy = New ClsPharmacy
-                    With ClsPharmacy
-                        .RequestID = GenRequestID
+                    ClsPharmacyDetail = New ClsPharmacyDetail
+                    With ClsPharmacyDetail
+                        .RequestID = PhRequestID
                         .VisitID = TxtWardID.Text
-                        .RequestDate = Now
-                        .Source = FORM_SOURCE & "-DISCHARGE"
-                        .RqEmpID = CURR_EMPLOYEE_ID
-                        .RqEmpName = CURR_EMPLOYEE_NAME
-                        .PhEmpID = ""
-                        .PhEmpName = ""
-                        .ApprovalDate = Nothing
-                        .IsCompleted = "0"
+                        .RowNo = DgvDischargeMedication.Rows(i).Cells("DiscMedRowNo").Value
+                        .ItemCode = DgvDischargeMedication.Rows(i).Cells("DiscMedItemCode").Value
+                        .ItemDescription = DgvDischargeMedication.Rows(i).Cells("DiscMedItemDescription").Value
+                        .ItemGroup = DgvDischargeMedication.Rows(i).Cells("DiscMedItemGroup").Value
+                        .ItemTypeCode = DgvDischargeMedication.Rows(i).Cells("DiscMedItemTypeCode").Value
+                        .ItemTypeDescription = DgvDischargeMedication.Rows(i).Cells("DiscMedItemTypeDescription").Value
+                        .Prescription = DgvDischargeMedication.Rows(i).Cells("DiscMedPrescription").Value
+                        .Notes = DgvDischargeMedication.Rows(i).Cells("DiscMedNotes").Value
+                        .UnitPrice = DgvDischargeMedication.Rows(i).Cells("DiscMedUnitPrice").Value
+                        .Quantity = DgvDischargeMedication.Rows(i).Cells("DiscMedQuantity").Value
+                        .TotalPrice = DgvDischargeMedication.Rows(i).Cells("DiscMedTotalPrice").Value
                         .Ref.CreatedBy = CURR_USER
                         .Ref.DateCreated = Now
                         .Ref.ModifiedBy = CURR_USER
                         .Ref.DateModified = Now
 
-                        If Not .AddNewPharmacyRequest(ClsPharmacy, DbConn, DbTrans) Then
-                            MsgBox("Failed to update pharmacy request.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
+                        If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
+                            MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
                             DbTrans.Rollback()
                             DbTrans.Dispose()
                             DbTrans = Nothing
@@ -2122,45 +2357,12 @@ Public Class FrmWardInformation
 
                     End With
 
-                    For i As Integer = 0 To DgvDischargeMedication.Rows.Count - 1
-
-                        ClsPharmacyDetail = New ClsPharmacyDetail
-                        With ClsPharmacyDetail
-                            .RequestID = GenRequestID
-                            .VisitID = TxtWardID.Text
-                            .RowNo = DgvSelectedTreatment.Rows(i).Cells("MedicationRowNo").Value
-                            .ItemCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value
-                            .ItemDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemDescription").Value
-                            .ItemGroup = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemGroup").Value
-                            .ItemTypeCode = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeCode").Value
-                            .ItemTypeDescription = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemTypeDescription").Value
-                            .Prescription = DgvSelectedTreatment.Rows(i).Cells("Prescription").Value
-                            .Notes = DgvSelectedTreatment.Rows(i).Cells("Notes").Value
-                            .UnitPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentUnitPrice").Value
-                            .Quantity = DgvSelectedTreatment.Rows(i).Cells("TreatmentQuantity").Value
-                            .TotalPrice = DgvSelectedTreatment.Rows(i).Cells("TreatmentTotalPrice").Value
-                            .Ref.CreatedBy = CURR_USER
-                            .Ref.DateCreated = Now
-                            .Ref.ModifiedBy = CURR_USER
-                            .Ref.DateModified = Now
-
-                            If Not .AddNewPharmacyRequestDetail(ClsPharmacyDetail, DbConn, DbTrans) Then
-                                MsgBox("Failed to update pharmacy request details.", MsgBoxStyle.Critical, "Pharmacy Request Update Error")
-                                DbTrans.Rollback()
-                                DbTrans.Dispose()
-                                DbTrans = Nothing
-                                Return False
-                            End If
-                        End With
-
-                    Next
-
-                End If
+                Next
 
             End If
 
-            BtnSendToPharmacy.Tag = GenRequestID
-            RequestID = GenRequestID
+            BtnSendToPharmacyWardDc.Tag = PhRequestID
+            RequestID = PhRequestID
 
             DbTrans.Commit()
             DbTrans.Dispose()
@@ -2169,7 +2371,7 @@ Public Class FrmWardInformation
             MsgBox("Your pharmacy request has been successfully sent!", MsgBoxStyle.Information, "Pharmacy Request Sent")
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SendRequestToPharmacy()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SendRequestToPharmacyWardDc()")
             DbTrans.Rollback()
             DbTrans.Dispose()
             DbTrans = Nothing
@@ -2178,7 +2380,121 @@ Public Class FrmWardInformation
 
         Return True
 
+    End Function
+
+    Private Function ValidatePharmacyRequestUpdate(Optional Src As String = "") As Boolean
+
+        Try
+            Select Case Src
+
+                Case "TX"
+
+                    If DgvSelectedTreatment.Rows.Count > 0 Then
+
+                        With DgvSelectedTreatment
+
+                            'Check if request has been made by checking request id in the record,
+                            'if any one row of record not having request id then need to update request
+                            For i As Integer = 0 To .Rows.Count - 1
+
+                                If CStrNull(.Rows(i).Cells("TreatmentPhRequestID").Value) = "" Then
+
+                                    'Keep looping records to check if any records that has not been requested
+                                    'If found any then add/update to database
+                                    Return True
+                                Else
+                                    'Use Return True to exit function; to bypass updating pharmacy request information
+                                    Continue For
+                                End If
+
+                            Next
+
+                            'Return False to disable from updating existing pharmacy information; means all item has been requested
+                            Return False
+
+                        End With
+
+                    End If
+
+                Case "DC"
+
+                    'Check fields and request if already has been done
+                    'If DgvDischargeMedication.Rows.Count = 0 Then
+                    '    MsgBox("Please complete your medication list before requesting.", MsgBoxStyle.Exclamation, "No Medication Request Specified")
+                    '    Return False
+                    'End If
+
+            End Select
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ValidatePharmacyRequestUpdate()")
+            Return False
+        End Try
+
+        Return True
 
     End Function
+
+    Private Sub DgvDischargeMedication_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvDischargeMedication.CellContentClick
+
+        Dim UserResponse As MsgBoxResult
+
+        Try
+            Dim SenderGrid = DirectCast(sender, DataGridView)
+
+            If TypeOf SenderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
+
+                'Data grid view Pet Listing 'Select' button
+                If e.ColumnIndex = 0 Then
+
+                    UserResponse = MsgBox("Are sure you want to update this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Update Item?")
+                    If UserResponse = MsgBoxResult.Yes Then
+
+                        With DgvDischargeMedication
+
+                            If .Rows(e.RowIndex).Cells("IsDiscMedDb").Value = "0" Or .Rows(e.RowIndex).Cells("IsDiscMedDb").Value = "" Then
+                                .Rows.RemoveAt(e.RowIndex)
+                            Else
+                                MsgBox("Unable to delete item that has been saved into the database.", MsgBoxStyle.Exclamation, "Read-Only Item")
+                            End If
+
+                        End With
+
+                    End If
+
+                ElseIf e.ColumnIndex = 1 Then
+
+                    'UserResponse = MsgBox("Are sure you want to update this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Update Item?")
+                    'If UserResponse = MsgBoxResult.Yes Then
+
+                    With DgvDischargeMedication
+
+                        TxtDischargeItem.Text = .Rows(e.RowIndex).Cells("DiscMedItemDescription").Value
+                        TxtDischargeItem.Tag = .Rows(e.RowIndex).Cells("DiscMedItemCode").Value
+                        TxtDischargePrescription.Text = CStrNull(.Rows(e.RowIndex).Cells("DiscMedPrescription").Value)
+                        TxtDischargeNotes.Text = CStrNull(.Rows(e.RowIndex).Cells("DiscMedNotes").Value)
+                        TxtDischargeUnitPrice.Text = .Rows(e.RowIndex).Cells("DiscMedUnitPrice").Value
+                        TxtDischargeQuantity.Text = .Rows(e.RowIndex).Cells("DiscMedQuantity").Value
+                        TxtDischargeTotalPrice.Text = .Rows(e.RowIndex).Cells("DiscMedTotalPrice").Value
+
+                    End With
+
+                    BtnAddDischargeItem.Text = "Update Item"
+                    BtnAddDischargeItem.Tag = "UPDATE"
+                    LblDiscMedRowNo.Text = e.RowIndex
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvDischargeMedication_CellContentClick()")
+        End Try
+
+    End Sub
+
+    Private Sub BtnDischargePet_Click(sender As Object, e As EventArgs) Handles BtnDischargePet.Click
+        If Not DischargePet() Then Exit Sub
+    End Sub
 
 End Class

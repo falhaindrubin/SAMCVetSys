@@ -267,6 +267,7 @@ Public Class FrmVisitInformation
                         DtpConsultationTime.Value = CDate(DtVisit.Rows(0).Item("VisitTime"))
                         TxtVet.Tag = CStr(DtVisit.Rows(0).Item("EmployeeID"))
                         TxtVet.Text = CStr(DtVisit.Rows(0).Item("EmployeeName"))
+                        TxtVisitDescription.Text = CStrNull(DtVisit.Rows(0).Item("VisitDescription"))
 
                         DtSelectedPet = InitPetDatatable()
                         For i As Integer = 0 To DtVisit.Rows.Count - 1
@@ -349,6 +350,7 @@ Public Class FrmVisitInformation
                                         .Rows(i).Cells("ChargesItemGroup").Value = DtVisitCharges.Rows(i).Item("ItemGroup")
                                         .Rows(i).Cells("ChargesItemTypeCode").Value = DtVisitCharges.Rows(i).Item("ItemTypeCode")
                                         .Rows(i).Cells("ChargesItemTypeDescription").Value = DtVisitCharges.Rows(i).Item("ItemTypeDescription")
+                                        .Rows(i).Cells("IsChargeDb").Value = "1"
                                     End With
                                 Next
 
@@ -1132,6 +1134,8 @@ ReplaceCurrentPet:
                         .UnitPrice = DgvSelectedItem.Rows(i).Cells("ChargesUnitPrice").Value
                         .Quantity = DgvSelectedItem.Rows(i).Cells("ChargesQuantity").Value
                         .TotalPrice = DgvSelectedItem.Rows(i).Cells("ChargesTotalPrice").Value
+                        .ChSource = "1"
+                        .ChSourceName = "VISIT"
                         .Ref.CreatedBy = CURR_USER
                         .Ref.DateCreated = Now
                         .Ref.ModifiedBy = CURR_USER
@@ -1390,7 +1394,7 @@ ReplaceCurrentPet:
         Dim DtItem As New DataTable
 
         Try
-            If TxtTestItem.Tag = "" Then
+            If TxtItem.Tag = "" Then
                 Exit Sub
             End If
 
@@ -1416,6 +1420,8 @@ ReplaceCurrentPet:
                     DgvRow("ItemTypeCode") = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeCode").Value
                     DgvRow("ItemTypeDescription") = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeDescription").Value
 
+                    DgvRow("IsChargeDb") = DgvSelectedItem.Rows(i).Cells("IsChargeDb").Value
+
                     DtItem.Rows.Add(DgvRow)
 
                 Next
@@ -1423,21 +1429,22 @@ ReplaceCurrentPet:
             End If
 
             'Check if user trying to add duplicate items; instead tell user to update quantity
-            If AddItemToBill(DtItem, TxtTestItem.Tag) Then
+            If AddItemToBill(DtItem, TxtItem.Tag) Then
 
                 Dim Row As DataRow = DtItem.NewRow
 
                 Row("RowNo") = IIf(DtItem.Rows.Count = 0, 1, DtItem.Rows.Count + 1)
-                Row("ItemCode") = UCase(Trim(TxtTestItem.Tag))
-                Row("ItemDescription") = UCase(Trim(TxtTestItem.Text))
+                Row("ItemCode") = UCase(Trim(TxtItem.Tag))
+                Row("ItemDescription") = UCase(Trim(TxtItem.Text))
                 Row("Prescription") = UCase(Trim(TxtPrescription.Text))
                 Row("Notes") = UCase(Trim(TxtNotes.Text))
-                Row("UnitPrice") = UCase(Trim(TxtTestUnitPrice.Text))
-                Row("Quantity") = UCase(Trim(TxtTestQuantity.Text))
-                Row("TotalPrice") = FormatNumber(CDec(TxtTestTotalPrice.Text) * CDec(TxtTestQuantity.Text), 2)
+                Row("UnitPrice") = UCase(Trim(TxtUnitPrice.Text))
+                Row("Quantity") = UCase(Trim(TxtQuantity.Text))
+                Row("TotalPrice") = FormatNumber(CDec(TxtTotalPrice.Text) * CDec(TxtQuantity.Text), 2)
                 Row("ItemGroup") = ItemGroup
                 Row("ItemTypeCode") = ItemTypeCode
                 Row("ItemTypeDescription") = ItemTypeDescription
+                Row("IsChargeDb") = "0"
 
                 DtItem.Rows.Add(Row)
 
@@ -1463,16 +1470,18 @@ ReplaceCurrentPet:
                         .Rows(i).Cells("ChargesItemGroup").Value = DtItem.Rows(i).Item("ItemGroup")
                         .Rows(i).Cells("ChargesItemTypeCode").Value = DtItem.Rows(i).Item("ItemTypeCode")
                         .Rows(i).Cells("ChargesItemTypeDescription").Value = DtItem.Rows(i).Item("ItemTypeDescription")
+
+                        .Rows(i).Cells("IsChargeDb").Value = DtItem.Rows(i).Item("IsChargeDb")
                     End With
                 Next
 
             End If
 
-            TxtTestItem.Tag = ""
-            TxtTestItem.Text = ""
-            TxtTestUnitPrice.Text = ""
+            TxtItem.Tag = ""
+            TxtItem.Text = ""
+            TxtUnitPrice.Text = ""
             'TxtTestQuantity.Text = ""
-            TxtTestTotalPrice.Text = ""
+            TxtTotalPrice.Text = ""
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddTest()")
@@ -1520,6 +1529,7 @@ ReplaceCurrentPet:
                 .Columns.Add("UnitPrice", GetType(Decimal))
                 .Columns.Add("Quantity", GetType(Decimal))
                 .Columns.Add("TotalPrice", GetType(Decimal))
+                .Columns.Add("IsChargeDb", GetType(String))
             End With
 
         Catch ex As Exception
@@ -1541,10 +1551,10 @@ ReplaceCurrentPet:
     Private Sub BtnSearchItem_Click(sender As Object, e As EventArgs) Handles BtnSearchItem.Click
         With FrmSearchItem
             .ShowDialog()
-            TxtTestItem.Tag = .ItemCode
-            TxtTestItem.Text = .ItemDescription
-            TxtTestUnitPrice.Text = .UnitPrice
-            TxtTestTotalPrice.Text = FormatNumber(.UnitPrice * TxtTestQuantity.Text, 2)
+            TxtItem.Tag = .ItemCode
+            TxtItem.Text = .ItemDescription
+            TxtUnitPrice.Text = .UnitPrice
+            TxtTotalPrice.Text = FormatNumber(.UnitPrice * TxtQuantity.Text, 2)
             ItemGroup = .ItemGroup
             ItemTypeDescription = .ItemTypeDescription
             ItemTypeCode = .ItemTypeCode
@@ -1575,11 +1585,16 @@ ReplaceCurrentPet:
                 If e.ColumnIndex = 0 Then
 
                     UserResponse = MsgBox("Are sure you want to delete this item?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Delete Item?")
+
                     If UserResponse = MsgBoxResult.Yes Then
 
                         With DgvSelectedItem
 
-                            .Rows.RemoveAt(e.RowIndex)
+                            If .Rows(e.RowIndex).Cells("IsChargeDb").Value = "1" Then
+                                MsgBox("Unable to delete item that has been saved into the database.", MsgBoxStyle.Exclamation, "Read-Only Item")
+                            Else
+                                .Rows.RemoveAt(e.RowIndex)
+                            End If
 
                             'TxtTreatmentItem.Text = ""
                             'TxtTreatmentItem.Tag = ""

@@ -1,4 +1,10 @@
-﻿Public Class ClsTreatment
+﻿Imports Microsoft.VisualBasic
+Imports System.Data.Odbc
+Imports System
+
+Public Class ClsTreatment
+
+#Region "Property"
 
     Dim DbTreatment As New ClsDbTreatment
 
@@ -12,113 +18,143 @@
         End Set
     End Property
 
-    Private _RowNo As String
-    Public Property RowNo As String
+    Private _TreatmentDate As DateTime
+    Public Property TreatmentDate As DateTime
         Get
-            Return _RowNo
+            Return _TreatmentDate
         End Get
-        Set(value As String)
-            _RowNo = value
+        Set(value As DateTime)
+            _TreatmentDate = value
         End Set
     End Property
 
-    Private _ItemCode As String
-    Public Property ItemCode As String
+    Private _PetID As String
+    Public Property PetID As String
         Get
-            Return _ItemCode
+            Return _PetID
         End Get
         Set(value As String)
-            _ItemCode = value
+            _PetID = value
         End Set
     End Property
 
-    Private _ItemDescription As String
-    Public Property ItemDescription As String
+    Private _EmployeeID As String
+    Public Property EmployeeID As String
         Get
-            Return _ItemDescription
+            Return _EmployeeID
         End Get
         Set(value As String)
-            _ItemDescription = value
+            _EmployeeID = value
         End Set
     End Property
 
-    Private _ItemGroup As String
-    Public Property ItemGroup As String
+    Private _EmployeeName As String
+    Public Property EmployeeName As String
         Get
-            Return _ItemGroup
+            Return _EmployeeName
         End Get
         Set(value As String)
-            _ItemGroup = value
+            _EmployeeName = value
         End Set
     End Property
 
-    Private _ItemTypeDescription As String
-    Public Property ItemTypeDescription As String
+    Private _CustomerID As String
+    Public Property CustomerID As String
         Get
-            Return _ItemTypeDescription
+            Return _CustomerID
         End Get
         Set(value As String)
-            _ItemTypeDescription = value
+            _CustomerID = value
         End Set
     End Property
 
-    Private _ItemTypeCode As String
-    Public Property ItemTypeCode As String
+    Private _CustomerName As String
+    Public Property CustomerName As String
         Get
-            Return _ItemTypeCode
+            Return _CustomerName
         End Get
         Set(value As String)
-            _ItemTypeCode = value
+            _CustomerName = value
         End Set
     End Property
 
-    Private _Prescription As String
-    Public Property Prescription As String
+    Private _TelNo As String
+    Public Property TelNo As String
         Get
-            Return _Prescription
+            Return _TelNo
         End Get
         Set(value As String)
-            _Prescription = value
+            _TelNo = value
         End Set
     End Property
 
-    Private _Notes As String
-    Public Property Notes As String
+    Private _MobileNo As String
+    Public Property MobileNo As String
         Get
-            Return _Notes
+            Return _MobileNo
         End Get
         Set(value As String)
-            _Notes = value
+            _MobileNo = value
         End Set
     End Property
 
-    Private _UnitPrice As String
-    Public Property UnitPrice As String
+    Private _Email As String
+    Public Property Email As String
         Get
-            Return _UnitPrice
+            Return _Email
         End Get
         Set(value As String)
-            _UnitPrice = value
+            _Email = value
         End Set
     End Property
 
-    Private _Quantity As String
-    Public Property Quantity As String
+    Private _VisitTime As DateTime
+    Public Property VisitTime As DateTime
         Get
-            Return _Quantity
+            Return _VisitTime
         End Get
-        Set(value As String)
-            _Quantity = value
+        Set(value As DateTime)
+            _VisitTime = value
         End Set
     End Property
 
-    Private _TotalPrice As String
-    Public Property TotalPrice As String
+    Private _VisitDescription As String
+    Public Property VisitDescription As String
         Get
-            Return _TotalPrice
+            Return _VisitDescription
         End Get
         Set(value As String)
-            _TotalPrice = value
+            _VisitDescription = value
+        End Set
+    End Property
+
+    Private _IsVisitCompleted As String
+    Public Property IsVisitCompleted As String
+        Get
+            Return _IsVisitCompleted
+        End Get
+        Set(value As String)
+            _IsVisitCompleted = value
+        End Set
+    End Property
+
+    Private _IsOngoingTreatment As String
+    Public Property IsOngoingTreatment As String
+        Get
+            Return _IsOngoingTreatment
+        End Get
+        Set(value As String)
+            _IsOngoingTreatment = value
+        End Set
+    End Property
+
+    Private _IsAdmittedToWard As String
+    Public Property IsAdmittedToWard As String
+        Get
+            Return _IsAdmittedToWard
+        End Get
+        Set(value As String)
+            _IsAdmittedToWard = value
         End Set
     End Property
 
@@ -132,8 +168,14 @@
         End Set
     End Property
 
+#End Region
+
     Public Function AddNewTreatment(ClsTreatment As ClsTreatment, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbTreatment.AddNewTreatment(ClsTreatment, DbConn, DbTrans)
+    End Function
+
+    Public Function GetTreatment(ClsTreatment As ClsTreatment) As DataTable
+        Return DbTreatment.GetTreatment(ClsTreatment)
     End Function
 
     Public Function GetTreatmentDetail(ClsTreatment As ClsTreatment) As DataTable

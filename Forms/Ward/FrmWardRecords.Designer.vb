@@ -36,6 +36,14 @@ Partial Class FrmWardRecords
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
         Me.CbIsDischarged = New System.Windows.Forms.CheckBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.WardID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdmissionDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetCase = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsDischarged = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DischargeDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         CType(Me.DgvWardListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -132,6 +140,7 @@ Partial Class FrmWardRecords
         Me.DgvWardListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvWardListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvWardListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvWardListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WardID, Me.AdmissionDate, Me.CustomerID, Me.CustomerName, Me.PetName, Me.PetCase, Me.IsDischarged, Me.DischargeDate})
         Me.DgvWardListing.Location = New System.Drawing.Point(8, 20)
         Me.DgvWardListing.Name = "DgvWardListing"
         Me.DgvWardListing.ReadOnly = True
@@ -199,6 +208,69 @@ Partial Class FrmWardRecords
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Ward Status"
         '
+        'WardID
+        '
+        Me.WardID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.WardID.HeaderText = "Ward ID"
+        Me.WardID.Name = "WardID"
+        Me.WardID.ReadOnly = True
+        Me.WardID.Width = 70
+        '
+        'AdmissionDate
+        '
+        Me.AdmissionDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.AdmissionDate.HeaderText = "Admission Date"
+        Me.AdmissionDate.Name = "AdmissionDate"
+        Me.AdmissionDate.ReadOnly = True
+        Me.AdmissionDate.Width = 107
+        '
+        'CustomerID
+        '
+        Me.CustomerID.HeaderText = "Customer ID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Visible = False
+        Me.CustomerID.Width = 90
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CustomerName.HeaderText = "CustomerName"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        Me.CustomerName.Width = 105
+        '
+        'PetName
+        '
+        Me.PetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PetName.HeaderText = "PetName"
+        Me.PetName.Name = "PetName"
+        Me.PetName.ReadOnly = True
+        Me.PetName.Width = 74
+        '
+        'PetCase
+        '
+        Me.PetCase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.PetCase.HeaderText = "PetCase"
+        Me.PetCase.Name = "PetCase"
+        Me.PetCase.ReadOnly = True
+        '
+        'IsDischarged
+        '
+        Me.IsDischarged.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IsDischarged.HeaderText = "Discharged?"
+        Me.IsDischarged.Name = "IsDischarged"
+        Me.IsDischarged.ReadOnly = True
+        Me.IsDischarged.Width = 93
+        '
+        'DischargeDate
+        '
+        Me.DischargeDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DischargeDate.HeaderText = "Discharge Date"
+        Me.DischargeDate.Name = "DischargeDate"
+        Me.DischargeDate.ReadOnly = True
+        Me.DischargeDate.Width = 106
+        '
         'FrmWardRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -236,4 +308,12 @@ Partial Class FrmWardRecords
     Friend WithEvents Label2 As Label
     Friend WithEvents CbIsDischarged As CheckBox
     Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents WardID As DataGridViewTextBoxColumn
+    Friend WithEvents AdmissionDate As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents PetName As DataGridViewTextBoxColumn
+    Friend WithEvents PetCase As DataGridViewTextBoxColumn
+    Friend WithEvents IsDischarged As DataGridViewTextBoxColumn
+    Friend WithEvents DischargeDate As DataGridViewTextBoxColumn
 End Class

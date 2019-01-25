@@ -54,7 +54,7 @@ Public Class ClsDbSurgery
                 .Append("LevelOfRisk, LevelOfRiskDescription, SurgeonComments, SurgicalPlan, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & SX.CaseID & "', " & CSQLDate(SX.EvaluationDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & SX.BodyWeight & "', '" & SX.BodyScoreCode & "', '" & SX.BodyScoreName & "', '" & SX.Temperature & "', '" & SX.TemperamentCode & "', '" & SX.TemperamentName & "', '" & SX.Pulse & "', ")
+                .Append("('" & SX.CaseID & "', " & CSQLDateTime(SX.EvaluationDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & SX.BodyWeight & "', '" & SX.BodyScoreCode & "', '" & SX.BodyScoreName & "', '" & SX.Temperature & "', '" & SX.TemperamentCode & "', '" & SX.TemperamentName & "', '" & SX.Pulse & "', ")
                 .Append("'" & SX.RespiratoryRate & "', '" & CSQLQuote(SX.SurgeryDiagnosis) & "', '" & SX.IsFasting & "', '" & CSQLQuote(SX.FastingDescription) & "', ")
                 .Append("'" & SX.IsVaccine & "', '" & SX.VaccineDescription & "', '" & SX.HasVaccineDueDate & "', " & CSQLDate(SX.VaccineNextDueDate) & ", '" & SX.GeneralAppearance & "', '" & SX.GeneralAppearanceDescription & "', ")
                 .Append("'" & SX.Hydration & "', '" & SX.HydrationDescription & "', '" & SX.MucousMembrane & "', '" & SX.MucousMembraneDescription & "', '" & SX.Capillary & "', '" & SX.CapillaryDescription & "', ")
@@ -96,8 +96,10 @@ Public Class ClsDbSurgery
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.CaseID, EvaluationDate, CustomerID, CustomerName, NRICPassportNo, PetName, TelNo, MobileNo, PetID, PetAge, SexCode, SexName, AnimalTypeCode, AnimalTypeName, ")
+                .Append("SELECT a.CaseID, EvaluationDate, EmployeeID, EmployeeName, CustomerID, CustomerName, NRICPassportNo, PetName, TelNo, MobileNo, PetID, PetAge, SexCode, SexName, AnimalTypeCode, AnimalTypeName, ")
                 .Append("BreedCode, BreedName, NeuterCode, NeuterName, ")
+                .Append("SurgeryDiagnosis, ")
+                .Append("IsDelayed, IsOnGoing, IsCancelled, IsCompleted, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
                 .Append("FROM samc_surgery a ")
                 .Append("INNER JOIN samc_surgerydetail b ON a.CaseID = b.CaseID ")
@@ -109,7 +111,7 @@ Public Class ClsDbSurgery
             Da.Fill(DtSurgery)
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbSurgery.AddNewSurgeryDetail()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbSurgery.GetSurgeryListing()")
         End Try
 
         Return DtSurgery
@@ -182,7 +184,7 @@ Public Class ClsDbSurgery
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT CaseID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("SELECT CaseID, RowNo, ItemCode, ItemDescription, Prescription, Notes, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_surgerymaterial ")
                 If SX.CaseID <> "" Then
@@ -210,14 +212,16 @@ Public Class ClsDbSurgery
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_surgerymaterial ")
-                .Append("(CaseID, SurgeryDate, EmployeeID, EmployeeName, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(CaseID, SurgeryDate, EmployeeID, EmployeeName, RowNo, ItemCode, ItemDescription, Prescription, Notes, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, Quantity, TotalPrice, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & SX.CaseID & "', " & CSQLDate(SX.SurgeryDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & SX.RowNo & "', '" & SX.ItemCode & "', '" & SX.ItemDescription & "', '" & SX.ItemGroup & "', '" & SX.ItemTypeCode & "', '" & SX.ItemTypeDescription & "', '" & SX.UnitPrice & "', ")
+                .Append("('" & SX.CaseID & "', " & CSQLDate(SX.SurgeryDate) & ", '" & SX.EmployeeID & "', '" & SX.EmployeeName & "', '" & SX.RowNo & "', '" & SX.ItemCode & "', '" & CSQLQuote(SX.ItemDescription) & "', ")
+                .Append("'" & CSQLQuote(SX.Prescription) & "', '" & CSQLQuote(SX.Notes) & "', ")
+                .Append("'" & SX.ItemGroup & "', '" & SX.ItemTypeCode & "', '" & CSQLQuote(SX.ItemTypeDescription) & "', '" & SX.UnitPrice & "', ")
                 .Append("'" & SX.Quantity & "', '" & SX.TotalPrice & "', ")
                 .Append("'" & SX.Ref.CreatedBy & "', " & CSQLDateTime(SX.Ref.DateCreated) & ", '" & SX.Ref.ModifiedBy & "', " & CSQLDateTime(SX.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
+                .Append("Notes = '" & CSQLQuote(SX.Notes) & "', ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -272,7 +276,7 @@ Public Class ClsDbSurgery
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("SpecificInstruction = '" & CSQLQuote(SX.SpecificInstruction) & "', MedicationPrescribe = '" & CSQLQuote(SX.MedicationPrescribe) & "', ")
                 .Append("ItemCode = '" & SX.ItemCode & "', ItemDescription = '" & SX.ItemDescription & "', ItemGroup = '" & SX.ItemGroup & "', ItemTypeCode = '" & SX.ItemTypeCode & "', ItemTypeDescription = '" & SX.ItemTypeDescription & "', UnitPrice = '" & SX.UnitPrice & "', Quantity = '" & SX.Quantity & "', TotalPrice = '" & SX.TotalPrice & "', ")
-                .Append("ReviewDate = " & CSQLDate(SX.ReviewDate) & ", ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
+                .Append("HasReviewDate = '" & SX.HasReviewDate & "', ReviewDate = " & CSQLDate(SX.ReviewDate) & ", ModifiedBy = '" & SX.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(SX.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -419,7 +423,7 @@ Public Class ClsDbSurgery
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT StatusCode, StatusDescription ")
-                .Append("FROM samc_sx_generalappearance ")
+                .Append("FROM samc_sx_ga ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)

@@ -2,6 +2,8 @@
 
     Dim DbSurgery As New ClsDbSurgery
 
+#Region "Property"
+
     Private _CaseID As String
     Public Property CaseID As String
         Get
@@ -152,6 +154,16 @@
         End Set
     End Property
 
+    Private _HasReviewDate As String
+    Public Property HasReviewDate As String
+        Get
+            Return _HasReviewDate
+        End Get
+        Set(value As String)
+            _HasReviewDate = value
+        End Set
+    End Property
+
     Private _ReviewDate As Date
     Public Property ReviewDate As Date
         Get
@@ -171,6 +183,8 @@
             _Ref = value
         End Set
     End Property
+
+#End Region
 
     Public Function AddNewSurgeryDischarge(ClsSurgeryDischarge As ClsSurgeryDischarge, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbSurgery.AddNewSurgeryDischarge(ClsSurgeryDischarge, DbConn, DbTrans)

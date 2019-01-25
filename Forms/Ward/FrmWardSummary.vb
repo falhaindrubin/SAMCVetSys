@@ -131,9 +131,9 @@ Public Class FrmWardSummary
             LblIsFasting.Text = IIf(DtWardDetail.Rows(0).Item("IsFasting") = "1", "YES", "NO")
             LblFastingDescription.Text = IIf(DtWardDetail.Rows(0).Item("IsFasting") = "1", DtWardDetail.Rows(0).Item("FastingDescription"), "")
             TxtDailyNotes.Text = DtWardDetail.Rows(0).Item("DailyNotes")
+            TxtDiagnosis.Text = CStrNull(DtWardDetail.Rows(0).Item("Diagnosis"))
 
             If DtWardDiagnosisDetail.Rows.Count > 0 Then
-                TxtDiagnosis.Text = DtWardDiagnosisDetail.Rows(0).Item("Diagnosis")
                 For i As Integer = 0 To DtWardDiagnosisDetail.Rows.Count - 1
                     With DgvSelectedTest
                         .Rows.Add()
@@ -177,4 +177,5 @@ Public Class FrmWardSummary
         Me.Dispose()
         Me.Close()
     End Sub
+
 End Class

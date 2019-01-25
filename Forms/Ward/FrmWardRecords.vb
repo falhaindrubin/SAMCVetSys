@@ -14,8 +14,27 @@
         Try
             DtWard = ClsWard.GetWardListing(ClsWard)
             If DtWard.Rows.Count > 0 Then
-                DgvWardListing.DataSource = DtWard
-                DgvWardListing.Show()
+
+                With DgvWardListing
+
+                    .Rows.Clear()
+
+                    For i As Integer = 0 To DtWard.Rows.Count - 1
+
+                        .Rows.Add()
+                        .Rows(i).Cells("WardID").Value = DtWard.Rows(i).Item("WardID")
+                        .Rows(i).Cells("CustomerID").Value = DtWard.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("CustomerName").Value = DtWard.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("AdmissionDate").Value = DtWard.Rows(i).Item("AdmissionDate")
+                        .Rows(i).Cells("PetName").Value = DtWard.Rows(i).Item("PetName")
+                        .Rows(i).Cells("PetCase").Value = DtWard.Rows(i).Item("PetCase")
+                        .Rows(i).Cells("IsDischarged").Value = IIf(DtWard.Rows(i).Item("IsDischarged") = "1", "DISCHARGED", "ON-GOING")
+                        .Rows(i).Cells("DischargeDate").Value = DtWard.Rows(i).Item("DischargeDate")
+
+                    Next
+
+                End With
+
             End If
 
         Catch ex As Exception

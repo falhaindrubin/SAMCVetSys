@@ -470,14 +470,16 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_visitcharges ")
-                .Append("(VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ")
+                .Append("(VisitID, RowNo, ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, Prescription, Notes, UnitPrice, Quantity, TotalPrice, ChSource, ChSourceName, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & V.VisitID & "', '" & V.RowNo & "', '" & V.ItemCode & "', '" & CSQLQuote(V.ItemDescription) & "', '" & V.ItemGroup & "', '" & V.ItemTypeCode & "', '" & CSQLQuote(V.ItemTypeDescription) & "', '" & CSQLQuote(V.Prescription) & "', '" & CSQLQuote(V.Notes) & "', '" & V.UnitPrice & "', '" & V.Quantity & "', '" & V.TotalPrice & "', ")
+                .Append("('" & V.VisitID & "', '" & V.RowNo & "', '" & V.ItemCode & "', '" & CSQLQuote(V.ItemDescription) & "', '" & V.ItemGroup & "', '" & V.ItemTypeCode & "', '" & CSQLQuote(V.ItemTypeDescription) & "', ")
+                .Append("'" & CSQLQuote(V.Prescription) & "', '" & CSQLQuote(V.Notes) & "', '" & V.UnitPrice & "', '" & V.Quantity & "', '" & V.TotalPrice & "', '" & V.ChSource & "', '" & V.ChSourceName & "', ")
                 .Append("'" & V.Ref.CreatedBy & "', " & CSQLDateTime(V.Ref.DateCreated) & ", '" & V.Ref.ModifiedBy & "', " & CSQLDateTime(V.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("ItemCode = '" & V.ItemCode & "', ItemDescription = '" & CSQLQuote(V.ItemDescription) & "', ItemGroup = '" & V.ItemGroup & "', ItemTypeCode = '" & V.ItemTypeCode & "', ItemTypeDescription = '" & CSQLQuote(V.ItemTypeDescription) & "', Prescription = '" & CSQLQuote(V.Prescription) & "', Notes = '" & CSQLQuote(V.Notes) & "', ")
-                .Append("UnitPrice = '" & V.UnitPrice & "', Quantity = '" & V.Quantity & "', TotalPrice = '" & V.TotalPrice & "', ")
+                .Append("ItemCode = '" & V.ItemCode & "', ItemDescription = '" & CSQLQuote(V.ItemDescription) & "', ItemGroup = '" & V.ItemGroup & "', ItemTypeCode = '" & V.ItemTypeCode & "', ")
+                .Append("ItemTypeDescription = '" & CSQLQuote(V.ItemTypeDescription) & "', Prescription = '" & CSQLQuote(V.Prescription) & "', Notes = '" & CSQLQuote(V.Notes) & "', ")
+                .Append("UnitPrice = '" & V.UnitPrice & "', Quantity = '" & V.Quantity & "', TotalPrice = '" & V.TotalPrice & "', ChSource = '" & V.ChSource & "', ChSourceName = '" & V.ChSourceName & "', ")
                 .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
             End With
 

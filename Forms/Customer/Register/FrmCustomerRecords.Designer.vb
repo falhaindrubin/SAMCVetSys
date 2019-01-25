@@ -34,6 +34,9 @@ Partial Class FrmCustomerRecords
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NRICPassportNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -83,6 +86,7 @@ Partial Class FrmCustomerRecords
         Me.DgvCustomerListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvCustomerListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvCustomerListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvCustomerListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerID, Me.NRICPassportNo, Me.CustomerName})
         Me.DgvCustomerListing.Location = New System.Drawing.Point(9, 19)
         Me.DgvCustomerListing.Name = "DgvCustomerListing"
         Me.DgvCustomerListing.ReadOnly = True
@@ -172,6 +176,29 @@ Partial Class FrmCustomerRecords
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer List"
         '
+        'CustomerID
+        '
+        Me.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CustomerID.HeaderText = "Customer ID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Width = 90
+        '
+        'NRICPassportNo
+        '
+        Me.NRICPassportNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NRICPassportNo.HeaderText = "NRIC / Passport No."
+        Me.NRICPassportNo.Name = "NRICPassportNo"
+        Me.NRICPassportNo.ReadOnly = True
+        Me.NRICPassportNo.Width = 101
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CustomerName.HeaderText = "Customer Name"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        '
         'FrmCustomerRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -205,4 +232,7 @@ Partial Class FrmCustomerRecords
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label25 As Label
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents NRICPassportNo As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
 End Class

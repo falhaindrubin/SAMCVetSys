@@ -23,8 +23,8 @@ Partial Class FrmSurgeryInformation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSurgeryInformation))
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnSearch = New System.Windows.Forms.Button()
@@ -66,11 +66,35 @@ Partial Class FrmSurgeryInformation
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GroupBox30 = New System.Windows.Forms.GroupBox()
         Me.DgvPetListing = New System.Windows.Forms.DataGridView()
+        Me.DgvBtnSelect = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.PetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnimalTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BreedCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SexCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SexName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NeuterCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NeuterName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TpVisitInformation = New System.Windows.Forms.TabPage()
         Me.GroupBox33 = New System.Windows.Forms.GroupBox()
         Me.TxtVisitDescription = New System.Windows.Forms.TextBox()
         Me.GroupBox32 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedPet = New System.Windows.Forms.DataGridView()
+        Me.SelectedPetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedPetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedPetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedAnimalTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedAnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedBreedCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedBreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedSexCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedSexName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedNeuterCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SelectedNeuterName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox31 = New System.Windows.Forms.GroupBox()
         Me.TxtVet = New System.Windows.Forms.TextBox()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -234,30 +258,6 @@ Partial Class FrmSurgeryInformation
         Me.TxtSpecificInstruction = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.TxtVisitID = New System.Windows.Forms.TextBox()
-        Me.SelectedPetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedPetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedPetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedAnimalTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedAnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedBreedCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedBreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedSexCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedSexName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedNeuterCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SelectedNeuterName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IsDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DgvBtnSelect = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.PetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PetDOB = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnimalTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnimalTypeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BreedCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BreedName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SexCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SexName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NeuterCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NeuterName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.TcVisitInformation.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -456,7 +456,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox22.Controls.Add(Me.TxtPostcode)
         Me.GroupBox22.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox22.Name = "GroupBox22"
-        Me.GroupBox22.Size = New System.Drawing.Size(414, 550)
+        Me.GroupBox22.Size = New System.Drawing.Size(1161, 550)
         Me.GroupBox22.TabIndex = 111
         Me.GroupBox22.TabStop = False
         Me.GroupBox22.Text = "Customer Details"
@@ -722,7 +722,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox30.Controls.Add(Me.DgvPetListing)
         Me.GroupBox30.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox30.Name = "GroupBox30"
-        Me.GroupBox30.Size = New System.Drawing.Size(650, 236)
+        Me.GroupBox30.Size = New System.Drawing.Size(1161, 550)
         Me.GroupBox30.TabIndex = 68
         Me.GroupBox30.TabStop = False
         Me.GroupBox30.Text = "Pet List(s) && Details"
@@ -742,8 +742,106 @@ Partial Class FrmSurgeryInformation
         Me.DgvPetListing.Name = "DgvPetListing"
         Me.DgvPetListing.ReadOnly = True
         Me.DgvPetListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvPetListing.Size = New System.Drawing.Size(644, 217)
+        Me.DgvPetListing.Size = New System.Drawing.Size(1155, 531)
         Me.DgvPetListing.TabIndex = 67
+        '
+        'DgvBtnSelect
+        '
+        Me.DgvBtnSelect.HeaderText = "Select Pet"
+        Me.DgvBtnSelect.Name = "DgvBtnSelect"
+        Me.DgvBtnSelect.ReadOnly = True
+        Me.DgvBtnSelect.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvBtnSelect.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DgvBtnSelect.Text = "Select"
+        Me.DgvBtnSelect.UseColumnTextForButtonValue = True
+        Me.DgvBtnSelect.Visible = False
+        Me.DgvBtnSelect.Width = 80
+        '
+        'PetID
+        '
+        Me.PetID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PetID.HeaderText = "Pet ID"
+        Me.PetID.Name = "PetID"
+        Me.PetID.ReadOnly = True
+        Me.PetID.Visible = False
+        '
+        'PetName
+        '
+        Me.PetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PetName.HeaderText = "Pet Name"
+        Me.PetName.Name = "PetName"
+        Me.PetName.ReadOnly = True
+        Me.PetName.Width = 77
+        '
+        'PetDOB
+        '
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle1
+        Me.PetDOB.HeaderText = "DOB"
+        Me.PetDOB.Name = "PetDOB"
+        Me.PetDOB.ReadOnly = True
+        Me.PetDOB.Width = 54
+        '
+        'AnimalTypeCode
+        '
+        Me.AnimalTypeCode.HeaderText = "AnimalTypeCode"
+        Me.AnimalTypeCode.Name = "AnimalTypeCode"
+        Me.AnimalTypeCode.ReadOnly = True
+        Me.AnimalTypeCode.Visible = False
+        Me.AnimalTypeCode.Width = 112
+        '
+        'AnimalTypeName
+        '
+        Me.AnimalTypeName.HeaderText = "Animal Type"
+        Me.AnimalTypeName.Name = "AnimalTypeName"
+        Me.AnimalTypeName.ReadOnly = True
+        Me.AnimalTypeName.Width = 90
+        '
+        'BreedCode
+        '
+        Me.BreedCode.HeaderText = "BreedCode"
+        Me.BreedCode.Name = "BreedCode"
+        Me.BreedCode.ReadOnly = True
+        Me.BreedCode.Visible = False
+        Me.BreedCode.Width = 86
+        '
+        'BreedName
+        '
+        Me.BreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.BreedName.HeaderText = "BreedName"
+        Me.BreedName.Name = "BreedName"
+        Me.BreedName.ReadOnly = True
+        '
+        'SexCode
+        '
+        Me.SexCode.HeaderText = "SexCode"
+        Me.SexCode.Name = "SexCode"
+        Me.SexCode.ReadOnly = True
+        Me.SexCode.Visible = False
+        Me.SexCode.Width = 76
+        '
+        'SexName
+        '
+        Me.SexName.HeaderText = "Sex"
+        Me.SexName.Name = "SexName"
+        Me.SexName.ReadOnly = True
+        Me.SexName.Width = 51
+        '
+        'NeuterCode
+        '
+        Me.NeuterCode.HeaderText = "StatusCode"
+        Me.NeuterCode.Name = "NeuterCode"
+        Me.NeuterCode.ReadOnly = True
+        Me.NeuterCode.Visible = False
+        Me.NeuterCode.Width = 88
+        '
+        'NeuterName
+        '
+        Me.NeuterName.HeaderText = "Status"
+        Me.NeuterName.Name = "NeuterName"
+        Me.NeuterName.ReadOnly = True
+        Me.NeuterName.Width = 63
         '
         'TpVisitInformation
         '
@@ -763,7 +861,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox33.Controls.Add(Me.TxtVisitDescription)
         Me.GroupBox33.Location = New System.Drawing.Point(6, 317)
         Me.GroupBox33.Name = "GroupBox33"
-        Me.GroupBox33.Size = New System.Drawing.Size(650, 199)
+        Me.GroupBox33.Size = New System.Drawing.Size(1161, 199)
         Me.GroupBox33.TabIndex = 95
         Me.GroupBox33.TabStop = False
         Me.GroupBox33.Text = "Pet Issue(s)"
@@ -776,7 +874,7 @@ Partial Class FrmSurgeryInformation
         Me.TxtVisitDescription.Multiline = True
         Me.TxtVisitDescription.Name = "TxtVisitDescription"
         Me.TxtVisitDescription.ReadOnly = True
-        Me.TxtVisitDescription.Size = New System.Drawing.Size(638, 174)
+        Me.TxtVisitDescription.Size = New System.Drawing.Size(1149, 174)
         Me.TxtVisitDescription.TabIndex = 91
         '
         'GroupBox32
@@ -784,7 +882,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox32.Controls.Add(Me.DgvSelectedPet)
         Me.GroupBox32.Location = New System.Drawing.Point(6, 95)
         Me.GroupBox32.Name = "GroupBox32"
-        Me.GroupBox32.Size = New System.Drawing.Size(650, 216)
+        Me.GroupBox32.Size = New System.Drawing.Size(1161, 216)
         Me.GroupBox32.TabIndex = 94
         Me.GroupBox32.TabStop = False
         Me.GroupBox32.Text = "Selected Pet(s)"
@@ -803,8 +901,106 @@ Partial Class FrmSurgeryInformation
         Me.DgvSelectedPet.Name = "DgvSelectedPet"
         Me.DgvSelectedPet.ReadOnly = True
         Me.DgvSelectedPet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvSelectedPet.Size = New System.Drawing.Size(644, 197)
+        Me.DgvSelectedPet.Size = New System.Drawing.Size(1155, 197)
         Me.DgvSelectedPet.TabIndex = 84
+        '
+        'SelectedPetID
+        '
+        Me.SelectedPetID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedPetID.HeaderText = "Pet ID"
+        Me.SelectedPetID.Name = "SelectedPetID"
+        Me.SelectedPetID.ReadOnly = True
+        Me.SelectedPetID.Visible = False
+        '
+        'SelectedPetName
+        '
+        Me.SelectedPetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedPetName.HeaderText = "Pet Name"
+        Me.SelectedPetName.Name = "SelectedPetName"
+        Me.SelectedPetName.ReadOnly = True
+        Me.SelectedPetName.Width = 77
+        '
+        'SelectedPetDOB
+        '
+        Me.SelectedPetDOB.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.SelectedPetDOB.DefaultCellStyle = DataGridViewCellStyle2
+        Me.SelectedPetDOB.HeaderText = "DOB"
+        Me.SelectedPetDOB.Name = "SelectedPetDOB"
+        Me.SelectedPetDOB.ReadOnly = True
+        Me.SelectedPetDOB.Width = 54
+        '
+        'SelectedAnimalTypeCode
+        '
+        Me.SelectedAnimalTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedAnimalTypeCode.HeaderText = "Animal Type Code"
+        Me.SelectedAnimalTypeCode.Name = "SelectedAnimalTypeCode"
+        Me.SelectedAnimalTypeCode.ReadOnly = True
+        Me.SelectedAnimalTypeCode.Visible = False
+        '
+        'SelectedAnimalTypeName
+        '
+        Me.SelectedAnimalTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedAnimalTypeName.HeaderText = "Animal Type"
+        Me.SelectedAnimalTypeName.Name = "SelectedAnimalTypeName"
+        Me.SelectedAnimalTypeName.ReadOnly = True
+        Me.SelectedAnimalTypeName.Width = 90
+        '
+        'SelectedBreedCode
+        '
+        Me.SelectedBreedCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedBreedCode.HeaderText = "Breed Code"
+        Me.SelectedBreedCode.Name = "SelectedBreedCode"
+        Me.SelectedBreedCode.ReadOnly = True
+        Me.SelectedBreedCode.Visible = False
+        '
+        'SelectedBreedName
+        '
+        Me.SelectedBreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.SelectedBreedName.HeaderText = "Breed Name"
+        Me.SelectedBreedName.Name = "SelectedBreedName"
+        Me.SelectedBreedName.ReadOnly = True
+        '
+        'SelectedSexCode
+        '
+        Me.SelectedSexCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedSexCode.HeaderText = "Sex Code"
+        Me.SelectedSexCode.Name = "SelectedSexCode"
+        Me.SelectedSexCode.ReadOnly = True
+        Me.SelectedSexCode.Visible = False
+        '
+        'SelectedSexName
+        '
+        Me.SelectedSexName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedSexName.HeaderText = "Sex "
+        Me.SelectedSexName.Name = "SelectedSexName"
+        Me.SelectedSexName.ReadOnly = True
+        Me.SelectedSexName.Width = 51
+        '
+        'SelectedNeuterCode
+        '
+        Me.SelectedNeuterCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedNeuterCode.HeaderText = "Status Code"
+        Me.SelectedNeuterCode.Name = "SelectedNeuterCode"
+        Me.SelectedNeuterCode.ReadOnly = True
+        Me.SelectedNeuterCode.Visible = False
+        '
+        'SelectedNeuterName
+        '
+        Me.SelectedNeuterName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.SelectedNeuterName.HeaderText = "Status"
+        Me.SelectedNeuterName.Name = "SelectedNeuterName"
+        Me.SelectedNeuterName.ReadOnly = True
+        Me.SelectedNeuterName.Width = 63
+        '
+        'IsDb
+        '
+        Me.IsDb.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IsDb.HeaderText = "IsDb"
+        Me.IsDb.Name = "IsDb"
+        Me.IsDb.ReadOnly = True
+        Me.IsDb.Visible = False
         '
         'GroupBox31
         '
@@ -815,7 +1011,7 @@ Partial Class FrmSurgeryInformation
         Me.GroupBox31.Controls.Add(Me.DtpVisitTime)
         Me.GroupBox31.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox31.Name = "GroupBox31"
-        Me.GroupBox31.Size = New System.Drawing.Size(650, 83)
+        Me.GroupBox31.Size = New System.Drawing.Size(1161, 83)
         Me.GroupBox31.TabIndex = 93
         Me.GroupBox31.TabStop = False
         Me.GroupBox31.Text = "Visit Details"
@@ -2428,209 +2624,6 @@ Partial Class FrmSurgeryInformation
         Me.TxtVisitID.ReadOnly = True
         Me.TxtVisitID.Size = New System.Drawing.Size(195, 20)
         Me.TxtVisitID.TabIndex = 89
-        '
-        'SelectedPetID
-        '
-        Me.SelectedPetID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedPetID.HeaderText = "Pet ID"
-        Me.SelectedPetID.Name = "SelectedPetID"
-        Me.SelectedPetID.ReadOnly = True
-        Me.SelectedPetID.Visible = False
-        Me.SelectedPetID.Width = 59
-        '
-        'SelectedPetName
-        '
-        Me.SelectedPetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedPetName.HeaderText = "Pet Name"
-        Me.SelectedPetName.Name = "SelectedPetName"
-        Me.SelectedPetName.ReadOnly = True
-        Me.SelectedPetName.Width = 77
-        '
-        'SelectedPetDOB
-        '
-        Me.SelectedPetDOB.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle9.Format = "d"
-        DataGridViewCellStyle9.NullValue = Nothing
-        Me.SelectedPetDOB.DefaultCellStyle = DataGridViewCellStyle9
-        Me.SelectedPetDOB.HeaderText = "DOB"
-        Me.SelectedPetDOB.Name = "SelectedPetDOB"
-        Me.SelectedPetDOB.ReadOnly = True
-        Me.SelectedPetDOB.Width = 54
-        '
-        'SelectedAnimalTypeCode
-        '
-        Me.SelectedAnimalTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedAnimalTypeCode.HeaderText = "Animal Type Code"
-        Me.SelectedAnimalTypeCode.Name = "SelectedAnimalTypeCode"
-        Me.SelectedAnimalTypeCode.ReadOnly = True
-        Me.SelectedAnimalTypeCode.Visible = False
-        Me.SelectedAnimalTypeCode.Width = 118
-        '
-        'SelectedAnimalTypeName
-        '
-        Me.SelectedAnimalTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedAnimalTypeName.HeaderText = "Animal Type"
-        Me.SelectedAnimalTypeName.Name = "SelectedAnimalTypeName"
-        Me.SelectedAnimalTypeName.ReadOnly = True
-        Me.SelectedAnimalTypeName.Width = 90
-        '
-        'SelectedBreedCode
-        '
-        Me.SelectedBreedCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedBreedCode.HeaderText = "Breed Code"
-        Me.SelectedBreedCode.Name = "SelectedBreedCode"
-        Me.SelectedBreedCode.ReadOnly = True
-        Me.SelectedBreedCode.Visible = False
-        Me.SelectedBreedCode.Width = 89
-        '
-        'SelectedBreedName
-        '
-        Me.SelectedBreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.SelectedBreedName.HeaderText = "Breed Name"
-        Me.SelectedBreedName.Name = "SelectedBreedName"
-        Me.SelectedBreedName.ReadOnly = True
-        '
-        'SelectedSexCode
-        '
-        Me.SelectedSexCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedSexCode.HeaderText = "Sex Code"
-        Me.SelectedSexCode.Name = "SelectedSexCode"
-        Me.SelectedSexCode.ReadOnly = True
-        Me.SelectedSexCode.Visible = False
-        Me.SelectedSexCode.Width = 79
-        '
-        'SelectedSexName
-        '
-        Me.SelectedSexName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedSexName.HeaderText = "Sex "
-        Me.SelectedSexName.Name = "SelectedSexName"
-        Me.SelectedSexName.ReadOnly = True
-        Me.SelectedSexName.Width = 51
-        '
-        'SelectedNeuterCode
-        '
-        Me.SelectedNeuterCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedNeuterCode.HeaderText = "Status Code"
-        Me.SelectedNeuterCode.Name = "SelectedNeuterCode"
-        Me.SelectedNeuterCode.ReadOnly = True
-        Me.SelectedNeuterCode.Visible = False
-        Me.SelectedNeuterCode.Width = 91
-        '
-        'SelectedNeuterName
-        '
-        Me.SelectedNeuterName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.SelectedNeuterName.HeaderText = "Status"
-        Me.SelectedNeuterName.Name = "SelectedNeuterName"
-        Me.SelectedNeuterName.ReadOnly = True
-        Me.SelectedNeuterName.Width = 63
-        '
-        'IsDb
-        '
-        Me.IsDb.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.IsDb.HeaderText = "IsDb"
-        Me.IsDb.Name = "IsDb"
-        Me.IsDb.ReadOnly = True
-        Me.IsDb.Visible = False
-        Me.IsDb.Width = 53
-        '
-        'DgvBtnSelect
-        '
-        Me.DgvBtnSelect.HeaderText = "Select Pet"
-        Me.DgvBtnSelect.Name = "DgvBtnSelect"
-        Me.DgvBtnSelect.ReadOnly = True
-        Me.DgvBtnSelect.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvBtnSelect.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.DgvBtnSelect.Text = "Select"
-        Me.DgvBtnSelect.UseColumnTextForButtonValue = True
-        Me.DgvBtnSelect.Visible = False
-        Me.DgvBtnSelect.Width = 80
-        '
-        'PetID
-        '
-        Me.PetID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.PetID.HeaderText = "Pet ID"
-        Me.PetID.Name = "PetID"
-        Me.PetID.ReadOnly = True
-        Me.PetID.Visible = False
-        Me.PetID.Width = 59
-        '
-        'PetName
-        '
-        Me.PetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.PetName.HeaderText = "Pet Name"
-        Me.PetName.Name = "PetName"
-        Me.PetName.ReadOnly = True
-        Me.PetName.Width = 77
-        '
-        'PetDOB
-        '
-        DataGridViewCellStyle10.Format = "d"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle10
-        Me.PetDOB.HeaderText = "DOB"
-        Me.PetDOB.Name = "PetDOB"
-        Me.PetDOB.ReadOnly = True
-        Me.PetDOB.Width = 54
-        '
-        'AnimalTypeCode
-        '
-        Me.AnimalTypeCode.HeaderText = "AnimalTypeCode"
-        Me.AnimalTypeCode.Name = "AnimalTypeCode"
-        Me.AnimalTypeCode.ReadOnly = True
-        Me.AnimalTypeCode.Visible = False
-        Me.AnimalTypeCode.Width = 112
-        '
-        'AnimalTypeName
-        '
-        Me.AnimalTypeName.HeaderText = "Animal Type"
-        Me.AnimalTypeName.Name = "AnimalTypeName"
-        Me.AnimalTypeName.ReadOnly = True
-        Me.AnimalTypeName.Width = 90
-        '
-        'BreedCode
-        '
-        Me.BreedCode.HeaderText = "BreedCode"
-        Me.BreedCode.Name = "BreedCode"
-        Me.BreedCode.ReadOnly = True
-        Me.BreedCode.Visible = False
-        Me.BreedCode.Width = 86
-        '
-        'BreedName
-        '
-        Me.BreedName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.BreedName.HeaderText = "BreedName"
-        Me.BreedName.Name = "BreedName"
-        Me.BreedName.ReadOnly = True
-        '
-        'SexCode
-        '
-        Me.SexCode.HeaderText = "SexCode"
-        Me.SexCode.Name = "SexCode"
-        Me.SexCode.ReadOnly = True
-        Me.SexCode.Visible = False
-        Me.SexCode.Width = 76
-        '
-        'SexName
-        '
-        Me.SexName.HeaderText = "Sex"
-        Me.SexName.Name = "SexName"
-        Me.SexName.ReadOnly = True
-        Me.SexName.Width = 51
-        '
-        'NeuterCode
-        '
-        Me.NeuterCode.HeaderText = "StatusCode"
-        Me.NeuterCode.Name = "NeuterCode"
-        Me.NeuterCode.ReadOnly = True
-        Me.NeuterCode.Visible = False
-        Me.NeuterCode.Width = 88
-        '
-        'NeuterName
-        '
-        Me.NeuterName.HeaderText = "Status"
-        Me.NeuterName.Name = "NeuterName"
-        Me.NeuterName.ReadOnly = True
-        Me.NeuterName.Width = 63
         '
         'FrmSurgeryInformation
         '

@@ -1,16 +1,26 @@
-﻿Public Class ClsWardTreatment
+﻿Public Class ClsTreatmentDetail
 
-    Dim DbWard As New ClsDbWard
+    Dim DbTreatment As New ClsDbTreatment
 
-#Region "Propery"
+#Region "Property"
 
-    Private _WardID As String
-    Public Property WardID As String
+    Private _VisitID As String
+    Public Property VisitID As String
         Get
-            Return _WardID
+            Return _VisitID
         End Get
         Set(value As String)
-            _WardID = value
+            _VisitID = value
+        End Set
+    End Property
+
+    Private _TreatmentDate As DateTime
+    Public Property TreatmentDate As DateTime
+        Get
+            Return _TreatmentDate
+        End Get
+        Set(value As DateTime)
+            _TreatmentDate = value
         End Set
     End Property
 
@@ -24,22 +34,12 @@
         End Set
     End Property
 
-    Private _WardDate As Date
-    Public Property WardDate As Date
-        Get
-            Return _WardDate
-        End Get
-        Set(value As Date)
-            _WardDate = value
-        End Set
-    End Property
-
-    Private _RowNo As Integer
-    Public Property RowNo As Integer
+    Private _RowNo As String
+    Public Property RowNo As String
         Get
             Return _RowNo
         End Get
-        Set(value As Integer)
+        Set(value As String)
             _RowNo = value
         End Set
     End Property
@@ -74,16 +74,6 @@
         End Set
     End Property
 
-    Private _ItemTypeCode As String
-    Public Property ItemTypeCode As String
-        Get
-            Return _ItemTypeCode
-        End Get
-        Set(value As String)
-            _ItemTypeCode = value
-        End Set
-    End Property
-
     Private _ItemTypeDescription As String
     Public Property ItemTypeDescription As String
         Get
@@ -91,6 +81,16 @@
         End Get
         Set(value As String)
             _ItemTypeDescription = value
+        End Set
+    End Property
+
+    Private _ItemTypeCode As String
+    Public Property ItemTypeCode As String
+        Get
+            Return _ItemTypeCode
+        End Get
+        Set(value As String)
+            _ItemTypeCode = value
         End Set
     End Property
 
@@ -114,32 +114,32 @@
         End Set
     End Property
 
-    Private _UnitPrice As Decimal
-    Public Property UnitPrice As Decimal
+    Private _UnitPrice As String
+    Public Property UnitPrice As String
         Get
             Return _UnitPrice
         End Get
-        Set(value As Decimal)
+        Set(value As String)
             _UnitPrice = value
         End Set
     End Property
 
-    Private _Quantity As Decimal
-    Public Property Quantity As Decimal
+    Private _Quantity As String
+    Public Property Quantity As String
         Get
             Return _Quantity
         End Get
-        Set(value As Decimal)
+        Set(value As String)
             _Quantity = value
         End Set
     End Property
 
-    Private _TotalPrice As Decimal
-    Public Property TotalPrice As Decimal
+    Private _TotalPrice As String
+    Public Property TotalPrice As String
         Get
             Return _TotalPrice
         End Get
-        Set(value As Decimal)
+        Set(value As String)
             _TotalPrice = value
         End Set
     End Property
@@ -156,16 +156,8 @@
 
 #End Region
 
-    Public Function AddNewWardTreatment(ClsWardTreatment As ClsWardTreatment, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbWard.AddNewWardTreatment(ClsWardTreatment, DbConn, DbTrans)
-    End Function
-
-    Public Function GetWardTreatmentDetail(ClsWardTreatment As ClsWardTreatment) As DataTable
-        Return DbWard.GetWardTreatmentDetail(ClsWardTreatment)
-    End Function
-
-    Public Function UpdateWardTxPhRequestID(ClsWardTreatment As ClsWardTreatment, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
-        Return DbWard.UpdateWardTxPhRequestID(ClsWardTreatment, DbConn, DbTrans)
+    Public Function AddNewTreatmentDetail(ClsTreatmentDetail As ClsTreatmentDetail, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+        Return DbTreatment.AddNewTreatmentDetail(ClsTreatmentDetail, DbConn, DbTrans)
     End Function
 
 End Class

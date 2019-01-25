@@ -180,6 +180,7 @@
     <Compile Include="ClassDb\ClsDbManagement.vb" />
     <Compile Include="ClassDb\ClsDbTreatment.vb" />
     <Compile Include="ClassDb\ClsDbSurgery.vb" />
+    <Compile Include="ClassDb\ClsDbChSource.vb" />
     <Compile Include="ClassDb\ClsDbUserRole.vb" />
     <Compile Include="ClassDb\ClsDbWard.vb" />
     <Compile Include="Class\ClsPharmacy.vb" />
@@ -195,8 +196,10 @@
     <Compile Include="Class\ClsSurgeryDischarge.vb" />
     <Compile Include="Class\ClsSurgeryMaterial.vb" />
     <Compile Include="Class\ClsPharmacyDetail.vb" />
-    <Compile Include="Class\ClsTreatment.vb" />
+    <Compile Include="Class\ClsTreatmentDetail.vb" />
+    <Compile Include="Class\ClsChSource.vb" />
     <Compile Include="Class\ClsUserRoles.vb" />
+    <Compile Include="Class\ClsTreatment.vb" />
     <Compile Include="Class\ClsVisitCharges.vb" />
     <Compile Include="Class\ClsWardDischarge.vb" />
     <Compile Include="Class\ClsWard.vb" />

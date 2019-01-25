@@ -158,7 +158,7 @@ Partial Class FrmWardSummary
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1263, 4)
+        Me.BtnClose.Location = New System.Drawing.Point(1264, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
@@ -878,7 +878,7 @@ Partial Class FrmWardSummary
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(312, 53)
+        Me.Label21.Location = New System.Drawing.Point(402, 39)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(10, 14)
         Me.Label21.TabIndex = 31
@@ -910,7 +910,7 @@ Partial Class FrmWardSummary
         '
         Me.LblAdmissionDate.AutoSize = True
         Me.LblAdmissionDate.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblAdmissionDate.Location = New System.Drawing.Point(325, 53)
+        Me.LblAdmissionDate.Location = New System.Drawing.Point(415, 39)
         Me.LblAdmissionDate.Name = "LblAdmissionDate"
         Me.LblAdmissionDate.Size = New System.Drawing.Size(82, 14)
         Me.LblAdmissionDate.TabIndex = 28
@@ -1004,7 +1004,7 @@ Partial Class FrmWardSummary
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(312, 39)
+        Me.Label12.Location = New System.Drawing.Point(402, 25)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(10, 14)
         Me.Label12.TabIndex = 19
@@ -1066,7 +1066,7 @@ Partial Class FrmWardSummary
         '
         Me.LblWardID.AutoSize = True
         Me.LblWardID.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblWardID.Location = New System.Drawing.Point(325, 39)
+        Me.LblWardID.Location = New System.Drawing.Point(415, 25)
         Me.LblWardID.Name = "LblWardID"
         Me.LblWardID.Size = New System.Drawing.Size(45, 14)
         Me.LblWardID.TabIndex = 13
@@ -1116,7 +1116,7 @@ Partial Class FrmWardSummary
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(232, 53)
+        Me.Label7.Location = New System.Drawing.Point(322, 39)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(82, 14)
         Me.Label7.TabIndex = 8
@@ -1136,7 +1136,7 @@ Partial Class FrmWardSummary
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(232, 39)
+        Me.Label5.Location = New System.Drawing.Point(322, 25)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(45, 14)
         Me.Label5.TabIndex = 6

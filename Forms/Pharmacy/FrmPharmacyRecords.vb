@@ -16,8 +16,27 @@
                 DtRequest = .GetPharmacyRequest(ClsPharmacy)
 
                 If DtRequest.Rows.Count > 0 Then
-                    DgvPharmacyRecords.DataSource = DtRequest
-                    DgvPharmacyRecords.Show()
+
+                    With DgvPharmacyRecords
+                        .Rows.Clear()
+
+                        For i As Integer = 0 To DtRequest.Rows.Count - 1
+                            .Rows.Add()
+                            .Rows(i).Cells("VisitID").Value = DtRequest.Rows(i).Item("VisitID")
+                            .Rows(i).Cells("RequestID").Value = DtRequest.Rows(i).Item("RequestID")
+                            .Rows(i).Cells("RequestDate").Value = DtRequest.Rows(i).Item("RequestDate")
+                            .Rows(i).Cells("RqEmpID").Value = DtRequest.Rows(i).Item("RqEmpID")
+                            .Rows(i).Cells("RqEmpName").Value = DtRequest.Rows(i).Item("RqEmpName")
+                            .Rows(i).Cells("PhEmpID").Value = DtRequest.Rows(i).Item("PhEmpID")
+                            .Rows(i).Cells("PhEmpName").Value = DtRequest.Rows(i).Item("PhEmpName")
+                            .Rows(i).Cells("ApprovalDate").Value = DtRequest.Rows(i).Item("ApprovalDate")
+                            .Rows(i).Cells("IsCompleted").Value = IIf(DtRequest.Rows(i).Item("IsCompleted") = "1", "COMPLETED", "PENDING")
+                        Next
+
+                    End With
+
+                    'DgvPharmacyRecords.DataSource = DtRequest
+                    'DgvPharmacyRecords.Show()
                 End If
 
             End With
@@ -53,6 +72,7 @@
                         .RequestID = RequestID
                     }
                     Frm.ShowDialog()
+
                 End If
             End If
 

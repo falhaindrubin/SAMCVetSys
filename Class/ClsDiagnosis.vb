@@ -12,6 +12,36 @@
         End Set
     End Property
 
+    Private _DiagnosisDate As DateTime
+    Public Property DiagnosisDate As DateTime
+        Get
+            Return _DiagnosisDate
+        End Get
+        Set(value As DateTime)
+            _DiagnosisDate = value
+        End Set
+    End Property
+
+    Private _EmployeeID As String
+    Public Property EmployeeID As String
+        Get
+            Return _EmployeeID
+        End Get
+        Set(value As String)
+            _EmployeeID = value
+        End Set
+    End Property
+
+    Private _EmployeeName As String
+    Public Property EmployeeName As String
+        Get
+            Return _EmployeeName
+        End Get
+        Set(value As String)
+            _EmployeeName = value
+        End Set
+    End Property
+
     Private _PetID As String
     Public Property PetID As String
         Get

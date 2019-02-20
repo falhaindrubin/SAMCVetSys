@@ -2,6 +2,8 @@
 
     Dim DbEmployee As New ClsDbEmployee
 
+#Region "Property"
+
     Private _EmployeeID As String
     Public Property EmployeeID As String
         Get
@@ -252,6 +254,16 @@
         End Set
     End Property
 
+    Private _IsActive As String
+    Public Property IsActive As String
+        Get
+            Return _IsActive
+        End Get
+        Set(value As String)
+            _IsActive = value
+        End Set
+    End Property
+
     Private _MaritalStatusCode As String
     Public Property MaritalStatusCode As String
         Get
@@ -302,8 +314,10 @@
         End Set
     End Property
 
+#End Region
+
     Public Function AddNewEmployee(ClsEmployee As ClsEmployee, DBConn As OdbcConnection, DBTrans As OdbcTransaction) As Boolean
-        Return DBEmployee.AddNewEmployee(ClsEmployee, DBConn, DBTrans)
+        Return DbEmployee.AddNewEmployee(ClsEmployee, DBConn, DBTrans)
     End Function
 
     Public Function GetEmployee(ClsEmployee As ClsEmployee) As DataTable
@@ -312,21 +326,21 @@
 
     'Get Vet
     Public Function GetVet(ByVal ClsEmployee As ClsEmployee) As DataTable
-        Return DBEmployee.GetVet(ClsEmployee)
+        Return DbEmployee.GetVet(ClsEmployee)
     End Function
 
     Public Function GetPosition(ClsEmployee As ClsEmployee) As DataTable
-        Return DBEmployee.GetPosition(ClsEmployee)
+        Return DbEmployee.GetPosition(ClsEmployee)
     End Function
 
     'Get Marital Status
     Public Function GetMaritalStatus(ClsEmployee As ClsEmployee) As DataTable
-        Return DBEmployee.GetMaritalStatus(ClsEmployee)
+        Return DbEmployee.GetMaritalStatus(ClsEmployee)
     End Function
 
     'Get Sex
     Public Function GetSex(ClsEmployee As ClsEmployee) As DataTable
-        Return DBEmployee.GetSex(ClsEmployee)
+        Return DbEmployee.GetSex(ClsEmployee)
     End Function
 
 End Class

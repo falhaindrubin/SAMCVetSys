@@ -19,9 +19,9 @@ Public Class ClsDbDiagnosis
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_diagnosis ")
-                .Append("(VisitID, PetID, PetName, Diagnosis, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("(VisitID, DiagnosisDate, EmployeeID, EmployeeName, PetID, PetName, Diagnosis, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & DG.VisitID & "', '" & DG.PetID & "', '" & DG.PetName & "', '" & CSQLQuote(DG.Diagnosis) & "', ")
+                .Append("('" & DG.VisitID & "', " & CSQLDateTime(DG.DiagnosisDate) & ", '" & DG.EmployeeID & "', '" & DG.EmployeeName & "',  '" & DG.PetID & "', '" & DG.PetName & "', '" & CSQLQuote(DG.Diagnosis) & "', ")
                 .Append("'" & DG.Ref.CreatedBy & "', " & CSQLDateTime(DG.Ref.DateCreated) & ", '" & CSQLQuote(DG.Ref.ModifiedBy) & "', " & CSQLDateTime(DG.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("VisitID = '" & DG.VisitID & "', Diagnosis = '" & CSQLQuote(DG.Diagnosis) & "', ModifiedBy = '" & DG.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(DG.Ref.DateModified) & " ")

@@ -16,8 +16,20 @@
             DtPendingBill = ClsBill.GetPendingInvoiceList(ClsBill)
 
             If DtPendingBill.Rows.Count > 0 Then
-                DgvPaymentListing.DataSource = DtPendingBill
-                DgvPaymentListing.Show()
+
+                With DgvPaymentListing
+                    .Rows.Clear()
+                    For i As Integer = 0 To DtPendingBill.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("InvoiceNo").Value = DtPendingBill.Rows(i).Item("InvoiceNo")
+                        .Rows(i).Cells("InvoiceDate").Value = DtPendingBill.Rows(i).Item("InvoiceDate")
+                        .Rows(i).Cells("VisitID").Value = DtPendingBill.Rows(i).Item("VisitID")
+                        .Rows(i).Cells("CustomerID").Value = DtPendingBill.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("CustomerName").Value = DtPendingBill.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("IsPaymentComplete").Value = IIf(DtPendingBill.Rows(i).Item("IsPaymentComplete") = "1", "PAID", "INCOMPLETE")
+                    Next
+                End With
+
             End If
 
         Catch ex As Exception
@@ -32,7 +44,10 @@
     End Sub
 
     Private Sub BtnAddNewCustomer_Click(sender As Object, e As EventArgs) Handles BtnAddNewCustomer.Click
-        FrmPaymentInformation.ShowDialog()
+        With FrmPaymentInformation
+            .IsShowBtnSearch = True
+            .ShowDialog()
+        End With
     End Sub
 
     Private Sub DgvPaymentListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPaymentListing.CellDoubleClick
@@ -52,7 +67,8 @@
                         .VisitID = VisitID,
                         .InvoiceNo = DgvPaymentListing.Rows(e.RowIndex).Cells("InvoiceNo").Value,
                         .InvoiceDate = DgvPaymentListing.Rows(e.RowIndex).Cells("InvoiceDate").Value,
-                        .CustomerID = CustomerID
+                        .CustomerID = CustomerID,
+                        .IsShowBtnSearch = False
                     }
                     Frm.ShowDialog()
                 End If

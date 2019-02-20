@@ -2,6 +2,8 @@
 
 Public Class FrmSearchCustomer
 
+#Region "Property"
+
     Private _Source As String
     Public Property Source As String
         Get
@@ -41,6 +43,8 @@ Public Class FrmSearchCustomer
             _AppointmentID = value
         End Set
     End Property
+
+#End Region
 
     Private Sub FrmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
@@ -176,16 +180,14 @@ Public Class FrmSearchCustomer
     Private Sub DgvSearchResult_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvCustomerList.CellDoubleClick
 
         Try
-            Select Case Source
-                Case "APPOINTMENT"
+            If e.RowIndex = -1 Or e.ColumnIndex = -1 Then
+                Exit Sub
+            Else
+                If e.RowIndex >= 0 And e.ColumnIndex >= 0 Then
                     CustomerID = DgvCustomerList.Rows(e.RowIndex).Cells("DgvCustomerID").Value
                     UserCommand = "POPULATE_CUSTOMER_INFO"
-
-                Case "CONSULTATION"
-                    CustomerID = DgvCustomerList.Rows(e.RowIndex).Cells("DgvCustomerID").Value
-                    UserCommand = "POPULATE_CUSTOMER_INFO"
-
-            End Select
+                End If
+            End If
 
             Me.Hide()
 

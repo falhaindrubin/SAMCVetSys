@@ -1,7 +1,7 @@
 ﻿Imports System.Data.Odbc
 Imports System.Text
 
-Public Class ClsDBLogin
+Public Class ClsDbLogin
 
     Dim sb As StringBuilder
     Dim cmd As OdbcCommand
@@ -14,9 +14,7 @@ Public Class ClsDBLogin
         Try
             sb = New StringBuilder
             With sb
-                '.Append("SELECT UserID, UserPassword ")
-                '.Append("FROM samc_user ")
-                .Append("SELECT UserID, EmployeeID, EmployeeName, UserPassword, UserRole, ")
+                .Append("SELECT UserID, EmployeeID, EmployeeName, UserPassword, RoleCode, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_user ")
                 .Append("WHERE UserID = '" & USER.UserID & "' AND UserPassword = '" & USER.Password & "'; ")
@@ -27,7 +25,7 @@ Public Class ClsDBLogin
             da.Fill(DtUser)
 
         Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ClsDBLogin.GetUserLoginInfo()")
+            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ClsDbLogin.GetUserLoginInfo()")
         End Try
 
         Return DtUser

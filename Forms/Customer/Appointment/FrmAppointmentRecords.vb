@@ -15,8 +15,25 @@
         Try
             DtAppointment = ClsAppointment.GetAppointmentListing(ClsAppointment)
             If DtAppointment.Rows.Count > 0 Then
-                DgvAppoinmentListing.DataSource = DtAppointment
-                DgvAppoinmentListing.Show()
+
+                With DgvAppoinmentListing
+                    .Rows.Clear()
+                    For i As Integer = 0 To DtAppointment.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("AppointmentID").Value = DtAppointment.Rows(i).Item("AppointmentID")
+                        .Rows(i).Cells("AppointmentTime").Value = DtAppointment.Rows(i).Item("AppointmentTime")
+                        .Rows(i).Cells("EmployeeID").Value = DtAppointment.Rows(i).Item("EmployeeID")
+                        .Rows(i).Cells("EmployeeName").Value = "DR. " & DtAppointment.Rows(i).Item("EmployeeName")
+                        .Rows(i).Cells("CustomerID").Value = DtAppointment.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("CustomerName").Value = DtAppointment.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("CreatedBy").Value = DtAppointment.Rows(i).Item("CreatedBy")
+                        .Rows(i).Cells("DateCreated").Value = DtAppointment.Rows(i).Item("DateCreated")
+                    Next
+
+                End With
+
+                'DgvAppoinmentListing.DataSource = DtAppointment
+                'DgvAppoinmentListing.Show()
             End If
 
         Catch ex As Exception
@@ -54,7 +71,8 @@
         Try
             Dim Frm As New FrmAppointmentInformation With {
                         .FormTitle = "Create New Appointment",
-                        .UserCommand = "ADD_NEW_APPOINTMENT"
+                        .UserCommand = "ADD_NEW_APPOINTMENT",
+                        .IsShowBtnSearch = True
             }
 
             'MsgBox("Please select registered customer first before creating an appointment.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Search Customer")
@@ -82,6 +100,10 @@
     Private Sub DgvAppoinmentListing_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvAppoinmentListing.CellDoubleClick
 
         Try
+            'Dim BtnSearch As Button
+            'BtnSearch = FrmAppointmentInformation.BtnSearch
+            'BtnSearch.Visible = False
+
             If e.RowIndex = -1 Or e.ColumnIndex = -1 Then
                 Exit Sub
             Else
@@ -89,7 +111,8 @@
                     Dim Frm As New FrmAppointmentInformation With {
                         .UserCommand = "SHOW_CUSTOMER_APPOINTMENT",
                         .CustomerID = DgvAppoinmentListing.Rows(e.RowIndex).Cells("CustomerID").Value,
-                        .AppointmentID = DgvAppoinmentListing.Rows(e.RowIndex).Cells("AppointmentID").Value
+                        .AppointmentID = DgvAppoinmentListing.Rows(e.RowIndex).Cells("AppointmentID").Value,
+                        .IsShowBtnSearch = False
                     }
                     Frm.ShowDialog()
                 End If

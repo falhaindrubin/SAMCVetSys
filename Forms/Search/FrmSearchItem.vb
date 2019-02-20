@@ -1,6 +1,7 @@
 ﻿Public Class FrmSearchItem
 
 #Region "FormProperty"
+
     Private _ItemCode As String
     Public Property ItemCode As String
         Get
@@ -95,6 +96,8 @@
 
             End If
 
+            CmbItemTypeDescription.SelectedValue = ItemTypeCode
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateItemListing()")
         End Try
@@ -178,8 +181,11 @@
 
                 Dim DvServices As New DataView
                 Dim DtSelectedServices As New DataTable
+
                 DvServices = DtServices.DefaultView
-                DvServices.RowFilter = "ItemTypeCode = '" & DirectCast(CmbItemTypeDescription.SelectedItem, KeyValuePair(Of String, String)).Key.ToString & "'"
+                ItemTypeCode = IIf(ItemTypeCode <> "", ItemTypeCode, DirectCast(CmbItemTypeDescription.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
+                DvServices.RowFilter = "ItemTypeCode = '" & ItemTypeCode & "'"
+
                 With DtSelectedServices
                     .Columns.Add("ItemCode", GetType(String))
                     .Columns.Add("ItemDescription", GetType(String))
@@ -246,7 +252,9 @@
                 Dim DvProducts As New DataView
                 Dim DtSelectedProducts As New DataTable
                 DvProducts = DtProducts.DefaultView
-                DvProducts.RowFilter = "ItemTypeCode = '" & DirectCast(CmbItemTypeDescription.SelectedItem, KeyValuePair(Of String, String)).Key.ToString & "'"
+                ItemTypeCode = IIf(ItemTypeCode <> "", ItemTypeCode, DirectCast(CmbItemTypeDescription.SelectedItem, KeyValuePair(Of String, String)).Key.ToString)
+                DvProducts.RowFilter = "ItemTypeCode = '" & ItemTypeCode & "'"
+
                 With DtSelectedProducts
                     .Columns.Add("ItemCode", GetType(String))
                     .Columns.Add("ItemDescription", GetType(String))
@@ -323,20 +331,32 @@
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         'Me.Hide()
+
+        ItemCode = ""
+        ItemDescription = ""
+        UnitPrice = "0.00"
+        ItemTypeCode = ""
+        ItemTypeDescription = ""
+        ItemGroup = ""
+
+        Me.Dispose()
         Me.Close()
     End Sub
 
     Private Sub RbProducts_Click(sender As Object, e As EventArgs) Handles RbProducts.Click
+        ItemTypeCode = IIf(ItemTypeCode <> "", "", "0100")
         PopulateProductTypeListing()
         PopulateItemListing()
     End Sub
 
     Private Sub RbServices_Click(sender As Object, e As EventArgs) Handles RbServices.Click
+        ItemTypeCode = IIf(ItemTypeCode <> "", "", "010")
         PopulateServiceTypeListing()
         PopulateItemListing()
     End Sub
 
     Private Sub CmbItemTypeDescription_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles CmbItemTypeDescription.SelectionChangeCommitted
+        ItemTypeCode = IIf(ItemTypeCode <> "", "", "")
         PopulateItemListing()
     End Sub
 

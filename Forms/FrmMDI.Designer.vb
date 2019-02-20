@@ -22,170 +22,170 @@ Partial Class FrmMDI
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.mnuRecord = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClientRegistrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ConsultationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AppointmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TreatmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SurgeryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PharmacyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BillingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MaintenanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EmployeeUserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductsServicesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RolesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SurgeryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WindowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip1.SuspendLayout()
+        Me.MStripMain = New System.Windows.Forms.MenuStrip()
+        Me.MnuCustomer = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuRegister = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuVisit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuAppointment = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuTreatment = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuSurgery = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuWard = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuPharmacy = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuBilling = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuManagement = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuEmployee = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuUser = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuRoles = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuProductServices = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuManagementSurgery = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuWindow = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MStripMain.SuspendLayout()
         Me.SuspendLayout()
         '
-        'MenuStrip1
+        'MStripMain
         '
-        Me.MenuStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRecord, Me.TreatmentToolStripMenuItem, Me.SurgeryToolStripMenuItem, Me.WardToolStripMenuItem, Me.PharmacyToolStripMenuItem, Me.BillingToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.WindowToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.MdiWindowListItem = Me.WindowToolStripMenuItem
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(951, 24)
-        Me.MenuStrip1.TabIndex = 1
-        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.MStripMain.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MStripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuCustomer, Me.MnuTreatment, Me.MnuSurgery, Me.MnuWard, Me.MnuPharmacy, Me.MnuBilling, Me.MnuManagement, Me.MnuWindow})
+        Me.MStripMain.Location = New System.Drawing.Point(0, 0)
+        Me.MStripMain.MdiWindowListItem = Me.MnuWindow
+        Me.MStripMain.Name = "MStripMain"
+        Me.MStripMain.Size = New System.Drawing.Size(951, 24)
+        Me.MStripMain.TabIndex = 1
+        Me.MStripMain.Text = "MenuStrip1"
         '
-        'mnuRecord
+        'MnuCustomer
         '
-        Me.mnuRecord.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientRegistrationToolStripMenuItem, Me.ConsultationToolStripMenuItem, Me.AppointmentToolStripMenuItem})
-        Me.mnuRecord.Name = "mnuRecord"
-        Me.mnuRecord.Size = New System.Drawing.Size(65, 20)
-        Me.mnuRecord.Text = "Customer"
+        Me.MnuCustomer.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuRegister, Me.MnuVisit, Me.MnuAppointment})
+        Me.MnuCustomer.Name = "MnuCustomer"
+        Me.MnuCustomer.Size = New System.Drawing.Size(65, 20)
+        Me.MnuCustomer.Text = "Customer"
         '
-        'ClientRegistrationToolStripMenuItem
+        'MnuRegister
         '
-        Me.ClientRegistrationToolStripMenuItem.Name = "ClientRegistrationToolStripMenuItem"
-        Me.ClientRegistrationToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.ClientRegistrationToolStripMenuItem.Text = "Register"
+        Me.MnuRegister.Name = "MnuRegister"
+        Me.MnuRegister.Size = New System.Drawing.Size(134, 22)
+        Me.MnuRegister.Text = "Register"
         '
-        'ConsultationToolStripMenuItem
+        'MnuVisit
         '
-        Me.ConsultationToolStripMenuItem.Name = "ConsultationToolStripMenuItem"
-        Me.ConsultationToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.ConsultationToolStripMenuItem.Text = "Visit"
+        Me.MnuVisit.Name = "MnuVisit"
+        Me.MnuVisit.Size = New System.Drawing.Size(134, 22)
+        Me.MnuVisit.Text = "Visit"
         '
-        'AppointmentToolStripMenuItem
+        'MnuAppointment
         '
-        Me.AppointmentToolStripMenuItem.Name = "AppointmentToolStripMenuItem"
-        Me.AppointmentToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.AppointmentToolStripMenuItem.Text = "Appointment"
+        Me.MnuAppointment.Name = "MnuAppointment"
+        Me.MnuAppointment.Size = New System.Drawing.Size(134, 22)
+        Me.MnuAppointment.Text = "Appointment"
         '
-        'TreatmentToolStripMenuItem
+        'MnuTreatment
         '
-        Me.TreatmentToolStripMenuItem.Name = "TreatmentToolStripMenuItem"
-        Me.TreatmentToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
-        Me.TreatmentToolStripMenuItem.Text = "Treatment"
+        Me.MnuTreatment.Name = "MnuTreatment"
+        Me.MnuTreatment.Size = New System.Drawing.Size(67, 20)
+        Me.MnuTreatment.Text = "Treatment"
         '
-        'SurgeryToolStripMenuItem
+        'MnuSurgery
         '
-        Me.SurgeryToolStripMenuItem.Name = "SurgeryToolStripMenuItem"
-        Me.SurgeryToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.SurgeryToolStripMenuItem.Text = "Surgery"
+        Me.MnuSurgery.Name = "MnuSurgery"
+        Me.MnuSurgery.Size = New System.Drawing.Size(58, 20)
+        Me.MnuSurgery.Text = "Surgery"
         '
-        'WardToolStripMenuItem
+        'MnuWard
         '
-        Me.WardToolStripMenuItem.Name = "WardToolStripMenuItem"
-        Me.WardToolStripMenuItem.Size = New System.Drawing.Size(45, 20)
-        Me.WardToolStripMenuItem.Text = "Ward"
+        Me.MnuWard.Name = "MnuWard"
+        Me.MnuWard.Size = New System.Drawing.Size(45, 20)
+        Me.MnuWard.Text = "Ward"
         '
-        'PharmacyToolStripMenuItem
+        'MnuPharmacy
         '
-        Me.PharmacyToolStripMenuItem.Name = "PharmacyToolStripMenuItem"
-        Me.PharmacyToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
-        Me.PharmacyToolStripMenuItem.Text = "Pharmacy"
+        Me.MnuPharmacy.Name = "MnuPharmacy"
+        Me.MnuPharmacy.Size = New System.Drawing.Size(67, 20)
+        Me.MnuPharmacy.Text = "Pharmacy"
         '
-        'BillingToolStripMenuItem
+        'MnuBilling
         '
-        Me.BillingToolStripMenuItem.Name = "BillingToolStripMenuItem"
-        Me.BillingToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
-        Me.BillingToolStripMenuItem.Text = "Billing"
+        Me.MnuBilling.Name = "MnuBilling"
+        Me.MnuBilling.Size = New System.Drawing.Size(46, 20)
+        Me.MnuBilling.Text = "Billing"
         '
-        'MaintenanceToolStripMenuItem
+        'MnuManagement
         '
-        Me.MaintenanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmployeeUserToolStripMenuItem, Me.UserToolStripMenuItem, Me.ProductsServicesToolStripMenuItem, Me.RolesToolStripMenuItem, Me.SurgeryToolStripMenuItem1})
-        Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(80, 20)
-        Me.MaintenanceToolStripMenuItem.Text = "Management"
+        Me.MnuManagement.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuEmployee, Me.MnuUser, Me.MnuRoles, Me.MnuProductServices, Me.MnuManagementSurgery})
+        Me.MnuManagement.Name = "MnuManagement"
+        Me.MnuManagement.Size = New System.Drawing.Size(80, 20)
+        Me.MnuManagement.Text = "Management"
         '
-        'EmployeeUserToolStripMenuItem
+        'MnuEmployee
         '
-        Me.EmployeeUserToolStripMenuItem.Name = "EmployeeUserToolStripMenuItem"
-        Me.EmployeeUserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.EmployeeUserToolStripMenuItem.Text = "Employee"
+        Me.MnuEmployee.Name = "MnuEmployee"
+        Me.MnuEmployee.Size = New System.Drawing.Size(180, 22)
+        Me.MnuEmployee.Text = "Employee"
         '
-        'UserToolStripMenuItem
+        'MnuUser
         '
-        Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.UserToolStripMenuItem.Text = "User"
+        Me.MnuUser.Name = "MnuUser"
+        Me.MnuUser.Size = New System.Drawing.Size(180, 22)
+        Me.MnuUser.Text = "User"
         '
-        'ProductsServicesToolStripMenuItem
+        'MnuRoles
         '
-        Me.ProductsServicesToolStripMenuItem.Name = "ProductsServicesToolStripMenuItem"
-        Me.ProductsServicesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.ProductsServicesToolStripMenuItem.Text = "Products && Services"
+        Me.MnuRoles.Name = "MnuRoles"
+        Me.MnuRoles.Size = New System.Drawing.Size(180, 22)
+        Me.MnuRoles.Text = "Roles"
         '
-        'RolesToolStripMenuItem
+        'MnuProductServices
         '
-        Me.RolesToolStripMenuItem.Name = "RolesToolStripMenuItem"
-        Me.RolesToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.RolesToolStripMenuItem.Text = "Roles"
+        Me.MnuProductServices.Name = "MnuProductServices"
+        Me.MnuProductServices.Size = New System.Drawing.Size(180, 22)
+        Me.MnuProductServices.Text = "Products && Services"
         '
-        'SurgeryToolStripMenuItem1
+        'MnuManagementSurgery
         '
-        Me.SurgeryToolStripMenuItem1.Name = "SurgeryToolStripMenuItem1"
-        Me.SurgeryToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
-        Me.SurgeryToolStripMenuItem1.Text = "Surgery"
+        Me.MnuManagementSurgery.Name = "MnuManagementSurgery"
+        Me.MnuManagementSurgery.Size = New System.Drawing.Size(180, 22)
+        Me.MnuManagementSurgery.Text = "Surgery"
         '
-        'WindowToolStripMenuItem
+        'MnuWindow
         '
-        Me.WindowToolStripMenuItem.Name = "WindowToolStripMenuItem"
-        Me.WindowToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
-        Me.WindowToolStripMenuItem.Text = "Window"
+        Me.MnuWindow.Name = "MnuWindow"
+        Me.MnuWindow.Size = New System.Drawing.Size(59, 20)
+        Me.MnuWindow.Text = "Window"
         '
         'FrmMDI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(951, 546)
-        Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.MStripMain)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HelpButton = True
         Me.IsMdiContainer = True
-        Me.MainMenuStrip = Me.MenuStrip1
+        Me.MainMenuStrip = Me.MStripMain
         Me.Name = "FrmMDI"
         Me.Text = "SAMC Veterinary System"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
+        Me.MStripMain.ResumeLayout(False)
+        Me.MStripMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents mnuRecord As ToolStripMenuItem
-    Friend WithEvents ClientRegistrationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TreatmentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents WardToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MaintenanceToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents WindowToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EmployeeUserToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ConsultationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ProductsServicesToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AppointmentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BillingToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SurgeryToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents RolesToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PharmacyToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SurgeryToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents MStripMain As MenuStrip
+    Friend WithEvents MnuCustomer As ToolStripMenuItem
+    Friend WithEvents MnuRegister As ToolStripMenuItem
+    Friend WithEvents MnuTreatment As ToolStripMenuItem
+    Friend WithEvents MnuWard As ToolStripMenuItem
+    Friend WithEvents MnuManagement As ToolStripMenuItem
+    Friend WithEvents MnuWindow As ToolStripMenuItem
+    Friend WithEvents MnuEmployee As ToolStripMenuItem
+    Friend WithEvents MnuUser As ToolStripMenuItem
+    Friend WithEvents MnuVisit As ToolStripMenuItem
+    Friend WithEvents MnuProductServices As ToolStripMenuItem
+    Friend WithEvents MnuAppointment As ToolStripMenuItem
+    Friend WithEvents MnuBilling As ToolStripMenuItem
+    Friend WithEvents MnuSurgery As ToolStripMenuItem
+    Friend WithEvents MnuRoles As ToolStripMenuItem
+    Friend WithEvents MnuPharmacy As ToolStripMenuItem
+    Friend WithEvents MnuManagementSurgery As ToolStripMenuItem
 End Class

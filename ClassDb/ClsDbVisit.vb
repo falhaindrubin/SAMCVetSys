@@ -20,16 +20,16 @@ Public Class ClsDbVisit
                 .Append("(VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, ")
                 .Append("TelNo, MobileNo, ")
                 .Append("VisitTime, ")
-                .Append("IsVisitCompleted, IsAdmittedToWard, ")
+                .Append("IsCompleted, IsWarded, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & VS.VisitID & "', '" & VS.EmployeeID & "', '" & VS.EmployeeName & "', '" & VS.CustomerID & "', '" & VS.CustomerName & "', ")
                 .Append("'" & VS.TelNo & "', '" & VS.MobileNo & "', ")
                 .Append("" & CSQLDateTime(VS.VisitTime) & ", ")
-                .Append("'" & VS.IsVisitCompleted & "', '" & VS.IsAdmittedToWard & "', ")
+                .Append("'" & VS.IsCompleted & "', '" & VS.IsWarded & "', ")
                 .Append("'" & VS.Ref.CreatedBy & "', " & CSQLDateTime(VS.Ref.DateCreated) & ", '" & VS.Ref.ModifiedBy & "', " & CSQLDateTime(VS.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("VisitTime = " & CSQLDateTime(VS.VisitTime) & ", IsVisitCompleted = '" & VS.IsVisitCompleted & "', IsAdmittedToWard = '" & VS.IsAdmittedToWard & "',  ")
+                .Append("VisitTime = " & CSQLDateTime(VS.VisitTime) & ", IsCompleted = '" & VS.IsCompleted & "', IsWarded = '" & VS.IsWarded & "',  ")
                 .Append("ModifiedBy = '" & VS.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(VS.Ref.DateModified) & " ")
             End With
 
@@ -83,7 +83,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, ")
-                .Append("PetID, IsVisitCompleted, VisitDescription, ")
+                .Append("PetID, IsCompleted, VisitDescription, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
@@ -108,8 +108,6 @@ Public Class ClsDbVisit
 
     End Function
 
-
-
     Public Function GetUnassignedVisitListing(VS As ClsVisit) As DataTable
 
         Dim DtVisit As New DataTable
@@ -118,11 +116,11 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
-                .Append("IsVisitCompleted, IsOngoingTreatment, ")
+                .Append("IsCompleted, IsOngoingTreatment, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
-                .Append("WHERE IsVisitCompleted = '" & VS.IsVisitCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' ")
+                .Append("WHERE IsCompleted = '" & VS.IsCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' ")
                 If VS.CustomerID <> "" Then
                     .Append("AND CustomerID = '" & VS.CustomerID & "' ")
                 End If
@@ -148,7 +146,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
-                .Append("IsVisitCompleted, ")
+                .Append("IsCompleted, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
@@ -179,7 +177,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("UPDATE samc_visit ")
-                .Append("SET IsVisitCompleted = '" & CS.IsVisitCompleted & "' ")
+                .Append("SET IsCompleted = '" & CS.IsCompleted & "' ")
                 .Append("WHERE VisitID = '" & CS.VisitID & "' ")
             End With
 
@@ -248,7 +246,7 @@ Public Class ClsDbVisit
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, TelNo, MobileNo, VisitTime, IsVisitCompleted, IsAdmittedToWard, ")
+                .Append("SELECT VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, TelNo, MobileNo, VisitTime, IsCompleted, IsWarded, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit ")
             End With
@@ -272,7 +270,7 @@ Public Class ClsDbVisit
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT a.VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, TelNo, MobileNo, VisitTime, IsVisitCompleted, IsAdmittedToWard, ")
+                .Append("SELECT a.VisitID, a.VisitTime, EmployeeID, EmployeeName, CustomerID, CustomerName, TelNo, MobileNo, VisitTime, IsCompleted, IsWarded, ")
                 .Append("PetID, PetName, PetDOB, SexCode, SexName, AnimalTypeCode, AnimalTypeName, BreedCode, BreedName, NeuterCode, NeuterName, VisitDescription, ")
                 .Append("Temperature, TemperamentCode, TemperamentName, BodyScoreCode, BodyScoreName, BodyWeight, PEFindings, ")
                 .Append("a.CreatedBy, a.DateCreated, a.ModifiedBy, a.DateModified ")
@@ -445,7 +443,7 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("UPDATE samc_visit ")
-                .Append("SET IsAdmittedToWard = '" & V.IsAdmittedToWard & "', ")
+                .Append("SET IsWarded = '" & V.IsWarded & "', ")
                 .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
                 .Append("WHERE VisitID = '" & V.VisitID & "' ")
             End With
@@ -520,32 +518,6 @@ Public Class ClsDbVisit
 
     End Function
 
-    'Public Function GetAdmittedToWardVisit(V As ClsVisit) As DataTable
-
-    '    Dim DtVisit As New DataTable
-
-    '    Try
-    '        'Populate visit where visit is not completed and admitted to ward.
-    '        Sb = New StringBuilder
-    '        With Sb
-    '            .Append("SELECT VisitID, EmployeeID, EmployeeName, CustomerID, CustomerName, TelNo, MobileNo, VisitTime, IsVisitCompleted, IsAdmittedToWard, ")
-    '            .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
-    '            .Append("FROM samc_visit ")
-    '            .Append("WHERE IsAdmittedToWard = '" & V.IsAdmittedToWard & "' AND IsVisitCompleted = '" & V.IsVisitCompleted & "' ")
-    '        End With
-
-    '        Cmd = New OdbcCommand(Sb.ToString, DbConn)
-    '        Da = New OdbcDataAdapter(Cmd)
-    '        Da.Fill(DtVisit)
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "ClsDbVisit.GetAdmittedToWardVisit()")
-    '    End Try
-
-    '    Return DtVisit
-
-    'End Function
-
     Public Function GetAdmittedToWardVisit(V As ClsVisit) As DataTable
 
         Dim DtVisit As New DataTable
@@ -554,11 +526,11 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, PetID, ")
-                .Append("IsVisitCompleted, IsAdmittedToWard, ")
+                .Append("IsCompleted, IsWarded, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
-                .Append("WHERE IsVisitCompleted = '" & V.IsVisitCompleted & "' AND IsAdmittedToWard = '" & V.IsAdmittedToWard & "' ")
+                .Append("WHERE IsCompleted = '" & V.IsCompleted & "' AND IsWarded = '" & V.IsWarded & "' ")
                 If V.CustomerID <> "" Then
                     .Append("WHERE CustomerID = '" & V.CustomerID & "' ")
                 End If

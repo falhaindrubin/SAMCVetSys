@@ -1,10 +1,10 @@
-﻿Public NotInheritable Class SplashSAMCVetSys
+﻿Public NotInheritable Class FrmSplash
 
     'TODO: This form can easily be set as the splash screen for the application by going to the "Application" tab
     '  of the Project Designer ("Properties" under the "Project" menu).
 
 
-    Private Sub ssSAMCVetSys_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub FrmSplash_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Set up the dialog text at runtime according to the application's assembly information.  
 
         'TODO: Customize the application's assembly information in the "Application" pane of the project 
@@ -31,6 +31,5 @@
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
     End Sub
-
 
 End Class

@@ -13,6 +13,7 @@
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -174,10 +174,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="ClassDb\ClsDbPharmacy.vb" />
     <Compile Include="ClassDb\ClsDbBill.vb" />
     <Compile Include="ClassDb\ClsDbPEFindings.vb" />
     <Compile Include="ClassDb\ClsDbManagement.vb" />
+    <Compile Include="ClassDb\ClsDbVetSales.vb" />
     <Compile Include="ClassDb\ClsDbTreatment.vb" />
     <Compile Include="ClassDb\ClsDbSurgery.vb" />
     <Compile Include="ClassDb\ClsDbChSource.vb" />
@@ -191,6 +193,7 @@
     <Compile Include="Class\ClsDiagnosisDetail.vb" />
     <Compile Include="Class\ClsDiagnosis.vb" />
     <Compile Include="Class\ClsPEFindings.vb" />
+    <Compile Include="Class\ClsVetSales.vb" />
     <Compile Include="Class\ClsSurgeryDetail.vb" />
     <Compile Include="Class\ClsSurgery.vb" />
     <Compile Include="Class\ClsSurgeryDischarge.vb" />
@@ -223,6 +226,12 @@
       <DependentUpon>FrmVisitInformation.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\Visit\FrmVisitInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Vet\FrmVetSales.Designer.vb">
+      <DependentUpon>FrmVetSales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Vet\FrmVetSales.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Management\Roles\FrmRoleInformation.Designer.vb">
@@ -303,16 +312,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsAppointment.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Management\Employees\FrmEmployeeRecords.Designer.vb">
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.Designer.vb">
       <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Management\Employees\FrmEmployeeRecords.vb">
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Management\Employees\FrmEmployeeInformation.Designer.vb">
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeInformation.Designer.vb">
       <DependentUpon>FrmEmployeeInformation.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Management\Employees\FrmEmployeeInformation.vb">
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeInformation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Payment\FrmPaymentInformation.Designer.vb">
@@ -337,12 +346,6 @@
       <DependentUpon>FrmItemRecords.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Management\Products\FrmItemRecords.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Treatment\FrmDiagnosisPlanning.Designer.vb">
-      <DependentUpon>FrmDiagnosisPlanning.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Treatment\FrmDiagnosisPlanning.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Ward\FrmMedication.Designer.vb">
@@ -438,10 +441,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Forms\SplashSAMCVetSys.Designer.vb">
-      <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
+    <Compile Include="Forms\FrmSplash.Designer.vb">
+      <DependentUpon>FrmSplash.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SplashSAMCVetSys.vb">
+    <Compile Include="Forms\FrmSplash.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Treatment\FrmTreatmentInformation.Designer.vb">
@@ -500,11 +503,14 @@
     <EmbeddedResource Include="Forms\FrmMDI.resx">
       <DependentUpon>FrmMDI.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Management\Employees\FrmEmployeeRecords.resx">
+    <EmbeddedResource Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.resx">
       <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Management\Employees\FrmEmployeeInformation.resx">
+    <EmbeddedResource Include="Forms\Management\Employees\Employee Records\FrmEmployeeInformation.resx">
       <DependentUpon>FrmEmployeeInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Employees\Vet\FrmVetSales.resx">
+      <DependentUpon>FrmVetSales.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Management\Products\FrmItemInformation.resx">
       <DependentUpon>FrmItemInformation.vb</DependentUpon>
@@ -542,9 +548,6 @@
     <EmbeddedResource Include="Forms\Surgery\FrmSurgeryRecords.resx">
       <DependentUpon>FrmSurgeryRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Treatment\FrmDiagnosisPlanning.resx">
-      <DependentUpon>FrmDiagnosisPlanning.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ward\FrmMedication.resx">
       <DependentUpon>FrmMedication.vb</DependentUpon>
     </EmbeddedResource>
@@ -569,8 +572,8 @@
     <EmbeddedResource Include="Forms\Payment\FrmPaymentRecords.resx">
       <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SplashSAMCVetSys.resx">
-      <DependentUpon>SplashSAMCVetSys.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmSplash.resx">
+      <DependentUpon>FrmSplash.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Treatment\FrmTreatmentInformation.resx">
       <DependentUpon>FrmTreatmentInformation.vb</DependentUpon>

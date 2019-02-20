@@ -122,8 +122,8 @@
 
                         With ClsVisit
 
-                            .IsAdmittedToWard = IIf(CbIsWarded.Checked = True, "1", "0")
-                            .IsVisitCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
+                            .IsWarded = IIf(CbIsWarded.Checked = True, "1", "0")
+                            .IsCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
                             DtVisit = .GetAdmittedToWardVisit(ClsVisit)
 
                         End With

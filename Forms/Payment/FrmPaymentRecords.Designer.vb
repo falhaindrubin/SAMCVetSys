@@ -28,12 +28,18 @@ Partial Class FrmPaymentRecords
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
         Me.DgvPaymentListing = New System.Windows.Forms.DataGridView()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnAddNewCustomer = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label25 = New System.Windows.Forms.Label()
+        Me.VisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InvoiceNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InvoiceDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsPaymentComplete = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DgvPaymentListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -83,6 +89,7 @@ Partial Class FrmPaymentRecords
         Me.DgvPaymentListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvPaymentListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvPaymentListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvPaymentListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VisitID, Me.InvoiceNo, Me.InvoiceDate, Me.CustomerID, Me.CustomerName, Me.IsPaymentComplete})
         Me.DgvPaymentListing.Location = New System.Drawing.Point(8, 19)
         Me.DgvPaymentListing.Name = "DgvPaymentListing"
         Me.DgvPaymentListing.ReadOnly = True
@@ -103,6 +110,17 @@ Partial Class FrmPaymentRecords
         Me.PnlActionBar.Name = "PnlActionBar"
         Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
         Me.PnlActionBar.TabIndex = 76
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(337, 32)
+        Me.Label25.TabIndex = 14
+        Me.Label25.Text = "Billing && Payment Records"
         '
         'BtnClose
         '
@@ -166,16 +184,52 @@ Partial Class FrmPaymentRecords
         Me.GroupBox2.TabIndex = 77
         Me.GroupBox2.TabStop = False
         '
-        'Label25
+        'VisitID
         '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 18)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(337, 32)
-        Me.Label25.TabIndex = 14
-        Me.Label25.Text = "Billing && Payment Records"
+        Me.VisitID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.VisitID.HeaderText = "Visit ID"
+        Me.VisitID.Name = "VisitID"
+        Me.VisitID.ReadOnly = True
+        Me.VisitID.Width = 65
+        '
+        'InvoiceNo
+        '
+        Me.InvoiceNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.InvoiceNo.HeaderText = "Invoice No."
+        Me.InvoiceNo.Name = "InvoiceNo"
+        Me.InvoiceNo.ReadOnly = True
+        Me.InvoiceNo.Width = 85
+        '
+        'InvoiceDate
+        '
+        Me.InvoiceDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.InvoiceDate.HeaderText = "Invoice Date"
+        Me.InvoiceDate.Name = "InvoiceDate"
+        Me.InvoiceDate.ReadOnly = True
+        Me.InvoiceDate.Width = 91
+        '
+        'CustomerID
+        '
+        Me.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CustomerID.HeaderText = "Customer ID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Width = 90
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CustomerName.HeaderText = "Customer Name"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        '
+        'IsPaymentComplete
+        '
+        Me.IsPaymentComplete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IsPaymentComplete.HeaderText = "Status"
+        Me.IsPaymentComplete.Name = "IsPaymentComplete"
+        Me.IsPaymentComplete.ReadOnly = True
+        Me.IsPaymentComplete.Width = 63
         '
         'FrmPaymentRecords
         '
@@ -209,4 +263,10 @@ Partial Class FrmPaymentRecords
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label25 As Label
+    Friend WithEvents VisitID As DataGridViewTextBoxColumn
+    Friend WithEvents InvoiceNo As DataGridViewTextBoxColumn
+    Friend WithEvents InvoiceDate As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents IsPaymentComplete As DataGridViewTextBoxColumn
 End Class

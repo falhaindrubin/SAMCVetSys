@@ -45,6 +45,16 @@ Public Class FrmAppointmentInformation
         End Set
     End Property
 
+    Private _IsShowBtnSearch As Boolean
+    Public Property IsShowBtnSearch As Boolean
+        Get
+            Return _IsShowBtnSearch
+        End Get
+        Set(value As Boolean)
+            _IsShowBtnSearch = value
+        End Set
+    End Property
+
 #End Region
 
     Public Sub FrmAppointmentEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -407,6 +417,7 @@ Public Class FrmAppointmentInformation
             End If
 
             SetFields(UserCommand)
+            BtnSearch.Visible = IIf(IsShowBtnSearch = True, True, False)
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")

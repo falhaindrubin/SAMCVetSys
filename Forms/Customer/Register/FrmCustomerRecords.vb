@@ -28,25 +28,12 @@ Public Class FrmCustomerRecords
                         .Rows(i).Cells("CustomerID").Value = DtCustomer.Rows(i).Item("CustomerID")
                         .Rows(i).Cells("NRICPassportNo").Value = DtCustomer.Rows(i).Item("NRICPassportNo")
                         .Rows(i).Cells("CustomerName").Value = DtCustomer.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("CreatedBy").Value = DtCustomer.Rows(i).Item("CreatedBy")
+                        .Rows(i).Cells("DateCreated").Value = DtCustomer.Rows(i).Item("DateCreated")
                     Next
                 End With
 
             End If
-
-            'If DtCustomer.Rows.Count > 0 Then
-            '    DgvCustomerListing.DataSource = DtCustomer
-            '    DgvCustomerListing.Show()
-            'Else
-            '    DgvCustomerListing.DataSource = DtCustomer
-            '    DgvCustomerListing.Show()
-            'End If
-
-            'For i As Integer = 0 To DgvCustomerListing.Rows.Count - 1
-
-            '    DgvCustomerListing.Columns("SaluteCode").Visible = False
-            '    DgvCustomerListing.Columns("SaluteName").Visible = False
-
-            'Next
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ShowCustomerRecords()")

@@ -37,6 +37,8 @@ Partial Class FrmCustomerRecords
         Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NRICPassportNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreatedBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateCreated = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DgvCustomerListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -86,7 +88,7 @@ Partial Class FrmCustomerRecords
         Me.DgvCustomerListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvCustomerListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvCustomerListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvCustomerListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerID, Me.NRICPassportNo, Me.CustomerName})
+        Me.DgvCustomerListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerID, Me.NRICPassportNo, Me.CustomerName, Me.CreatedBy, Me.DateCreated})
         Me.DgvCustomerListing.Location = New System.Drawing.Point(9, 19)
         Me.DgvCustomerListing.Name = "DgvCustomerListing"
         Me.DgvCustomerListing.ReadOnly = True
@@ -199,6 +201,22 @@ Partial Class FrmCustomerRecords
         Me.CustomerName.Name = "CustomerName"
         Me.CustomerName.ReadOnly = True
         '
+        'CreatedBy
+        '
+        Me.CreatedBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CreatedBy.HeaderText = "CreatedBy"
+        Me.CreatedBy.Name = "CreatedBy"
+        Me.CreatedBy.ReadOnly = True
+        Me.CreatedBy.Width = 83
+        '
+        'DateCreated
+        '
+        Me.DateCreated.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DateCreated.HeaderText = "DateCreated"
+        Me.DateCreated.Name = "DateCreated"
+        Me.DateCreated.ReadOnly = True
+        Me.DateCreated.Width = 92
+        '
         'FrmCustomerRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -235,4 +253,6 @@ Partial Class FrmCustomerRecords
     Friend WithEvents CustomerID As DataGridViewTextBoxColumn
     Friend WithEvents NRICPassportNo As DataGridViewTextBoxColumn
     Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents CreatedBy As DataGridViewTextBoxColumn
+    Friend WithEvents DateCreated As DataGridViewTextBoxColumn
 End Class

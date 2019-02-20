@@ -53,7 +53,8 @@
                     Dim Frm As New FrmWardInformation With {
                         .UserCommand = "SHOW_WARD_INFO",
                         .WardID = DgvWardListing.Rows(e.RowIndex).Cells("WardID").Value,
-                        .CustomerID = DgvWardListing.Rows(e.RowIndex).Cells("CustomerID").Value
+                        .CustomerID = DgvWardListing.Rows(e.RowIndex).Cells("CustomerID").Value,
+                        .IsShowBtnSearch = False
                     }
                     Frm.ShowDialog()
                 End If
@@ -76,6 +77,7 @@
 
     Private Sub BtnAddNewWard_Click(sender As Object, e As EventArgs) Handles BtnAddNewWard.Click
         With FrmWardInformation
+            .IsShowBtnSearch = True
             .ShowDialog()
         End With
     End Sub

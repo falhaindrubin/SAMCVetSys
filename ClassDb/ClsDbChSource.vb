@@ -15,12 +15,12 @@ Public Class ClsDbChSource
             Sb = New StringBuilder
             With Sb
                 .Append("INSERT INTO samc_user ")
-                .Append("(UserID, EmployeeID, EmployeeName, UserPassword, UserRole, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
+                .Append("(UserID, EmployeeID, EmployeeName, UserPassword, RoleCode, CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & USER.UserID & "', '" & USER.EmployeeID & "', '" & USER.EmployeeName & "', '" & USER.UserPassword & "', '" & USER.UserRole & "', ")
+                .Append("('" & USER.UserID & "', '" & USER.EmployeeID & "', '" & USER.EmployeeName & "', '" & USER.UserPassword & "', '" & USER.RoleCode & "', ")
                 .Append("'" & USER.Ref.CreatedBy & "', " & CSQLDateTime(USER.Ref.DateCreated) & ", '" & USER.Ref.ModifiedBy & "', " & CSQLDateTime(USER.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
-                .Append("UserPassword = '" & USER.UserPassword & "', UserRole = '" & USER.UserRole & "', ModifiedBy = '" & USER.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(USER.Ref.DateModified) & " ")
+                .Append("UserPassword = '" & USER.UserPassword & "', RoleCode = '" & USER.RoleCode & "', ModifiedBy = '" & USER.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(USER.Ref.DateModified) & " ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)
@@ -41,7 +41,7 @@ Public Class ClsDbChSource
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("SELECT UserID, EmployeeID, EmployeeName, UserPassword, UserRole, ")
+                .Append("SELECT UserID, EmployeeID, EmployeeName, UserPassword, RoleCode, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_user ")
 

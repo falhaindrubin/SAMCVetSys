@@ -135,10 +135,13 @@ Public Class FrmTreatmentInformation
                 'Get invoice info
                 ClsBill.VisitID = VisitID
                 DtInvoice = ClsBill.GetBillHeader(ClsBill)
+                'LblInvoiceNo.Text = IIf(DtInvoice.Rows.Count > 0, CStr(DtInvoice.Rows(0).Item("InvoiceNo")), "") 'CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
                 If DtInvoice.Rows.Count > 0 Then
                     LblInvoiceNo.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
                     'BtnBillPayment.Text = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
                     'BtnBillPayment.Tag = CStr(DtInvoice.Rows(0).Item("InvoiceNo"))
+                Else
+                    LblInvoiceNo.Text = ""
                 End If
 
                 'Get Visit
@@ -146,8 +149,11 @@ Public Class FrmTreatmentInformation
                 DtVisit = ClsVisit.GetVisitDetail(ClsVisit)
                 If DtVisit.Rows.Count > 0 Then
                     TxtVisitID.Text = DtVisit.Rows(0).Item("VisitID")
+                    TxtVisitTime.Text = DtVisit.Rows(0).Item("VisitTime")
                     TxtCustomerName.Tag = DtVisit.Rows(0).Item("CustomerID")
                     TxtCustomerName.Text = DtVisit.Rows(0).Item("CustomerName")
+                    TxtVet.Tag = DtVisit.Rows(0).Item("EmployeeID")
+                    TxtVet.Text = DtVisit.Rows(0).Item("EmployeeName")
                     TxtPetName.Tag = DtVisit.Rows(0).Item("PetID")
                     TxtPetName.Text = DtVisit.Rows(0).Item("PetName")
                 End If
@@ -203,19 +209,19 @@ Public Class FrmTreatmentInformation
                         End With
                     Next
 
-                    TxtDxCreatedBy.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("CreatedBy")), "")
-                    TxtDxDateCreated.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("DateCreated")), "")
-                    TxtDxModifiedBy.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("ModifiedBy")), "")
-                    TxtDxDateModified.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtDiagnosis.Rows(0).Item("DateModified")), "")
+                    TxtDxCreatedBy.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtTreatment.Rows(0).Item("CreatedBy")), "")
+                    TxtDxDateCreated.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtTreatment.Rows(0).Item("DateCreated")), "")
+                    TxtDxModifiedBy.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtTreatment.Rows(0).Item("ModifiedBy")), "")
+                    TxtDxDateModified.Text = IIf(DtTreatment.Rows.Count > 0, CStrNull(DtTreatment.Rows(0).Item("DateModified")), "")
 
                 End If
 
             Else
-                TxtVisitID.Text = VisitID
-                TxtCustomerName.Tag = CustomerID
-                TxtCustomerName.Text = CustomerName
-                TxtPetName.Tag = PetID
-                TxtPetName.Text = PetName
+                'TxtVisitID.Text = VisitID
+                'TxtCustomerName.Tag = CustomerID
+                'TxtCustomerName.Text = CustomerName
+                'TxtPetName.Tag = PetID
+                'TxtPetName.Text = PetName
 
             End If
 
@@ -322,29 +328,52 @@ Public Class FrmTreatmentInformation
     End Sub
 
     Private Sub BtnSearchTestItem_Click(sender As Object, e As EventArgs) Handles BtnSearchTestItem.Click
-        With FrmSearchItem
-            .ShowDialog()
-            TxtTestItem.Tag = .ItemCode
-            TxtTestItem.Text = .ItemDescription
-            TxtTestUnitPrice.Text = .UnitPrice
-            TxtTestTotalPrice.Text = FormatNumber(.UnitPrice * CDec(TxtTestQuantity.Text), 2)
-            ItemGroup = .ItemGroup
-            ItemTypeDescription = .ItemTypeDescription
-            ItemTypeCode = .ItemTypeCode
-        End With
+
+        Try
+            With FrmSearchItem
+                .RbServices.Checked = True
+                .ItemGroup = "SVC" 'SERVICES
+                .ItemTypeCode = "030" 'LABORATORY TEST
+                .ShowDialog()
+
+                TxtTestItem.Tag = .ItemCode
+                TxtTestItem.Text = .ItemDescription
+                TxtTestUnitPrice.Text = .UnitPrice
+                TxtTestQuantity.Text = "1.00"
+                TxtTestTotalPrice.Text = FormatNumber(.UnitPrice * IIf(TxtTestQuantity.Text <> "", TxtTestQuantity.Text, "0.00"), 2)
+                ItemGroup = .ItemGroup
+                ItemTypeDescription = .ItemTypeDescription
+                ItemTypeCode = .ItemTypeCode
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".BtnSearchItem_Click()")
+        End Try
+
     End Sub
 
     Private Sub BtnSearchItem_Click(sender As Object, e As EventArgs) Handles BtnSearchItem.Click
-        With FrmSearchItem
-            .ShowDialog()
-            TxtTreatmentItem.Tag = .ItemCode
-            TxtTreatmentItem.Text = .ItemDescription
-            TxtTreatmentUnitPrice.Text = .UnitPrice
-            TxtTreatmentTotalPrice.Text = FormatNumber(.UnitPrice * CDec(TxtTreatmentQuantity.Text), 2)
-            ItemGroup = .ItemGroup
-            ItemTypeDescription = .ItemTypeDescription
-            ItemTypeCode = .ItemTypeCode
-        End With
+
+        Try
+            With FrmSearchItem
+                .RbProducts.Checked = True
+                .ItemGroup = "PRD" 'PRODUCTS
+                .ItemTypeCode = "0100" 'LABORATORY TEST
+                .ShowDialog()
+
+                TxtTreatmentItem.Tag = .ItemCode
+                TxtTreatmentItem.Text = .ItemDescription
+                TxtTreatmentUnitPrice.Text = .UnitPrice
+                TxtTreatmentTotalPrice.Text = FormatNumber(.UnitPrice * CDec(TxtTreatmentQuantity.Text), 2)
+                ItemGroup = .ItemGroup
+                ItemTypeDescription = .ItemTypeDescription
+                ItemTypeCode = .ItemTypeCode
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".BtnSearchTestItem_Click()")
+        End Try
+
     End Sub
 
     Private Sub BtnAddTest_Click(sender As Object, e As EventArgs) Handles BtnAddTest.Click
@@ -417,6 +446,12 @@ Public Class FrmTreatmentInformation
                 Next
 
             End If
+
+            TxtTestItem.Tag = ""
+            TxtTestItem.Text = ""
+            TxtTestQuantity.Text = ""
+            TxtTestUnitPrice.Text = ""
+            TxtTestTotalPrice.Text = ""
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddTest()")
@@ -505,7 +540,7 @@ Public Class FrmTreatmentInformation
             Dim Row As DataRow = DtTreatment.NewRow
 
             Row("RowNo") = IIf(DtTreatment.Rows.Count = 0, 1, DtTreatment.Rows.Count + 1)
-            Row("PhRequestID") = DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value
+            Row("PhRequestID") = "" 'IIf(DgvSelectedTreatment.Rows.Count > 0, DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value, "") 'DgvSelectedTreatment.Rows(0).Cells("TreatmentPhRequestID").Value
             Row("ItemCode") = UCase(Trim(TxtTreatmentItem.Tag))
             Row("ItemDescription") = UCase(Trim(TxtTreatmentItem.Text))
             Row("UnitPrice") = UCase(Trim(TxtTreatmentUnitPrice.Text))
@@ -622,6 +657,9 @@ Public Class FrmTreatmentInformation
             'Diagnosis header
             With ClsDiagnosis
                 .VisitID = Trim(TxtVisitID.Text)
+                .DiagnosisDate = Now
+                .EmployeeID = TxtVet.Tag
+                .EmployeeName = TxtVet.Text
                 .PetID = Trim(TxtPetName.Tag)
                 .PetName = Trim(TxtPetName.Text)
                 .Diagnosis = Trim(TxtDiagnosis.Text)
@@ -672,8 +710,8 @@ Public Class FrmTreatmentInformation
                 With ClsTreatment
                     .VisitID = TxtVisitID.Text
                     .TreatmentDate = Now
-                    .EmployeeID = CURR_EMPLOYEE_ID
-                    .EmployeeName = CURR_EMPLOYEE_NAME
+                    .EmployeeID = TxtVet.Tag
+                    .EmployeeName = TxtVet.Text
                     .CustomerID = TxtCustomerName.Tag
                     .CustomerName = TxtCustomerName.Text
                     .TelNo = CStrNull(DtVisit.Rows(0).Item("TelNo"))
@@ -1073,20 +1111,33 @@ Public Class FrmTreatmentInformation
                         Return False
                     End If
 
+                    If DgvSelectedTest.Rows.Count > 0 Then
+                        For i As Integer = 0 To DgvSelectedTest.Rows.Count - 1
+
+                            If TxtTestItem.Tag = DgvSelectedTest.Rows(i).Cells("TestItemCode").Value Then
+                                MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
+                                Return False
+                            End If
+
+                        Next
+                    End If
+
                 Case "TX"
                     If TxtTreatmentItem.Text = "" Then
                         MsgBox("Please select item.", MsgBoxStyle.Exclamation, "No Item Selected")
                         Return False
                     End If
 
-                    For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
+                    If DgvSelectedTreatment.Rows.Count > 0 Then
+                        For i As Integer = 0 To DgvSelectedTreatment.Rows.Count - 1
 
-                        If TxtTreatmentItem.Tag = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value Then
-                            MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
-                            Return False
-                        End If
+                            If TxtTreatmentItem.Tag = DgvSelectedTreatment.Rows(i).Cells("TreatmentItemCode").Value Then
+                                MsgBox("You are trying to add same item(s) to the list. Update selected item quantity's instead.", MsgBoxStyle.Exclamation, "Duplicate Item")
+                                Return False
+                            End If
 
-                    Next
+                        Next
+                    End If
 
             End Select
 
@@ -1127,7 +1178,7 @@ Public Class FrmTreatmentInformation
 
                 With ClsVisit
                     .VisitID = Trim(TxtVisitID.Text)
-                    .IsVisitCompleted = IIf(CbIsAdmittedToWard.Checked = True, "1", "0")
+                    .IsCompleted = IIf(CbIsAdmittedToWard.Checked = True, "1", "0")
                 End With
 
                 If Not ClsVisit.UpdateIsVisitCompleted(ClsVisit, DbConn, DbTrans) Then

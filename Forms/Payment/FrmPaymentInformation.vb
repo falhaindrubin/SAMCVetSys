@@ -92,6 +92,17 @@ Public Class FrmPaymentInformation
             _ItemTypeDescription = value
         End Set
     End Property
+
+    Private _IsShowBtnSearch As Boolean
+    Public Property IsShowBtnSearch As Boolean
+        Get
+            Return _IsShowBtnSearch
+        End Get
+        Set(value As Boolean)
+            _IsShowBtnSearch = value
+        End Set
+    End Property
+
 #End Region
 
     Private Sub FrmPaymentEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -170,6 +181,7 @@ Public Class FrmPaymentInformation
                 End If
 
                 SetFields(UserCommand)
+                BtnSearch.Visible = IIf(IsShowBtnSearch = True, True, False)
 
             End If
 
@@ -1184,6 +1196,8 @@ Public Class FrmPaymentInformation
                 TxtTotalDue.Text = FormatNumber(CDec(GrandTotal), 2)
 
             End If
+
+            MsgBox("Your billing has been calculated. Please save new calculated bill to update previous billing.", MsgBoxStyle.Information, "New Billing Calculated")
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".GenerateInvoice()")

@@ -42,13 +42,13 @@
         End Set
     End Property
 
-    Private _UserRole As String
-    Public Property UserRole As String
+    Private _RoleCode As String
+    Public Property RoleCode As String
         Get
-            Return _UserRole
+            Return _RoleCode
         End Get
         Set(value As String)
-            _UserRole = value
+            _RoleCode = value
         End Set
     End Property
 

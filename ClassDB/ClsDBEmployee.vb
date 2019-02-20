@@ -18,7 +18,7 @@ Public Class ClsDbEmployee
                 .Append("(EmployeeID, EmployeeName, SaluteCode, SaluteName, NRICPassportNo, SexCode, SexName, EmployeeDOB, EmployeePOB, Nationality, MobileNo, TelNo, Email, ")
                 .Append("AddressLine1, AddressLine2, AddressLine3, AddressLine4, Postcode, City, State, Country, ")
                 .Append("Race, Religion, ")
-                .Append("MaritalStatusCode, MaritalStatusName, PositionCode, PositionName, Qualification, Institution, ")
+                .Append("MaritalStatusCode, MaritalStatusName, PositionCode, PositionName, Qualification, Institution, IsActive, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
                 .Append("('" & EMP.EmployeeID & "', '" & EMP.EmployeeName & "', '" & EMP.SaluteCode & "', '" & EMP.SaluteName & "', '" & EMP.NRICPassportNo & "', '" & EMP.SexCode & "', '" & EMP.SexName & "', " & CSQLDate(EMP.EmployeeDOB) & ", '" & CSQLQuote(EMP.EmployeePOB) & "', '" & CSQLQuote(EMP.Nationality) & "', ")
@@ -26,7 +26,7 @@ Public Class ClsDbEmployee
                 .Append("'" & CSQLQuote(EMP.AddressLine1) & "', '" & CSQLQuote(EMP.AddressLine2) & "', '" & CSQLQuote(EMP.AddressLine3) & "', '" & CSQLQuote(EMP.AddressLine4) & "', ")
                 .Append("'" & EMP.Postcode & "', '" & EMP.City & "', '" & EMP.State & "', '" & EMP.Country & "', ")
                 .Append("'" & CSQLQuote(EMP.Race) & "', '" & CSQLQuote(EMP.Religion) & "', ")
-                .Append("'" & EMP.MaritalStatusCode & "', '" & EMP.MaritalStatusName & "', '" & EMP.PositionCode & "', '" & EMP.PositionName & "', '" & CSQLQuote(EMP.Qualification) & "', '" & CSQLQuote(EMP.Institution) & "', ")
+                .Append("'" & EMP.MaritalStatusCode & "', '" & EMP.MaritalStatusName & "', '" & EMP.PositionCode & "', '" & EMP.PositionName & "', '" & CSQLQuote(EMP.Qualification) & "', '" & CSQLQuote(EMP.Institution) & "', '" & EMP.IsActive & "', ")
                 .Append("'" & EMP.Ref.CreatedBy & "', " & CSQLDateTime(EMP.Ref.DateCreated) & ", '" & EMP.Ref.ModifiedBy & "', " & CSQLDateTime(EMP.Ref.DateModified) & ") ")
                 .Append("ON DUPLICATE KEY UPDATE ")
                 .Append("EmployeeName = '" & EMP.EmployeeName & "', SaluteCode = '" & EMP.SaluteCode & "', SaluteName = '" & EMP.SaluteName & "', NRICPassportNo = '" & EMP.NRICPassportNo & "', SexCode = '" & EMP.SexCode & "', SexName = '" & EMP.SexName & "', ")
@@ -35,7 +35,7 @@ Public Class ClsDbEmployee
                 .Append("AddressLine1 = '" & EMP.AddressLine1 & "', AddressLine2 = '" & EMP.AddressLine2 & "', AddressLine3 = '" & EMP.AddressLine3 & "', AddressLine4 = '" & EMP.AddressLine4 & "', ")
                 .Append("Postcode = '" & EMP.Postcode & "', City = '" & EMP.City & "', State = '" & EMP.State & "', Country = '" & EMP.Country & "', ")
                 .Append("Race = '" & EMP.Race & "', Religion = '" & EMP.Religion & "', ")
-                .Append("MaritalStatusCode = '" & EMP.MaritalStatusCode & "', MaritalStatusName = '" & EMP.MaritalStatusName & "', PositionCode = '" & EMP.PositionCode & "', PositionName = '" & EMP.PositionName & "', Qualification = '" & EMP.Qualification & "', Institution = '" & EMP.Institution & "', ")
+                .Append("MaritalStatusCode = '" & EMP.MaritalStatusCode & "', MaritalStatusName = '" & EMP.MaritalStatusName & "', PositionCode = '" & EMP.PositionCode & "', PositionName = '" & EMP.PositionName & "', Qualification = '" & EMP.Qualification & "', Institution = '" & EMP.Institution & "', IsActive = '" & EMP.IsActive & "', ")
                 .Append("ModifiedBy = '" & EMP.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(EMP.Ref.DateModified) & " ")
             End With
 
@@ -61,7 +61,9 @@ Public Class ClsDbEmployee
                 .Append("SELECT EmployeeID, EmployeeName, NRICPassportNo, SaluteCode, SaluteName, SexCode, SexName, EmployeeDOB, EmployeePOB, ")
                 .Append("Nationality, MobileNo, TelNo, Email, AddressLine1, AddressLine2, AddressLine3, AddressLine4, Postcode, City, State, Country, ")
                 .Append("Race, Religion, MaritalStatusCode, MaritalStatusName, ")
-                .Append("PositionCode, PositionName, Qualification, Institution, CreatedBy, DateCreated, ModifiedBy, DateModified ")
+                .Append("PositionCode, PositionName, Qualification, Institution, ")
+                .Append("IsActive, ")
+                .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_employee ")
 
                 If EMP.EmployeeID <> "" Then

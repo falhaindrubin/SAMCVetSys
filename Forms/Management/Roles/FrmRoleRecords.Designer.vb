@@ -26,10 +26,13 @@ Partial Class FrmRoleRecords
         Me.PnlActionBar = New System.Windows.Forms.Panel()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnClose = New System.Windows.Forms.Button()
-        Me.BtnAddNewRole = New System.Windows.Forms.Button()
         Me.BtnReload = New System.Windows.Forms.Button()
+        Me.BtnAddNewRole = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DgvRoleListing = New System.Windows.Forms.DataGridView()
+        Me.DgvBtnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.RoleCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RoleName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvRoleListing, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,33 +67,33 @@ Partial Class FrmRoleRecords
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(437, 4)
+        Me.BtnClose.Location = New System.Drawing.Point(438, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 60)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.UseVisualStyleBackColor = False
-        '
-        'BtnAddNewRole
-        '
-        Me.BtnAddNewRole.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnAddNewRole.BackgroundImage = CType(resources.GetObject("BtnAddNewRole.BackgroundImage"), System.Drawing.Image)
-        Me.BtnAddNewRole.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewRole.Location = New System.Drawing.Point(315, 4)
-        Me.BtnAddNewRole.Name = "BtnAddNewRole"
-        Me.BtnAddNewRole.Size = New System.Drawing.Size(60, 60)
-        Me.BtnAddNewRole.TabIndex = 2
-        Me.BtnAddNewRole.UseVisualStyleBackColor = False
         '
         'BtnReload
         '
         Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
         Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
         Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(376, 4)
+        Me.BtnReload.Location = New System.Drawing.Point(378, 4)
         Me.BtnReload.Name = "BtnReload"
         Me.BtnReload.Size = New System.Drawing.Size(60, 60)
         Me.BtnReload.TabIndex = 1
         Me.BtnReload.UseVisualStyleBackColor = False
+        '
+        'BtnAddNewRole
+        '
+        Me.BtnAddNewRole.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnAddNewRole.BackgroundImage = CType(resources.GetObject("BtnAddNewRole.BackgroundImage"), System.Drawing.Image)
+        Me.BtnAddNewRole.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnAddNewRole.Location = New System.Drawing.Point(318, 4)
+        Me.BtnAddNewRole.Name = "BtnAddNewRole"
+        Me.BtnAddNewRole.Size = New System.Drawing.Size(60, 60)
+        Me.BtnAddNewRole.TabIndex = 2
+        Me.BtnAddNewRole.UseVisualStyleBackColor = False
         '
         'GroupBox1
         '
@@ -105,14 +108,44 @@ Partial Class FrmRoleRecords
         'DgvRoleListing
         '
         Me.DgvRoleListing.AllowUserToAddRows = False
+        Me.DgvRoleListing.AllowUserToDeleteRows = False
         Me.DgvRoleListing.BackgroundColor = System.Drawing.Color.White
+        Me.DgvRoleListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvRoleListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvRoleListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DgvBtnDelete, Me.RoleCode, Me.RoleName})
         Me.DgvRoleListing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvRoleListing.Location = New System.Drawing.Point(3, 16)
         Me.DgvRoleListing.Name = "DgvRoleListing"
         Me.DgvRoleListing.ReadOnly = True
+        Me.DgvRoleListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvRoleListing.Size = New System.Drawing.Size(496, 368)
         Me.DgvRoleListing.TabIndex = 0
+        '
+        'DgvBtnDelete
+        '
+        Me.DgvBtnDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvBtnDelete.HeaderText = "Delete?"
+        Me.DgvBtnDelete.Name = "DgvBtnDelete"
+        Me.DgvBtnDelete.ReadOnly = True
+        Me.DgvBtnDelete.Text = "Delete"
+        Me.DgvBtnDelete.ToolTipText = "Delete Role?"
+        Me.DgvBtnDelete.UseColumnTextForButtonValue = True
+        Me.DgvBtnDelete.Width = 49
+        '
+        'RoleCode
+        '
+        Me.RoleCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.RoleCode.HeaderText = "Role Code"
+        Me.RoleCode.Name = "RoleCode"
+        Me.RoleCode.ReadOnly = True
+        Me.RoleCode.Width = 81
+        '
+        'RoleName
+        '
+        Me.RoleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RoleName.HeaderText = "Role Description"
+        Me.RoleName.Name = "RoleName"
+        Me.RoleName.ReadOnly = True
         '
         'FrmRoleRecords
         '
@@ -139,4 +172,7 @@ Partial Class FrmRoleRecords
     Friend WithEvents BtnAddNewRole As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DgvRoleListing As DataGridView
+    Friend WithEvents DgvBtnDelete As DataGridViewButtonColumn
+    Friend WithEvents RoleCode As DataGridViewTextBoxColumn
+    Friend WithEvents RoleName As DataGridViewTextBoxColumn
 End Class

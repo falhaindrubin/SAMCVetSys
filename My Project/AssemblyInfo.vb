@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("SAMCVetSys")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("SAMC Animals Centre")>
-<Assembly: AssemblyProduct("SAMCVetSys")>
+<Assembly: AssemblyProduct("SAMC Veterinary Management System")>
 <Assembly: AssemblyCopyright("SAMC Animals Centre Copyright ©  2018")>
 <Assembly: AssemblyTrademark("SAMC Animals Centre")>
 

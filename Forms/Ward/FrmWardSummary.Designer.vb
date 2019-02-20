@@ -32,7 +32,6 @@ Partial Class FrmWardSummary
         Me.LblBowelDescription = New System.Windows.Forms.Label()
         Me.LblAppetiteDescription = New System.Windows.Forms.Label()
         Me.TxtDailyNotes = New System.Windows.Forms.TextBox()
-        Me.LblDailyNotes = New System.Windows.Forms.Label()
         Me.LblFastingDescription = New System.Windows.Forms.Label()
         Me.LblIsFasting = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
@@ -55,16 +54,6 @@ Partial Class FrmWardSummary
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.DgvSelectedTest = New System.Windows.Forms.DataGridView()
-        Me.BtnTestDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.TestRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TestItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TxtDiagnosis = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Label32 = New System.Windows.Forms.Label()
@@ -123,6 +112,17 @@ Partial Class FrmWardSummary
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.BtnTestDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.TestRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TestItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -130,6 +130,7 @@ Partial Class FrmWardSummary
         Me.GroupBox3.SuspendLayout()
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'PnlActionBar
@@ -166,12 +167,11 @@ Partial Class FrmWardSummary
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.GroupBox5)
         Me.GroupBox1.Controls.Add(Me.LblVomitDescription)
         Me.GroupBox1.Controls.Add(Me.LblUrineDescription)
         Me.GroupBox1.Controls.Add(Me.LblBowelDescription)
         Me.GroupBox1.Controls.Add(Me.LblAppetiteDescription)
-        Me.GroupBox1.Controls.Add(Me.TxtDailyNotes)
-        Me.GroupBox1.Controls.Add(Me.LblDailyNotes)
         Me.GroupBox1.Controls.Add(Me.LblFastingDescription)
         Me.GroupBox1.Controls.Add(Me.LblIsFasting)
         Me.GroupBox1.Controls.Add(Me.Label39)
@@ -239,22 +239,12 @@ Partial Class FrmWardSummary
         Me.TxtDailyNotes.BackColor = System.Drawing.Color.White
         Me.TxtDailyNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDailyNotes.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.TxtDailyNotes.Location = New System.Drawing.Point(6, 212)
+        Me.TxtDailyNotes.Location = New System.Drawing.Point(6, 19)
         Me.TxtDailyNotes.Multiline = True
         Me.TxtDailyNotes.Name = "TxtDailyNotes"
         Me.TxtDailyNotes.ReadOnly = True
-        Me.TxtDailyNotes.Size = New System.Drawing.Size(513, 185)
+        Me.TxtDailyNotes.Size = New System.Drawing.Size(501, 144)
         Me.TxtDailyNotes.TabIndex = 48
-        '
-        'LblDailyNotes
-        '
-        Me.LblDailyNotes.AutoSize = True
-        Me.LblDailyNotes.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblDailyNotes.Location = New System.Drawing.Point(6, 195)
-        Me.LblDailyNotes.Name = "LblDailyNotes"
-        Me.LblDailyNotes.Size = New System.Drawing.Size(92, 14)
-        Me.LblDailyNotes.TabIndex = 46
-        Me.LblDailyNotes.Text = "Daily Update/Note"
         '
         'LblFastingDescription
         '
@@ -487,86 +477,6 @@ Partial Class FrmWardSummary
         Me.DgvSelectedTest.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvSelectedTest.Size = New System.Drawing.Size(771, 152)
         Me.DgvSelectedTest.TabIndex = 50
-        '
-        'BtnTestDeleteItem
-        '
-        Me.BtnTestDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnTestDeleteItem.HeaderText = "Delete?"
-        Me.BtnTestDeleteItem.Name = "BtnTestDeleteItem"
-        Me.BtnTestDeleteItem.ReadOnly = True
-        Me.BtnTestDeleteItem.Text = "Delete"
-        Me.BtnTestDeleteItem.UseColumnTextForButtonValue = True
-        Me.BtnTestDeleteItem.Visible = False
-        '
-        'TestRowNo
-        '
-        Me.TestRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestRowNo.HeaderText = "No."
-        Me.TestRowNo.Name = "TestRowNo"
-        Me.TestRowNo.ReadOnly = True
-        Me.TestRowNo.Width = 48
-        '
-        'TestItemCode
-        '
-        Me.TestItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestItemCode.HeaderText = "Item Code"
-        Me.TestItemCode.Name = "TestItemCode"
-        Me.TestItemCode.ReadOnly = True
-        Me.TestItemCode.Width = 79
-        '
-        'TestItemDescription
-        '
-        Me.TestItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.TestItemDescription.HeaderText = "Item Description"
-        Me.TestItemDescription.Name = "TestItemDescription"
-        Me.TestItemDescription.ReadOnly = True
-        '
-        'TestUnitPrice
-        '
-        Me.TestUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestUnitPrice.HeaderText = "Unit Price"
-        Me.TestUnitPrice.Name = "TestUnitPrice"
-        Me.TestUnitPrice.ReadOnly = True
-        Me.TestUnitPrice.Width = 77
-        '
-        'TestQuantity
-        '
-        Me.TestQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestQuantity.HeaderText = "Quantity"
-        Me.TestQuantity.Name = "TestQuantity"
-        Me.TestQuantity.ReadOnly = True
-        Me.TestQuantity.Width = 72
-        '
-        'TestTotalPrice
-        '
-        Me.TestTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestTotalPrice.HeaderText = "Total Price"
-        Me.TestTotalPrice.Name = "TestTotalPrice"
-        Me.TestTotalPrice.ReadOnly = True
-        Me.TestTotalPrice.Width = 81
-        '
-        'TestItemGroup
-        '
-        Me.TestItemGroup.HeaderText = "Item Group"
-        Me.TestItemGroup.Name = "TestItemGroup"
-        Me.TestItemGroup.ReadOnly = True
-        Me.TestItemGroup.Visible = False
-        '
-        'TestItemTypeCode
-        '
-        Me.TestItemTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestItemTypeCode.HeaderText = "Item Type Code"
-        Me.TestItemTypeCode.Name = "TestItemTypeCode"
-        Me.TestItemTypeCode.ReadOnly = True
-        Me.TestItemTypeCode.Visible = False
-        '
-        'TestItemTypeDescription
-        '
-        Me.TestItemTypeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TestItemTypeDescription.HeaderText = "Item Type Description"
-        Me.TestItemTypeDescription.Name = "TestItemTypeDescription"
-        Me.TestItemTypeDescription.ReadOnly = True
-        Me.TestItemTypeDescription.Visible = False
         '
         'TxtDiagnosis
         '
@@ -1182,6 +1092,101 @@ Partial Class FrmWardSummary
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Customer ID"
         '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.TxtDailyNotes)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 228)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(513, 169)
+        Me.GroupBox5.TabIndex = 53
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Daily Update / Note"
+        '
+        'BtnTestDeleteItem
+        '
+        Me.BtnTestDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnTestDeleteItem.HeaderText = "Delete?"
+        Me.BtnTestDeleteItem.Name = "BtnTestDeleteItem"
+        Me.BtnTestDeleteItem.ReadOnly = True
+        Me.BtnTestDeleteItem.Text = "Delete"
+        Me.BtnTestDeleteItem.UseColumnTextForButtonValue = True
+        Me.BtnTestDeleteItem.Visible = False
+        Me.BtnTestDeleteItem.Width = 49
+        '
+        'TestRowNo
+        '
+        Me.TestRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestRowNo.HeaderText = "No."
+        Me.TestRowNo.Name = "TestRowNo"
+        Me.TestRowNo.ReadOnly = True
+        Me.TestRowNo.Width = 48
+        '
+        'TestItemCode
+        '
+        Me.TestItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestItemCode.HeaderText = "Item Code"
+        Me.TestItemCode.Name = "TestItemCode"
+        Me.TestItemCode.ReadOnly = True
+        Me.TestItemCode.Width = 79
+        '
+        'TestItemDescription
+        '
+        Me.TestItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.TestItemDescription.HeaderText = "Item Description"
+        Me.TestItemDescription.Name = "TestItemDescription"
+        Me.TestItemDescription.ReadOnly = True
+        '
+        'TestUnitPrice
+        '
+        Me.TestUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestUnitPrice.HeaderText = "Unit Price"
+        Me.TestUnitPrice.Name = "TestUnitPrice"
+        Me.TestUnitPrice.ReadOnly = True
+        Me.TestUnitPrice.Visible = False
+        Me.TestUnitPrice.Width = 77
+        '
+        'TestQuantity
+        '
+        Me.TestQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestQuantity.HeaderText = "Quantity"
+        Me.TestQuantity.Name = "TestQuantity"
+        Me.TestQuantity.ReadOnly = True
+        Me.TestQuantity.Width = 72
+        '
+        'TestTotalPrice
+        '
+        Me.TestTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestTotalPrice.HeaderText = "Total Price"
+        Me.TestTotalPrice.Name = "TestTotalPrice"
+        Me.TestTotalPrice.ReadOnly = True
+        Me.TestTotalPrice.Visible = False
+        Me.TestTotalPrice.Width = 81
+        '
+        'TestItemGroup
+        '
+        Me.TestItemGroup.HeaderText = "Item Group"
+        Me.TestItemGroup.Name = "TestItemGroup"
+        Me.TestItemGroup.ReadOnly = True
+        Me.TestItemGroup.Visible = False
+        '
+        'TestItemTypeCode
+        '
+        Me.TestItemTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestItemTypeCode.HeaderText = "Item Type Code"
+        Me.TestItemTypeCode.Name = "TestItemTypeCode"
+        Me.TestItemTypeCode.ReadOnly = True
+        Me.TestItemTypeCode.Visible = False
+        Me.TestItemTypeCode.Width = 105
+        '
+        'TestItemTypeDescription
+        '
+        Me.TestItemTypeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.TestItemTypeDescription.HeaderText = "Item Type Description"
+        Me.TestItemTypeDescription.Name = "TestItemTypeDescription"
+        Me.TestItemTypeDescription.ReadOnly = True
+        Me.TestItemTypeDescription.Visible = False
+        Me.TestItemTypeDescription.Width = 134
+        '
         'FrmWardSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -1208,6 +1213,8 @@ Partial Class FrmWardSummary
         CType(Me.DgvSelectedTreatment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1270,20 +1277,9 @@ Partial Class FrmWardSummary
     Friend WithEvents Label39 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents LblFastingDescription As Label
-    Friend WithEvents LblDailyNotes As Label
     Friend WithEvents TxtDailyNotes As TextBox
     Friend WithEvents TxtDiagnosis As TextBox
     Friend WithEvents DgvSelectedTest As DataGridView
-    Friend WithEvents BtnTestDeleteItem As DataGridViewButtonColumn
-    Friend WithEvents TestRowNo As DataGridViewTextBoxColumn
-    Friend WithEvents TestItemCode As DataGridViewTextBoxColumn
-    Friend WithEvents TestItemDescription As DataGridViewTextBoxColumn
-    Friend WithEvents TestUnitPrice As DataGridViewTextBoxColumn
-    Friend WithEvents TestQuantity As DataGridViewTextBoxColumn
-    Friend WithEvents TestTotalPrice As DataGridViewTextBoxColumn
-    Friend WithEvents TestItemGroup As DataGridViewTextBoxColumn
-    Friend WithEvents TestItemTypeCode As DataGridViewTextBoxColumn
-    Friend WithEvents TestItemTypeDescription As DataGridViewTextBoxColumn
     Friend WithEvents DgvSelectedTreatment As DataGridView
     Friend WithEvents Label32 As Label
     Friend WithEvents LblNotes As Label
@@ -1312,4 +1308,15 @@ Partial Class FrmWardSummary
     Friend WithEvents LblBowelDescription As Label
     Friend WithEvents LblUrineDescription As Label
     Friend WithEvents LblVomitDescription As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents BtnTestDeleteItem As DataGridViewButtonColumn
+    Friend WithEvents TestRowNo As DataGridViewTextBoxColumn
+    Friend WithEvents TestItemCode As DataGridViewTextBoxColumn
+    Friend WithEvents TestItemDescription As DataGridViewTextBoxColumn
+    Friend WithEvents TestUnitPrice As DataGridViewTextBoxColumn
+    Friend WithEvents TestQuantity As DataGridViewTextBoxColumn
+    Friend WithEvents TestTotalPrice As DataGridViewTextBoxColumn
+    Friend WithEvents TestItemGroup As DataGridViewTextBoxColumn
+    Friend WithEvents TestItemTypeCode As DataGridViewTextBoxColumn
+    Friend WithEvents TestItemTypeDescription As DataGridViewTextBoxColumn
 End Class

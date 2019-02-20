@@ -55,6 +55,7 @@ Public Class FrmUserInformation
                         TxtEmployeeName.Tag = CStrNull(DtUser.Rows(0).Item("EmployeeID"))
                         TxtUserID.Text = CStrNull(DtUser.Rows(0).Item("UserID"))
                         TxtUserPassword.Text = CStrNull(DtUser.Rows(0).Item("UserPassword"))
+                        CmbUserRole.SelectedValue = CStrNull(DtUser.Rows(0).Item("RoleCode"))
                         TxtCreatedBy.Text = CStrNull(DtUser.Rows(0).Item("CreatedBy"))
                         TxtDateCreated.Text = CStrNull(DtUser.Rows(0).Item("DateCreated"))
                         TxtModifiedBy.Text = CStrNull(DtUser.Rows(0).Item("ModifiedBy"))
@@ -75,6 +76,13 @@ Public Class FrmUserInformation
 
         Try
             Dim UserID As String
+            Dim ClsUserRole As New ClsUserRole
+            Dim DtUserAccessRight As New DataTable
+
+            With ClsUserRole
+                .RoleCode = UCase(Trim(DirectCast(CmbUserRole.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
+                DtUserAccessRight = .GetRoleAccessRight(ClsUserRole)
+            End With
 
             If DbTrans IsNot Nothing Then
                 DbTrans = Nothing
@@ -94,7 +102,7 @@ Public Class FrmUserInformation
                 .EmployeeID = UCase(Trim(TxtEmployeeName.Tag))
                 .EmployeeName = UCase(Trim(TxtEmployeeName.Text))
                 .UserPassword = Trim(TxtUserPassword.Text)
-                .UserRole = UCase(Trim(DirectCast(CmbUserRole.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
+                .RoleCode = UCase(Trim(DirectCast(CmbUserRole.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
@@ -106,6 +114,54 @@ Public Class FrmUserInformation
                     DbTrans.Dispose()
                     DbTrans = Nothing
                     Return False
+                End If
+
+            End With
+
+            'Delete user access right
+            ClsUserRole = New ClsUserRole
+            With ClsUserRole
+
+                .EmployeeID = UCase(Trim(TxtEmployeeName.Tag))
+                .RoleCode = UCase(Trim(DirectCast(CmbUserRole.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
+
+                If Not .DeleteUserAccessRight(ClsUserRole, DbConn, DbTrans) Then
+                    MsgBox("Failed to update user access right. " & Environment.NewLine & "ERR: DEL_USR_ACC_RIGHT", MsgBoxStyle.Critical, "User Information Save Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+            End With
+
+            'Add new access right
+            ClsUserRole = New ClsUserRole
+            With ClsUserRole
+
+                If DtUserAccessRight.Rows.Count > 0 Then
+
+                    For i As Integer = 0 To DtUserAccessRight.Rows.Count - 1
+
+                        .EmployeeID = UCase(Trim(TxtEmployeeName.Tag))
+                        .RoleCode = UCase(Trim(DirectCast(CmbUserRole.SelectedItem, KeyValuePair(Of String, String)).Key.ToString))
+                        .RoleName = UCase(Trim(DirectCast(CmbUserRole.SelectedItem, KeyValuePair(Of String, String)).Value.ToString))
+                        .AccessTag = DtUserAccessRight.Rows(i).Item("AccessTag")
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .AddUserAccessRight(ClsUserRole, DbConn, DbTrans) Then
+                            MsgBox("Failed to update user access right. " & Environment.NewLine & "ERR: ADD_USR_ACC_RIGHT", MsgBoxStyle.Critical, "User Information Save Error")
+                            DbTrans.Rollback()
+                            DbTrans.Dispose()
+                            DbTrans = Nothing
+                            Return False
+                        End If
+
+                    Next
+
                 End If
 
             End With
@@ -128,7 +184,7 @@ Public Class FrmUserInformation
                 TxtDateModified.Text = .Ref.DateModified
             End With
 
-            MsgBox("User access credentials has been successfully saved.", MsgBoxStyle.Information, "User Credentials Saved")
+            MsgBox("User access credentials has been successfully saved!", MsgBoxStyle.Information, "User Credentials Saved")
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveUserToDb()")
@@ -150,12 +206,13 @@ Public Class FrmUserInformation
             Dim DtRoles As New DataTable
             Dim ClsUserRole As New ClsUserRole
             With ClsUserRole
-                DtRoles = .GetUserRole(ClsUserRole)
+
+                DtRoles = .GetRole(ClsUserRole)
 
                 If DtRoles.Rows.Count > 0 Then
 
                     For i As Integer = 0 To DtRoles.Rows.Count - 1
-                        CmbSource.Add(DtRoles.Rows(i).Item("UserRole"), DtRoles.Rows(i).Item("UserRoleDescription"))
+                        CmbSource.Add(DtRoles.Rows(i).Item("RoleCode"), DtRoles.Rows(i).Item("RoleName"))
                     Next
 
                     If CmbUserRole.Items.Count > 0 Then

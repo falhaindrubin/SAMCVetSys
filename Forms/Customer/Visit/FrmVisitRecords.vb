@@ -37,9 +37,9 @@
                         .Rows(i).Cells("CustomerName").Value = DtVisit.Rows(i).Item("CustomerName")
                         .Rows(i).Cells("PetName").Value = DtVisit.Rows(i).Item("PetName")
                         .Rows(i).Cells("VisitTime").Value = DtVisit.Rows(i).Item("VisitTime")
-                        .Rows(i).Cells("EmployeeName").Value = DtVisit.Rows(i).Item("EmployeeName")
+                        .Rows(i).Cells("EmployeeName").Value = "DR. " & DtVisit.Rows(i).Item("EmployeeName")
                         .Rows(i).Cells("VisitDescription").Value = DtVisit.Rows(i).Item("VisitDescription")
-                        .Rows(i).Cells("VisitStatus").Value = IIf(DtVisit.Rows(i).Item("IsVisitCompleted") = "1", "COMPLETED", "ON-GOING")
+                        .Rows(i).Cells("VisitStatus").Value = IIf(DtVisit.Rows(i).Item("IsCompleted") = "1", "COMPLETED", "ON-GOING")
                     Next
 
                 End With

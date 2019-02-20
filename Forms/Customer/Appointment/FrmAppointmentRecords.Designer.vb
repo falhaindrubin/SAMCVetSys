@@ -34,6 +34,14 @@ Partial Class FrmAppointmentRecords
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.BtnSearchAppointment = New System.Windows.Forms.Button()
+        Me.AppointmentID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AppointmentTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreatedBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateCreated = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvAppoinmentListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
@@ -64,6 +72,7 @@ Partial Class FrmAppointmentRecords
         Me.DgvAppoinmentListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvAppoinmentListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvAppoinmentListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvAppoinmentListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AppointmentID, Me.AppointmentTime, Me.EmployeeID, Me.EmployeeName, Me.CustomerID, Me.CustomerName, Me.CreatedBy, Me.DateCreated})
         Me.DgvAppoinmentListing.Location = New System.Drawing.Point(9, 19)
         Me.DgvAppoinmentListing.MultiSelect = False
         Me.DgvAppoinmentListing.Name = "DgvAppoinmentListing"
@@ -173,6 +182,68 @@ Partial Class FrmAppointmentRecords
         Me.BtnSearchAppointment.TabIndex = 5
         Me.BtnSearchAppointment.UseVisualStyleBackColor = False
         '
+        'AppointmentID
+        '
+        Me.AppointmentID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.AppointmentID.HeaderText = "Appointment ID"
+        Me.AppointmentID.Name = "AppointmentID"
+        Me.AppointmentID.ReadOnly = True
+        Me.AppointmentID.Width = 96
+        '
+        'AppointmentTime
+        '
+        Me.AppointmentTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.AppointmentTime.HeaderText = "Appointment Time"
+        Me.AppointmentTime.Name = "AppointmentTime"
+        Me.AppointmentTime.ReadOnly = True
+        Me.AppointmentTime.Width = 107
+        '
+        'EmployeeID
+        '
+        Me.EmployeeID.HeaderText = "EmployeeID"
+        Me.EmployeeID.Name = "EmployeeID"
+        Me.EmployeeID.ReadOnly = True
+        Me.EmployeeID.Visible = False
+        Me.EmployeeID.Width = 89
+        '
+        'EmployeeName
+        '
+        Me.EmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.EmployeeName.HeaderText = "Vet"
+        Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.ReadOnly = True
+        '
+        'CustomerID
+        '
+        Me.CustomerID.HeaderText = "CustomerID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Visible = False
+        Me.CustomerID.Width = 87
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CustomerName.HeaderText = "Customer Name"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        '
+        'CreatedBy
+        '
+        Me.CreatedBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CreatedBy.HeaderText = "Created By"
+        Me.CreatedBy.Name = "CreatedBy"
+        Me.CreatedBy.ReadOnly = True
+        Me.CreatedBy.Width = 78
+        '
+        'DateCreated
+        '
+        Me.DateCreated.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DateCreated.HeaderText = "Date Created"
+        Me.DateCreated.Name = "DateCreated"
+        Me.DateCreated.ReadOnly = True
+        Me.DateCreated.Width = 87
+        '
         'FrmAppointmentRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -206,4 +277,12 @@ Partial Class FrmAppointmentRecords
     Friend WithEvents TxtSearchText As TextBox
     Friend WithEvents BtnSearchAppointment As Button
     Friend WithEvents Label25 As Label
+    Friend WithEvents AppointmentID As DataGridViewTextBoxColumn
+    Friend WithEvents AppointmentTime As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeID As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents CreatedBy As DataGridViewTextBoxColumn
+    Friend WithEvents DateCreated As DataGridViewTextBoxColumn
 End Class

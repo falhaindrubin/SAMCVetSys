@@ -1699,7 +1699,7 @@ Public Class FrmSurgeryInformation
                 Exit Sub
             End If
 
-            Process.Start(My.Application.Info.DirectoryPath & "/Surgery.exe", Trim(TxtVisitID.Text))
+            Process.Start(My.Application.Info.DirectoryPath & "/Reports/Surgery.exe", Trim(TxtVisitID.Text))
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PrintSurgery")

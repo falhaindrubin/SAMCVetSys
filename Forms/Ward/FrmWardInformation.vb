@@ -104,6 +104,16 @@ Public Class FrmWardInformation
         End Set
     End Property
 
+    Private _IsShowBtnSearch As Boolean
+    Public Property IsShowBtnSearch As Boolean
+        Get
+            Return _IsShowBtnSearch
+        End Get
+        Set(value As Boolean)
+            _IsShowBtnSearch = value
+        End Set
+    End Property
+
 #End Region
 
     Private Sub FrmWard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -391,7 +401,9 @@ Public Class FrmWardInformation
 
                 End If
 
-                Else
+                BtnSearch.Visible = IIf(IsShowBtnSearch = True, True, False)
+
+            Else
 
                 TxtAdmissionDate.Text = Now
                 TxtCustomerName.Text = CustomerName
@@ -412,6 +424,8 @@ Public Class FrmWardInformation
                     End If
 
                 End With
+
+
 
             End If
 
@@ -2102,7 +2116,7 @@ Public Class FrmWardInformation
                 Exit Sub
             End If
 
-            Process.Start(My.Application.Info.DirectoryPath & "/WardReport.exe", Trim(TxtWardID.Text))
+            Process.Start(My.Application.Info.DirectoryPath & "/Reports/WardReport.exe", Trim(TxtWardID.Text))
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PrintWard")

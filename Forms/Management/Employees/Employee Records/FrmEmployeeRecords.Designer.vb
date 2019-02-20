@@ -34,6 +34,13 @@ Partial Class FrmEmployeeRecords
         Me.BtnReload = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DgvEmployeeListing = New System.Windows.Forms.DataGridView()
+        Me.EmployeeID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NRICPassportNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PositionName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsActive = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreatedBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateCreated = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox4.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -154,21 +161,79 @@ Partial Class FrmEmployeeRecords
         Me.GroupBox1.Size = New System.Drawing.Size(1008, 557)
         Me.GroupBox1.TabIndex = 75
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Employee Listing"
+        Me.GroupBox1.Text = "Employee List"
         '
         'DgvEmployeeListing
         '
         Me.DgvEmployeeListing.AllowUserToAddRows = False
         Me.DgvEmployeeListing.AllowUserToDeleteRows = False
         Me.DgvEmployeeListing.BackgroundColor = System.Drawing.Color.White
+        Me.DgvEmployeeListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvEmployeeListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvEmployeeListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.EmployeeID, Me.EmployeeName, Me.NRICPassportNo, Me.PositionName, Me.IsActive, Me.CreatedBy, Me.DateCreated})
         Me.DgvEmployeeListing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvEmployeeListing.Location = New System.Drawing.Point(3, 16)
+        Me.DgvEmployeeListing.MultiSelect = False
         Me.DgvEmployeeListing.Name = "DgvEmployeeListing"
         Me.DgvEmployeeListing.ReadOnly = True
         Me.DgvEmployeeListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvEmployeeListing.Size = New System.Drawing.Size(1002, 538)
         Me.DgvEmployeeListing.TabIndex = 0
+        '
+        'EmployeeID
+        '
+        Me.EmployeeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.EmployeeID.HeaderText = "EmployeeID"
+        Me.EmployeeID.Name = "EmployeeID"
+        Me.EmployeeID.ReadOnly = True
+        Me.EmployeeID.Width = 87
+        '
+        'EmployeeName
+        '
+        Me.EmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.EmployeeName.HeaderText = "EmployeeName"
+        Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.ReadOnly = True
+        '
+        'NRICPassportNo
+        '
+        Me.NRICPassportNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.NRICPassportNo.HeaderText = "NRICPassportNo"
+        Me.NRICPassportNo.Name = "NRICPassportNo"
+        Me.NRICPassportNo.ReadOnly = True
+        Me.NRICPassportNo.Width = 111
+        '
+        'PositionName
+        '
+        Me.PositionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PositionName.HeaderText = "PositionName"
+        Me.PositionName.Name = "PositionName"
+        Me.PositionName.ReadOnly = True
+        Me.PositionName.Width = 96
+        '
+        'IsActive
+        '
+        Me.IsActive.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IsActive.HeaderText = "IsActive"
+        Me.IsActive.Name = "IsActive"
+        Me.IsActive.ReadOnly = True
+        Me.IsActive.Width = 71
+        '
+        'CreatedBy
+        '
+        Me.CreatedBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CreatedBy.HeaderText = "CreatedBy"
+        Me.CreatedBy.Name = "CreatedBy"
+        Me.CreatedBy.ReadOnly = True
+        Me.CreatedBy.Width = 83
+        '
+        'DateCreated
+        '
+        Me.DateCreated.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DateCreated.HeaderText = "DateCreated"
+        Me.DateCreated.Name = "DateCreated"
+        Me.DateCreated.ReadOnly = True
+        Me.DateCreated.Width = 92
         '
         'FrmEmployeeRecords
         '
@@ -202,4 +267,11 @@ Partial Class FrmEmployeeRecords
     Friend WithEvents Label25 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DgvEmployeeListing As DataGridView
+    Friend WithEvents EmployeeID As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
+    Friend WithEvents NRICPassportNo As DataGridViewTextBoxColumn
+    Friend WithEvents PositionName As DataGridViewTextBoxColumn
+    Friend WithEvents IsActive As DataGridViewTextBoxColumn
+    Friend WithEvents CreatedBy As DataGridViewTextBoxColumn
+    Friend WithEvents DateCreated As DataGridViewTextBoxColumn
 End Class

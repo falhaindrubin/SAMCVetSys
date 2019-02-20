@@ -548,4 +548,38 @@ Module ModMain
 
     End Function
 
+    Public Sub PopulateYear(StartDate As Date, EndDate As Date, ByRef CmbYear As ComboBox)
+
+        Try
+            While StartDate <= EndDate
+                CmbYear.Items.Add(EndDate.Year.ToString())
+                EndDate = EndDate.AddYears(-1)
+            End While
+
+        Catch ex As Exception
+            MsgBox(ex.ToString, MsgBoxStyle.Critical, "Modmain.PopulateYear()")
+        End Try
+
+    End Sub
+
+    Public Enum Month
+        January = 1
+        February = 2
+        March = 3
+        April = 4
+        May = 5
+        June = 6
+        July = 7
+        August = 8
+        September = 9
+        October = 10
+        November = 11
+        December = 12
+    End Enum
+
+    Public Enum IsEmpActive
+        Active = 1
+        Inactive = 0
+    End Enum
+
 End Module

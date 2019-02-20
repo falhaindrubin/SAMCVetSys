@@ -181,8 +181,24 @@ Partial Class FrmWardInformation
         Me.TxtAdmitIssue = New System.Windows.Forms.TextBox()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.GroupBox24 = New System.Windows.Forms.GroupBox()
+        Me.BtnDischargePet = New System.Windows.Forms.Button()
         Me.BtnSendToPharmacyWardDc = New System.Windows.Forms.Button()
         Me.DgvDischargeMedication = New System.Windows.Forms.DataGridView()
+        Me.BtnDeleteSelectedMedication = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.BtnUpdateSelectedMedication = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.DiscMedRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedPhRequestID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscMedItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsDiscMedDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox27 = New System.Windows.Forms.GroupBox()
         Me.LblDiscMedRowNo = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -207,22 +223,6 @@ Partial Class FrmWardInformation
         Me.TxtCase = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.BtnDischargePet = New System.Windows.Forms.Button()
-        Me.BtnDeleteSelectedMedication = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.BtnUpdateSelectedMedication = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.DiscMedRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedPhRequestID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DiscMedItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IsDiscMedDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -1626,6 +1626,7 @@ Partial Class FrmWardInformation
         '
         Me.DgvWardSummary.AllowUserToAddRows = False
         Me.DgvWardSummary.AllowUserToDeleteRows = False
+        Me.DgvWardSummary.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvWardSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvWardSummary.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WardDate, Me.DailyNotes, Me.Appetite, Me.Bowel, Me.Urine, Me.Vomit})
         Me.DgvWardSummary.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1895,6 +1896,15 @@ Partial Class FrmWardInformation
         Me.GroupBox24.TabStop = False
         Me.GroupBox24.Text = "Selected Medication"
         '
+        'BtnDischargePet
+        '
+        Me.BtnDischargePet.Location = New System.Drawing.Point(232, 377)
+        Me.BtnDischargePet.Name = "BtnDischargePet"
+        Me.BtnDischargePet.Size = New System.Drawing.Size(150, 29)
+        Me.BtnDischargePet.TabIndex = 180
+        Me.BtnDischargePet.Text = "Discharge Pet..."
+        Me.BtnDischargePet.UseVisualStyleBackColor = True
+        '
         'BtnSendToPharmacyWardDc
         '
         Me.BtnSendToPharmacyWardDc.Location = New System.Drawing.Point(388, 377)
@@ -1917,6 +1927,128 @@ Partial Class FrmWardInformation
         Me.DgvDischargeMedication.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvDischargeMedication.Size = New System.Drawing.Size(535, 355)
         Me.DgvDischargeMedication.TabIndex = 153
+        '
+        'BtnDeleteSelectedMedication
+        '
+        Me.BtnDeleteSelectedMedication.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnDeleteSelectedMedication.HeaderText = "Delete?"
+        Me.BtnDeleteSelectedMedication.Name = "BtnDeleteSelectedMedication"
+        Me.BtnDeleteSelectedMedication.ReadOnly = True
+        Me.BtnDeleteSelectedMedication.Text = "Delete"
+        Me.BtnDeleteSelectedMedication.UseColumnTextForButtonValue = True
+        Me.BtnDeleteSelectedMedication.Width = 49
+        '
+        'BtnUpdateSelectedMedication
+        '
+        Me.BtnUpdateSelectedMedication.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnUpdateSelectedMedication.HeaderText = "Update"
+        Me.BtnUpdateSelectedMedication.Name = "BtnUpdateSelectedMedication"
+        Me.BtnUpdateSelectedMedication.ReadOnly = True
+        Me.BtnUpdateSelectedMedication.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.BtnUpdateSelectedMedication.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.BtnUpdateSelectedMedication.Text = "Update"
+        Me.BtnUpdateSelectedMedication.ToolTipText = "Update Discharge Medication Item"
+        Me.BtnUpdateSelectedMedication.UseColumnTextForButtonValue = True
+        Me.BtnUpdateSelectedMedication.Width = 66
+        '
+        'DiscMedRowNo
+        '
+        Me.DiscMedRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DiscMedRowNo.HeaderText = "No."
+        Me.DiscMedRowNo.Name = "DiscMedRowNo"
+        Me.DiscMedRowNo.ReadOnly = True
+        Me.DiscMedRowNo.Width = 48
+        '
+        'DiscMedPhRequestID
+        '
+        Me.DiscMedPhRequestID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DiscMedPhRequestID.HeaderText = "PhRequestID"
+        Me.DiscMedPhRequestID.Name = "DiscMedPhRequestID"
+        Me.DiscMedPhRequestID.ReadOnly = True
+        Me.DiscMedPhRequestID.Visible = False
+        '
+        'DiscMedItemCode
+        '
+        Me.DiscMedItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DiscMedItemCode.HeaderText = "Item Code"
+        Me.DiscMedItemCode.Name = "DiscMedItemCode"
+        Me.DiscMedItemCode.ReadOnly = True
+        Me.DiscMedItemCode.Width = 79
+        '
+        'DiscMedItemDescription
+        '
+        Me.DiscMedItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DiscMedItemDescription.HeaderText = "Item Description"
+        Me.DiscMedItemDescription.Name = "DiscMedItemDescription"
+        Me.DiscMedItemDescription.ReadOnly = True
+        '
+        'DiscMedPrescription
+        '
+        Me.DiscMedPrescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DiscMedPrescription.HeaderText = "Prescription"
+        Me.DiscMedPrescription.Name = "DiscMedPrescription"
+        Me.DiscMedPrescription.ReadOnly = True
+        Me.DiscMedPrescription.Visible = False
+        '
+        'DiscMedNotes
+        '
+        Me.DiscMedNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DiscMedNotes.HeaderText = "Notes"
+        Me.DiscMedNotes.Name = "DiscMedNotes"
+        Me.DiscMedNotes.ReadOnly = True
+        Me.DiscMedNotes.Visible = False
+        '
+        'DiscMedUnitPrice
+        '
+        Me.DiscMedUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DiscMedUnitPrice.HeaderText = "Unit Price"
+        Me.DiscMedUnitPrice.Name = "DiscMedUnitPrice"
+        Me.DiscMedUnitPrice.ReadOnly = True
+        Me.DiscMedUnitPrice.Visible = False
+        '
+        'DiscMedQuantity
+        '
+        Me.DiscMedQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DiscMedQuantity.HeaderText = "Quantity"
+        Me.DiscMedQuantity.Name = "DiscMedQuantity"
+        Me.DiscMedQuantity.ReadOnly = True
+        Me.DiscMedQuantity.Width = 72
+        '
+        'DiscMedTotalPrice
+        '
+        Me.DiscMedTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DiscMedTotalPrice.HeaderText = "Total Price"
+        Me.DiscMedTotalPrice.Name = "DiscMedTotalPrice"
+        Me.DiscMedTotalPrice.ReadOnly = True
+        Me.DiscMedTotalPrice.Visible = False
+        '
+        'DiscMedItemGroup
+        '
+        Me.DiscMedItemGroup.HeaderText = "Item Group"
+        Me.DiscMedItemGroup.Name = "DiscMedItemGroup"
+        Me.DiscMedItemGroup.ReadOnly = True
+        Me.DiscMedItemGroup.Visible = False
+        '
+        'DiscMedItemTypeCode
+        '
+        Me.DiscMedItemTypeCode.HeaderText = "Item Type Code"
+        Me.DiscMedItemTypeCode.Name = "DiscMedItemTypeCode"
+        Me.DiscMedItemTypeCode.ReadOnly = True
+        Me.DiscMedItemTypeCode.Visible = False
+        '
+        'DiscMedItemTypeDescription
+        '
+        Me.DiscMedItemTypeDescription.HeaderText = "Item Type Description"
+        Me.DiscMedItemTypeDescription.Name = "DiscMedItemTypeDescription"
+        Me.DiscMedItemTypeDescription.ReadOnly = True
+        Me.DiscMedItemTypeDescription.Visible = False
+        '
+        'IsDiscMedDb
+        '
+        Me.IsDiscMedDb.HeaderText = "IsDb"
+        Me.IsDiscMedDb.Name = "IsDiscMedDb"
+        Me.IsDiscMedDb.ReadOnly = True
+        Me.IsDiscMedDb.Visible = False
         '
         'GroupBox27
         '
@@ -2163,7 +2295,7 @@ Partial Class FrmWardInformation
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(6, 63)
+        Me.Label23.Location = New System.Drawing.Point(6, 65)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(32, 14)
         Me.Label23.TabIndex = 115
@@ -2188,140 +2320,6 @@ Partial Class FrmWardInformation
         Me.GroupBox1.TabIndex = 116
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Visit Details"
-        '
-        'BtnDischargePet
-        '
-        Me.BtnDischargePet.Location = New System.Drawing.Point(232, 377)
-        Me.BtnDischargePet.Name = "BtnDischargePet"
-        Me.BtnDischargePet.Size = New System.Drawing.Size(150, 29)
-        Me.BtnDischargePet.TabIndex = 180
-        Me.BtnDischargePet.Text = "Discharge Pet..."
-        Me.BtnDischargePet.UseVisualStyleBackColor = True
-        '
-        'BtnDeleteSelectedMedication
-        '
-        Me.BtnDeleteSelectedMedication.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnDeleteSelectedMedication.HeaderText = "Delete?"
-        Me.BtnDeleteSelectedMedication.Name = "BtnDeleteSelectedMedication"
-        Me.BtnDeleteSelectedMedication.ReadOnly = True
-        Me.BtnDeleteSelectedMedication.Text = "Delete"
-        Me.BtnDeleteSelectedMedication.UseColumnTextForButtonValue = True
-        Me.BtnDeleteSelectedMedication.Width = 49
-        '
-        'BtnUpdateSelectedMedication
-        '
-        Me.BtnUpdateSelectedMedication.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnUpdateSelectedMedication.HeaderText = "Update"
-        Me.BtnUpdateSelectedMedication.Name = "BtnUpdateSelectedMedication"
-        Me.BtnUpdateSelectedMedication.ReadOnly = True
-        Me.BtnUpdateSelectedMedication.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.BtnUpdateSelectedMedication.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.BtnUpdateSelectedMedication.Text = "Update"
-        Me.BtnUpdateSelectedMedication.ToolTipText = "Update Discharge Medication Item"
-        Me.BtnUpdateSelectedMedication.UseColumnTextForButtonValue = True
-        Me.BtnUpdateSelectedMedication.Width = 66
-        '
-        'DiscMedRowNo
-        '
-        Me.DiscMedRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DiscMedRowNo.HeaderText = "No."
-        Me.DiscMedRowNo.Name = "DiscMedRowNo"
-        Me.DiscMedRowNo.ReadOnly = True
-        Me.DiscMedRowNo.Width = 48
-        '
-        'DiscMedPhRequestID
-        '
-        Me.DiscMedPhRequestID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DiscMedPhRequestID.HeaderText = "PhRequestID"
-        Me.DiscMedPhRequestID.Name = "DiscMedPhRequestID"
-        Me.DiscMedPhRequestID.ReadOnly = True
-        Me.DiscMedPhRequestID.Visible = False
-        Me.DiscMedPhRequestID.Width = 93
-        '
-        'DiscMedItemCode
-        '
-        Me.DiscMedItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DiscMedItemCode.HeaderText = "Item Code"
-        Me.DiscMedItemCode.Name = "DiscMedItemCode"
-        Me.DiscMedItemCode.ReadOnly = True
-        Me.DiscMedItemCode.Width = 79
-        '
-        'DiscMedItemDescription
-        '
-        Me.DiscMedItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DiscMedItemDescription.HeaderText = "Item Description"
-        Me.DiscMedItemDescription.Name = "DiscMedItemDescription"
-        Me.DiscMedItemDescription.ReadOnly = True
-        '
-        'DiscMedPrescription
-        '
-        Me.DiscMedPrescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DiscMedPrescription.HeaderText = "Prescription"
-        Me.DiscMedPrescription.Name = "DiscMedPrescription"
-        Me.DiscMedPrescription.ReadOnly = True
-        Me.DiscMedPrescription.Visible = False
-        '
-        'DiscMedNotes
-        '
-        Me.DiscMedNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DiscMedNotes.HeaderText = "Notes"
-        Me.DiscMedNotes.Name = "DiscMedNotes"
-        Me.DiscMedNotes.ReadOnly = True
-        Me.DiscMedNotes.Visible = False
-        '
-        'DiscMedUnitPrice
-        '
-        Me.DiscMedUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DiscMedUnitPrice.HeaderText = "Unit Price"
-        Me.DiscMedUnitPrice.Name = "DiscMedUnitPrice"
-        Me.DiscMedUnitPrice.ReadOnly = True
-        Me.DiscMedUnitPrice.Visible = False
-        Me.DiscMedUnitPrice.Width = 77
-        '
-        'DiscMedQuantity
-        '
-        Me.DiscMedQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DiscMedQuantity.HeaderText = "Quantity"
-        Me.DiscMedQuantity.Name = "DiscMedQuantity"
-        Me.DiscMedQuantity.ReadOnly = True
-        Me.DiscMedQuantity.Width = 72
-        '
-        'DiscMedTotalPrice
-        '
-        Me.DiscMedTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.DiscMedTotalPrice.HeaderText = "Total Price"
-        Me.DiscMedTotalPrice.Name = "DiscMedTotalPrice"
-        Me.DiscMedTotalPrice.ReadOnly = True
-        Me.DiscMedTotalPrice.Visible = False
-        Me.DiscMedTotalPrice.Width = 81
-        '
-        'DiscMedItemGroup
-        '
-        Me.DiscMedItemGroup.HeaderText = "Item Group"
-        Me.DiscMedItemGroup.Name = "DiscMedItemGroup"
-        Me.DiscMedItemGroup.ReadOnly = True
-        Me.DiscMedItemGroup.Visible = False
-        '
-        'DiscMedItemTypeCode
-        '
-        Me.DiscMedItemTypeCode.HeaderText = "Item Type Code"
-        Me.DiscMedItemTypeCode.Name = "DiscMedItemTypeCode"
-        Me.DiscMedItemTypeCode.ReadOnly = True
-        Me.DiscMedItemTypeCode.Visible = False
-        '
-        'DiscMedItemTypeDescription
-        '
-        Me.DiscMedItemTypeDescription.HeaderText = "Item Type Description"
-        Me.DiscMedItemTypeDescription.Name = "DiscMedItemTypeDescription"
-        Me.DiscMedItemTypeDescription.ReadOnly = True
-        Me.DiscMedItemTypeDescription.Visible = False
-        '
-        'IsDiscMedDb
-        '
-        Me.IsDiscMedDb.HeaderText = "IsDb"
-        Me.IsDiscMedDb.Name = "IsDiscMedDb"
-        Me.IsDiscMedDb.ReadOnly = True
-        Me.IsDiscMedDb.Visible = False
         '
         'FrmWardInformation
         '

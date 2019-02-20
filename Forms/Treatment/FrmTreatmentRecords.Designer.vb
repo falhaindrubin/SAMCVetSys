@@ -34,6 +34,14 @@ Partial Class FrmTreatmentRecords
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
+        Me.VisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VisitTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsVisitCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DgvTreatmentListing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -72,6 +80,7 @@ Partial Class FrmTreatmentRecords
         Me.DgvTreatmentListing.BackgroundColor = System.Drawing.Color.White
         Me.DgvTreatmentListing.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvTreatmentListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvTreatmentListing.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.VisitID, Me.VisitTime, Me.CustomerID, Me.CustomerName, Me.PetName, Me.EmployeeID, Me.EmployeeName, Me.IsVisitCompleted})
         Me.DgvTreatmentListing.Location = New System.Drawing.Point(8, 20)
         Me.DgvTreatmentListing.Name = "DgvTreatmentListing"
         Me.DgvTreatmentListing.ReadOnly = True
@@ -171,6 +180,67 @@ Partial Class FrmTreatmentRecords
         Me.BtnSearchCustomer.TabIndex = 5
         Me.BtnSearchCustomer.UseVisualStyleBackColor = False
         '
+        'VisitID
+        '
+        Me.VisitID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.VisitID.HeaderText = "Visit ID"
+        Me.VisitID.Name = "VisitID"
+        Me.VisitID.ReadOnly = True
+        Me.VisitID.Width = 65
+        '
+        'VisitTime
+        '
+        Me.VisitTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.VisitTime.HeaderText = "Visit Time"
+        Me.VisitTime.Name = "VisitTime"
+        Me.VisitTime.ReadOnly = True
+        Me.VisitTime.Width = 78
+        '
+        'CustomerID
+        '
+        Me.CustomerID.HeaderText = "CustomerID"
+        Me.CustomerID.Name = "CustomerID"
+        Me.CustomerID.ReadOnly = True
+        Me.CustomerID.Visible = False
+        Me.CustomerID.Width = 87
+        '
+        'CustomerName
+        '
+        Me.CustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.CustomerName.HeaderText = "Customer Name"
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.ReadOnly = True
+        '
+        'PetName
+        '
+        Me.PetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.PetName.HeaderText = "Pet Name"
+        Me.PetName.Name = "PetName"
+        Me.PetName.ReadOnly = True
+        '
+        'EmployeeID
+        '
+        Me.EmployeeID.HeaderText = "EmployeeID"
+        Me.EmployeeID.Name = "EmployeeID"
+        Me.EmployeeID.ReadOnly = True
+        Me.EmployeeID.Visible = False
+        Me.EmployeeID.Width = 87
+        '
+        'EmployeeName
+        '
+        Me.EmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.EmployeeName.HeaderText = "Vet"
+        Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.ReadOnly = True
+        '
+        'IsVisitCompleted
+        '
+        Me.IsVisitCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IsVisitCompleted.HeaderText = "Status"
+        Me.IsVisitCompleted.Name = "IsVisitCompleted"
+        Me.IsVisitCompleted.ReadOnly = True
+        Me.IsVisitCompleted.Width = 63
+        '
         'FrmTreatmentRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -203,4 +273,12 @@ Partial Class FrmTreatmentRecords
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label25 As Label
+    Friend WithEvents VisitID As DataGridViewTextBoxColumn
+    Friend WithEvents VisitTime As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents CustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents PetName As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeID As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeeName As DataGridViewTextBoxColumn
+    Friend WithEvents IsVisitCompleted As DataGridViewTextBoxColumn
 End Class

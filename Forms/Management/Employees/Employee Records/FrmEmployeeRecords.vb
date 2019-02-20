@@ -10,9 +10,20 @@
                 DtEmp = .GetEmployee(ClsEmployee)
 
                 If DtEmp.Rows.Count > 0 Then
+
                     With DgvEmployeeListing
-                        .DataSource = DtEmp
-                        .Show()
+                        .Rows.Clear()
+                        For i As Integer = 0 To DtEmp.Rows.Count - 1
+                            .Rows.Add()
+                            .Rows(i).Cells("EmployeeID").Value = DtEmp.Rows(i).Item("EmployeeID")
+                            .Rows(i).Cells("EmployeeName").Value = DtEmp.Rows(i).Item("EmployeeName")
+                            .Rows(i).Cells("NRICPassportNo").Value = DtEmp.Rows(i).Item("NRICPassportNo")
+                            .Rows(i).Cells("PositionName").Value = DtEmp.Rows(i).Item("PositionName")
+                            .Rows(i).Cells("IsActive").Value = IIf(DtEmp.Rows(i).Item("IsActive") = "1", "ACTIVE", "INACTIVE")
+                            .Rows(i).Cells("CreatedBy").Value = DtEmp.Rows(i).Item("CreatedBy")
+                            .Rows(i).Cells("DateCreated").Value = DtEmp.Rows(i).Item("DateCreated")
+                        Next
+
                     End With
                 End If
 

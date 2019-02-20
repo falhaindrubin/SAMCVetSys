@@ -73,13 +73,14 @@ Partial Class FrmEmployeeInformation
         Me.TxtAddressLine1 = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.CmbIsActive = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnEdit = New System.Windows.Forms.Button()
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.BtnPrint = New System.Windows.Forms.Button()
-        Me.BtnCancel = New System.Windows.Forms.Button()
         Me.TxtCreatedBy = New System.Windows.Forms.TextBox()
         Me.TxtDateModified = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -91,6 +92,7 @@ Partial Class FrmEmployeeInformation
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
@@ -112,7 +114,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtCountry.Location = New System.Drawing.Point(89, 444)
         Me.TxtCountry.Name = "TxtCountry"
         Me.TxtCountry.Size = New System.Drawing.Size(152, 20)
-        Me.TxtCountry.TabIndex = 14
+        Me.TxtCountry.TabIndex = 18
         '
         'Label21
         '
@@ -130,7 +132,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtCity.Location = New System.Drawing.Point(89, 402)
         Me.TxtCity.Name = "TxtCity"
         Me.TxtCity.Size = New System.Drawing.Size(152, 20)
-        Me.TxtCity.TabIndex = 12
+        Me.TxtCity.TabIndex = 16
         '
         'Label20
         '
@@ -148,7 +150,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtState.Location = New System.Drawing.Point(89, 423)
         Me.TxtState.Name = "TxtState"
         Me.TxtState.Size = New System.Drawing.Size(152, 20)
-        Me.TxtState.TabIndex = 13
+        Me.TxtState.TabIndex = 17
         '
         'Label19
         '
@@ -166,7 +168,7 @@ Partial Class FrmEmployeeInformation
         Me.CmbMaritalStatus.Location = New System.Drawing.Point(436, 177)
         Me.CmbMaritalStatus.Name = "CmbMaritalStatus"
         Me.CmbMaritalStatus.Size = New System.Drawing.Size(149, 22)
-        Me.CmbMaritalStatus.TabIndex = 133
+        Me.CmbMaritalStatus.TabIndex = 24
         '
         'CmbPosition
         '
@@ -175,7 +177,7 @@ Partial Class FrmEmployeeInformation
         Me.CmbPosition.Location = New System.Drawing.Point(436, 25)
         Me.CmbPosition.Name = "CmbPosition"
         Me.CmbPosition.Size = New System.Drawing.Size(149, 22)
-        Me.CmbPosition.TabIndex = 132
+        Me.CmbPosition.TabIndex = 19
         '
         'Label38
         '
@@ -194,7 +196,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtInstitution.Multiline = True
         Me.TxtInstitution.Name = "TxtInstitution"
         Me.TxtInstitution.Size = New System.Drawing.Size(255, 43)
-        Me.TxtInstitution.TabIndex = 130
+        Me.TxtInstitution.TabIndex = 21
         '
         'Label37
         '
@@ -212,7 +214,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtTelNo.Location = New System.Drawing.Point(89, 198)
         Me.TxtTelNo.Name = "TxtTelNo"
         Me.TxtTelNo.Size = New System.Drawing.Size(244, 20)
-        Me.TxtTelNo.TabIndex = 4
+        Me.TxtTelNo.TabIndex = 8
         '
         'TxtQualification
         '
@@ -222,7 +224,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtQualification.Multiline = True
         Me.TxtQualification.Name = "TxtQualification"
         Me.TxtQualification.Size = New System.Drawing.Size(255, 42)
-        Me.TxtQualification.TabIndex = 128
+        Me.TxtQualification.TabIndex = 20
         '
         'Label6
         '
@@ -240,7 +242,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtMobileNo.Location = New System.Drawing.Point(89, 219)
         Me.TxtMobileNo.Name = "TxtMobileNo"
         Me.TxtMobileNo.Size = New System.Drawing.Size(244, 20)
-        Me.TxtMobileNo.TabIndex = 5
+        Me.TxtMobileNo.TabIndex = 9
         '
         'Label36
         '
@@ -258,7 +260,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtPostcode.Location = New System.Drawing.Point(89, 381)
         Me.TxtPostcode.Name = "TxtPostcode"
         Me.TxtPostcode.Size = New System.Drawing.Size(152, 20)
-        Me.TxtPostcode.TabIndex = 11
+        Me.TxtPostcode.TabIndex = 15
         '
         'Label8
         '
@@ -285,7 +287,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtEmail.Location = New System.Drawing.Point(89, 240)
         Me.TxtEmail.Name = "TxtEmail"
         Me.TxtEmail.Size = New System.Drawing.Size(244, 20)
-        Me.TxtEmail.TabIndex = 6
+        Me.TxtEmail.TabIndex = 10
         '
         'Label34
         '
@@ -303,7 +305,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtReligion.Location = New System.Drawing.Point(436, 156)
         Me.TxtReligion.Name = "TxtReligion"
         Me.TxtReligion.Size = New System.Drawing.Size(149, 20)
-        Me.TxtReligion.TabIndex = 122
+        Me.TxtReligion.TabIndex = 23
         '
         'Label33
         '
@@ -321,7 +323,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtRace.Location = New System.Drawing.Point(436, 135)
         Me.TxtRace.Name = "TxtRace"
         Me.TxtRace.Size = New System.Drawing.Size(149, 20)
-        Me.TxtRace.TabIndex = 120
+        Me.TxtRace.TabIndex = 22
         '
         'CmbSex
         '
@@ -330,7 +332,7 @@ Partial Class FrmEmployeeInformation
         Me.CmbSex.Location = New System.Drawing.Point(89, 91)
         Me.CmbSex.Name = "CmbSex"
         Me.CmbSex.Size = New System.Drawing.Size(100, 22)
-        Me.CmbSex.TabIndex = 119
+        Me.CmbSex.TabIndex = 3
         '
         'Label32
         '
@@ -348,7 +350,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtNationality.Location = New System.Drawing.Point(89, 177)
         Me.TxtNationality.Name = "TxtNationality"
         Me.TxtNationality.Size = New System.Drawing.Size(244, 20)
-        Me.TxtNationality.TabIndex = 116
+        Me.TxtNationality.TabIndex = 7
         '
         'Label16
         '
@@ -374,7 +376,7 @@ Partial Class FrmEmployeeInformation
         Me.DtpEmployeeDOB.Location = New System.Drawing.Point(89, 135)
         Me.DtpEmployeeDOB.Name = "DtpEmployeeDOB"
         Me.DtpEmployeeDOB.Size = New System.Drawing.Size(100, 20)
-        Me.DtpEmployeeDOB.TabIndex = 115
+        Me.DtpEmployeeDOB.TabIndex = 5
         '
         'TxtEmployeePOB
         '
@@ -383,7 +385,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtEmployeePOB.Location = New System.Drawing.Point(89, 156)
         Me.TxtEmployeePOB.Name = "TxtEmployeePOB"
         Me.TxtEmployeePOB.Size = New System.Drawing.Size(244, 20)
-        Me.TxtEmployeePOB.TabIndex = 113
+        Me.TxtEmployeePOB.TabIndex = 6
         '
         'Label15
         '
@@ -438,7 +440,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtAddressLine3.Location = New System.Drawing.Point(89, 321)
         Me.TxtAddressLine3.Name = "TxtAddressLine3"
         Me.TxtAddressLine3.Size = New System.Drawing.Size(244, 20)
-        Me.TxtAddressLine3.TabIndex = 9
+        Me.TxtAddressLine3.TabIndex = 13
         '
         'CmbSalutation
         '
@@ -456,7 +458,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtNRICPassportNo.Location = New System.Drawing.Point(89, 114)
         Me.TxtNRICPassportNo.Name = "TxtNRICPassportNo"
         Me.TxtNRICPassportNo.Size = New System.Drawing.Size(244, 20)
-        Me.TxtNRICPassportNo.TabIndex = 3
+        Me.TxtNRICPassportNo.TabIndex = 4
         '
         'TxtAddressLine2
         '
@@ -465,7 +467,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtAddressLine2.Location = New System.Drawing.Point(89, 300)
         Me.TxtAddressLine2.Name = "TxtAddressLine2"
         Me.TxtAddressLine2.Size = New System.Drawing.Size(244, 20)
-        Me.TxtAddressLine2.TabIndex = 8
+        Me.TxtAddressLine2.TabIndex = 12
         '
         'Label2
         '
@@ -492,7 +494,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtAddressLine4.Location = New System.Drawing.Point(89, 342)
         Me.TxtAddressLine4.Name = "TxtAddressLine4"
         Me.TxtAddressLine4.Size = New System.Drawing.Size(244, 20)
-        Me.TxtAddressLine4.TabIndex = 10
+        Me.TxtAddressLine4.TabIndex = 14
         '
         'Label4
         '
@@ -519,7 +521,7 @@ Partial Class FrmEmployeeInformation
         Me.TxtAddressLine1.Location = New System.Drawing.Point(89, 279)
         Me.TxtAddressLine1.Name = "TxtAddressLine1"
         Me.TxtAddressLine1.Size = New System.Drawing.Size(244, 20)
-        Me.TxtAddressLine1.TabIndex = 7
+        Me.TxtAddressLine1.TabIndex = 11
         '
         'TabPage1
         '
@@ -527,13 +529,14 @@ Partial Class FrmEmployeeInformation
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1138, 543)
+        Me.TabPage1.Size = New System.Drawing.Size(712, 543)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Employee Information"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.CmbMaritalStatus)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.CmbPosition)
@@ -583,10 +586,30 @@ Partial Class FrmEmployeeInformation
         Me.GroupBox1.Controls.Add(Me.CmbSex)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1126, 475)
+        Me.GroupBox1.Size = New System.Drawing.Size(700, 475)
         Me.GroupBox1.TabIndex = 134
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Employee Details"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.CmbIsActive)
+        Me.GroupBox2.Location = New System.Drawing.Point(367, 205)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(324, 47)
+        Me.GroupBox2.TabIndex = 135
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Employee Status"
+        '
+        'CmbIsActive
+        '
+        Me.CmbIsActive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbIsActive.FormattingEnabled = True
+        Me.CmbIsActive.Items.AddRange(New Object() {"ACTIVE", "INACTIVE"})
+        Me.CmbIsActive.Location = New System.Drawing.Point(6, 19)
+        Me.CmbIsActive.Name = "CmbIsActive"
+        Me.CmbIsActive.Size = New System.Drawing.Size(167, 22)
+        Me.CmbIsActive.TabIndex = 25
         '
         'TabControl1
         '
@@ -594,7 +617,7 @@ Partial Class FrmEmployeeInformation
         Me.TabControl1.Location = New System.Drawing.Point(12, 84)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1146, 570)
+        Me.TabControl1.Size = New System.Drawing.Size(720, 570)
         Me.TabControl1.TabIndex = 83
         '
         'BtnClose
@@ -602,10 +625,10 @@ Partial Class FrmEmployeeInformation
         Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
         Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
         Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(1082, 4)
+        Me.BtnClose.Location = New System.Drawing.Point(656, 4)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(60, 60)
-        Me.BtnClose.TabIndex = 3
+        Me.BtnClose.TabIndex = 30
         Me.ToolTip1.SetToolTip(Me.BtnClose, "Close")
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -614,10 +637,10 @@ Partial Class FrmEmployeeInformation
         Me.BtnEdit.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEdit.BackgroundImage = CType(resources.GetObject("BtnEdit.BackgroundImage"), System.Drawing.Image)
         Me.BtnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnEdit.Location = New System.Drawing.Point(1021, 4)
+        Me.BtnEdit.Location = New System.Drawing.Point(595, 4)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(60, 60)
-        Me.BtnEdit.TabIndex = 1
+        Me.BtnEdit.TabIndex = 29
         Me.ToolTip1.SetToolTip(Me.BtnEdit, "Edit")
         Me.BtnEdit.UseVisualStyleBackColor = False
         '
@@ -626,10 +649,10 @@ Partial Class FrmEmployeeInformation
         Me.BtnSave.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSave.BackgroundImage = CType(resources.GetObject("BtnSave.BackgroundImage"), System.Drawing.Image)
         Me.BtnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnSave.Location = New System.Drawing.Point(899, 4)
+        Me.BtnSave.Location = New System.Drawing.Point(534, 4)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 60)
-        Me.BtnSave.TabIndex = 0
+        Me.BtnSave.TabIndex = 27
         Me.ToolTip1.SetToolTip(Me.BtnSave, "Save")
         Me.BtnSave.UseVisualStyleBackColor = False
         '
@@ -638,22 +661,11 @@ Partial Class FrmEmployeeInformation
         Me.BtnPrint.BackColor = System.Drawing.SystemColors.Control
         Me.BtnPrint.BackgroundImage = CType(resources.GetObject("BtnPrint.BackgroundImage"), System.Drawing.Image)
         Me.BtnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnPrint.Location = New System.Drawing.Point(838, 4)
+        Me.BtnPrint.Location = New System.Drawing.Point(473, 4)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(60, 60)
-        Me.BtnPrint.TabIndex = 5
+        Me.BtnPrint.TabIndex = 26
         Me.BtnPrint.UseVisualStyleBackColor = False
-        '
-        'BtnCancel
-        '
-        Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnCancel.BackgroundImage = CType(resources.GetObject("BtnCancel.BackgroundImage"), System.Drawing.Image)
-        Me.BtnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnCancel.Location = New System.Drawing.Point(960, 4)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(60, 60)
-        Me.BtnCancel.TabIndex = 2
-        Me.BtnCancel.UseVisualStyleBackColor = False
         '
         'TxtCreatedBy
         '
@@ -724,7 +736,7 @@ Partial Class FrmEmployeeInformation
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Location = New System.Drawing.Point(12, 660)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1146, 57)
+        Me.Panel3.Size = New System.Drawing.Size(720, 57)
         Me.Panel3.TabIndex = 85
         '
         'PnlActionBar
@@ -733,12 +745,11 @@ Partial Class FrmEmployeeInformation
         Me.PnlActionBar.Controls.Add(Me.Label25)
         Me.PnlActionBar.Controls.Add(Me.BtnPrint)
         Me.PnlActionBar.Controls.Add(Me.BtnClose)
-        Me.PnlActionBar.Controls.Add(Me.BtnCancel)
         Me.PnlActionBar.Controls.Add(Me.BtnEdit)
         Me.PnlActionBar.Controls.Add(Me.BtnSave)
         Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
         Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(1146, 68)
+        Me.PnlActionBar.Size = New System.Drawing.Size(720, 68)
         Me.PnlActionBar.TabIndex = 84
         '
         'Label25
@@ -758,7 +769,7 @@ Partial Class FrmEmployeeInformation
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(1170, 729)
+        Me.ClientSize = New System.Drawing.Size(743, 729)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
@@ -771,6 +782,7 @@ Partial Class FrmEmployeeInformation
         Me.TabPage1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
@@ -813,7 +825,6 @@ Partial Class FrmEmployeeInformation
     Friend WithEvents BtnEdit As Button
     Friend WithEvents BtnSave As Button
     Friend WithEvents BtnPrint As Button
-    Friend WithEvents BtnCancel As Button
     Friend WithEvents TxtCreatedBy As TextBox
     Friend WithEvents TxtDateModified As TextBox
     Friend WithEvents Label17 As Label
@@ -844,4 +855,6 @@ Partial Class FrmEmployeeInformation
     Friend WithEvents CmbPosition As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label25 As Label
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents CmbIsActive As ComboBox
 End Class

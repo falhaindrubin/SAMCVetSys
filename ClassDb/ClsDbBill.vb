@@ -20,7 +20,7 @@ Public Class ClsDbBill
                 .Append("GrandTotal, Deposit, Discount, TotalDue, IsPaymentComplete, IsCash, IsDebitCreditCard, IsCheque, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified) ")
                 .Append("VALUES ")
-                .Append("('" & BL.InvoiceNo & "', '" & BL.VisitID & "', " & CSQLDate(BL.InvoiceDate) & ", '" & BL.CustomerID & "', '" & BL.CustomerName & "', '" & BL.MobileNo & "', '" & BL.Email & "', '" & BL.PetID & "', '" & BL.PetName & "', ")
+                .Append("('" & BL.InvoiceNo & "', '" & BL.VisitID & "', " & CSQLDateTime(BL.InvoiceDate) & ", '" & BL.CustomerID & "', '" & BL.CustomerName & "', '" & BL.MobileNo & "', '" & BL.Email & "', '" & BL.PetID & "', '" & BL.PetName & "', ")
                 .Append("'" & BL.GrandTotal & "', '" & BL.Deposit & "', '" & BL.Discount & "', '" & BL.TotalDue & "', ")
                 .Append("'" & BL.IsPaymentComplete & "', '" & BL.IsCash & "', '" & BL.IsDebitCreditCard & "', '" & BL.IsCheque & "', ")
                 .Append("'" & BL.Ref.CreatedBy & "', " & CSQLDateTime(BL.Ref.DateCreated) & ", '" & BL.Ref.ModifiedBy & "', " & CSQLDateTime(BL.Ref.DateModified) & ") ")

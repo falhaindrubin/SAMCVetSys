@@ -106,13 +106,13 @@ Public Class ClsVisit
         End Set
     End Property
 
-    Private _IsVisitCompleted As String
-    Public Property IsVisitCompleted As String
+    Private _IsCompleted As String
+    Public Property IsCompleted As String
         Get
-            Return _IsVisitCompleted
+            Return _IsCompleted
         End Get
         Set(value As String)
-            _IsVisitCompleted = value
+            _IsCompleted = value
         End Set
     End Property
 
@@ -126,13 +126,13 @@ Public Class ClsVisit
         End Set
     End Property
 
-    Private _IsAdmittedToWard As String
-    Public Property IsAdmittedToWard As String
+    Private _IsWarded As String
+    Public Property IsWarded As String
         Get
-            Return _IsAdmittedToWard
+            Return _IsWarded
         End Get
         Set(value As String)
-            _IsAdmittedToWard = value
+            _IsWarded = value
         End Set
     End Property
 

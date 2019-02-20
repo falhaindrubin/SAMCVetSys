@@ -21,8 +21,23 @@
         Try
             DtIncompleteVisit = ClsVisit.GetIncompleteVisitListing(ClsVisit)
             If DtIncompleteVisit.Rows.Count > 0 Then
-                DgvTreatmentListing.DataSource = DtIncompleteVisit
-                DgvTreatmentListing.Show()
+                With DgvTreatmentListing
+                    .Rows.Clear()
+
+                    For i As Integer = 0 To DtIncompleteVisit.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("VisitID").Value = DtIncompleteVisit.Rows(i).Item("VisitID")
+                        .Rows(i).Cells("CustomerName").Value = DtIncompleteVisit.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("CustomerID").Value = DtIncompleteVisit.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("PetName").Value = DtIncompleteVisit.Rows(i).Item("PetName")
+                        .Rows(i).Cells("EmployeeID").Value = DtIncompleteVisit.Rows(i).Item("EmployeeID")
+                        .Rows(i).Cells("EmployeeName").Value = "DR. " & DtIncompleteVisit.Rows(i).Item("EmployeeName")
+                        .Rows(i).Cells("VisitTime").Value = DtIncompleteVisit.Rows(i).Item("VisitTime")
+                        .Rows(i).Cells("IsVisitCompleted").Value = IIf(DtIncompleteVisit.Rows(i).Item("IsCompleted") = "1", "COMPLETED", "ON-GOING")
+                    Next
+                End With
+                'DgvTreatmentListing.DataSource = DtIncompleteVisit
+                'DgvTreatmentListing.Show()
             End If
 
         Catch ex As Exception

@@ -2,6 +2,8 @@
 
 Public Class FrmEmployeeInformation
 
+#Region "Property"
+
     Private _UserCommand As String
     Public Property UserCommand As String
         Get
@@ -22,9 +24,12 @@ Public Class FrmEmployeeInformation
         End Set
     End Property
 
+#End Region
+
     Private Sub FrmUserEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
+        PopulateEmpStatus()
         PopulateSalutation()
         PopulateSex()
         PopulateMaritalStatus()
@@ -42,6 +47,7 @@ Public Class FrmEmployeeInformation
             If EmployeeID <> "" Then
 
                 With ClsEmployee
+
                     .EmployeeID = EmployeeID
                     DtEmployee = .GetEmployee(ClsEmployee)
 
@@ -53,9 +59,9 @@ Public Class FrmEmployeeInformation
                         TxtEmployeeName.Text = DtEmployee.Rows(0).Item("EmployeeName")
                         CmbSex.SelectedValue = DtEmployee.Rows(0).Item("SexCode")
                         TxtNRICPassportNo.Text = DtEmployee.Rows(0).Item("NRICPassportNo")
-                        DtpEmployeeDOB.Value = CStrNull(DtEmployee.Rows(0).Item("EmployeeDOB"))
-                        TxtEmployeePOB.Text = DtEmployee.Rows(0).Item("EmployeePOB")
-                        TxtNationality.Text = DtEmployee.Rows(0).Item("Nationality")
+                        DtpEmployeeDOB.Value = IIf(IsDBNull(DtEmployee.Rows(0).Item("EmployeeDOB")) = True, Now, DtEmployee.Rows(0).Item("EmployeeDOB"))
+                        TxtEmployeePOB.Text = CStrNull(DtEmployee.Rows(0).Item("EmployeePOB"))
+                        TxtNationality.Text = CStrNull(DtEmployee.Rows(0).Item("Nationality"))
 
                         TxtMobileNo.Text = CStrNull(DtEmployee.Rows(0).Item("MobileNo"))
                         TxtTelNo.Text = CStrNull(DtEmployee.Rows(0).Item("TelNo"))
@@ -69,17 +75,18 @@ Public Class FrmEmployeeInformation
                         TxtState.Text = CStrNull(DtEmployee.Rows(0).Item("State"))
                         TxtCountry.Text = CStrNull(DtEmployee.Rows(0).Item("Country"))
 
-                        CmbPosition.SelectedValue = DtEmployee.Rows(0).Item("PositionCode")
+                        CmbPosition.SelectedValue = CStrNull(DtEmployee.Rows(0).Item("PositionCode"))
                         TxtQualification.Text = CStrNull(DtEmployee.Rows(0).Item("Qualification"))
                         TxtInstitution.Text = CStrNull(DtEmployee.Rows(0).Item("Institution"))
                         TxtRace.Text = CStrNull(DtEmployee.Rows(0).Item("Race"))
                         TxtReligion.Text = CStrNull(DtEmployee.Rows(0).Item("Religion"))
-                        CmbMaritalStatus.SelectedValue = DtEmployee.Rows(0).Item("MaritalStatusCode")
+                        CmbMaritalStatus.SelectedValue = CStrNull(DtEmployee.Rows(0).Item("MaritalStatusCode"))
+                        CmbIsActive.SelectedValue = CStrNull(DtEmployee.Rows(0).Item("IsActive"))
 
-                        TxtCreatedBy.Text = DtEmployee.Rows(0).Item("CreatedBy")
-                        TxtDateCreated.Text = DtEmployee.Rows(0).Item("DateCreated")
-                        TxtModifiedBy.Text = DtEmployee.Rows(0).Item("ModifiedBy")
-                        TxtDateModified.Text = DtEmployee.Rows(0).Item("DateModified")
+                        TxtCreatedBy.Text = CStrNull(DtEmployee.Rows(0).Item("CreatedBy"))
+                        TxtDateCreated.Text = CStrNull(DtEmployee.Rows(0).Item("DateCreated"))
+                        TxtModifiedBy.Text = CStrNull(DtEmployee.Rows(0).Item("ModifiedBy"))
+                        TxtDateModified.Text = CStrNull(DtEmployee.Rows(0).Item("DateModified"))
 
                     End If
 
@@ -88,7 +95,7 @@ Public Class FrmEmployeeInformation
             End If
 
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewEmployee()")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateForm()")
         End Try
 
     End Sub
@@ -151,6 +158,7 @@ Public Class FrmEmployeeInformation
                 .PositionName = UCase(Trim(DirectCast(CmbPosition.SelectedItem, KeyValuePair(Of String, String)).Value.ToString))
                 .Qualification = UCase(Trim(TxtQualification.Text))
                 .Institution = UCase(Trim(TxtInstitution.Text))
+                .IsActive = DirectCast(CmbIsActive.SelectedItem, KeyValuePair(Of String, String)).Key.ToString
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
                 .Ref.ModifiedBy = CURR_USER
@@ -188,25 +196,15 @@ Public Class FrmEmployeeInformation
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddNewEmployee()")
+            DbTrans.Rollback()
+            DbTrans.Dispose()
+            DbTrans = Nothing
             Return False
         End Try
 
         Return True
 
     End Function
-
-    Private Sub SaveEmployeeToDb()
-
-        Try
-            If Not CheckUserInput(UserCommand) Then Exit Sub
-            If Not AddNewEmployee() Then Exit Sub
-            'If Not AddNewUser() Then Exit Sub
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".SaveEmployeeToDb()")
-        End Try
-
-    End Sub
 
     Private Function CheckUserInput(UserCommand As String) As Boolean
 
@@ -220,6 +218,29 @@ Public Class FrmEmployeeInformation
         Return True
 
     End Function
+
+    Private Sub PopulateEmpStatus()
+
+        Dim CmbSource As New Dictionary(Of String, String)
+
+        Try
+            CmbSource.Add("1", "ACTIVE")
+            CmbSource.Add("0", "INACTIVE")
+
+            If CmbIsActive.Items.Count > 0 Then
+                CmbIsActive.DataSource = Nothing
+                CmbIsActive.Items.Clear()
+            End If
+
+            CmbIsActive.DataSource = New BindingSource(CmbSource, Nothing)
+            CmbIsActive.DisplayMember = "Value"
+            CmbIsActive.ValueMember = "Key"
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateEmpStatus()")
+        End Try
+
+    End Sub
 
     Private Sub PopulatePosition()
 
@@ -346,15 +367,15 @@ Public Class FrmEmployeeInformation
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Me.Dispose()
         Me.Close()
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        SaveEmployeeToDb()
+        'SaveEmployeeToDb()
+        If Not CheckUserInput(UserCommand) Then Exit Sub
+        If Not AddNewEmployee() Then Exit Sub
     End Sub
 
-    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-
-    End Sub
 
 End Class

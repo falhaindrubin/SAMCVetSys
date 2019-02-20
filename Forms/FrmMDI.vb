@@ -1,16 +1,70 @@
-﻿Public Class FrmMDI
+﻿Imports System.IO
+
+Public Class FrmMDI
 
     Private Sub FrmMDI_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Text = "SAMC Veterinary System" & SOFTWARE_VERSION & " - " & CURR_USER
+        Text = "SAMC Veterinary Management System " & SOFTWARE_VERSION & " - " & CURR_USER
     End Sub
 
     Private Sub FrmMDI_Closing(sender As Object, e As EventArgs) Handles MyBase.Closing
+        TerminateExternalExe()
         Me.Dispose()
         FrmLogin.Dispose()
         FrmLogin.Close()
     End Sub
 
-    Private Sub ClientRegistrationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientRegistrationToolStripMenuItem.Click
+    Private Function TerminateExternalExe() As Boolean
+
+        Try
+            Dim StrReportTxt As String = My.Application.Info.DirectoryPath & "\Reports.txt"
+
+            If System.IO.File.Exists(StrReportTxt) Then
+
+                'The file exists
+                Dim PsList() As Process
+                Dim StrReportExe As String = File.ReadAllText(StrReportTxt)
+                Dim StrReportExeExtracted As String() = StrReportExe.Split(";")
+                Dim ReportList As New List(Of String)
+                Dim la, lb As String
+
+                For Each a In StrReportExeExtracted
+                    la = a.Replace(Environment.NewLine, "")
+                    lb = la.Replace(".exe", "")
+                    ReportList.Add(lb)
+                Next
+
+                PsList = Process.GetProcesses()
+                For i As Integer = 0 To ReportList.Count - 1
+                    Dim ExeName As String = ReportList(i).ToString
+                    For Each p As Process In PsList
+
+                        If (p.ProcessName = ExeName) Then
+                            'MsgBox(p.ProcessName)
+                            p.Kill()
+                        End If
+
+                    Next p
+
+                Next
+
+            Else
+                'the file doesn't exist
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmMDI.TerminateExternalExe()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+#Region "Customer"
+
+    Private Sub MnuRegister_Click(sender As Object, e As EventArgs) Handles MnuRegister.Click
+
         Dim frm As New FrmCustomerRecords
         'Static intCount As Integer
 
@@ -33,74 +87,7 @@
         frm.Show()
     End Sub
 
-    Private Sub PetToolStripMenuItem_Click(sender As Object, e As EventArgs)
-
-        'Dim frm As New frmAnimalRecords()
-        ''Static intCount As Integer
-
-        'For Each f As Form In Application.OpenForms
-        '    If TypeOf f Is frmAnimalRecords Then
-        '        f.Activate()
-        '        Exit Sub
-        '    End If
-        'Next
-
-        'frm = New frmAnimalRecords With {
-        '    .MdiParent = Me
-        '}
-
-        'frm.Show()
-
-    End Sub
-
-    Private Sub MnuAppointment_Click(sender As Object, e As EventArgs)
-
-        Dim frm As New FrmAppointmentRecords()
-        'Static intCount As Integer
-
-        For Each f As Form In Application.OpenForms
-            If TypeOf f Is FrmAppointmentRecords Then
-                f.Activate()
-                Exit Sub
-            End If
-        Next
-
-        frm = New FrmAppointmentRecords With {
-            .MdiParent = Me
-        }
-        frm.Show()
-
-        '' Increment the caption counter.
-        'intCount += 1
-
-        '' Set the caption to be unique.
-        'frm.Text = frm.Text & " " & intCount.ToString()
-
-    End Sub
-
-
-    Private Sub EmployeeUserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmployeeUserToolStripMenuItem.Click
-        Try
-            Dim Frm As New FrmEmployeeRecords()
-            'Static intCount As Integer
-
-            For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmEmployeeRecords Then
-                    f.Activate()
-                    Exit Sub
-                End If
-            Next
-
-            Frm = New FrmEmployeeRecords With {
-                .MdiParent = Me
-            }
-            Frm.Show()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub ConsultationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsultationToolStripMenuItem.Click
+    Private Sub MnuVisit_Click(sender As Object, e As EventArgs) Handles MnuVisit.Click
         Try
             Dim Frm As New FrmVisitRecords()
             'Static intCount As Integer
@@ -121,46 +108,7 @@
         End Try
     End Sub
 
-    Private Sub PaymentToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        Try
-            Dim Frm As New FrmPaymentRecords()
-            'Static intCount As Integer
-
-            For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmPaymentRecords Then
-                    f.Activate()
-                    Exit Sub
-                End If
-            Next
-
-            Frm = New FrmPaymentRecords With {
-                .MdiParent = Me
-            }
-            Frm.Show()
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub ProductsServicesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductsServicesToolStripMenuItem.Click
-        Try
-            Dim Frm As New FrmItemRecords()
-            'Static intCount As Integer
-            For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmItemRecords Then
-                    f.Activate()
-                    Exit Sub
-                End If
-            Next
-            Frm = New FrmItemRecords With {
-                .MdiParent = Me
-            }
-            Frm.Show()
-        Catch ex As Exception
-        End Try
-    End Sub
-
-    Private Sub AppointmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AppointmentToolStripMenuItem.Click
+    Private Sub MnuAppointment_Click(sender As Object, e As EventArgs) Handles MnuAppointment.Click
 
         Dim Frm As New FrmAppointmentRecords
         'Static intCount As Integer
@@ -185,7 +133,11 @@
 
     End Sub
 
-    Private Sub TreatmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TreatmentToolStripMenuItem.Click
+#End Region
+
+#Region "Treatment"
+
+    Private Sub MnuTreatment_Click(sender As Object, e As EventArgs) Handles MnuTreatment.Click
         Try
             Dim Frm As New FrmTreatmentRecords
             'Static intCount As Integer
@@ -205,7 +157,36 @@
         End Try
     End Sub
 
-    Private Sub WardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WardToolStripMenuItem.Click
+#End Region
+
+#Region "Surgery"
+
+    Private Sub MnuSurgery_Click(sender As Object, e As EventArgs) Handles MnuSurgery.Click
+        Try
+            Dim Frm As New FrmSurgeryRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmSurgeryRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmSurgeryRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+#End Region
+
+#Region "Ward"
+
+    Private Sub MnuWard_Click(sender As Object, e As EventArgs) Handles MnuWard.Click
 
         Try
             Dim Frm As New FrmWardRecords
@@ -228,7 +209,39 @@
 
     End Sub
 
-    Private Sub BillingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BillingToolStripMenuItem.Click
+#End Region
+
+#Region "Pharmacy"
+
+    Private Sub MnuPharmacy_Click(sender As Object, e As EventArgs) Handles MnuPharmacy.Click
+
+        Try
+            Dim Frm As New FrmPharmacyRecords()
+            'Static intCount As Integer
+
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmPharmacyRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+
+            Frm = New FrmPharmacyRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+#End Region
+
+#Region "Billing"
+
+    Private Sub MnuBilling_Click(sender As Object, e As EventArgs) Handles MnuBilling.Click
         Try
             Dim Frm As New FrmPaymentRecords()
             'Static intCount As Integer
@@ -249,19 +262,23 @@
         End Try
     End Sub
 
-    Private Sub SurgeryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SurgeryToolStripMenuItem.Click
+#End Region
+
+#Region "Management"
+
+    Private Sub MnuEmployee_Click(sender As Object, e As EventArgs) Handles MnuEmployee.Click
         Try
-            Dim Frm As New FrmSurgeryRecords()
+            Dim Frm As New FrmEmployeeRecords()
             'Static intCount As Integer
 
             For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmSurgeryRecords Then
+                If TypeOf f Is FrmEmployeeRecords Then
                     f.Activate()
                     Exit Sub
                 End If
             Next
 
-            Frm = New FrmSurgeryRecords With {
+            Frm = New FrmEmployeeRecords With {
                 .MdiParent = Me
             }
             Frm.Show()
@@ -270,7 +287,7 @@
         End Try
     End Sub
 
-    Private Sub UserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UserToolStripMenuItem.Click
+    Private Sub MnuUser_Click(sender As Object, e As EventArgs) Handles MnuUser.Click
 
         Try
             Dim Frm As New FrmUserRecords()
@@ -292,7 +309,7 @@
         End Try
     End Sub
 
-    Private Sub RolesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RolesToolStripMenuItem.Click
+    Private Sub MnuRoles_Click(sender As Object, e As EventArgs) Handles MnuRoles.Click
 
         Try
             Dim Frm As New FrmRoleRecords()
@@ -316,7 +333,25 @@
 
     End Sub
 
-    Private Sub SurgeryToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SurgeryToolStripMenuItem1.Click
+    Private Sub MnuProductServices_Click(sender As Object, e As EventArgs) Handles MnuProductServices.Click
+        Try
+            Dim Frm As New FrmItemRecords()
+            'Static intCount As Integer
+            For Each f As Form In Application.OpenForms
+                If TypeOf f Is FrmItemRecords Then
+                    f.Activate()
+                    Exit Sub
+                End If
+            Next
+            Frm = New FrmItemRecords With {
+                .MdiParent = Me
+            }
+            Frm.Show()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub MnuManagementSurgery_Click(sender As Object, e As EventArgs) Handles MnuManagementSurgery.Click
 
         Try
             Dim Frm As New FrmSurgeryManagement()
@@ -340,28 +375,6 @@
 
     End Sub
 
-    Private Sub PharmacyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PharmacyToolStripMenuItem.Click
-
-        Try
-            Dim Frm As New FrmPharmacyRecords()
-            'Static intCount As Integer
-
-            For Each f As Form In Application.OpenForms
-                If TypeOf f Is FrmPharmacyRecords Then
-                    f.Activate()
-                    Exit Sub
-                End If
-            Next
-
-            Frm = New FrmPharmacyRecords With {
-                .MdiParent = Me
-            }
-            Frm.Show()
-
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
+#End Region
 
 End Class

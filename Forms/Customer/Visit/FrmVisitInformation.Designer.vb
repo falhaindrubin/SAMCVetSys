@@ -23,7 +23,7 @@ Partial Class FrmVisitInformation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmVisitInformation))
         Me.Label22 = New System.Windows.Forms.Label()
         Me.TxtCountry = New System.Windows.Forms.TextBox()
@@ -65,7 +65,6 @@ Partial Class FrmVisitInformation
         Me.BtnSave = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.TxtSalutation = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtCustomerName = New System.Windows.Forms.TextBox()
         Me.TxtAddress1 = New System.Windows.Forms.TextBox()
@@ -128,6 +127,19 @@ Partial Class FrmVisitInformation
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.DgvSelectedItem = New System.Windows.Forms.DataGridView()
+        Me.BtnChargesDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ChargesRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChargesItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsChargeDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.TxtItem = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
@@ -149,19 +161,7 @@ Partial Class FrmVisitInformation
         Me.BtnBillPayment = New System.Windows.Forms.Button()
         Me.CbIsAdmittedToWard = New System.Windows.Forms.CheckBox()
         Me.CbIsVisitCompleted = New System.Windows.Forms.CheckBox()
-        Me.BtnChargesDeleteItem = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.ChargesRowNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesItemDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesPrescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesUnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesQuantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesTotalPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesItemGroup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesItemTypeCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ChargesItemTypeDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IsChargeDb = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TxtSalutation = New System.Windows.Forms.TextBox()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.DgvPetListing, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -338,9 +338,9 @@ Partial Class FrmVisitInformation
         '
         'PetDOB
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle6.Format = "d"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.PetDOB.DefaultCellStyle = DataGridViewCellStyle6
         Me.PetDOB.HeaderText = "DOB"
         Me.PetDOB.Name = "PetDOB"
         Me.PetDOB.ReadOnly = True
@@ -588,16 +588,6 @@ Partial Class FrmVisitInformation
         Me.GroupBox3.TabIndex = 111
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Customer Details"
-        '
-        'TxtSalutation
-        '
-        Me.TxtSalutation.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtSalutation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSalutation.Location = New System.Drawing.Point(101, 48)
-        Me.TxtSalutation.Name = "TxtSalutation"
-        Me.TxtSalutation.ReadOnly = True
-        Me.TxtSalutation.Size = New System.Drawing.Size(157, 20)
-        Me.TxtSalutation.TabIndex = 111
         '
         'Label1
         '
@@ -1201,6 +1191,105 @@ Partial Class FrmVisitInformation
         Me.DgvSelectedItem.Size = New System.Drawing.Size(822, 201)
         Me.DgvSelectedItem.TabIndex = 171
         '
+        'BtnChargesDeleteItem
+        '
+        Me.BtnChargesDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.BtnChargesDeleteItem.HeaderText = "Delete?"
+        Me.BtnChargesDeleteItem.Name = "BtnChargesDeleteItem"
+        Me.BtnChargesDeleteItem.ReadOnly = True
+        Me.BtnChargesDeleteItem.Text = "Delete"
+        Me.BtnChargesDeleteItem.UseColumnTextForButtonValue = True
+        Me.BtnChargesDeleteItem.Width = 49
+        '
+        'ChargesRowNo
+        '
+        Me.ChargesRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesRowNo.HeaderText = "No."
+        Me.ChargesRowNo.Name = "ChargesRowNo"
+        Me.ChargesRowNo.ReadOnly = True
+        Me.ChargesRowNo.Width = 48
+        '
+        'ChargesItemCode
+        '
+        Me.ChargesItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesItemCode.HeaderText = "Item Code"
+        Me.ChargesItemCode.Name = "ChargesItemCode"
+        Me.ChargesItemCode.ReadOnly = True
+        Me.ChargesItemCode.Width = 79
+        '
+        'ChargesItemDescription
+        '
+        Me.ChargesItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.ChargesItemDescription.HeaderText = "Item Description"
+        Me.ChargesItemDescription.Name = "ChargesItemDescription"
+        Me.ChargesItemDescription.ReadOnly = True
+        '
+        'ChargesPrescription
+        '
+        Me.ChargesPrescription.HeaderText = "Prescription"
+        Me.ChargesPrescription.Name = "ChargesPrescription"
+        Me.ChargesPrescription.ReadOnly = True
+        '
+        'ChargesNotes
+        '
+        Me.ChargesNotes.HeaderText = "Notes"
+        Me.ChargesNotes.Name = "ChargesNotes"
+        Me.ChargesNotes.ReadOnly = True
+        '
+        'ChargesUnitPrice
+        '
+        Me.ChargesUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesUnitPrice.HeaderText = "Unit Price"
+        Me.ChargesUnitPrice.Name = "ChargesUnitPrice"
+        Me.ChargesUnitPrice.ReadOnly = True
+        Me.ChargesUnitPrice.Width = 77
+        '
+        'ChargesQuantity
+        '
+        Me.ChargesQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesQuantity.HeaderText = "Quantity"
+        Me.ChargesQuantity.Name = "ChargesQuantity"
+        Me.ChargesQuantity.ReadOnly = True
+        Me.ChargesQuantity.Width = 72
+        '
+        'ChargesTotalPrice
+        '
+        Me.ChargesTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesTotalPrice.HeaderText = "Total Price"
+        Me.ChargesTotalPrice.Name = "ChargesTotalPrice"
+        Me.ChargesTotalPrice.ReadOnly = True
+        Me.ChargesTotalPrice.Width = 81
+        '
+        'ChargesItemGroup
+        '
+        Me.ChargesItemGroup.HeaderText = "Item Group"
+        Me.ChargesItemGroup.Name = "ChargesItemGroup"
+        Me.ChargesItemGroup.ReadOnly = True
+        Me.ChargesItemGroup.Visible = False
+        '
+        'ChargesItemTypeCode
+        '
+        Me.ChargesItemTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesItemTypeCode.HeaderText = "Item Type Code"
+        Me.ChargesItemTypeCode.Name = "ChargesItemTypeCode"
+        Me.ChargesItemTypeCode.ReadOnly = True
+        Me.ChargesItemTypeCode.Visible = False
+        '
+        'ChargesItemTypeDescription
+        '
+        Me.ChargesItemTypeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.ChargesItemTypeDescription.HeaderText = "Item Type Description"
+        Me.ChargesItemTypeDescription.Name = "ChargesItemTypeDescription"
+        Me.ChargesItemTypeDescription.ReadOnly = True
+        Me.ChargesItemTypeDescription.Visible = False
+        '
+        'IsChargeDb
+        '
+        Me.IsChargeDb.HeaderText = "IsChargeDb"
+        Me.IsChargeDb.Name = "IsChargeDb"
+        Me.IsChargeDb.ReadOnly = True
+        Me.IsChargeDb.Visible = False
+        '
         'GroupBox8
         '
         Me.GroupBox8.Controls.Add(Me.TxtItem)
@@ -1430,106 +1519,14 @@ Partial Class FrmVisitInformation
         Me.CbIsVisitCompleted.Text = "Visit Completed"
         Me.CbIsVisitCompleted.UseVisualStyleBackColor = True
         '
-        'BtnChargesDeleteItem
+        'TxtSalutation
         '
-        Me.BtnChargesDeleteItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.BtnChargesDeleteItem.HeaderText = "Delete?"
-        Me.BtnChargesDeleteItem.Name = "BtnChargesDeleteItem"
-        Me.BtnChargesDeleteItem.ReadOnly = True
-        Me.BtnChargesDeleteItem.Text = "Delete"
-        Me.BtnChargesDeleteItem.UseColumnTextForButtonValue = True
-        Me.BtnChargesDeleteItem.Width = 49
-        '
-        'ChargesRowNo
-        '
-        Me.ChargesRowNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesRowNo.HeaderText = "No."
-        Me.ChargesRowNo.Name = "ChargesRowNo"
-        Me.ChargesRowNo.ReadOnly = True
-        Me.ChargesRowNo.Width = 48
-        '
-        'ChargesItemCode
-        '
-        Me.ChargesItemCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesItemCode.HeaderText = "Item Code"
-        Me.ChargesItemCode.Name = "ChargesItemCode"
-        Me.ChargesItemCode.ReadOnly = True
-        Me.ChargesItemCode.Width = 79
-        '
-        'ChargesItemDescription
-        '
-        Me.ChargesItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.ChargesItemDescription.HeaderText = "Item Description"
-        Me.ChargesItemDescription.Name = "ChargesItemDescription"
-        Me.ChargesItemDescription.ReadOnly = True
-        '
-        'ChargesPrescription
-        '
-        Me.ChargesPrescription.HeaderText = "Prescription"
-        Me.ChargesPrescription.Name = "ChargesPrescription"
-        Me.ChargesPrescription.ReadOnly = True
-        '
-        'ChargesNotes
-        '
-        Me.ChargesNotes.HeaderText = "Notes"
-        Me.ChargesNotes.Name = "ChargesNotes"
-        Me.ChargesNotes.ReadOnly = True
-        '
-        'ChargesUnitPrice
-        '
-        Me.ChargesUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesUnitPrice.HeaderText = "Unit Price"
-        Me.ChargesUnitPrice.Name = "ChargesUnitPrice"
-        Me.ChargesUnitPrice.ReadOnly = True
-        Me.ChargesUnitPrice.Width = 77
-        '
-        'ChargesQuantity
-        '
-        Me.ChargesQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesQuantity.HeaderText = "Quantity"
-        Me.ChargesQuantity.Name = "ChargesQuantity"
-        Me.ChargesQuantity.ReadOnly = True
-        Me.ChargesQuantity.Width = 72
-        '
-        'ChargesTotalPrice
-        '
-        Me.ChargesTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesTotalPrice.HeaderText = "Total Price"
-        Me.ChargesTotalPrice.Name = "ChargesTotalPrice"
-        Me.ChargesTotalPrice.ReadOnly = True
-        Me.ChargesTotalPrice.Width = 81
-        '
-        'ChargesItemGroup
-        '
-        Me.ChargesItemGroup.HeaderText = "Item Group"
-        Me.ChargesItemGroup.Name = "ChargesItemGroup"
-        Me.ChargesItemGroup.ReadOnly = True
-        Me.ChargesItemGroup.Visible = False
-        '
-        'ChargesItemTypeCode
-        '
-        Me.ChargesItemTypeCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesItemTypeCode.HeaderText = "Item Type Code"
-        Me.ChargesItemTypeCode.Name = "ChargesItemTypeCode"
-        Me.ChargesItemTypeCode.ReadOnly = True
-        Me.ChargesItemTypeCode.Visible = False
-        Me.ChargesItemTypeCode.Width = 105
-        '
-        'ChargesItemTypeDescription
-        '
-        Me.ChargesItemTypeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.ChargesItemTypeDescription.HeaderText = "Item Type Description"
-        Me.ChargesItemTypeDescription.Name = "ChargesItemTypeDescription"
-        Me.ChargesItemTypeDescription.ReadOnly = True
-        Me.ChargesItemTypeDescription.Visible = False
-        Me.ChargesItemTypeDescription.Width = 134
-        '
-        'IsChargeDb
-        '
-        Me.IsChargeDb.HeaderText = "IsChargeDb"
-        Me.IsChargeDb.Name = "IsChargeDb"
-        Me.IsChargeDb.ReadOnly = True
-        Me.IsChargeDb.Visible = False
+        Me.TxtSalutation.BackColor = System.Drawing.SystemColors.Control
+        Me.TxtSalutation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtSalutation.Location = New System.Drawing.Point(101, 48)
+        Me.TxtSalutation.Name = "TxtSalutation"
+        Me.TxtSalutation.Size = New System.Drawing.Size(157, 20)
+        Me.TxtSalutation.TabIndex = 112
         '
         'FrmVisitInformation
         '
@@ -1677,7 +1674,6 @@ Partial Class FrmVisitInformation
     Friend WithEvents GroupBox8 As GroupBox
     Friend WithEvents GroupBox9 As GroupBox
     Friend WithEvents TxtVet As TextBox
-    Friend WithEvents TxtSalutation As TextBox
     Friend WithEvents DgvBtnSelect As DataGridViewButtonColumn
     Friend WithEvents PetID As DataGridViewTextBoxColumn
     Friend WithEvents PetName As DataGridViewTextBoxColumn
@@ -1715,4 +1711,5 @@ Partial Class FrmVisitInformation
     Friend WithEvents ChargesItemTypeCode As DataGridViewTextBoxColumn
     Friend WithEvents ChargesItemTypeDescription As DataGridViewTextBoxColumn
     Friend WithEvents IsChargeDb As DataGridViewTextBoxColumn
+    Friend WithEvents TxtSalutation As TextBox
 End Class

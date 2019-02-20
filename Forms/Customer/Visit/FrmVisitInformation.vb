@@ -366,7 +366,7 @@ Public Class FrmVisitInformation
                         TxtModifiedBy.Text = DtVisit.Rows(0).Item("ModifiedBy")
                         TxtDateModified.Text = DtVisit.Rows(0).Item("DateModified")
 
-                        If DtVisit.Rows(0).Item("IsVisitCompleted") = "1" Then
+                        If DtVisit.Rows(0).Item("IsCompleted") = "1" Then
                             CbIsVisitCompleted.Checked = True
                             CbIsVisitCompleted.Enabled = False
                         End If
@@ -466,6 +466,7 @@ Public Class FrmVisitInformation
 
                     'Customer information
                     'CmbSalutation.Enabled = False
+                    TxtSalutation.ReadOnly = True
                     TxtCustomerName.ReadOnly = True
                     TxtNRICPassportNo.ReadOnly = True
                     TxtAddress1.ReadOnly = True
@@ -505,6 +506,7 @@ Public Class FrmVisitInformation
 
                     'BtnSave.Enabled = False
                     'CmbSalutation.Enabled = False
+                    TxtSalutation.ReadOnly = True
                     TxtCustomerName.ReadOnly = True
                     TxtNRICPassportNo.ReadOnly = True
                     TxtTelNo.ReadOnly = True
@@ -1052,8 +1054,8 @@ ReplaceCurrentPet:
                     .TelNo = Trim(TxtTelNo.Text)
                     .MobileNo = Trim(TxtMobileNo.Text)
                     .VisitTime = VisitTime
-                    .IsVisitCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
-                    .IsAdmittedToWard = IIf(CbIsAdmittedToWard.Checked = True, "1", "0")
+                    .IsCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
+                    .IsWarded = IIf(CbIsAdmittedToWard.Checked = True, "1", "0")
                     .Ref.CreatedBy = CURR_USER
                     .Ref.DateCreated = Now
                     .Ref.ModifiedBy = CURR_USER
@@ -1153,6 +1155,29 @@ ReplaceCurrentPet:
                 Next
             End If
 
+            'Add ward admission status
+            If CbIsAdmittedToWard.Checked = True Then
+
+                'Pass connection and transaction
+                If Not AdmitToWard(DbConn, DbTrans) Then
+                    MsgBox("Failed to update ward admission status.", MsgBoxStyle.Critical, "Ward Admissin Status Update Error")
+                    DbTrans.Rollback()
+                    DbTrans.Dispose()
+                    DbTrans = Nothing
+                    Return False
+                End If
+
+            End If
+
+            'Add vet sales
+            If Not AddVetSales(GenVisitID, DbConn, DbTrans) Then
+                MsgBox("Failed to update feature.", MsgBoxStyle.Critical, "Performance Update Error")
+                DbTrans.Rollback()
+                DbTrans.Dispose()
+                DbTrans = Nothing
+                Return False
+            End If
+
             DbTrans.Commit()
             DbTrans.Dispose()
             DbTrans = Nothing
@@ -1190,6 +1215,60 @@ ReplaceCurrentPet:
 
     End Function
 
+    Private Function AddVetSales(VisitID As String, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
+
+        Try
+            Dim ClsVetSales As New ClsVetSales
+
+            If CURR_EMPLOYEE_POS <> "01" Then
+                Return True
+                'Return true to skip updating vet sales
+            End If
+
+            If DgvSelectedItem.Rows.Count > 0 Then
+
+                With ClsVetSales
+
+                    For i As Integer = 0 To DgvSelectedItem.Rows.Count - 1
+
+                        .SalesDate = Now 'Save in DateTime
+                        .VisitID = VisitID
+                        .EmployeeID = CURR_EMPLOYEE_ID
+                        .EmployeeName = CURR_EMPLOYEE_NAME
+                        .PositionCode = CURR_EMPLOYEE_POS
+                        .ChSource = "1" '1 = VISIT
+                        .ItemCode = DgvSelectedItem.Rows(i).Cells("ChargesItemCode").Value
+                        .ItemDescription = DgvSelectedItem.Rows(i).Cells("ChargesItemDescription").Value
+                        .ItemGroup = DgvSelectedItem.Rows(i).Cells("ChargesItemGroup").Value
+                        .ItemTypeCode = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeCode").Value
+                        .ItemTypeDescription = DgvSelectedItem.Rows(i).Cells("ChargesItemTypeDescription").Value
+                        .UnitPrice = DgvSelectedItem.Rows(i).Cells("ChargesUnitPrice").Value
+                        .Quantity = DgvSelectedItem.Rows(i).Cells("ChargesQuantity").Value
+                        .TotalPrice = DgvSelectedItem.Rows(i).Cells("ChargesTotalPrice").Value
+                        .Ref.CreatedBy = CURR_USER
+                        .Ref.DateCreated = Now
+                        .Ref.ModifiedBy = CURR_USER
+                        .Ref.DateModified = Now
+
+                        If Not .AddVetSales(ClsVetSales, DbConn, DbTrans) Then
+                            Return False
+                        End If
+
+                    Next
+
+                End With
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".AddVetSales()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
     Private Function IsVisitCompleted() As Boolean
 
         Dim UserResponse As MsgBoxResult
@@ -1212,7 +1291,7 @@ ReplaceCurrentPet:
 
                 With ClsVisit
                     .VisitID = Trim(TxtVisitID.Text)
-                    .IsVisitCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
+                    .IsCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
                 End With
 
                 If Not ClsVisit.UpdateIsVisitCompleted(ClsVisit, DbConn, DbTrans) Then
@@ -1336,52 +1415,53 @@ ReplaceCurrentPet:
 
     End Sub
 
-    Private Function AdmitToWard() As Boolean
+    Private Function AdmitToWard(DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
 
         Dim ClsVisit As New ClsVisit
-        Dim Message As String
+        'Dim Message As String
 
         Try
-            If DbTrans IsNot Nothing Then
-                DbTrans = Nothing
-            End If
+            'If DbTrans IsNot Nothing Then
+            '    DbTrans = Nothing
+            'End If
 
-            DbTrans = DbConn.BeginTransaction
+            'DbTrans = DbConn.BeginTransaction
 
             With ClsVisit
-                If CbIsAdmittedToWard.Checked = True Then
-                    .IsAdmittedToWard = "1"
-                    Message = "Pet has been added to ward admission."
-                Else
-                    .IsAdmittedToWard = "0"
-                    Message = "Pet has been removed from ward admission."
-                End If
+                'If CbIsAdmittedToWard.Checked = True Then
+                '    .IsAdmittedToWard = "1"
+                '    Message = "Pet has been added to ward admission."
+                'Else
+                '    .IsAdmittedToWard = "0"
+                '    Message = "Pet has been removed from ward admission."
+                'End If
 
                 .VisitID = Trim(TxtVisitID.Text)
+                .IsWarded = IIf(CbIsAdmittedToWard.Checked = True, "1", "0")
                 .Ref.ModifiedBy = CURR_USER
                 .Ref.DateModified = Now
 
                 If Not .UpdateWardAdmission(ClsVisit, DbConn, DbTrans) Then
-                    MsgBox("Failed to update ward admission.", MsgBoxStyle.Critical, "Update Ward Admission Error")
-                    DbTrans.Rollback()
-                    DbTrans.Dispose()
-                    DbTrans = Nothing
+                    'MsgBox("Failed to update ward admission.", MsgBoxStyle.Critical, "Update Ward Admission Error")
+                    'DbTrans.Rollback()
+                    'DbTrans.Dispose()
+                    'DbTrans = Nothing
                     Return False
                 End If
 
             End With
 
-            DbTrans.Commit()
-            DbTrans.Dispose()
-            DbTrans = Nothing
+            'DbTrans.Commit()
+            'DbTrans.Dispose()
+            'DbTrans = Nothing
 
-            MsgBox(Message, MsgBoxStyle.Information, "Ward Admission")
+            'MsgBox(Message, MsgBoxStyle.Information, "Ward Admission")
 
         Catch ex As Exception
-            MsgBox("Failed to update ward admission.", MsgBoxStyle.Critical, FORM_NAME & ".AdmitToWard()")
-            DbTrans.Rollback()
-            DbTrans.Dispose()
-            DbTrans = Nothing
+            'MsgBox("Failed to update ward admission.", MsgBoxStyle.Critical, FORM_NAME & ".AdmitToWard()")
+            'DbTrans.Rollback()
+            'DbTrans.Dispose()
+            'DbTrans = Nothing
             Return False
         End Try
 
@@ -1541,7 +1621,7 @@ ReplaceCurrentPet:
     End Function
 
     Private Sub CbAdmitToWard_Click(sender As Object, e As EventArgs)
-        If Not AdmitToWard() Then Exit Sub
+        'If Not AdmitToWard() Then Exit Sub
     End Sub
 
     Private Sub BtnAddItem_Click(sender As Object, e As EventArgs) Handles BtnAddItem.Click
@@ -1570,7 +1650,7 @@ ReplaceCurrentPet:
     End Sub
 
     Private Sub CbIsAdmittedToWard_Click(sender As Object, e As EventArgs) Handles CbIsAdmittedToWard.Click
-        If Not AdmitToWard() Then Exit Sub
+        'If Not AdmitToWard() Then Exit Sub
     End Sub
 
     Private Sub DgvSelectedItem_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvSelectedItem.CellContentClick

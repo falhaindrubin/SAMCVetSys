@@ -1,4 +1,6 @@
-﻿Public Class FrmSearchVisit
+﻿Imports System.Text
+
+Public Class FrmSearchVisit
 
 #Region "FormProperty"
     Private _VisitID As String
@@ -85,92 +87,40 @@
     Private Sub FrmSearchVisit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FORM_NAME = Me.Name
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
-        PopulateVisitListing()
+        PopulateVisit()
     End Sub
 
-    Private Sub PopulateVisitListing()
+    Private Sub PopulateVisit()
 
         Dim DtVisit As New DataTable
-        Dim ClsVisit As New ClsVisit
 
         Try
-            Select Case Source
-                Case "TREATMENT"
-                    If Source = "TREATMENT" Then
-                        '    If UserCommand = "ADD_NEW_TREATMENT" Then
-                        '        CbNotAssigned.Checked = True
-                        '    y    With ClsVisit
-                        '            .IsVisitCompleted = "0"
-                        '            .IsOngoingTreatment = "0"
-                        '        End With
-                        '        DtVisit = ClsVisit.GetUnassignedVisitListing(ClsVisit)
-                        '    End If
-                        'Else
-                        DtVisit = ClsVisit.GetVisitListing(ClsVisit)
-                    End If
+            DtVisit = GetVisit()
 
-                    If DtVisit.Rows.Count > 0 Then
-                        DgvVisit.DataSource = DtVisit
-                        DgvVisit.Show()
-                    Else
-                        DgvVisit.Rows.Clear()
-                        DgvVisit.Show()
-                    End If
+            If DtVisit.Rows.Count > 0 Then
 
-                Case "WARD"
-                    If Source = "WARD" Then
+                With DgvVisit
 
-                        With ClsVisit
+                    .Rows.Clear()
 
-                            .IsWarded = IIf(CbIsWarded.Checked = True, "1", "0")
-                            .IsCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
-                            DtVisit = .GetAdmittedToWardVisit(ClsVisit)
+                    For i As Integer = 0 To DtVisit.Rows.Count - 1
+                        .Rows.Add()
+                        .Rows(i).Cells("DgvSearchVisitID").Value = DtVisit.Rows(i).Item("VisitID")
+                        .Rows(i).Cells("DgvSearchVisitTime").Value = DtVisit.Rows(i).Item("VisitTime")
+                        .Rows(i).Cells("DgvSearchEmployeeID").Value = DtVisit.Rows(i).Item("EmployeeID")
+                        .Rows(i).Cells("DgvSearchEmployeeName").Value = "DR. " & DtVisit.Rows(i).Item("EmployeeName")
+                        .Rows(i).Cells("DgvSearchCustomerID").Value = DtVisit.Rows(i).Item("CustomerID")
+                        .Rows(i).Cells("DgvSearchCustomerName").Value = DtVisit.Rows(i).Item("CustomerName")
+                        .Rows(i).Cells("DgvSearchPetName").Value = DtVisit.Rows(i).Item("PetName")
+                        .Rows(i).Cells("DgvSearchIsCompleted").Value = IIf(DtVisit.Rows(i).Item("IsCompleted") = "1", "COMPLETED", "ON-GOING")
+                        .Rows(i).Cells("DgvSearchIsWarded").Value = IIf(DtVisit.Rows(i).Item("IsWarded") = "1", "WARDED", "NOT WARDED")
+                        .Rows(i).Cells("DgvSearchDateCreated").Value = DtVisit.Rows(i).Item("DateCreated")
+                        .Rows(i).Cells("DgvSearchCreatedBy").Value = DtVisit.Rows(i).Item("CreatedBy")
+                    Next
 
-                        End With
+                End With
 
-                    Else
-                        DtVisit = ClsVisit.GetVisitListing(ClsVisit)
-
-                    End If
-
-                    If DgvVisit.Rows.Count > 0 Then
-                        DgvVisit.DataSource = Nothing
-                    End If
-
-                    If DtVisit.Rows.Count > 0 Then
-                        DgvVisit.DataSource = DtVisit
-                        DgvVisit.Show()
-                    Else
-                        DgvVisit.Rows.Clear()
-                        DgvVisit.Show()
-                    End If
-
-                Case ""
-                    DtVisit = ClsVisit.GetVisitListing(ClsVisit)
-
-                    'If Source = "WARD" Then
-                    '    If UserCommand = "ADD_NEW_WARD" Then
-                    '        CbIsWarded.Checked = True
-                    '        With ClsVisit
-                    '            .IsAdmittedToWard = "0"
-                    '            .IsOngoingTreatment = "1"
-                    '            .IsVisitCompleted = "0"
-                    '        End With
-                    '        DtVisit = ClsVisit.GetWardedVisitListing(ClsVisit)
-                    '    End If
-                    'Else
-                    '    DtVisit = ClsVisit.GetVisitListing(ClsVisit)
-                    'End If
-
-                    If DtVisit.Rows.Count > 0 Then
-                        DgvVisit.DataSource = DtVisit
-                        DgvVisit.Show()
-                    Else
-                        DgvVisit.Rows.Clear()
-                        DgvVisit.Show()
-                    End If
-
-            End Select
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".PopulateVisitListing()")
@@ -178,9 +128,92 @@
 
     End Sub
 
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Me.Close()
-    End Sub
+    Private Function GetVisit() As DataTable
+
+        Dim DtVisit As New DataTable
+        Dim ClsVisit As New ClsVisit
+        Dim StrOp As String = "WHERE"
+
+        Try
+            Select Case Source
+
+                Case "TREATMENT", ""
+
+                    ClsVisit = New ClsVisit
+                    With ClsVisit
+                        DtVisit = .GetVisitListing(ClsVisit)
+                    End With
+
+                Case "WARD"
+
+                    ClsVisit = New ClsVisit
+                    With ClsVisit
+                        .SQLQueryCondition = FilterSQL(StrOp)
+                        '.IsWarded = IIf(CbIsWarded.Checked = True, "1", "0")
+                        '.IsCompleted = IIf(CbIsVisitCompleted.Checked = True, "1", "0")
+                        'DtVisit = .GetAdmittedToWardVisit(ClsVisit)
+                        DtVisit = .GetVisitListing(ClsVisit)
+                    End With
+
+            End Select
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "")
+        End Try
+
+        Return DtVisit
+
+    End Function
+
+    Private Function FilterSQL(ByVal strOP As String) As String
+
+        Dim SQLCondition As String = ""
+        Dim sb As New StringBuilder
+        Dim SearchQuery As String
+
+        Try
+            sb = New StringBuilder
+            With sb
+
+                SearchQuery = Trim(TxtSearchText.Text)
+
+                If CbIsVisitCompleted.Checked = True Then
+                    .Append("" & GetOP(strOP) & " IsCompleted = '1' ")
+                Else
+                    '.Append("" & GetOP(strOP) & " IsCompleted = '0' ")
+                End If
+
+                If CbIsWarded.Checked = True Then
+                    .Append("" & GetOP(strOP) & " IsWarded = '1' ")
+                Else
+                    '.Append("" & GetOP(strOP) & " IsWarded = '0' ")
+                End If
+
+                If Trim(TxtSearchText.Text) <> "" Then
+                    .Append("" & GetOP(strOP) & " CustomerName LIKE '%" & SearchQuery & "%' OR CustomerID LIKE '%" & SearchQuery & "%' ")
+                End If
+
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".FilterSQLCondition()")
+        End Try
+
+        SQLCondition = sb.ToString
+        Return SQLCondition
+
+    End Function
+
+    Private Function GetOP(ByRef strOP As String) As String
+
+        If strOP = "WHERE" Then
+            strOP = "AND"
+            GetOP = "WHERE"
+        Else
+            GetOP = strOP
+        End If
+
+    End Function
 
     Private Sub DgvVisit_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvVisit.CellDoubleClick
 
@@ -207,35 +240,12 @@
 
     End Sub
 
-    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
-        PopulateVisitListing()
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Me.Close()
     End Sub
 
-    'Private Sub PopulateAdmittedToWardVisit()
-
-    '    Try
-    '        Dim ClsVisit As New ClsVisit
-    '        Dim DtVisit As New DataTable
-
-    '        With ClsVisit
-    '            .IsAdmittedToWard = IIf(CbIsWarded.Checked = True, "1", "0")
-    '            .IsVisitCompleted = "0"
-    '            DtVisit = .GetAdmittedToWardVisit(ClsVisit)
-    '            If DtVisit.Rows.Count > 0 Then
-    '                DgvVisit.DataSource = DtVisit
-    '                DgvVisit.Show()
-    '            End If
-
-    '        End With
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".DgvVisit_CellDoubleClick()")
-    '    End Try
-
-    'End Sub
-
-    'Private Sub CbIsWarded_CheckedChanged(sender As Object, e As EventArgs) Handles CbIsWarded.CheckedChanged
-    '    PopulateAdmittedToWardVisit()
-    'End Sub
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        PopulateVisit()
+    End Sub
 
 End Class

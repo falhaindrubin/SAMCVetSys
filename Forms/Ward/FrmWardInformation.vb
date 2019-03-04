@@ -401,6 +401,9 @@ Public Class FrmWardInformation
 
                 End If
 
+                'Populate ward discharge details
+
+
                 BtnSearch.Visible = IIf(IsShowBtnSearch = True, True, False)
 
             Else
@@ -424,8 +427,6 @@ Public Class FrmWardInformation
                     End If
 
                 End With
-
-
 
             End If
 
@@ -838,6 +839,8 @@ Public Class FrmWardInformation
 
             CbIsDischarged.Checked = True
             CbIsDischarged.Enabled = False
+            TxtDischargeDate.Text = Now
+
             MsgBox("Your selected pet has been successfully discharged!", MsgBoxStyle.Information, "Pet Discharge Completed")
 
         Catch ex As Exception

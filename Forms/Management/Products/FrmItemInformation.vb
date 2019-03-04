@@ -299,6 +299,8 @@
                 .ItemGroup = ItemGroup
                 .ItemTypeCode = ItemTypeCode
                 .ItemTypeDescription = DirectCast(CmbItemTypeCode.SelectedItem, KeyValuePair(Of String, String)).Value.ToString
+                '.UnitCost = ""
+                '.UOM = ""
                 .UnitPrice = IIf(Trim(TxtUnitPrice.Text) <> "", TxtUnitPrice.Text, "0")
                 .Ref.CreatedBy = CURR_USER
                 .Ref.DateCreated = Now
@@ -468,6 +470,7 @@
         Try
             TxtItemCode.Text = ""
             TxtItemDescription.Text = ""
+            TxtUnitCost.Text = "0.00"
             TxtUnitPrice.Text = "0.00"
             TxtCreatedBy.Text = ""
             TxtDateCreated.Text = ""

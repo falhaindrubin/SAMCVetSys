@@ -44,6 +44,10 @@ Public Class ClsDbServices
             With Sb
                 .Append("SELECT ItemCode, ItemDescription, ItemGroup, ItemTypeCode, ItemTypeDescription, UnitPrice, CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_services ")
+
+                If SVC.SQLQueryCondition <> "" Then
+                    .Append("" & SVC.SQLQueryCondition & " ")
+                End If
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)

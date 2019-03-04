@@ -2,6 +2,8 @@
 
     Dim DbProducts As New ClsDbProducts
 
+#Region "Property"
+
     Private _ItemGroup As String
     Public Property ItemGroup As String
         Get
@@ -62,6 +64,26 @@
         End Set
     End Property
 
+    Private _UnitCost As Decimal
+    Public Property UnitCost As Decimal
+        Get
+            Return _UnitCost
+        End Get
+        Set(value As Decimal)
+            _UnitCost = value
+        End Set
+    End Property
+
+    Private _UOM As Decimal
+    Public Property UOM As Decimal
+        Get
+            Return _UOM
+        End Get
+        Set(value As Decimal)
+            _UOM = value
+        End Set
+    End Property
+
     Private _Ref As New ClsReference
     Property Ref() As ClsReference
         Get
@@ -71,6 +93,18 @@
             _Ref = value
         End Set
     End Property
+
+    Private _SQLQueryCondition As String
+    Public Property SQLQueryCondition As String
+        Get
+            Return _SQLQueryCondition
+        End Get
+        Set(value As String)
+            _SQLQueryCondition = value
+        End Set
+    End Property
+
+#End Region
 
     Public Function AddNewProduct(ClsProducts As ClsProducts, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbProducts.AddNewProduct(ClsProducts, DbConn, DbTrans)

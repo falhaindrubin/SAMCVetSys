@@ -35,6 +35,17 @@ Partial Class FrmSearchVisit
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.DgvVisit = New System.Windows.Forms.DataGridView()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.DgvSearchVisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchVisitTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchEmployeeID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchEmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchCustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchCustomerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchPetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchIsCompleted = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchIsWarded = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchCreatedBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DgvSearchDateCreated = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvVisit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,10 +136,10 @@ Partial Class FrmSearchVisit
         '
         Me.TxtSearchText.BackColor = System.Drawing.Color.White
         Me.TxtSearchText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSearchText.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtSearchText.Location = New System.Drawing.Point(20, 58)
         Me.TxtSearchText.Name = "TxtSearchText"
-        Me.TxtSearchText.Size = New System.Drawing.Size(518, 25)
+        Me.TxtSearchText.Size = New System.Drawing.Size(518, 26)
         Me.TxtSearchText.TabIndex = 1
         '
         'BtnSearch
@@ -145,11 +156,13 @@ Partial Class FrmSearchVisit
         'DgvVisit
         '
         Me.DgvVisit.AllowUserToAddRows = False
+        Me.DgvVisit.AllowUserToDeleteRows = False
         Me.DgvVisit.AllowUserToOrderColumns = True
         Me.DgvVisit.AllowUserToResizeRows = False
         Me.DgvVisit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.DgvVisit.BackgroundColor = System.Drawing.Color.White
         Me.DgvVisit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvVisit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DgvSearchVisitID, Me.DgvSearchVisitTime, Me.DgvSearchEmployeeID, Me.DgvSearchEmployeeName, Me.DgvSearchCustomerID, Me.DgvSearchCustomerName, Me.DgvSearchPetName, Me.DgvSearchIsCompleted, Me.DgvSearchIsWarded, Me.DgvSearchCreatedBy, Me.DgvSearchDateCreated})
         Me.DgvVisit.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvVisit.Location = New System.Drawing.Point(3, 16)
         Me.DgvVisit.MultiSelect = False
@@ -170,6 +183,95 @@ Partial Class FrmSearchVisit
         Me.GroupBox2.TabIndex = 79
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Visit List(s)"
+        '
+        'DgvSearchVisitID
+        '
+        Me.DgvSearchVisitID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchVisitID.HeaderText = "Visit ID"
+        Me.DgvSearchVisitID.Name = "DgvSearchVisitID"
+        Me.DgvSearchVisitID.ReadOnly = True
+        Me.DgvSearchVisitID.Width = 65
+        '
+        'DgvSearchVisitTime
+        '
+        Me.DgvSearchVisitTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchVisitTime.HeaderText = "VisitTime"
+        Me.DgvSearchVisitTime.Name = "DgvSearchVisitTime"
+        Me.DgvSearchVisitTime.ReadOnly = True
+        Me.DgvSearchVisitTime.Width = 75
+        '
+        'DgvSearchEmployeeID
+        '
+        Me.DgvSearchEmployeeID.HeaderText = "EmployeeID"
+        Me.DgvSearchEmployeeID.Name = "DgvSearchEmployeeID"
+        Me.DgvSearchEmployeeID.ReadOnly = True
+        Me.DgvSearchEmployeeID.Visible = False
+        Me.DgvSearchEmployeeID.Width = 87
+        '
+        'DgvSearchEmployeeName
+        '
+        Me.DgvSearchEmployeeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchEmployeeName.HeaderText = "Vet"
+        Me.DgvSearchEmployeeName.Name = "DgvSearchEmployeeName"
+        Me.DgvSearchEmployeeName.ReadOnly = True
+        Me.DgvSearchEmployeeName.Width = 48
+        '
+        'DgvSearchCustomerID
+        '
+        Me.DgvSearchCustomerID.HeaderText = "CustomerID"
+        Me.DgvSearchCustomerID.Name = "DgvSearchCustomerID"
+        Me.DgvSearchCustomerID.ReadOnly = True
+        Me.DgvSearchCustomerID.Visible = False
+        Me.DgvSearchCustomerID.Width = 87
+        '
+        'DgvSearchCustomerName
+        '
+        Me.DgvSearchCustomerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DgvSearchCustomerName.HeaderText = "Customer Name"
+        Me.DgvSearchCustomerName.Name = "DgvSearchCustomerName"
+        Me.DgvSearchCustomerName.ReadOnly = True
+        '
+        'DgvSearchPetName
+        '
+        Me.DgvSearchPetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchPetName.HeaderText = "Pet Name"
+        Me.DgvSearchPetName.Name = "DgvSearchPetName"
+        Me.DgvSearchPetName.ReadOnly = True
+        Me.DgvSearchPetName.Width = 77
+        '
+        'DgvSearchIsCompleted
+        '
+        Me.DgvSearchIsCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchIsCompleted.HeaderText = "Status"
+        Me.DgvSearchIsCompleted.Name = "DgvSearchIsCompleted"
+        Me.DgvSearchIsCompleted.ReadOnly = True
+        Me.DgvSearchIsCompleted.Width = 63
+        '
+        'DgvSearchIsWarded
+        '
+        Me.DgvSearchIsWarded.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchIsWarded.HeaderText = "Warded?"
+        Me.DgvSearchIsWarded.Name = "DgvSearchIsWarded"
+        Me.DgvSearchIsWarded.ReadOnly = True
+        Me.DgvSearchIsWarded.Width = 76
+        '
+        'DgvSearchCreatedBy
+        '
+        Me.DgvSearchCreatedBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchCreatedBy.HeaderText = "Created By"
+        Me.DgvSearchCreatedBy.Name = "DgvSearchCreatedBy"
+        Me.DgvSearchCreatedBy.ReadOnly = True
+        Me.DgvSearchCreatedBy.Visible = False
+        Me.DgvSearchCreatedBy.Width = 86
+        '
+        'DgvSearchDateCreated
+        '
+        Me.DgvSearchDateCreated.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.DgvSearchDateCreated.HeaderText = "Date Created"
+        Me.DgvSearchDateCreated.Name = "DgvSearchDateCreated"
+        Me.DgvSearchDateCreated.ReadOnly = True
+        Me.DgvSearchDateCreated.Visible = False
+        Me.DgvSearchDateCreated.Width = 95
         '
         'FrmSearchVisit
         '
@@ -204,4 +306,15 @@ Partial Class FrmSearchVisit
     Friend WithEvents Label1 As Label
     Friend WithEvents CbIsVisitCompleted As CheckBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents DgvSearchVisitID As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchVisitTime As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchEmployeeID As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchEmployeeName As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchCustomerID As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchCustomerName As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchPetName As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchIsCompleted As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchIsWarded As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchCreatedBy As DataGridViewTextBoxColumn
+    Friend WithEvents DgvSearchDateCreated As DataGridViewTextBoxColumn
 End Class

@@ -72,6 +72,16 @@
         End Set
     End Property
 
+    Private _SQLQueryCondition As String
+    Public Property SQLQueryCondition As String
+        Get
+            Return _SQLQueryCondition
+        End Get
+        Set(value As String)
+            _SQLQueryCondition = value
+        End Set
+    End Property
+
     Public Function AddNewService(ClsServices As ClsServices, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbServices.AddNewService(ClsServices, DbConn, DbTrans)
     End Function

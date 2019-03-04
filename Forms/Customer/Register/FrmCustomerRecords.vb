@@ -13,15 +13,22 @@ Public Class FrmCustomerRecords
 
         Dim DtCustomer As New DataTable
         Dim ClsCustomer As New ClsCustomer
+        Dim StrOp As String = "WHERE"
 
         Try
-            DtCustomer = ClsCustomer.GetCustomerListing(ClsCustomer)
+            ClsCustomer = New ClsCustomer
+            With ClsCustomer
+                .SQLQueryCondition = FilterSQL(StrOp)
+                DtCustomer = .GetCustomerListing(ClsCustomer)
+            End With
 
             If DtCustomer.Rows.Count > 0 Then
 
                 With DgvCustomerListing
 
-                    .Rows.Clear()
+                    If .Rows.Count > 0 Then
+                        .Rows.Clear()
+                    End If
 
                     For i As Integer = 0 To DtCustomer.Rows.Count - 1
                         .Rows.Add()
@@ -32,6 +39,8 @@ Public Class FrmCustomerRecords
                         .Rows(i).Cells("DateCreated").Value = DtCustomer.Rows(i).Item("DateCreated")
                     Next
                 End With
+            Else
+                MsgBox("No record found. Please specify your search criteria.", MsgBoxStyle.Exclamation, "Record Not Found")
 
             End If
 
@@ -71,7 +80,8 @@ Public Class FrmCustomerRecords
     End Sub
 
     Private Sub BtnSearchCustomer_Click(sender As Object, e As EventArgs) Handles BtnSearchCustomer.Click
-        SearchCustomer()
+        'SearchCustomer()
+        ShowCustomerRecords()
     End Sub
 
     Private Sub SearchCustomer()
@@ -113,23 +123,6 @@ Public Class FrmCustomerRecords
                 If Trim(TxtSearchText.Text) <> "" Then
 
                     .Append("" & GetOP(strOP) & " NRICPassportNo LIKE '%" & SearchQuery & "%' OR CustomerName LIKE '%" & SearchQuery & "%' OR CustomerID LIKE '%" & SearchQuery & "%' ")
-
-                    'If CbNRICPassport.Checked = True Then
-                    '    .Append("" & GetOP(strOP) & " NRICPassportNo = '" & SearchQuery & "' ")
-                    '    '.Append("" & GetOP(strOP) & " NRICPassportNo LIKE '%" & SearchQuery & "%' ")
-                    'End If
-
-                    'If CbCustomerID.Checked = True Then
-                    '    strOP = IIf(strOP = "WHERE", "WHERE", "OR")
-                    '    .Append("" & GetOP(strOP) & " CustomerID LIKE '%" & SearchQuery & "%' ")
-                    '    '.Append("" & GetOP(strOP) & " CustomerID LIKE '%" & SearchQuery & "%'  ")
-                    'End If
-
-                    'If CbCustomerName.Checked = True Then
-                    '    strOP = IIf(strOP = "WHERE", "WHERE", "OR")
-                    '    .Append("" & GetOP(strOP) & " CustomerName LIKE '%" & SearchQuery & "%' ")
-                    '    '.Append("" & GetOP(strOP) & " CustomerName LIKE '%" & SearchQuery & "%' ")
-                    'End If
 
                 End If
 
@@ -177,10 +170,8 @@ Public Class FrmCustomerRecords
 
         Try
             If EnterKey.KeyCode = Keys.Enter Then
-                'MsgBox("Enter key is pressed!")
                 EnterKey.SuppressKeyPress = True
-                'BtnLogin_Click(sender, e)
-                SearchCustomer()
+                ShowCustomerRecords()
             End If
 
         Catch ex As Exception

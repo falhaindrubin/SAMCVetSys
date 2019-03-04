@@ -1,4 +1,6 @@
-﻿Public Class FrmLogin
+﻿Imports System.IO
+
+Public Class FrmLogin
 
     Private Sub FrmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeApplication()
@@ -13,13 +15,14 @@
             Me.Text = "SAMC Animals Centre Vet Management System" & SOFTWARE_VERSION
 
             If Not ConnectToDB() Then
-
                 MsgBox("Unable to connect to database.", MsgBoxStyle.Critical, "FrmLogin.InitializeApplication()")
                 Me.Close()
                 Exit Sub
             Else
                 TxtUserID.Select()
             End If
+
+            TxtUserID.Select()
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, ".InitializeApp()")
@@ -66,6 +69,8 @@
                     CURR_EMPLOYEE_NAME = Trim(DtUser.Rows(0).Item("EmployeeName"))
                     CURR_EMPLOYEE_POS = Trim(DtUser.Rows(0).Item("RoleCode"))
 
+                    If Not SetCurrentUser() Then Return False
+
                     'Get role and set access to menus
                     ClsUserRole = New ClsUserRole
                     With ClsUserRole
@@ -77,11 +82,6 @@
                         If DtUserAccessRight.Rows.Count > 0 Then
 
                             SetMenu(DtUserAccessRight)
-
-                            'For i As Integer = 0 To DtUserAccessRight.Rows.Count - 1
-                            '    'SetMenu(FrmMDI.MStripMain, DtUserAccessRight.Rows(i).Item("AccessTag"))
-                            '    SetMenu(DtUserAccessRight.Rows(i).Item("AccessTag"))
-                            'Next
 
                         End If
 
@@ -112,6 +112,31 @@
 
     End Function
 
+    Private Function SetCurrentUser() As Boolean
+
+        Try
+            Dim UserLogTxt As String = My.Application.Info.DirectoryPath & "\User.txt"
+
+            If Not System.IO.File.Exists(UserLogTxt) Then
+                System.IO.File.Create(UserLogTxt).Dispose()
+            End If
+
+            'Dim StrCurrentUser As String = File.ReadAllText(UserLogTxt)
+            'StrCurrentUser = CURR_USER
+
+            Dim ObjWriter As New System.IO.StreamWriter(UserLogTxt)
+
+            ObjWriter.Write(CURR_USER)
+            ObjWriter.Close()
+
+        Catch ex As Exception
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
     'Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
     '    Dim menues As New List(Of ToolStripItem)
     '    For Each t As ToolStripItem In MenuStrip1.Items
@@ -133,7 +158,6 @@
     '        Next
     '    End If
     'End Sub
-
 
     Private Sub SetMsStripToHide()
 

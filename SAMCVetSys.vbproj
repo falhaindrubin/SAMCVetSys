@@ -307,11 +307,6 @@
     <Compile Include="Forms\Customer\Visit\FrmVisitRecords.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dataset\DsAppointment.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DsAppointment.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.Designer.vb">
       <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
     </Compile>
@@ -348,12 +343,6 @@
     <Compile Include="Forms\Management\Products\FrmItemRecords.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Ward\FrmMedication.Designer.vb">
-      <DependentUpon>FrmMedication.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Ward\FrmMedication.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Ward\FrmWardInformation.Designer.vb">
       <DependentUpon>FrmWardInformation.vb</DependentUpon>
     </Compile>
@@ -384,14 +373,6 @@
     <Compile Include="Class\ClsLogin.vb" />
     <Compile Include="Class\ClsPet.vb" />
     <Compile Include="Class\ClsReference.vb" />
-    <Compile Include="Dataset\DsCustomerInformation.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DsCustomerInformation.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\DsCustomerInformation.vb">
-      <DependentUpon>DsCustomerInformation.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Module\ModUtility.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
@@ -548,9 +529,6 @@
     <EmbeddedResource Include="Forms\Surgery\FrmSurgeryRecords.resx">
       <DependentUpon>FrmSurgeryRecords.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ward\FrmMedication.resx">
-      <DependentUpon>FrmMedication.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ward\FrmWardInformation.resx">
       <DependentUpon>FrmWardInformation.vb</DependentUpon>
     </EmbeddedResource>
@@ -592,28 +570,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dataset\DsAppointment.xsc">
-      <DependentUpon>DsAppointment.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\DsAppointment.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DsAppointment.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Dataset\DsAppointment.xss">
-      <DependentUpon>DsAppointment.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\DsCustomerInformation.xsc">
-      <DependentUpon>DsCustomerInformation.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\DsCustomerInformation.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DsCustomerInformation.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Dataset\DsCustomerInformation.xss">
-      <DependentUpon>DsCustomerInformation.xsd</DependentUpon>
-    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -629,7 +585,9 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Dataset\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
       <Visible>False</Visible>

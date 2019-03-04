@@ -24,6 +24,8 @@ Partial Class FrmItemInformation
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmItemInformation))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TxtUnitCost = New System.Windows.Forms.TextBox()
         Me.CmbItemTypeCode = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
@@ -36,6 +38,7 @@ Partial Class FrmItemInformation
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtItemCode = New System.Windows.Forms.TextBox()
         Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.BtnAddNewItem = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnCancelEdit = New System.Windows.Forms.Button()
@@ -48,7 +51,6 @@ Partial Class FrmItemInformation
         Me.TxtDateCreated = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TxtModifiedBy = New System.Windows.Forms.TextBox()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.GroupBox2.SuspendLayout()
         Me.PnlActionBar.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -58,6 +60,8 @@ Partial Class FrmItemInformation
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.TxtUnitCost)
         Me.GroupBox2.Controls.Add(Me.CmbItemTypeCode)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.CheckBox1)
@@ -71,10 +75,30 @@ Partial Class FrmItemInformation
         Me.GroupBox2.Controls.Add(Me.TxtItemCode)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 90)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(539, 208)
+        Me.GroupBox2.Size = New System.Drawing.Size(539, 254)
         Me.GroupBox2.TabIndex = 75
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Services/Products Information"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(7, 150)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(50, 14)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "Unit Cost"
+        '
+        'TxtUnitCost
+        '
+        Me.TxtUnitCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtUnitCost.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtUnitCost.Location = New System.Drawing.Point(92, 147)
+        Me.TxtUnitCost.Name = "TxtUnitCost"
+        Me.TxtUnitCost.Size = New System.Drawing.Size(87, 20)
+        Me.TxtUnitCost.TabIndex = 1
+        Me.TxtUnitCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CmbItemTypeCode
         '
@@ -99,7 +123,7 @@ Partial Class FrmItemInformation
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(92, 181)
+        Me.CheckBox1.Location = New System.Drawing.Point(92, 229)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(85, 18)
         Me.CheckBox1.TabIndex = 14
@@ -134,27 +158,27 @@ Partial Class FrmItemInformation
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(7, 154)
+        Me.Label3.Location = New System.Drawing.Point(7, 171)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(31, 14)
+        Me.Label3.Size = New System.Drawing.Size(52, 14)
         Me.Label3.TabIndex = 11
-        Me.Label3.Text = "Price"
+        Me.Label3.Text = "Unit Price"
         '
         'TxtUnitPrice
         '
         Me.TxtUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUnitPrice.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtUnitPrice.Location = New System.Drawing.Point(92, 149)
+        Me.TxtUnitPrice.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(92, 168)
         Me.TxtUnitPrice.Name = "TxtUnitPrice"
-        Me.TxtUnitPrice.Size = New System.Drawing.Size(87, 22)
-        Me.TxtUnitPrice.TabIndex = 10
+        Me.TxtUnitPrice.Size = New System.Drawing.Size(87, 20)
+        Me.TxtUnitPrice.TabIndex = 2
         Me.TxtUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(7, 101)
+        Me.Label2.Location = New System.Drawing.Point(7, 94)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(83, 14)
         Me.Label2.TabIndex = 9
@@ -163,12 +187,12 @@ Partial Class FrmItemInformation
         'TxtItemDescription
         '
         Me.TxtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtItemDescription.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtItemDescription.Location = New System.Drawing.Point(92, 96)
+        Me.TxtItemDescription.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtItemDescription.Location = New System.Drawing.Point(92, 94)
         Me.TxtItemDescription.Multiline = True
         Me.TxtItemDescription.Name = "TxtItemDescription"
         Me.TxtItemDescription.Size = New System.Drawing.Size(277, 52)
-        Me.TxtItemDescription.TabIndex = 8
+        Me.TxtItemDescription.TabIndex = 0
         '
         'Label1
         '
@@ -184,11 +208,11 @@ Partial Class FrmItemInformation
         '
         Me.TxtItemCode.BackColor = System.Drawing.Color.Beige
         Me.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtItemCode.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtItemCode.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtItemCode.Location = New System.Drawing.Point(92, 73)
         Me.TxtItemCode.Name = "TxtItemCode"
         Me.TxtItemCode.ReadOnly = True
-        Me.TxtItemCode.Size = New System.Drawing.Size(277, 22)
+        Me.TxtItemCode.Size = New System.Drawing.Size(277, 20)
         Me.TxtItemCode.TabIndex = 6
         '
         'PnlActionBar
@@ -204,6 +228,17 @@ Partial Class FrmItemInformation
         Me.PnlActionBar.Name = "PnlActionBar"
         Me.PnlActionBar.Size = New System.Drawing.Size(539, 68)
         Me.PnlActionBar.TabIndex = 76
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(3, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(211, 32)
+        Me.Label25.TabIndex = 17
+        Me.Label25.Text = "Item Information"
         '
         'BtnAddNewItem
         '
@@ -257,7 +292,7 @@ Partial Class FrmItemInformation
         Me.BtnSave.Location = New System.Drawing.Point(291, 4)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(60, 60)
-        Me.BtnSave.TabIndex = 0
+        Me.BtnSave.TabIndex = 3
         Me.BtnSave.UseVisualStyleBackColor = False
         '
         'Panel3
@@ -270,7 +305,7 @@ Partial Class FrmItemInformation
         Me.Panel3.Controls.Add(Me.Label18)
         Me.Panel3.Controls.Add(Me.TxtModifiedBy)
         Me.Panel3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel3.Location = New System.Drawing.Point(12, 304)
+        Me.Panel3.Location = New System.Drawing.Point(12, 350)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(539, 62)
         Me.Panel3.TabIndex = 80
@@ -333,22 +368,11 @@ Partial Class FrmItemInformation
         Me.TxtModifiedBy.Size = New System.Drawing.Size(65, 20)
         Me.TxtModifiedBy.TabIndex = 76
         '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(3, 18)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(211, 32)
-        Me.Label25.TabIndex = 17
-        Me.Label25.Text = "Item Information"
-        '
         'FrmItemInformation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(563, 378)
+        Me.ClientSize = New System.Drawing.Size(563, 424)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox2)
@@ -392,4 +416,6 @@ Partial Class FrmItemInformation
     Friend WithEvents TxtModifiedBy As TextBox
     Friend WithEvents BtnAddNewItem As Button
     Friend WithEvents Label25 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents TxtUnitCost As TextBox
 End Class

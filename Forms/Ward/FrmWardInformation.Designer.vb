@@ -23,6 +23,7 @@ Partial Class FrmWardInformation
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmWardInformation))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TxtCreatedBy = New System.Windows.Forms.TextBox()
@@ -1626,6 +1627,8 @@ Partial Class FrmWardInformation
         '
         Me.DgvWardSummary.AllowUserToAddRows = False
         Me.DgvWardSummary.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.DgvWardSummary.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvWardSummary.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvWardSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvWardSummary.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WardDate, Me.DailyNotes, Me.Appetite, Me.Bowel, Me.Urine, Me.Vomit})

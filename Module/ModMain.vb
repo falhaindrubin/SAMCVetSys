@@ -1,5 +1,6 @@
 ﻿'Imports System.Data.Odbc
 'Imports System.Globalization
+Imports System.IO
 Imports System.Text
 
 Module ModMain
@@ -37,9 +38,9 @@ Module ModMain
             DATABASE = "samc_db"
             PORT = "3306"
             UID = "root"
-            PWD = "015015dr"
+            PWD = "root" '015015dr
 
-            DBConn.ConnectionString =
+            DbConn.ConnectionString =
                 "DRIVER={MySQL ODBC 8.0 UNICODE Driver};" &
                 "SERVER=" & SERVER & ";" &
                 "PORT=" & PORT & ";" &
@@ -47,7 +48,7 @@ Module ModMain
                 "USER=" & UID & ";" &
                 "PASSWORD=" & PWD & ";"
 
-            DBConn.Open()
+            DbConn.Open()
 
         Catch ex As Exception
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "ModMain.ConnectToDB()")
@@ -444,15 +445,15 @@ Module ModMain
                 Return False
             End If
 
-            sb = New StringBuilder
-            With sb
+            Sb = New StringBuilder
+            With Sb
                 .Append("UPDATE samc_runningno ")
                 .Append("SET LastNo = '0' ")
                 .Append("WHERE Prefix = '" & Prefix & "' ")
             End With
 
-            cmd = New OdbcCommand(sb.ToString, DBConn, DBTrans)
-            cmd.ExecuteNonQuery()
+            Cmd = New OdbcCommand(Sb.ToString, DBConn, DBTrans)
+            Cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ModMain.ResetPetIDRunningNo()")
@@ -581,5 +582,60 @@ Module ModMain
         Active = 1
         Inactive = 0
     End Enum
+
+    Public Function TerminateExternalExe() As Boolean
+
+        Try
+            Dim StrReportTxt As String = My.Application.Info.DirectoryPath & "\Reports.txt"
+
+            If System.IO.File.Exists(StrReportTxt) Then
+
+                'The file exists
+                Dim PsList() As Process
+                Dim StrReportExe As String = File.ReadAllText(StrReportTxt)
+                Dim StrReportExeExtracted As String() = StrReportExe.Split(";")
+                Dim ReportList As New List(Of String)
+                Dim la, lb As String
+
+                For Each a In StrReportExeExtracted
+                    la = a.Replace(Environment.NewLine, "")
+                    lb = la.Replace(".exe", "")
+                    ReportList.Add(lb)
+                Next
+
+                PsList = Process.GetProcesses()
+                For i As Integer = 0 To ReportList.Count - 1
+                    Dim ExeName As String = ReportList(i).ToString
+                    For Each p As Process In PsList
+
+                        If (p.ProcessName = ExeName) Then
+                            'MsgBox(p.ProcessName)
+                            p.Kill()
+                        End If
+
+                    Next p
+
+                Next
+
+            Else
+                'the file doesn't exist
+
+            End If
+
+            ' TODO: Close the application safely.
+            If DbConn.State = ConnectionState.Open Then
+                DbConn.Close()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ModMain.TerminateExternalExe()")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+
 
 End Module

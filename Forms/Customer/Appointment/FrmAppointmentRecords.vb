@@ -1,4 +1,6 @@
-﻿Public Class FrmAppointmentRecords
+﻿Imports System.Text
+
+Public Class FrmAppointmentRecords
 
     Private Sub FrmAppointment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Application.DoEvents()
@@ -11,9 +13,15 @@
 
         Dim DtAppointment As New DataTable
         Dim ClsAppointment As New ClsAppointment
+        Dim StrOp As String = "WHERE"
 
         Try
-            DtAppointment = ClsAppointment.GetAppointmentListing(ClsAppointment)
+            ClsAppointment = New ClsAppointment
+            With ClsAppointment
+                .SQLQueryCondition = FilterSQL(StrOp)
+                DtAppointment = .GetAppointmentListing(ClsAppointment)
+            End With
+
             If DtAppointment.Rows.Count > 0 Then
 
                 With DgvAppoinmentListing
@@ -31,9 +39,9 @@
                     Next
 
                 End With
+            Else
+                MsgBox("No record found. Please specify your search criteria.", MsgBoxStyle.Exclamation, "Record Not Found")
 
-                'DgvAppoinmentListing.DataSource = DtAppointment
-                'DgvAppoinmentListing.Show()
             End If
 
         Catch ex As Exception
@@ -41,6 +49,47 @@
         End Try
 
     End Sub
+
+    Private Function FilterSQL(ByVal strOP As String) As String
+
+        Dim SQLCondition As String = ""
+        Dim sb As New StringBuilder
+        Dim SearchQuery As String
+
+        Try
+            sb = New StringBuilder
+            With sb
+
+                SearchQuery = Trim(TxtSearchText.Text)
+
+                If Trim(TxtSearchText.Text) <> "" Then
+
+                    '.Append("" & GetOP(strOP) & " NRICPassportNo LIKE '%" & SearchQuery & "%' OR CustomerName LIKE '%" & SearchQuery & "%' OR CustomerID LIKE '%" & SearchQuery & "%' ")
+                    .Append("" & GetOP(strOP) & " CustomerName LIKE '%" & SearchQuery & "%' OR CustomerID LIKE '%" & SearchQuery & "%' ")
+
+                End If
+
+            End With
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".FilterSQLCondition()")
+        End Try
+
+        SQLCondition = sb.ToString
+        Return SQLCondition
+
+    End Function
+
+    Private Function GetOP(ByRef strOP As String) As String
+
+        If strOP = "WHERE" Then
+            strOP = "AND"
+            GetOP = "WHERE"
+        Else
+            GetOP = strOP
+        End If
+
+    End Function
 
     Private Sub TxtSearchCustomer_TextChanged(sender As Object, e As EventArgs)
 
@@ -128,9 +177,28 @@
 
         Try
 
-
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, FORM_NAME & ".ShowCustomerAppointment()")
+        End Try
+
+    End Sub
+
+    Private Sub BtnSearchAppointment_Click(sender As Object, e As EventArgs) Handles BtnSearchAppointment.Click
+        PopulateAppointmentListing()
+    End Sub
+
+    Private Sub TxtSearchText_KeyDown(sender As Object, e As EventArgs) Handles TxtSearchText.KeyDown
+
+        Dim EnterKey As System.Windows.Forms.KeyEventArgs = e
+
+        Try
+            If EnterKey.KeyCode = Keys.Enter Then
+                EnterKey.SuppressKeyPress = True
+                PopulateAppointmentListing()
+            End If
+
+        Catch ex As Exception
+
         End Try
 
     End Sub

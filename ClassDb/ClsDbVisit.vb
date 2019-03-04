@@ -83,17 +83,17 @@ Public Class ClsDbVisit
             Sb = New StringBuilder
             With Sb
                 .Append("SELECT a.VisitID, CustomerName, PetName, EmployeeName, CustomerID, EmployeeID, VisitTime, ")
-                .Append("PetID, IsCompleted, VisitDescription, ")
+                .Append("PetID, IsCompleted, IsWarded, VisitDescription, ")
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
 
-                If VS.CustomerID <> "" Then
-                    .Append("WHERE CustomerID = '" & VS.CustomerID & "' ")
+                If VS.SQLQueryCondition <> "" Then
+                    .Append("" & VS.SQLQueryCondition & " ")
                 End If
 
                 .Append("GROUP BY a.VisitID ")
-                .Append("ORDER BY a.VisitID ")
+                .Append("ORDER BY a.VisitID DESC ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
@@ -120,10 +120,10 @@ Public Class ClsDbVisit
                 .Append("CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_visit a ")
                 .Append("INNER JOIN samc_visitdetail b ON a.VisitID = b.VisitID ")
-                .Append("WHERE IsCompleted = '" & VS.IsCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' ")
-                If VS.CustomerID <> "" Then
-                    .Append("AND CustomerID = '" & VS.CustomerID & "' ")
-                End If
+                '.Append("WHERE IsCompleted = '" & VS.IsCompleted & "' AND IsOngoingTreatment = '" & VS.IsOngoingTreatment & "' ")
+                'If VS.CustomerID <> "" Then
+                '    .Append("AND CustomerID = '" & VS.CustomerID & "' ")
+                'End If
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn)
@@ -419,10 +419,10 @@ Public Class ClsDbVisit
         Try
             Sb = New StringBuilder
             With Sb
-                .Append("UPDATE samc_visit ")
-                .Append("SET IsOngoingTreatment = '" & V.IsOngoingTreatment & "', ")
-                .Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
-                .Append("WHERE VisitID = '" & V.VisitID & "' ")
+                '.Append("UPDATE samc_visit ")
+                '.Append("SET IsOngoingTreatment = '" & V.IsOngoingTreatment & "', ")
+                '.Append("ModifiedBy = '" & V.Ref.ModifiedBy & "', DateModified = " & CSQLDateTime(V.Ref.DateModified) & " ")
+                '.Append("WHERE VisitID = '" & V.VisitID & "' ")
             End With
 
             Cmd = New OdbcCommand(Sb.ToString, DbConn, DbTrans)

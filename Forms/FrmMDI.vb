@@ -4,6 +4,11 @@ Public Class FrmMDI
 
     Private Sub FrmMDI_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Text = "SAMC Veterinary Management System " & SOFTWARE_VERSION & " - " & CURR_USER
+        'TimerMain.Interval = 1000
+        TimerMain.Start()
+
+        AddHandler System.Windows.Forms.Application.Idle, AddressOf Application_Idle
+        ' TODO: Create the 10-minute timer.
     End Sub
 
     Private Sub FrmMDI_Closing(sender As Object, e As EventArgs) Handles MyBase.Closing
@@ -13,53 +18,96 @@ Public Class FrmMDI
         FrmLogin.Close()
     End Sub
 
-    Private Function TerminateExternalExe() As Boolean
+#Region "Application_Idle"
 
-        Try
-            Dim StrReportTxt As String = My.Application.Info.DirectoryPath & "\Reports.txt"
+    Private Sub Application_Idle(sender As Object, e As EventArgs)
+        ' TODO: Restart the 10-minute timer.
+        TimerMain.Stop()
+        TimerMain.Start()
+    End Sub
 
-            If System.IO.File.Exists(StrReportTxt) Then
+    'This assumes your TenMinuteTimer Object has an Expire Event.  Do what works For you instead.
+    Private Sub TimerMain_Tick(sender As Object, e As EventArgs) Handles TimerMain.Tick
 
-                'The file exists
-                Dim PsList() As Process
-                Dim StrReportExe As String = File.ReadAllText(StrReportTxt)
-                Dim StrReportExeExtracted As String() = StrReportExe.Split(";")
-                Dim ReportList As New List(Of String)
-                Dim la, lb As String
+        'Static s As Integer
 
-                For Each a In StrReportExeExtracted
-                    la = a.Replace(Environment.NewLine, "")
-                    lb = la.Replace(".exe", "")
-                    ReportList.Add(lb)
-                Next
+        's += 1
+        'If s > 60 Then 'Close after one minute
 
-                PsList = Process.GetProcesses()
-                For i As Integer = 0 To ReportList.Count - 1
-                    Dim ExeName As String = ReportList(i).ToString
-                    For Each p As Process In PsList
+        '    TimerMain.Stop()
+        '    TimerMain.Enabled = False
+        '    RemoveHandler Application.Idle, AddressOf Me.Application_Idle
+        '    MsgBox("Time's out! Please login to continue.")
 
-                        If (p.ProcessName = ExeName) Then
-                            'MsgBox(p.ProcessName)
-                            p.Kill()
-                        End If
+        '    ' TODO: Close the application safely.
+        '    For Each frm As Form In Me.MdiChildren
+        '        frm.Close()
+        '    Next
 
-                    Next p
+        '    TerminateExternalExe()
 
-                Next
+        '    Me.Dispose()
+        '    Me.Close()
 
-            Else
-                'the file doesn't exist
+        '    FrmLogin.Show()
 
-            End If
+        'End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmMDI.TerminateExternalExe()")
-            Return False
-        End Try
+    End Sub
 
-        Return True
+#End Region
 
-    End Function
+#Region "TerminatExternalExe"
+
+    'Private Function TerminateExternalExe() As Boolean
+
+    '    Try
+    '        Dim StrReportTxt As String = My.Application.Info.DirectoryPath & "\Reports.txt"
+
+    '        If System.IO.File.Exists(StrReportTxt) Then
+
+    '            'The file exists
+    '            Dim PsList() As Process
+    '            Dim StrReportExe As String = File.ReadAllText(StrReportTxt)
+    '            Dim StrReportExeExtracted As String() = StrReportExe.Split(";")
+    '            Dim ReportList As New List(Of String)
+    '            Dim la, lb As String
+
+    '            For Each a In StrReportExeExtracted
+    '                la = a.Replace(Environment.NewLine, "")
+    '                lb = la.Replace(".exe", "")
+    '                ReportList.Add(lb)
+    '            Next
+
+    '            PsList = Process.GetProcesses()
+    '            For i As Integer = 0 To ReportList.Count - 1
+    '                Dim ExeName As String = ReportList(i).ToString
+    '                For Each p As Process In PsList
+
+    '                    If (p.ProcessName = ExeName) Then
+    '                        'MsgBox(p.ProcessName)
+    '                        p.Kill()
+    '                    End If
+
+    '                Next p
+
+    '            Next
+
+    '        Else
+    '            'the file doesn't exist
+
+    '        End If
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "FrmMDI.TerminateExternalExe()")
+    '        Return False
+    '    End Try
+
+    '    Return True
+
+    'End Function
+
+#End Region
 
 #Region "Customer"
 
@@ -376,5 +424,9 @@ Public Class FrmMDI
     End Sub
 
 #End Region
+
+    'Public Function PreFilterMessage(ByRef m As Message) As Boolean Implements IMessageFilter.PreFilterMessage
+    '    Throw New NotImplementedException()
+    'End Function
 
 End Class

@@ -27,13 +27,6 @@ Partial Class FrmVisitRecords
         Me.TxtSearchText = New System.Windows.Forms.TextBox()
         Me.BtnSearchCustomer = New System.Windows.Forms.Button()
         Me.DgvVisit = New System.Windows.Forms.DataGridView()
-        Me.PnlActionBar = New System.Windows.Forms.Panel()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.BtnClose = New System.Windows.Forms.Button()
-        Me.BtnAddNewConsultation = New System.Windows.Forms.Button()
-        Me.BtnReload = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.VisitID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VisitTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +36,13 @@ Partial Class FrmVisitRecords
         Me.EmployeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VisitDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VisitStatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PnlActionBar = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.BtnClose = New System.Windows.Forms.Button()
+        Me.BtnAddNewConsultation = New System.Windows.Forms.Button()
+        Me.BtnReload = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         CType(Me.DgvVisit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlActionBar.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -98,89 +98,8 @@ Partial Class FrmVisitRecords
         Me.DgvVisit.ReadOnly = True
         Me.DgvVisit.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DgvVisit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvVisit.Size = New System.Drawing.Size(969, 529)
+        Me.DgvVisit.Size = New System.Drawing.Size(969, 461)
         Me.DgvVisit.TabIndex = 2
-        '
-        'PnlActionBar
-        '
-        Me.PnlActionBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PnlActionBar.Controls.Add(Me.Label25)
-        Me.PnlActionBar.Controls.Add(Me.BtnClose)
-        Me.PnlActionBar.Controls.Add(Me.BtnAddNewConsultation)
-        Me.PnlActionBar.Controls.Add(Me.BtnReload)
-        Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
-        Me.PnlActionBar.Name = "PnlActionBar"
-        Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
-        Me.PnlActionBar.TabIndex = 73
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(4, 18)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(176, 32)
-        Me.Label25.TabIndex = 76
-        Me.Label25.Text = "Visit Records"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'BtnClose
-        '
-        Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
-        Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnClose.Location = New System.Drawing.Point(920, 4)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
-        Me.BtnClose.TabIndex = 3
-        Me.BtnClose.UseVisualStyleBackColor = False
-        '
-        'BtnAddNewConsultation
-        '
-        Me.BtnAddNewConsultation.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnAddNewConsultation.BackgroundImage = CType(resources.GetObject("BtnAddNewConsultation.BackgroundImage"), System.Drawing.Image)
-        Me.BtnAddNewConsultation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnAddNewConsultation.Location = New System.Drawing.Point(798, 4)
-        Me.BtnAddNewConsultation.Name = "BtnAddNewConsultation"
-        Me.BtnAddNewConsultation.Size = New System.Drawing.Size(60, 60)
-        Me.BtnAddNewConsultation.TabIndex = 2
-        Me.BtnAddNewConsultation.UseVisualStyleBackColor = False
-        '
-        'BtnReload
-        '
-        Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
-        Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.BtnReload.Location = New System.Drawing.Point(859, 4)
-        Me.BtnReload.Name = "BtnReload"
-        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
-        Me.BtnReload.TabIndex = 1
-        Me.BtnReload.UseVisualStyleBackColor = False
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.DgvVisit)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 161)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(984, 556)
-        Me.GroupBox1.TabIndex = 75
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Visit Listing"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.TxtSearchText)
-        Me.GroupBox2.Controls.Add(Me.BtnSearchCustomer)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 87)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(984, 68)
-        Me.GroupBox2.TabIndex = 74
-        Me.GroupBox2.TabStop = False
         '
         'VisitID
         '
@@ -188,14 +107,14 @@ Partial Class FrmVisitRecords
         Me.VisitID.HeaderText = "Visit ID"
         Me.VisitID.Name = "VisitID"
         Me.VisitID.ReadOnly = True
-        Me.VisitID.Width = 65
+        Me.VisitID.Width = 60
         '
         'VisitTime
         '
         Me.VisitTime.HeaderText = "Visit Time"
         Me.VisitTime.Name = "VisitTime"
         Me.VisitTime.ReadOnly = True
-        Me.VisitTime.Width = 78
+        Me.VisitTime.Width = 72
         '
         'CustomerID
         '
@@ -204,7 +123,6 @@ Partial Class FrmVisitRecords
         Me.CustomerID.Name = "CustomerID"
         Me.CustomerID.ReadOnly = True
         Me.CustomerID.Visible = False
-        Me.CustomerID.Width = 90
         '
         'CustomerName
         '
@@ -212,7 +130,7 @@ Partial Class FrmVisitRecords
         Me.CustomerName.HeaderText = "Customer Name"
         Me.CustomerName.Name = "CustomerName"
         Me.CustomerName.ReadOnly = True
-        Me.CustomerName.Width = 108
+        Me.CustomerName.Width = 99
         '
         'PetName
         '
@@ -220,7 +138,7 @@ Partial Class FrmVisitRecords
         Me.PetName.HeaderText = "Pet Name"
         Me.PetName.Name = "PetName"
         Me.PetName.ReadOnly = True
-        Me.PetName.Width = 77
+        Me.PetName.Width = 71
         '
         'EmployeeID
         '
@@ -251,13 +169,101 @@ Partial Class FrmVisitRecords
         Me.VisitStatus.HeaderText = "Visit Status"
         Me.VisitStatus.Name = "VisitStatus"
         Me.VisitStatus.ReadOnly = True
-        Me.VisitStatus.Width = 87
+        Me.VisitStatus.Width = 80
+        '
+        'PnlActionBar
+        '
+        Me.PnlActionBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PnlActionBar.Controls.Add(Me.Label25)
+        Me.PnlActionBar.Controls.Add(Me.BtnClose)
+        Me.PnlActionBar.Controls.Add(Me.BtnAddNewConsultation)
+        Me.PnlActionBar.Controls.Add(Me.BtnReload)
+        Me.PnlActionBar.Location = New System.Drawing.Point(12, 13)
+        Me.PnlActionBar.Name = "PnlActionBar"
+        Me.PnlActionBar.Size = New System.Drawing.Size(984, 68)
+        Me.PnlActionBar.TabIndex = 73
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(4, 18)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(176, 32)
+        Me.Label25.TabIndex = 76
+        Me.Label25.Text = "Visit Records"
+        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'BtnClose
+        '
+        Me.BtnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnClose.BackgroundImage = CType(resources.GetObject("BtnClose.BackgroundImage"), System.Drawing.Image)
+        Me.BtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnClose.Location = New System.Drawing.Point(920, 4)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(60, 60)
+        Me.BtnClose.TabIndex = 3
+        Me.BtnClose.UseVisualStyleBackColor = False
+        '
+        'BtnAddNewConsultation
+        '
+        Me.BtnAddNewConsultation.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddNewConsultation.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnAddNewConsultation.BackgroundImage = CType(resources.GetObject("BtnAddNewConsultation.BackgroundImage"), System.Drawing.Image)
+        Me.BtnAddNewConsultation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnAddNewConsultation.Location = New System.Drawing.Point(798, 4)
+        Me.BtnAddNewConsultation.Name = "BtnAddNewConsultation"
+        Me.BtnAddNewConsultation.Size = New System.Drawing.Size(60, 60)
+        Me.BtnAddNewConsultation.TabIndex = 2
+        Me.BtnAddNewConsultation.UseVisualStyleBackColor = False
+        '
+        'BtnReload
+        '
+        Me.BtnReload.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnReload.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnReload.BackgroundImage = CType(resources.GetObject("BtnReload.BackgroundImage"), System.Drawing.Image)
+        Me.BtnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BtnReload.Location = New System.Drawing.Point(859, 4)
+        Me.BtnReload.Name = "BtnReload"
+        Me.BtnReload.Size = New System.Drawing.Size(60, 60)
+        Me.BtnReload.TabIndex = 1
+        Me.BtnReload.UseVisualStyleBackColor = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.DgvVisit)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 161)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(984, 488)
+        Me.GroupBox1.TabIndex = 75
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Visit Listing"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.Label1)
+        Me.GroupBox2.Controls.Add(Me.TxtSearchText)
+        Me.GroupBox2.Controls.Add(Me.BtnSearchCustomer)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 87)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(984, 68)
+        Me.GroupBox2.TabIndex = 74
+        Me.GroupBox2.TabStop = False
         '
         'FrmVisitRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 729)
+        Me.AutoScroll = True
+        Me.ClientSize = New System.Drawing.Size(1008, 661)
         Me.Controls.Add(Me.PnlActionBar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)

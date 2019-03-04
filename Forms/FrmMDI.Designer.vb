@@ -22,6 +22,7 @@ Partial Class FrmMDI
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.MStripMain = New System.Windows.Forms.MenuStrip()
         Me.MnuCustomer = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuRegister = New System.Windows.Forms.ToolStripMenuItem()
@@ -39,6 +40,7 @@ Partial Class FrmMDI
         Me.MnuProductServices = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuManagementSurgery = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuWindow = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TimerMain = New System.Windows.Forms.Timer(Me.components)
         Me.MStripMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -118,31 +120,31 @@ Partial Class FrmMDI
         'MnuEmployee
         '
         Me.MnuEmployee.Name = "MnuEmployee"
-        Me.MnuEmployee.Size = New System.Drawing.Size(180, 22)
+        Me.MnuEmployee.Size = New System.Drawing.Size(173, 22)
         Me.MnuEmployee.Text = "Employee"
         '
         'MnuUser
         '
         Me.MnuUser.Name = "MnuUser"
-        Me.MnuUser.Size = New System.Drawing.Size(180, 22)
+        Me.MnuUser.Size = New System.Drawing.Size(173, 22)
         Me.MnuUser.Text = "User"
         '
         'MnuRoles
         '
         Me.MnuRoles.Name = "MnuRoles"
-        Me.MnuRoles.Size = New System.Drawing.Size(180, 22)
+        Me.MnuRoles.Size = New System.Drawing.Size(173, 22)
         Me.MnuRoles.Text = "Roles"
         '
         'MnuProductServices
         '
         Me.MnuProductServices.Name = "MnuProductServices"
-        Me.MnuProductServices.Size = New System.Drawing.Size(180, 22)
+        Me.MnuProductServices.Size = New System.Drawing.Size(173, 22)
         Me.MnuProductServices.Text = "Products && Services"
         '
         'MnuManagementSurgery
         '
         Me.MnuManagementSurgery.Name = "MnuManagementSurgery"
-        Me.MnuManagementSurgery.Size = New System.Drawing.Size(180, 22)
+        Me.MnuManagementSurgery.Size = New System.Drawing.Size(173, 22)
         Me.MnuManagementSurgery.Text = "Surgery"
         '
         'MnuWindow
@@ -150,6 +152,11 @@ Partial Class FrmMDI
         Me.MnuWindow.Name = "MnuWindow"
         Me.MnuWindow.Size = New System.Drawing.Size(59, 20)
         Me.MnuWindow.Text = "Window"
+        '
+        'TimerMain
+        '
+        Me.TimerMain.Enabled = True
+        Me.TimerMain.Interval = 1000
         '
         'FrmMDI
         '
@@ -188,4 +195,5 @@ Partial Class FrmMDI
     Friend WithEvents MnuRoles As ToolStripMenuItem
     Friend WithEvents MnuPharmacy As ToolStripMenuItem
     Friend WithEvents MnuManagementSurgery As ToolStripMenuItem
+    Friend WithEvents TimerMain As Timer
 End Class

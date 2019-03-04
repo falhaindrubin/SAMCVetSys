@@ -74,7 +74,9 @@
 #End Region
 
     Private Sub FrmSearchItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         PnlActionBar.BackColor = ColorTranslator.FromHtml("#00B386")
+
         If RbServices.Checked = True Then
             PopulateServiceTypeListing()
         ElseIf RbProducts.Checked = True Then
@@ -83,15 +85,18 @@
 
         PopulateItemListing()
         TxtSearchText.Select()
+
     End Sub
 
     Private Sub PopulateItemListing()
 
         Try
             If RbServices.Checked = True Then
+
                 PopulateServiceListing()
 
             ElseIf RbProducts.Checked = True Then
+
                 PopulateProductListing()
 
             End If

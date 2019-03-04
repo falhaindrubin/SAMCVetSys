@@ -273,8 +273,8 @@ Public Class ClsDBAppointment
                 .Append("SELECT AppointmentID, EmployeeID, EmployeeName, CustomerID, CustomerName,AppointmentTime, CreatedBy, DateCreated, ModifiedBy, DateModified ")
                 .Append("FROM samc_appointment ")
 
-                If APP.CustomerID <> "" Then
-                    .Append("WHERE CustomerID = '" & APP.CustomerID & "' ")
+                If APP.SQLQueryCondition <> "" Then
+                    .Append("" & APP.SQLQueryCondition & " ")
                 End If
             End With
 

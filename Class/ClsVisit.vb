@@ -6,6 +6,8 @@ Public Class ClsVisit
 
     Dim DbVisit As New ClsDbVisit
 
+#Region "Property"
+
     Private _VisitID As String
     Public Property VisitID As String
         Get
@@ -116,16 +118,6 @@ Public Class ClsVisit
         End Set
     End Property
 
-    Private _IsOngoingTreatment As String
-    Public Property IsOngoingTreatment As String
-        Get
-            Return _IsOngoingTreatment
-        End Get
-        Set(value As String)
-            _IsOngoingTreatment = value
-        End Set
-    End Property
-
     Private _IsWarded As String
     Public Property IsWarded As String
         Get
@@ -146,6 +138,18 @@ Public Class ClsVisit
         End Set
     End Property
 
+    Private _SQLQueryCondition As String
+    Public Property SQLQueryCondition As String
+        Get
+            Return _SQLQueryCondition
+        End Get
+        Set(value As String)
+            _SQLQueryCondition = value
+        End Set
+    End Property
+
+#End Region
+
     Public Function GetVisitListing(ClsVisit As ClsVisit) As DataTable
         Return DbVisit.GetVisitListing(ClsVisit)
     End Function
@@ -153,10 +157,6 @@ Public Class ClsVisit
     Public Function GetUnassignedVisitListing(ClsVisit As ClsVisit) As DataTable
         Return DbVisit.GetUnassignedVisitListing(ClsVisit)
     End Function
-
-    'Public Function GetWardedVisitListing(ClsVisit As ClsVisit) As DataTable
-    '    Return DbVisit.GetWardedVisitListing(ClsVisit)
-    'End Function
 
     Public Function AddNewVisit(ClsConsultation As ClsVisit, DbConn As OdbcConnection, DbTrans As OdbcTransaction) As Boolean
         Return DbVisit.AddNewVisit(ClsConsultation, DbConn, DbTrans)

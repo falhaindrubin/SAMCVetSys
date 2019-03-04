@@ -106,6 +106,16 @@ Public Class ClsAppointment
         End Set
     End Property
 
+    Private _SQLQueryCondition As String
+    Public Property SQLQueryCondition As String
+        Get
+            Return _SQLQueryCondition
+        End Get
+        Set(value As String)
+            _SQLQueryCondition = value
+        End Set
+    End Property
+
     Public Function AddNewAppointment(ByVal ClsAppointment As ClsAppointment, ByRef DBConn As OdbcConnection, ByRef DBTrans As OdbcTransaction) As Boolean
         Return DBAppointment.AddNewAppointment(ClsAppointment, DBConn, DBTrans)
     End Function

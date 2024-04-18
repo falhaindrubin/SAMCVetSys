@@ -1,0 +1,74 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5D07A3-05E5-4717-9549-B023D39A6562}|SMS.vbproj|c:\\users\\falhaind rubin\\documents\\github\\schoolmanagementsystem\\forms\\murid\\register\\frmstudentinformation.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{2B5D07A3-05E5-4717-9549-B023D39A6562}|SMS.vbproj|solutionrelative:forms\\murid\\register\\frmstudentinformation.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5D07A3-05E5-4717-9549-B023D39A6562}|SMS.vbproj|c:\\users\\falhaind rubin\\documents\\github\\schoolmanagementsystem\\forms\\murid\\register\\frmstudentinformation.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{2B5D07A3-05E5-4717-9549-B023D39A6562}|SMS.vbproj|solutionrelative:forms\\murid\\register\\frmstudentinformation.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5D07A3-05E5-4717-9549-B023D39A6562}|SMS.vbproj|c:\\users\\falhaind rubin\\documents\\github\\schoolmanagementsystem\\forms\\murid\\register\\frmstudentrecords.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{2B5D07A3-05E5-4717-9549-B023D39A6562}|SMS.vbproj|solutionrelative:forms\\murid\\register\\frmstudentrecords.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmStudentInformation.vb",
+              "DocumentMoniker": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\Forms\\Murid\\Register\\FrmStudentInformation.vb",
+              "RelativeDocumentMoniker": "Forms\\Murid\\Register\\FrmStudentInformation.vb",
+              "ToolTip": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\Forms\\Murid\\Register\\FrmStudentInformation.vb",
+              "RelativeToolTip": "Forms\\Murid\\Register\\FrmStudentInformation.vb",
+              "ViewState": "AQIAALwCAAAAAAAAAAAnwN4CAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-04-18T14:15:34.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmStudentRecords.vb",
+              "DocumentMoniker": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\Forms\\Murid\\Register\\FrmStudentRecords.vb",
+              "RelativeDocumentMoniker": "Forms\\Murid\\Register\\FrmStudentRecords.vb",
+              "ToolTip": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\Forms\\Murid\\Register\\FrmStudentRecords.vb",
+              "RelativeToolTip": "Forms\\Murid\\Register\\FrmStudentRecords.vb",
+              "ViewState": "AQIAAIYAAAAAAAAAAAAnwJAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-04-18T13:45:52.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmStudentInformation.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\Forms\\Murid\\Register\\FrmStudentInformation.vb",
+              "RelativeDocumentMoniker": "Forms\\Murid\\Register\\FrmStudentInformation.vb",
+              "ToolTip": "C:\\Users\\Falhaind Rubin\\Documents\\GitHub\\SchoolManagementSystem\\Forms\\Murid\\Register\\FrmStudentInformation.vb [Design]",
+              "RelativeToolTip": "Forms\\Murid\\Register\\FrmStudentInformation.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-04-18T13:44:22.033Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

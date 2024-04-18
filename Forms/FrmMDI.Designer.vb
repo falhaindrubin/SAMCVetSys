@@ -59,26 +59,28 @@ Partial Class FrmMDI
         '
         Me.MnuCustomer.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuRegister, Me.MnuVisit, Me.MnuAppointment})
         Me.MnuCustomer.Name = "MnuCustomer"
-        Me.MnuCustomer.Size = New System.Drawing.Size(65, 20)
-        Me.MnuCustomer.Text = "Customer"
+        Me.MnuCustomer.Size = New System.Drawing.Size(56, 20)
+        Me.MnuCustomer.Text = "Student"
         '
         'MnuRegister
         '
         Me.MnuRegister.Name = "MnuRegister"
-        Me.MnuRegister.Size = New System.Drawing.Size(134, 22)
+        Me.MnuRegister.Size = New System.Drawing.Size(180, 22)
         Me.MnuRegister.Text = "Register"
         '
         'MnuVisit
         '
         Me.MnuVisit.Name = "MnuVisit"
-        Me.MnuVisit.Size = New System.Drawing.Size(134, 22)
+        Me.MnuVisit.Size = New System.Drawing.Size(180, 22)
         Me.MnuVisit.Text = "Visit"
+        Me.MnuVisit.Visible = False
         '
         'MnuAppointment
         '
         Me.MnuAppointment.Name = "MnuAppointment"
-        Me.MnuAppointment.Size = New System.Drawing.Size(134, 22)
+        Me.MnuAppointment.Size = New System.Drawing.Size(180, 22)
         Me.MnuAppointment.Text = "Appointment"
+        Me.MnuAppointment.Visible = False
         '
         'MnuTreatment
         '
@@ -169,7 +171,7 @@ Partial Class FrmMDI
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MStripMain
         Me.Name = "FrmMDI"
-        Me.Text = "SAMC Veterinary System"
+        Me.Text = "School Management System"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MStripMain.ResumeLayout(False)
         Me.MStripMain.PerformLayout()

@@ -113,11 +113,11 @@ Public Class FrmMDI
 
     Private Sub MnuRegister_Click(sender As Object, e As EventArgs) Handles MnuRegister.Click
 
-        Dim frm As New FrmCustomerRecords
+        Dim frm As New FrmStudentRecords
         'Static intCount As Integer
 
         For Each f As Form In Application.OpenForms
-            If TypeOf f Is FrmCustomerRecords Then
+            If TypeOf f Is FrmStudentRecords Then
                 f.Activate()
                 Exit Sub
             End If
@@ -129,7 +129,7 @@ Public Class FrmMDI
         '' Set the caption to be unique.
         'frm.Text = frm.Text & " " & intCount.ToString()
 
-        frm = New FrmCustomerRecords With {
+        frm = New FrmStudentRecords With {
             .MdiParent = Me
         }
         frm.Show()
@@ -422,6 +422,7 @@ Public Class FrmMDI
         End Try
 
     End Sub
+
 
 #End Region
 

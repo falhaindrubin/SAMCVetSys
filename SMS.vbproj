@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B5D07A3-05E5-4717-9549-B023D39A6562}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SAMCVetSys.My.MyApplication</StartupObject>
+    <RootNamespace>SAMCVetSys</RootNamespace>
+    <AssemblyName>SAMCVetSys</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SAMCVetSys.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SAMCVetSys.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>SAMCVetSys.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>SAMCVetSys.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Viewing.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="CrystalDecisions.ReportAppServer" />
+    <Import Include="CrystalDecisions.ReportSource" />
+    <Import Include="CrystalDecisions.Shared" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Data.Odbc" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="ClassDb\ClsDbPharmacy.vb" />
+    <Compile Include="ClassDb\ClsDbBill.vb" />
+    <Compile Include="ClassDb\ClsDbPEFindings.vb" />
+    <Compile Include="ClassDb\ClsDbManagement.vb" />
+    <Compile Include="ClassDb\ClsDbVetSales.vb" />
+    <Compile Include="ClassDb\ClsDbTreatment.vb" />
+    <Compile Include="ClassDb\ClsDbSurgery.vb" />
+    <Compile Include="ClassDb\ClsDbChSource.vb" />
+    <Compile Include="ClassDb\ClsDbUserRole.vb" />
+    <Compile Include="ClassDb\ClsDbWard.vb" />
+    <Compile Include="Class\ClsPharmacy.vb" />
+    <Compile Include="Class\ClsBillDetail.vb" />
+    <Compile Include="Class\ClsBill.vb" />
+    <Compile Include="ClassDb\ClsDbDiagnosis.vb" />
+    <Compile Include="Class\ClsCalcBill.vb" />
+    <Compile Include="Class\ClsDiagnosisDetail.vb" />
+    <Compile Include="Class\ClsDiagnosis.vb" />
+    <Compile Include="Class\ClsPEFindings.vb" />
+    <Compile Include="Class\ClsVetSales.vb" />
+    <Compile Include="Class\ClsSurgeryDetail.vb" />
+    <Compile Include="Class\ClsSurgery.vb" />
+    <Compile Include="Class\ClsSurgeryDischarge.vb" />
+    <Compile Include="Class\ClsSurgeryMaterial.vb" />
+    <Compile Include="Class\ClsPharmacyDetail.vb" />
+    <Compile Include="Class\ClsTreatmentDetail.vb" />
+    <Compile Include="Class\ClsChSource.vb" />
+    <Compile Include="Class\ClsUserRoles.vb" />
+    <Compile Include="Class\ClsTreatment.vb" />
+    <Compile Include="Class\ClsVisitCharges.vb" />
+    <Compile Include="Class\ClsWardDischarge.vb" />
+    <Compile Include="Class\ClsWard.vb" />
+    <Compile Include="Class\ClsWardHourly.vb" />
+    <Compile Include="Class\ClsWardDetail.vb" />
+    <Compile Include="Class\ClsWardDiagnosis.vb" />
+    <Compile Include="Class\ClsWardDiagnosisDetail.vb" />
+    <Compile Include="Class\ClsWardDischargeDetail.vb" />
+    <Compile Include="Class\ClsWardTreatment.vb" />
+    <Compile Include="Forms\Murid\_Appointment\FrmAppointmentInformation.Designer.vb">
+      <DependentUpon>FrmAppointmentInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\_Appointment\FrmAppointmentInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassDb\ClsDbProducts.vb" />
+    <Compile Include="ClassDb\ClsDbServices.vb" />
+    <Compile Include="Class\ClsProducts.vb" />
+    <Compile Include="Class\ClsServices.vb" />
+    <Compile Include="Forms\Murid\_Visit\FrmVisitInformation.Designer.vb">
+      <DependentUpon>FrmVisitInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\_Visit\FrmVisitInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Vet\FrmVetSales.Designer.vb">
+      <DependentUpon>FrmVetSales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Vet\FrmVetSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleInformation.Designer.vb">
+      <DependentUpon>FrmRoleInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleRecords.Designer.vb">
+      <DependentUpon>FrmRoleRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Roles\FrmRoleRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Surgery\FrmSurgeryManagement.Designer.vb">
+      <DependentUpon>FrmSurgeryManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Surgery\FrmSurgeryManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Users\FrmUserInformation.Designer.vb">
+      <DependentUpon>FrmUserInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Users\FrmUserInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Users\FrmUserRecords.Designer.vb">
+      <DependentUpon>FrmUserRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Users\FrmUserRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRequest.Designer.vb">
+      <DependentUpon>FrmPharmacyRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRecords.Designer.vb">
+      <DependentUpon>FrmPharmacyRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pharmacy\FrmPharmacyRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchEmployee.Designer.vb">
+      <DependentUpon>FrmSearchEmployee.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchEmployee.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryInformation.Designer.vb">
+      <DependentUpon>FrmSurgeryInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryRecords.Designer.vb">
+      <DependentUpon>FrmSurgeryRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Surgery\FrmSurgeryRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassDb\ClsDbVisit.vb" />
+    <Compile Include="ClassDb\ClsDbCompany.vb" />
+    <Compile Include="ClassDb\ClsDbUser.vb" />
+    <Compile Include="Class\ClsVisitDetail.vb" />
+    <Compile Include="Class\ClsVisit.vb" />
+    <Compile Include="Class\ClsCompany.vb" />
+    <Compile Include="Class\ClsUser.vb" />
+    <Compile Include="Forms\Murid\_Visit\FrmVisitRecords.Designer.vb">
+      <DependentUpon>FrmVisitRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\_Visit\FrmVisitRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.Designer.vb">
+      <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeInformation.Designer.vb">
+      <DependentUpon>FrmEmployeeInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Employees\Employee Records\FrmEmployeeInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payment\FrmPaymentInformation.Designer.vb">
+      <DependentUpon>FrmPaymentInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Payment\FrmPaymentInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payment\FrmPaymentRecords.Designer.vb">
+      <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Payment\FrmPaymentRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Products\FrmItemInformation.Designer.vb">
+      <DependentUpon>FrmItemInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Products\FrmItemInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\Products\FrmItemRecords.Designer.vb">
+      <DependentUpon>FrmItemRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\Products\FrmItemRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardInformation.Designer.vb">
+      <DependentUpon>FrmWardInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardRecords.Designer.vb">
+      <DependentUpon>FrmWardRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardSummary.Designer.vb">
+      <DependentUpon>FrmWardSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ward\FrmWardSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassDb\ClsDbAppointment.vb" />
+    <Compile Include="ClassDb\ClsDbCustomer.vb" />
+    <Compile Include="ClassDb\ClsDbEmployee.vb" />
+    <Compile Include="ClassDb\ClsDbLogin.vb" />
+    <Compile Include="ClassDb\ClsDbPet.vb" />
+    <Compile Include="Class\ClsAppointmentDetail.vb" />
+    <Compile Include="Class\ClsAppointment.vb" />
+    <Compile Include="Class\ClsCustomer.vb" />
+    <Compile Include="Class\ClsEmployee.vb" />
+    <Compile Include="Class\ClsLogin.vb" />
+    <Compile Include="Class\ClsPet.vb" />
+    <Compile Include="Class\ClsReference.vb" />
+    <Compile Include="GlobalSuppressions.vb" />
+    <Compile Include="Module\ModUtility.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\Register\FrmStudentInformation.Designer.vb">
+      <DependentUpon>FrmStudentInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\Register\FrmStudentInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.Designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module\ModMain.vb" />
+    <Compile Include="Forms\Murid\_Appointment\FrmAppointmentRecords.Designer.vb">
+      <DependentUpon>FrmAppointmentRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\_Appointment\FrmAppointmentRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Murid\Register\FrmStudentRecords.Designer.vb">
+      <DependentUpon>FrmStudentRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Murid\Register\FrmStudentRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMDI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMDI.Designer.vb">
+      <DependentUpon>FrmMDI.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Forms\FrmSplash.Designer.vb">
+      <DependentUpon>FrmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Treatment\FrmTreatmentInformation.Designer.vb">
+      <DependentUpon>FrmTreatmentInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Treatment\FrmTreatmentInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Treatment\FrmTreatmentRecords.Designer.vb">
+      <DependentUpon>FrmTreatmentRecords.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Treatment\FrmTreatmentRecords.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchCustomer.Designer.vb">
+      <DependentUpon>FrmSearchCustomer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchItem.Designer.vb">
+      <DependentUpon>FrmSearchItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchVisit.Designer.vb">
+      <DependentUpon>FrmSearchVisit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Search\FrmSearchVisit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Murid\_Appointment\FrmAppointmentInformation.resx">
+      <DependentUpon>FrmAppointmentInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Murid\_Visit\FrmVisitInformation.resx">
+      <DependentUpon>FrmVisitInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Murid\_Visit\FrmVisitRecords.resx">
+      <DependentUpon>FrmVisitRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Murid\Register\FrmStudentInformation.resx">
+      <DependentUpon>FrmStudentInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Murid\_Appointment\FrmAppointmentRecords.resx">
+      <DependentUpon>FrmAppointmentRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Murid\Register\FrmStudentRecords.resx">
+      <DependentUpon>FrmStudentRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMDI.resx">
+      <DependentUpon>FrmMDI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Employees\Employee Records\FrmEmployeeRecords.resx">
+      <DependentUpon>FrmEmployeeRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Employees\Employee Records\FrmEmployeeInformation.resx">
+      <DependentUpon>FrmEmployeeInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Employees\Vet\FrmVetSales.resx">
+      <DependentUpon>FrmVetSales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Products\FrmItemInformation.resx">
+      <DependentUpon>FrmItemInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Products\FrmItemRecords.resx">
+      <DependentUpon>FrmItemRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Roles\FrmRoleInformation.resx">
+      <DependentUpon>FrmRoleInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Roles\FrmRoleRecords.resx">
+      <DependentUpon>FrmRoleRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Surgery\FrmSurgeryManagement.resx">
+      <DependentUpon>FrmSurgeryManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Users\FrmUserInformation.resx">
+      <DependentUpon>FrmUserInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\Users\FrmUserRecords.resx">
+      <DependentUpon>FrmUserRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pharmacy\FrmPharmacyRecords.resx">
+      <DependentUpon>FrmPharmacyRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pharmacy\FrmPharmacyRequest.resx">
+      <DependentUpon>FrmPharmacyRequest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Search\FrmSearchEmployee.resx">
+      <DependentUpon>FrmSearchEmployee.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Surgery\FrmSurgeryInformation.resx">
+      <DependentUpon>FrmSurgeryInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Surgery\FrmSurgeryRecords.resx">
+      <DependentUpon>FrmSurgeryRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ward\FrmWardInformation.resx">
+      <DependentUpon>FrmWardInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ward\FrmWardRecords.resx">
+      <DependentUpon>FrmWardRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ward\FrmWardSummary.resx">
+      <DependentUpon>FrmWardSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payment\FrmPaymentInformation.resx">
+      <DependentUpon>FrmPaymentInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payment\FrmPaymentRecords.resx">
+      <DependentUpon>FrmPaymentRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSplash.resx">
+      <DependentUpon>FrmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Treatment\FrmTreatmentInformation.resx">
+      <DependentUpon>FrmTreatmentInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Treatment\FrmTreatmentRecords.resx">
+      <DependentUpon>FrmTreatmentRecords.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Search\FrmSearchCustomer.resx">
+      <DependentUpon>FrmSearchCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Search\FrmSearchItem.resx">
+      <DependentUpon>FrmSearchItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Search\FrmSearchVisit.resx">
+      <DependentUpon>FrmSearchVisit.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dataset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\Layer 01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\edit1.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
